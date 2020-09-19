@@ -34,7 +34,29 @@ composer install
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0919/214104_d0ae3f6b_1405153.png "屏幕截图.png")
 
+####  特别感谢
 
+以下项目排名不分先后
+
+ThinkPHP：https://github.com/top-think/framework
+
+Annotations：https://github.com/doctrine/annotations
+
+Layui：https://github.com/sentsin/layui
+
+ok-admin：http://ok-admin.xlbweb.cn/
+
+Jquery：https://github.com/jquery/jquery
+
+RequireJs：https://github.com/requirejs/requirejs
+
+CKEditor：https://github.com/ckeditor/ckeditor4
+
+Echarts：https://github.com/apache/incubator-echarts
+
+石榴CRM：https://www.shiliucrm.com （广告：-））
+
+热猫商城：https://gitee.com/qzxc_admin/hotmall （广告：-））
 
 
 #### 参与贡献
