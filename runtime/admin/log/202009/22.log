@@ -1,6 +1,0 @@
-[2020-09-22T15:59:44+08:00][sql] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=okadmin;charset=utf8
-[2020-09-22T15:59:44+08:00][sql] SHOW FULL COLUMNS FROM `super_admin` [ RunTime:0.001000s ]
-[2020-09-22T15:59:44+08:00][sql] SELECT * FROM `super_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.001000s ]
-[2020-09-22T15:59:46+08:00][sql] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=okadmin;charset=utf8
-[2020-09-22T15:59:46+08:00][sql] SHOW FULL COLUMNS FROM `super_admin` [ RunTime:0.003001s ]
-[2020-09-22T15:59:46+08:00][sql] SELECT * FROM `super_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
