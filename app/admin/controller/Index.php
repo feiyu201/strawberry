@@ -13,6 +13,6 @@ class Index extends AdminBase
         return View::fetch();
     }
     public function welcome(){
-    	return "欢迎你";
+    	return View::fetch();
     }
 }
