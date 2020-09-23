@@ -2,10 +2,10 @@
 branches: {
   }
 fileChange:
-  /stdatabase.sql:
-    newFile: !uuid '9e87385deddd6ab6a5127a690c7519cf329e99cf'
-    oldFile: !uuid '7a77400c1e97f62ef3fa1bd31e924438842b8e16'
-gitCommitId: !uuid 'aa25013f123be8831bb38edafecb02a17b48e70a'
+  /okadmin.sql:
+    newFile: null
+    oldFile: !uuid '56fb6ed54bb8167089d322c73badee458b5c9217'
+gitCommitId: !uuid '56f66b4fdf6a20de274c03dbe14aefa5f77a9034'
 renames: {
   }
-revisionId: 16
+revisionId: 17
