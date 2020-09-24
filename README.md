@@ -10,6 +10,12 @@ QQ群：578270353
 thinkphp6 php7.1
 
 #### 更新日志
+2020.9.24 完成了基本的附件管理。
+
+2020.9.23 完成了基本的小程序管理。
+
+2020.9.22 完成了基本的插件管理。
+
 2020.9.19 完成了基本的登陆和管理员管理功能。万里长征的第一步。
 
 #### 演示地址
@@ -41,7 +47,7 @@ composer install
 6、导入sql文件。stdatabase.sql是数据库文件。
 
 7、复制一份config/database.php.example
-，改名database.php，然后修改config/database.php里面的数据库账户和密码以及数据库名。
+，改名database.php，修改config/database.php里面的数据库账户和密码以及数据库名。
 
 
 然后就可以访问了。默认用户名admin 密码 112233
