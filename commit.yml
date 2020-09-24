@@ -2,37 +2,13 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '16aa8280a108718596da700f3cfc2f2f2dfcef8b'
-    oldFile: !uuid '22659c0fab06e3f29fefedd60f70d162fff9c5b6'
-  /app/admin:
-    newFile: !uuid '833d72ab9a6c663256a947ff25630aa19ba90ea5'
-    oldFile: !uuid '422b5780d82a9c9941aff109ed17333fa890b0a9'
-  /app/admin/view:
-    newFile: !uuid '1bef42d0e1f385a3bb276381ac1085127b85bef7'
-    oldFile: !uuid '45ada02ed886abac7785b0a9a3b82cc6c455b53e'
-  /app/admin/view/index:
-    newFile: !uuid '39be0992e032d61d4ed48d0f9a23472f55bb86cc'
-    oldFile: !uuid '32b1a0f04780986611a9a91dde8e3e6a95374b9e'
-  /app/admin/view/index/index.html:
-    newFile: !uuid '610b670cfc4518740c8be43c9780be90878211a7'
-    oldFile: !uuid '20c852028fd5a6e3742a9d44a97da3efc8654d12'
-  /composer.lock:
-    newFile: !uuid '7bc591c8e8f890701024016956d02fd49e7840f5'
-    oldFile: !uuid '695d848faadb5efec4b61852433b4fb056b0b019'
-  /vendor:
-    newFile: !uuid '270dfcc730f75d61534aa0d0dfc144341fcfdb2c'
-    oldFile: !uuid 'afe1b4a60c701cefff851fd0a2edb9a556bdb43e'
-  /vendor/composer:
-    newFile: !uuid '2994cb57c64dece7aa1544c5fa79de14eb841c34'
-    oldFile: !uuid 'b33aa9e3d064e7ea24402edab861c6bd9750b76f'
-  /vendor/composer/autoload_real.php:
-    newFile: !uuid '0afdf5f483d7729c9c86037bf9eba567a0557295'
-    oldFile: !uuid '2c3c4c5aef731d3675caeeb4f1cf66f2033248eb'
-  /vendor/services.php:
-    newFile: !uuid '8ef908b238654669f746053d46eb0251560627c6'
-    oldFile: !uuid '3b43322c7af16a67357dda1ec96eb071267ecda7'
-gitCommitId: !uuid '1b0cbe25a737689fa1b136ad8a0b7f6c35c40d2e'
+  /config:
+    newFile: !uuid '557040d4c9df7bfdfd92e2c2b1ad5a83962be90d'
+    oldFile: !uuid 'ed746b135e219d2f30c534512b84bdb72ec9431b'
+  /config/database.php.example:
+    newFile: !uuid '36691c341d1307a2ee05f746e76c9b5658ae950f'
+    oldFile: !uuid '5381b6fca94d0e3805fca4757f154ac4b9c9b4d5'
+gitCommitId: !uuid '4226edb1f4731eea3993849cd9f43347dfcd05db'
 renames: {
   }
-revisionId: 23
+revisionId: 24
