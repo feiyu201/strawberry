@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'ba45cfcde73b28fe0ee65831d0cd9bdd9f5f307b'
-    oldFile: !uuid '5fc46a8932ba6ba6ad88992f5c13b5933a949fe3'
-gitCommitId: !uuid 'a6249368a8ff150c6171effeaf4764edaba366ec'
+  /app:
+    newFile: !uuid 'ad309befc05fb63a890d336877ba996abd137163'
+    oldFile: !uuid 'b55e2c193eb582968d22f179cc8e2fda394e3170'
+  /app/admin:
+    newFile: !uuid 'a2de3dcc5109a5f82636c08d336cb0c765a5c332'
+    oldFile: !uuid 'a94abdaa37e3cc81332741a21e6cfdee14973240'
+  /app/admin/view:
+    newFile: !uuid '7681d95ce584d4707b24aadb6a1e3323ff168421'
+    oldFile: !uuid '574758355bc4cf0e60a8043d64e10204a963604c'
+  /app/admin/view/applets:
+    newFile: !uuid 'ef3604719f30eb5ed8c91c83d03fae8acba698ce'
+    oldFile: !uuid '707b3bcd18e6f9edc10a839e68b0fd16ffd8ecc8'
+  /app/admin/view/applets/index.html:
+    newFile: !uuid '3b132a0f7006c9c29693cd6d2d4a5f7c6c5eb2cc'
+    oldFile: !uuid '4c9663c438e5fcb91311d6e5aee67a846e63d1db'
+gitCommitId: !uuid '0beb25f56a89fa1c73fd392388cfa3dc605f294e'
 renames: {
   }
-revisionId: 27
+revisionId: 28
