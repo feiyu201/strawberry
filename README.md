@@ -14,7 +14,10 @@ thinkphp6 php7.1
 
 #### 演示地址
 http://stadmin.shiliucrm.com/
-用户名：admin 密码112233 请不要删数据
+
+用户名：admin 密码 112233 或者 user68 密码 112233
+
+请不要删数据
 持续更新中...
 
 #### 安装说明：
