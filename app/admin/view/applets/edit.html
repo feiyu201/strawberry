@@ -18,13 +18,7 @@
 	<!--form表单-->
 	<form class="layui-form layui-form-pane ok-form">
 		<input type="hidden" name="id" placeholder="" autocomplete="off" class="layui-input" value="{$wxappinfo.id}">
-		<div class="layui-form-item">
-			<label class="layui-form-label">Stid</label>
-			<div class="layui-input-block">
-				<input type="text" name="stid" placeholder="请输入Stid" autocomplete="off" class="layui-input"
-					   lay-verify="required" value="{$wxappinfo.stid}">
-			</div>
-		</div>
+		
 		<div class="layui-form-item">
 			<label class="layui-form-label">AppId</label>
 			<div class="layui-input-block">
@@ -32,64 +26,31 @@
 					   lay-verify="required" value="{$wxappinfo.appid}">
 			</div>
 		</div>
+		
 		<div class="layui-form-item">
-			<label class="layui-form-label">Token</label>
+			<label class="layui-form-label">Appsecret</label>
 			<div class="layui-input-block">
-				<input type="text" name="token" placeholder="请输入token" autocomplete="off" class="layui-input" lay-verify="required" value="{$wxappinfo.token}">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">secret</label>
-			<div class="layui-input-block">
-				<input type="text" name="secret" placeholder="请输入secret" autocomplete="off" class="layui-input"
+				<input type="text" name="secret" placeholder="请输入Appsecret" autocomplete="off" class="layui-input"
 					   lay-verify="required" value="{$wxappinfo.secret}">
 			</div>
 		</div>
 		<div class="layui-form-item">
-			<label class="layui-form-label">name</label>
+			<label class="layui-form-label">小程序名称</label>
 			<div class="layui-input-block">
-				<input type="text" name="name" placeholder="请输入name" autocomplete="off" class="layui-input"
+				<input type="text" name="name" placeholder="请输入小程序名称" autocomplete="off" class="layui-input"
 					   lay-verify="required" value="{$wxappinfo.name}">
 			</div>
 		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">EncodingAesKey</label>
-			<div class="layui-input-block">
-				<input type="text" name="encodingaeskey" placeholder="请输入encodingaeskey" autocomplete="off" class="layui-input"
-					   lay-verify="required" value="{$wxappinfo.encodingaeskey}">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">Level</label>
-			<div class="layui-input-block">
-				<input type="text" name="level" placeholder="请输入level" autocomplete="off" class="layui-input"
-					   lay-verify="required" value="{$wxappinfo.level}">
-			</div>
-		</div>
+		
 
+		
 		<div class="layui-form-item">
-			<label class="layui-form-label">account</label>
+			<label class="layui-form-label">原始ID</label>
 			<div class="layui-input-block">
-				<input type="text" name="account" placeholder="请输入account" autocomplete="off" class="layui-input"
-					   lay-verify="required" value="{$wxappinfo.account}">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">original</label>
-			<div class="layui-input-block">
-				<input type="text" name="original" placeholder="请输入original" autocomplete="off" class="layui-input"
+				<input type="text" name="original" placeholder="请输入原始ID" autocomplete="off" class="layui-input"
 					   lay-verify="required" value="{$wxappinfo.original}">
 			</div>
 		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">key</label>
-			<div class="layui-input-block">
-				<input type="text" name="key" placeholder="请输入key" autocomplete="off" class="layui-input"
-					   lay-verify="required" value="{$wxappinfo.key}">
-			</div>
-		</div>
-		
-		
 		
 		<div class="layui-form-item">
 			<label class="layui-form-label">状态</label>
