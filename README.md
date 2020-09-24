@@ -37,7 +37,8 @@ composer install
 
 6、导入sql文件。stdatabase.sql是数据库文件。
 
-7、修改config/database.php里面的数据库账户和密码以及数据库名。
+7、复制一份config/database.php.example
+，改名database.php，然后修改config/database.php里面的数据库账户和密码以及数据库名。
 
 
 然后就可以访问了。默认用户名admin 密码 112233
