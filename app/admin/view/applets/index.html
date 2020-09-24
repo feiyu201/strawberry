@@ -93,17 +93,16 @@
 			toolbar: true,
 			toolbar: "#toolbarTpl",
 			height:'full',
+            cellMinWidth: 120,
 			cols: [[
 				{type: "checkbox", fixed: "left"},
-				{field: "id", title: "ID", width: 100, sort: true},
-                {field: "name", title: "名称", width: 200},
-				{field: "stid", title: "stid", width: 100},
-				{field: "appid", title: "appid", width: 100},
-				{field: "token", title: "token", width: 100},
-				{field: "encodingaeskey", title: "encodingaeskey", width: 200},
-				{field: "level", title: "level", width: 200},
-				{field: "account", title: "account", width: 200},
-				{field: "secret", title: "secret", width: 200},
+				{field: "id", title: "ID",  sort: true},
+                {field: "name", title: "名称"},
+				{field: "stid", title: "stid"},
+				{field: "appid", title: "appid"},
+				
+				{field: "account", title: "account"},
+				{field: "secret", title: "secret"},
 				
 				{field: "status", title: "状态", width: 100, templet: "#statusTpl"},
 				{title: "操作",  align: "center", fixed: "right", templet: "#operationTpl"}
