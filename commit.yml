@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /public:
-    newFile: !uuid '6fb2fc51c9699ce45557017c6c0f641d6aa0608c'
-    oldFile: !uuid '8446c15ac226aa0fb8c5647e00b77fbe6faa868e'
+    newFile: !uuid '79a92ca34920143bb099f6ab8f371fc251027f19'
+    oldFile: !uuid '6fb2fc51c9699ce45557017c6c0f641d6aa0608c'
   /public/static:
-    newFile: !uuid '6140d584889dc3caf751d1d47669a5f572c7593d'
-    oldFile: !uuid '38c634fc323e0bf35dc8360f46d48268fedbc1aa'
+    newFile: !uuid '00f1d635d47f30b0a770e79ae437af94d650ca30'
+    oldFile: !uuid '6140d584889dc3caf751d1d47669a5f572c7593d'
   /public/static/images:
-    newFile: !uuid '54d23b407b9fc23e368a356fceb27f36d4fafec3'
-    oldFile: !uuid 'db9a5dcce0e15df88f18620330e37e37dc82cb48'
-  /public/static/images/草莓.png:
-    newFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
-    oldFile: null
-gitCommitId: !uuid '9637cc726a117819dd7a752fe3d0fe3870fd16f3'
+    newFile: !uuid '7e2d5cd46b39a0ff14f00f52e7d5256fb42eba55'
+    oldFile: !uuid '54d23b407b9fc23e368a356fceb27f36d4fafec3'
+  /public/static/images/logo.png:
+    newFile: null
+    oldFile: !uuid '7fa82ae5ae0bf9ffd739a6e67d869266aa46b5e3'
+gitCommitId: !uuid '203d7ae31d795b89d84a9c73a3c67bc8fe5701ac'
 renames: {
   }
-revisionId: 42
+revisionId: 43
