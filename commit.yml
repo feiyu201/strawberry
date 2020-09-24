@@ -2,10 +2,19 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '77746d0de5097024c0412e1fffeb56f85e5bfbe2'
-    oldFile: !uuid '03b4572fae0a1ad9eaab4c569148c7f98933df20'
-gitCommitId: !uuid 'd0187636e469b10feef401cbe82f51a612287b06'
+  /public:
+    newFile: !uuid '6fb2fc51c9699ce45557017c6c0f641d6aa0608c'
+    oldFile: !uuid '8446c15ac226aa0fb8c5647e00b77fbe6faa868e'
+  /public/static:
+    newFile: !uuid '6140d584889dc3caf751d1d47669a5f572c7593d'
+    oldFile: !uuid '38c634fc323e0bf35dc8360f46d48268fedbc1aa'
+  /public/static/images:
+    newFile: !uuid '54d23b407b9fc23e368a356fceb27f36d4fafec3'
+    oldFile: !uuid 'db9a5dcce0e15df88f18620330e37e37dc82cb48'
+  /public/static/images/草莓.png:
+    newFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
+    oldFile: null
+gitCommitId: !uuid '9637cc726a117819dd7a752fe3d0fe3870fd16f3'
 renames: {
   }
-revisionId: 41
+revisionId: 42
