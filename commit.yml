@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '0b52b1aab63e63d2981e6c6fb8f68a538b9c4b9e'
-    oldFile: !uuid 'e3a17b711a6334ab9905a6a96ec968a38a920596'
+    newFile: !uuid '63f4dbfe10e7b895bc77a3d05ed93378a53048ea'
+    oldFile: !uuid '0b52b1aab63e63d2981e6c6fb8f68a538b9c4b9e'
   /app/admin:
-    newFile: !uuid 'f01918df5939bbe5d9b26778ea52eb0afcdc4f6d'
-    oldFile: !uuid 'd33de884d539368f8f6bfeda0947689d15a78d8e'
+    newFile: !uuid '40ef0a0163fd9951c5ae75ad4f175f39bdd70a16'
+    oldFile: !uuid 'f01918df5939bbe5d9b26778ea52eb0afcdc4f6d'
   /app/admin/view:
-    newFile: !uuid 'c7607c7d930b9ac0b1d24020cd4eab56320c135c'
-    oldFile: !uuid 'a8d318e3aaa8dd922f20e00a12b9c5aae28759cd'
+    newFile: !uuid '31b43807178fbdd40196b0a9f8bf58d35945b1b3'
+    oldFile: !uuid 'c7607c7d930b9ac0b1d24020cd4eab56320c135c'
   /app/admin/view/applets:
-    newFile: !uuid 'd71e2f56532f3e0bafd822a26906fe379bd25190'
-    oldFile: !uuid 'd844196a89dba3feba4d43a97472935de29b8737'
-  /app/admin/view/applets/index.html:
-    newFile: !uuid '04e5119546b234d73fd3461f8702aa8065ac5c8c'
-    oldFile: !uuid 'c8ce52d943342092a7265db07f8451afb2463044'
-gitCommitId: !uuid '8688594504a69b3e5b8de34d87c2870a26b7cb54'
+    newFile: !uuid 'f252b69c9eb88b0121ff63c78eb722ad9b66c991'
+    oldFile: !uuid 'd71e2f56532f3e0bafd822a26906fe379bd25190'
+  /app/admin/view/applets/add.html:
+    newFile: !uuid '2c1fbc53dcd1c0b9075e2f6e7970ac270b6d926c'
+    oldFile: !uuid 'b76db60b1fe03b4bce3be5b68ab88bfc42b28235'
+gitCommitId: !uuid '003842e6207ed86e4feaa1d06f6dd6bed30336d7'
 renames: {
   }
-revisionId: 32
+revisionId: 33
