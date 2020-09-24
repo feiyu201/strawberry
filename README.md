@@ -12,6 +12,11 @@ thinkphp6 php7.1
 #### 更新日志
 2020.9.19 完成了基本的登陆和管理员管理功能。万里长征的第一步。
 
+#### 演示地址
+http://stadmin.shiliucrm.com/
+用户名：admin 密码112233 请不要删数据
+持续更新中...
+
 #### 安装说明：
 
 1、cd到自己想安装的目录 git clone https://gitee.com/qzxc_admin/strawberry.git
