@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use app\BaseController;
 use think\facade\View;
 use think\facade\Db;
+use think\facade\Cache;
 class Upload extends BaseController
 {
 	/**
@@ -29,4 +30,36 @@ class Upload extends BaseController
 		return json(['code' => 0, 'path' => $savename]);
 	
 	}
+
+	//附件上传
+    public function attachment()
+    {
+        $file = request()->file('file');
+        $savename = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
+        $file_path = 'storage/'.$savename;
+        $add['url'] = $file_path;
+        $add['storage'] = $file_path;
+        $add['filesize'] = filesize($file_path);
+        $add['mimetype'] = mime_content_type($file_path);
+        $add['sha1'] = sha1_file($file_path);
+        $add['createtime'] = time();
+        $add['updatetime'] = time();
+        $add['uploadtime'] = time();
+
+
+        //检测文件信息
+        if(in_array($add['mimetype'],array('image/png','image/jpeg','image/gif','image/bmp'))){
+            list($width, $height, $type, $attr) = getimagesize($file_path);
+            $add['imagewidth'] = $width;
+            $add['imageheight'] = $height;
+            $add['imagetype'] = $add['mimetype'];
+        }
+
+        $key = md5(time().rand(1000,9999));
+        Cache::set($key,$add);
+        //db('attachment')->insert($add);
+        // 将上传后的文件位置返回给前端
+        return json(['code' => 0, 'path' => $savename,'key'=>$key]);
+
+    }
 }
