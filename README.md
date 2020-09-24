@@ -83,7 +83,7 @@ Echarts：https://github.com/apache/incubator-echarts
 
 1、首先Fork仓库代码
 
-2、然后git clone 到你本地，注意是clone你fork后的自己的地址。git clone https://gitee.com/<yourname>/strawberry.git
+2、然后git clone 到你本地，注意是clone你fork后的自己的仓库地址。
 
 3、编写代码并提交
 
