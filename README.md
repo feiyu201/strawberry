@@ -70,6 +70,10 @@ Echarts：https://github.com/apache/incubator-echarts
 热猫商城：https://gitee.com/qzxc_admin/hotmall （广告：-））
 
 
-#### 参与贡献
+#### 如何参与一起开发？
 
-Fork 本仓库
+1、首先Fork仓库代码
+2、然后git clone 到你本地，注意是clone你fork后的自己的地址。git clone https://github.com/<yourname>/strawberry.git
+3、编写代码并提交
+4、Push 到你的分支
+5、创建 Pull Request 并描述你完成的功能或者做出的修改。
