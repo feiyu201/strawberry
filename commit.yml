@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '29eefbdfdf9f97c5c896418ec16413535b5c4ca5'
-    oldFile: !uuid '79a92ca34920143bb099f6ab8f371fc251027f19'
-  /public/static:
-    newFile: !uuid '73479d8eb18f1146e7f96a4be11ab1c93835e5b6'
-    oldFile: !uuid '00f1d635d47f30b0a770e79ae437af94d650ca30'
-  /public/static/images:
-    newFile: !uuid '766576febcf3b9948ba05b688b173c24da3f7001'
-    oldFile: !uuid '7e2d5cd46b39a0ff14f00f52e7d5256fb42eba55'
-  /public/static/images/logo.png:
-    newFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
-    oldFile: null
-  /public/static/images/草莓.png:
-    newFile: null
-    oldFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
-gitCommitId: !uuid '82f1d1c8fbb2094940f75d7245d42453ee83198e'
-renames:
-  /public/static/images/logo.png: /public/static/images/草莓.png
-revisionId: 44
+  /app:
+    newFile: !uuid '268bb8b78ae4e78e86d635238ecdfecf31e005bd'
+    oldFile: !uuid '973c7aa2246c6d03ae3baa6efef660c4a8adb78d'
+  /app/admin:
+    newFile: !uuid '5e3b7dc542e3e05d9dc0de818324e2495f48abfd'
+    oldFile: !uuid '9cb86c5a62f28bcf3d9a89156ada421f3f2020be'
+  /app/admin/view:
+    newFile: !uuid 'e9efd8956eda08ab50795bf5ece136a770ea4e35'
+    oldFile: !uuid 'd51ce431d75eea15dc8905b9ac0b44795b2c4290'
+  /app/admin/view/login:
+    newFile: !uuid 'e22928bf196236206809557e1480800c192b55b2'
+    oldFile: !uuid 'c164bb6ffeb26bd130791da29578d817bd2bc5c9'
+  /app/admin/view/login/index.html:
+    newFile: !uuid '8793592950ea5895d24e12ffd383b4352b7284e7'
+    oldFile: !uuid 'b7b4440e6b687435e913fe9533fc845bb518b52d'
+gitCommitId: !uuid 'a1b1feda92dae1aacef374a9cfb69128a815dce7'
+renames: {
+  }
+revisionId: 45
