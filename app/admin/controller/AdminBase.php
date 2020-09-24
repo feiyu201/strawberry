@@ -3,7 +3,7 @@ namespace app\admin\controller;
 
 use think\App;
 use app\BaseController;
-
+use think\facade\Session;
 class AdminBase extends BaseController
 {
 	/**
@@ -22,7 +22,7 @@ class AdminBase extends BaseController
         $this->checkLogin();
     }
 	protected function checkLogin(){
-		if(empty(session('admin'))){
+		if(!Session::has('admin')){
 			$this->error('请登陆','login/index');
 		}
 	}

@@ -4,6 +4,7 @@ namespace app\admin\controller;
 use app\BaseController;
 use think\facade\View;
 use think\facade\Db;
+use think\facade\Session;
 class Login extends BaseController
 {
 	
@@ -12,7 +13,7 @@ class Login extends BaseController
     	/* if($this->request->isPost()){
     		$this->error('111');
     	} */
-    	if(!empty(session('admin'))){
+    	if(Session::has('admin')){
     		$this->error('你已登陆','index/index');
     	}
     	
@@ -21,7 +22,7 @@ class Login extends BaseController
     }
 	
     public function signin(){
-    	if(!empty(session('admin'))){
+    	if(Session::has('admin')){
     		$this->error('你已登陆','index/index');
     	}
     	$captcha = $this->request->param('captcha');
@@ -46,7 +47,7 @@ class Login extends BaseController
     	$this->success('登陆成功');
     }
     public function logout(){
-    	session('admin',null);
+    	Session::delete('admin');
     	$this->redirect("/admin/login/index");
     }
 }
