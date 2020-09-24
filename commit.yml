@@ -2,22 +2,13 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '268bb8b78ae4e78e86d635238ecdfecf31e005bd'
-    oldFile: !uuid '973c7aa2246c6d03ae3baa6efef660c4a8adb78d'
-  /app/admin:
-    newFile: !uuid '5e3b7dc542e3e05d9dc0de818324e2495f48abfd'
-    oldFile: !uuid '9cb86c5a62f28bcf3d9a89156ada421f3f2020be'
-  /app/admin/view:
-    newFile: !uuid 'e9efd8956eda08ab50795bf5ece136a770ea4e35'
-    oldFile: !uuid 'd51ce431d75eea15dc8905b9ac0b44795b2c4290'
-  /app/admin/view/login:
-    newFile: !uuid 'e22928bf196236206809557e1480800c192b55b2'
-    oldFile: !uuid 'c164bb6ffeb26bd130791da29578d817bd2bc5c9'
-  /app/admin/view/login/index.html:
-    newFile: !uuid '8793592950ea5895d24e12ffd383b4352b7284e7'
-    oldFile: !uuid 'b7b4440e6b687435e913fe9533fc845bb518b52d'
-gitCommitId: !uuid 'a1b1feda92dae1aacef374a9cfb69128a815dce7'
+  /public:
+    newFile: !uuid '1b669692bee8bc482439231bf80a3198a9f6a00d'
+    oldFile: !uuid '29eefbdfdf9f97c5c896418ec16413535b5c4ca5'
+  /public/favicon.ico:
+    newFile: null
+    oldFile: !uuid 'e71815a6618c6ef19c78d27840b8995fb2521499'
+gitCommitId: !uuid '132b3e4422780ee2646c1263a5e3b0e22d8276f6'
 renames: {
   }
-revisionId: 45
+revisionId: 46
