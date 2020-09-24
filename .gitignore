@@ -1,3 +1,4 @@
 runtime/
 .idea
 *.log
+config/database.php
