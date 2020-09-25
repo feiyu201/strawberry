@@ -2,10 +2,10 @@
 branches: {
   }
 fileChange:
-  /stdatabase.sql:
-    newFile: null
-    oldFile: !uuid 'ad16e033a36a161c5ae1d5474826046a6ebd660c'
-gitCommitId: !uuid 'c2b10ac09b7fd247aa77a7db8977fbc89ce087c5'
+  /.gitignore:
+    newFile: !uuid '317ffb43130126aa630e9be66f8a496179cbe5a2'
+    oldFile: !uuid '7b48a1a855aa1f964f8bcf2f623768ed60a1b69e'
+gitCommitId: !uuid 'acf3993011ceade3bb457fe002c4074c49db00d1'
 renames: {
   }
-revisionId: 62
+revisionId: 63
