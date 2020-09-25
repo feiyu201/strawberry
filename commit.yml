@@ -2,13 +2,10 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid 'c83925d52ef1cae0cfa30dc4441af6c000b350a4'
-    oldFile: !uuid 'a541b4766caa5bf2fe290868f8a67791b306c75f'
-  /public/install.php:
-    newFile: !uuid '1a067c1dedf4a4ec0868fd51a3b541e199adc464'
-    oldFile: !uuid '5fb483f687ccd44e8b0316e8e96f097a46628efd'
-gitCommitId: !uuid '268b30f58c52ad06215e877f8479f1ef782bf6d3'
+  /stdatabase.sql:
+    newFile: null
+    oldFile: !uuid 'ad16e033a36a161c5ae1d5474826046a6ebd660c'
+gitCommitId: !uuid 'c2b10ac09b7fd247aa77a7db8977fbc89ce087c5'
 renames: {
   }
-revisionId: 61
+revisionId: 62
