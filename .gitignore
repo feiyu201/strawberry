@@ -2,3 +2,15 @@ runtime/
 .idea
 *.log
 config/database.php
+/thinkphp/
+/vendor/
+/public/install.lock
+/public/uploads/*
+.idea
+composer.lock
+*.log
+*.css.map
+!.gitkeep
+.env
+.svn
+.vscode
