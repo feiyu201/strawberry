@@ -2,10 +2,16 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid 'f113b5d926ef03f4325c24e425ab526903b461b0'
-    oldFile: !uuid '317ffb43130126aa630e9be66f8a496179cbe5a2'
-gitCommitId: !uuid 'a4d70742c6dc356c2232bb34115b50b402c1f6fb'
-renames: {
-  }
-revisionId: 65
+  /config:
+    newFile: !uuid '73c75d57cd3c7bd6f02f584967d64ac0c25b9926'
+    oldFile: !uuid '557040d4c9df7bfdfd92e2c2b1ad5a83962be90d'
+  /config/database.php:
+    newFile: !uuid '64d53f6eeb3978058fafa289622e4b1b22fce2af'
+    oldFile: null
+  /config/database.php.example:
+    newFile: null
+    oldFile: !uuid '36691c341d1307a2ee05f746e76c9b5658ae950f'
+gitCommitId: !uuid '6a2433526cfe78982cc24a625d2fc38a68a6b53e'
+renames:
+  /config/database.php: /config/database.php.example
+revisionId: 66
