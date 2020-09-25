@@ -2,19 +2,10 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '954081160551bbf3efe595c45b602b10599b0f1e'
-    oldFile: !uuid 'f39a017cca9fdafe8cdef499a2da1a7c54bbcfd0'
-  /public/static:
-    newFile: !uuid 'a700d7ca13bd6482b2fbe9d10c2afa14ccf05162'
-    oldFile: !uuid '697890e9e1a98613cccb08fe73968ae2905dd72b'
-  /public/static/images:
-    newFile: !uuid 'b89dbb0f7968624ec042218729dd957157311d60'
-    oldFile: !uuid '2be6f07e8989264a628831c4aa8ba3a6bfe7eade'
-  /public/static/images/login-bg.jpg:
-    newFile: !uuid '307690a1555a2f4d3eaa9b6acd2f9dd30fdd8906'
-    oldFile: null
-gitCommitId: !uuid '480b5c2a6529a87f18b7253c21ae93915433707c'
+  /stdatabase.sql:
+    newFile: !uuid '6318c14ae289b5e5d5b9352f134ebe9dbdd0a992'
+    oldFile: !uuid '7966655a46e23a4cbf6a67630f8cd2f7ed5e598e'
+gitCommitId: !uuid '0409dbfbebe8b9d54902c120de071af2b145dd72'
 renames: {
   }
-revisionId: 55
+revisionId: 56
