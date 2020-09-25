@@ -1,10 +1,9 @@
 runtime/
 .idea
 *.log
-/thinkphp/
-/vendor/
 /public/install.lock
 /public/uploads/*
+public/storage/attachment/*
 .idea
 composer.lock
 *.log
