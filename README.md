@@ -32,24 +32,13 @@ http://stadmin.shiliucrm.com/
 
 1、cd到自己想安装的目录 git clone https://gitee.com/qzxc_admin/strawberry.git
 
-2、cd strawberry
+3、修改runtime config public权限777
 
-3、执行
+4、宝塔别忘了配置网站的伪静态为thinkphp的规则.
 
-composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+5、执行在线安装。www.xxx.com/install.php 注意前面是你自己的在线网址或者本地网址。
 
-composer install
-
-注意：要把putenv()函数和proc_open()函数打开。也就是去掉这两个函数的禁用。如果你用宝塔安装了多个php，每个php的最好都去掉。
-还要注意默认的php版本最好是php7的。如果安装了多个php版本，尤其是php5.6。有可能会报php版本过低。可以通过软链接将php的版本默认为php7。
-
-4、修改runtime权限777
-
-5、别忘了配置网站的伪静态为thinkphp.
-
-6、执行在线安装。www.xxx.com/install.php 注意前面是你自己的在线网址或者本地网址。
-
-7、安装成功后就可以访问了，登陆密码是安装的时候输入的密码。遇到问题请到QQ群：578270353
+6、安装成功后就可以访问了，登陆密码是安装的时候输入的密码。遇到问题请到QQ群：578270353
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0919/214104_d0ae3f6b_1405153.png "屏幕截图.png")
 
