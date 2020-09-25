@@ -7,9 +7,11 @@ thinkphp6版本的
 QQ群：578270353
 
 #### 软件架构
-thinkphp6 php7.1
+thinkphp6 php>=7.1
 
 #### 更新日志
+2020.9.25 完成了在线安装的功能。
+
 2020.9.24 完成了基本的附件管理。
 
 2020.9.23 完成了基本的小程序管理。
@@ -21,7 +23,7 @@ thinkphp6 php7.1
 #### 演示地址
 http://stadmin.shiliucrm.com/
 
-用户名：admin 密码 112233 或者 user68 密码 112233
+用户名：admin 密码 112233
 
 请不要删数据
 持续更新中...
@@ -33,6 +35,7 @@ http://stadmin.shiliucrm.com/
 2、cd strawberry
 
 3、执行
+
 composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 
 composer install
@@ -44,13 +47,9 @@ composer install
 
 5、别忘了配置网站的伪静态为thinkphp.
 
-6、导入sql文件。stdatabase.sql是数据库文件。
+6、执行在线安装。www.xxx.com/install.php 注意前面是你自己的在线网址或者本地网址。
 
-7、复制一份config/database.php.example
-，改名database.php，修改config/database.php里面的数据库账户和密码以及数据库名。
-
-
-然后就可以访问了。默认用户名admin 密码 112233
+7、安装成功后就可以访问了，登陆密码是安装的时候输入的密码。遇到问题请到QQ群：578270353
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0919/214104_d0ae3f6b_1405153.png "屏幕截图.png")
 
