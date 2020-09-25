@@ -2,31 +2,10 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid 'a541b4766caa5bf2fe290868f8a67791b306c75f'
-    oldFile: !uuid '954081160551bbf3efe595c45b602b10599b0f1e'
-  /public/install.php:
-    newFile: !uuid '5fb483f687ccd44e8b0316e8e96f097a46628efd'
-    oldFile: null
-  /public/static:
-    newFile: !uuid 'b1f954b0d065676f7aeb21d5c28d2c3c504cf28a'
-    oldFile: !uuid 'a700d7ca13bd6482b2fbe9d10c2afa14ccf05162'
-  /public/static/css:
-    newFile: !uuid '1d9d5a3ea47feed05bd0ed713c95c451e25257a9'
-    oldFile: !uuid 'cc939d44619c1ea73c9f9345db4bbbb3f6e7ce19'
-  /public/static/css/install.css:
-    newFile: !uuid '31370b01a34d2092cc1371285ad23eb5ddf8352c'
-    oldFile: null
-  /public/static/js:
-    newFile: !uuid '978242e766edfacea9056e28e490522bc9f1408b'
-    oldFile: !uuid 'f912119b191ea1cce648ebcca5f67c01f298145d'
-  /public/static/js/jquery.ripples.js:
-    newFile: !uuid 'cdc176f22a93724a00ac9edaef15c1ee49ce13ac'
-    oldFile: null
-  /public/stdatabase.sql:
-    newFile: !uuid 'ad16e033a36a161c5ae1d5474826046a6ebd660c'
-    oldFile: null
-gitCommitId: !uuid '7be1fb14b37716d08458e4952b3f44cd7b56501e'
+  /README.md:
+    newFile: !uuid '1614ff72c399f483137c1362aa3ecc21865ae649'
+    oldFile: !uuid '77746d0de5097024c0412e1fffeb56f85e5bfbe2'
+gitCommitId: !uuid '0eb909caa38197fde815b60af2fa123982d265fe'
 renames: {
   }
-revisionId: 59
+revisionId: 60
