@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-09-25 16:12:03
+-- 生成日期： 2020-09-25 19:04:41
 -- 服务器版本： 8.0.16
 -- PHP 版本： 7.1.29
 
@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `super_admin`
+-- 表的结构 `st_admin`
 --
 
-CREATE TABLE `super_admin` (
+CREATE TABLE `st_admin` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
   `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
@@ -46,21 +46,19 @@ CREATE TABLE `super_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理员表';
 
 --
--- 转存表中的数据 `super_admin`
+-- 转存表中的数据 `st_admin`
 --
 
-INSERT INTO `super_admin` (`id`, `username`, `nickname`, `password`, `salt`, `avatar`, `email`, `loginfailure`, `logintime`, `loginip`, `createtime`, `updatetime`, `token`, `status`) VALUES
-(1, 'admin', 'Admin', '8833262fe50e2cb3c073cefeb06a5d42', 'baltjy', '/static/images/avatar.png', 'admin@admin.com', 0, 1600298414, '123.196.11.216', 1492186163, 1600937910, '04e8afb9-646c-4a41-8452-cd6330c3232b', 'normal'),
-(2, 'user68', 'user68', 'e50f0ae64e9e93d0950575baf2e14dd0', 'u0z11j', '/static/images/avatar.png', 'user68@china.com', 0, 1596548037, '115.171.166.186', 1595566848, 1600938453, '10ffe001-7a7d-4115-9320-159a9529b95a', 'normal'),
-(3, 'bafang', '', '63eb5e5bff7b009c71e2b09d2c05200c', '9li8LA', '/static/images/avatar.png', '', 0, 1600417566, '125.80.131.21', 1596598139, 1600417566, '44e997ce-19bc-443f-a19e-8f0373eae5e1', 'normal');
+INSERT INTO `st_admin` (`id`, `username`, `nickname`, `password`, `salt`, `avatar`, `email`, `loginfailure`, `logintime`, `loginip`, `createtime`, `updatetime`, `token`, `status`) VALUES
+(1, 'admin', 'Admin', 'a6734858ed9b1fed615e3f627d6843a6', 'vsxga1', '/static/images/avatar.png', 'admin@admin.com', 0, 1600298414, '123.196.11.216', 1492186163, 1601031737, '04e8afb9-646c-4a41-8452-cd6330c3232b', 'normal');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `super_attachment`
+-- 表的结构 `st_attachment`
 --
 
-CREATE TABLE `super_attachment` (
+CREATE TABLE `st_attachment` (
   `id` int(20) UNSIGNED NOT NULL COMMENT 'ID',
   `admin_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '管理员ID',
   `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '会员ID',
@@ -79,20 +77,13 @@ CREATE TABLE `super_attachment` (
   `sha1` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件 sha1编码'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='附件表';
 
---
--- 转存表中的数据 `super_attachment`
---
-
-INSERT INTO `super_attachment` (`id`, `admin_id`, `user_id`, `url`, `imagewidth`, `imageheight`, `imagetype`, `imageframes`, `filesize`, `mimetype`, `extparam`, `createtime`, `updatetime`, `uploadtime`, `storage`, `sha1`) VALUES
-(4, 1, 0, 'storage/attachment/20200924/6a77e22cf158039fa755ed2d319f9158.jpg', '66', '66', 'image/png', 0, 831, 'image/png', '', 1600933101, 1600933161, 1600933161, 'storage/attachment/20200924/6a77e22cf158039fa755ed2d319f9158.jpg', '6a796d31836637942458c6b273d0ae1a3d5f64d2');
-
 -- --------------------------------------------------------
 
 --
--- 表的结构 `super_auth_rule`
+-- 表的结构 `st_auth_rule`
 --
 
-CREATE TABLE `super_auth_rule` (
+CREATE TABLE `st_auth_rule` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` enum('menu','file') NOT NULL DEFAULT 'file' COMMENT 'menu为菜单,file为权限节点',
   `pid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父ID',
@@ -109,10 +100,10 @@ CREATE TABLE `super_auth_rule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='节点表';
 
 --
--- 转存表中的数据 `super_auth_rule`
+-- 转存表中的数据 `st_auth_rule`
 --
 
-INSERT INTO `super_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`) VALUES
+INSERT INTO `st_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`) VALUES
 (1, 'menu', 1231, '12', '123123', '', '', '', 0, NULL, NULL, 0, ''),
 (533, 'file', 0, 'test', '测试菜单', '&#xe66f;', '', '', 1, 1600929205, 1600929205, 0, 'normal'),
 (534, 'file', 533, 'addons/test/index/index', '查看', '&#xe62e;', '', '', 0, 1600929205, 1600929205, 0, 'normal'),
@@ -122,10 +113,10 @@ INSERT INTO `super_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `co
 -- --------------------------------------------------------
 
 --
--- 表的结构 `super_market`
+-- 表的结构 `st_market`
 --
 
-CREATE TABLE `super_market` (
+CREATE TABLE `st_market` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `androidurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '安卓地址',
   `author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者',
@@ -174,40 +165,10 @@ CREATE TABLE `super_market` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `super_test`
+-- 表的结构 `st_text_addondownload`
 --
 
-CREATE TABLE `super_test` (
-  `stid` int(10) UNSIGNED NOT NULL,
-  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `token` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `encodingaeskey` varchar(43) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `level` tinyint(4) NOT NULL,
-  `account` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `original` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '原始ID',
-  `key` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `secret` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
-
---
--- 转存表中的数据 `super_test`
---
-
-INSERT INTO `super_test` (`stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `id`) VALUES
-(1, '1', '1', '1', 1, '1', '1', '1', '1', '111', 'normal', 4),
-(1, '12', '1212', '121', 1, '1', '12', '121212', '1212', '测试', 'normal', 5),
-(1, 'w99991212', '12', '1212', 12, '12', '1212', '1212', '1212', '测试jj', 'normal', 6);
-
--- --------------------------------------------------------
-
---
--- 表的结构 `super_text_addondownload`
---
-
-CREATE TABLE `super_text_addondownload` (
+CREATE TABLE `st_text_addondownload` (
   `id` int(10) NOT NULL,
   `content` longtext NOT NULL,
   `os` set('windows','linux','mac','ubuntu') DEFAULT '' COMMENT '操作系统',
@@ -223,12 +184,12 @@ CREATE TABLE `super_text_addondownload` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `super_wxapp`
+-- 表的结构 `st_wxapp`
 --
 
-CREATE TABLE `super_wxapp` (
+CREATE TABLE `st_wxapp` (
   `stid` int(10) UNSIGNED NOT NULL,
-  `appid` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `token` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `encodingaeskey` varchar(43) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `level` tinyint(4) NOT NULL,
@@ -242,61 +203,54 @@ CREATE TABLE `super_wxapp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
--- 转存表中的数据 `super_wxapp`
+-- 转存表中的数据 `st_wxapp`
 --
 
-INSERT INTO `super_wxapp` (`stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `id`) VALUES
+INSERT INTO `st_wxapp` (`stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `id`) VALUES
 (1, '1', '1', '1', 1, '1', '1', '1', '1', '111', 'normal', 4),
-(1, '12', '1212', '121', 1, '1', '12', '121212', '1212', '测试', 'normal', 5),
-(1, 'w99991212', '12', '1212', 12, '12', '1212', '1212', '1212', '测试jj', 'normal', 6);
+(1, '12', '1212', '121', 1, '1', '12', '121212', '1212', '测试', 'normal', 5);
 
 --
 -- 转储表的索引
 --
 
 --
--- 表的索引 `super_admin`
+-- 表的索引 `st_admin`
 --
-ALTER TABLE `super_admin`
+ALTER TABLE `st_admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `super_attachment`
+-- 表的索引 `st_attachment`
 --
-ALTER TABLE `super_attachment`
+ALTER TABLE `st_attachment`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `super_auth_rule`
+-- 表的索引 `st_auth_rule`
 --
-ALTER TABLE `super_auth_rule`
+ALTER TABLE `st_auth_rule`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`) USING BTREE,
   ADD KEY `pid` (`pid`),
   ADD KEY `weigh` (`weigh`);
 
 --
--- 表的索引 `super_market`
+-- 表的索引 `st_market`
 --
-ALTER TABLE `super_market`
+ALTER TABLE `st_market`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- 表的索引 `super_test`
+-- 表的索引 `st_text_addondownload`
 --
-ALTER TABLE `super_test`
-  ADD PRIMARY KEY (`id`) USING BTREE;
-
---
--- 表的索引 `super_text_addondownload`
---
-ALTER TABLE `super_text_addondownload`
+ALTER TABLE `st_text_addondownload`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `super_wxapp`
+-- 表的索引 `st_wxapp`
 --
-ALTER TABLE `super_wxapp`
+ALTER TABLE `st_wxapp`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
@@ -304,39 +258,33 @@ ALTER TABLE `super_wxapp`
 --
 
 --
--- 使用表AUTO_INCREMENT `super_admin`
+-- 使用表AUTO_INCREMENT `st_admin`
 --
-ALTER TABLE `super_admin`
+ALTER TABLE `st_admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=4;
 
 --
--- 使用表AUTO_INCREMENT `super_attachment`
+-- 使用表AUTO_INCREMENT `st_attachment`
 --
-ALTER TABLE `super_attachment`
+ALTER TABLE `st_attachment`
   MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=5;
 
 --
--- 使用表AUTO_INCREMENT `super_auth_rule`
+-- 使用表AUTO_INCREMENT `st_auth_rule`
 --
-ALTER TABLE `super_auth_rule`
+ALTER TABLE `st_auth_rule`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=537;
 
 --
--- 使用表AUTO_INCREMENT `super_market`
+-- 使用表AUTO_INCREMENT `st_market`
 --
-ALTER TABLE `super_market`
+ALTER TABLE `st_market`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
--- 使用表AUTO_INCREMENT `super_test`
+-- 使用表AUTO_INCREMENT `st_wxapp`
 --
-ALTER TABLE `super_test`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-
---
--- 使用表AUTO_INCREMENT `super_wxapp`
---
-ALTER TABLE `super_wxapp`
+ALTER TABLE `st_wxapp`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
