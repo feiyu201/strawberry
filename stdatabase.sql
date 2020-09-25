@@ -134,6 +134,54 @@ CREATE TABLE `super_text_addondownload` (
   `downloads` varchar(10) DEFAULT '0' COMMENT '下载次数'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='下载';
 
+
+
+--
+-- 表的结构 `super_attachment`
+--
+
+CREATE TABLE `super_attachment` (
+  `id` int(20) UNSIGNED NOT NULL COMMENT 'ID',
+  `admin_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '管理员ID',
+  `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '会员ID',
+  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '物理路径',
+  `imagewidth` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '宽度',
+  `imageheight` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '高度',
+  `imagetype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图片类型',
+  `imageframes` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '图片帧数',
+  `filesize` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '文件大小',
+  `mimetype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'mime类型',
+  `extparam` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '透传数据',
+  `createtime` int(10) DEFAULT NULL COMMENT '创建日期',
+  `updatetime` int(10) DEFAULT NULL COMMENT '更新时间',
+  `uploadtime` int(10) DEFAULT NULL COMMENT '上传时间',
+  `storage` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
+  `sha1` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件 sha1编码'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='附件表';
+
+
+--
+-- 转储表的索引
+--
+
+--
+-- 表的索引 `super_attachment`
+--
+ALTER TABLE `super_attachment`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `super_attachment`
+--
+ALTER TABLE `super_attachment`
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=5;
+
+
+
 --
 -- 转储表的索引
 --
