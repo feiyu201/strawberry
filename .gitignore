@@ -2,3 +2,7 @@ runtime/
 .idea
 *.log
 config/database.php
+/strawberry.zip
+/new.sql
+/public/static/js/store-set-script.js
+/public/static/js/store-select.js
