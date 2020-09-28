@@ -1,0 +1,70 @@
+<style>
+    .layui-upload-img-big {
+        width: 100%;
+        min-height: 180px;
+        margin: 0 10px 10px 0;
+        background-color: #eee;
+    }
+</style>
+<div class="layui-form-item">
+    <label class="layui-form-label">大图</label>
+    <div class="layui-input-block upload-big-images">
+        <input type="hidden" name="big_images">
+        <div class="layui-upload">
+            <button type="button" class="layui-btn" id="upload-big-images">上传图片</button>
+            <div class="layui-upload-list">
+                <img class="layui-upload-img-big" id="upload-big-images-demo">
+                <p id="demo2Text"></p>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    layui.use(['upload',"okLayer"], function(){
+        var $ = layui.jquery
+            ,okLayer = layui.okLayer
+            ,upload = layui.upload;
+
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#upload-big-images'
+            ,url: "{:addons_url('store://Upload/uploadImages')}" //改成您自己的上传接口
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#upload-big-images-demo').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //如果上传失败
+                if(res.status !== 200){
+                    return layer.msg('上传失败');
+                }
+                $('.upload-big-images input[name="big_images"]').val(res.data)
+                okLayer.greenTickMsg(res.msg, function () {})
+                //上传成功
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demo2Text');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+    })
+</script>
+{if !empty($data) }
+<script>
+    layui.use('jquery',function () {
+        let $ = layui.jquery;
+        $('.upload-big-images input[name="big_images"]').val('{$data.big_images}')
+        $('#upload-big-images-demo').attr('src', '{$data.big_images}')
+    })
+</script>
+{else /}
+<script>
+    var checkedId = null
+</script>
+{/if}

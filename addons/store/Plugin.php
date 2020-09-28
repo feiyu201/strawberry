@@ -1,5 +1,5 @@
 <?php
-namespace addons\test;	// 注意命名空间规范
+namespace addons\store;	// 注意命名空间规范
 
 use app\common\library\Menu;
 use think\Addons;
@@ -12,8 +12,8 @@ class Plugin extends Addons	// 需继承think\Addons类
 {
 	// 该插件的基础信息
 	public $info = [
-		'name' => 'test',	// 插件标识
-		'title' => '插件测试',	// 插件名称
+		'name' => 'store',	// 插件标识
+		'title' => '商品模块',	// 插件名称
 		'description' => 'thinkph6插件测试',	// 插件简介
 		'status' => 1,	// 状态
 		'author' => 'bytest',
@@ -29,13 +29,13 @@ class Plugin extends Addons	// 需继承think\Addons类
 	{
 		$menu = [
             [
-                'name'    => 'test',
+                'name'    => 'store',
                 'title'   => '测试菜单',
                 'icon'    => '&#xe66f;',
                 'sublist' => [
-                    ['name' => 'addons/test/index/index', 'title' => '查看'],
-                    ['name' => 'addons/test/index/add', 'title' => '添加'],
-                    ['name' => 'addons/test/index/detail', 'title' => '详情'],
+                    ['name' => 'addons/store/index/index', 'title' => '查看'],
+                    ['name' => 'addons/store/index/add', 'title' => '添加'],
+                    ['name' => 'addons/store/index/detail', 'title' => '详情'],
                 ]
             ]
         ];
@@ -50,7 +50,7 @@ class Plugin extends Addons	// 需继承think\Addons类
 	public function uninstall()
 	{
 		
-		Menu::delete('test');
+		Menu::delete('store');
 		return true;
 	}
 

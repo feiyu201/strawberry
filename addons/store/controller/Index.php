@@ -1,14 +1,14 @@
 <?php
-namespace addons\test\controller;
+namespace addons\store\controller;
 
 use app\common\controller\AddonBase;
+
 class Index extends AddonBase
 {
     public function index()
     {
-    	//var_dump($this->getInfo());
-    	$this->assign('name','xiaoming');
-        return $this->fetch();
+
+    	return \app\common\http\Json::success(200,'成功');
     }
     public function add()
     {
@@ -18,4 +18,5 @@ class Index extends AddonBase
     {
     	 return $this->fetch();
     }
+
 }
