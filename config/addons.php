@@ -13,8 +13,9 @@ return [
     'autoload' => true,
     'hooks' => [
 	    // 可以定义多个钩子
-	    'testhook'=>'test' // 键为钩子名称，用于在业务中自定义钩子处理，值为实现该钩子的插件，
+	    'testhook'=>'test', // 键为钩子名称，用于在业务中自定义钩子处理，值为实现该钩子的插件，
 	    // 多个插件可以用数组也可以用逗号分
+	    'payhook'=>'pay'
 	],
     'route' => [],
     'service' => [],
