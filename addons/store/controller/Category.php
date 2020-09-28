@@ -47,7 +47,13 @@ class Category extends AddonBase
             }
             return $child;
         }
-        return \app\common\http\Json::success('成功',select($pid));
+        $topMenu  = [[
+            'pid'=>0,
+            'id'=> null,
+            'title'=> '顶级分类',
+            'name'=> '顶级分类'
+        ]];
+        return \app\common\http\Json::success('成功',array_merge($topMenu,select($pid)));
     }
 
     /**
@@ -125,6 +131,9 @@ class Category extends AddonBase
         $param = Request::param();
         if (strtoupper(Request::method()) == 'POST') {
             $update = Request::only(['icon','name','vice_name','describe','bg_color','big_images','is_home_recommended','sort','is_enable','seo_title','seo_keywords','seo_desc','pid']);
+            if($update['pid'] == 'null') {
+                $update['pid'] = 0;
+            }
             GoodsCategory::create($update);
             return \app\common\http\Json::success('创建成功');
         }

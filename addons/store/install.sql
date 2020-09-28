@@ -1,4 +1,4 @@
-
+DROP TABLE IF EXISTS `__PREFIX__brand`;
 CREATE TABLE `__PREFIX__brand` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `logo` char(255) NOT NULL DEFAULT '' COMMENT 'logo图标',
@@ -13,6 +13,7 @@ CREATE TABLE `__PREFIX__brand` (
   `upd_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='品牌表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__brand_category_join`;
 CREATE TABLE `__PREFIX__brand_category_join` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `brand_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '品牌id',
@@ -20,6 +21,7 @@ CREATE TABLE `__PREFIX__brand_category_join` (
   `add_time` int(11) UNSIGNED DEFAULT '0' COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='品牌分类关联表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods`;
 CREATE TABLE `__PREFIX__goods` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `brand_id` int(11) UNSIGNED DEFAULT '0' COMMENT '品牌id',
@@ -60,6 +62,7 @@ CREATE TABLE `__PREFIX__goods` (
   `upd_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods_browse`;
 CREATE TABLE `__PREFIX__goods_browse` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
@@ -68,6 +71,7 @@ CREATE TABLE `__PREFIX__goods_browse` (
   `upd_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户商品浏览记录表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods_category`;
 CREATE TABLE `__PREFIX__goods_category` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `pid` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父id',
@@ -90,6 +94,7 @@ CREATE TABLE `__PREFIX__goods_category` (
 ALTER TABLE `__PREFIX__goods_category` ADD PRIMARY KEY(`id`);
 ALTER TABLE `__PREFIX__goods_category` CHANGE `id` `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id';
 
+DROP TABLE IF EXISTS `__PREFIX__goods_category_join`;
 CREATE TABLE `__PREFIX__goods_category_join` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
@@ -100,6 +105,7 @@ CREATE TABLE `__PREFIX__goods_category_join` (
 ALTER TABLE `__PREFIX__goods_category_join` ADD PRIMARY KEY(`id`);
 ALTER TABLE `__PREFIX__goods_category_join` CHANGE `id` `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id';
 
+DROP TABLE IF EXISTS `__PREFIX__goods_comments`;
 CREATE TABLE `__PREFIX__goods_comments` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `user_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '用户id',
@@ -118,6 +124,7 @@ CREATE TABLE `__PREFIX__goods_comments` (
   `upd_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品评论表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods_favor`;
 CREATE TABLE `__PREFIX__goods_favor` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
@@ -125,6 +132,7 @@ CREATE TABLE `__PREFIX__goods_favor` (
   `add_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户商品收藏表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods_photo`;
 CREATE TABLE `__PREFIX__goods_photo` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
@@ -138,6 +146,7 @@ CREATE TABLE `__PREFIX__goods_photo` (
 ALTER TABLE `__PREFIX__goods_photo` ADD PRIMARY KEY(`id`);
 ALTER TABLE `__PREFIX__goods_photo` CHANGE `id` `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '自增id';
 
+DROP TABLE IF EXISTS `__PREFIX__goods_spec_base`;
 CREATE TABLE `__PREFIX__goods_spec_base` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
@@ -151,6 +160,7 @@ CREATE TABLE `__PREFIX__goods_spec_base` (
   `add_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品规格基础表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods_spec_type`;
 CREATE TABLE `__PREFIX__goods_spec_type` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
@@ -159,6 +169,7 @@ CREATE TABLE `__PREFIX__goods_spec_type` (
   `add_time` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '添加时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='商品规格类型表' ROW_FORMAT=DYNAMIC;
 
+DROP TABLE IF EXISTS `__PREFIX__goods_spec_value`;
 CREATE TABLE `__PREFIX__goods_spec_value` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',

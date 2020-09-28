@@ -85,7 +85,7 @@
             }
         })
         okUtils.ajax("{:addons_url('store://Category/categorySelect')}", "get", {}, true).done(function (response) {
-            if (response.code === 0) {
+            if (response.status ===200) {
                 tree3.data = response.data
                 treeTable.render(tree3);
             }
