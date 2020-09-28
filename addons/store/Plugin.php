@@ -30,10 +30,10 @@ class Plugin extends Addons	// 需继承think\Addons类
 		$menu = [
             [
                 'name'    => 'store',
-                'title'   => '测试菜单',
+                'title'   => '商城管理',
                 'icon'    => '&#xe66f;',
                 'sublist' => [
-                    ['name' => 'addons/store/index/index', 'title' => '查看'],
+                    ['name' => 'addons/store/category/category', 'title' => '商品分类'],
                     ['name' => 'addons/store/index/add', 'title' => '添加'],
                     ['name' => 'addons/store/index/detail', 'title' => '详情'],
                 ]
