@@ -2,16 +2,22 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid 'a1ea793846ced3c1902809b0fbc6213d76b7bb44'
-    oldFile: !uuid '8bd44bdb1cdf84651e44ba74bba00055a86c8939'
-  /addons/test:
-    newFile: !uuid '9ac6ded3e9e630dee830034640c9c987667169de'
-    oldFile: !uuid 'db4739640502f975cab50e9dcb96b7db9e37ae3a'
-  /addons/test/Plugin.php:
-    newFile: !uuid '93233bd25a36e8d87de4e0ab3d79e3f528b9c8b9'
-    oldFile: !uuid '6847a4cb4380c10b564933b783fb5ad357dd6b01'
-gitCommitId: !uuid 'a0d47a70c54e3f6135f52a20fb18967dd33ff5f3'
+  /app:
+    newFile: !uuid '98eeb4fc4a1c00f4dc21ff295bf772f58fdec5c1'
+    oldFile: !uuid 'b6f6c5f40165aa687cf7052478fe9a4b0736d57c'
+  /app/admin:
+    newFile: !uuid '04ca007be8298a76bd2275afc4910f6e47c74175'
+    oldFile: !uuid 'e361084921832420ed1dbd2eb1edd1ac07d23512'
+  /app/admin/view:
+    newFile: !uuid '1428ed78c91605116886b8c63172d97396929237'
+    oldFile: !uuid 'ea1523d570af04bda50ff284b074bf1a71bc0d57'
+  /app/admin/view/login:
+    newFile: !uuid '951f0fe73df4f3b0ccd17a17b7c27ec28cbf0185'
+    oldFile: !uuid 'e22928bf196236206809557e1480800c192b55b2'
+  /app/admin/view/login/index.html:
+    newFile: !uuid '211a5f16528b173eced2bcc4f3e233008a51c145'
+    oldFile: !uuid '8793592950ea5895d24e12ffd383b4352b7284e7'
+gitCommitId: !uuid '6732394eecf299eda78f53b72ab44f480ba74302'
 renames: {
   }
-revisionId: 78
+revisionId: 79
