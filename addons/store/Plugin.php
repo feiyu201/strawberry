@@ -14,11 +14,11 @@ class Plugin extends Addons	// 需继承think\Addons类
 	public $info = [
 		'name' => 'store',	// 插件标识
 		'title' => '商品模块',	// 插件名称
-		'description' => 'thinkph6插件测试',	// 插件简介
+		'description' => '商品模块',	// 插件简介
 		'status' => 1,	// 状态
 		'author' => 'bytest',
 		'version' => '0.1',
-		'install'     => 0,                 // 是否已安装[1 已安装，0 未安装]
+		'install'     => 1,                 // 是否已安装[1 已安装，0 未安装]
 	];
 
 	/**
