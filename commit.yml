@@ -2,10 +2,28 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'bb04cd1cd8d521c1317a0de0d0f7e9550a2f2adb'
-    oldFile: !uuid '63dc3ad5c2f250113432289e1c17cb467d624d15'
-gitCommitId: !uuid '1fa60de5e3779f12b2c06707ee371e90a6186548'
+  /public:
+    newFile: !uuid '6804439cd72ec5e5ab9d4402e60fe196b0b27b68'
+    oldFile: !uuid '76be825ff189d9eeac2d678b56890f0cce34f64b'
+  /public/static:
+    newFile: !uuid '5eb42163fe88c838fce78fcb791bf7219aa2ba76'
+    oldFile: !uuid '7095c3a17fc0015369ec7f6f935f63a003f3dc21'
+  /public/static/lib:
+    newFile: !uuid 'fbab3df630a198c203bb5951748b548bc777feef'
+    oldFile: !uuid '376eb02b85171aacd8dfb1eefbb0dd8ddd4c1c86'
+  /public/static/lib/layui:
+    newFile: !uuid '5875c22e4f1870e8f74f5254a17eef453a497bbb'
+    oldFile: !uuid 'bbe4e84ffb94433d5ee387b3ccfaa6488d32a0c7'
+  /public/static/lib/layui/lay:
+    newFile: !uuid 'eb8f503d8aab2748ae2239f0b00a52fee45a56bf'
+    oldFile: !uuid '96cb034418c798b51b29244213f24136e46dfcba'
+  /public/static/lib/layui/lay/okmodules:
+    newFile: !uuid 'f870b7504c30750ee8e2717dd98070d4054613be'
+    oldFile: !uuid 'cd14a8116541a73abe9c5659816e9bfb616c623d'
+  /public/static/lib/layui/lay/okmodules/okHoliday.js:
+    newFile: !uuid 'f2f4c2bb1746383532f58d3b8741768b599d8c60'
+    oldFile: !uuid '3e844172eb223f8f64c3aa325e120891c1b50ae7'
+gitCommitId: !uuid '9a4af679f04c882754de5f7381556f98b6794d12'
 renames: {
   }
-revisionId: 76
+revisionId: 77
