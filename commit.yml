@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '13781ffc2abc852403a426c95828e962750f1c10'
-    oldFile: !uuid 'bb04cd1cd8d521c1317a0de0d0f7e9550a2f2adb'
-gitCommitId: !uuid 'bc3281ca0fcd26948ffdb20c079ca774e50682f1'
+  /app:
+    newFile: !uuid '3d5c83c4ad95dacbab4b1f3f66b34bd54c90d3d8'
+    oldFile: !uuid '96c43cca004c3c5113668d0c21d67353245bc879'
+  /app/admin:
+    newFile: !uuid '384579a31b5e3457a412d632a9369eb9e6b5ed33'
+    oldFile: !uuid '2967fa37bd53817a91a8918611a995610b732420'
+  /app/admin/view:
+    newFile: !uuid '5ee84285350e24f3e1e28c93137719ff95cb04ea'
+    oldFile: !uuid '0718bbb0cae4bcb90382ae0813bb29c30d8e247e'
+  /app/admin/view/index:
+    newFile: !uuid '094346c837547d94023e45681361ce1333c1efc5'
+    oldFile: !uuid 'e9fa7214c696315fcb4115f52ecc2af9863a9788'
+  /app/admin/view/index/index.html:
+    newFile: !uuid 'e1dda988e6f48868a3703e148ccfc4fc70385ad9'
+    oldFile: !uuid 'edf722ed1144a512fffaac9046eeb27b6d1d7301'
+gitCommitId: !uuid 'b25f859aef2272efd170d3630b15b507d8389daf'
 renames: {
   }
-revisionId: 85
+revisionId: 86
