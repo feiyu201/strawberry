@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /public:
-    newFile: !uuid 'd4897a8a36a6dfa93a7bb712efae42e33c0703e9'
-    oldFile: !uuid '6804439cd72ec5e5ab9d4402e60fe196b0b27b68'
+    newFile: !uuid '98f8ec704f612f9ce7fef8ec84012802771e54d9'
+    oldFile: !uuid 'd4897a8a36a6dfa93a7bb712efae42e33c0703e9'
   /public/static:
-    newFile: !uuid '390a82c07cecf8297dc3b953dffe12df2c2ec917'
-    oldFile: !uuid '5eb42163fe88c838fce78fcb791bf7219aa2ba76'
+    newFile: !uuid '3d7602e9d91419303b669c281481ab1f51ab70f3'
+    oldFile: !uuid '390a82c07cecf8297dc3b953dffe12df2c2ec917'
   /public/static/css:
-    newFile: !uuid '913eeb47a0754340f28d78683eb2bf0225c85a55'
-    oldFile: !uuid 'a63eb4b65eae1c2c8957e8407e6b569bb3ea6004'
+    newFile: !uuid 'd9c80247737b6a42831002aeebc350759bd5eec8'
+    oldFile: !uuid '913eeb47a0754340f28d78683eb2bf0225c85a55'
   /public/static/css/oksub.css:
-    newFile: !uuid '1fbb475c39f58a5cd3904356818aef6b43bbad5a'
-    oldFile: !uuid '871c5bd377328d4e80cbf2af6ec2790857d6359a'
-gitCommitId: !uuid 'dae3dfaa96e93cdd39a526d3438ef18ac2e32003'
+    newFile: !uuid '4a91cf5b4cbe46e0233ae94d58c91f171aaf28ee'
+    oldFile: !uuid '1fbb475c39f58a5cd3904356818aef6b43bbad5a'
+gitCommitId: !uuid '0b29979e1c1cb62626175f548f97b5ce33e09575'
 renames: {
   }
-revisionId: 81
+revisionId: 82
