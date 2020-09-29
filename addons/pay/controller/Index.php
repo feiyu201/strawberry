@@ -1,5 +1,5 @@
 <?php
-namespace addons\test\controller;
+namespace addons\pay\controller;
 
 use app\common\controller\AddonBase;
 class Index extends AddonBase
@@ -8,6 +8,7 @@ class Index extends AddonBase
     {
     	//var_dump($this->getInfo());
     	$this->assign('name','xiaoming');
+        die;
         return $this->fetch();
     }
     public function add()
