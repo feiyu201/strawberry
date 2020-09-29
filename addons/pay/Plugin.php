@@ -36,7 +36,7 @@ class Plugin extends Addons	// 需继承think\Addons类
 		$menu = [
             [
                 'name'    => 'pay',
-                'title'   => '测试菜单',
+                'title'   => '商城管理',
                 'icon'    => '&#xe66f;',
                 'sublist' => [
                     ['name' => 'addons/pay/index/index', 'title' => '查看'],
