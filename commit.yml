@@ -2,10 +2,523 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '63dc3ad5c2f250113432289e1c17cb467d624d15'
-    oldFile: !uuid '1614ff72c399f483137c1362aa3ecc21865ae649'
-gitCommitId: !uuid 'b290e4a23ab35209c8bcf8e9227305a3bddb2f69'
+  /addons:
+    newFile: !uuid 'e0f101c13b45d23f91a489dcd12d05362bde5a3f'
+    oldFile: !uuid '9ab035aaeebedbd2e0522deb557b2eb5e926bde2'
+  /addons/test:
+    newFile: !uuid '623037c4e906d829e7c479ef46870e52f3cfee6e'
+    oldFile: !uuid '4986a9913c5a1d24f66bcd0b87060d22dc9e39f1'
+  /addons/test/Plugin.php:
+    newFile: !uuid '6d2a381fb3e5a5f57266987166da3655fcf323bb'
+    oldFile: !uuid '9e8a5350d2d6d2736444ce21d45346ea1f9f7fae'
+  /app:
+    newFile: !uuid '67b9e173ec5db25ea26d4728023c7f6664e4d8ce'
+    oldFile: !uuid '268bb8b78ae4e78e86d635238ecdfecf31e005bd'
+  /app/BaseController.php:
+    newFile: !uuid 'c6f1a26c97f1c9f3a2dc230735489b7dbd12d43f'
+    oldFile: !uuid '3ad9aefb78bb05431026d6e90d08266ce8616dde'
+  /app/admin:
+    newFile: !uuid '2e896a010abdbfe16751fdcc30aff3eca87d3b57'
+    oldFile: !uuid '5e3b7dc542e3e05d9dc0de818324e2495f48abfd'
+  /app/admin/controller:
+    newFile: !uuid 'a4615095693b4ead92cce8fcb988e694cb38ba11'
+    oldFile: !uuid '52cc510e1035fae26841f27a67f4beacd7df2cc8'
+  /app/admin/controller/Admin.php:
+    newFile: !uuid '5cad1a92a7990b3c9c37117fc4b4b7f45152530e'
+    oldFile: !uuid 'b49fc321e45b92ec2c44e068957b08718645c931'
+  /app/admin/controller/AdminBase.php:
+    newFile: !uuid 'b79d37cfc17a6e227e9eb75f73b5564b4ac270ef'
+    oldFile: !uuid 'a6fbd2016ac616baf8bb23f7ed492691b8a3274f'
+  /app/admin/controller/Applets.php:
+    newFile: !uuid '903edd1c01216868a407a2172032d1f2973a105a'
+    oldFile: !uuid '211f284b4d2bd3eda2e782c590ee8ef7266ee148'
+  /app/admin/controller/Attachment.php:
+    newFile: !uuid '513024de0aed0cab6cd2c577fe138b786615861e'
+    oldFile: !uuid '6e368ef431dd9f67e9551c85b32b4b4c63fa4319'
+  /app/admin/controller/AuthGroup.php:
+    newFile: !uuid '33565db093afbcc7324db0e868de750a41ab47ac'
+    oldFile: null
+  /app/admin/controller/AuthRule.php:
+    newFile: !uuid 'fbebe9bca0573358782b82ac4cbf1a8ef5dfc88c'
+    oldFile: null
+  /app/admin/controller/Login.php:
+    newFile: !uuid 'ee0f9766bbce09b3c24d044a8dd3f8bbb33c6c3d'
+    oldFile: !uuid '2809c22bd139dfa239b8eb30ee606a370796cb8e'
+  /app/admin/middleware:
+    newFile: !uuid 'ff13bbd3d77b4ef21cac5057bfea18249cffb686'
+    oldFile: null
+  /app/admin/middleware/Admin.php:
+    newFile: !uuid '81a931c8ac3546de7d201150c244fe747f85f167'
+    oldFile: null
+  /app/admin/model:
+    newFile: !uuid '193514d85d49b6a7b8a6ceb6c8c90a082ae8a93c'
+    oldFile: !uuid 'a8ef951faefd7691b9e9c7bb20b4380380f36a4a'
+  /app/admin/model/AuthRule.php:
+    newFile: null
+    oldFile: !uuid '48780400eac379055e4e74ec36afacd9515f639d'
+  /app/admin/model/Base.php:
+    newFile: !uuid 'e308aaa6bdff41283f53e9c7be59df54d16e5f24'
+    oldFile: null
+  /app/admin/validate:
+    newFile: !uuid 'd2a90068de4ce01a923b17f79e41e5a93250c480'
+    oldFile: !uuid '5e212e96eeee5477f3c6c8517c658a8b10f75f3a'
+  /app/admin/validate/AuthGroup.php:
+    newFile: !uuid '6bf8635e92a80a2b61c77bb8957e3bcdc8c6d51c'
+    oldFile: null
+  /app/admin/validate/AuthRule.php:
+    newFile: !uuid '3e0b1d5b811f2989873ad7e42a546a0322992a3d'
+    oldFile: null
+  /app/admin/view:
+    newFile: !uuid '92d6c2e3ad87e03e5a3fb49bec35e7e751b92749'
+    oldFile: !uuid 'e9efd8956eda08ab50795bf5ece136a770ea4e35'
+  /app/admin/view/admin:
+    newFile: !uuid 'a640ba00a5a2a10f4e6d5eac925742e6b69b633c'
+    oldFile: !uuid '5fec48a8690ff47f6bb23f7dfb4401e14d292686'
+  /app/admin/view/admin/add.html:
+    newFile: !uuid 'ac6826b377dc4210bd1646d0e18bc4a1a8a91527'
+    oldFile: !uuid 'b4f0014f2844bb66987185123e14e02983b45ff4'
+  /app/admin/view/admin/edit.html:
+    newFile: !uuid 'f306f6fbd3881e0f9078f62a60dbd24038bdb110'
+    oldFile: !uuid '31be9a5833de09bb06af0c9007e1a3930de3415a'
+  /app/admin/view/admin/index.html:
+    newFile: !uuid 'fe8263e6bfd43c518cbe67d948e5976832be8ce1'
+    oldFile: !uuid 'a5943de2814790d896fcc157bfbebb003d623dee'
+  /app/admin/view/auth_group:
+    newFile: !uuid '565890560af82d26fa9c5f18e3f243cab941662c'
+    oldFile: null
+  /app/admin/view/auth_group/add.html:
+    newFile: !uuid '309380d16966d03e944cde8307dc15d7d9ff4a3a'
+    oldFile: null
+  /app/admin/view/auth_group/auth - 副本.html:
+    newFile: !uuid '53a45f0d3b42f6008fdf3a721332d0d808089c6b'
+    oldFile: null
+  /app/admin/view/auth_group/auth.html:
+    newFile: !uuid 'ebe11744a5e3b1a5485722df3562f7f5bf666745'
+    oldFile: null
+  /app/admin/view/auth_group/edit.html:
+    newFile: !uuid '8e0381e43d732bda73a9a738d1348bc65cdb506c'
+    oldFile: null
+  /app/admin/view/auth_group/index.html:
+    newFile: !uuid '87311f4e76f33e586f24625e605c849f3c3fa0f5'
+    oldFile: null
+  /app/admin/view/auth_rule:
+    newFile: !uuid '6429cdca56691c93cbaabac37cef97f6d2bc34b7'
+    oldFile: null
+  /app/admin/view/auth_rule/add.html:
+    newFile: !uuid 'fb7eb6ff51fc14e5e666c5d456d62ec9e7ab5639'
+    oldFile: null
+  /app/admin/view/auth_rule/edit.html:
+    newFile: !uuid '6f5890e81050974e6c63a476d976e9057678d952'
+    oldFile: null
+  /app/admin/view/auth_rule/index.html:
+    newFile: !uuid '887b84a7b790f5743b81752e59d958f391ef944f'
+    oldFile: null
+  /app/admin/view/index:
+    newFile: !uuid 'ed9a050d55cb16fc352a491879d029aa5572162d'
+    oldFile: !uuid '883fb9dcf040bdd3f8d273b9043859a8ee0a8002'
+  /app/admin/view/index/index.html:
+    newFile: !uuid 'a4599e6ca358e3936a7a50a849fb2797ae0c8207'
+    oldFile: !uuid '53204ec1d322b11c1867a86f2a73b49bea8e924a'
+  /app/common:
+    newFile: !uuid 'bd2cec4b693e8e99b5dd1ec9c253bcafe4065bfb'
+    oldFile: !uuid '980644d3444b40753040f63296bc04fa0ba5c779'
+  /app/common.php:
+    newFile: !uuid 'c2c796efe8727b4541f07733e7eeb1e15fd11fea'
+    oldFile: !uuid '36b64c9b749c91333acbb882004a3be9efd04d21'
+  /app/common/facade:
+    newFile: !uuid '926801b478f0395462fbd1df1a92f13ff7a4e704'
+    oldFile: null
+  /app/common/facade/MakeBuilder.php:
+    newFile: !uuid '9ccf65c30b8dba90475bd9f44773b84a3f28572b'
+    oldFile: null
+  /app/common/library:
+    newFile: !uuid '216f0263405f8a622d1ab989a616c0d790da235a'
+    oldFile: !uuid '010d5c027184b559d7105a2e4cfc848ac7b9e6fe'
+  /app/common/library/Menu.php:
+    newFile: !uuid '653b1005c32db0b335a9161213eed6debc935644'
+    oldFile: !uuid '9da7332e16d4279af14d75fc6f85d85c80ce9704'
+  /app/common/model:
+    newFile: !uuid '5924d5b1a7a730f631cf064731f8d8945fc5e9fd'
+    oldFile: null
+  /app/common/model/Admin.php:
+    newFile: !uuid 'd046daf8d87e28c4cc701996608a753c7b4ebe5a'
+    oldFile: null
+  /app/common/model/AuthGroup.php:
+    newFile: !uuid '8c2f2c6ed621ca312a95c4710c2ad2bec96ff552'
+    oldFile: null
+  /app/common/model/AuthGroupAccess.php:
+    newFile: !uuid '19568549e0c432337d549821f0165d4cf077f1ab'
+    oldFile: null
+  /app/common/model/AuthRule.php:
+    newFile: !uuid '542fc0a7a5bece43beae63427c5dec8b3eff0d5f'
+    oldFile: null
+  /app/common/model/Base.php:
+    newFile: !uuid '317a188a19675d9467d2e3772ed3f841f490630d'
+    oldFile: null
+  /config:
+    newFile: !uuid '9df08e2603013f8656abc4388d033d73a7f674a1'
+    oldFile: !uuid '73c75d57cd3c7bd6f02f584967d64ac0c25b9926'
+  /config/database.php:
+    newFile: !uuid 'd7792b344b73935c1097904d406ae134b248bba6'
+    oldFile: !uuid '64d53f6eeb3978058fafa289622e4b1b22fce2af'
+  /extend:
+    newFile: !uuid '2fbead5cf497fb1e0fd8d102e6b4e050de6c78be'
+    oldFile: !uuid 'c8058157c2017a848dac97dc632359933f9d1e27'
+  /extend/Auth.php:
+    newFile: !uuid 'd75b72408dd9ebbb7cd664620d7d3e3ffbff4048'
+    oldFile: null
+  /public:
+    newFile: !uuid '9e5fb358bd53f2bb44974f4facad559beba9c230'
+    oldFile: !uuid 'c83925d52ef1cae0cfa30dc4441af6c000b350a4'
+  /public/static:
+    newFile: !uuid 'e894cb762fabb6ab11f64eacc47ad679df027f70'
+    oldFile: !uuid 'b1f954b0d065676f7aeb21d5c28d2c3c504cf28a'
+  /public/static/css:
+    newFile: !uuid 'a63eb4b65eae1c2c8957e8407e6b569bb3ea6004'
+    oldFile: !uuid '1d9d5a3ea47feed05bd0ed713c95c451e25257a9'
+  /public/static/css/font-awesome:
+    newFile: !uuid '6b14d0c8b7f7494d993fc6b6fc6102a6d2f13ccd'
+    oldFile: null
+  /public/static/css/font-awesome/.bower.json:
+    newFile: !uuid '67b21b1af0226095da67f0bfa84b957eddf67c78'
+    oldFile: null
+  /public/static/css/font-awesome/.npmignore:
+    newFile: !uuid '54a691f81598172c378f35c30774b0d428294d37'
+    oldFile: null
+  /public/static/css/font-awesome/HELP-US-OUT.txt:
+    newFile: !uuid '83d083dd770c94ee238774e2df508094ff5cc3a1'
+    oldFile: null
+  /public/static/css/font-awesome/bower.json:
+    newFile: !uuid '9e2112659b01fcfc385bd070c0d2fb1d6bbb80a8'
+    oldFile: null
+  /public/static/css/font-awesome/css:
+    newFile: !uuid '52704e47b853d6619780ca285f58e90da13f22f5'
+    oldFile: null
+  /public/static/css/font-awesome/css/font-awesome.css:
+    newFile: !uuid 'ee906a8196d0fbd581c27a9d5615db4c250860f2'
+    oldFile: null
+  /public/static/css/font-awesome/css/font-awesome.min.css:
+    newFile: !uuid '540440ce89f2a408aa699b65100e18f15e0f09ca'
+    oldFile: null
+  /public/static/css/font-awesome/fonts:
+    newFile: !uuid 'fd865ec4ce5d0161aa1800bc9af3053752818f54'
+    oldFile: null
+  /public/static/css/font-awesome/fonts/FontAwesome.otf:
+    newFile: !uuid '401ec0f36e4f73b8efa40bd6f604fe80d286db70'
+    oldFile: null
+  /public/static/css/font-awesome/fonts/fontawesome-webfont.eot:
+    newFile: !uuid 'e9f60ca953f93e35eab4108bd414bc02ddcf3928'
+    oldFile: null
+  /public/static/css/font-awesome/fonts/fontawesome-webfont.svg:
+    newFile: !uuid '855c845e538b65548118279537a04eab2ec6ef0d'
+    oldFile: null
+  /public/static/css/font-awesome/fonts/fontawesome-webfont.ttf:
+    newFile: !uuid '35acda2fa1196aad98c2adf4378a7611dd713aa3'
+    oldFile: null
+  /public/static/css/font-awesome/fonts/fontawesome-webfont.woff:
+    newFile: !uuid '400014a4b06eee3d0c0d54402a47ab2601b2862b'
+    oldFile: null
+  /public/static/css/font-awesome/fonts/fontawesome-webfont.woff2:
+    newFile: !uuid '4d13fc60404b91e398a37200c4a77b645cfd9586'
+    oldFile: null
+  /public/static/css/font-awesome/less:
+    newFile: !uuid 'bfc1b4432f0cb993ad81dfdb507136077b93178a'
+    oldFile: null
+  /public/static/css/font-awesome/less/animated.less:
+    newFile: !uuid '66ad52a5ba052ced428dcc7ec7016bc25438a2ca'
+    oldFile: null
+  /public/static/css/font-awesome/less/bordered-pulled.less:
+    newFile: !uuid 'f1c8ad75f52bbc6c84a6dc3a341fe39e8d3edfd4'
+    oldFile: null
+  /public/static/css/font-awesome/less/core.less:
+    newFile: !uuid 'c577ac84a6a55ef39ff7f4e25d60c3977a902ed1'
+    oldFile: null
+  /public/static/css/font-awesome/less/fixed-width.less:
+    newFile: !uuid '110289f2f4b5260ce04dd035408961f1e4f2785b'
+    oldFile: null
+  /public/static/css/font-awesome/less/font-awesome.less:
+    newFile: !uuid 'c3677def3131af54af2a87d9cd2bb737a321e97e'
+    oldFile: null
+  /public/static/css/font-awesome/less/icons.less:
+    newFile: !uuid '159d600425c73c282be34f94af12179f091a16d2'
+    oldFile: null
+  /public/static/css/font-awesome/less/larger.less:
+    newFile: !uuid 'c9d646770e2186c73632cbe042d82d1d1acaa25b'
+    oldFile: null
+  /public/static/css/font-awesome/less/list.less:
+    newFile: !uuid '0b440382f61f0bb1683e5b15c2a00e4e398f9980'
+    oldFile: null
+  /public/static/css/font-awesome/less/mixins.less:
+    newFile: !uuid 'beef231d0e176a47375d93fb7365270eea52f7b4'
+    oldFile: null
+  /public/static/css/font-awesome/less/path.less:
+    newFile: !uuid '835be41f8151b6439f799be29ec7921af1b72593'
+    oldFile: null
+  /public/static/css/font-awesome/less/rotated-flipped.less:
+    newFile: !uuid 'f6ba81475b92355723f0dc12767f715995a34162'
+    oldFile: null
+  /public/static/css/font-awesome/less/screen-reader.less:
+    newFile: !uuid '11c188196d5ade55930b7b94fc5a1dd0f6d1a800'
+    oldFile: null
+  /public/static/css/font-awesome/less/stacked.less:
+    newFile: !uuid 'fc53fb0e7ab49594e1eac97208c32a290558efeb'
+    oldFile: null
+  /public/static/css/font-awesome/less/variables.less:
+    newFile: !uuid '7ddbbc0115f5b017bae9f401651f00d824a396b2'
+    oldFile: null
+  /public/static/css/font-awesome/scss:
+    newFile: !uuid '721acdb78e26cf746a5d80970e7d8e621a9189bc'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_animated.scss:
+    newFile: !uuid '8a020dbfff7822bf57c7217eafdaa4884b8aa943'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_bordered-pulled.scss:
+    newFile: !uuid 'd4b85a02f24adad8890ad69f7a1db6c7e3ec8a7d'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_core.scss:
+    newFile: !uuid '7425ef85fc80ce6b035065906fc27490715e3733'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_fixed-width.scss:
+    newFile: !uuid 'b221c98133a4d4a8449c848ccb69bf631d1c3e5d'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_icons.scss:
+    newFile: !uuid 'e63e702c4d9c28fb78922cefa5daf91858b12c9a'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_larger.scss:
+    newFile: !uuid '41e9a8184aa287c5970cc8415e3c5a6310dc9f79'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_list.scss:
+    newFile: !uuid '7d1e4d54d6c293333eb638aa56feba7b62e15564'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_mixins.scss:
+    newFile: !uuid 'c3bbd5745d35bebda3e16ce18aeff7a4a0ce5ae1'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_path.scss:
+    newFile: !uuid 'bb457c23a8e4e0688ebd9383e34ab9f2b3acecab'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_rotated-flipped.scss:
+    newFile: !uuid 'a3558fd09ca7cb968166d5445f4df1a0bc2d5a7e'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_screen-reader.scss:
+    newFile: !uuid '637426f0da6dcef3602d764d9e359dabb4a5a862'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_stacked.scss:
+    newFile: !uuid 'aef7403660c9a2ccc02a264c62c6b105f7d8d532'
+    oldFile: null
+  /public/static/css/font-awesome/scss/_variables.scss:
+    newFile: !uuid '498fc4a087c614614166df2e9f08bb5e0071daf4'
+    oldFile: null
+  /public/static/css/font-awesome/scss/font-awesome.scss:
+    newFile: !uuid 'f1c83aaa5d24da542d81b09677307f47f374401e'
+    oldFile: null
+  /public/static/css/okadmin.css:
+    newFile: !uuid 'c2da6ad7d8582eea8e78cf99cbbfa8d54ed182dc'
+    oldFile: !uuid '3b12091eaced77691a412654092461e1de1f903f'
+  /public/static/css/oksub.css:
+    newFile: !uuid '871c5bd377328d4e80cbf2af6ec2790857d6359a'
+    oldFile: !uuid 'd0306f33cc23ba522464d4923a79d8780584913b'
+  /public/static/js:
+    newFile: !uuid '3bd76ff504181c6175a7dfe27836376af73a9b02'
+    oldFile: !uuid '978242e766edfacea9056e28e490522bc9f1408b'
+  /public/static/js/jquery.min.js:
+    newFile: !uuid 'c43565452792f19d2cf2340266dbecb82f2a0571'
+    oldFile: null
+  /public/static/js/okadmin.js:
+    newFile: !uuid 'fbcefac89e59345b542fb3f42dcbe3f6e4d46340'
+    oldFile: !uuid '1b8c4c872183a89a71b950d11d26f9033ed57475'
+  /public/static/lib:
+    newFile: !uuid 'b98952cd77aa83ba15d84f2522189ddd45043af4'
+    oldFile: !uuid '20e5835505d17f7ceb97609e450b0a5b116b83e0'
+  /public/static/lib/layui:
+    newFile: !uuid 'f2465ec663d493c0c7733fecf02d47ea59f19891'
+    oldFile: !uuid 'af7fbc8ed5b0a36015d65b3bce21ea593314d135'
+  /public/static/lib/layui/css:
+    newFile: !uuid '1abfd0b84cfbb33fcb7a6adb4e37ca05923fd63c'
+    oldFile: !uuid 'b44337d8221fffda3c365a321f3c6bf8b5643f5f'
+  /public/static/lib/layui/css/modules:
+    newFile: !uuid '6f19c63364e67dbd99a74d54a1ba3574d8e36270'
+    oldFile: !uuid 'ca889aee7e952ebfe0b8f5278d178967ef8be662'
+  /public/static/lib/layui/css/modules/treetable:
+    newFile: !uuid 'aa750e9d641190f6e88ef72cc3fc77a2f518b8ec'
+    oldFile: null
+  /public/static/lib/layui/css/modules/treetable/file.gif:
+    newFile: !uuid '7e6216798f8e5abfc81a2fe2e5cb32b7a2d82e10'
+    oldFile: null
+  /public/static/lib/layui/css/modules/treetable/folder-closed.gif:
+    newFile: !uuid '541107888e6739a7b367ad3d208e1efa933f877d'
+    oldFile: null
+  /public/static/lib/layui/css/modules/treetable/folder.gif:
+    newFile: !uuid '2b31631ca2bfec3a8afb1bfdd4f8ed4c5bcc3a18'
+    oldFile: null
+  /public/static/lib/layui/css/modules/treetable/treetable.css:
+    newFile: !uuid '7a620e90946bcbeb0ce631ddf51c96637c7583f7'
+    oldFile: null
+  /public/static/lib/layui/lay:
+    newFile: !uuid '96cb034418c798b51b29244213f24136e46dfcba'
+    oldFile: !uuid '69507f5fdf5de6e72672170fc278fbf3cdf0b392'
+  /public/static/lib/layui/lay/lay-config.js:
+    newFile: !uuid '670548fa67d4a0b36e5f66ddd31109280b0c4a40'
+    oldFile: null
+  /public/static/lib/layui/lay/modules:
+    newFile: !uuid 'd14ccad0260b917b120f214669cfadf1a5bc78b9'
+    oldFile: !uuid '524635adbaf7be7ea8650b8c6e7cbbf0b4180127'
+  /public/static/lib/layui/lay/modules/iconPicker:
+    newFile: !uuid '2e48262a9bc6949655b91e743f0d52f6a8882283'
+    oldFile: null
+  /public/static/lib/layui/lay/modules/iconPicker/iconPickerFa.js:
+    newFile: !uuid '8aea4a80db512244d62337fe0f96c89d8f96ea2d'
+    oldFile: null
+  /public/static/lib/layui/lay/modules/treetable-lay:
+    newFile: !uuid 'b6e8f6fbe77fb05eb8e6a4c871eef52a48fce05a'
+    oldFile: null
+  /public/static/lib/layui/lay/modules/treetable-lay/treetable.css:
+    newFile: !uuid '584b2f8c51c31b675b5bbc9ec2f7bb21488f451a'
+    oldFile: null
+  /public/static/lib/layui/lay/modules/treetable-lay/treetable.js:
+    newFile: !uuid 'e38a5e1cd7426e2bf3e3c6c1b4b367c055cb37ad'
+    oldFile: null
+  /public/static/lib/zTree:
+    newFile: !uuid '36e627edce795635927fdd81b917c9324893e4c4'
+    oldFile: null
+  /public/static/lib/zTree/css:
+    newFile: !uuid '8acfcc32cd3a098960282ff1533b69a9de263935'
+    oldFile: null
+  /public/static/lib/zTree/css/awesomeStyle:
+    newFile: !uuid 'b3717daac8d384dcf0794a6d3b3e504840e566b7'
+    oldFile: null
+  /public/static/lib/zTree/css/awesomeStyle/awesome.css:
+    newFile: !uuid '04e3b3382076b38391210674d677ff424b114415'
+    oldFile: null
+  /public/static/lib/zTree/css/awesomeStyle/awesome.less:
+    newFile: !uuid '92a83532096672b159dbdb1a3e9f63955fadaf8c'
+    oldFile: null
+  /public/static/lib/zTree/css/awesomeStyle/fa.less:
+    newFile: !uuid '2753c5e9477319733ee8231677a649ad43df995b'
+    oldFile: null
+  /public/static/lib/zTree/css/awesomeStyle/img:
+    newFile: !uuid '26ff823ec10c48fc539bc112e00820ff8de5dfdf'
+    oldFile: null
+  /public/static/lib/zTree/css/awesomeStyle/img/loading.gif:
+    newFile: !uuid 'e8c289293b11c889703d83dce6631fce90da4630'
+    oldFile: null
+  /public/static/lib/zTree/css/demo.css:
+    newFile: !uuid '650099f58dfa1e11231ecb19003c12267bedbdc2'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle:
+    newFile: !uuid '0a5559a51cf375e7831fbf5d4304a294019eee07'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle/img:
+    newFile: !uuid 'd6ac67d47b325b950ff96bab6b3d9c58ae85a03f'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle/img/line_conn.png:
+    newFile: !uuid 'b211da2fa8fa64efa883f893334cf9316e027767'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle/img/loading.gif:
+    newFile: !uuid 'e8c289293b11c889703d83dce6631fce90da4630'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle/img/metro.gif:
+    newFile: !uuid '664b969a2bf58b3fb3c95186d8a85184aafbe24b'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle/img/metro.png:
+    newFile: !uuid 'e9e58a3a73ab5eac62afb4a4062887896248ec2d'
+    oldFile: null
+  /public/static/lib/zTree/css/metroStyle/metroStyle.css:
+    newFile: !uuid '9205e6dbc29f6968bb057c34ab2fbfcd6adf377c'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle:
+    newFile: !uuid '285d48f8c7c3d4fe913200fb45ccd6c0253edb8c'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img:
+    newFile: !uuid '77e941bcd79ff837d075a1d29557e8c848004513'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy:
+    newFile: !uuid 'a0f7c878936d7aa3050c745e932919e0d7dd5af6'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/1_close.png:
+    newFile: !uuid '68ccb3c3b90170df7cddab1fe6e8e455c3854573'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/1_open.png:
+    newFile: !uuid 'd6ff36d3a99012028c6cf3d4009719108e31bc79'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/2.png:
+    newFile: !uuid '9eff506ba391fa1ddf0dc44d02ae84403700321b'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/3.png:
+    newFile: !uuid 'd7ba6d0c675c35197e2dae8a379155e67c0ac6cb'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/4.png:
+    newFile: !uuid '753e2bfd5725b1f32cda4e41c36a448a4b12c280'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/5.png:
+    newFile: !uuid '0c5eccd562c303cf5197629ef5f2666b6180bd48'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/6.png:
+    newFile: !uuid '070b8352d7770e6be4b6f3cbc61f7ee21ae3e4da'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/7.png:
+    newFile: !uuid '532b037f2045cfa26c62d23cb928ff7405f6fc18'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/8.png:
+    newFile: !uuid 'a8f3a86e7091de4acdd38745f74b30f0f3d40f9e'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/diy/9.png:
+    newFile: !uuid '4db73cd41c95bc74496175625ce9ed3737e599f5'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/line_conn.gif:
+    newFile: !uuid 'd561d36a915776730eb3069cee4c949f027667ed'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/loading.gif:
+    newFile: !uuid 'e8c289293b11c889703d83dce6631fce90da4630'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/zTreeStandard.gif:
+    newFile: !uuid '50c94fd41ef9f1f7c07442d669923fd7a3226f55'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/img/zTreeStandard.png:
+    newFile: !uuid 'ffda01ef1cccc398ee4e2327f4093ba1130a4961'
+    oldFile: null
+  /public/static/lib/zTree/css/zTreeStyle/zTreeStyle.css:
+    newFile: !uuid 'b967e1226ed23062ad411d08871b9c88cac3f23f'
+    oldFile: null
+  /public/static/lib/zTree/js:
+    newFile: !uuid 'fb11559fe85da4082165f436c9aa6ecb4848fc38'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery-1.4.4.min.js:
+    newFile: !uuid 'c2dcfe7bfa56514284eb9087ff4e784020c1eb46'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.all.js:
+    newFile: !uuid '67f7ee79213b0df836734f9ce0f7c2c97af458da'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.all.min.js:
+    newFile: !uuid 'c4968b828dcface70f566d99a8127de923df68db'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.core.js:
+    newFile: !uuid '7dd52b1877164295f28a4f19f2b05834a88a3475'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.core.min.js:
+    newFile: !uuid '26984bf444f260dc82149e6f9fb860d893d6e6d6'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.excheck.js:
+    newFile: !uuid '03efc367006ee1ff96668cd649ff5dd95f4a2507'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.excheck.min.js:
+    newFile: !uuid '71949ac8fe34bac1820670e9b5d43d69b5562ef3'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.exedit.js:
+    newFile: !uuid '84e2464de515da1763b6e932f4ed081eaca56b7e'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.exedit.min.js:
+    newFile: !uuid '0839c6203d93b1935f29b875e82208465d426905'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.exhide.js:
+    newFile: !uuid '82bde9dd2fd1245e5f98285303ac32fbdd270f15'
+    oldFile: null
+  /public/static/lib/zTree/js/jquery.ztree.exhide.min.js:
+    newFile: !uuid '856b245a0c9a6b6790ce97277557a4d5157d29cd'
+    oldFile: null
+  /public/stdatabase.sql:
+    newFile: !uuid '0e19be0607fac81e545c03b6cb9a1134476817fb'
+    oldFile: !uuid 'ad16e033a36a161c5ae1d5474826046a6ebd660c'
+gitCommitId: !uuid 'e1eeb606c8285c9f5f355b7b91586682155911e4'
 renames: {
   }
-revisionId: 68
+revisionId: 69
