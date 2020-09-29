@@ -9,16 +9,24 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
    var layer = layui.layer;
    var okLayer = layui.okLayer;
    var okHoliday = layui.okHoliday;
-   var okTab = layui.okTab({
+   /* var okTab = layui.okTab({
       // 菜单请求路径
-      url: "data/navs.json",
+      url: "/admin/index/index",
       // 允许同时选项卡的个数
       openTabNum: 30,
       // 如果返回的结果和navs.json中的数据结构一致可省略这个方法
       parseData: function (data) {
          return data;
       }
-   });
+   }); */
+   var okTab = layui.okTab([{
+        "title": "控制台",
+        "href": "pages/console.html",
+        "fontFamily": "ok-icon",
+        "icon": "&#xe654;",
+        "spread": true,
+        "isCheck": true
+    }]);
    var config = okUtils.local("okConfig") || okConfig || {};
    objOkTab = okTab;
    okLoading && okLoading.close();
@@ -34,8 +42,10 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
    /**
     * 左侧导航渲染完成之后的操作
     */
-   okTab.render(function () {
-      /**tab栏的鼠标右键事件**/
+   /* okTab.render(function () {
+     
+   }); */
+ /**tab栏的鼠标右键事件**/
       $("body .ok-tab").okContextMenu({
          width: 'auto',
          itemHeight: 30,
@@ -71,8 +81,6 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
             }
          ]
       });
-   });
-
    /**系统设置*/
    $("body").on("click", "#okSetting", function () {
       layer.open({
@@ -254,12 +262,12 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
     * 系统公告
     */
    $(document).on("click", "#notice", noticeFun);
-   !function () {
+   /* !function () {
       var notice = sessionStorage.getItem("notice");
       if (notice != "true") {
          noticeFun();
       }
-   }();
+   }(); */
 
    function noticeFun() {
       var srcWidth = okUtils.getBodyWidth();
@@ -311,15 +319,6 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
          tab: [{
             title: "QQ群4",
             content: "<img src='images/qq4.png' width='200' height='300' style='margin: 0 auto; display: block;'/>"
-         }, {
-            title: "QQ群3（已满）",
-            content: "<img src='images/qq3.png' width='200' height='300' style='margin: 0 auto; display: block;'/>"
-         }, {
-            title: "QQ群2（已满）",
-            content: "<img src='images/qq2.png' width='200' height='300' style='margin: 0 auto; display: block;'/>"
-         }, {
-            title: "QQ群1（已满）",
-            content: "<img src='images/qq1.png' width='200' height='300' style='margin: 0 auto; display: block;'/>"
          }]
       });
    });
@@ -422,9 +421,5 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
       " \\____/|__|_ \\         (____  /\\____ |__|_|  /__|___|  /\n" +
       "            \\/              \\/      \\/     \\/        \\/\n" +
       "" +
-      "版本：v2.0\n" +
-      "作者：bobi\n" +
-      "邮箱：bobi1234@foxmail.com\n" +
-      "企鹅：833539807\n" +
       "描述：一个很赞的，扁平化风格的，响应式布局的后台管理模版，旨为后端程序员减压！");
 });

@@ -8,6 +8,7 @@
    <meta name="description" content="草莓万能开发框架 草莓万能快速开发框架">
    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon"/>
    <link rel="stylesheet" href="/static/css/okadmin.css">
+   <link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css">
    <link rel="stylesheet" href="/static/lib/loading/okLoading.css"/>
    <script type="text/javascript" src="/static/js/okconfig.js"></script>
    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
@@ -102,36 +103,41 @@
          </div>
          <!--左侧导航菜单-->
          <ul id="navBar" class="layui-nav okadmin-nav okadmin-bg-20222A layui-nav-tree">
-            <li class="layui-nav-item layui-this">
-               <a href="javascript:" lay-id="1" data-url="{:url('welcome')}">
-                  <i is-close=false class="ok-icon">&#xe654;</i>
-                  控制台
-               </a>
-            </li>
+			 
+			 {volist name="$menus" id="vo"}
+				<li class="layui-nav-item">
+				   <a href="javascript:" lay-id="{$vo.id}" data-url="{$vo.href}" is-close="true">
+				      <i class="fa {$vo.icon}"></i>
+				      <cite>{$vo.title}</cite>
+				   </a>
+				    {if count($vo.children)}
+				   <dl class="layui-nav-child">
+				   {volist name="vo.children" id="voo"}
+					   <dd>
+						   <a lay-id="{$voo.pid}-{$voo.id}" data-url="{$voo.href}" is-close="true"><i class="fa {$voo.icon}"></i><cite>{$voo.title}</cite>
+						   </a>
+						   
+						   {if count($voo.children)}
+						   <dl class="layui-nav-child">
+						   {volist name="voo.children" id="vooo"}
+						   					   <dd>
+						   						   <a lay-id="{$vooo.pid}-{$vooo.id}" data-url="{$vooo.href}" is-close="true"><i class="fa {$vooo.icon}"></i><cite>{$vooo.title}</cite>
+						   						   </a>
+						   						</dd>
+						   {/volist}
+						    </dl>
+						    {/if}
+						   
+						</dd>
+				   {/volist}
+				    </dl>
+				    {/if}
+				   
+				</li>
+			 {/volist}
+            
 			
-			<li class="layui-nav-item">
-			    <a href="javascript:" lay-id="2" data-url="{:url('admin/index')}" is-close="true">
-			   <i class="layui-icon">&#xe66f;</i><cite> 人员管理</cite>
-			   </a>
-			</li>
-             <li class="layui-nav-item">
-                 <a href="javascript:" lay-id="2.1" data-url="{:url('Attachment/index')}" is-close="true">
-                     <i class="layui-icon">&#xe66f;</i><cite> 附件管理</cite>
-                 </a>
-             </li>
-			<li class="layui-nav-item">
-			   
-			   <a href="javascript:" lay-id="3" data-url="{:url('plugin/index')}" is-close="true">
-			   <i class="layui-icon">&#xe674;</i><cite>  插件管理</cite>
-			   </a>
-			</li>
-
-            <li class="layui-nav-item">
-
-               <a href="javascript:" lay-id="4" data-url="{:url('applets/index')}" is-close="true">
-                  <i class="layui-icon">&#xe674;</i><cite>  小程序管理</cite>
-               </a>
-            </li>
+			<
 
          </ul>
       </div>

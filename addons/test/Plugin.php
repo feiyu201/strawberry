@@ -31,11 +31,21 @@ class Plugin extends Addons	// 需继承think\Addons类
             [
                 'name'    => 'test',
                 'title'   => '测试菜单',
-                'icon'    => '&#xe66f;',
+                'icon'    => 'fa-list',
+                'weigh'   => '10',
                 'sublist' => [
-                    ['name' => 'addons/test/index/index', 'title' => '查看'],
-                    ['name' => 'addons/test/index/add', 'title' => '添加'],
-                    ['name' => 'addons/test/index/detail', 'title' => '详情'],
+                    [
+                    	'name' => 'addons/test/index/index',
+                     	'title' => '查看',
+                     	'icon'    => 'fa-list',
+                     	'weigh'   => '20',
+                    	'ismenu'  => 1,//是否显示为菜单
+                    	'sublist' =>[
+                    		['name' => 'addons/test/index/add', 'title' => '添加'],
+                    		['name' => 'addons/test/index/detail', 'title' => '详情'],
+						]
+					],
+                    
                 ]
             ]
         ];
