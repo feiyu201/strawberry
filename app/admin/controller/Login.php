@@ -63,6 +63,6 @@ class Login extends BaseController
     }
     public function logout(){
     	Session::delete('admin');
-    	$this->redirect("/admin/login/index");
+    	return redirect('index');
     }
 }
