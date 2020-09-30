@@ -1,9 +1,28 @@
 <?php
-
+//  *+-----------------------------------------------------------------------
+//  *                      .::::.
+//  *                    .::::::::.            | Author: 丶长情
+//  *                    :::::::::::           | Email: zeng1144318071@gmail.com
+//  *                 ..:::::::::::'           | Datetime: 2020/08/15
+//  *             '::::::::::::'               | Remarks:
+//  *                .::::::::::
+//  *           '::::::::::::::..
+//  *                ..::::::::::::.
+//  *              ``::::::::::::::::
+//  *               ::::``:::::::::'        .:::.
+//  *              ::::'   ':::::'       .::::::::.
+//  *            .::::'      ::::     .:::::::'::::.
+//  *           .:::'       :::::  .:::::::::' ':::::.
+//  *          .::'        :::::.:::::::::'      ':::::.
+//  *         .::'         ::::::::::::::'         ``::::.
+//  *     ...:::           ::::::::::::'              ``::.
+//  *   ```` ':.          ':::::::::'                  ::::..
+//  *                      '.:::::'                    ':'````..
+//  * +-----------------------------------------------------------------------
 namespace app\api\controller;
 
 use app\common\controller\Api;
-use think\Db;
+use think\facade\Db;
 
 /**
  * %s接口
@@ -115,10 +134,10 @@ class %s extends Api
      * */
     public function _list()
     {
-        $page = request()->param('page');
-        $limit = request()->param('limit');
+        $page = $this->request->param('page',1,'intval');
+        $limit = $this->request->param('limit',10,'intval');
         %s
-        $result = Db::name('%s')->where($where)->page($page,$limit)->select();
+        $result = Db::name('%s')->where($where)->page($page,$limit)->select()->toArray();
         %s
         if ($result)
             $this->success('查询成功', $result);

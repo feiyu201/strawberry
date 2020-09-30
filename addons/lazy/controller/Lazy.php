@@ -58,7 +58,7 @@ class Lazy extends Admin
             $admin = session('admin');
             $params = $this->request->post();
             $params['create_time'] = time();
-            $params['member_id'] = $admin['id'];
+            $params['admin_id'] = $admin['id'];
             $table = $params['table_name'];
             $sql = "show tables like 'st_{$table}'";
             $istable = Db::query($sql);
@@ -297,10 +297,10 @@ class Lazy extends Admin
         }
         $str = "";
         if ($tableModel) {
-            $str .= '$result["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$result["' . $tableModel . '_id"])->field(\'name\')->find()[\'name\'];';
+            $str .= '$result["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$result["' . $tableModel . '_id"])->field(\'username\')->find()[\'username\'];';
         }
         if ($tableModels) {
-            $str .= "\r\n" . '        $result["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$result["' . $tableModels . '_ids"])]])->column(\'name\'));';
+            $str .= "\r\n" . '        $result["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$result["' . $tableModels . '_ids"])]])->column(\'username\'));';
         }
         return $str;
     }
@@ -321,10 +321,10 @@ class Lazy extends Admin
         }
         $str = 'foreach($result as $elt => $item){'."\r\n";
         if ($tableModel) {
-            $str .= "\r\n" . '            $result[$elt]["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$item["' . $tableModel . '_id"])->field(\'name\')->find()[\'name\'];';
+            $str .= "\r\n" . '            $result[$elt]["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$item["' . $tableModel . '_id"])->field(\'username\')->find()[\'username\'];';
         }
         if ($tableModels) {
-            $str .= "\r\n" . '            $result[$elt]["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$item["' . $tableModels . '_ids"])]])->column(\'name\'));';
+            $str .= "\r\n" . '            $result[$elt]["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$item["' . $tableModels . '_ids"])]])->column(\'username\'));';
         }
         $str .= "\r\n".'        }';
         return $str;

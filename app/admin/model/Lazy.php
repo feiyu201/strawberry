@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\model;
+namespace addons\lazy\model;
 
 use think\Model;
 
