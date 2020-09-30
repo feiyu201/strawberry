@@ -109,7 +109,6 @@ class Lazy extends Admin
 //                        $this->model->validateFailException(true)->validate($validate);
 //                    }
                     $result = (new \app\admin\model\Lazy())->save($params);
-
                     // 生成控制器
                     $controlFile = fopen("../app/api/controller/" . self::controlName($table) . ".php", "w");
                     $controlTxt = sprintf(self::getFile('control'),
