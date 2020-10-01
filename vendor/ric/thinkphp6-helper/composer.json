@@ -1,0 +1,39 @@
+{
+    "name": "ric/thinkphp6-helper",
+    "description": "think 6 扩展 支持跨应用调用 及所有类注释验证",
+    "license": "Apache-2.0",
+    "version": "v1.0.3",
+    "keywords": [
+        "think",
+        "thinkphp6",
+        "helper",
+        "Validate",
+        "rpc",
+        "跨应用调用",
+        "注释验证"
+    ],
+    "authors": [
+        {
+            "name": "ric",
+            "email": "596868636@qq.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "ric\\helper\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    },
+    "extra": {
+        "think": {
+            "config": {
+                "codemsg": "src/config/codemsg.php"
+            }
+        }
+    }
+}
