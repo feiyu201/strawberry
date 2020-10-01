@@ -158,14 +158,17 @@ class Lazy extends Admin
     // 生成注释(有主键)
     protected static function annotate(&$data, $primary)
     {
-        $str = '* @ApiParams   (name="' . $primary . '", type="int", required=true, description="主键' . $primary . '")';
+        $str = '* @param   int '
+            . $primary.' '
+            . '- 主键' . $primary.' '.'true';
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
-            $str = $str . "\r\n" . '     * @ApiParams   (name="'
-                . $v['field'] . '", type="'
-                . self::delString($v['type']) . '", required='
-                . $v['null'] . ', description="'
-                . $v['comment'] . '")';
+            $str = $str . "\r\n" . '     * @param   '
+                . self::delString($v['type']).' '
+                . $v['field'].' '
+                .'- '
+                . $v['comment'].' '
+                . $v['null'];
         }
         return $str;
     }
@@ -177,18 +180,19 @@ class Lazy extends Admin
         foreach ($data as $elt => $v) {
             if ($elt == 0)
                 $str = $str
-                    . '* @ApiParams   (name="' . $v['field']
-                    . '", type="' . self::delString($v['type'])
-                    . '", required=' . $v['null']
-                    . ', description="'
-                    . $v['comment'] . '")';
+                    . '* @param   ' . self::delString($v['type']).' '
+                    . $v['field'].' '
+                    .'- '
+                    . $v['comment'] .' '
+                    . $v['null'];
             else
                 // 换行 且需要留5个空格
-                $str = $str . "\r\n" . '     * @ApiParams   (name="'
-                    . $v['field'] . '", type="'
-                    . self::delString($v['type']) . '", required='
-                    . $v['null'] . ', description="'
-                    . $v['comment'] . '")';
+                $str = $str . "\r\n" . '     * @param   '
+                    . self::delString($v['type']).' '
+                    . $v['field'].' '
+                    .'- '
+                    . $v['comment'].' '
+                    . $v['null'];
         }
         return $str;
     }
@@ -244,20 +248,22 @@ class Lazy extends Admin
     // 主键
     protected static function primary($primary)
     {
-        $str = '* @ApiParams   (name="' . $primary . '", type="int", required=true, description="主键' . $primary . '")';
+        $str = '* @param   int '
+            . $primary.' '
+            . '- 主键' . $primary.' '.'true';
         return $str;
     }
 
     // 返回参数
     protected static function apiReturnParams($data, $primary, $type = true)
     {
-        $str = ($type ? "\r\n     " : "") . '* @ApiReturnParams   (name="' . $primary . '", type="int", required=true, description="主键' . $primary . '")';;
+        $str = ($type ? "\r\n     " : "") . '* @ApiReturnParams   ("' . $primary . '", "int", true, "主键' . $primary . '")';;
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
-            $str = $str . "\r\n" . '     * @ApiReturnParams   (name="'
-                . $v['field'] . '", type="'
-                . self::delString($v['type']) . '", required='
-                . $v['null'] . ', description="'
+            $str = $str . "\r\n" . '     * @ApiReturnParams   ("'
+                . $v['field'] . '", "'
+                . self::delString($v['type']) . '", '
+                . $v['null'] . ', "'
                 . $v['comment'] . '")';
         }
         return $str;

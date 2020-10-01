@@ -25,8 +25,8 @@ use app\common\controller\Api;
 use think\facade\Db;
 
 /**
- * 管理员表接口
- */
+ * @title 管理员表接口
+ **/
 
 class Admin extends Api
 {
@@ -46,24 +46,25 @@ class Admin extends Api
     }
 
     /**
-     * @ApiTitle    (添加)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    添加
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="username", type="varchar", required=NO, description="用户名")
-     * @ApiParams   (name="nickname", type="varchar", required=NO, description="昵称")
-     * @ApiParams   (name="password", type="varchar", required=NO, description="密码")
-     * @ApiParams   (name="salt", type="varchar", required=NO, description="密码盐")
-     * @ApiParams   (name="avatar", type="varchar", required=NO, description="头像")
-     * @ApiParams   (name="email", type="varchar", required=NO, description="电子邮箱")
-     * @ApiParams   (name="loginfailure", type="tinyint", required=NO, description="失败次数")
-     * @ApiParams   (name="logintime", type="int", required=YES, description="登录时间")
-     * @ApiParams   (name="loginip", type="varchar", required=YES, description="登录IP")
-     * @ApiParams   (name="createtime", type="int", required=YES, description="创建时间")
-     * @ApiParams   (name="updatetime", type="int", required=YES, description="更新时间")
-     * @ApiParams   (name="token", type="varchar", required=NO, description="Session标识")
-     * @ApiParams   (name="status", type="varchar", required=NO, description="状态")
+     * @param   varchar username - 用户名 NO
+     * @param   varchar nickname - 昵称 NO
+     * @param   varchar password - 密码 NO
+     * @param   varchar salt - 密码盐 NO
+     * @param   varchar avatar - 头像 NO
+     * @param   varchar email - 电子邮箱 NO
+     * @param   tinyint loginfailure - 失败次数 NO
+     * @param   int logintime - 登录时间 YES
+     * @param   varchar loginip - 登录IP YES
+     * @param   int createtime - 创建时间 YES
+     * @param   int updatetime - 更新时间 YES
+     * @param   varchar token - Session标识 NO
+     * @param   varchar status - 状态 NO
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -82,25 +83,26 @@ class Admin extends Api
     }
 
     /**
-     * @ApiTitle    (编辑)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    编辑
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiParams   (name="username", type="varchar", required=NO, description="用户名")
-     * @ApiParams   (name="nickname", type="varchar", required=NO, description="昵称")
-     * @ApiParams   (name="password", type="varchar", required=NO, description="密码")
-     * @ApiParams   (name="salt", type="varchar", required=NO, description="密码盐")
-     * @ApiParams   (name="avatar", type="varchar", required=NO, description="头像")
-     * @ApiParams   (name="email", type="varchar", required=NO, description="电子邮箱")
-     * @ApiParams   (name="loginfailure", type="tinyint", required=NO, description="失败次数")
-     * @ApiParams   (name="logintime", type="int", required=YES, description="登录时间")
-     * @ApiParams   (name="loginip", type="varchar", required=YES, description="登录IP")
-     * @ApiParams   (name="createtime", type="int", required=YES, description="创建时间")
-     * @ApiParams   (name="updatetime", type="int", required=YES, description="更新时间")
-     * @ApiParams   (name="token", type="varchar", required=NO, description="Session标识")
-     * @ApiParams   (name="status", type="varchar", required=NO, description="状态")
+     * @param   int id - 主键id true
+     * @param   varchar username - 用户名 NO
+     * @param   varchar nickname - 昵称 NO
+     * @param   varchar password - 密码 NO
+     * @param   varchar salt - 密码盐 NO
+     * @param   varchar avatar - 头像 NO
+     * @param   varchar email - 电子邮箱 NO
+     * @param   tinyint loginfailure - 失败次数 NO
+     * @param   int logintime - 登录时间 YES
+     * @param   varchar loginip - 登录IP YES
+     * @param   int createtime - 创建时间 YES
+     * @param   int updatetime - 更新时间 YES
+     * @param   varchar token - Session标识 NO
+     * @param   varchar status - 状态 NO
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -120,26 +122,27 @@ class Admin extends Api
     }
 
     /**
-     * @ApiTitle    (查询单条)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    查询单条
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/info/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiReturnParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiReturnParams   (name="username", type="varchar", required=NO, description="用户名")
-     * @ApiReturnParams   (name="nickname", type="varchar", required=NO, description="昵称")
-     * @ApiReturnParams   (name="password", type="varchar", required=NO, description="密码")
-     * @ApiReturnParams   (name="salt", type="varchar", required=NO, description="密码盐")
-     * @ApiReturnParams   (name="avatar", type="varchar", required=NO, description="头像")
-     * @ApiReturnParams   (name="email", type="varchar", required=NO, description="电子邮箱")
-     * @ApiReturnParams   (name="loginfailure", type="tinyint", required=NO, description="失败次数")
-     * @ApiReturnParams   (name="logintime", type="int", required=YES, description="登录时间")
-     * @ApiReturnParams   (name="loginip", type="varchar", required=YES, description="登录IP")
-     * @ApiReturnParams   (name="createtime", type="int", required=YES, description="创建时间")
-     * @ApiReturnParams   (name="updatetime", type="int", required=YES, description="更新时间")
-     * @ApiReturnParams   (name="token", type="varchar", required=NO, description="Session标识")
-     * @ApiReturnParams   (name="status", type="varchar", required=NO, description="状态")
+     * @param   int id - 主键id true
+     * @ApiReturnParams   ("id", "int", true, "主键id")
+     * @ApiReturnParams   ("username", "varchar", NO, "用户名")
+     * @ApiReturnParams   ("nickname", "varchar", NO, "昵称")
+     * @ApiReturnParams   ("password", "varchar", NO, "密码")
+     * @ApiReturnParams   ("salt", "varchar", NO, "密码盐")
+     * @ApiReturnParams   ("avatar", "varchar", NO, "头像")
+     * @ApiReturnParams   ("email", "varchar", NO, "电子邮箱")
+     * @ApiReturnParams   ("loginfailure", "tinyint", NO, "失败次数")
+     * @ApiReturnParams   ("logintime", "int", YES, "登录时间")
+     * @ApiReturnParams   ("loginip", "varchar", YES, "登录IP")
+     * @ApiReturnParams   ("createtime", "int", YES, "创建时间")
+     * @ApiReturnParams   ("updatetime", "int", YES, "更新时间")
+     * @ApiReturnParams   ("token", "varchar", NO, "Session标识")
+     * @ApiReturnParams   ("status", "varchar", NO, "状态")
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -158,41 +161,42 @@ class Admin extends Api
     }
 
     /**
-     * @ApiTitle    (查询列表)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    查询列表
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      * @ApiParams   (name="page", type="int", required=true, description="第几页")
      * @ApiParams   (name="limit", type="int", required=true, description="显示条数")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiParams   (name="username", type="varchar", required=NO, description="用户名")
-     * @ApiParams   (name="nickname", type="varchar", required=NO, description="昵称")
-     * @ApiParams   (name="password", type="varchar", required=NO, description="密码")
-     * @ApiParams   (name="salt", type="varchar", required=NO, description="密码盐")
-     * @ApiParams   (name="avatar", type="varchar", required=NO, description="头像")
-     * @ApiParams   (name="email", type="varchar", required=NO, description="电子邮箱")
-     * @ApiParams   (name="loginfailure", type="tinyint", required=NO, description="失败次数")
-     * @ApiParams   (name="logintime", type="int", required=YES, description="登录时间")
-     * @ApiParams   (name="loginip", type="varchar", required=YES, description="登录IP")
-     * @ApiParams   (name="createtime", type="int", required=YES, description="创建时间")
-     * @ApiParams   (name="updatetime", type="int", required=YES, description="更新时间")
-     * @ApiParams   (name="token", type="varchar", required=NO, description="Session标识")
-     * @ApiParams   (name="status", type="varchar", required=NO, description="状态")
-     * @ApiReturnParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiReturnParams   (name="username", type="varchar", required=NO, description="用户名")
-     * @ApiReturnParams   (name="nickname", type="varchar", required=NO, description="昵称")
-     * @ApiReturnParams   (name="password", type="varchar", required=NO, description="密码")
-     * @ApiReturnParams   (name="salt", type="varchar", required=NO, description="密码盐")
-     * @ApiReturnParams   (name="avatar", type="varchar", required=NO, description="头像")
-     * @ApiReturnParams   (name="email", type="varchar", required=NO, description="电子邮箱")
-     * @ApiReturnParams   (name="loginfailure", type="tinyint", required=NO, description="失败次数")
-     * @ApiReturnParams   (name="logintime", type="int", required=YES, description="登录时间")
-     * @ApiReturnParams   (name="loginip", type="varchar", required=YES, description="登录IP")
-     * @ApiReturnParams   (name="createtime", type="int", required=YES, description="创建时间")
-     * @ApiReturnParams   (name="updatetime", type="int", required=YES, description="更新时间")
-     * @ApiReturnParams   (name="token", type="varchar", required=NO, description="Session标识")
-     * @ApiReturnParams   (name="status", type="varchar", required=NO, description="状态")
+     * @param   int id - 主键id true
+     * @param   varchar username - 用户名 NO
+     * @param   varchar nickname - 昵称 NO
+     * @param   varchar password - 密码 NO
+     * @param   varchar salt - 密码盐 NO
+     * @param   varchar avatar - 头像 NO
+     * @param   varchar email - 电子邮箱 NO
+     * @param   tinyint loginfailure - 失败次数 NO
+     * @param   int logintime - 登录时间 YES
+     * @param   varchar loginip - 登录IP YES
+     * @param   int createtime - 创建时间 YES
+     * @param   int updatetime - 更新时间 YES
+     * @param   varchar token - Session标识 NO
+     * @param   varchar status - 状态 NO
+     * @ApiReturnParams   ("id", "int", true, "主键id")
+     * @ApiReturnParams   ("username", "varchar", NO, "用户名")
+     * @ApiReturnParams   ("nickname", "varchar", NO, "昵称")
+     * @ApiReturnParams   ("password", "varchar", NO, "密码")
+     * @ApiReturnParams   ("salt", "varchar", NO, "密码盐")
+     * @ApiReturnParams   ("avatar", "varchar", NO, "头像")
+     * @ApiReturnParams   ("email", "varchar", NO, "电子邮箱")
+     * @ApiReturnParams   ("loginfailure", "tinyint", NO, "失败次数")
+     * @ApiReturnParams   ("logintime", "int", YES, "登录时间")
+     * @ApiReturnParams   ("loginip", "varchar", YES, "登录IP")
+     * @ApiReturnParams   ("createtime", "int", YES, "创建时间")
+     * @ApiReturnParams   ("updatetime", "int", YES, "更新时间")
+     * @ApiReturnParams   ("token", "varchar", NO, "Session标识")
+     * @ApiReturnParams   ("status", "varchar", NO, "状态")
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -241,12 +245,13 @@ class Admin extends Api
     }
 
     /**
-     * @ApiTitle    (删除)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    删除
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/del/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
+     * @param   int id - 主键id true
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'

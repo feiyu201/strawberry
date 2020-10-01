@@ -25,7 +25,7 @@ use app\common\controller\Api;
 use think\facade\Db;
 
 /**
- * Api自动生成接口
+ * @title Api自动生成接口
  */
 
 class Lazy extends Api
@@ -46,14 +46,15 @@ class Lazy extends Api
     }
 
     /**
-     * @ApiTitle    (添加)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    添加
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="table_name", type="varchar", required=NO, description="表名")
-     * @ApiParams   (name="create_time", type="int", required=YES, description="生成接口时间")
-     * @ApiParams   (name="admin_id", type="int", required=YES, description="操作人ID")
+     * @param   varchar table_name - 表名 NO
+     * @param   int create_time - 生成接口时间 YES
+     * @param   int admin_id - 操作人ID YES
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -72,15 +73,16 @@ class Lazy extends Api
     }
 
     /**
-     * @ApiTitle    (编辑)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    编辑
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiParams   (name="table_name", type="varchar", required=NO, description="表名")
-     * @ApiParams   (name="create_time", type="int", required=YES, description="生成接口时间")
-     * @ApiParams   (name="admin_id", type="int", required=YES, description="操作人ID")
+     * @param   int id - 主键id true
+     * @param   varchar table_name - 表名 NO
+     * @param   int create_time - 生成接口时间 YES
+     * @param   int admin_id - 操作人ID YES
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -100,16 +102,17 @@ class Lazy extends Api
     }
 
     /**
-     * @ApiTitle    (查询单条)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    查询单条
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/info/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiReturnParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiReturnParams   (name="table_name", type="varchar", required=NO, description="表名")
-     * @ApiReturnParams   (name="create_time", type="int", required=YES, description="生成接口时间")
-     * @ApiReturnParams   (name="admin_id", type="int", required=YES, description="操作人ID")
+     * @param   int id - 主键id true
+     * @ApiReturnParams   ("id", "int", true, "主键id")
+     * @ApiReturnParams   ("table_name", "varchar", NO, "表名")
+     * @ApiReturnParams   ("create_time", "int", YES, "生成接口时间")
+     * @ApiReturnParams   ("admin_id", "int", YES, "操作人ID")
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -128,21 +131,22 @@ class Lazy extends Api
     }
 
     /**
-     * @ApiTitle    (查询列表)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    查询列表
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      * @ApiParams   (name="page", type="int", required=true, description="第几页")
      * @ApiParams   (name="limit", type="int", required=true, description="显示条数")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiParams   (name="table_name", type="varchar", required=NO, description="表名")
-     * @ApiParams   (name="create_time", type="int", required=YES, description="生成接口时间")
-     * @ApiParams   (name="admin_id", type="int", required=YES, description="操作人ID")
-     * @ApiReturnParams   (name="id", type="int", required=true, description="主键id")
-     * @ApiReturnParams   (name="table_name", type="varchar", required=NO, description="表名")
-     * @ApiReturnParams   (name="create_time", type="int", required=YES, description="生成接口时间")
-     * @ApiReturnParams   (name="admin_id", type="int", required=YES, description="操作人ID")
+     * @param   int id - 主键id true
+     * @param   varchar table_name - 表名 NO
+     * @param   int create_time - 生成接口时间 YES
+     * @param   int admin_id - 操作人ID YES
+     * @ApiReturnParams   ("id", "int", true, "主键id")
+     * @ApiReturnParams   ("table_name", "varchar", NO, "表名")
+     * @ApiReturnParams   ("create_time", "int", YES, "生成接口时间")
+     * @ApiReturnParams   ("admin_id", "int", YES, "操作人ID")
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -172,12 +176,13 @@ class Lazy extends Api
     }
 
     /**
-     * @ApiTitle    (删除)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    删除
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/del/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="id", type="int", required=true, description="主键id")
+     * @param   int id - 主键id true
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'

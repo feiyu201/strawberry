@@ -25,7 +25,7 @@ use app\common\controller\Api;
 use think\facade\Db;
 
 /**
- * %s接口
+ * @title %s接口
  */
 
 class %s extends Api
@@ -46,9 +46,10 @@ class %s extends Api
     }
 
     /**
-     * @ApiTitle    (添加)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    添加
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/%s/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
@@ -70,9 +71,10 @@ class %s extends Api
     }
 
     /**
-     * @ApiTitle    (编辑)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    编辑
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/%s/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
@@ -95,9 +97,10 @@ class %s extends Api
     }
 
     /**
-     * @ApiTitle    (查询单条)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    查询单条
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/%s/info/%s/{%s})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
@@ -119,9 +122,10 @@ class %s extends Api
     }
 
     /**
-     * @ApiTitle    (查询列表)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    查询列表
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/%s/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      * @ApiParams   (name="page", type="int", required=true, description="第几页")
@@ -146,9 +150,10 @@ class %s extends Api
     }
 
     /**
-     * @ApiTitle    (删除)
-     * @ApiSummary  (描述信息)
-     * @ApiMethod   (POST/GET)
+     * @title    删除
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
      * @ApiRoute    (/api/%s/del/%s/{%s})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
