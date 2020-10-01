@@ -127,7 +127,7 @@ class Lazy extends Admin
                     fclose($controlFile);
 
                     // 生成model
-                    $modelFile = fopen("../app/api/model/" . self::modelName($table) . ".php", "w");
+                    $modelFile = fopen("../app/common/model/" . self::modelName($table) . ".php", "w");
                     $modelText = sprintf(self::getFile('model'), self::modelName($table));
                     fwrite($modelFile, $modelText);
                     fclose($modelFile);
@@ -160,13 +160,13 @@ class Lazy extends Admin
     {
         $str = '* @param   int '
             . $primary.' '
-            . '- 主键' . $primary.' '.'true';
+            . '&nbsp; 主键' . $primary.' '.'Yes';
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @param   '
                 . self::delString($v['type']).' '
                 . $v['field'].' '
-                .'- '
+                .'&nbsp; '
                 . $v['comment'].' '
                 . $v['null'];
         }
@@ -182,7 +182,7 @@ class Lazy extends Admin
                 $str = $str
                     . '* @param   ' . self::delString($v['type']).' '
                     . $v['field'].' '
-                    .'- '
+                    .'&nbsp; '
                     . $v['comment'] .' '
                     . $v['null'];
             else
@@ -190,7 +190,7 @@ class Lazy extends Admin
                 $str = $str . "\r\n" . '     * @param   '
                     . self::delString($v['type']).' '
                     . $v['field'].' '
-                    .'- '
+                    .'&nbsp; '
                     . $v['comment'].' '
                     . $v['null'];
         }
@@ -250,21 +250,22 @@ class Lazy extends Admin
     {
         $str = '* @param   int '
             . $primary.' '
-            . '- 主键' . $primary.' '.'true';
+            . '&nbsp; 主键' . $primary.' '.'Yes';
         return $str;
     }
 
     // 返回参数
     protected static function apiReturnParams($data, $primary, $type = true)
     {
-        $str = ($type ? "\r\n     " : "") . '* @ApiReturnParams   ("' . $primary . '", "int", true, "主键' . $primary . '")';;
+        $str = ($type ? "\r\n     " : "") . '* @return   int ' . $primary . ' &nbsp; 主键' . $primary;;
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
-            $str = $str . "\r\n" . '     * @ApiReturnParams   ("'
-                . $v['field'] . '", "'
-                . self::delString($v['type']) . '", '
-                . $v['null'] . ', "'
-                . $v['comment'] . '")';
+            $str = $str . "\r\n" . '     * @return   '
+                . self::delString($v['type']).' '
+                . $v['field'].' '
+                .'&nbsp; '
+                . $v['comment'].' '
+                . $v['null'];
         }
         return $str;
     }
