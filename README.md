@@ -10,6 +10,7 @@ QQ群：578270353
 thinkphp6 php>=7.1
 
 #### 更新日志
+2020.10.1 完成了自动生成api接口和api文档的功能。
 
 2020.9.29 完成了菜单管理和权限管理。
 
@@ -27,6 +28,8 @@ thinkphp6 php>=7.1
 http://stadmin.shiliucrm.com/
 
 用户名：admin 密码 112233
+
+自动生成的文档地址：http://stadmin.shiliucrm.com/doc/ 开发者可以换成自己的url
 
 请不要删数据
 持续更新中...
