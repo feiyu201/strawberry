@@ -11,7 +11,7 @@ h1,h2,h3{font-size: 14px;}
 /* 头部 */
 .header{height: 59px; border-bottom: 1px solid #404553;  background-color: #393D49;}
 .logo{position: absolute; left: 20px; top: 2px;}
-.logo img{width: 125px; height: 55px;}
+.logo img{width: 60px; height: 60px;}
 
 .header .layui-nav{position: absolute; right: 0; top: 0; padding: 0; background: none;}
 .header .layui-nav .layui-nav-item{margin: 0 20px; }
