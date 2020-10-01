@@ -21,6 +21,7 @@
 //  * +-----------------------------------------------------------------------
 namespace app\admin\controller;
 
+use app\admin\validate\Applets as adminValidate;
 use think\exception\PDOException;
 use think\facade\Db;
 use think\Exception;
@@ -47,6 +48,28 @@ class Lazy extends Admin
             'data'=>$data,
             'msg'=>'查询用户成功'
         ]);
+    }
+
+    public function edit(){
+        if($this->request->isPost()){
+            $data = $this->request->post();
+            if(Db::name('Lazy')->where('id',$data['id'])->delete()){
+                self::add();
+                $this->success("编辑成功");
+            }else{
+                $this->error("编辑失败");
+            }
+        }
+        $id = $this->request->param('id');
+        if(!$id){
+            $this->success("参数错误");
+        }
+        $wxappinfo = Db::name('lazy')->where('id',$id)->find();
+        if(!$wxappinfo){
+            $this->success("参数错误");
+        }
+        View::assign('wxappinfo',$wxappinfo);
+        return View::fetch();
     }
 
     /**
