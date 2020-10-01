@@ -4,7 +4,7 @@ namespace app\common\model;
 
 use think\Model;
 
-class Admin extends Model
+class Lazy extends Model
 {
 
     // 开启自动写入时间戳字段

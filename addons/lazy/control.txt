@@ -53,10 +53,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @ApiReturn   ({
-         'code':'1',
-         'msg':'返回成功'
-        })
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
      * */
     public function add()
     {
@@ -78,17 +77,16 @@ class %s extends Api
      * @ApiRoute    (/api/%s/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @ApiReturn   ({
-         'code':'1',
-         'msg':'返回成功'
-        })
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
      * */
     public function edit()
     {
         // $id = request()->param('id');
         $param = request()->param();
         $model = new \app\common\model\%s();
-        $result = $model->isUpdate()->save($param);
+        $result = $model->update($param);
         if ($result)
             $this->success();
         else
@@ -104,10 +102,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/info/%s/{%s})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @ApiReturn   ({
-         'code':'1',
-         'msg':'返回成功'
-        })
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
      * */
     public function info()
     {
@@ -128,13 +125,12 @@ class %s extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/%s/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @ApiParams   (name="page", type="int", required=true, description="第几页")
-     * @ApiParams   (name="limit", type="int", required=true, description="显示条数")
+     * @param   int page &nbsp; 第几页 Yes
+     * @param   int page &nbsp; 显示条数 Yes
      %s
-     * @ApiReturn   ({
-         'code':'1',
-         'msg':'返回成功'
-        })
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
      * */
     public function _list()
     {
@@ -157,10 +153,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/del/%s/{%s})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @ApiReturn   ({
-         'code':'1',
-         'msg':'返回成功'
-        })
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
      * */
     public function del()
     {

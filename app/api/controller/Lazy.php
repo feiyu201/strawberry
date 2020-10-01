@@ -52,13 +52,12 @@ class Lazy extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   varchar table_name - 表名 NO
-     * @param   int create_time - 生成接口时间 YES
-     * @param   int admin_id - 操作人ID YES
-     * @ApiReturn   ({
-         'code':'1',
-         'msg':'返回成功'
-        })
+     * @param   varchar table_name &nbsp; 表名 NO
+     * @param   int create_time &nbsp; 生成接口时间 YES
+     * @param   int admin_id &nbsp; 操作人ID YES
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
      * */
     public function add()
     {
@@ -79,10 +78,10 @@ class Lazy extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int id - 主键id true
-     * @param   varchar table_name - 表名 NO
-     * @param   int create_time - 生成接口时间 YES
-     * @param   int admin_id - 操作人ID YES
+     * @param   int id &nbsp; 主键id true
+     * @param   varchar table_name &nbsp; 表名 NO
+     * @param   int create_time &nbsp; 生成接口时间 YES
+     * @param   int admin_id &nbsp; 操作人ID YES
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -93,7 +92,7 @@ class Lazy extends Api
         // $id = request()->param('id');
         $param = request()->param();
         $model = new \app\common\model\Lazy();
-        $result = $model->isUpdate()->save($param);
+        $result = $model->update($param);
         if ($result)
             $this->success();
         else
@@ -108,11 +107,11 @@ class Lazy extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/info/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int id - 主键id true
-     * @ApiReturnParams   ("id", "int", true, "主键id")
-     * @ApiReturnParams   ("table_name", "varchar", NO, "表名")
-     * @ApiReturnParams   ("create_time", "int", YES, "生成接口时间")
-     * @ApiReturnParams   ("admin_id", "int", YES, "操作人ID")
+     * @param   int id &nbsp; 主键id true
+     * @return   int id &nbsp; 主键id
+     * @return   varchar table_name &nbsp; 表名 NO
+     * @return   int create_time &nbsp; 生成接口时间 YES
+     * @return   int admin_id &nbsp; 操作人ID YES
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -139,14 +138,16 @@ class Lazy extends Api
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      * @ApiParams   (name="page", type="int", required=true, description="第几页")
      * @ApiParams   (name="limit", type="int", required=true, description="显示条数")
-     * @param   int id - 主键id true
-     * @param   varchar table_name - 表名 NO
-     * @param   int create_time - 生成接口时间 YES
-     * @param   int admin_id - 操作人ID YES
-     * @ApiReturnParams   ("id", "int", true, "主键id")
-     * @ApiReturnParams   ("table_name", "varchar", NO, "表名")
-     * @ApiReturnParams   ("create_time", "int", YES, "生成接口时间")
-     * @ApiReturnParams   ("admin_id", "int", YES, "操作人ID")
+     * @param   int page &nbsp; 第几页 true
+     * @param   int page &nbsp; 显示条数 true
+     * @param   int id &nbsp; 主键id true
+     * @param   varchar table_name &nbsp; 表名 NO
+     * @param   int create_time &nbsp; 生成接口时间 YES
+     * @param   int admin_id &nbsp; 操作人ID YES
+     * @return   int id &nbsp; 主键id
+     * @return   varchar table_name &nbsp; 表名 NO
+     * @return   int create_time &nbsp; 生成接口时间 YES
+     * @return   int admin_id &nbsp; 操作人ID YES
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
@@ -182,7 +183,7 @@ class Lazy extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Lazy/del/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int id - 主键id true
+     * @param   int id &nbsp; 主键id true
      * @ApiReturn   ({
          'code':'1',
          'msg':'返回成功'
