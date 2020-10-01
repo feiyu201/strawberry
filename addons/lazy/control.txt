@@ -1,0 +1,175 @@
+<?php
+//  *+-----------------------------------------------------------------------
+//  *                      .::::.
+//  *                    .::::::::.            | Author: 丶长情
+//  *                    :::::::::::           | Email: zeng1144318071@gmail.com
+//  *                 ..:::::::::::'           | Datetime: 2020/08/15
+//  *             '::::::::::::'               | Remarks:
+//  *                .::::::::::
+//  *           '::::::::::::::..
+//  *                ..::::::::::::.
+//  *              ``::::::::::::::::
+//  *               ::::``:::::::::'        .:::.
+//  *              ::::'   ':::::'       .::::::::.
+//  *            .::::'      ::::     .:::::::'::::.
+//  *           .:::'       :::::  .:::::::::' ':::::.
+//  *          .::'        :::::.:::::::::'      ':::::.
+//  *         .::'         ::::::::::::::'         ``::::.
+//  *     ...:::           ::::::::::::'              ``::.
+//  *   ```` ':.          ':::::::::'                  ::::..
+//  *                      '.:::::'                    ':'````..
+//  * +-----------------------------------------------------------------------
+namespace app\api\controller;
+
+use app\common\controller\Api;
+use think\facade\Db;
+
+/**
+ * @title %s接口
+ */
+
+class %s extends Api
+{
+
+    //如果$noNeedLogin为空表示所有接口都需要登录才能请求
+    //如果$noNeedRight为空表示所有接口都需要验证权限才能请求
+    //如果接口已经设置无需登录,那也就无需鉴权了
+    //
+    // 无需登录的接口,*表示全部
+    protected $noNeedLogin = ["*"];
+    // 无需鉴权的接口,*表示全部
+    protected $noNeedRight = ["*"];
+
+    public function _initialize()
+    {
+        parent::_initialize();
+    }
+
+    /**
+     * @title    添加
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/%s/add)
+     * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
+     %s
+     * @ApiReturn   ({
+         'code':'1',
+         'msg':'返回成功'
+        })
+     * */
+    public function add()
+    {
+        $param = request()->param();
+        $model = new \app\common\model\%s();
+        $result = $model->save($param);
+        if ($result)
+            $this->success();
+        else
+            $this->error('添加失败');
+
+    }
+
+    /**
+     * @title    编辑
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/%s/edit)
+     * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
+     %s
+     * @ApiReturn   ({
+         'code':'1',
+         'msg':'返回成功'
+        })
+     * */
+    public function edit()
+    {
+        // $id = request()->param('id');
+        $param = request()->param();
+        $model = new \app\common\model\%s();
+        $result = $model->isUpdate()->save($param);
+        if ($result)
+            $this->success();
+        else
+            $this->error('编辑失败');
+
+    }
+
+    /**
+     * @title    查询单条
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/%s/info/%s/{%s})
+     * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
+     %s
+     * @ApiReturn   ({
+         'code':'1',
+         'msg':'返回成功'
+        })
+     * */
+    public function info()
+    {
+        $id = request()->param('id');
+        $result = Db::name('%s')->where('%s', $id)->find();
+        %s
+        if ($result)
+            $this->success('查询成功', $result);
+        else
+            $this->error('信息不存在');
+
+    }
+
+    /**
+     * @title    查询列表
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/%s/_list)
+     * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
+     * @ApiParams   (name="page", type="int", required=true, description="第几页")
+     * @ApiParams   (name="limit", type="int", required=true, description="显示条数")
+     %s
+     * @ApiReturn   ({
+         'code':'1',
+         'msg':'返回成功'
+        })
+     * */
+    public function _list()
+    {
+        $page = $this->request->param('page',1,'intval');
+        $limit = $this->request->param('limit',10,'intval');
+        %s
+        $result = Db::name('%s')->where($where)->page($page,$limit)->select()->toArray();
+        %s
+        if ($result)
+            $this->success('查询成功', $result);
+        else
+            $this->error('信息不存在');
+    }
+
+    /**
+     * @title    删除
+     * @author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/%s/del/%s/{%s})
+     * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
+     %s
+     * @ApiReturn   ({
+         'code':'1',
+         'msg':'返回成功'
+        })
+     * */
+    public function del()
+    {
+        $id = request()->param('id');
+        $result = Db::name('%s')->where('%s', $id)->delete();
+        if ($result)
+            $this->success('删除成功');
+        else
+            $this->error('删除失败');
+    }
+
+}
