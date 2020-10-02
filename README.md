@@ -1,7 +1,15 @@
 # 草莓快速开发框架
 
 #### 介绍
-thinkphp6版本的
+基于ThinkPHP6+Layui+vue+easywechat开发的开源开发框架
+
+自动生成API接口和接口文档
+
+自动生成CRUD(开发中)
+
+UI组件和JS组件封装
+
+插件市场
 
 #### 交流QQ群
 QQ群：578270353
