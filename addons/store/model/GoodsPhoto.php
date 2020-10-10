@@ -6,7 +6,8 @@ use think\Model;
 class GoodsPhoto extends Model
 {
     protected $pk = 'id';
-    protected $add_time = 'create_timestamp';
+    protected $createTime = 'add_time';
+    protected $autoWriteTimestamp = true;
 
     protected static function init(){
 
@@ -16,6 +17,11 @@ class GoodsPhoto extends Model
     {
         $status = [0=>'否',1=>'是'];
         return $status[$value];
+    }
+
+    public function getAddTimeAttr($value)
+    {
+        return date('Y-m-s h:i:s',$value);
     }
 
 }

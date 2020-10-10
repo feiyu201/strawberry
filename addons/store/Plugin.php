@@ -34,8 +34,9 @@ class Plugin extends Addons	// 需继承think\Addons类
                 'icon'    => '&#xe66f;',
                 'sublist' => [
                     ['name' => 'addons/store/category/category', 'title' => '商品分类'],
-                    ['name' => 'addons/store/index/add', 'title' => '添加'],
-                    ['name' => 'addons/store/index/detail', 'title' => '详情'],
+                    ['name' => 'addons/store/brand/list', 'title' => '品牌列表'],
+                    ['name' => 'addons/store/goods/list', 'title' => '商品列表'],
+                    ['name' => 'addons/store/category/getCategory', 'title' => '分类菜单'],
                 ]
             ]
         ];

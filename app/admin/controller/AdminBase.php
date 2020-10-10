@@ -35,7 +35,7 @@ class AdminBase extends BaseController
         $menus = \app\admin\model\Base::getMenus();
         //var_dump($menus);exit();
         View::assign(['menus'=>$menus]);
-        //var_dump(Session::get('admin'));
+//        var_dump(Session::get('admin'));
     }
 	protected function checkLogin(){
 		if(!Session::has('admin')){
