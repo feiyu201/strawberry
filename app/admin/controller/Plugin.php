@@ -13,6 +13,10 @@ use think\facade\View;
 use app\admin\facade\ThinkAddons;
 use app\common\builder\FormBuilder;
 
+use app\admin\model\Market;
+use fast\Http;
+use ZipArchive;
+
 class Plugin extends AdminBase
 {
 	public function getList(){
@@ -329,5 +333,180 @@ class Plugin extends AdminBase
                 }
             </script>';
         return $js;
+    }
+
+
+    // 获取全部插件==========================================================================================
+    public function getAllplug()
+    {
+        //$list = Market::field('name,intro,description,author,version,price,sales')->select();
+        $res = Http::get(self::getServerUrl() . '/api/plug/index');
+        $list = json_decode($res,true)['data'];
+        foreach ($list as $key => $value) 
+        {
+            // 增加右侧按钮组
+            $str = '';
+            $file = $value['intro'];
+            $class = "\\addons\\{$file}\\Plugin";
+            if (class_exists($class)) {
+                // 容器类的工作由think\Container类完成，但大多数情况我们只需要通过app助手函数或者think\App类即可容器操作
+                $appinfo = app($class);
+                $info    = $appinfo->getInfo();
+
+                if (isset($info['install'])&&$info['install'] == 1) 
+                {
+                    // 已安装，增加配置按钮
+                    $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
+                    $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
+                    if($info['status']==1){
+                    	$str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
+                    }else{
+                    	$str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
+                    }
+                } else {
+                    // 未安装，增加安装按钮
+                    $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="installyuancheng"><i class="fa fa-edit"></i> 安装</a>';
+                }
+				
+                $list[$key]['button']  = $str;
+                $list[$key]['status']  = $info['status'];
+                $list[$key]['name']    = $value['intro'];//插件识别标识
+                $list[$key]['title']   = $value['name'];
+            }else{
+                //本地没安装此插件跳出
+                // 未安装，增加安装按钮
+                $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="installyuancheng"><i class="fa fa-edit"></i> 安装</a>';
+                
+                $list[$key]['status']  = 0;
+                $list[$key]['name']    = $value['intro'];//插件识别标识
+                $list[$key]['title']   = $value['name'];
+                $list[$key]['button']  = $str;
+                $list[$key]['sales']    = $value['sales'];
+                $list[$key]['version']  = $value['version'];
+                continue;
+            }
+        }
+
+        return json(['code'=> 0,'count'=> count($list),'data'=>$list, 'msg'=>'查询成功']);
+    }
+
+    // 安装远程插件
+    public function installyuancheng(string $id)
+    {
+        $parmers = input();
+        $caomei_tokeny = '';
+        if( isset($parmers['token']) && !empty($parmers['token'])){
+           $caomei_tokeny =  $parmers['token'];
+        }
+
+        $list = Market::where(['intro'=>$id])->find();
+        if( empty($list) ){
+            return json(['code'=> 0,'msg'=>'插件错误，请联系管理员']);
+        }
+        // 远程下载插件
+        $tmpFile = $this->download($list['intro'], ['token'=>$caomei_tokeny]);
+        if($tmpFile['code'] != '1'){
+            return json(['code'=> $tmpFile['code'], 'msg'=>$tmpFile['msg']]);
+        }
+
+        // 解压插件
+        $addonDir = $this->unzip($list['intro']);
+
+        return ThinkAddons::install($id);
+
+        //return json(['code'=> 1,'count'=>0,'data'=>$list, 'msg'=>$list['name'].'插件安装成功']);
+        
+    }
+
+    /**
+     * 远程下载插件
+     *
+     * @param   string $name 插件名称
+     * @param   array $extend 扩展参数
+     * @return  string
+     * @throws  AddonException
+     * @throws  Exception
+     */
+    public static function download($name, $extend = [])
+    {
+        $addonTmpDir = $_SERVER['DOCUMENT_ROOT'] . '/../runtime/addons/'; 
+        if (!is_dir($addonTmpDir)) {
+            @mkdir($addonTmpDir, 0755, true);
+        }
+
+        $tmpFile = $addonTmpDir . $name . ".zip";
+
+        $options = [
+            CURLOPT_CONNECTTIMEOUT => 30,
+            CURLOPT_TIMEOUT        => 30,
+            CURLOPT_SSL_VERIFYPEER => false,
+            CURLOPT_HTTPHEADER     => [
+                'X-REQUESTED-WITH: XMLHttpRequest'
+            ]
+        ];
+        $ret = Http::sendRequest(self::getServerUrl() . '/api/plug/xiazai', array_merge(['name' => $name], $extend), 'GET', $options);
+        if ($ret['ret']) {
+            if (substr($ret['msg'], 0, 1) == '{') {
+                $json = (array)json_decode($ret['msg'], true);
+                //如果传回的是一个下载链接,则再次下载
+                if (isset($json['data']) && isset($json['data']['url'])) {
+                    array_pop($options);
+                    $ret = Http::sendRequest($json['data']['url'], array_merge(['name' => $name], $extend), 'GET', $options);
+                    if (!$ret['ret']) {
+                        //下载返回错误，抛出异常
+                        return ['msg'=>$json['msg'], 'code'=>$json['code'], 'data'=>$json['data']];
+                    }
+                } else {
+                    //下载返回错误，抛出异常
+                    return $json;
+                }
+            }
+            if ($write = fopen($tmpFile, 'w')) {
+                fwrite($write, $ret['msg']);
+                fclose($write);
+                return ['msg'=>'下载成功', 'code'=>'1'];
+            }
+            exit("没有权限写入临时文件");
+        }
+        exit("无法下载远程文件");
+    }
+
+    /**
+     * 解压插件
+     *
+     * @param   string $name 插件名称
+     * @return  string
+     * @throws  Exception
+     */
+    public static function unzip($name)
+    {
+        $addonTmpDir = $_SERVER['DOCUMENT_ROOT'] . '/../runtime/addons/'; 
+        $file = $addonTmpDir . $name . ".zip";
+        
+        $dir = $_SERVER['DOCUMENT_ROOT'] . '/../addons/';
+        if (class_exists('ZipArchive')) {
+            $zip = new ZipArchive;
+            if ($zip->open($file) !== TRUE) {
+                exit('Unable to open the zip file');
+            }
+            if (!$zip->extractTo($dir)) {
+                $zip->close();
+                exit('Unable to extract the file');
+            }
+            $zip->close();
+            //删除文件
+            @unlink($file);
+            return $dir;
+        }
+        exit("无法执行解压操作，请确保ZipArchive安装正确");
+    }
+
+    /**
+     * 获取远程服务器
+     * @return  string
+     */
+    protected static function getServerUrl()
+    {
+        return 'http://stapi.shiliucrm.com';
     }
 }

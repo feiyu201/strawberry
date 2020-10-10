@@ -11,8 +11,23 @@
 <div class="ok-body">
 	<!--模糊搜索区域-->
 	<!--数据表格-->
-	<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
-</div>
+	<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+		<ul class="layui-tab-title">
+			<li class="layui-this">全部插件</li>
+			<li>本地插件</li>
+		</ul>
+
+		<div class="layui-tab-content">
+			<div class="layui-tab-item layui-show">
+				<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+			</div>
+
+			<div class="layui-tab-item">
+				<table class="layui-hide" id="tableIdbd" lay-filter="tableFilter"></table>
+			</div>
+		</div>
+	
+	</div>
 <!--js逻辑-->
 <script src="/static/lib/layui/layui.js"></script>
 <script>
@@ -30,8 +45,35 @@
 		laydate.render({elem: "#startTime", type: "datetime"});
 		laydate.render({elem: "#endTime", type: "datetime"});
 
+		//全部插件
 		let userTable = table.render({
 			elem: '#tableId',
+			url: '{:url("getAllplug")}',
+			limit: 10000,
+			page: false,
+			toolbar: true,
+			toolbar: "#toolbarTpl",
+			height:'full',
+			cols: [[
+				// {field: "intro", title: "标识", width: 100, sort: true},
+				{field: "name", title: "名称", width: 300},
+				{field: "version", title: "版本", width: 100},
+				{field: "description", title: "简述", width: 500},
+				{field: "author", title: "作者", width: 100},
+				{field: "price", title: "价格", width: 100},
+				{field: "sales", title: "销量", width: 100},
+				{field: "status", title: "状态", width: 100, templet: "#statusTpl"},
+				
+				{field: "button", title: "操作按钮"},
+			]],
+			done: function (res, curr, count) {
+				console.info(res, curr, count);
+			}
+		});
+
+		//本地插件
+		let userTablebd = table.render({
+			elem: '#tableIdbd',
 			url: '{:url("getList")}',
 			limit: 10000,
 			page: false,
@@ -53,6 +95,8 @@
 				console.info(res, curr, count);
 			}
 		});
+
+		
 
 		form.on("submit(search)", function (data) {
 			userTable.reload({
@@ -94,11 +138,78 @@
 				case "state":
 					state(data.name);
 					break;
+				case "installyuancheng":
+					installyuancheng(data.name);
+					break;
 			}
 		});
 
+		//安装远程插件
+		function installyuancheng(id) {
+			const Storage = {};
+			Storage.get = function(name) {
+				return localStorage.getItem(name);
+			}
+			var caomei_tokeny = Storage.get("caomeiadmin_userinfo");
+			okLayer.confirm("确定要安装吗？", function () {
+				okUtils.ajax("{:url('installyuancheng')}", "get", {id: id,token: caomei_tokeny}, true).done(function (response) {
+					if(response.code=='1'){
+						console.log(response);
+						//userTable.reload();
+						//okUtils.tableSuccessMsg(response.msg);
+						okLayer.greenTickMsg(response.msg, function () {
+						    userTable.reload();
+						})
+					}else{
+
+						if(response.code =='-3' || response.code =='-4'){
+							//未登录
+							okLayer.redCrossMsg(response.msg, function () {
+								layer.open({
+									type: 2,
+									title: '用户登录',
+									maxmin: true,
+									skin: 'layui-layer-lan',
+									shadeClose: true, //点击遮罩关闭层
+									area : ['600px' , '480px'],
+									content:'/admin/caomei/login.html'//弹框显示的url
+								});
+							});
+						}else{
+							okLayer.redCrossMsg(response.msg, function () {
+							})
+						}
+
+
+						// if(response.code =='-5'){
+						// 	//未购买
+						// 	okLayer.redCrossMsg(response.msg, function () {
+						// 		var html="<img style='height: 200px;width: 200px;' src='https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1906469856,4113625838&fm=26&gp=0.jpg" + Math.random()+"'>";
+						// 		layer.open({
+						// 			type : 1,
+						// 			title : false,
+						// 			closeBtn : 0,
+						// 			shade: [0.001, '#393D49'],
+						// 			area : '200px',
+						// 			skin : 'layui-layer-nobg', //沒有背景色
+						// 			shadeClose : true,
+						// 			content : html
+						// 		});
+						// 	});
+						// }else{
+						// 	okLayer.redCrossMsg(response.msg, function () {
+						// 	})
+						// }
+						
+					}
+					
+				}).fail(function (error) {
+					console.log(error)
+				});
+			})
+		}
 	
-		
+		//安装本地插件
 		function install(id) {
 			okLayer.confirm("确定要安装吗？", function () {
 				okUtils.ajax("{:url('install')}", "get", {id: id}, true).done(function (response) {
@@ -110,7 +221,7 @@
 						    userTable.reload();
 						})
 					}else{
-						okLayer.greenTickMsg(response.msg, function () {
+						okLayer.redCrossMsg(response.msg, function () {
 					        
 					    })
 					}
