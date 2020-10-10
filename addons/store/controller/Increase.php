@@ -28,8 +28,11 @@ class Increase extends AddonBase
             if (!empty($data['images'])){
                 $data['images'] = explode(',',$data['images']);
             } else{
+
                 $data['images'] = [];
             }
+
+
             // 查询商品分类
             $category = getCategoryNameId($param['id']);
             // 查询规格并转化成JS可以解析的格式
