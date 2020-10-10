@@ -208,7 +208,7 @@ if(!function_exists('upload')) {
  * todo 请确保引入的layui.js在调用方法之前
  * @param string $name  require 数据库字段
  * @param string $val  not not require 修改时的默认
- * @param string $url not require  所上传的路径 默认 /admin/upload/index
+ * @param string $url not require  所上传的路径方法 默认 /admin/upload/index
  * @param float|int $size not require  图片大小
  * @param string $exts not require  图片的后缀 如需改动 自行修改
  * @return string
@@ -279,6 +279,28 @@ if(!function_exists('checkbox')) {
                     in_array($key,$arr) && $checked = '  checked';
                 }
                 $str .= "<input type='checkbox' name='".$name."' value='".$key."' title='".$v."' $checked>";
+            }
+            return $str;
+        }
+    }
+}
+/**
+ * 单选按钮公共方法
+ * @param array $data require  循环的数组
+ * @param $name require 数据库字段名称
+ * @param string $val not require 修改时的默认数据
+ * @return string
+ */
+if(!function_exists('radio')) {
+    function radio($data,$name,$val = ''){
+        if($data){
+            $str = '';
+            foreach ($data as $key => $v){
+                $checked = '';
+                if ($val){
+                    $checked = $val == $key?'  checked':'';
+                }
+                $str .= "<input type='radio' name='".$name."' value='".$key."' title='".$v."' $checked>";
             }
             return $str;
         }
