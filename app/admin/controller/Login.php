@@ -43,11 +43,26 @@ class Login extends BaseController
     	if($admininfo['password']!=md5(md5($password).$admininfo['salt'])){
     		$this->error('账号/密码错误');
     	}
+    	
+    	// 查找规则
+    	$rules = Db::name('auth_group_access')
+    	->alias('a')
+    	->leftJoin('auth_group ag', 'a.group_id = ag.id')
+    	->field('a.group_id,ag.rules,ag.title')
+    	->where('uid', $admininfo['id'])
+    	->find();
+    	
     	session('admin',$admininfo);
+    	
+    	Session::set('admin.group_id' , $rules['group_id']);
+    	Session::set('admin.rules'    , explode(',', $rules['rules']));
+    	Session::set('admin.title'    , $rules['title']);
+    	 
+    	
     	$this->success('登陆成功');
     }
     public function logout(){
     	Session::delete('admin');
-    	$this->redirect("/admin/login/index");
+    	return redirect('index');
     }
 }

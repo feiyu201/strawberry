@@ -15,7 +15,7 @@ class Attachment extends AdminBase
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
    		$count = Db::name('attachment')->count();
-   		$data = Db::name('attachment')->page($page,12)->select()->each(function($item,$k){
+   		$data = Db::name('attachment')->page($page,$limit)->select()->each(function($item,$k){
    		    if(in_array($item['mimetype'],array('image/png','image/jpeg','image/gif','image/bmp'))){
    		        $url = $item['url'];
                 $item['see'] = "<img style='width:30px;height:30px;'  src='/{$url}' />";

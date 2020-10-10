@@ -327,6 +327,7 @@
     position: absolute;
     padding-right: 10px;
     left: 20px;
+	top: 14px;
 }
 
 .ok-left.layui-side-menu .layui-nav .layui-nav-item .layui-nav-child a i {

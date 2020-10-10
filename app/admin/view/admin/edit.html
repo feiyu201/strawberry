@@ -39,6 +39,18 @@
 				       lay-verify="required" value="{$admininfo.username}">
 			</div>
 		</div>
+		
+		<div class="layui-form-item">
+			<label class="layui-form-label">角色</label>
+			<div class="layui-input-block">
+				<select name="group_id">
+					{volist name='authgroup' id='title'}
+						<option value="{$key}" {if condition="$key eq $groupId"}selected{/if}>{$title}</option>
+					{/volist}
+				</select>
+			</div>
+		</div>
+		
 		<div class="layui-form-item">
 			<label class="layui-form-label">昵称</label>
 			<div class="layui-input-block">

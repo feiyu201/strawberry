@@ -2,7 +2,7 @@
 
 namespace app\common\library;
 
-use app\admin\model\AuthRule;
+use app\common\model\AuthRule;
 use fast\Tree;
 use think\Exception;
 
@@ -22,14 +22,14 @@ class Menu
         } else {
             $pid = $parent;
         }
-        $allow = array_flip(['file', 'name', 'title', 'icon', 'condition', 'remark', 'ismenu']);
+        $allow = array_flip(['file', 'name', 'title', 'icon', 'condition', 'remark', 'ismenu','weigh']);
         foreach ($menu as $k => $v) {
             $hasChild = isset($v['sublist']) && $v['sublist'] ? true : false;
 
             $data = array_intersect_key($v, $allow);
 
             $data['ismenu'] = isset($data['ismenu']) ? $data['ismenu'] : ($hasChild ? 1 : 0);
-            $data['icon'] = isset($data['icon']) ? $data['icon'] : ($hasChild ? '&#xe705;' : '&#xe62e;');
+            $data['icon'] = isset($data['icon']) ? $data['icon'] : ($hasChild ? 'fa-list' : '');
             $data['pid'] = $pid;
             $data['status'] = 'normal';
             try {

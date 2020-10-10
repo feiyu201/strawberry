@@ -1,7 +1,19 @@
-# 草莓万能开发框架
+# 草莓快速开发框架
 
 #### 介绍
-thinkphp6版本的
+基于ThinkPHP6+Layui+vue+easywechat开发的开源开发框架
+
+自动生成API接口和接口文档
+
+自动生成CRUD(开发中)
+
+UI组件和JS组件封装
+
+插件市场
+
+多个小程序管理
+
+多应用管理(开发中)
 
 #### 交流QQ群
 QQ群：578270353
@@ -10,6 +22,10 @@ QQ群：578270353
 thinkphp6 php>=7.1
 
 #### 更新日志
+2020.10.1 完成了自动生成api接口和api文档的功能。
+
+2020.9.29 完成了菜单管理和权限管理。
+
 2020.9.25 完成了在线安装的功能。
 
 2020.9.24 完成了基本的附件管理。
@@ -25,6 +41,8 @@ http://stadmin.shiliucrm.com/
 
 用户名：admin 密码 112233
 
+自动生成的文档地址：http://stadmin.shiliucrm.com/doc/ 开发者可以换成自己的url
+
 请不要删数据
 持续更新中...
 
@@ -39,6 +57,8 @@ http://stadmin.shiliucrm.com/
 5、执行在线安装。www.xxx.com/install.php 注意前面是你自己的在线网址或者本地网址。
 
 6、安装成功后就可以访问了，登陆密码是安装的时候输入的密码。遇到问题请到QQ群：578270353
+
+![输入图片说明](https://images.gitee.com/uploads/images/2020/0929/111351_0cbc35c8_1405153.png "屏幕截图.png")
 
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/0919/214104_d0ae3f6b_1405153.png "屏幕截图.png")
 
