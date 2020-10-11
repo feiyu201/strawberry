@@ -181,25 +181,24 @@
 						}
 
 
-						// if(response.code =='-5'){
-						// 	//未购买
-						// 	okLayer.redCrossMsg(response.msg, function () {
-						// 		var html="<img style='height: 200px;width: 200px;' src='https://dss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1906469856,4113625838&fm=26&gp=0.jpg" + Math.random()+"'>";
-						// 		layer.open({
-						// 			type : 1,
-						// 			title : false,
-						// 			closeBtn : 0,
-						// 			shade: [0.001, '#393D49'],
-						// 			area : '200px',
-						// 			skin : 'layui-layer-nobg', //沒有背景色
-						// 			shadeClose : true,
-						// 			content : html
-						// 		});
-						// 	});
-						// }else{
-						// 	okLayer.redCrossMsg(response.msg, function () {
-						// 	})
-						// }
+						if(response.code =='-5'){
+							//未购买
+							okLayer.redCrossMsg(response.msg, function () {
+								var html="<img style='height: 200px;width: 200px;' src='"+ response.data.img +"' >";
+								layer.open({
+									type : 2,
+									title : '请使用微信扫码二维码支付',
+									shade: [0.001, '#393D49'],
+									area : ['500px' , '500px'],
+									// skin : 'layui-layer-nobg', //沒有背景色
+									shadeClose : true,
+									content:'/admin/caomei/payqr.html?img='+response.data.code_url +'&order_sn='+response.data.order_sn //弹框显示的url
+								});
+							});
+						}else{
+							okLayer.redCrossMsg(response.msg, function () {
+							})
+						}
 						
 					}
 					

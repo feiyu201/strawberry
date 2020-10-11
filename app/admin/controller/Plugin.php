@@ -16,6 +16,7 @@ use app\common\builder\FormBuilder;
 use app\admin\model\Market;
 use fast\Http;
 use ZipArchive;
+use think\facade\Log;
 
 class Plugin extends AdminBase
 {
@@ -399,18 +400,19 @@ class Plugin extends AdminBase
            $caomei_tokeny =  $parmers['token'];
         }
 
-        $list = Market::where(['intro'=>$id])->find();
-        if( empty($list) ){
-            return json(['code'=> 0,'msg'=>'插件错误，请联系管理员']);
-        }
+        // $list = Market::where(['intro'=>$id])->find();
+        // if( empty($list) ){
+        //     return json(['code'=> 0,'msg'=>'插件错误，请联系管理员']);
+        // }
+        
         // 远程下载插件
-        $tmpFile = $this->download($list['intro'], ['token'=>$caomei_tokeny]);
+        $tmpFile = $this->download($id, ['token'=>$caomei_tokeny]);
         if($tmpFile['code'] != '1'){
-            return json(['code'=> $tmpFile['code'], 'msg'=>$tmpFile['msg']]);
+            return json($tmpFile);
         }
 
         // 解压插件
-        $addonDir = $this->unzip($list['intro']);
+        $addonDir = $this->unzip($id);
 
         return ThinkAddons::install($id);
 
