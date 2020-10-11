@@ -28,7 +28,7 @@
         "topthink/think-captcha": "^3.0",
         "zzstudio/think-addons": "^2.0",
         "yansongda/pay": "^2.9",
-        "topthink/think-image": "^1.0"
+        "ric/thinkphp6-apidoc": "^1.0"
     },
     "require-dev": {
         "symfony/var-dumper": "^4.2",

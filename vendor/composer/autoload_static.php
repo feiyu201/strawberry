@@ -9,13 +9,13 @@ class ComposerStaticInitaf65682023c52d586e092eedc576c68d
     public static $files = array (
         '9b552a3cc426e3287cc811caefa3cf53' => __DIR__ . '/..' . '/topthink/think-helper/src/helper.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
-        '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        '9810210ed49310e71ca0537189ea4d84' => __DIR__ . '/..' . '/ric/thinkphp6-helper/src/helper.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '1cfd2761b63b0a29ed23657ea394cb2d' => __DIR__ . '/..' . '/topthink/think-captcha/src/helper.php',
@@ -30,6 +30,11 @@ class ComposerStaticInitaf65682023c52d586e092eedc576c68d
             'think\\captcha\\' => 14,
             'think\\app\\' => 10,
             'think\\' => 6,
+        ),
+        'r' => 
+        array (
+            'ric\\helper\\' => 11,
+            'ric\\apidoc\\' => 11,
         ),
         'a' => 
         array (
@@ -59,10 +64,6 @@ class ComposerStaticInitaf65682023c52d586e092eedc576c68d
             'Psr\\EventDispatcher\\' => 20,
             'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
-        ),
-        'O' => 
-        array (
-            'Opis\\Closure\\' => 13,
         ),
         'M' => 
         array (
@@ -103,10 +104,17 @@ class ComposerStaticInitaf65682023c52d586e092eedc576c68d
         array (
             0 => __DIR__ . '/..' . '/topthink/framework/src/think',
             1 => __DIR__ . '/..' . '/topthink/think-helper/src',
-            2 => __DIR__ . '/..' . '/topthink/think-image/src',
-            3 => __DIR__ . '/..' . '/topthink/think-orm/src',
-            4 => __DIR__ . '/..' . '/topthink/think-template/src',
-            5 => __DIR__ . '/..' . '/zzstudio/think-addons/src',
+            2 => __DIR__ . '/..' . '/topthink/think-orm/src',
+            3 => __DIR__ . '/..' . '/topthink/think-template/src',
+            4 => __DIR__ . '/..' . '/zzstudio/think-addons/src',
+        ),
+        'ric\\helper\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ric/thinkphp6-helper/src',
+        ),
+        'ric\\apidoc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ric/thinkphp6-apidoc/src',
         ),
         'app\\' => 
         array (
@@ -175,10 +183,6 @@ class ComposerStaticInitaf65682023c52d586e092eedc576c68d
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
-        ),
-        'Opis\\Closure\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/opis/closure/src',
         ),
         'Monolog\\' => 
         array (
