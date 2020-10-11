@@ -55,13 +55,13 @@
 					// 客户端会主观认为服务端返回的就是 JSON 格式的字符串
 					console.log(res)
 
-					if(response.code == 1){
+					if(res.code == 1){
 						okLayer.greenTickMsg("支付成功，页面刷新后点击安装继续", function () {
 
 							parent.layer.close(parent.layer.getFrameIndex(window.name));
 						});
 					}else{
-						// okLayer.redCrossMsg(response.msg, function () {
+						// okLayer.redCrossMsg(res.msg, function () {
 							
 						// })
 					}
