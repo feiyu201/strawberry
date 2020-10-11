@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.0.1
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
 -- 主机： localhost
--- 生成日期： 2020-09-25 19:04:41
--- 服务器版本： 8.0.16
--- PHP 版本： 7.1.29
+-- 生成日期： 2020-09-27 12:38:23
+-- 服务器版本： 5.7.26
+-- PHP 版本： 7.3.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,19 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `st_admin` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
-  `username` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
-  `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
-  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
-  `salt` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码盐',
-  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
-  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '电子邮箱',
+  `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
+  `password` varchar(32) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `salt` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码盐',
+  `avatar` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
+  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '电子邮箱',
   `loginfailure` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '失败次数',
   `logintime` int(10) DEFAULT NULL COMMENT '登录时间',
-  `loginip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登录IP',
+  `loginip` varchar(50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '登录IP',
   `createtime` int(10) DEFAULT NULL COMMENT '创建时间',
   `updatetime` int(10) DEFAULT NULL COMMENT '更新时间',
-  `token` varchar(59) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Session标识',
-  `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态'
+  `token` varchar(59) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Session标识',
+  `status` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理员表';
 
 --
@@ -50,7 +50,8 @@ CREATE TABLE `st_admin` (
 --
 
 INSERT INTO `st_admin` (`id`, `username`, `nickname`, `password`, `salt`, `avatar`, `email`, `loginfailure`, `logintime`, `loginip`, `createtime`, `updatetime`, `token`, `status`) VALUES
-(1, 'admin', 'Admin', 'a6734858ed9b1fed615e3f627d6843a6', 'vsxga1', '/static/images/avatar.png', 'admin@admin.com', 0, 1600298414, '123.196.11.216', 1492186163, 1601031737, '04e8afb9-646c-4a41-8452-cd6330c3232b', 'normal');
+(1, 'admin', 'Admin', 'f691da52b2e9fa8e4dddf29f1ccabef6', '9ee7ns', '/static/images/avatar.png', 'admin@admin.com', 0, 1600298414, '123.196.11.216', 1492186163, 1601174630, '04e8afb9-646c-4a41-8452-cd6330c3232b', 'normal'),
+(2, 'chaoguan', '超', 'f759ffe375fe2ec5adf88f36c80b1906', 'qeftil', '', '11111@qq.com', 0, NULL, NULL, 1601173715, 1601173982, '', 'normal');
 
 -- --------------------------------------------------------
 
@@ -62,20 +63,65 @@ CREATE TABLE `st_attachment` (
   `id` int(20) UNSIGNED NOT NULL COMMENT 'ID',
   `admin_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '管理员ID',
   `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '会员ID',
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '物理路径',
-  `imagewidth` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '宽度',
-  `imageheight` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '高度',
-  `imagetype` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图片类型',
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '物理路径',
+  `imagewidth` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '宽度',
+  `imageheight` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '高度',
+  `imagetype` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '图片类型',
   `imageframes` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '图片帧数',
   `filesize` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '文件大小',
-  `mimetype` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'mime类型',
-  `extparam` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '透传数据',
+  `mimetype` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'mime类型',
+  `extparam` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '透传数据',
   `createtime` int(10) DEFAULT NULL COMMENT '创建日期',
   `updatetime` int(10) DEFAULT NULL COMMENT '更新时间',
   `uploadtime` int(10) DEFAULT NULL COMMENT '上传时间',
-  `storage` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
-  `sha1` varchar(40) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件 sha1编码'
+  `storage` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'local' COMMENT '存储位置',
+  `sha1` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '文件 sha1编码'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='附件表';
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `st_auth_group`
+--
+
+CREATE TABLE `st_auth_group` (
+  `id` int(8) UNSIGNED NOT NULL,
+  `createtime` int(11) NOT NULL,
+  `updatetime` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
+  `status` varchar(30) DEFAULT 'normal' COMMENT '状态',
+  `title` varchar(255) NOT NULL DEFAULT '' COMMENT '角色组',
+  `rules` text COMMENT '权限',
+  `remark` text COMMENT '备注'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色组管理';
+
+--
+-- 转存表中的数据 `st_auth_group`
+--
+
+INSERT INTO `st_auth_group` (`id`, `createtime`, `updatetime`, `status`, `title`, `rules`, `remark`) VALUES
+(1, 1601170339, 1601172768, 'normal', '超级管理员', '536,556,553,554,555,537,557,538,541,547,548,549,550,542,', '超级管理员'),
+(4, 1601170436, 1601181256, 'normal', '插件管理员', '0,536,538,541,547,548,549,550,542,', '这里是备注');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `st_auth_group_access`
+--
+
+CREATE TABLE `st_auth_group_access` (
+  `uid` mediumint(8) UNSIGNED NOT NULL,
+  `group_id` mediumint(8) UNSIGNED NOT NULL,
+  `createtime` int(11) DEFAULT '0' COMMENT '添加时间',
+  `updatetime` int(11) DEFAULT '0' COMMENT '修改时间'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `st_auth_group_access`
+--
+
+INSERT INTO `st_auth_group_access` (`uid`, `group_id`, `createtime`, `updatetime`) VALUES
+(1, 1, 0, 0),
+(2, 4, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -85,7 +131,7 @@ CREATE TABLE `st_attachment` (
 
 CREATE TABLE `st_auth_rule` (
   `id` int(10) UNSIGNED NOT NULL,
-  `type` enum('menu','file') NOT NULL DEFAULT 'file' COMMENT 'menu为菜单,file为权限节点',
+  `type` tinyint(4) NOT NULL DEFAULT '1',
   `pid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父ID',
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则名称',
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '规则名称',
@@ -96,19 +142,29 @@ CREATE TABLE `st_auth_rule` (
   `createtime` int(10) DEFAULT NULL COMMENT '创建时间',
   `updatetime` int(10) DEFAULT NULL COMMENT '更新时间',
   `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',
-  `status` varchar(30) NOT NULL DEFAULT '' COMMENT '状态'
+  `status` varchar(30) NOT NULL DEFAULT 'normal' COMMENT '状态',
+  `auth_open` tinyint(4) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='节点表';
 
 --
 -- 转存表中的数据 `st_auth_rule`
 --
 
-INSERT INTO `st_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`) VALUES
-(1, 'menu', 1231, '12', '123123', '', '', '', 0, NULL, NULL, 0, ''),
-(533, 'file', 0, 'test', '测试菜单', '&#xe66f;', '', '', 1, 1600929205, 1600929205, 0, 'normal'),
-(534, 'file', 533, 'addons/test/index/index', '查看', '&#xe62e;', '', '', 0, 1600929205, 1600929205, 0, 'normal'),
-(535, 'file', 533, 'addons/test/index/add', '添加', '&#xe62e;', '', '', 0, 1600929205, 1600929205, 0, 'normal'),
-(536, 'file', 533, 'addons/test/index/detail', '详情', '&#xe62e;', '', '', 0, 1600929205, 1600929205, 0, 'normal');
+INSERT INTO `st_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`, `auth_open`) VALUES
+(536, 1, 0, 'admin/index/welcome', '控制台', 'fa-dashboard', '', '', 1, NULL, NULL, 0, 'normal', 1),
+(537, 1, 556, 'admin/admin/index', '人员管理', 'fa-group', '', '', 1, NULL, 1601167961, 2, 'normal', 1),
+(538, 1, 0, 'admin/Attachment/index', '附件管理', 'fa-file-image-o', '', '', 1, NULL, NULL, 5, 'normal', 1),
+(541, 1, 0, 'admin/plugin/index', '插件管理', 'fa-rocket', '', '', 1, NULL, NULL, 10, 'normal', 1),
+(542, 1, 0, 'admin/applets/index', '小程序管理', 'fa-wechat', '', '', 1, NULL, NULL, 15, 'normal', 1),
+(547, 1, 0, 'test', '测试菜单', 'fa-list', '', '', 1, 1601109097, 1601109097, 10, 'normal', 1),
+(548, 1, 547, 'addons/test/index/index', '查看', 'fa-list', '', '', 1, 1601109097, 1601109097, 20, 'normal', 1),
+(549, 1, 548, 'addons/test/index/add', '添加', '', '', '', 0, 1601109097, 1601109097, 0, 'normal', 1),
+(550, 1, 548, 'addons/test/index/detail', '详情', '', '', '', 0, 1601109097, 1601109097, 0, 'normal', 1),
+(553, 1, 556, 'admin/AuthRule/index', '菜单管理', 'fa-bars', '', '', 1, NULL, 1601167951, 1, 'normal', 1),
+(554, 1, 553, 'admin/AuthRule/add', '菜单添加', 'fa-add', '', '这里是备注', 0, 1601122750, NULL, 100, 'normal', 1),
+(555, 1, 553, 'admin/AuthRule/edit', '菜单编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
+(556, 1, 0, 'Auth', '权限管理', 'fa-group', '', '', 1, 1601167936, NULL, 1, 'normal', 1),
+(557, 1, 556, 'admin/AuthGroup/index', '角色管理', 'fa-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1);
 
 -- --------------------------------------------------------
 
@@ -118,48 +174,48 @@ INSERT INTO `st_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condi
 
 CREATE TABLE `st_market` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
-  `androidurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '安卓地址',
-  `author` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者',
+  `androidurl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '安卓地址',
+  `author` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者',
   `bought` int(10) DEFAULT '0',
-  `button` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `button` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `category_id` int(10) NOT NULL COMMENT '分类id',
-  `demourl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'demo地址',
-  `description` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '描述',
-  `diffextended` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '新版描述',
-  `diffregular` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '新版',
-  `donateimage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `downloads` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `extendedfile` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `demourl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'demo地址',
+  `description` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '描述',
+  `diffextended` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '新版描述',
+  `diffregular` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '新版',
+  `donateimage` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `downloads` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `extendedfile` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `extendedprice` decimal(10,2) NOT NULL COMMENT '价格',
-  `flag` set('hot','index','recommend') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标志(多选):hot=热门,index=首页,recommend=推荐',
-  `homepage` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '开发者主页地址',
-  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '图片地址',
-  `intro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '插件名称',
-  `iosurl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `flag` set('hot','index','recommend') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '标志(多选):hot=热门,index=首页,recommend=推荐',
+  `homepage` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '开发者主页地址',
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '图片地址',
+  `intro` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '插件名称',
+  `iosurl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `likes` int(10) NOT NULL DEFAULT '0' COMMENT '喜欢数量',
-  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '名称',
+  `name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '名称',
   `originalextendedprice` decimal(10,2) NOT NULL,
   `originalprice` decimal(10,2) NOT NULL,
   `price` decimal(10,2) NOT NULL COMMENT '价格',
-  `qq` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qq',
+  `qq` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT 'qq',
   `releasetime` int(10) DEFAULT NULL COMMENT '版本时间',
-  `releaselist` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '版本列表',
-  `require` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '引用版本',
+  `releaselist` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '版本列表',
+  `require` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '引用版本',
   `sales` int(10) NOT NULL DEFAULT '0' COMMENT '销量',
   `score` float(2,1) NOT NULL DEFAULT '5.0' COMMENT '积分',
-  `screenshots` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '图片',
+  `screenshots` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '图片',
   `star` float(2,1) NOT NULL DEFAULT '5.0' COMMENT '星',
   `thanks` int(10) NOT NULL DEFAULT '0' COMMENT '感谢数量',
-  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
-  `url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '外部链接地址',
-  `version` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '版本',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '标题',
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '外部链接地址',
+  `version` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '版本',
   `views` int(10) NOT NULL DEFAULT '0' COMMENT '浏览量',
   `refreshtime` int(10) NOT NULL COMMENT '刷新时间(int)',
   `createtime` int(10) NOT NULL COMMENT '创建时间',
   `updatetime` int(10) DEFAULT NULL COMMENT '更新时间',
   `deletetime` int(10) DEFAULT NULL COMMENT '删除时间',
   `weigh` int(10) NOT NULL DEFAULT '0' COMMENT '权重',
-  `status` enum('normal','hidden') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态'
+  `status` enum('normal','hidden') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='市场分类' ROW_FORMAT=DYNAMIC;
 
 -- --------------------------------------------------------
@@ -189,18 +245,18 @@ CREATE TABLE `st_text_addondownload` (
 
 CREATE TABLE `st_wxapp` (
   `stid` int(10) UNSIGNED NOT NULL,
-  `appid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `token` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `encodingaeskey` varchar(43) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `appid` varchar(50) NOT NULL,
+  `token` varchar(32) CHARACTER SET utf8 NOT NULL,
+  `encodingaeskey` varchar(43) CHARACTER SET utf8 NOT NULL,
   `level` tinyint(4) NOT NULL,
-  `account` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `original` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `key` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `secret` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `status` varchar(30) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `account` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `original` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `key` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `secret` varchar(50) CHARACTER SET utf8 NOT NULL,
+  `name` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `status` varchar(30) CHARACTER SET utf8 NOT NULL,
   `id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- 转存表中的数据 `st_wxapp`
@@ -225,6 +281,20 @@ ALTER TABLE `st_admin`
 --
 ALTER TABLE `st_attachment`
   ADD PRIMARY KEY (`id`);
+
+--
+-- 表的索引 `st_auth_group`
+--
+ALTER TABLE `st_auth_group`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 表的索引 `st_auth_group_access`
+--
+ALTER TABLE `st_auth_group_access`
+  ADD UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
+  ADD KEY `uid` (`uid`),
+  ADD KEY `group_id` (`group_id`);
 
 --
 -- 表的索引 `st_auth_rule`
@@ -261,19 +331,25 @@ ALTER TABLE `st_wxapp`
 -- 使用表AUTO_INCREMENT `st_admin`
 --
 ALTER TABLE `st_admin`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=3;
 
 --
 -- 使用表AUTO_INCREMENT `st_attachment`
 --
 ALTER TABLE `st_attachment`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=5;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
+
+--
+-- 使用表AUTO_INCREMENT `st_auth_group`
+--
+ALTER TABLE `st_auth_group`
+  MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- 使用表AUTO_INCREMENT `st_auth_rule`
 --
 ALTER TABLE `st_auth_rule`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=537;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=558;
 
 --
 -- 使用表AUTO_INCREMENT `st_market`
@@ -285,7 +361,7 @@ ALTER TABLE `st_market`
 -- 使用表AUTO_INCREMENT `st_wxapp`
 --
 ALTER TABLE `st_wxapp`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

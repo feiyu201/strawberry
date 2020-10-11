@@ -33,7 +33,7 @@ class Applets extends AdminBase
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
    		$count = Db::name('wxapp')->count();
-   		$data = Db::name('wxapp')->page($page,12)->select()->each(function($item,$k){
+   		$data = Db::name('wxapp')->page($page,$limit)->select()->each(function($item,$k){
    			return $item;
    		});
    		

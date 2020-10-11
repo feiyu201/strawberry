@@ -181,7 +181,7 @@ abstract class BaseController
      */
     protected function redirect($url, $params = [], $code = 302, $with = [])
     {
-    	redirect($url)->send();
+    	redirect($url,$code)->send();
     }
     
     /**

@@ -30,8 +30,9 @@ class Plugin extends Addons	// 需继承think\Addons类
 		$menu = [
             [
                 'name'    => 'test',
-                'title'   => '测试菜单',
+                'title'   => '测试插件菜单',
                 'icon'    => '&#xe66f;',
+                'ismenu'  => 1,//是否是菜单
                 'sublist' => [
                     ['name' => 'addons/test/index/index', 'title' => '查看'],
                     ['name' => 'addons/test/index/add', 'title' => '添加'],
@@ -67,5 +68,6 @@ class Plugin extends Addons	// 需继承think\Addons类
 		// 可以返回模板，模板文件默认读取的为插件目录中的文件。模板名不能为空！
 		return $this->fetch('info');
 	}
+
 
 }
