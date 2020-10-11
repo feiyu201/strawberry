@@ -24,7 +24,7 @@
     }
 </style>
 <div class="layui-form-item">
-    <label class="layui-form-label">上级菜单</label>
+    <label class="layui-form-label">所属菜单</label>
     <div class="layui-input-block">
         <div class="layui-unselect layui-form-select layui-form-select-pos">
             <div class="layui-select-title" style="position: relative;"><input type="text" required  lay-verify="required" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>
@@ -32,7 +32,7 @@
         </div>
     </div>
 </div>
-{if !empty($data) }
+{if !empty($data)}
 <script>
     layui.use('jquery',function () {
         let $ = layui.jquery;

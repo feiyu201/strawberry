@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <style>
+        .layui-tree-btnGroup, .layui-tree-editInput{
+            float: right!important;
+        }
+    </style>
+</head>
+<body>
+<div class="ok-body">
+    <div style="padding: 10px 15px">
+        <div class="layui-inline">
+            <div class="layui-input-inline">
+                <button class="layui-btn layui-btn-sm" id="add">
+                    新增分类
+                </button>
+            </div>
+        </div>
+        <div id="tree"></div>
+    </div>
+</div>
+<script src="/static/lib/layui/layui.js"></script>
+<script>
+    layui.use(['tree',"okLayer","okUtils","jquery"], function(){
+        var tree = layui.tree;
+        let okLayer = layui.okLayer;
+        let okUtils = layui.okUtils;
+        let $ = layui.jquery;
+        okLoading.close();
+        okUtils.ajax("{:addons_url('store://Category/getcategory')}", "get", {}, true).done(function (response) {
+            //console.log(response);
+            if(response.code==0){
+                okLayer.greenTickMsg("查询成功", function () {
+                    var inst1 = tree.render({
+                        elem: '#tree'  //绑定元素
+                        ,accordion:true
+                        ,data: response.data
+                        ,edit: ['add', 'update', 'del'] //操作节点的图标
+                        ,click: function(obj){
+                            // layer.msg(JSON.stringify(obj.data));
+                        },operate: function(obj){
+                            var type = obj.type; //得到操作类型：add、edit、del
+                            var data = obj.data; //得到当前节点的数据
+                            var elem = obj.elem; //得到当前节点元素
+
+                            //Ajax 操作
+                            var id = data.id; //得到节点索引
+                            if(type === 'add'){ //增加节点
+                                //返回 key 值
+                                return 123;
+                            } else if(type === 'update'){ //修改节点
+                                console.log(elem.find('.layui-tree-txt').html()); //得到修改后的内容
+                            } else if(type === 'del'){ //删除节点
+
+                            };
+                        }
+                    });
+                    // parent.layer.close(parent.layer.getFrameIndex(window.name));
+                });
+            }else{
+                okLayer.greenTickMsg(response.msg, function () {
+
+                })
+            }
+
+        }).fail(function (error) {
+            console.log(error)
+        });
+        $('#add').click(function (){
+            okLayer.open("新增分类", "{:addons_url('store://Category/categoryAdd')}", "90%", "90%", null, function () {
+                userTable.reload();
+            })
+
+        })
+
+    });
+</script>
+</body>
+</html>

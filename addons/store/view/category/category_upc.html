@@ -35,7 +35,7 @@
             <textarea name="describe" placeholder="请输入描述" lay-verify="describe" class="layui-textarea">{$data.describe}</textarea>
         </div>
     </div>
-    {include file="common/upload_icon"/}
+    {include file="common/upload_icon" field="$data"/}
     {include file="common/upload_category_image" field="$data"/}
     <div class="layui-form-item">
         <label class="layui-form-label">是否启用</label>
@@ -146,6 +146,7 @@
                 if (response.status === 200) {
                     okLayer.greenTickMsg(response.msg, function () {
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        parent.location.reload()
                     })
                 }
             }).fail(function (error) {
