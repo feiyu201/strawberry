@@ -7,6 +7,9 @@
  * @return mixed
  */
 function getCategoryNameId($id){
+    if (empty($category['pid'])){
+        return null;
+    }
     $categoryId = \addons\store\model\GoodsCategoryJoin::where('goods_id',$id)->value('category_id');
     $category = \addons\store\model\GoodsCategory::where('id',$categoryId)->find();
     $title[] = $category['name'];
