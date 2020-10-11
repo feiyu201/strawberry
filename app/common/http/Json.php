@@ -7,11 +7,12 @@ class Json{
 
     }
 
-    public static function success($msg='获取成功',$data=null,$code=200){
+    public static function success($msg='获取成功',$data=null,$count=0,$code=200){
         $data = [
             'status'=> $code,
             'data'=>$data,
             'msg'=>$msg,
+            'count'=>$count
         ];
         return json($data);
     }

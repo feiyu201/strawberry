@@ -122,6 +122,7 @@
                 if (response.status === 200) {
                     okLayer.greenTickMsg(response.msg, function () {
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        parent.location.reload()
                     })
                 }
             }).fail(function (error) {

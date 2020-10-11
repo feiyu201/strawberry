@@ -139,4 +139,27 @@ class Category extends AddonBase
         }
         return \app\common\http\Json::error();
     }
+    
+    public function delete(){
+        $param = Request::param();
+        if (!empty($param['id'])) {
+            $first = GoodsCategory::find($param['id']);
+            \addons\store\model\GoodsCategoryJoin::where('category_id',$first['id'])->delete();
+            if ($first != null && $first['pid'] != 0) {
+                $next = GoodsCategory::where('id',$first['pid'])->find();
+                if ($next != null) {
+                    \addons\store\model\GoodsCategoryJoin::where('category_id',$next['id'])->delete();
+                    $last = GoodsCategory::where('id',$next['pid'])->find();
+                    $next->delete();
+                    if ($last != null) {
+                        \addons\store\model\GoodsCategoryJoin::where('category_id',$last['id'])->delete();
+                        $last->delete();
+                    }
+                }
+            }
+            $first->delete();
+            return \app\common\http\Json::success('删除成功');
+        }
+        return \app\common\http\Json::error();
+    }
 }

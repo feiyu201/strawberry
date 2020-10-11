@@ -12,3 +12,4 @@ composer.lock
 .env
 .svn
 .vscode
+/strawberry.zip

@@ -9,8 +9,12 @@ class Componets extends TagLib
         'uedit'=> ['attr'=>'name,content','close'=> 0]
     ];
 
-    public function tagUedit($tag){
-     return '这是编辑器组件,参数：name='.$tag['name'].';content='.$tag['content'];
+    public function tagUedit($tag,$content){
+        if(empty($tag['content'])) {
+            $tag['content'] = '没有传入内容';
+        }
+        $html = ' <textarea name="'.$tag['name'].'" id="edit" cols="30" rows="10">'.$tag['content'] .'</textarea>';
+        return $html;
     }
 
 }
