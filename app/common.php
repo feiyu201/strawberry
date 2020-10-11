@@ -87,7 +87,8 @@ function do_curl_request($url, $params = "", $requestType = 'post', $headers = [
     $res = curl_exec($curl);
     curl_close($curl);
 
-    return $res;
+	return $res;
+}
 /**
  * 过滤数组元素前后空格 (支持多维数组)
  * @param $array 要过滤的数组
