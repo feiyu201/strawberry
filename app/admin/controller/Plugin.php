@@ -404,9 +404,11 @@ class Plugin extends AdminBase
         // if( empty($list) ){
         //     return json(['code'=> 0,'msg'=>'插件错误，请联系管理员']);
         // }
+
+        $pay_type   = isset($parnms['pay_type']) ? $parnms['pay_type'] : '1'; //1微信，2支付宝
         
         // 远程下载插件
-        $tmpFile = $this->download($id, ['token'=>$caomei_tokeny]);
+        $tmpFile = $this->download($id, ['token'=>$caomei_tokeny,'pay_type'=>$pay_type]);
         if($tmpFile['code'] != '1'){
             return json($tmpFile);
         }
