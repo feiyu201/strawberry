@@ -57,15 +57,15 @@
 </script>
 {if !empty($data) }
 {if !empty($data) && empty($data.big_images)}
-<script>let show = 'none'</script>
+<script>let show1 = 'none'</script>
 {else /}
-<script>let show = 'block'</script>
+<script>let show1 = 'block'</script>
 {/if}
 <script>
     layui.use('jquery',function () {
         let $ = layui.jquery;
         $('.upload-big-images input[name="big_images"]').val('{$data.big_images}')
-        $('#upload-big-images-demo').attr('src', '{$data.big_images|default="/static/images/noimg.jpg"}').css('display',show)
+        $('#upload-big-images-demo').attr('src', '{$data.big_images|default="/static/images/noimg.jpg"}').css('display',show2)
     })
 </script>
 {else /}
