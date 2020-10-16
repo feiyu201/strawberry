@@ -114,6 +114,15 @@
         .layui-input-block .city-picker-span{
             width: 100%!important;
         }
+        .icon-delete{
+            position: absolute;
+            top: 5px;
+            right: 5px ;
+            z-index: 3;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            padding: 4px;
+        }
     </style>
 </head>
 <body>
@@ -240,6 +249,7 @@
                     <div class="img-view">
                         <img src="{$vo.img}" alt="">
                         <span class="img-border"></span>
+                        <i class="layui-icon layui-icon-delete icon-delete"></i>
                     </div>
                     <input type="text" class="layui-input layui-input-sm img-input" placeholder="规格对应的名称" value="{$vo.name}">
                 </div>
@@ -369,14 +379,28 @@
 <script src="/static/lib/layui/lay/lay-config.js"></script>
 <script>
     function reload(){
-        layui.use(["jquery", "okLayer"],function (){
-            let okLayer = layui.okLayer,$ = layui.jquery;
+        layui.use(["jquery", "okLayer","layer"],function (){
+            let okLayer = layui.okLayer,$ = layui.jquery,layer = layui.layer;
             $.each($('#specType .img-spec'),function (index,item){
                 $(item).find('button').unbind("click");
                 $(item).find('button').click(function (){
                     okLayer.open("选中一张或者上传一张即可", "{:addons_url('store://Photos/upload')}?goods_id={$goods.id|default='0'}&page=1&limit=18&model=4&item="+index, "90%", "90%", null, function () {
                         // location.reload();
                     })
+                })
+                console.log('查询',$(item).find('i'))
+                $(item).find('i').unbind("click");
+                $(item).find('i').click(function (){
+                    layer.confirm('确认删除？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        $(item).remove()
+                        okLayer.greenTickMsg('删除完成', function () {
+
+                        })
+                    }, function(){
+
+                    });
                 })
             })
         })
@@ -792,8 +816,7 @@
                 });
             })
         }
-
-
+        reload()
     })
 
 </script>
