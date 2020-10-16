@@ -69,6 +69,7 @@
             , page: {limit: 10}
 
         });
+        console.log(fileManager)
         var upIns = upload.render({
             elem: '#test1' //绑定元素
             , url: "{:addons_url('store://Upload/uploadPhotos')}?id={$Request.param.goods_id|default='0'}" //改成您自己的上传接口
@@ -122,9 +123,11 @@
                         <div class="img-view">
                             <img src="${imgfile}" alt="">
                             <span class="img-border"></span>
+                            <i class="layui-icon layui-icon-delete icon-delete"></i>
                         </div>
                         <input type="text" class="layui-input layui-input-sm img-input" placeholder="规格对应的名称">
                     </div>`)
+                        parent.reload()
                         break;
                 }
             }
@@ -141,10 +144,12 @@
             console.log(obj.obj)
             if ($(obj.obj[0]).attr('class') !== undefined && $(obj.obj[0]).attr('class').indexOf('checked') > -1){
                 $(obj.obj[0]).attr('class','')
+                imgList.splice(imgList.indexOf(obj.data.images),1)
             } else {
+                imgList.push(obj.data.images)
                 $(obj.obj[0]).attr('class','checked')
             }
-            imgList.push(obj.data.images)
+
             if (model === 4){
                 if (!(obj.data.images.indexOf('-thumb') > -1)) {
                     var imgfile = obj.data.images.split('.')
