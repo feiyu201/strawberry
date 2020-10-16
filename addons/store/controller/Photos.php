@@ -2,6 +2,7 @@
 
 namespace addons\store\controller;
 
+use addons\store\model\BrandCategoryJoin;
 use app\common\controller\AddonBase;
 use think\facade\Request;
 use addons\store\model\GoodsPhoto;
@@ -57,6 +58,16 @@ class Photos extends AddonBase
     public function detail()
     {
         return $this->fetch();
+    }
+
+    public function delete(){
+        $param = Request::param();
+        if (!empty($param['id'])){
+            GoodsPhoto::where('id',$param['id'])->delete();
+            return \app\common\http\Json::success('删除成功');
+        }
+        return \app\common\http\Json::error('删除失败');
+
     }
 
 }

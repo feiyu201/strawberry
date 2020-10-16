@@ -65,7 +65,7 @@
     layui.use('jquery',function () {
         let $ = layui.jquery;
         $('.upload-icon input[name="icon"]').val('{$data.icon}')
-        $('#upload-icon-demo').attr('src', '{$data.icon|default="/static/images/noimg.jpg"}').css('display',show2)
+        $('#upload-icon-demo').attr('src', '{$data.icon|default=""}').css('display',show2)
     })
 </script>
 {else /}

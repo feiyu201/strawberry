@@ -65,7 +65,7 @@
     layui.use('jquery',function () {
         let $ = layui.jquery;
         $('.upload-big-images input[name="big_images"]').val('{$data.big_images}')
-        $('#upload-big-images-demo').attr('src', '{$data.big_images|default="/static/images/noimg.jpg"}').css('display',show2)
+        $('#upload-big-images-demo').attr('src', '{$data.big_images|default=""}').css('display',show2)
     })
 </script>
 {else /}

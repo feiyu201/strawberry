@@ -50,7 +50,9 @@ class Brand extends AddonBase
             return \app\common\http\Json::success('更新成功');
         } else {
             $brand = new BrandM;
+            $icon = $param['icon'];
             $param = Request::only(['logo','name','website_url','is_enable','sort','seo_title','seo_keywords','seo_desc']);
+            $param['logo'] = $icon;
             $brand->save($param);
             return \app\common\http\Json::success('创建成功');
         }
