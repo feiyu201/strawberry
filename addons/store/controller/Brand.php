@@ -43,8 +43,9 @@ class Brand extends AddonBase
         $param = Request::param();
         $data = null;
         if (!empty($param['id'])) {
-            $param['logo'] = $param['icon'];
+            $icon = $param['icon'];
             $param = Request::only(['logo','name','website_url','is_enable','sort','seo_title','seo_keywords','seo_desc','id']);
+            $param['logo'] = $icon;
             BrandM::update($param);
             return \app\common\http\Json::success('更新成功');
         } else {
