@@ -36,7 +36,7 @@ class Plugin extends Addons	// 需继承think\Addons类
                     ['name' => 'addons/store/category/category', 'title' => '商品分类'],
                     ['name' => 'addons/store/brand/list', 'title' => '品牌列表'],
                     ['name' => 'addons/store/goods/list', 'title' => '商品列表'],
-                    ['name' => 'addons/store/category/getCategory', 'title' => '分类菜单'],
+                    ['name' => 'addons/store/category/getCategory', 'title' => '分类接口例子'],
                 ]
             ]
         ];
