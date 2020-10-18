@@ -210,4 +210,3 @@ function authNew($cate , $pid = 0,$rules){
 	}
 	return $arr;
 }
-}
