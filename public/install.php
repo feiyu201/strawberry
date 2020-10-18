@@ -9,7 +9,7 @@ define('APP_PATH', dirname(dirname(__FILE__)) . DS . 'application' . DS);
 //定义web根目录
 define('WWW_ROOT', dirname(__FILE__) . DS);
 //定义CMS名称
-$siteName = "草莓万能开发框架";
+$siteName = "草莓快速开发框架";
 
 //错误信息
 $msg = '';
@@ -96,7 +96,7 @@ if ($_GET['c'] = 'start' && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUE
     $mysqlUserName = isset($_POST['username']) ? $_POST['username'] : 'root';
     $mysqlPassword = isset($_POST['password']) ? $_POST['password'] : 'root';
     $mysqlDatabase = isset($_POST['database']) ? $_POST['database'] : 'strawberrydb';
-    $mysqlPreFix = isset($_POST['prefix']) ? $_POST['prefix'] : 'st_';
+    $mysqlPreFix = isset($_POST['prefix']) ? $_POST['prefix'] : 'cm_';
     $mysqlPreFix = rtrim($mysqlPreFix, "_") . "_";
     $adminUserName = isset($_POST['adminUserName']) ? $_POST['adminUserName'] : 'admin';
     $adminPassword = isset($_POST['adminPassword']) ? $_POST['adminPassword'] : '123456';
@@ -317,7 +317,7 @@ EOT;
                             <div class="layui-form-item">
                                 <label class="layui-form-label">数据表前缀</label>
                                 <div class="layui-input-block">
-                                    <input type="text" name="prefix" value="st_" class="layui-input"
+                                    <input type="text" name="prefix" value="cm_" class="layui-input"
                                            lay-verify="required" placeholder="请设置数据表前缀">
                                 </div>
                             </div>
