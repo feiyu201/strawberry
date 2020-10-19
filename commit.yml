@@ -3,9 +3,3726 @@ branches: {
   }
 fileChange:
   /.gitignore:
-    newFile: !uuid '95f59d64f92e1317ed60923097534f4a87aa5a81'
-    oldFile: !uuid 'b498f3445af00cf9b98005bd799627e999654e10'
-gitCommitId: !uuid '791601060d3fd9d68f3e053a653584d4df31bf82'
+    newFile: !uuid '0b7ee9e63af18afb0909886ed2013311c44ad99a'
+    oldFile: !uuid '95f59d64f92e1317ed60923097534f4a87aa5a81'
+  /README.md:
+    newFile: !uuid '5878354caa550d01b6b71dc341e4a555fcce3d64'
+    oldFile: !uuid '13781ffc2abc852403a426c95828e962750f1c10'
+  /addons:
+    newFile: !uuid 'a8de36a5ab72d7b158709c209f3eaba874d497ef'
+    oldFile: !uuid 'c11bab850b44a0e7cc5199d40d36775219f0cbaa'
+  /addons/lazy:
+    newFile: !uuid '73d15748deff9b4953709679a663882b40d40f6c'
+    oldFile: null
+  /addons/lazy/Plugin.php:
+    newFile: !uuid 'cbeb6b3637cf195383d3a548ccafaabf6c2fbc02'
+    oldFile: null
+  /addons/lazy/config.php:
+    newFile: !uuid 'ced7791f8a87d2269dc554816fc372e4f3f40355'
+    oldFile: null
+  /addons/lazy/control.txt:
+    newFile: !uuid '92034fb6a79e6c79bacd3a1df98f8f65bfff02a8'
+    oldFile: null
+  /addons/lazy/controller:
+    newFile: !uuid '888fb218e01d98331ebce756d1ea71e0af1c7efb'
+    oldFile: null
+  /addons/lazy/controller/Lazy.php:
+    newFile: !uuid '87c29317201ab64c349c4f08d5179486cacf84ae'
+    oldFile: null
+  /addons/lazy/info.ini:
+    newFile: !uuid '997a79a322247a12e20707622abacc17404640ae'
+    oldFile: null
+  /addons/lazy/install.sql:
+    newFile: !uuid '1f07f26ea32289368a1a374310a3adf8f082f173'
+    oldFile: null
+  /addons/lazy/model:
+    newFile: !uuid 'c798f30244b882f16ff29eac7897f81cd275fffa'
+    oldFile: null
+  /addons/lazy/model.txt:
+    newFile: !uuid '2563a9cc16bb446fbbc94e6b3483a0c3ae5d9351'
+    oldFile: null
+  /addons/lazy/model/Lazy.php:
+    newFile: !uuid '9716f83530a0b49dae3a45d526c63145bab27f67'
+    oldFile: null
+  /addons/lazy/view:
+    newFile: !uuid '0871ce43e4142e2afa532a70fef73cf64c9b8f98'
+    oldFile: null
+  /addons/lazy/view/lazy:
+    newFile: !uuid '89d6d388d1b740db3ab3b32ce43c03b454ac3fa9'
+    oldFile: null
+  /addons/lazy/view/lazy/add.html:
+    newFile: !uuid 'd464ecf28cf6e2e76de5714a9c2ea79ed654acee'
+    oldFile: null
+  /addons/lazy/view/lazy/edit.html:
+    newFile: !uuid 'af48b58b46e61a70c58fabf14e87729e20da3412'
+    oldFile: null
+  /addons/lazy/view/lazy/index.html:
+    newFile: !uuid 'e1fb3fabcbba55aee327700f834ffa887b523484'
+    oldFile: null
+  /addons/pay:
+    newFile: !uuid '8e496ea1ea49d7e2f5b5096a2b51e5d232340904'
+    oldFile: !uuid '786eb5a07fd2b3f4d2e1a86ff195e05dd1b7d993'
+  /addons/pay/info.ini:
+    newFile: !uuid '4c229f1b585efa29417ad1ba3c2cc32dafabc4d7'
+    oldFile: !uuid '4e263730ca8e8d22b7a63427421f553b47646b18'
+  /addons/store:
+    newFile: !uuid '3717fc3c907155316026d42c1f18603fe61eb7b7'
+    oldFile: !uuid '43dfb6eb9ffb33fba646c59efc06c7b561382a32'
+  /addons/store/Plugin.php:
+    newFile: !uuid '02549bb8d1c48f91ba41d057fb4a60c90392a713'
+    oldFile: !uuid '163e28268101f71ecaeea6f6fb6dc5a509141639'
+  /addons/store/common.php:
+    newFile: !uuid '25bb91f9da78a9e6aaf4e2d7101c90e53224524d'
+    oldFile: null
+  /addons/store/controller:
+    newFile: !uuid '72acbc6f1119f286fcc7306a26dde98d07208589'
+    oldFile: !uuid '09dbba46dbaaa38c49efd128587c1e07de071c97'
+  /addons/store/controller/Brand.php:
+    newFile: !uuid 'c60360fc00bbe113c09a5edae7c7cb2d7f6584e6'
+    oldFile: null
+  /addons/store/controller/Category.php:
+    newFile: !uuid '35508bf4d9a38296d239b329a21f2dc313ecc598'
+    oldFile: !uuid 'b4206022d637fbb94b6b82e147f23eed91da28d3'
+  /addons/store/controller/Goods.php:
+    newFile: !uuid '67ccce9b9bc21eb0960b3dcb02473f66e51d0a2f'
+    oldFile: null
+  /addons/store/controller/Increase.php:
+    newFile: !uuid '470c021d88f9f6d6e9cf08288f5aaea47e893987'
+    oldFile: null
+  /addons/store/controller/Photos.php:
+    newFile: !uuid '64699f20855bc029a00adcf4f0ed0118bdb5a42b'
+    oldFile: null
+  /addons/store/controller/Spec.php:
+    newFile: !uuid '423ac2ab90e2f7bb50cc93178d214d0d7cb902a7'
+    oldFile: null
+  /addons/store/controller/Upload.php:
+    newFile: !uuid 'e7351a1c0cfb56c0ef8d8a212f4e2f1d960db788'
+    oldFile: !uuid '6370e7378787d366f6b31ad9cc923458a2197eba'
+  /addons/store/info.ini:
+    newFile: !uuid 'db10c2da0247881e97ac2092471b9040b1834fb5'
+    oldFile: !uuid 'be3d5bef5438bc6b4f51a6b7f0e54006016e750b'
+  /addons/store/install.sql:
+    newFile: !uuid 'c09897c042d8c59657354ae1145c2a868cdb6ca0'
+    oldFile: !uuid '79dac8331302f18d3adaece6e4216b392cfa0112'
+  /addons/store/model:
+    newFile: !uuid 'c6f476f15befa4ed0a95c922beb2c50573d0e740'
+    oldFile: !uuid '4166e4606d8d492a34db7e704239a2b90e4cc835'
+  /addons/store/model/Brand.php:
+    newFile: !uuid '43890e60e9973f38b3861bf749cb284e912e82c5'
+    oldFile: null
+  /addons/store/model/BrandCategoryJoin.php:
+    newFile: !uuid '8d226724651bfd03f74e54b54b003e73218c0c73'
+    oldFile: null
+  /addons/store/model/Goods.php:
+    newFile: !uuid '4e54587a0c07451036cea030806a15a242f1a1bd'
+    oldFile: null
+  /addons/store/model/GoodsCategory.php:
+    newFile: !uuid 'a97a473e331155dcffbad20ce2a97d332a536fe1'
+    oldFile: !uuid 'f332caac4dac90001063625b13f7c910d7db1ca5'
+  /addons/store/model/GoodsCategoryJoin.php:
+    newFile: !uuid 'dfabf2172856c2d801803e27424ec3e88ddac41e'
+    oldFile: !uuid '56f3873cff739398618c720e4d14a009047fecb8'
+  /addons/store/model/GoodsPhoto.php:
+    newFile: !uuid 'e0f6784a48ce2843766d5ef468ab5e5ff6c93eac'
+    oldFile: !uuid 'ff18b6928d2d13dde59c2b21904cfac1f6232fde'
+  /addons/store/model/GoodsSpecBase.php:
+    newFile: !uuid 'e670f636ca28404d601caf985a4667fbaf66c068'
+    oldFile: null
+  /addons/store/model/GoodsSpecType.php:
+    newFile: !uuid '36dbc9a87dc761f47f25fbb9403e985e1f2cb99c'
+    oldFile: null
+  /addons/store/model/GoodsSpecValue.php:
+    newFile: !uuid '872fe3e584d83a33b95ce4395c1c8a5a20cf2c40'
+    oldFile: null
+  /addons/store/view:
+    newFile: !uuid 'da925aa3ff8950683f933440f0748cffb82a79da'
+    oldFile: !uuid 'b506f8e28bb5edc840d4c4705419bdd77b82dd00'
+  /addons/store/view/brand:
+    newFile: !uuid '54d47068aa8455b82189d1a2491e6f573bfecc04'
+    oldFile: null
+  /addons/store/view/brand/add_edit.html:
+    newFile: !uuid 'be619f2b65409378899c618a5e4e5e432df647be'
+    oldFile: null
+  /addons/store/view/brand/list.html:
+    newFile: !uuid '6ce8e8c64bc6fd65b9db25ce445f32c9935b807c'
+    oldFile: null
+  /addons/store/view/category:
+    newFile: !uuid '52a022452dcda34ed5b0bf0f48a9056ae5eecc89'
+    oldFile: !uuid '93b871f774a8e60226fa755393ee7ff4fb3eb1e8'
+  /addons/store/view/category/category.html:
+    newFile: !uuid '8e4ed71979f0681cc922f182fd038718babd0bde'
+    oldFile: !uuid 'b8bacd73590f6084b1ebe74c113db4e9ec5c6659'
+  /addons/store/view/category/category_add.html:
+    newFile: !uuid 'c21f5fdd8addfb9511c6deb9d0871e99fa7c5117'
+    oldFile: !uuid '0d42fe383dca90ad4190d4c56e861ed6cc42f3bf'
+  /addons/store/view/category/category_upc.html:
+    newFile: !uuid 'b596e03aa0fda97cc147076bead07fa3fbb5bb16'
+    oldFile: !uuid '3aae6f009e6bcacd12b62f5df88e51c4c2f1c8a2'
+  /addons/store/view/common:
+    newFile: !uuid '36dc46861fdab1a86d96e9e2e456f27b03c02f62'
+    oldFile: !uuid '915ef5f3295d373be637cbb33f21007a2c6b59da'
+  /addons/store/view/common/photos_ album.html:
+    newFile: !uuid '3496d80d48ae5a021e3f80940303d618c12233d5'
+    oldFile: null
+  /addons/store/view/common/select.html:
+    newFile: !uuid 'd57c77eadcb40eadf4e5613b133edc862820c850'
+    oldFile: !uuid 'dd176ae572557018b50af129a310822d18619e59'
+  /addons/store/view/common/upload_category_image.html:
+    newFile: !uuid 'f01c44a219d5df261917136b11a698dc220ff3fa'
+    oldFile: !uuid '7629e90437e33e3fc90751450c85a654828b6adc'
+  /addons/store/view/common/upload_icon.html:
+    newFile: !uuid 'd351d4d23197ea9f0732ea41a6c8ef588b761c81'
+    oldFile: !uuid 'd509943336b0a9e6c977a23fc728c73d2ac7ea51'
+  /addons/store/view/goods:
+    newFile: !uuid '7f34a6ce60897ef3c2426a88955634f517c66ad9'
+    oldFile: null
+  /addons/store/view/goods/list.html:
+    newFile: !uuid '682eea698658c2a5d34892b320f22a082e1852c0'
+    oldFile: null
+  /addons/store/view/increase:
+    newFile: !uuid 'd80631a16861a3fb1093d26054763e3e04f77717'
+    oldFile: null
+  /addons/store/view/increase/add.html:
+    newFile: !uuid 'a9b393b38f3d2f0c97a45d73f5ddec00ab7c2408'
+    oldFile: null
+  /addons/store/view/increase/add_edit.html:
+    newFile: !uuid 'fda43a1bb24080e8b86c640196af1edf35499930'
+    oldFile: null
+  /addons/store/view/index:
+    newFile: !uuid 'a0e30b438723b694b31ca8eaec10605e40e0117c'
+    oldFile: !uuid 'd4994353fa8140ef7ac5176ebb8d5e6b7b2338bc'
+  /addons/store/view/index/category.html:
+    newFile: !uuid '6e0cfca5198be97ab6c2503f7ea43eb0f973af3c'
+    oldFile: null
+  /addons/store/view/index/category_add.html:
+    newFile: !uuid '4a70ac6905c66475b171a978e89e97a87ae25b3f'
+    oldFile: null
+  /addons/store/view/photos:
+    newFile: !uuid '085756a589ddd96d59e6ed1a81aeb6572a42bf62'
+    oldFile: null
+  /addons/store/view/photos/file.html:
+    newFile: !uuid 'b7bb170a54015a20f6d4252d97ab3c711327e593'
+    oldFile: null
+  /addons/store/view/photos/list.html:
+    newFile: !uuid '25113dad47ffed0e13178969d2b94851f556826d'
+    oldFile: null
+  /addons/store/view/photos/upload.html:
+    newFile: !uuid '7fdc386bf7fe68d2aa99f02a4d8c4c6eb6044c3a'
+    oldFile: null
+  /addons/test:
+    newFile: !uuid '0ea6fb86ced894448718e7c0cd01cc51a291a000'
+    oldFile: !uuid '9ac6ded3e9e630dee830034640c9c987667169de'
+  /addons/test/Plugin.php:
+    newFile: !uuid '6c338e52c9c357edb55b004b5761302d70a3f42d'
+    oldFile: !uuid '93233bd25a36e8d87de4e0ab3d79e3f528b9c8b9'
+  /addons/test/info.ini:
+    newFile: !uuid '293a9f9623ab520c424fac1dfefa6a02aaf0ca34'
+    oldFile: !uuid 'ed1d553860bda01fbcf5b0fa4d43e79dd8755b77'
+  /app:
+    newFile: !uuid 'd81d94ca81bee0e2c23d59c482b8f14aa2612f7f'
+    oldFile: !uuid '070194d3588924f4c9b29e28eecfc6130654d133'
+  /app/admin:
+    newFile: !uuid 'eedec33dcb77bc454f6228f84e500cf743ee337b'
+    oldFile: !uuid 'e8092bd90e469fbaf82bf65ef0877e8c36a0e23a'
+  /app/admin/controller:
+    newFile: !uuid 'cf58f34ffb0bd3c653b29c441a6be1b04c9cf26c'
+    oldFile: !uuid 'f07be70cf93137f7d0b179f7cab44c348c44da92'
+  /app/admin/controller/Caomei.php:
+    newFile: !uuid '9a6017cc24e46f04132a93c0bc2a56c807d63c16'
+    oldFile: null
+  /app/admin/controller/Lazy.php:
+    newFile: !uuid '87c29317201ab64c349c4f08d5179486cacf84ae'
+    oldFile: null
+  /app/admin/controller/Plugin.php:
+    newFile: !uuid 'b9c6fa990b065790d6e026d15e72c4721194a465'
+    oldFile: !uuid 'e32419460df36be1cacee9d45d55953c4ace1538'
+  /app/admin/model:
+    newFile: !uuid '625d26f81f34c8d795f302fb01ebad84832dc15a'
+    oldFile: !uuid '193514d85d49b6a7b8a6ceb6c8c90a082ae8a93c'
+  /app/admin/model/CoreOrder.php:
+    newFile: !uuid 'a76df102372d023f7bdf079f0fd34a0f2a980cd1'
+    oldFile: null
+  /app/admin/model/Lazy.php:
+    newFile: !uuid '23ebd140c001a3a944b56a361393228a39cf79fc'
+    oldFile: null
+  /app/admin/model/Market.php:
+    newFile: !uuid '15195e1326f788e5dbbe080cb1e3fd4422dcc9ba'
+    oldFile: null
+  /app/admin/view:
+    newFile: !uuid 'c01eb63a5916fdbdacf410665c7503843d07d05b'
+    oldFile: !uuid 'cb2f7a27627c6bbe824300cd21cd99c882493206'
+  /app/admin/view/caomei:
+    newFile: !uuid '12ff75e8f0fb592093dc6fc48e09af8b4e6668b8'
+    oldFile: null
+  /app/admin/view/caomei/login.html:
+    newFile: !uuid '816781bb2557d7a9a118d9833201cda27f92dc2c'
+    oldFile: null
+  /app/admin/view/caomei/payqr.html:
+    newFile: !uuid 'ed3d912312ba754c36797d412b128096eabaa26a'
+    oldFile: null
+  /app/admin/view/form_builder:
+    newFile: !uuid 'ad08a538f9389edc6323a5cfd8b9356e2977c95b'
+    oldFile: !uuid '490eb630bae7eb4f91cd4f7906ba13ab8e7b8143'
+  /app/admin/view/form_builder/layout.html:
+    newFile: !uuid '6e44dcf925a4df6f75a96edbeaf2eeb1b28dee25'
+    oldFile: !uuid 'abfd085ac52627d45f108836c783459409b9829b'
+  /app/admin/view/index:
+    newFile: !uuid '0ed137c461a8a75dd67091947f292aeffe7bc913'
+    oldFile: !uuid '094346c837547d94023e45681361ce1333c1efc5'
+  /app/admin/view/index/index.html:
+    newFile: !uuid '7e33fded4d0555b7c3531a821dc8e6f0b5807856'
+    oldFile: !uuid 'e1dda988e6f48868a3703e148ccfc4fc70385ad9'
+  /app/admin/view/lazy:
+    newFile: !uuid '89d6d388d1b740db3ab3b32ce43c03b454ac3fa9'
+    oldFile: null
+  /app/admin/view/lazy/add.html:
+    newFile: !uuid 'd464ecf28cf6e2e76de5714a9c2ea79ed654acee'
+    oldFile: null
+  /app/admin/view/lazy/edit.html:
+    newFile: !uuid 'af48b58b46e61a70c58fabf14e87729e20da3412'
+    oldFile: null
+  /app/admin/view/lazy/index.html:
+    newFile: !uuid 'e1fb3fabcbba55aee327700f834ffa887b523484'
+    oldFile: null
+  /app/admin/view/login:
+    newFile: !uuid '6aad17f7089d33eb78abd3c83c08b0f7a84dc0d8'
+    oldFile: !uuid '2ec47967844207880666af376be57217c668b87b'
+  /app/admin/view/login/index.html:
+    newFile: !uuid 'e9e85b822d17b897fdba71c206cc64ee1b2719e5'
+    oldFile: !uuid 'f17e248290fa2e5dc11740e1a89a85c168da9301'
+  /app/admin/view/plugin:
+    newFile: !uuid '0f6b8253fcc07c5f78ad6eee51ce4087be404660'
+    oldFile: !uuid '00da595377d6dcc51ad9b139012a9972052cef76'
+  /app/admin/view/plugin/index.html:
+    newFile: !uuid '17da7daadf63a14207c2ec26ef5c8cf99f6c087c'
+    oldFile: !uuid '9e0fb29e2578a245bf2b23ed27454effcc415410'
+  /app/api:
+    newFile: !uuid '04993190ee1c371f5af4ea22aeddddf7ebdf0d1a'
+    oldFile: null
+  /app/api/controller:
+    newFile: !uuid '369911c1da5ab76dc2a614f76138785c04b79946'
+    oldFile: null
+  /app/api/controller/Admin.php:
+    newFile: !uuid 'acbe6faa60a508ec6e186b753901a1a9e611c287'
+    oldFile: null
+  /app/api/controller/Lazy.php:
+    newFile: !uuid '4be00326c51cc5ebca4b6e17e0d6f7bc16f5a476'
+    oldFile: null
+  /app/api/controller/Wxapp.php:
+    newFile: !uuid '2b0424ad85a6155bcee2aa27e26d708f031f5b8d'
+    oldFile: null
+  /app/api/model:
+    newFile: !uuid '9c5250ca8adf800134c8b38617d732a0496e3891'
+    oldFile: null
+  /app/api/model/Admin.php:
+    newFile: !uuid '4097849e7bb8a87c5c133d385ddaaf5ff8d8fc27'
+    oldFile: null
+  /app/api/model/Lazy.php:
+    newFile: !uuid 'd0ff0cb8f50522f2e7bef666cea9c96966fe52c7'
+    oldFile: null
+  /app/api/model/Wxapp.php:
+    newFile: !uuid 'adb22e5bf96e89d0d1519eb84992e8e87c41b109'
+    oldFile: null
+  /app/common:
+    newFile: !uuid '892a5110b3e3cc6b67ed929c9a98cf8e0c9750f2'
+    oldFile: !uuid 'b8c259a15c533b88f609b59765d656dce153035a'
+  /app/common.php:
+    newFile: !uuid '2d1da990fe2499b2953c683a2d2737dac7f6c47d'
+    oldFile: !uuid 'c2c796efe8727b4541f07733e7eeb1e15fd11fea'
+  /app/common/componets:
+    newFile: !uuid 'e023de50c9dbcc7da31e1f4411285c2bb7b66b5b'
+    oldFile: !uuid '5bac75fc743a66169cf247f256ba33a7aa1775fd'
+  /app/common/componets/Componets.php:
+    newFile: !uuid 'a3ddcb605a21f1de2c656445221ea2fe4b4876c1'
+    oldFile: !uuid 'af9d8c8bcbd5eb732a76b5de13ebfae377f11d16'
+  /app/common/controller:
+    newFile: !uuid '3f8127002f22d269142cc14ef33818516d3c4770'
+    oldFile: !uuid 'd1b9ec94aab69d8dcac53e3cb4dea5937933cfa1'
+  /app/common/controller/Api.php:
+    newFile: !uuid '6253189affe4c266f4a947cb071cb0b4953b9558'
+    oldFile: null
+  /app/common/http:
+    newFile: !uuid 'db30c67efeff9ef739289055a0efb768e977672c'
+    oldFile: !uuid '8d589cfe05a1e16e2e3ea09f74ae481671e87da1'
+  /app/common/http/Json.php:
+    newFile: !uuid 'fc1840d159256d9aa35e89d3e54837a71a4db1fd'
+    oldFile: !uuid '423a8d54ab51451823c4ae01ffb982ddcb46154f'
+  /app/common/model:
+    newFile: !uuid 'd38a332edab596146f3abadcad277ef6ecdd7391'
+    oldFile: !uuid '5924d5b1a7a730f631cf064731f8d8945fc5e9fd'
+  /app/common/model/Admin.php:
+    newFile: !uuid '4097849e7bb8a87c5c133d385ddaaf5ff8d8fc27'
+    oldFile: !uuid 'd046daf8d87e28c4cc701996608a753c7b4ebe5a'
+  /app/common/model/Lazy.php:
+    newFile: !uuid 'd0ff0cb8f50522f2e7bef666cea9c96966fe52c7'
+    oldFile: null
+  /app/common/model/Wxapp.php:
+    newFile: !uuid 'adb22e5bf96e89d0d1519eb84992e8e87c41b109'
+    oldFile: null
+  /app/doc:
+    newFile: !uuid 'e958be54c8c9390e8363b5ec326b4bec44cf0d53'
+    oldFile: null
+  /app/doc/route:
+    newFile: !uuid '0cbefd33af1b43755fe2265b2366d370d91bbdc7'
+    oldFile: null
+  /app/doc/route/route.php:
+    newFile: !uuid 'bee0fd0cafcd8af647ebfc64c303eb9fbc6a557b'
+    oldFile: null
+  /composer.json:
+    newFile: !uuid '9643fd80665cea319bf0edca0b40d7a728f1f411'
+    oldFile: !uuid '61944e7d185a63d1fe7e54c89a7d7124338a0015'
+  /config:
+    newFile: !uuid '04c5313c4223c43071de09da27b2ebf64ffb318a'
+    oldFile: !uuid 'aa7d28d8c325b0f967f858d1116e625845e5c024'
+  /config/apidoc.php:
+    newFile: !uuid '2cabf4f928fc90669462fd6b87104ac1c37863ca'
+    oldFile: null
+  /config/codemsg.php:
+    newFile: !uuid '51d12d1aa897a159036eaad0fdb7a48462f1bef4'
+    oldFile: null
+  /config/view.php:
+    newFile: !uuid '4783a0346e91f4ab0834aba63696003075279a74'
+    oldFile: !uuid '01259a0ef527b6a92d8eb31f4d89cd3bdb369579'
+  /extend:
+    newFile: !uuid 'e7b96175aa7352b16d6b5be63bf674b7768f3ca1'
+    oldFile: !uuid '2fbead5cf497fb1e0fd8d102e6b4e050de6c78be'
+  /extend/fast:
+    newFile: !uuid 'afa4d95a30c9082725e63592103532fc6cb6f154'
+    oldFile: !uuid '35340841ae2003854c4582dd812e57b5f0ef94de'
+  /extend/fast/Http.php:
+    newFile: !uuid '81f2b17588c1df994787d73b5e29d4f79d155cab'
+    oldFile: null
+  /public:
+    newFile: !uuid '53d3d937f4606a0e161e027a33534ffd181aab77'
+    oldFile: !uuid '98f8ec704f612f9ce7fef8ec84012802771e54d9'
+  /public/.htaccess:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+    oldFile: !uuid '1c41061df7cad0e5bc1def0779db5888dcc108ce'
+  /public/index.php:
+    newFile: !uuid '68b7458fd630c10e5a016f9a9434c38235f20600'
+    oldFile: !uuid 'e3c0fe9083c5540d7149b1277acc679ea18ed48e'
+  /public/install.php:
+    newFile: !uuid 'e6689c6623673ed48317bbcd6bb1e7c583fa61e5'
+    oldFile: !uuid '1a067c1dedf4a4ec0868fd51a3b541e199adc464'
+  /public/nginx.htaccess:
+    newFile: !uuid 'b8c52753275c65746e3afbfc22fb24ebddd08a2f'
+    oldFile: null
+  /public/static:
+    newFile: !uuid '8e469a11e5780eb8d1467c6459f073cbe181f507'
+    oldFile: !uuid '3d7602e9d91419303b669c281481ab1f51ab70f3'
+  /public/static/css:
+    newFile: !uuid 'aed63b266dddf8a3034de84b149c578bb57bceac'
+    oldFile: !uuid 'd9c80247737b6a42831002aeebc350759bd5eec8'
+  /public/static/css/dragula.css:
+    newFile: !uuid '52fdf8d4c83a8394e4b350525d184bbcd4aeee76'
+    oldFile: null
+  /public/static/doc:
+    newFile: !uuid '3c454e05d12b37a6be9c163b06b1ebcbaa543bf1'
+    oldFile: null
+  /public/static/doc/layui:
+    newFile: !uuid '269698851a59521d4521a6bb67012aaf378c1004'
+    oldFile: null
+  /public/static/doc/layui/css:
+    newFile: !uuid '5e42e3a4b4d30dcc0aa160de661e820b896f36b0'
+    oldFile: null
+  /public/static/doc/layui/css/layui.css:
+    newFile: !uuid 'e80da665537b7eb5d8b133a8f428284dd1491464'
+    oldFile: null
+  /public/static/doc/layui/css/layui.mobile.css:
+    newFile: !uuid 'cefeb463629baa82e7aef96b3bbf3113df1c06f0'
+    oldFile: null
+  /public/static/doc/layui/css/modules:
+    newFile: !uuid '13f98bc3a1ab67c8160f73b8507ec7d7f4828f4b'
+    oldFile: null
+  /public/static/doc/layui/css/modules/code.css:
+    newFile: !uuid 'e12278b69be2673ae26d426706fd81d1f4b711c8'
+    oldFile: null
+  /public/static/doc/layui/css/modules/laydate:
+    newFile: !uuid 'a31f614143f58edcefef6675027707cfbcb31c98'
+    oldFile: null
+  /public/static/doc/layui/css/modules/laydate/default:
+    newFile: !uuid '899ed50ad70becc654a3793a27e6e4237349faad'
+    oldFile: null
+  /public/static/doc/layui/css/modules/laydate/default/laydate.css:
+    newFile: !uuid '554698b3e6b1d59f38327246d22efc4d3d1ec4c1'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer:
+    newFile: !uuid 'caf25c7430196a3d677d7e5788ad22740c1b8964'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default:
+    newFile: !uuid '1eb9fe38be2aa1296963ba16846b79d109f92599'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default/icon-ext.png:
+    newFile: !uuid 'bbbb669bb311514baa5db3a6a00b4644d0e280f1'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default/icon.png:
+    newFile: !uuid '3e17da8b1aaae2935e19ac97d9015f0fe24e8770'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default/layer.css:
+    newFile: !uuid '2ed7de6218b8a5b9fe33eb2344df0f2a9a293ce8'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default/loading-0.gif:
+    newFile: !uuid '6f3c9539a22171cc2f12639492e346d97a9078e8'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default/loading-1.gif:
+    newFile: !uuid 'db3a483e4b74971fbfb1cc0fb6499852cedfe650'
+    oldFile: null
+  /public/static/doc/layui/css/modules/layer/default/loading-2.gif:
+    newFile: !uuid '5bb90fd6a49107a321c35b9cee4a7b810314b51f'
+    oldFile: null
+  /public/static/doc/layui/font:
+    newFile: !uuid '8d3e40f0f62f149b30ce611e7b4328eb6e7336ce'
+    oldFile: null
+  /public/static/doc/layui/font/iconfont.eot:
+    newFile: !uuid '51c4f895885b9770114cd59875da879d45700c83'
+    oldFile: null
+  /public/static/doc/layui/font/iconfont.svg:
+    newFile: !uuid 'e05b1895ac83e64c36e3e37fd2d9943cac074c2f'
+    oldFile: null
+  /public/static/doc/layui/font/iconfont.ttf:
+    newFile: !uuid '43a316134dbeef2018f808fa14393ffc75967078'
+    oldFile: null
+  /public/static/doc/layui/font/iconfont.woff:
+    newFile: !uuid '7fd98e35fcb768eaa3e8e9ffda1a888cf225a5ce'
+    oldFile: null
+  /public/static/doc/layui/images:
+    newFile: !uuid '90594bfce2312bc2253056aa24c6ece56802ac32'
+    oldFile: null
+  /public/static/doc/layui/images/face:
+    newFile: !uuid 'b4f5f2af3856f690091996a062f6f510de0e406e'
+    oldFile: null
+  /public/static/doc/layui/images/face/0.gif:
+    newFile: !uuid 'a63f0d523561c523476e5330a0d67eb7318cb187'
+    oldFile: null
+  /public/static/doc/layui/images/face/1.gif:
+    newFile: !uuid 'b2b78b218996f70773540d0d3a8649d3c2d199a2'
+    oldFile: null
+  /public/static/doc/layui/images/face/10.gif:
+    newFile: !uuid '556c7e326801a0ea090bd693ca43807925d3cbc2'
+    oldFile: null
+  /public/static/doc/layui/images/face/11.gif:
+    newFile: !uuid '2bfc58be8c70d512f4371b50b2b98c7b8adbe719'
+    oldFile: null
+  /public/static/doc/layui/images/face/12.gif:
+    newFile: !uuid '1c321c7eb0e5b5bdbdd10b93907b8eaeb3bf11bf'
+    oldFile: null
+  /public/static/doc/layui/images/face/13.gif:
+    newFile: !uuid '300bbc2a0384e5654525e7581017364dd9ceb59c'
+    oldFile: null
+  /public/static/doc/layui/images/face/14.gif:
+    newFile: !uuid '43b6d0a43857dc0990728155ed120c8eb66a5b81'
+    oldFile: null
+  /public/static/doc/layui/images/face/15.gif:
+    newFile: !uuid 'c9f25fa1d25412e2e929347c0db0878b0b641d58'
+    oldFile: null
+  /public/static/doc/layui/images/face/16.gif:
+    newFile: !uuid '34f28e4cde0cd13acdbbd7482282eb306f5b21e5'
+    oldFile: null
+  /public/static/doc/layui/images/face/17.gif:
+    newFile: !uuid '39cd03538a5bc595fbc46c97cf2b06c8bd8dadd1'
+    oldFile: null
+  /public/static/doc/layui/images/face/18.gif:
+    newFile: !uuid '7bce2997f86e477a6008fb1cae8dd03cda10abf6'
+    oldFile: null
+  /public/static/doc/layui/images/face/19.gif:
+    newFile: !uuid 'adac542fd33e152fc08baf165d1c5a467f0c2747'
+    oldFile: null
+  /public/static/doc/layui/images/face/2.gif:
+    newFile: !uuid '7edbb58a843cec27a1641a5c9b6d30b8fc1f8c26'
+    oldFile: null
+  /public/static/doc/layui/images/face/20.gif:
+    newFile: !uuid '50631a6e314179d0761b4ee664616ad2162ba147'
+    oldFile: null
+  /public/static/doc/layui/images/face/21.gif:
+    newFile: !uuid 'b98421282467fb377dced2eabd72bcc5525f3e8e'
+    oldFile: null
+  /public/static/doc/layui/images/face/22.gif:
+    newFile: !uuid '1f0bd8b0023c25e74fac444bfecd6c5d7a0dc448'
+    oldFile: null
+  /public/static/doc/layui/images/face/23.gif:
+    newFile: !uuid 'e05e0f97a3674d02e0f160c5193f54f6b3a30fdc'
+    oldFile: null
+  /public/static/doc/layui/images/face/24.gif:
+    newFile: !uuid 'f35928a264bd981595dce02cf48c1776e2b5770a'
+    oldFile: null
+  /public/static/doc/layui/images/face/25.gif:
+    newFile: !uuid '0b4a88322946c1b65e9236657d6f42c71e412a94'
+    oldFile: null
+  /public/static/doc/layui/images/face/26.gif:
+    newFile: !uuid '45c4fb5563081d684f00cc3560df41b803cf7bbf'
+    oldFile: null
+  /public/static/doc/layui/images/face/27.gif:
+    newFile: !uuid '7a4c0131dc926ee932804276038bf053a5cc1634'
+    oldFile: null
+  /public/static/doc/layui/images/face/28.gif:
+    newFile: !uuid 'fc5a0cfafa213e9861135c8ced7b87ebea74c269'
+    oldFile: null
+  /public/static/doc/layui/images/face/29.gif:
+    newFile: !uuid '5dd7442b164b2ea32b5ae97da71073a31a699c83'
+    oldFile: null
+  /public/static/doc/layui/images/face/3.gif:
+    newFile: !uuid '86df67b7aad1ac80079562c74945d9c4ced3c397'
+    oldFile: null
+  /public/static/doc/layui/images/face/30.gif:
+    newFile: !uuid 'b751f98abcf8173ae3c08402c99ae885a0dfe162'
+    oldFile: null
+  /public/static/doc/layui/images/face/31.gif:
+    newFile: !uuid 'c9476d79608dacdc613410702804e5ce7483cb67'
+    oldFile: null
+  /public/static/doc/layui/images/face/32.gif:
+    newFile: !uuid '9931b0636bc8f30b2172b608a44a90119b29ced6'
+    oldFile: null
+  /public/static/doc/layui/images/face/33.gif:
+    newFile: !uuid '59111a38c849fa06175a318fa98625c38d717398'
+    oldFile: null
+  /public/static/doc/layui/images/face/34.gif:
+    newFile: !uuid 'a334548e8780d66ccd2de35bb2475db92c7e0489'
+    oldFile: null
+  /public/static/doc/layui/images/face/35.gif:
+    newFile: !uuid 'a9322643dae616390d8263e8cf1bc4d9fdfa03ec'
+    oldFile: null
+  /public/static/doc/layui/images/face/36.gif:
+    newFile: !uuid '6de432ae96ee120b440c2448e3977587f789a410'
+    oldFile: null
+  /public/static/doc/layui/images/face/37.gif:
+    newFile: !uuid 'd05f2da45500eb37e7f723e9ddddcfd4e901d90e'
+    oldFile: null
+  /public/static/doc/layui/images/face/38.gif:
+    newFile: !uuid '8b1c88a3e8658cde7b25b6e063d23d010f7ed86a'
+    oldFile: null
+  /public/static/doc/layui/images/face/39.gif:
+    newFile: !uuid '38b84a51394e20ac33ae5c9b6fdbc66f90f94a0d'
+    oldFile: null
+  /public/static/doc/layui/images/face/4.gif:
+    newFile: !uuid 'd52200c51ee924f0b91132e5cd3737fadcf40ef8'
+    oldFile: null
+  /public/static/doc/layui/images/face/40.gif:
+    newFile: !uuid 'ae429912d6d6f74dfffd19376ec1fdee426d8036'
+    oldFile: null
+  /public/static/doc/layui/images/face/41.gif:
+    newFile: !uuid 'b9c715c5208044db4a057583efdf2bc12f099cd1'
+    oldFile: null
+  /public/static/doc/layui/images/face/42.gif:
+    newFile: !uuid '0eb1434b4e81d4437098efe06cb4e1ab44a86211'
+    oldFile: null
+  /public/static/doc/layui/images/face/43.gif:
+    newFile: !uuid 'ac0b700850553a3d7be8d33cf6622c5a832cb1f0'
+    oldFile: null
+  /public/static/doc/layui/images/face/44.gif:
+    newFile: !uuid 'ad44497691d150ea5d02a900231e48ff519d9616'
+    oldFile: null
+  /public/static/doc/layui/images/face/45.gif:
+    newFile: !uuid '6837fcaf214a394d8efb68f5d48c9ec6f9ea1fa3'
+    oldFile: null
+  /public/static/doc/layui/images/face/46.gif:
+    newFile: !uuid 'd62916d4031609830f26ef77c17ad26906ac9717'
+    oldFile: null
+  /public/static/doc/layui/images/face/47.gif:
+    newFile: !uuid '58a083611d7c1afd95d136e3a7fa798c86d0c2ef'
+    oldFile: null
+  /public/static/doc/layui/images/face/48.gif:
+    newFile: !uuid '7ffd1613b5fa36c3ffa7daca94e7e8cd6f8d82ef'
+    oldFile: null
+  /public/static/doc/layui/images/face/49.gif:
+    newFile: !uuid '959b99296b323c0f9c6dc35e14c9f28cc66eec04'
+    oldFile: null
+  /public/static/doc/layui/images/face/5.gif:
+    newFile: !uuid '4e8b09f15101f3e3fad0777ad068fb559ed483a9'
+    oldFile: null
+  /public/static/doc/layui/images/face/50.gif:
+    newFile: !uuid '6e22e7ff12a215188dfc4d0314e91cee7526e739'
+    oldFile: null
+  /public/static/doc/layui/images/face/51.gif:
+    newFile: !uuid 'ad3f4d3a8158106dbfa48e521084e6c56fc6406f'
+    oldFile: null
+  /public/static/doc/layui/images/face/52.gif:
+    newFile: !uuid '39f8a22846945358446ed010e2b9bd50dfcc7a25'
+    oldFile: null
+  /public/static/doc/layui/images/face/53.gif:
+    newFile: !uuid 'a181ee77882f8249f4551516085e1c2e7cf0cfec'
+    oldFile: null
+  /public/static/doc/layui/images/face/54.gif:
+    newFile: !uuid 'e289d929b9552beb7be70329b7cbefb1d0618008'
+    oldFile: null
+  /public/static/doc/layui/images/face/55.gif:
+    newFile: !uuid '4351083ac8e0e65a64ff362cbd480f2c86eab4fb'
+    oldFile: null
+  /public/static/doc/layui/images/face/56.gif:
+    newFile: !uuid 'e0eff222ba83ddcd3c2212e9336fb143e72204bf'
+    oldFile: null
+  /public/static/doc/layui/images/face/57.gif:
+    newFile: !uuid '0bf130f0d930a1fb72ca83265bb504304cb08090'
+    oldFile: null
+  /public/static/doc/layui/images/face/58.gif:
+    newFile: !uuid '0f065087d4720326776b26c7b9d2482c9e467bca'
+    oldFile: null
+  /public/static/doc/layui/images/face/59.gif:
+    newFile: !uuid '7081e4f023999fe813726fc83f39d169dedd7ecb'
+    oldFile: null
+  /public/static/doc/layui/images/face/6.gif:
+    newFile: !uuid 'f7715bf52817bc577c0d33cd0cbd17da898848a1'
+    oldFile: null
+  /public/static/doc/layui/images/face/60.gif:
+    newFile: !uuid '6e15f89d79ed82cdb1f53aed2378d887915528f3'
+    oldFile: null
+  /public/static/doc/layui/images/face/61.gif:
+    newFile: !uuid 'f092d7e351cb195eaf707dbec74d32ced42f432f'
+    oldFile: null
+  /public/static/doc/layui/images/face/62.gif:
+    newFile: !uuid '7fe49840bf69219fa40585741f901fa0b187c044'
+    oldFile: null
+  /public/static/doc/layui/images/face/63.gif:
+    newFile: !uuid 'cf8e23e5b2e83bf4f383cd994510a7a04a74f57c'
+    oldFile: null
+  /public/static/doc/layui/images/face/64.gif:
+    newFile: !uuid 'a7797198af0f3bb98361b1b8737784d0a8c2cba0'
+    oldFile: null
+  /public/static/doc/layui/images/face/65.gif:
+    newFile: !uuid '7bb98f2d8a2502888a61e885d0853d3d3b0661ec'
+    oldFile: null
+  /public/static/doc/layui/images/face/66.gif:
+    newFile: !uuid 'bb6d077504e3b39871f72150c1f5fa43d4e18bfe'
+    oldFile: null
+  /public/static/doc/layui/images/face/67.gif:
+    newFile: !uuid '6e33f7c4f762b5c4eda2a630793d681345423734'
+    oldFile: null
+  /public/static/doc/layui/images/face/68.gif:
+    newFile: !uuid '1a6c400d2aee3c2bf384ea98105ea143a7be97a9'
+    oldFile: null
+  /public/static/doc/layui/images/face/69.gif:
+    newFile: !uuid 'a02f0b2234a9c03bbfb9578056143ef4516bd965'
+    oldFile: null
+  /public/static/doc/layui/images/face/7.gif:
+    newFile: !uuid 'e6d4db80572a8321fa233d7efd82636fd896bf49'
+    oldFile: null
+  /public/static/doc/layui/images/face/70.gif:
+    newFile: !uuid '416c5c14a19fbdaf8fb8d6baf5cf7e31e54f751a'
+    oldFile: null
+  /public/static/doc/layui/images/face/71.gif:
+    newFile: !uuid 'c17d60cbd15e80d83629b2220b562a224eec5554'
+    oldFile: null
+  /public/static/doc/layui/images/face/8.gif:
+    newFile: !uuid '66f967b48da173b68cbfc92986e4426ea35ade74'
+    oldFile: null
+  /public/static/doc/layui/images/face/9.gif:
+    newFile: !uuid '60447400d31b035f56554b29af1aefc76bda1698'
+    oldFile: null
+  /public/static/doc/layui/lay:
+    newFile: !uuid '7c6f260a1872934ee7eb66b67878275930425697'
+    oldFile: null
+  /public/static/doc/layui/lay/modules:
+    newFile: !uuid 'ca196c996534f7c7a29f969f9f963a58f17d31a8'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/carousel.js:
+    newFile: !uuid '58553943bee79279ec2703f2b1c96393f16fd2bf'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/code.js:
+    newFile: !uuid 'ad795a641b2c5dddf83755bdf9122c4c37f30d59'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/element.js:
+    newFile: !uuid 'cddd20a9c466eadd68e3ec4e8f7d7400161e95ff'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/flow.js:
+    newFile: !uuid '0528c561b1c2f1a9149542da6802e4a9e056e320'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/form.js:
+    newFile: !uuid '2d9373fe3e3048af610cea6c9c9566cfeb9343a5'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/jquery.js:
+    newFile: !uuid 'f6d58cdc32441401b0b313c2b72e31d84d0666c3'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/laydate.js:
+    newFile: !uuid '345a217869bd10726887b927872467ed56e9d85d'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/layedit.js:
+    newFile: !uuid 'fc1727dcecf24e3da4474f30b7d9911418b43e19'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/layer.js:
+    newFile: !uuid '55fef5625bdb251b1849cdb612eff97ddee203c3'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/laypage.js:
+    newFile: !uuid '2cf64d54ebe267f73ccb6b6999a16699c8bf23e5'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/laytpl.js:
+    newFile: !uuid '9e694d7f054623f2c232115cf044afbd948ebeb1'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/mobile.js:
+    newFile: !uuid '58621708fc5f6fac33520eaee7793dba2d266c20'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/rate.js:
+    newFile: !uuid '3c98909c213b5d685f638f9c5793bbcb1af9fe5a'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/table.js:
+    newFile: !uuid 'fe4e4ee747a3328159a5ff9c69ed8738ca70f8fe'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/tree.js:
+    newFile: !uuid 'ed01acbbeb7874e0a8bfbfa125bb899f37ced7b8'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/upload.js:
+    newFile: !uuid '469a13f97d52d045a831cf42fe169cb4f1306940'
+    oldFile: null
+  /public/static/doc/layui/lay/modules/util.js:
+    newFile: !uuid '32bffa4212f11c9fb81071c25cbae41206f1d5f1'
+    oldFile: null
+  /public/static/doc/layui/layui.all.js:
+    newFile: !uuid 'e2a7e0109622b8bd1fcb25b007c43ffc26b78fef'
+    oldFile: null
+  /public/static/doc/layui/layui.js:
+    newFile: !uuid '0806c132bacf76eede5f95ba183dbc2651411270'
+    oldFile: null
+  /public/static/doc/logo.png:
+    newFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
+    oldFile: null
+  /public/static/doc/style.css:
+    newFile: !uuid '6a4b4223513ce6845f9f3af8a2f4d857f2131a7c'
+    oldFile: null
+  /public/static/images:
+    newFile: !uuid 'd9910fb944594b1879e916064bdbc0fd68608321'
+    oldFile: !uuid 'b89dbb0f7968624ec042218729dd957157311d60'
+  /public/static/images/success_checked.jpg:
+    newFile: !uuid '94f968dc8fd3c7ca8f6cb599d006ef3f23b62c7d'
+    oldFile: null
+  /public/static/js:
+    newFile: !uuid '8b5e983125f2386d50ac13ecc73cf4ae14efb326'
+    oldFile: !uuid '68ffddb70731fc0f110923cbe90e70db2b959053'
+  /public/static/js/dragula.js:
+    newFile: !uuid '72d897ab3c9524aeb02389929cf01c552626810a'
+    oldFile: null
+  /public/static/lib:
+    newFile: !uuid 'edd5718f6fa920139d35982a2f162e1fa35707f1'
+    oldFile: !uuid 'fbab3df630a198c203bb5951748b548bc777feef'
+  /public/static/lib/layui:
+    newFile: !uuid 'd3be3a241f3401575bfff13ac91648ab64468733'
+    oldFile: !uuid '5875c22e4f1870e8f74f5254a17eef453a497bbb'
+  /public/static/lib/layui/extend:
+    newFile: !uuid '97547d64faa9218eda253c52b12c35c6a468d20c'
+    oldFile: !uuid '5afa4764ff7f1717bfbf5a3feb3cb5de8dc7f64f'
+  /public/static/lib/layui/extend/city-picker:
+    newFile: !uuid '5aff9efa1405eeff8948604d6fa2ee58dfc6675a'
+    oldFile: null
+  /public/static/lib/layui/extend/city-picker/city-picker.css:
+    newFile: !uuid '578b583119168f9d4bdb35c2d35f74fbd5797096'
+    oldFile: null
+  /public/static/lib/layui/extend/city-picker/city-picker.data.js:
+    newFile: !uuid '84be8548184795396b5800323aeb0e91a5f46640'
+    oldFile: null
+  /public/static/lib/layui/extend/city-picker/city-picker.js:
+    newFile: !uuid 'a25768a7f9902de2832a2435beadb578da8b2d08'
+    oldFile: null
+  /public/static/lib/layui/extend/city-picker/drop-arrow.png:
+    newFile: !uuid '308dae5f492f8f5e39ee9175ced7004da80fddad'
+    oldFile: null
+  /public/static/lib/layui/extend/fileManager:
+    newFile: !uuid '064cfeea2fccb36b267d06fea7392f5a843a718e'
+    oldFile: null
+  /public/static/lib/layui/extend/fileManager/fileManager.js:
+    newFile: !uuid 'bdf5f6a8fe933480adbd1ed3d8bd7c9322cc48d9'
+    oldFile: null
+  /public/static/lib/layui/extend/fileManager/fileManager_src.js:
+    newFile: !uuid '6e00561a61192bbc53ef530ff94d22224fa66a73'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce:
+    newFile: !uuid '6707f594faebbf45302f9277dce43a77b330a43d'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce:
+    newFile: !uuid 'd7cf654f320518b8c1645994310bc751087be636'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce.js:
+    newFile: !uuid 'c0a89b644d0cb808e3f609e4ed4e6727aa786d26'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/jquery.tinymce.min.js:
+    newFile: !uuid '5a6ef56ad41606935990b23742231c24a2859ad4'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/langs:
+    newFile: !uuid '1a3a627ba2e7aad6dd690ea52c42ec424fc8c7d2'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/langs/readme.md:
+    newFile: !uuid 'a52bf03f9a3ae977eaca0d3f4c406199cc15b023'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/langs/zh_CN.js:
+    newFile: !uuid '89b106c296961d5b77563073977757a8bfefeba0'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/license.txt:
+    newFile: !uuid 'b17fc90494cf7573951fdbcccc9d2df35ad95797'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins:
+    newFile: !uuid '4fc1a34869127dddcbc4f4cb63b172549a92ba42'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/advlist:
+    newFile: !uuid 'c09729cb73dd646af2c18e26ae8eadb2d87d146b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/advlist/plugin.js:
+    newFile: !uuid 'c31e5cad51ce5aa3fbed1e1c20a5da0807df2565'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/advlist/plugin.min.js:
+    newFile: !uuid 'a07d3e31fb0f07f9f8376860628ce195df8c71e2'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/anchor:
+    newFile: !uuid 'cfde1b5c99f64d7ab71b2eddb8419ef0181d3257'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/anchor/plugin.js:
+    newFile: !uuid 'b18ae2b8b9684c524b4632a5d4b054d369168de3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/anchor/plugin.min.js:
+    newFile: !uuid '888934d98ff5c0fd2fbc3b67cbab5cdd3150d613'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autolink:
+    newFile: !uuid '91dee47e07e5a97754019033679c239b17ab15cc'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autolink/plugin.js:
+    newFile: !uuid '99076c3130ac4fff59b383a13689e0a386bdee33'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autolink/plugin.min.js:
+    newFile: !uuid '76daf6768d804444e14441bbab63ca99d2b84f97'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autoresize:
+    newFile: !uuid 'd10e2ae8a4fb85316e7e57582682ab6a0774c22a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autoresize/plugin.js:
+    newFile: !uuid '4cb3e03f3fd3e0d72ba8572e7ab88486974080a8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autoresize/plugin.min.js:
+    newFile: !uuid 'f4a1c12203625a959ff78e636c7361f2fa8f58e5'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autosave:
+    newFile: !uuid '9e949c1f0ecf17dc5290169023a937a1a09d9c46'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autosave/plugin.js:
+    newFile: !uuid 'bb39311ca165ddff6f643fcaa5d319a1690038e7'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/autosave/plugin.min.js:
+    newFile: !uuid 'c9bf0588fc364251dfd8d5ec5b3fd81d1bfffec5'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/bbcode:
+    newFile: !uuid 'fc300a2030ab550901bc0bc053261cca88baae6d'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/bbcode/plugin.js:
+    newFile: !uuid 'a67e0e67c7131a2916575be706a067fa24c08354'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/bbcode/plugin.min.js:
+    newFile: !uuid '17c247eaab05acb1bd1e5935136079399d747ce0'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/charmap:
+    newFile: !uuid '5d5dae095a99d4022c90be2715ce0bdaabfae7ce'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/charmap/plugin.js:
+    newFile: !uuid '73e547b0860b67eb80155b8f73485b8eaed8aafe'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/charmap/plugin.min.js:
+    newFile: !uuid 'a19df5b9858334b47fc8a96871fee64fb291294f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/code:
+    newFile: !uuid '073084fbc906b88585cbbb45291b5587d21b6eaa'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/code/plugin.js:
+    newFile: !uuid 'd3b7856a3eb93eed1fb797d13816af66df05bb33'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/code/plugin.min.js:
+    newFile: !uuid '6d65b0513b100a8f444e7c0021039e4264968deb'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/codesample:
+    newFile: !uuid 'e4aa5ca7f5b126cc17656bf3f75cbb98a7287a27'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/codesample/plugin.js:
+    newFile: !uuid 'd74fff87afb89cfa27661f2a8fb021e53198336c'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/codesample/plugin.min.js:
+    newFile: !uuid '86f67ce7bea1845cad3a5b143e1d0af0324d1869'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/colorpicker:
+    newFile: !uuid '592c91937f2b403c9cf503c231c32186c7ea25f8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/colorpicker/plugin.js:
+    newFile: !uuid '9ebbb9eb5fafb2d3bd9b98adc75b4dc9e4583fe3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/colorpicker/plugin.min.js:
+    newFile: !uuid 'd08758fc609a55762c858a13a464f0f604343584'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/contextmenu:
+    newFile: !uuid '42e24d1146feed9ce8096fe74f4f5bd92ea79647'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/contextmenu/plugin.js:
+    newFile: !uuid 'f81d60347227a1c0950d2a4ed4acc2304e3f98da'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/contextmenu/plugin.min.js:
+    newFile: !uuid '3df25113fbf251426866025c1f4e22b1ce7d615a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/directionality:
+    newFile: !uuid 'b8e37fe9f3c6d28f829c3b9c29b18f8f1d7e20bf'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/directionality/plugin.js:
+    newFile: !uuid '42a825e3d6365c892f0e1803fb2b8598f4d363db'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/directionality/plugin.min.js:
+    newFile: !uuid '0d601b5af87ebe7ae560cdeadc2c113108f7220e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/emoticons:
+    newFile: !uuid '9e57f76dcbd3f34c86a43a4b67103e7d21dbf3c3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/emoticons/js:
+    newFile: !uuid '3558880491d2b13a0e6a54e79e7f792244220d9d'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/emoticons/js/emojis.js:
+    newFile: !uuid '5f8c249a8fd77d45ad95b3f3f64ec8cff1cf0900'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/emoticons/js/emojis.min.js:
+    newFile: !uuid '5e59213ad4662f5764413b9b8f250dabec6c0a76'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/emoticons/plugin.js:
+    newFile: !uuid 'a437bc9f731ac12f49b5d4fdee6ce6c39669e6f2'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/emoticons/plugin.min.js:
+    newFile: !uuid 'f30033565a38bb217e2ae0cf25060a2a7c91b7b8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/fullpage:
+    newFile: !uuid '71d6ef83bbe3e9e905cb5d95b3c61d855bafb161'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/fullpage/plugin.js:
+    newFile: !uuid '16420c4b4980c14eb0ee65753a0d27d59d80b600'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/fullpage/plugin.min.js:
+    newFile: !uuid '7ef1075199bd2c9c12c5288572ac3304330d915e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/fullscreen:
+    newFile: !uuid 'bdf646322e3fe6f7b14664ad5cef7ca8a22fe64e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/fullscreen/plugin.js:
+    newFile: !uuid 'fa68d39674c8cc82093b46903091235b3f9191af'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/fullscreen/plugin.min.js:
+    newFile: !uuid '6eb913e68b6c0152abd8c303cc980d5dcb38e64c'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/help:
+    newFile: !uuid '1f9b7e910514a7e3dd550b850dcde9059668f95b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/help/plugin.js:
+    newFile: !uuid 'e1e8760b60fed2aad3041204afb06ee7d9d203be'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/help/plugin.min.js:
+    newFile: !uuid '4c15c6e6fa5c8844501559b38bf190bb168f837b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/hr:
+    newFile: !uuid '05d4e3c46b5d495d563bf2a835ce9039a2e6eaf9'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/hr/plugin.js:
+    newFile: !uuid '984f7b44ead27b4e5696de458872d99d7ec9e54e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/hr/plugin.min.js:
+    newFile: !uuid '46603789c72d68a2b14e7f8c02159921d9acbaa9'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/image:
+    newFile: !uuid 'b10f9466ab5ae7eb7fd1343d8ccb2f3e2c159225'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/image/plugin.js:
+    newFile: !uuid '0e2b0c338fbe531be6b46005fea77b271e87e9ac'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/image/plugin.min.js:
+    newFile: !uuid 'dabe6ff00cb48f783189c3c1f2b41f8b0c5dc9ca'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/imageSelector:
+    newFile: !uuid '34f6abaa70d20d2ad5496e430ac0cbde05cf38cc'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/imageSelector/plugin.js:
+    newFile: !uuid '1a84ff1892fc7bf4ea85f263ca4e64613989fcae'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/imagetools:
+    newFile: !uuid 'd5d46ca4987303e21c158058dc26ed0c4a67eb25'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/imagetools/plugin.js:
+    newFile: !uuid '3142c2145885cca779c150418a74eb4bf21e1380'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/imagetools/plugin.min.js:
+    newFile: !uuid 'bc4f05e6d3737643cc76218f8aef5b3a17fd4ebb'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/importcss:
+    newFile: !uuid '39fdf52c445528cdb542802225cde85f34dc11d4'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/importcss/plugin.js:
+    newFile: !uuid '3be8ed80cce1f732afdf25852080323f92807bb9'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/importcss/plugin.min.js:
+    newFile: !uuid 'd13c4f80c3ad0a1998ddd56b2323e2c84c81d93a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/indent2em:
+    newFile: !uuid '84a4b7e24e44629b9b9dfbbb3f4640320e221238'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/indent2em/plugin.js:
+    newFile: !uuid '5e8c8db2aa8652e343d0998e9f51b7ab96035ac5'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/indent2em/plugin.min.js:
+    newFile: !uuid '5e8c8db2aa8652e343d0998e9f51b7ab96035ac5'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/insertdatetime:
+    newFile: !uuid '14256d5a181569073d13db9c2e476fd01e59ad90'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/insertdatetime/plugin.js:
+    newFile: !uuid 'd2d32e377af5d2a374d1e91045333b97f13e2573'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/insertdatetime/plugin.min.js:
+    newFile: !uuid 'ce65a553d4da50bd5024751edc54abf3c13b2dc8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/legacyoutput:
+    newFile: !uuid '94f7beb52356ade93644d8b997a996f7608c3df8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/legacyoutput/plugin.js:
+    newFile: !uuid '97b3f8434658c7d5deb51877395e5f4fba81a6f8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/legacyoutput/plugin.min.js:
+    newFile: !uuid '936d61d18b823e626dc085c4250b820427267ac6'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/link:
+    newFile: !uuid 'b6564f6452371d2b2b3c89b10ff90a7a0d802946'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/link/plugin.js:
+    newFile: !uuid '0ee5cea8aef0bbc40bfc44cb325aeeb447c75156'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/link/plugin.min.js:
+    newFile: !uuid '000ff86fb14e17d6682b06d66e234e359ec852fe'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/lists:
+    newFile: !uuid '6d126490085b7087951f3be23739623ba35a6553'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/lists/plugin.js:
+    newFile: !uuid '9aca731e627e90ef75ff9ba21646189605d9a093'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/lists/plugin.min.js:
+    newFile: !uuid '0094a620791c9bca1a0aaedb3cc93893b37a5050'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/media:
+    newFile: !uuid 'd3e5a402dd2e755107cbcb40e5c5113e29803363'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/media/plugin.js:
+    newFile: !uuid '0c00258526cbbc778fed7eaa3af7c5b83d38b3f2'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/media/plugin.min.js:
+    newFile: !uuid '3858ecdf95c4032fd6eb56d549401c68526c681a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/nonbreaking:
+    newFile: !uuid 'accbcb0579e3acf7523a82463f286f63a3069637'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/nonbreaking/plugin.js:
+    newFile: !uuid '96f99ab3f298c408a6163f925f4035880d1e7f59'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/nonbreaking/plugin.min.js:
+    newFile: !uuid '4f5414c033f06d765a6558ab70a53a1bb1ad3970'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/noneditable:
+    newFile: !uuid '0e5bf972be1fe3a7f220098f826abbd6aa80b214'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/noneditable/plugin.js:
+    newFile: !uuid '3bee6e2289a12f8d55e64fb192e901a29b853593'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/noneditable/plugin.min.js:
+    newFile: !uuid 'e65645fb44a57ba95e11e905a01c1e6d73d4032c'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/pagebreak:
+    newFile: !uuid '4508cd367e9970485852ad3e4c37c6033d460a3b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/pagebreak/plugin.js:
+    newFile: !uuid 'ff61a060e4eb1c4009773f94091dae80cfed642d'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/pagebreak/plugin.min.js:
+    newFile: !uuid '106f52a38ccbb667fa449e5e3aee958bcdd0ee1c'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/paste:
+    newFile: !uuid 'f6937b728586fac7fc30fa4d0184fb2dbfbcf1b6'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/paste/plugin.js:
+    newFile: !uuid '71ada0e20522a4598ba0d622fbc9e62410a34e8f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/paste/plugin.min.js:
+    newFile: !uuid 'd4ee38592ca00a3ba6af03a7329602ed540c91b6'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/preview:
+    newFile: !uuid '654b4ad8b1010e964d917e12e50fc60dcb2e2fef'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/preview/plugin.js:
+    newFile: !uuid 'b9f4387d770bec403ca91d71eb285ffebdb732cf'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/preview/plugin.min.js:
+    newFile: !uuid '7d7ca23a3b7c85831e58660f2a56ae8a5ad57b40'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/print:
+    newFile: !uuid '1486b01cccd5f4d618efd12b2a4e9ef2ff5e5afd'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/print/plugin.js:
+    newFile: !uuid 'f2e91572e95ea3abe5a7755cdc0be447f3f1f572'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/print/plugin.min.js:
+    newFile: !uuid '84cd13e1e61667f7ddda175ecb5ab2c4c1a0caee'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/quickbars:
+    newFile: !uuid '693fe5d498fb1225432286130c6c912e02589fa6'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/quickbars/plugin.js:
+    newFile: !uuid 'a6e67efdd69bc4ad380f1b2a599ca309c8e10537'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/quickbars/plugin.min.js:
+    newFile: !uuid 'a1c91f1d730c2f813192a58c1e87c8d092d7c3a5'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/save:
+    newFile: !uuid 'e6344eb65f6efca7b05416a7e66e36f4febce622'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/save/plugin.js:
+    newFile: !uuid 'ddbfe950409a09daf4bc4f43f0ce4a8ff282962b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/save/plugin.min.js:
+    newFile: !uuid '9018788d5297d155032116ad11fcbf209e32a69b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/searchreplace:
+    newFile: !uuid '1f846a858b2a55c4409df3f31d74c9204d089561'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/searchreplace/plugin.js:
+    newFile: !uuid '54986bac3e39c458346275fdca422d2bc3bc1bd3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/searchreplace/plugin.min.js:
+    newFile: !uuid '946e51f97a576211ddef3039ee265c6cc9dcdde3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/spellchecker:
+    newFile: !uuid '12539db5eba14e5aff1d2c0ffb8f4449d6386e47'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/spellchecker/plugin.js:
+    newFile: !uuid '9b5d0eb0b8d519af148e3f2d958b3ed8fc555d8e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/spellchecker/plugin.min.js:
+    newFile: !uuid '2ecaf379f6e53554cc668501f36cb87a523fe061'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/tabfocus:
+    newFile: !uuid '3dfe1f838c8ef9aa57d4240c0f22e372ec4316e8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/tabfocus/plugin.js:
+    newFile: !uuid '8a126208a7d16309cd136a83c9b3b381036ca9fc'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/tabfocus/plugin.min.js:
+    newFile: !uuid '6407fa1c7cfd995f95e584c1118656dd57d9f164'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/table:
+    newFile: !uuid '5eb0b1c5c5a782397d52220659d8ea49d7926726'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/table/plugin.js:
+    newFile: !uuid '0ce12c6358acecd5bb32cc95626da73ca72a03ef'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/table/plugin.min.js:
+    newFile: !uuid 'b2dc8af73438800aa0db1247783b7194c1276b13'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/template:
+    newFile: !uuid '9fea0cd59ffe32fd6fca6f2b8a4f748d72c3ad36'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/template/plugin.js:
+    newFile: !uuid '50efcc77b99127d7be75fdf78cfbbd7300fcc3ce'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/template/plugin.min.js:
+    newFile: !uuid '439097f616872c8f723a8981b245d7f7ce1e792a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/textcolor:
+    newFile: !uuid '81ecfcaed3b4a0715cfa597162b5b9407d8c9c7f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/textcolor/plugin.js:
+    newFile: !uuid 'bf6f0d4ef7e19ce57b1c472b12c4956658b6a01a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/textcolor/plugin.min.js:
+    newFile: !uuid '6256aa379f1e86a27feefc1729a59abf67038f1b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/textpattern:
+    newFile: !uuid '80c4aab316b49219258c061e55c6f1ffc7fd1028'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/textpattern/plugin.js:
+    newFile: !uuid '1078dc1a4aa47709b89c37b645522eee23e30732'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/textpattern/plugin.min.js:
+    newFile: !uuid '25814b4015c3c3e60afedd57a9996ab3ee7e2309'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/toc:
+    newFile: !uuid 'd86597949c99c8550b51a53d78b3814f50597f91'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/toc/plugin.js:
+    newFile: !uuid '7a524115fedac68c4adf463e4c6b68eba1a7d4d8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/toc/plugin.min.js:
+    newFile: !uuid 'b4e8000c11c974a81b65c5f7823852438993cb44'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/visualblocks:
+    newFile: !uuid '3dd2ed2ceebc0efcc5442a4b08f502b635b3e854'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/visualblocks/plugin.js:
+    newFile: !uuid '190186a8815762cac122a9815334ba96cb6fd54d'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/visualblocks/plugin.min.js:
+    newFile: !uuid 'dd46af303dcd1b2d3f465e5534077edd146b6701'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/visualchars:
+    newFile: !uuid '293bcc65e1d6b49a46fa577d74177d0262ebd3e6'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/visualchars/plugin.js:
+    newFile: !uuid '3cf04b7fccb0402e7b871eb6ed4df69bb6dd72de'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/visualchars/plugin.min.js:
+    newFile: !uuid '9f28d39d4b02500d02a8bb49e3112f27b499dc52'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/wordcount:
+    newFile: !uuid 'c21f207f0e98c6ae0f3a78cb637725a282c3a358'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/wordcount/plugin.js:
+    newFile: !uuid '1f8ee7518edeade7a19010e7083d8a7c23f3ce14'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/plugins/wordcount/plugin.min.js:
+    newFile: !uuid '8dac92fd4101daee6ed92f92079de121afd176aa'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/readme.md:
+    newFile: !uuid 'a812cbbb41cb462f161500c721fa3a092a7300c6'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins:
+    newFile: !uuid '74d1b0312a9e0b8d82844e99eaf4b6155c24a2f8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content:
+    newFile: !uuid '8843a0dd5e7ee39fc3720ae8db63e617e227bf70'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/dark:
+    newFile: !uuid '3ccf582a9acdede554334443c06f54930f048e32'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/dark/content.css:
+    newFile: !uuid '10ce487b01c608d01eaee240d5aa17020b0884af'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/dark/content.min.css:
+    newFile: !uuid '545b2659c8186244da41ce190bec78f2b7b49bc9'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/default:
+    newFile: !uuid '512cd755a131d9da7af233c1eaa09084c3d0cd96'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/default/content.css:
+    newFile: !uuid 'e57e83982700adc6aba43044ed0efc0756cad0f3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/default/content.min.css:
+    newFile: !uuid '91346410ad8646d2a52f3d0d6a9782550043695b'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/document:
+    newFile: !uuid '225e5ec723558c43b75d7ff9bd2390e5fe4371cb'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/document/content.css:
+    newFile: !uuid '5c5eb76e0e06469a2d41dbdf8a29b018d92c1609'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/document/content.min.css:
+    newFile: !uuid 'f28c378d42c57f2af5fe0481778ca6144a3328f7'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/writer:
+    newFile: !uuid 'cf0b0887a0370cef70c6e6f6a81e8b785ed7c21c'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/writer/content.css:
+    newFile: !uuid '00ae0fb67b4a38f527b3b66f5737066e3b1d8644'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/content/writer/content.min.css:
+    newFile: !uuid '549450d40eb073d71f6c859bf24322d5fbaae7ac'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui:
+    newFile: !uuid '1764f17a1d6dcdfb708727e837bf572e7a2241d8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide:
+    newFile: !uuid '072eef07ee3d377a6ada7270531ce455fee0bdb4'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark:
+    newFile: !uuid '91e1289bbf6904b380fbc74206d70850b9addfb5'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/content.css:
+    newFile: !uuid 'cf4727089792a57e79587894eac12c3bae319c7d'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/content.inline.css:
+    newFile: !uuid '19be19605aeefab3d801bde505ad87139452338a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/content.inline.min.css:
+    newFile: !uuid 'b70e7020b664eb3dd876e4de6df1a8bbb6aa59ba'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/content.min.css:
+    newFile: !uuid 'e55be416b19c1cf667f3ef464cd2b1e837b6bea8'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/content.mobile.css:
+    newFile: !uuid '4bdb8babcbb19c6842099ffd0e58c3ddf26a2ba3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/content.mobile.min.css:
+    newFile: !uuid '627f6934476e8a4553c3b24d5876b76d85ba095f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/fonts:
+    newFile: !uuid 'f8dad8f5788f9fe7afb00cc4881b01e9718c1339'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/fonts/tinymce-mobile.woff:
+    newFile: !uuid '1e3be038a607cb7c2544ed8ae3d6621f77bf4c38'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/skin.css:
+    newFile: !uuid '4cfe15dea808ee3c6b326eee8fc1805564864269'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/skin.min.css:
+    newFile: !uuid '3ae13e0c4364e53c590dbda515f0a5babe6b7dd9'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/skin.mobile.css:
+    newFile: !uuid '875721a27d02e628613cdd68138539c28dc15afd'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide-dark/skin.mobile.min.css:
+    newFile: !uuid '15555127c43c8d555e0f73e9eeed64aeceef707f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/content.css:
+    newFile: !uuid '26d7eabbdc88b2c5c5c8cf94e28c112981039689'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/content.inline.css:
+    newFile: !uuid '19be19605aeefab3d801bde505ad87139452338a'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/content.inline.min.css:
+    newFile: !uuid 'b70e7020b664eb3dd876e4de6df1a8bbb6aa59ba'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/content.min.css:
+    newFile: !uuid '1eaa6c6b3f60ccc3ea86db5429227386d22e0b0e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/content.mobile.css:
+    newFile: !uuid '4bdb8babcbb19c6842099ffd0e58c3ddf26a2ba3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/content.mobile.min.css:
+    newFile: !uuid '627f6934476e8a4553c3b24d5876b76d85ba095f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/fonts:
+    newFile: !uuid 'f8dad8f5788f9fe7afb00cc4881b01e9718c1339'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/fonts/tinymce-mobile.woff:
+    newFile: !uuid '1e3be038a607cb7c2544ed8ae3d6621f77bf4c38'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/skin.css:
+    newFile: !uuid '4d31b0708451e3af7e9bf33d52a465b8333423ae'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/skin.min.css:
+    newFile: !uuid '6d206b01cc031b1d3f8597055e427f3392c8a534'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/skin.mobile.css:
+    newFile: !uuid '875721a27d02e628613cdd68138539c28dc15afd'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/skins/ui/oxide/skin.mobile.min.css:
+    newFile: !uuid '15555127c43c8d555e0f73e9eeed64aeceef707f'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes:
+    newFile: !uuid 'd4cec8b0201b1bd2189bc07d79e8623f6748e326'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes/mobile:
+    newFile: !uuid 'fe5b1d744ec24100b2b3fd52b5dbb4ecd52df1fc'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes/mobile/theme.js:
+    newFile: !uuid 'd3180a6f6afb8e29e781c89ac6b8ab6346f6e8ad'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes/mobile/theme.min.js:
+    newFile: !uuid '6155775fe06a06c16ac1c88b4d9060a152aca299'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes/silver:
+    newFile: !uuid 'dda7e5c89bffe5d16a9343a64d3ebe6bca5cfbd3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes/silver/theme.js:
+    newFile: !uuid '698402bc22e475024cfb7034149f8413b389c9e3'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/themes/silver/theme.min.js:
+    newFile: !uuid '47a84692ed9c8605c883f31683a7ad0a4a371e4e'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/tinymce.js:
+    newFile: !uuid 'e9854157b21d64f0dbe3e09862aed78d1f427587'
+    oldFile: null
+  /public/static/lib/layui/extend/tinymce/tinymce/tinymce.min.js:
+    newFile: !uuid 'd3bebb5b109a754829168f173f053690ccfb0ef3'
+    oldFile: null
+  /public/storage:
+    newFile: !uuid '6098b5bd396d8bf5e43f7e1bf73fdd8c424b97cf'
+    oldFile: !uuid 'b2e9df2714a3b78eb93205d9691f4d77f4ba6790'
+  /public/storage/categoryImages:
+    newFile: !uuid '71e06246155f4417b7ffc7d8d0473795b65941e2'
+    oldFile: null
+  /public/storage/categoryImages/e6:
+    newFile: !uuid '6717721e078826b901a0d4a556aba2c88839969e'
+    oldFile: null
+  /public/storage/categoryImages/e6/9715b2cf918749558e15c8d39dfe5e.png:
+    newFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
+    oldFile: null
+  /public/storage/icon:
+    newFile: !uuid 'e2bdddea0da0e32e7be248bd32f41e2bbe8f9de2'
+    oldFile: null
+  /public/storage/icon/df:
+    newFile: !uuid '241e889333f560d41a49ca07169afe6283c0d31f'
+    oldFile: null
+  /public/storage/icon/df/6ffdf853f537f89440f19cc2004602.png:
+    newFile: !uuid '174789055a2414b088de40e9cedfde3aef6130ad'
+    oldFile: null
+  /public/storage/icon/f7:
+    newFile: !uuid 'b65ae6b35d83811a08547fd718fc98d572d7e272'
+    oldFile: null
+  /public/storage/icon/f7/2808d9e0c25e7188e955381b41f544.png:
+    newFile: !uuid '424efa6d2c5ed339c499f15d071359415ee1d835'
+    oldFile: null
+  /public/storage/topic:
+    newFile: !uuid '4f49841bdb11de928cf617bf3737fe0b35e61ff0'
+    oldFile: !uuid 'c7695b238a743b5513ecbcc5654aa8fb5baac58b'
+  /public/storage/topic/20200929:
+    newFile: !uuid '3168e38892b5906a335d7864cc69bc67af9bb8c9'
+    oldFile: null
+  /public/storage/topic/20200929/26f0abc6101c7c84482ef54cf37047e3.png:
+    newFile: !uuid '47306490e9106b49265025c08eed7697c0b78c6c'
+    oldFile: null
+  /vendor:
+    newFile: !uuid '1f6f8928e3b8b2f3b6c728f9afd260d8688ea3f3'
+    oldFile: !uuid '270dfcc730f75d61534aa0d0dfc144341fcfdb2c'
+  /vendor/bin:
+    newFile: !uuid 'c0d0ff31ed653704bd3bab5a98155721f927f8fe'
+    oldFile: !uuid '5e80c527e0fc694faf8623be3a7fe30f454dd407'
+  /vendor/bin/var-dump-server:
+    newFile: !uuid '85911b5fa67dc914b451ac1581af4c017d71beae'
+    oldFile: !uuid '947161e3ad2bd88dccc960f3ee2c691c9b040226'
+  /vendor/bin/var-dump-server.bat:
+    newFile: null
+    oldFile: !uuid '1cd1c0c804950601650ac81d26426bbf84c960d0'
+  /vendor/composer:
+    newFile: !uuid '177263023f5d1d5844baeedee9bc3350f30a9d03'
+    oldFile: !uuid '2994cb57c64dece7aa1544c5fa79de14eb841c34'
+  /vendor/composer/ClassLoader.php:
+    newFile: !uuid '03b9bb9c40cb86c2c2bbec2ce6ff0ddce9ad586c'
+    oldFile: !uuid 'fce8549f0781bafdc7da2301b84d048286757445'
+  /vendor/composer/autoload_files.php:
+    newFile: !uuid '3f03a580b7eaeecab4b3610158073653ba985aac'
+    oldFile: !uuid '58d9333557b032d943e835d26647e195c6077816'
+  /vendor/composer/autoload_psr4.php:
+    newFile: !uuid '5683d314d1709ccd5138fa77a040627d398960a1'
+    oldFile: !uuid '0be4eaee66791c1e7bbb078d64d1aea54ae86fd2'
+  /vendor/composer/autoload_static.php:
+    newFile: !uuid '7009c291c86ba4baed90dd606e2aefccda980117'
+    oldFile: !uuid 'c1f503e17c5b9abc07ea095ab9ab5f4efb59af20'
+  /vendor/composer/installed.json:
+    newFile: !uuid 'f58ea7d132cbb9c85f86443a8f537f1ed66bae7e'
+    oldFile: !uuid '7cbe206d24aba094abb23c4741b2c2f97e6d5726'
+  /vendor/guzzlehttp:
+    newFile: !uuid '72cfc53e51c7d6ed213b18507583230dcacca2e3'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle:
+    newFile: !uuid '713e5abec6ed255e192db2c32a3f4b7d138cd869'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/CHANGELOG.md:
+    newFile: !uuid '00c84ca44b89d54f40f545c45c9f02aee48d93e7'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/LICENSE:
+    newFile: !uuid 'd51aa69867c6312a3f997087f979eb55ac56f8b0'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/README.md:
+    newFile: !uuid '363d6f80d2f8bc498b7c17e58fc885bf9469f5ab'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/UPGRADING.md:
+    newFile: !uuid '45417a7e1fc868de11ece660f6eae537d2a470ae'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/composer.json:
+    newFile: !uuid 'de9391f4db647a70698cb22e2452983834212282'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/psalm.baseline.xml:
+    newFile: !uuid '72995074c9d8c627172ac2fcb93ac0049aa233ef'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/psalm.xml:
+    newFile: !uuid 'd70acfe4fbe272da657a84724c0aa69bc82e7c97'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src:
+    newFile: !uuid 'ea172ea04dcfdabcc4abfb7a075b920feddda5aa'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Client.php:
+    newFile: !uuid 'bec4bf1b7f0440a5d899639bfa006cf1e96758c8'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/ClientInterface.php:
+    newFile: !uuid 'f257a1a30516dfe43e8af80209ef581e9115ebc0'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/ClientTrait.php:
+    newFile: !uuid 'c584c76cbf48eb88af97e8ef7d4482b39e49aa33'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Cookie:
+    newFile: !uuid '10625393d60eda0d0c120acadabf5e9d67f9727c'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Cookie/CookieJar.php:
+    newFile: !uuid 'd6757c65428534cd5f6d89f181e3af41719834b9'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Cookie/CookieJarInterface.php:
+    newFile: !uuid 'fa6d660004166e00fffc13844ee9e43e760ea7fc'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Cookie/FileCookieJar.php:
+    newFile: !uuid '290236d543c3b89c6ed47d60cc7f1814a3ec8767'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Cookie/SessionCookieJar.php:
+    newFile: !uuid '5d51ca982013531c86d7521b36325c33c9567d6c'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Cookie/SetCookie.php:
+    newFile: !uuid '602370d6fd7697a3512d942d82543a374d47f997'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception:
+    newFile: !uuid '51161705c3a597697f6b1bb2c601b2b9379faed0'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/BadResponseException.php:
+    newFile: !uuid 'a80956c9d2a0368a3de8c114b357f2dd7f9e338a'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/ClientException.php:
+    newFile: !uuid '12fa5e3518c4487f13d20fd7622c2f81583852d3'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/ConnectException.php:
+    newFile: !uuid 'e1a31519cfa2d6f36a8e5f807285bf6c51195934'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/GuzzleException.php:
+    newFile: !uuid 'fa3ed6998c2d16fb7a4194c9fbae2764909de5f2'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/InvalidArgumentException.php:
+    newFile: !uuid 'bfd20e232bba460f910e7c4ed7315e9a244ffad2'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/RequestException.php:
+    newFile: !uuid '315fa378586530126e76b0f87045c768f2271288'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/ServerException.php:
+    newFile: !uuid '8055e067c0a36bee35978008d81920b4d37d0834'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/TooManyRedirectsException.php:
+    newFile: !uuid 'fad3a57cfdeafce68ffeea2350bba62e16bc1913'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Exception/TransferException.php:
+    newFile: !uuid '5076336080a88acd6c0031911d513055e484b9b0'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler:
+    newFile: !uuid '157b66adf16bdc4a20c48f94bb60ee16e19dac3b'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/CurlFactory.php:
+    newFile: !uuid 'e4ff4dbcd9ce6bb51b732fbd0ded070a03ec42c6'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/CurlFactoryInterface.php:
+    newFile: !uuid 'fe57ed5d57e4f45fd0738f2bcaf345f60e8f50bd'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/CurlHandler.php:
+    newFile: !uuid '47e21f0e3cfbca4cb9a1fe708810c9235b395e76'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/CurlMultiHandler.php:
+    newFile: !uuid '0a7c006e02291203dfa4f88547a021b2faf08c6b'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/EasyHandle.php:
+    newFile: !uuid '183476e9374e22100a9664c98d9b662d1aa1c520'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/MockHandler.php:
+    newFile: !uuid '44416adfdcd6a59b0f73e3ee003bc6b2a70e05b1'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/Proxy.php:
+    newFile: !uuid 'd23286d2dbf3bc2495d5ef0a329fb4cb7b35ec89'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Handler/StreamHandler.php:
+    newFile: !uuid 'f47567c00276ca2d6b92849566f2ace895fb0551'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/HandlerStack.php:
+    newFile: !uuid 'b67239e7baad89212ccb0b97bada67e12552ccc1'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/MessageFormatter.php:
+    newFile: !uuid '995a5f68df9f12ba8701a5fb31cf67b02126ceee'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/MessageFormatterInterface.php:
+    newFile: !uuid 'd54f888d86f41c5b6e5edeebda0f5ea881e1f9d1'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Middleware.php:
+    newFile: !uuid 'a0d617a67956c6acdc00b8ee04686e4ae1cc1883'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Pool.php:
+    newFile: !uuid '7282cef9fce9017632e1817e2eeb94d53c2f0b30'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/PrepareBodyMiddleware.php:
+    newFile: !uuid '969103fc659473e737bed6b72f79a62879644d47'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/RedirectMiddleware.php:
+    newFile: !uuid '4d04945b5797f77704e2ab7b7f652cd49c31fe3f'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/RequestOptions.php:
+    newFile: !uuid '20b31bc207e72537add796cef32d9bdb9b586b4a'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/RetryMiddleware.php:
+    newFile: !uuid 'a0a58dd0f249992fa6b961123f2ecba21292d825'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/TransferStats.php:
+    newFile: !uuid 'f15e816b1e00388fc587284cb6b6749231d67c24'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/Utils.php:
+    newFile: !uuid '471c49c35da2fd6077aed8887919fdd8a68e95fc'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/functions.php:
+    newFile: !uuid 'a70d2cbf3f79bfd9661667916a5bf8ca593b82cb'
+    oldFile: null
+  /vendor/guzzlehttp/guzzle/src/functions_include.php:
+    newFile: !uuid '6636a4224db068802c332b15dd21b73ccdeb6b7d'
+    oldFile: null
+  /vendor/guzzlehttp/promises:
+    newFile: !uuid '51bf5ffb598ba525c3b8ecb9568efd1c4a0beeaa'
+    oldFile: null
+  /vendor/guzzlehttp/promises/.php_cs.dist:
+    newFile: !uuid 'a321876e8ff421aa20026c0f5a72fb6f626a2c1f'
+    oldFile: null
+  /vendor/guzzlehttp/promises/CHANGELOG.md:
+    newFile: !uuid '4b63b2c749ab56f21961f4700f0a991966e4da16'
+    oldFile: null
+  /vendor/guzzlehttp/promises/LICENSE:
+    newFile: !uuid '67f91a14c0057818f23322c77e80daa80ae9d751'
+    oldFile: null
+  /vendor/guzzlehttp/promises/Makefile:
+    newFile: !uuid '8d5b3ef95eb4679a3998176bcc96fa88f5d60cdd'
+    oldFile: null
+  /vendor/guzzlehttp/promises/README.md:
+    newFile: !uuid 'a95c6059477798f589fc795654c5f2e02b8a055f'
+    oldFile: null
+  /vendor/guzzlehttp/promises/composer.json:
+    newFile: !uuid 'db44d9e3f6834d3f3b422ec581d6d624c371a90d'
+    oldFile: null
+  /vendor/guzzlehttp/promises/phpstan-baseline.neon:
+    newFile: !uuid '26012c2d426b23df5302a3d8c5573e18c1efe9fb'
+    oldFile: null
+  /vendor/guzzlehttp/promises/phpstan.neon.dist:
+    newFile: !uuid 'b533a8c991876ec9bc18d86e07d7746cae21233a'
+    oldFile: null
+  /vendor/guzzlehttp/promises/psalm.xml:
+    newFile: !uuid '3e4e3d085371aad1a37904e41382b35652ac30ae'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src:
+    newFile: !uuid 'a4b7a439dcea4bd8002b7f793eb47f9745224167'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/AggregateException.php:
+    newFile: !uuid 'd2b5712b925c8acad50676cbb5c95c00044a47da'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/CancellationException.php:
+    newFile: !uuid '56a1ed65bc340f08e62ef07de67b78f5fc6a446e'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/Coroutine.php:
+    newFile: !uuid '670da47739a15f7f0d97d67eb6d206110024c512'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/Create.php:
+    newFile: !uuid '8d038e9c1ceb9d8da8f3bf2dc5b31a3b5eebb8ac'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/Each.php:
+    newFile: !uuid '1dda3549932f50402af746f4933c6c34011e98ec'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/EachPromise.php:
+    newFile: !uuid 'fbb8876c763fc96d6ce6a2e6dca7974f470a3f52'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/FulfilledPromise.php:
+    newFile: !uuid '98f72a62a6f878eb2cdaa11306669cc234b3a8ba'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/Is.php:
+    newFile: !uuid 'c3ed8d0143315ee5bf95ef5cca85d217c5e66d18'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/Promise.php:
+    newFile: !uuid '75939057b645ebd0c0bd71ac693024782911f5f0'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/PromiseInterface.php:
+    newFile: !uuid 'e598331435aedfc5213100f2d410e715c81cb163'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/PromisorInterface.php:
+    newFile: !uuid '2d2e3422ba4046067e934c96d309661f8b18e631'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/RejectedPromise.php:
+    newFile: !uuid 'd2918468cf3822100e2c68f309cde26100659edc'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/RejectionException.php:
+    newFile: !uuid 'e2f137707df12f028cafb0968c43a41537004019'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/TaskQueue.php:
+    newFile: !uuid 'f0fba2c594a89baa0abb4fc952de319e9cfb577b'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/TaskQueueInterface.php:
+    newFile: !uuid '723d4d54eb15aa97aab769dce2810b8d7a7b118f'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/Utils.php:
+    newFile: !uuid '1cee86202a90d14da0751097b8dd859fbe0a7dc9'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/functions.php:
+    newFile: !uuid 'c03d39d02107836ccdd9205c6d62b98ac5d5a53a'
+    oldFile: null
+  /vendor/guzzlehttp/promises/src/functions_include.php:
+    newFile: !uuid '34cd1710aa220b6e7ee59a7bda1ea0c6ab52ef80'
+    oldFile: null
+  /vendor/guzzlehttp/psr7:
+    newFile: !uuid '07c395ef027529d900d6bff7b45e704980eecf21'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/CHANGELOG.md:
+    newFile: !uuid 'b441d36668e1ccdf386cf2ac74d51b30ba450ba9'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/LICENSE:
+    newFile: !uuid '581d95f92024be7c805599690867b4d1e2e10f40'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/README.md:
+    newFile: !uuid 'acfabfdcbe31b20849706a77bead39872589d397'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/composer.json:
+    newFile: !uuid '58dcb07e4c6d34ef12cd6caf13fa8996a13ce463'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src:
+    newFile: !uuid '25d9de88da2fa83726cc7c8d2aacb6d4c4bd45cc'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/AppendStream.php:
+    newFile: !uuid '86e7a23ba3f1a762d0e3c3fb4c924be8a4be1c2c'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/BufferStream.php:
+    newFile: !uuid '627e4a5f146a8a165267bac4e068d4175b492e86'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/CachingStream.php:
+    newFile: !uuid '244d2a063accd8adcd001b46029dfbd1a59d2464'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/DroppingStream.php:
+    newFile: !uuid 'e125642d3e94642388d2cd8b141dbcb55957fdec'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/FnStream.php:
+    newFile: !uuid '407577a379fde10704cfb5590615fe34eda40bd8'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Header.php:
+    newFile: !uuid '865d7421429418f380cf9b0b7a40604e1e24db75'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/InflateStream.php:
+    newFile: !uuid 'c98b96f2587be89bb01181a5fb889f47dbdab544'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/LazyOpenStream.php:
+    newFile: !uuid '13c7af5c8b35c89e1feb52399aab8d01f2838532'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/LimitStream.php:
+    newFile: !uuid 'bef9161eadc8a2f616ace0ca2966a0b6c287dc92'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Message.php:
+    newFile: !uuid '516d1cb84acddf4598be90c57dbe216dff1063f6'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/MessageTrait.php:
+    newFile: !uuid '99203bb43a42fba3ec6bd2e158d1f671619fbb6e'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/MimeType.php:
+    newFile: !uuid '205c7b1fa676814fa52f389761fb830949f3e332'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/MultipartStream.php:
+    newFile: !uuid '0cbfea35d682f4e621ff3fcd4ebd1355e2fa0cf1'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/NoSeekStream.php:
+    newFile: !uuid '4b04b4c0a49b2024d6f0c31a0a5ea210ec5c5a1f'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/PumpStream.php:
+    newFile: !uuid 'fbd8726b46de72708b0e7411417667f815a4c482'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Query.php:
+    newFile: !uuid '99e093050935546bd57e24ca84c6e6652b65bce9'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Request.php:
+    newFile: !uuid '89fbb1e62e8a90b69d7b9b4cd8198fbf52a9eb04'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Response.php:
+    newFile: !uuid '36b85fb7834fff648aef96b3b6e0af627d879651'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Rfc7230.php:
+    newFile: !uuid '505e4742b6e749f85e69499c013617df20f7232e'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/ServerRequest.php:
+    newFile: !uuid '72c5566cfab28999ebd5ed60255a6a2e57fe1a84'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Stream.php:
+    newFile: !uuid '3865d6d6a1394793d5c3f1e31cf9c5b3e1cc748c'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/StreamDecoratorTrait.php:
+    newFile: !uuid '093023b1c9ad3d6a19f8b85114939e37ba4d1c36'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/StreamWrapper.php:
+    newFile: !uuid 'eac6535397986f710f233a158e3e5293e2d4cdf3'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/UploadedFile.php:
+    newFile: !uuid 'a0ea59e09bcb95391a410ee2a227afa1447de3fe'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Uri.php:
+    newFile: !uuid 'a0d73917e2a2466f52738c03271cf69f49412a3f'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/UriNormalizer.php:
+    newFile: !uuid '2b9174a5e7e2705eff7313d841902617a8a58b25'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/UriResolver.php:
+    newFile: !uuid '26cecd53a11f8bd1a3bb567160ab25ef7934f700'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/Utils.php:
+    newFile: !uuid '86960dde2e98e3fe1c64cb975bef5dc9cbea19f5'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/functions.php:
+    newFile: !uuid 'e4cc13619683e1da71256c486b63aa992bd6a800'
+    oldFile: null
+  /vendor/guzzlehttp/psr7/src/functions_include.php:
+    newFile: !uuid '96a4a83a01aac6412572b74fd9b0abc339f6ad0f'
+    oldFile: null
+  /vendor/monolog:
+    newFile: !uuid 'd2b1a2ce66d8eaf488bfcf7f953f04091268b68d'
+    oldFile: null
+  /vendor/monolog/monolog:
+    newFile: !uuid '73d9af454c8c9869efb9f0ddeb8dce699de7604d'
+    oldFile: null
+  /vendor/monolog/monolog/CHANGELOG.md:
+    newFile: !uuid 'e39c390b310695bce31a4bf6d817627d39bb52f0'
+    oldFile: null
+  /vendor/monolog/monolog/LICENSE:
+    newFile: !uuid 'aa2a0426c39036cddef717c25efbdb644faf02ee'
+    oldFile: null
+  /vendor/monolog/monolog/README.md:
+    newFile: !uuid '9ca3c6a6b82256993a6460582b574d59ac258f71'
+    oldFile: null
+  /vendor/monolog/monolog/UPGRADE.md:
+    newFile: !uuid '84e15e6b7c1d734faf7beec75af9d886f2c20e3f'
+    oldFile: null
+  /vendor/monolog/monolog/composer.json:
+    newFile: !uuid '9e54787c16fe83c2853aff08b9bc0f216f7994ec'
+    oldFile: null
+  /vendor/monolog/monolog/src:
+    newFile: !uuid '30e2bc15da9603758eed32fb7ddf5436a0a26545'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog:
+    newFile: !uuid '07911a1c4a7e124e782053e1fcf39e24b3d6d84b'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/DateTimeImmutable.php:
+    newFile: !uuid '6a1ba9b25a30cfe9191c99436a5260b6481d0c59'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/ErrorHandler.php:
+    newFile: !uuid '89381b9a73800ca7c67d5e20f93140bfef494208'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter:
+    newFile: !uuid '82b16cc901eebc672b97eb5101aabf71c588718f'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/ChromePHPFormatter.php:
+    newFile: !uuid '2b4d649c8ae24ac854f197baaf8cb7ff2886c140'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/ElasticaFormatter.php:
+    newFile: !uuid 'c6f3c8e12462125a0dd401e2177ed77d05ccc909'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/ElasticsearchFormatter.php:
+    newFile: !uuid '84affef35d8a043f2db7ca849de14ba8f890d2c2'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/FlowdockFormatter.php:
+    newFile: !uuid '301b74b24d38da63a8931fd1b3b2725e1fe9c543'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/FluentdFormatter.php:
+    newFile: !uuid '29b14d30d9fede6daa35f0ad4091b67a631454b0'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/FormatterInterface.php:
+    newFile: !uuid '7442134ec90f5c994446f4a8d0e8825c5529f1a6'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/GelfMessageFormatter.php:
+    newFile: !uuid '271628a3b564fee49bb5d7966492fa760b4aba8a'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/HtmlFormatter.php:
+    newFile: !uuid '90db3f2a0ffe4f4052b512fb804217c7715e5776'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/JsonFormatter.php:
+    newFile: !uuid 'c367baa67c06d1131329777d7286964ac9f1b055'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/LineFormatter.php:
+    newFile: !uuid 'c63b39d30e707ed9a38c9222b845eb9163487450'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/LogglyFormatter.php:
+    newFile: !uuid '29841aa3818bc3f910a6fcd1183e22f549efc1d9'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/LogmaticFormatter.php:
+    newFile: !uuid 'b0451aba7859d5359014c0bf9ec554773a1ab2dd'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/LogstashFormatter.php:
+    newFile: !uuid '563d97dbb35f7e71cedf2fab280d8c7d32b220fb'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/MongoDBFormatter.php:
+    newFile: !uuid '9d41a5057bb5b218f8a50916d9ec932113052b7e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/NormalizerFormatter.php:
+    newFile: !uuid '41968310e5a33121e20e25a13a7fadd11b644d85'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/ScalarFormatter.php:
+    newFile: !uuid '8d560e77c3b04b95b954508a0ca6a98a63cd3a06'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Formatter/WildfireFormatter.php:
+    newFile: !uuid '2d96739e3767ff604e4b76117bc067b5b195ef4e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler:
+    newFile: !uuid '529ba738496f83c7fe872e9cd9bd64f63cc4b5af'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/AbstractHandler.php:
+    newFile: !uuid 'c9405bfbf22cbe5e8bd764479c47e827ce4bff75'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/AbstractProcessingHandler.php:
+    newFile: !uuid '1100260cae53aa73923468697ff30d96072dfdae'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/AbstractSyslogHandler.php:
+    newFile: !uuid 'b7f249d7b1d7b26181958b31ab63e39f5949b18d'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/AmqpHandler.php:
+    newFile: !uuid '33fffccd877a49fc349e0b251a0efadbf6189939'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/BrowserConsoleHandler.php:
+    newFile: !uuid '310591c7cd204fd1aeee4aac906ccd82c5ff10da'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/BufferHandler.php:
+    newFile: !uuid '7a5902849d7d446516ca8964038ad34c34c74b05'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ChromePHPHandler.php:
+    newFile: !uuid 'ef93f660b008e725cc35a4048c73054e147eee43'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/CouchDBHandler.php:
+    newFile: !uuid 'b2d1e189716b72d0f9fc93e29a8f18f6dfc9cbee'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/CubeHandler.php:
+    newFile: !uuid '00d38e990f33cf9bb5303d834ca5b3bcbaa3e6d4'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/Curl:
+    newFile: !uuid '97be3dae07139def133e57851af4c5d6ff2903e6'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/Curl/Util.php:
+    newFile: !uuid 'b0aeac9cbafc732a4914a6d0a6ef04392be70740'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/DeduplicationHandler.php:
+    newFile: !uuid '864c29ae08ba7fe4e2f2835f891fce5de859054e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/DoctrineCouchDBHandler.php:
+    newFile: !uuid 'b80490d1341b62dbf63ac7c9985b605704f50bb0'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/DynamoDbHandler.php:
+    newFile: !uuid '21d74310d4ed1e8edb22ac894a73803f348187c7'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ElasticaHandler.php:
+    newFile: !uuid '78a8d1ea7bc9e11aa929439a85ba46accc059bcf'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ElasticsearchHandler.php:
+    newFile: !uuid '7a7ef05968e3a9c903d53bf6463906d2ad75c07e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ErrorLogHandler.php:
+    newFile: !uuid '737c0705d0d11d6c79982a26da63ed9ff10208be'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FallbackGroupHandler.php:
+    newFile: !uuid '9c92fa2d378d0d6e25aa5ec75c4113d717444210'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FilterHandler.php:
+    newFile: !uuid '735fdfbd3eace8081e9acfee9c0e8ba755a308f5'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FingersCrossed:
+    newFile: !uuid '5091ed4be550d438c3258ee9b9edd7aee747a1dd'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FingersCrossed/ActivationStrategyInterface.php:
+    newFile: !uuid '1ba99c73d931ad59f89ed488df900db7afcc5363'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FingersCrossed/ChannelLevelActivationStrategy.php:
+    newFile: !uuid 'f98ecfac1cb65068651f4dd17a07c24099b5c833'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FingersCrossed/ErrorLevelActivationStrategy.php:
+    newFile: !uuid '71601e401999f2377b1064caf4efe889a10f05db'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FingersCrossedHandler.php:
+    newFile: !uuid '7424b1084dc75d792224376154c882dc8662821e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FirePHPHandler.php:
+    newFile: !uuid 'c96386304a157917972f0660ff1429a8cb6cd281'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FleepHookHandler.php:
+    newFile: !uuid '5087009ffa6d60133160815c40cf398881e02499'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FlowdockHandler.php:
+    newFile: !uuid '062af418dc520872667cbb7409b8bb644a38df89'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FormattableHandlerInterface.php:
+    newFile: !uuid 'fc1693cd08785ddba6f226fed1dde4de9ba63aa3'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/FormattableHandlerTrait.php:
+    newFile: !uuid '00140b4e0126555c44cf1a7d86a29a87dd448d37'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/GelfHandler.php:
+    newFile: !uuid 'd6965fa7d7f3fe36b8c2ec88b1f97fe5f3320ce4'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/GroupHandler.php:
+    newFile: !uuid '51218568cbc39ebe20dd28282df3b90ba24b1856'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/Handler.php:
+    newFile: !uuid '9f43fe10b2a769cadf72dd8646845efe46b67d9a'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/HandlerInterface.php:
+    newFile: !uuid '68aed1866e96df05d35e6dea5b1dcd63cfae26ae'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/HandlerWrapper.php:
+    newFile: !uuid '3f2c7a1a7e9a2f004c7454880904b1cad9a110b2'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/IFTTTHandler.php:
+    newFile: !uuid '921c9f245803c37a37ff3196bbbaa5a25191daad'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/InsightOpsHandler.php:
+    newFile: !uuid '5ddc66bd1aa804435f6784404872727595bfbb89'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/LogEntriesHandler.php:
+    newFile: !uuid '66de5f800d3d568ac5710c6f2493580ffd893ae5'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/LogglyHandler.php:
+    newFile: !uuid 'c8befc28d1fe0d5cc875f4e5b7036f10476dc10c'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/LogmaticHandler.php:
+    newFile: !uuid '209af161f77d4637a9be2d546d8e89a253b3e1f3'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/MailHandler.php:
+    newFile: !uuid '3bbfd56559fac9269973c37b97b2ba318cb7cc80'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/MandrillHandler.php:
+    newFile: !uuid '2a3b49c5fe3e06118576eb664f103103971fb8c1'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/MissingExtensionException.php:
+    newFile: !uuid '3965aeea5d4c5c7694ef86d61e763ab469d0e372'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/MongoDBHandler.php:
+    newFile: !uuid 'e7539174ea4775fd25f8c3470b8a626147529ec5'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/NativeMailerHandler.php:
+    newFile: !uuid 'cd205611a983f3d226a485cef0bad498b4182c53'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/NewRelicHandler.php:
+    newFile: !uuid '177ad21a97673586c2a85b85a8d4c02e1f872b47'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/NoopHandler.php:
+    newFile: !uuid '8ee2b4c6919d3166e4c9ba400631f68eff70ef07'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/NullHandler.php:
+    newFile: !uuid '1f0078acb7b46c0ba26d0fee8228a729dcddf6de'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/OverflowHandler.php:
+    newFile: !uuid 'dbe9b22d160b8ea3dadd5989bc68d3b1126600cd'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/PHPConsoleHandler.php:
+    newFile: !uuid 'aa94e6139bb48b55b7c70de3404246b675f40768'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ProcessHandler.php:
+    newFile: !uuid '36e30b87a257c1b970c1df8b5b9c28046092775a'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ProcessableHandlerInterface.php:
+    newFile: !uuid '41b52ce5fd4ea7fa404a78ba69dcf0d68636f75a'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ProcessableHandlerTrait.php:
+    newFile: !uuid 'c4c38ec5abb558b107de8819bac8a0b015e8e057'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/PsrHandler.php:
+    newFile: !uuid 'cba96a556060fc5a4728aea0f9bd01de4f4c4f56'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/PushoverHandler.php:
+    newFile: !uuid '3bb99c759f57aeaa7a99321dd542b520f97222fe'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/RedisHandler.php:
+    newFile: !uuid '46482b61d8bd185cb02c1d26460ba7e683b84a87'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/RollbarHandler.php:
+    newFile: !uuid '979d651e39d28df3753221cea9d470fd206f70e6'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/RotatingFileHandler.php:
+    newFile: !uuid 'f61e5eb6e07d0cafd789375c4e8ff17709d1877a'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SamplingHandler.php:
+    newFile: !uuid '6dcf59961ce04dd60cbb60cdc3c5ba5575a91229'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SendGridHandler.php:
+    newFile: !uuid 'e774d309b1308ecd046ac3f1be4aa00ce295f41b'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/Slack:
+    newFile: !uuid 'd1573738bcef8fb06c79674dc2bf267ea314905d'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/Slack/SlackRecord.php:
+    newFile: !uuid 'b74a22fbf1269c89de106cfd1d96f1cdaa24ab2e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SlackHandler.php:
+    newFile: !uuid 'c2b93e610a5956c04f627888c9305c6825fec8d1'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SlackWebhookHandler.php:
+    newFile: !uuid '17d12b064bd4d37ba0ad2b36f3202e432bd87bf4'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SocketHandler.php:
+    newFile: !uuid '2861e67d79aa48660b47e21012285ecea2ea3cac'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SqsHandler.php:
+    newFile: !uuid 'a98c87bf7be9fdefb054330731abbf7c121fe51a'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/StreamHandler.php:
+    newFile: !uuid '344bd30534c064e5ea8f2f16b1c62f79bf6bdbd7'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SwiftMailerHandler.php:
+    newFile: !uuid '6b3e49500be02da43f9b56280eee18a097b0322b'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SyslogHandler.php:
+    newFile: !uuid '20594ceddfedd56b80f0460f9e250d5e2d9d05be'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SyslogUdp:
+    newFile: !uuid 'bcc3512ee4b7cfb32a3ffb38e31baf8772cae883'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SyslogUdp/UdpSocket.php:
+    newFile: !uuid 'c43bc156b7751fd0e9558eceb972380fa43013e9'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/SyslogUdpHandler.php:
+    newFile: !uuid 'c85ef5b82a6a8f91099a556107bb96aee72e08a6'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/TelegramBotHandler.php:
+    newFile: !uuid '3abb646ec89fcfb2e55613b43d9a54126a26debb'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/TestHandler.php:
+    newFile: !uuid '9fa77b9fab3f6004b36d3fba282e70ee4baadb7b'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/WebRequestRecognizerTrait.php:
+    newFile: !uuid 'c81835288ed57a631078a7b2f3992de7054be67b'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/WhatFailureGroupHandler.php:
+    newFile: !uuid '16c3cbbb5fb781a2ea083cc725fe247c6037784c'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Handler/ZendMonitorHandler.php:
+    newFile: !uuid '78a886f153020e83fa5085ccc799e4ce7edaddbf'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Logger.php:
+    newFile: !uuid '0fb5196bd7984b72f2fd70018edf86a23c6c4420'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor:
+    newFile: !uuid '9f59d3171eac1a3bfba648def89278d79ec02a56'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/GitProcessor.php:
+    newFile: !uuid '6abd3d8cde94e0512706ac22ebd8835b40c3e7d6'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/HostnameProcessor.php:
+    newFile: !uuid '7c23db8b149640ff809374dd1b4a3e24886c7572'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/IntrospectionProcessor.php:
+    newFile: !uuid 'c0cc014e48f5bbd67284639ad5e12a80ed21bf45'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/MemoryPeakUsageProcessor.php:
+    newFile: !uuid 'a1eef61ab257a29a1968c6300ced254496772784'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/MemoryProcessor.php:
+    newFile: !uuid '227deb7c86947235412e68fac6f6bb463fe184e0'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/MemoryUsageProcessor.php:
+    newFile: !uuid '653c76d1076d46caf8d47effc6bc05d9821a2849'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/MercurialProcessor.php:
+    newFile: !uuid 'd50f71386754a7836b7f809416c677444a0bbe4f'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/ProcessIdProcessor.php:
+    newFile: !uuid '7851fff6d8919fefde2cd85b226a8b4f5e370e2c'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/ProcessorInterface.php:
+    newFile: !uuid '9e2ded19b8fba1092781a8f637048f8eb731723d'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/PsrLogMessageProcessor.php:
+    newFile: !uuid '909fc4fdc8aeaf1cdb109091321f24adf8f02634'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/TagProcessor.php:
+    newFile: !uuid '199760ad8621dd1e655d0efdafa38d775ae442aa'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/UidProcessor.php:
+    newFile: !uuid '0c97ab6cd08f2a1a501881f21242a172d47b2f0e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Processor/WebProcessor.php:
+    newFile: !uuid '6c32b2d11178ca6b4487d2a8577b98b327953b1e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Registry.php:
+    newFile: !uuid '78fb97e58d291af57140c65285915822fa56b090'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/ResettableInterface.php:
+    newFile: !uuid '2c5fd78511f058dbe61ac79a2adadeb58cbc600e'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/SignalHandler.php:
+    newFile: !uuid '4a79fe6635160ddbaf6c07ba846289e32960cee3'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Test:
+    newFile: !uuid '1ea88619790751eec660d832395d9228c6512c08'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Test/TestCase.php:
+    newFile: !uuid 'ecb8907f348e9cc91bfc4e17196279dec229bacd'
+    oldFile: null
+  /vendor/monolog/monolog/src/Monolog/Utils.php:
+    newFile: !uuid '007ad686b569f837e3fde7a94f9d5b61c249a3ce'
+    oldFile: null
+  /vendor/opis:
+    newFile: null
+    oldFile: !uuid '93e82820a249a3cccf02aa8b9b499aa011d7e8b3'
+  /vendor/opis/closure:
+    newFile: null
+    oldFile: !uuid 'addb289306ab8ccc74e903f8a6153875ed29db77'
+  /vendor/opis/closure/.github:
+    newFile: null
+    oldFile: !uuid 'c640f3ddf28b2e7d212996e7dd7409cfd8b15c1a'
+  /vendor/opis/closure/.github/workflows:
+    newFile: null
+    oldFile: !uuid '3b77d7a07e0da3345df87dcd71e14b2a2cc6ea71'
+  /vendor/opis/closure/.github/workflows/tests.yml:
+    newFile: null
+    oldFile: !uuid 'b71e6e4aa2b1052da3aae677e95622add95c8c6a'
+  /vendor/opis/closure/CHANGELOG.md:
+    newFile: null
+    oldFile: !uuid 'bcf1a351047d6f74a394391a1415586349ef082e'
+  /vendor/opis/closure/LICENSE:
+    newFile: null
+    oldFile: !uuid '9c0a19ba2a068a52af78df5a80cc7ce7706dbad3'
+  /vendor/opis/closure/NOTICE:
+    newFile: null
+    oldFile: !uuid 'ae5caa628632a13b6a2b285db5d12ebc7ca65d93'
+  /vendor/opis/closure/README.md:
+    newFile: null
+    oldFile: !uuid '193380065d0bba0fd4b894da447fea28c73b408c'
+  /vendor/opis/closure/autoload.php:
+    newFile: null
+    oldFile: !uuid 'a928014fd1416faae51bdbe6f11b67d44870963c'
+  /vendor/opis/closure/composer.json:
+    newFile: null
+    oldFile: !uuid '31953f50779ab1c10aebd96d8c3aaa3f0a1d686e'
+  /vendor/opis/closure/functions.php:
+    newFile: null
+    oldFile: !uuid '681854c6ba20871cf808c7e133e9dc3fa6ab8132'
+  /vendor/opis/closure/src:
+    newFile: null
+    oldFile: !uuid 'b3b2c910e837122446d2ff2ff4bd3f0c2741dbbc'
+  /vendor/opis/closure/src/Analyzer.php:
+    newFile: null
+    oldFile: !uuid 'a30be77a9441cc3081fd9a836359669f53f941d3'
+  /vendor/opis/closure/src/ClosureContext.php:
+    newFile: null
+    oldFile: !uuid 'd68cf98875c0125cdf61d08368d66878f5b50db2'
+  /vendor/opis/closure/src/ClosureScope.php:
+    newFile: null
+    oldFile: !uuid '71ad4148f7f79d94cea228f4eb8380d7ad4bb34c'
+  /vendor/opis/closure/src/ClosureStream.php:
+    newFile: null
+    oldFile: !uuid 'f538419c17d3e4eb4ef50d2d9d11773fde7f59f8'
+  /vendor/opis/closure/src/ISecurityProvider.php:
+    newFile: null
+    oldFile: !uuid 'd3b0a2931d6e354e8f9d13973cd540a3ba454104'
+  /vendor/opis/closure/src/ReflectionClosure.php:
+    newFile: null
+    oldFile: !uuid '82fe7d685a6eda54872bb9041afca1c947deaad9'
+  /vendor/opis/closure/src/SecurityException.php:
+    newFile: null
+    oldFile: !uuid '6a107eec869241e33eadefe8ec46b41daba10e29'
+  /vendor/opis/closure/src/SecurityProvider.php:
+    newFile: null
+    oldFile: !uuid '5ae4116a96bd78ffa86e4bcb2765eff234fb622c'
+  /vendor/opis/closure/src/SelfReference.php:
+    newFile: null
+    oldFile: !uuid '3c6ec80dd852fdcab9444cc0ce9ab259bc7bd13e'
+  /vendor/opis/closure/src/SerializableClosure.php:
+    newFile: null
+    oldFile: !uuid 'f61c6aeae61e6ca08cba3d28eb7f8b085aebb19d'
+  /vendor/psr:
+    newFile: !uuid 'f8508f4d9c30023555383cf5e411acf0b3f4e91e'
+    oldFile: !uuid '3dbd793e2399640e2112ad145c3ad9250a46d774'
+  /vendor/psr/event-dispatcher:
+    newFile: !uuid '6414ebc3e8c0a3bdde04e390cbe1c013994466ae'
+    oldFile: null
+  /vendor/psr/event-dispatcher/.editorconfig:
+    newFile: !uuid '164f092d66af0ce1153a2f07554183b05581367a'
+    oldFile: null
+  /vendor/psr/event-dispatcher/.gitignore:
+    newFile: !uuid '3a9875b460f3bab5c185900528ba5efe1a18de33'
+    oldFile: null
+  /vendor/psr/event-dispatcher/LICENSE:
+    newFile: !uuid '3f1559b2ad6a91d451af17c73208f58984d08e66'
+    oldFile: null
+  /vendor/psr/event-dispatcher/README.md:
+    newFile: !uuid '294214afb76a71b0ba11ffaf5901652b75dc027b'
+    oldFile: null
+  /vendor/psr/event-dispatcher/composer.json:
+    newFile: !uuid '667a7144873167575c68b3adab7c9382206b296e'
+    oldFile: null
+  /vendor/psr/event-dispatcher/src:
+    newFile: !uuid '187d63ab98709c0685890329cb2125fc758fa685'
+    oldFile: null
+  /vendor/psr/event-dispatcher/src/EventDispatcherInterface.php:
+    newFile: !uuid '4306fa91560605ee1419f4535275dea32db19e04'
+    oldFile: null
+  /vendor/psr/event-dispatcher/src/ListenerProviderInterface.php:
+    newFile: !uuid 'bdacb6e9c6fa98a582f46f25e5360cbdb350e421'
+    oldFile: null
+  /vendor/psr/event-dispatcher/src/StoppableEventInterface.php:
+    newFile: !uuid '595508164673a7974a32509fc7605a6d6f8941c4'
+    oldFile: null
+  /vendor/psr/http-client:
+    newFile: !uuid '1163f6f00dbe07b4a96e628ff7daaed2f66bd155'
+    oldFile: null
+  /vendor/psr/http-client/CHANGELOG.md:
+    newFile: !uuid 'e2dc25f519b3915f18dc2c11dcef168e052acf6f'
+    oldFile: null
+  /vendor/psr/http-client/LICENSE:
+    newFile: !uuid 'cd5e0020afc2f89778937db2a8e3fc31c32b82b6'
+    oldFile: null
+  /vendor/psr/http-client/README.md:
+    newFile: !uuid '6876b8403639a9d7f00a7b77e48f58c25fbb49da'
+    oldFile: null
+  /vendor/psr/http-client/composer.json:
+    newFile: !uuid 'c195f8ff155ad62bd554d0ea4dd0c99d1fbeec52'
+    oldFile: null
+  /vendor/psr/http-client/src:
+    newFile: !uuid 'b6b2cedc34f129677bce99f3e547a424b2acaf85'
+    oldFile: null
+  /vendor/psr/http-client/src/ClientExceptionInterface.php:
+    newFile: !uuid 'aa0b9cf14bac543539e98b003da00d9f9e6bfbd9'
+    oldFile: null
+  /vendor/psr/http-client/src/ClientInterface.php:
+    newFile: !uuid 'ad99fd4b77b29b3de46b0c395d5d9b0b78d263ca'
+    oldFile: null
+  /vendor/psr/http-client/src/NetworkExceptionInterface.php:
+    newFile: !uuid '4a11627c7e61e1e4860d2735d85a7db9b72ab535'
+    oldFile: null
+  /vendor/psr/http-client/src/RequestExceptionInterface.php:
+    newFile: !uuid 'b17fc34fd909df526da9859ba964201296506f42'
+    oldFile: null
+  /vendor/psr/http-message:
+    newFile: !uuid '4c3fbf597c6e6697ead79487b0b62aa10549d05a'
+    oldFile: null
+  /vendor/psr/http-message/CHANGELOG.md:
+    newFile: !uuid '74b1ef923c1616bd2c544953ac776c6ca3c59286'
+    oldFile: null
+  /vendor/psr/http-message/LICENSE:
+    newFile: !uuid 'c2d8e452de1bc5fc64680e356e7508e12527a02a'
+    oldFile: null
+  /vendor/psr/http-message/README.md:
+    newFile: !uuid '28185338f72381295cdd8b5762b00c707ca05da7'
+    oldFile: null
+  /vendor/psr/http-message/composer.json:
+    newFile: !uuid 'b0d2937a03a5fbe5219a3ff7a2470fb92b851942'
+    oldFile: null
+  /vendor/psr/http-message/src:
+    newFile: !uuid '884e60b8b589ad658c54bb347536bc7e0c2604f1'
+    oldFile: null
+  /vendor/psr/http-message/src/MessageInterface.php:
+    newFile: !uuid 'dd46e5ec81eef701ccb6e61c08debe86570dcb8e'
+    oldFile: null
+  /vendor/psr/http-message/src/RequestInterface.php:
+    newFile: !uuid 'a96d4fd6366790ec833502cefd2e1ec91a5c440f'
+    oldFile: null
+  /vendor/psr/http-message/src/ResponseInterface.php:
+    newFile: !uuid 'c306514e6bbdf07282bda9e3dc61d91f6554e642'
+    oldFile: null
+  /vendor/psr/http-message/src/ServerRequestInterface.php:
+    newFile: !uuid '02512340ad853714bca1e25b619fa9097154f103'
+    oldFile: null
+  /vendor/psr/http-message/src/StreamInterface.php:
+    newFile: !uuid 'f68f391269b472ec9d9828d2725c12019fa99903'
+    oldFile: null
+  /vendor/psr/http-message/src/UploadedFileInterface.php:
+    newFile: !uuid 'f8a6901e014477f5bcbd2bbbe525b0c0b34d3b97'
+    oldFile: null
+  /vendor/psr/http-message/src/UriInterface.php:
+    newFile: !uuid '9d7ab9eae8f29060899cf2f9904e2bd0409af515'
+    oldFile: null
+  /vendor/ralouphie:
+    newFile: !uuid 'f360efa2347c6ddf8d32bc6f6e17c199dde44f26'
+    oldFile: null
+  /vendor/ralouphie/getallheaders:
+    newFile: !uuid 'e516edca5c161faa815664975ec2da1eabe7e191'
+    oldFile: null
+  /vendor/ralouphie/getallheaders/LICENSE:
+    newFile: !uuid 'be5540c2af759b6e32172cbdcda5ccdf58816f2a'
+    oldFile: null
+  /vendor/ralouphie/getallheaders/README.md:
+    newFile: !uuid '9430d76bbc2ff17f6626b7da94c6588fc8bc4c12'
+    oldFile: null
+  /vendor/ralouphie/getallheaders/composer.json:
+    newFile: !uuid 'de8ce62e45dc6d37f9021969baed2830ac6537ae'
+    oldFile: null
+  /vendor/ralouphie/getallheaders/src:
+    newFile: !uuid '0124b01dfd2db2686887b26f2481e846bd970441'
+    oldFile: null
+  /vendor/ralouphie/getallheaders/src/getallheaders.php:
+    newFile: !uuid 'c7285a5ba166616c89ea98d7ac3ce5cb05b382aa'
+    oldFile: null
+  /vendor/ric:
+    newFile: !uuid '20cd2f46d721aa40e5c501582fb543f65fee4e76'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc:
+    newFile: !uuid 'f66f5ea0ac9039cd4a1b5219eaab9de9400e3062'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/LICENSE:
+    newFile: !uuid '8dada3edaf50dbc082c9a125058f25def75e625a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/composer.json:
+    newFile: !uuid '7d819ac208fd78a0b04c6970513df7667ed98189'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src:
+    newFile: !uuid '8840c67a28af8fe88502dbf9c5725b685e8af1af'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/Controller.php:
+    newFile: !uuid '2638cbb22bb6c017d5b5874c3e16c89656b47dc6'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/Doc.php:
+    newFile: !uuid '06a20d26d6b965190a7f99bc87b4680ae6907ac9'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/Parser.php:
+    newFile: !uuid '02c2260edc835b4ace533b492dc90fdf97947a06'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets:
+    newFile: !uuid 'bf689101b969e8d7a33ac2a40a5a2737b358ac60'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui:
+    newFile: !uuid '4632543430808b74feb484c6fb88be394e0efeb9'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css:
+    newFile: !uuid '5e42e3a4b4d30dcc0aa160de661e820b896f36b0'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/layui.css:
+    newFile: !uuid 'e80da665537b7eb5d8b133a8f428284dd1491464'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/layui.mobile.css:
+    newFile: !uuid 'cefeb463629baa82e7aef96b3bbf3113df1c06f0'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules:
+    newFile: !uuid '13f98bc3a1ab67c8160f73b8507ec7d7f4828f4b'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/code.css:
+    newFile: !uuid 'e12278b69be2673ae26d426706fd81d1f4b711c8'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/laydate:
+    newFile: !uuid 'a31f614143f58edcefef6675027707cfbcb31c98'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/laydate/default:
+    newFile: !uuid '899ed50ad70becc654a3793a27e6e4237349faad'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/laydate/default/laydate.css:
+    newFile: !uuid '554698b3e6b1d59f38327246d22efc4d3d1ec4c1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer:
+    newFile: !uuid 'caf25c7430196a3d677d7e5788ad22740c1b8964'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default:
+    newFile: !uuid '1eb9fe38be2aa1296963ba16846b79d109f92599'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default/icon-ext.png:
+    newFile: !uuid 'bbbb669bb311514baa5db3a6a00b4644d0e280f1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default/icon.png:
+    newFile: !uuid '3e17da8b1aaae2935e19ac97d9015f0fe24e8770'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default/layer.css:
+    newFile: !uuid '2ed7de6218b8a5b9fe33eb2344df0f2a9a293ce8'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default/loading-0.gif:
+    newFile: !uuid '6f3c9539a22171cc2f12639492e346d97a9078e8'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default/loading-1.gif:
+    newFile: !uuid 'db3a483e4b74971fbfb1cc0fb6499852cedfe650'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/css/modules/layer/default/loading-2.gif:
+    newFile: !uuid '5bb90fd6a49107a321c35b9cee4a7b810314b51f'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/font:
+    newFile: !uuid '8d3e40f0f62f149b30ce611e7b4328eb6e7336ce'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/font/iconfont.eot:
+    newFile: !uuid '51c4f895885b9770114cd59875da879d45700c83'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/font/iconfont.svg:
+    newFile: !uuid 'e05b1895ac83e64c36e3e37fd2d9943cac074c2f'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/font/iconfont.ttf:
+    newFile: !uuid '43a316134dbeef2018f808fa14393ffc75967078'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/font/iconfont.woff:
+    newFile: !uuid '7fd98e35fcb768eaa3e8e9ffda1a888cf225a5ce'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images:
+    newFile: !uuid '90594bfce2312bc2253056aa24c6ece56802ac32'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face:
+    newFile: !uuid 'b4f5f2af3856f690091996a062f6f510de0e406e'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/0.gif:
+    newFile: !uuid 'a63f0d523561c523476e5330a0d67eb7318cb187'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/1.gif:
+    newFile: !uuid 'b2b78b218996f70773540d0d3a8649d3c2d199a2'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/10.gif:
+    newFile: !uuid '556c7e326801a0ea090bd693ca43807925d3cbc2'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/11.gif:
+    newFile: !uuid '2bfc58be8c70d512f4371b50b2b98c7b8adbe719'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/12.gif:
+    newFile: !uuid '1c321c7eb0e5b5bdbdd10b93907b8eaeb3bf11bf'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/13.gif:
+    newFile: !uuid '300bbc2a0384e5654525e7581017364dd9ceb59c'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/14.gif:
+    newFile: !uuid '43b6d0a43857dc0990728155ed120c8eb66a5b81'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/15.gif:
+    newFile: !uuid 'c9f25fa1d25412e2e929347c0db0878b0b641d58'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/16.gif:
+    newFile: !uuid '34f28e4cde0cd13acdbbd7482282eb306f5b21e5'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/17.gif:
+    newFile: !uuid '39cd03538a5bc595fbc46c97cf2b06c8bd8dadd1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/18.gif:
+    newFile: !uuid '7bce2997f86e477a6008fb1cae8dd03cda10abf6'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/19.gif:
+    newFile: !uuid 'adac542fd33e152fc08baf165d1c5a467f0c2747'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/2.gif:
+    newFile: !uuid '7edbb58a843cec27a1641a5c9b6d30b8fc1f8c26'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/20.gif:
+    newFile: !uuid '50631a6e314179d0761b4ee664616ad2162ba147'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/21.gif:
+    newFile: !uuid 'b98421282467fb377dced2eabd72bcc5525f3e8e'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/22.gif:
+    newFile: !uuid '1f0bd8b0023c25e74fac444bfecd6c5d7a0dc448'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/23.gif:
+    newFile: !uuid 'e05e0f97a3674d02e0f160c5193f54f6b3a30fdc'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/24.gif:
+    newFile: !uuid 'f35928a264bd981595dce02cf48c1776e2b5770a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/25.gif:
+    newFile: !uuid '0b4a88322946c1b65e9236657d6f42c71e412a94'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/26.gif:
+    newFile: !uuid '45c4fb5563081d684f00cc3560df41b803cf7bbf'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/27.gif:
+    newFile: !uuid '7a4c0131dc926ee932804276038bf053a5cc1634'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/28.gif:
+    newFile: !uuid 'fc5a0cfafa213e9861135c8ced7b87ebea74c269'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/29.gif:
+    newFile: !uuid '5dd7442b164b2ea32b5ae97da71073a31a699c83'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/3.gif:
+    newFile: !uuid '86df67b7aad1ac80079562c74945d9c4ced3c397'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/30.gif:
+    newFile: !uuid 'b751f98abcf8173ae3c08402c99ae885a0dfe162'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/31.gif:
+    newFile: !uuid 'c9476d79608dacdc613410702804e5ce7483cb67'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/32.gif:
+    newFile: !uuid '9931b0636bc8f30b2172b608a44a90119b29ced6'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/33.gif:
+    newFile: !uuid '59111a38c849fa06175a318fa98625c38d717398'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/34.gif:
+    newFile: !uuid 'a334548e8780d66ccd2de35bb2475db92c7e0489'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/35.gif:
+    newFile: !uuid 'a9322643dae616390d8263e8cf1bc4d9fdfa03ec'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/36.gif:
+    newFile: !uuid '6de432ae96ee120b440c2448e3977587f789a410'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/37.gif:
+    newFile: !uuid 'd05f2da45500eb37e7f723e9ddddcfd4e901d90e'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/38.gif:
+    newFile: !uuid '8b1c88a3e8658cde7b25b6e063d23d010f7ed86a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/39.gif:
+    newFile: !uuid '38b84a51394e20ac33ae5c9b6fdbc66f90f94a0d'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/4.gif:
+    newFile: !uuid 'd52200c51ee924f0b91132e5cd3737fadcf40ef8'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/40.gif:
+    newFile: !uuid 'ae429912d6d6f74dfffd19376ec1fdee426d8036'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/41.gif:
+    newFile: !uuid 'b9c715c5208044db4a057583efdf2bc12f099cd1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/42.gif:
+    newFile: !uuid '0eb1434b4e81d4437098efe06cb4e1ab44a86211'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/43.gif:
+    newFile: !uuid 'ac0b700850553a3d7be8d33cf6622c5a832cb1f0'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/44.gif:
+    newFile: !uuid 'ad44497691d150ea5d02a900231e48ff519d9616'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/45.gif:
+    newFile: !uuid '6837fcaf214a394d8efb68f5d48c9ec6f9ea1fa3'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/46.gif:
+    newFile: !uuid 'd62916d4031609830f26ef77c17ad26906ac9717'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/47.gif:
+    newFile: !uuid '58a083611d7c1afd95d136e3a7fa798c86d0c2ef'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/48.gif:
+    newFile: !uuid '7ffd1613b5fa36c3ffa7daca94e7e8cd6f8d82ef'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/49.gif:
+    newFile: !uuid '959b99296b323c0f9c6dc35e14c9f28cc66eec04'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/5.gif:
+    newFile: !uuid '4e8b09f15101f3e3fad0777ad068fb559ed483a9'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/50.gif:
+    newFile: !uuid '6e22e7ff12a215188dfc4d0314e91cee7526e739'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/51.gif:
+    newFile: !uuid 'ad3f4d3a8158106dbfa48e521084e6c56fc6406f'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/52.gif:
+    newFile: !uuid '39f8a22846945358446ed010e2b9bd50dfcc7a25'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/53.gif:
+    newFile: !uuid 'a181ee77882f8249f4551516085e1c2e7cf0cfec'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/54.gif:
+    newFile: !uuid 'e289d929b9552beb7be70329b7cbefb1d0618008'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/55.gif:
+    newFile: !uuid '4351083ac8e0e65a64ff362cbd480f2c86eab4fb'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/56.gif:
+    newFile: !uuid 'e0eff222ba83ddcd3c2212e9336fb143e72204bf'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/57.gif:
+    newFile: !uuid '0bf130f0d930a1fb72ca83265bb504304cb08090'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/58.gif:
+    newFile: !uuid '0f065087d4720326776b26c7b9d2482c9e467bca'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/59.gif:
+    newFile: !uuid '7081e4f023999fe813726fc83f39d169dedd7ecb'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/6.gif:
+    newFile: !uuid 'f7715bf52817bc577c0d33cd0cbd17da898848a1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/60.gif:
+    newFile: !uuid '6e15f89d79ed82cdb1f53aed2378d887915528f3'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/61.gif:
+    newFile: !uuid 'f092d7e351cb195eaf707dbec74d32ced42f432f'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/62.gif:
+    newFile: !uuid '7fe49840bf69219fa40585741f901fa0b187c044'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/63.gif:
+    newFile: !uuid 'cf8e23e5b2e83bf4f383cd994510a7a04a74f57c'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/64.gif:
+    newFile: !uuid 'a7797198af0f3bb98361b1b8737784d0a8c2cba0'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/65.gif:
+    newFile: !uuid '7bb98f2d8a2502888a61e885d0853d3d3b0661ec'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/66.gif:
+    newFile: !uuid 'bb6d077504e3b39871f72150c1f5fa43d4e18bfe'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/67.gif:
+    newFile: !uuid '6e33f7c4f762b5c4eda2a630793d681345423734'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/68.gif:
+    newFile: !uuid '1a6c400d2aee3c2bf384ea98105ea143a7be97a9'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/69.gif:
+    newFile: !uuid 'a02f0b2234a9c03bbfb9578056143ef4516bd965'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/7.gif:
+    newFile: !uuid 'e6d4db80572a8321fa233d7efd82636fd896bf49'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/70.gif:
+    newFile: !uuid '416c5c14a19fbdaf8fb8d6baf5cf7e31e54f751a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/71.gif:
+    newFile: !uuid 'c17d60cbd15e80d83629b2220b562a224eec5554'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/8.gif:
+    newFile: !uuid '66f967b48da173b68cbfc92986e4426ea35ade74'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/images/face/9.gif:
+    newFile: !uuid '60447400d31b035f56554b29af1aefc76bda1698'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay:
+    newFile: !uuid 'c7380c18c3f3e99b37d8ea739db830948d123cdb'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules:
+    newFile: !uuid '331ff139db95545ba5ae7a9804e8f335654cc64a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/carousel.js:
+    newFile: !uuid '58553943bee79279ec2703f2b1c96393f16fd2bf'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/code.js:
+    newFile: !uuid 'ad795a641b2c5dddf83755bdf9122c4c37f30d59'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/element.js:
+    newFile: !uuid 'cddd20a9c466eadd68e3ec4e8f7d7400161e95ff'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/flow.js:
+    newFile: !uuid '0528c561b1c2f1a9149542da6802e4a9e056e320'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/form.js:
+    newFile: !uuid '2d9373fe3e3048af610cea6c9c9566cfeb9343a5'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/jquery.js:
+    newFile: !uuid 'f6d58cdc32441401b0b313c2b72e31d84d0666c3'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/laydate.js:
+    newFile: !uuid '345a217869bd10726887b927872467ed56e9d85d'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/layedit.js:
+    newFile: !uuid 'fc1727dcecf24e3da4474f30b7d9911418b43e19'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/layer.js:
+    newFile: !uuid 'a8975b9a145efb6edfb936e550265683167d73bb'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/laypage.js:
+    newFile: !uuid '2cf64d54ebe267f73ccb6b6999a16699c8bf23e5'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/laytpl.js:
+    newFile: !uuid '9e694d7f054623f2c232115cf044afbd948ebeb1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/mobile.js:
+    newFile: !uuid '58621708fc5f6fac33520eaee7793dba2d266c20'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/rate.js:
+    newFile: !uuid '3c98909c213b5d685f638f9c5793bbcb1af9fe5a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/table.js:
+    newFile: !uuid 'fe4e4ee747a3328159a5ff9c69ed8738ca70f8fe'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/tree.js:
+    newFile: !uuid 'ed01acbbeb7874e0a8bfbfa125bb899f37ced7b8'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/upload.js:
+    newFile: !uuid '469a13f97d52d045a831cf42fe169cb4f1306940'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/lay/modules/util.js:
+    newFile: !uuid '32bffa4212f11c9fb81071c25cbae41206f1d5f1'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/layui.all.js:
+    newFile: !uuid 'e2a7e0109622b8bd1fcb25b007c43ffc26b78fef'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/layui/layui.js:
+    newFile: !uuid '0806c132bacf76eede5f95ba183dbc2651411270'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/logo.png:
+    newFile: !uuid '961de1c7cbcc2afd1bffe5c8832ff43ed5266908'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/assets/style.css:
+    newFile: !uuid '6760e16f8deb585f459c59ae04e72ce391971313'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/config:
+    newFile: !uuid 'ecd1847c304354eddc632d5131f64391a1d10ff4'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/config/apidoc.php:
+    newFile: !uuid '47fc6db29fe73f67f7d3edda32d45705b119a090'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/route.php:
+    newFile: !uuid 'bee0fd0cafcd8af647ebfc64c303eb9fbc6a557b'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view:
+    newFile: !uuid '35fc1e8341c0b9f676e3fb9a47e5c0b7200fc128'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/action.html:
+    newFile: !uuid '637f2c4a6908d824753a627d3f1c13f3128e8d0d'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/base.html:
+    newFile: !uuid '80f87ba58d3a487d856f2f0110ee27b28b24231f'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/doc_code.html:
+    newFile: !uuid 'f838cbeae843caa183dd5b98a52c4c860b2bb35a'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/doc_explain.html:
+    newFile: !uuid 'fa2a8f2f9d712f18656fe77eef7d8f458b0aaeb0'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/footer.html:
+    newFile: !uuid '1c13022f08e600625302b074775e4e75cbdf29ed'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/left.html:
+    newFile: !uuid '09ae05504361ab9dc2aa7bd84b79a374d99779f3'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/login.html:
+    newFile: !uuid '7f41a30aeb2f71b63160b31d3fa7eaa1cf740d94'
+    oldFile: null
+  /vendor/ric/thinkphp6-apidoc/src/view/module.html:
+    newFile: !uuid '6477d2904debf81d3247a5012adb37a6ed5516b1'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper:
+    newFile: !uuid '0893a0b41a01f6556e26b284fa2863d8c11e191e'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper/LICENSE:
+    newFile: !uuid '8dada3edaf50dbc082c9a125058f25def75e625a'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper/composer.json:
+    newFile: !uuid 'de72c7cbc96a0e98364cb3c442ebd2cc5ab4ad72'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper/src:
+    newFile: !uuid '2fb9d16b0c4e2b8aae7d65ae45093b2e4572265a'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper/src/config:
+    newFile: !uuid 'fcd71bc93f40f69f9571584cb327e103ec8620aa'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper/src/config/codemsg.php:
+    newFile: !uuid '51d12d1aa897a159036eaad0fdb7a48462f1bef4'
+    oldFile: null
+  /vendor/ric/thinkphp6-helper/src/helper.php:
+    newFile: !uuid '04628d5e371cd88ca4903f0e7c1e857a929cdf9b'
+    oldFile: null
+  /vendor/services.php:
+    newFile: !uuid '694ce0102ff2518e834fc2d40a1766477e3d9eeb'
+    oldFile: !uuid '8ef908b238654669f746053d46eb0251560627c6'
+  /vendor/symfony:
+    newFile: !uuid 'cad44631e216589fbf41396e18aadfa1f4627637'
+    oldFile: !uuid '627359acff5c8bc4315f02c90a70edb11ad0093b'
+  /vendor/symfony/deprecation-contracts:
+    newFile: !uuid '2ad5fb379d03f22336969f62373e72c128c64f0f'
+    oldFile: null
+  /vendor/symfony/deprecation-contracts/.gitignore:
+    newFile: !uuid 'c49a5d8df5c6548379f00c77fe572a7217bce218'
+    oldFile: null
+  /vendor/symfony/deprecation-contracts/CHANGELOG.md:
+    newFile: !uuid 'e9847779ba985366b4bff79d369c09db31d620eb'
+    oldFile: null
+  /vendor/symfony/deprecation-contracts/LICENSE:
+    newFile: !uuid '5593b1d84f74a170e02b3e58408dc189ea838434'
+    oldFile: null
+  /vendor/symfony/deprecation-contracts/README.md:
+    newFile: !uuid '4957933a6cc50402853ba29e6a7ce00d3e597470'
+    oldFile: null
+  /vendor/symfony/deprecation-contracts/composer.json:
+    newFile: !uuid '052541cce39b063ce7b91d8f605ae10e536cee7a'
+    oldFile: null
+  /vendor/symfony/deprecation-contracts/function.php:
+    newFile: !uuid 'd4371504a03d7b1ff8055ac7d4cdb3670adcff2f'
+    oldFile: null
+  /vendor/symfony/event-dispatcher:
+    newFile: !uuid '2e86b97f7de6391a22a83bbf64e8fe5704145f01'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts:
+    newFile: !uuid '483356c13899255c8c23a94ecb7afce05f2e0b28'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/.gitignore:
+    newFile: !uuid 'c49a5d8df5c6548379f00c77fe572a7217bce218'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/CHANGELOG.md:
+    newFile: !uuid 'e9847779ba985366b4bff79d369c09db31d620eb'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/Event.php:
+    newFile: !uuid '46dcb2ba06337779e8065f5a20ec9f8f266d5f07'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/EventDispatcherInterface.php:
+    newFile: !uuid '351dc51312cc64f12c925f6b670cad5df7aeaaaa'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/LICENSE:
+    newFile: !uuid '69d925ba7511e664a16b2af1fabce06b8767455d'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/README.md:
+    newFile: !uuid 'fb051c73fc74eae97b6f896f051955aa08f7ea38'
+    oldFile: null
+  /vendor/symfony/event-dispatcher-contracts/composer.json:
+    newFile: !uuid 'cc53176eb951ac167273db91367ab26395d08e9b'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/CHANGELOG.md:
+    newFile: !uuid '92a3b8bfc4d9e30f0f8aaa7975aceeb35937bcf1'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/Debug:
+    newFile: !uuid 'af2c5fe4c6f10237298d4704f4e719041d71f1f1'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/Debug/TraceableEventDispatcher.php:
+    newFile: !uuid '11dce4897bc65ee67b1381c891cf7f6283323550'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/Debug/WrappedListener.php:
+    newFile: !uuid '58a5ed9813f3746727524f7cb0578a674ea5f51d'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/DependencyInjection:
+    newFile: !uuid '0a5a454444fdc2d53a4c94cfafd92117c4f73a61'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/DependencyInjection/AddEventAliasesPass.php:
+    newFile: !uuid 'c4ea50f7868ed50e14ec1ea22954d71d8e14688e'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/DependencyInjection/RegisterListenersPass.php:
+    newFile: !uuid 'a40cee00bb9941c4432f721f7353ba25f3eca868'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/EventDispatcher.php:
+    newFile: !uuid '8dba33d0d5278c0989454cb79b5337ad2ba1aa71'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/EventDispatcherInterface.php:
+    newFile: !uuid '88c707c9a360be1091833515d5adb599e5eed1b0'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/EventSubscriberInterface.php:
+    newFile: !uuid '741590b1bf3a3d8971ebbc5dc2985aad5ae1f8d1'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/GenericEvent.php:
+    newFile: !uuid '34b95cedee8172922f1b394fcb1cf351fac327d4'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/ImmutableEventDispatcher.php:
+    newFile: !uuid '568d79c3a291695e88f05334ae611b1bb313add2'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/LICENSE:
+    newFile: !uuid '9e936ec0448b8549e5edf08e5ac5f01491a8bfc8'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/LegacyEventDispatcherProxy.php:
+    newFile: !uuid '6e17c8fcc9c2463c72f7383e9018a4c3e87b02cc'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/README.md:
+    newFile: !uuid 'e0d38eed017f8f46eac131d33e05ac2bdac4929b'
+    oldFile: null
+  /vendor/symfony/event-dispatcher/composer.json:
+    newFile: !uuid '7fb244fa6af67bc27854329d0000c5455fe4605a'
+    oldFile: null
+  /vendor/symfony/http-foundation:
+    newFile: !uuid 'e715c74a353917d06eb76f07afa58b882bb17126'
+    oldFile: null
+  /vendor/symfony/http-foundation/AcceptHeader.php:
+    newFile: !uuid '057c6b530cdd66225c1c8b27c24946ca42aeaf06'
+    oldFile: null
+  /vendor/symfony/http-foundation/AcceptHeaderItem.php:
+    newFile: !uuid 'bc4014e581693615edd37fd70554881113148836'
+    oldFile: null
+  /vendor/symfony/http-foundation/BinaryFileResponse.php:
+    newFile: !uuid '30eff944d750a67ab6184a1f7d900bc8402062bb'
+    oldFile: null
+  /vendor/symfony/http-foundation/CHANGELOG.md:
+    newFile: !uuid '60fab8381bf46c6bdd8aac1def2a91f2faab0227'
+    oldFile: null
+  /vendor/symfony/http-foundation/Cookie.php:
+    newFile: !uuid 'fa03ac3b9f39a7d8ea8d7a8b0bb0384539fc9206'
+    oldFile: null
+  /vendor/symfony/http-foundation/Exception:
+    newFile: !uuid '1fd9b815134b2bf78d9eb3ce1b8227d0b52b5963'
+    oldFile: null
+  /vendor/symfony/http-foundation/Exception/BadRequestException.php:
+    newFile: !uuid 'e4bb309c42abdcbe7cee33dbd5b4932c8275a81e'
+    oldFile: null
+  /vendor/symfony/http-foundation/Exception/ConflictingHeadersException.php:
+    newFile: !uuid '5fcf5b42695e7d7c2928f9f24d270d86deca5fa4'
+    oldFile: null
+  /vendor/symfony/http-foundation/Exception/RequestExceptionInterface.php:
+    newFile: !uuid '478d0dc7e4e6b34bf0cd661483d9219da07a3666'
+    oldFile: null
+  /vendor/symfony/http-foundation/Exception/SuspiciousOperationException.php:
+    newFile: !uuid 'ae7a5f1332b1fd618304ce98104580adae58b992'
+    oldFile: null
+  /vendor/symfony/http-foundation/ExpressionRequestMatcher.php:
+    newFile: !uuid '26bed7d3713ebe1102d7398c1e8fcfd435e78eba'
+    oldFile: null
+  /vendor/symfony/http-foundation/File:
+    newFile: !uuid '4551f86e4c754d1a1a114a6e1b2bb9fccbf494be'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception:
+    newFile: !uuid '25aa64065f6acc49767a3d9edded374a431bd3e6'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/AccessDeniedException.php:
+    newFile: !uuid '136d2a9f51b162edcd4ad7930b9795d2e49bef7e'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/CannotWriteFileException.php:
+    newFile: !uuid 'c49f53a6cfe9fffa41b5471f4ff69d7ef17f0808'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/ExtensionFileException.php:
+    newFile: !uuid 'ed83499c004a76259fcac3e5ae93cecb31a3c47a'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/FileException.php:
+    newFile: !uuid 'fad5133e1b745c108b33a2662564eeb1828a789b'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/FileNotFoundException.php:
+    newFile: !uuid '31bdf68fef7b5229949af260463df7aad620f7c2'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/FormSizeFileException.php:
+    newFile: !uuid '8741be0884c364aa7b772e2f1d78bae6b8edbf46'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/IniSizeFileException.php:
+    newFile: !uuid 'c8fde6103ab279e13f52e189764d2dccd1f17144'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/NoFileException.php:
+    newFile: !uuid '4b48cc7799d2a979bacfa2565826485bcca77306'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/NoTmpDirFileException.php:
+    newFile: !uuid 'bdead2d91c8a71b3f89eb06138eed87b869c7947'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/PartialFileException.php:
+    newFile: !uuid '4641efb55a3aaac83049d96d10e415b5c3e51a58'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/UnexpectedTypeException.php:
+    newFile: !uuid '8533f99a8c9ae40384baa13c17a54528c4703e01'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Exception/UploadException.php:
+    newFile: !uuid '7074e7653d0eda28f662fcd6e168d927dbc2e706'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/File.php:
+    newFile: !uuid 'e8762459ddc2c76839572fd2c73d1e315e352c5b'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/Stream.php:
+    newFile: !uuid '69ae74c110bb8681afc171e300e7b2cf47b98384'
+    oldFile: null
+  /vendor/symfony/http-foundation/File/UploadedFile.php:
+    newFile: !uuid 'f490f8f7f32f91e40689242f4c672fe2e3635ba3'
+    oldFile: null
+  /vendor/symfony/http-foundation/FileBag.php:
+    newFile: !uuid '67784087ecfbaaa5112b9c33056d5bb8e395caff'
+    oldFile: null
+  /vendor/symfony/http-foundation/HeaderBag.php:
+    newFile: !uuid 'db0f4836512af554e1d295674f2438d294b5187b'
+    oldFile: null
+  /vendor/symfony/http-foundation/HeaderUtils.php:
+    newFile: !uuid 'f4add930eb22b14f00eaba1507120517a5653acf'
+    oldFile: null
+  /vendor/symfony/http-foundation/InputBag.php:
+    newFile: !uuid 'a45c9529ed5fcf033cde0315e959c0aba81c18b7'
+    oldFile: null
+  /vendor/symfony/http-foundation/IpUtils.php:
+    newFile: !uuid '0599ce553ef5f14444c765f56bd705f3ea742ef5'
+    oldFile: null
+  /vendor/symfony/http-foundation/JsonResponse.php:
+    newFile: !uuid 'cf15c59a58f2e8c3a216285846f6eb0b90559e26'
+    oldFile: null
+  /vendor/symfony/http-foundation/LICENSE:
+    newFile: !uuid '9e936ec0448b8549e5edf08e5ac5f01491a8bfc8'
+    oldFile: null
+  /vendor/symfony/http-foundation/ParameterBag.php:
+    newFile: !uuid '1de54859a18841b3898160897ae7b459f0617956'
+    oldFile: null
+  /vendor/symfony/http-foundation/README.md:
+    newFile: !uuid 'ac98f9b80ad5de3f85f6d797f05b5cfecf382d82'
+    oldFile: null
+  /vendor/symfony/http-foundation/RedirectResponse.php:
+    newFile: !uuid 'c00548348fde6e600dd85c9a73933f535f54d3c3'
+    oldFile: null
+  /vendor/symfony/http-foundation/Request.php:
+    newFile: !uuid '60fe3bf55220a1277e2c7c9a2630614f8253a024'
+    oldFile: null
+  /vendor/symfony/http-foundation/RequestMatcher.php:
+    newFile: !uuid 'c32c5cdce5e1c90d7be8b155caea575dcdc4ef23'
+    oldFile: null
+  /vendor/symfony/http-foundation/RequestMatcherInterface.php:
+    newFile: !uuid 'c26db3e6f4e66e819f01bf1560bbb933b11c093d'
+    oldFile: null
+  /vendor/symfony/http-foundation/RequestStack.php:
+    newFile: !uuid '244a77d631a8f6c8bb504d85f9bb4f7092be3f34'
+    oldFile: null
+  /vendor/symfony/http-foundation/Response.php:
+    newFile: !uuid 'df65652456401434d9ff3ea75741f302505e8bda'
+    oldFile: null
+  /vendor/symfony/http-foundation/ResponseHeaderBag.php:
+    newFile: !uuid '76e11ce36e5c5c42a09f11b5932be4c8756da567'
+    oldFile: null
+  /vendor/symfony/http-foundation/ServerBag.php:
+    newFile: !uuid '02c70911c19f1b184c13aadd1f77025543c57627'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session:
+    newFile: !uuid '49518dea39aba5e69ab6edea4203758d2cfb24bd'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Attribute:
+    newFile: !uuid '8af0c9f58eeeab81dd7e7677d954c12e530e1aaf'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Attribute/AttributeBag.php:
+    newFile: !uuid 'aad6b610e7bb31c89721d16aa6ab6d0baebcfa85'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Attribute/AttributeBagInterface.php:
+    newFile: !uuid '7017b717e40641a79b6250b92045ae6df8f1999e'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Attribute/NamespacedAttributeBag.php:
+    newFile: !uuid '7e752ddaa7ec10082960e1267ff835a549470f65'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Flash:
+    newFile: !uuid '4d845bb7bacd3cca0c461913c921c9fa339fe38f'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Flash/AutoExpireFlashBag.php:
+    newFile: !uuid '2707d64ec713827e187e2eb7b23d0db7e601ffdf'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Flash/FlashBag.php:
+    newFile: !uuid '88df7508ac689401fad5b9ec77604933a9d7241e'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Flash/FlashBagInterface.php:
+    newFile: !uuid '8713e71d0f62eedf7a011e19fdaed34648af0b73'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Session.php:
+    newFile: !uuid '4a8af4d50e7096809ead883be2c069e15c2504a5'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/SessionBagInterface.php:
+    newFile: !uuid '8e37d06d65da3e729528188503e68e8dae9e10fc'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/SessionBagProxy.php:
+    newFile: !uuid '90aa010c9072180e8b177dfeaffc72992881d68b'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/SessionInterface.php:
+    newFile: !uuid 'b2f09fd0dc71372eb559fdec29d060bfe86c9120'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/SessionUtils.php:
+    newFile: !uuid 'b5bce4a884eff6afb2b1b180b2708e589d8f9b7d'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage:
+    newFile: !uuid '3d5d45ec1c07def78e7e623f497212b80dce7205'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler:
+    newFile: !uuid '26a2c82bc2c2c9d3f75089a6778ac239f3fa82f0'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/AbstractSessionHandler.php:
+    newFile: !uuid '0bb236156d6f7ec357cc07777ab3c82ee35e37a8'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/IdentityMarshaller.php:
+    newFile: !uuid 'bea3a323edb72dd20c58134ca96c34eb3bcc3695'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/MarshallingSessionHandler.php:
+    newFile: !uuid '25cd4ec164747f1bff04e4add480e76711092c91'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/MemcachedSessionHandler.php:
+    newFile: !uuid '828d29eb565ffd4dd75554b0b2b7a4201ff5d01f'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/MigratingSessionHandler.php:
+    newFile: !uuid 'c6b16d11c854423e3de531009b03ca2a6b7eb80d'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/MongoDbSessionHandler.php:
+    newFile: !uuid '9a2d7919af9028c41dccc8aec6c4900857a7ce10'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/NativeFileSessionHandler.php:
+    newFile: !uuid 'effc9db544bcfb835966645c033d61ff3ae9a6a4'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/NullSessionHandler.php:
+    newFile: !uuid 'aa0e595c6be65b48baa911febb4078dbcfcafb20'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/PdoSessionHandler.php:
+    newFile: !uuid '92174485c7040cb23e9228a65a8b3e408551e44e'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/RedisSessionHandler.php:
+    newFile: !uuid '180f63fdf7e596aff947be746a4490f7215c2370'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/SessionHandlerFactory.php:
+    newFile: !uuid 'dcdde80795d9bb2b5efd19e49e40ce14979e5e7b'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Handler/StrictSessionHandler.php:
+    newFile: !uuid '3cf4a6f479de69184687b1d2ebac17c1d885b320'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/MetadataBag.php:
+    newFile: !uuid 'c79ee023c4e505894a2a023749afb0c0b4e55b3a'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/MockArraySessionStorage.php:
+    newFile: !uuid '0201504c9ccf8c6b4723978345743ba1f8035c1f'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/MockFileSessionStorage.php:
+    newFile: !uuid 'ab8b86402b2f6192ec862bdbed9abe98b603f813'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/NativeSessionStorage.php:
+    newFile: !uuid 'bb34d724b36d8652f91bec194d224896882ba9e9'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/PhpBridgeSessionStorage.php:
+    newFile: !uuid '72dbef134671b8331b3c69e209ad0dd58387de37'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Proxy:
+    newFile: !uuid '6f75c6bb18755594d843d9960002655536a752ae'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Proxy/AbstractProxy.php:
+    newFile: !uuid 'edd04dff80b4d9ab2bdeb2d8eb7b90e167f7c652'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/Proxy/SessionHandlerProxy.php:
+    newFile: !uuid 'de4f550badbc5576166d1c585d6b20863fee68ac'
+    oldFile: null
+  /vendor/symfony/http-foundation/Session/Storage/SessionStorageInterface.php:
+    newFile: !uuid 'eb8e8ff2357e58a9ed9f22864de5114701eef5a2'
+    oldFile: null
+  /vendor/symfony/http-foundation/StreamedResponse.php:
+    newFile: !uuid '7cbf453188816b74a4aa09dd20df27bd9512c14d'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test:
+    newFile: !uuid '5f8e9a9b0a6252fa57e2fcb55563d47e9fa50c9c'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint:
+    newFile: !uuid '84e0505bf16a8c0671f569e5fbaa35ebcaa4f92b'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/RequestAttributeValueSame.php:
+    newFile: !uuid 'cb216ea12a6a41a58f7359e61f13daec0804c9d2'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseCookieValueSame.php:
+    newFile: !uuid '554e1a1602dd60ef281ca93702e1e84dcc963909'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseHasCookie.php:
+    newFile: !uuid 'eae9e271bc74bda5312165506b150ebfcf2b51ce'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseHasHeader.php:
+    newFile: !uuid '68ad8273fd56884a976e12da5ce6b13a7c8be90e'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseHeaderSame.php:
+    newFile: !uuid 'a27d0c73fded6ff79759663062a7d4f5fac7e882'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseIsRedirected.php:
+    newFile: !uuid '8c4b883f0b076bba7ff5e9c2daaab4f0131d55bd'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseIsSuccessful.php:
+    newFile: !uuid '9c665589072b71e3a1f0b82ab3d3687184fef17e'
+    oldFile: null
+  /vendor/symfony/http-foundation/Test/Constraint/ResponseStatusCodeSame.php:
+    newFile: !uuid '72bb000b8592c7d7a32dfdfc27cc0cad912e7132'
+    oldFile: null
+  /vendor/symfony/http-foundation/UrlHelper.php:
+    newFile: !uuid 'f114c0a9fb838cd41a248f4996d614a0b605ba9a'
+    oldFile: null
+  /vendor/symfony/http-foundation/composer.json:
+    newFile: !uuid 'f4350ce37f49929db5db7dd6e6be7badf5a5decb'
+    oldFile: null
+  /vendor/symfony/var-dumper:
+    newFile: !uuid '96dc989560b060505ba68be8cc8b70042618322f'
+    oldFile: !uuid '0a1bc662e3c01ac2fd7970c2780cd7e0d3295f75'
+  /vendor/symfony/var-dumper/Caster:
+    newFile: !uuid '1dd6ba0e14e3162aab242d843858a87090a58168'
+    oldFile: !uuid '7a5fd949753a2c08ecc1ff4b108e47e92645bc6b'
+  /vendor/symfony/var-dumper/Caster/AmqpCaster.php:
+    newFile: !uuid 'b81043bf11b900b395176271409daed4f2c389dc'
+    oldFile: !uuid '1c6a42cd393f4f13bf7c23e95fccb1802a685334'
+  /vendor/symfony/var-dumper/Caster/DOMCaster.php:
+    newFile: !uuid 'c6cfb75acd5d9c589ee9005de001c2c8f628b5fd'
+    oldFile: !uuid '41e52d6b7cc304d2fbf8d07df47073ea4976eb37'
+  /vendor/symfony/var-dumper/Caster/ExceptionCaster.php:
+    newFile: !uuid 'e99ab7b5657c0868ce5723d5d5940fbc7ee41ccc'
+    oldFile: !uuid 'dc9ed7e322ba5d49aa103a8dc8c46096cd142236'
+  /vendor/symfony/var-dumper/Caster/PgSqlCaster.php:
+    newFile: !uuid '6098277c7689e0dbfe2ecbde25d4d0e1cfb67e42'
+    oldFile: !uuid 'c54fb428645e46e9c652814f1b0856e32b3999d3'
+  /vendor/symfony/var-dumper/Caster/ReflectionCaster.php:
+    newFile: !uuid '6be710c16db0de055a973eb80a248621101f7e0b'
+    oldFile: !uuid '81a2da7298cfedf3bc980637a04826333bbd06c0'
+  /vendor/symfony/var-dumper/Caster/SplCaster.php:
+    newFile: !uuid 'c8d55e13297de08990c37724037fb55e78ccf8c8'
+    oldFile: !uuid '5d2227d418e9fbc565c916e39d5cc533790ff4d2'
+  /vendor/symfony/var-dumper/Caster/XmlResourceCaster.php:
+    newFile: !uuid '1d9d590d39adeb7f8d664cf3f027a3cc0efd01e1'
+    oldFile: !uuid 'ce0317c0b524fa65de67c48167723d9469c30690'
+  /vendor/symfony/var-dumper/Cloner:
+    newFile: !uuid 'a45ce024e093ca260c0de4e84127340fa3194928'
+    oldFile: !uuid '9d384db87d5ef0252b3893ae608061e53d719ca4'
+  /vendor/symfony/var-dumper/Cloner/AbstractCloner.php:
+    newFile: !uuid '43051ab47989311a06f719c5b3f4aa45f909ecb2'
+    oldFile: !uuid 'd7c35d2bd1cce687dd3e79cab0a4e19537a24e02'
+  /vendor/symfony/var-dumper/Cloner/Data.php:
+    newFile: !uuid '52d86edf12a8c3d5dbc023db27fb94d22383f98c'
+    oldFile: !uuid '8461de9487d74a50803d02d7d8828fd14f9d93bd'
+  /vendor/symfony/var-dumper/Dumper:
+    newFile: !uuid 'f7e7d98049da0d11ab4792de3853d09910614a55'
+    oldFile: !uuid 'e451f0033e4077ecb7c02ad69ac7dfd75ed002af'
+  /vendor/symfony/var-dumper/Dumper/AbstractDumper.php:
+    newFile: !uuid '766102e8c1260b5fe64ca07f0cc2215c7059b729'
+    oldFile: !uuid '4079fd3c53e6c0cd9d4085334fa9fe7dc1e98319'
+  /vendor/symfony/var-dumper/Dumper/CliDumper.php:
+    newFile: !uuid 'af5cafc67e420c700eb31d6a40317f9f9ed6d018'
+    oldFile: !uuid 'c6c371c6231a93f6ece98184048a42345d4ff2a2'
+  /vendor/symfony/var-dumper/Dumper/ContextProvider:
+    newFile: !uuid '80a69bd8957259bcc47586efe40f367f79ced4b5'
+    oldFile: !uuid 'd791912bda01ac6a040db245810a2db562e78914'
+  /vendor/symfony/var-dumper/Dumper/ContextProvider/SourceContextProvider.php:
+    newFile: !uuid 'c3cd3221a8007c54e3df97b15a96c251411f9b23'
+    oldFile: !uuid '6f4caba63b98970a239335392503db63403d6f7c'
+  /vendor/symfony/var-dumper/Dumper/HtmlDumper.php:
+    newFile: !uuid '8320f5adf89b5421c6f854f6a8deec3817861ccc'
+    oldFile: !uuid 'f43bb3693aaf4cf11ec447c4c39c45bff390cc4d'
+  /vendor/symfony/var-dumper/Server:
+    newFile: !uuid '08f61bcbe651e7542a0e42dca3f138ab87e18cb9'
+    oldFile: !uuid '1759000126eaecf491516828bbdb19dbc1971638'
+  /vendor/symfony/var-dumper/Server/Connection.php:
+    newFile: !uuid 'd8be23587e764a4b22b684fa7fe631f4119310cd'
+    oldFile: !uuid '8b814cb61ca931a3e82ecca9c3925ea61d8e5149'
+  /vendor/topthink:
+    newFile: !uuid '493d155724eaf0fca09a1a5ec4e6198bc746e49d'
+    oldFile: !uuid 'd5a916910f5acdb315d62c9181965ad5923eb08e'
+  /vendor/topthink/framework:
+    newFile: !uuid '0647bf92401af96fbe32cc3430c3434c1d1fd414'
+    oldFile: !uuid 'a7af5483f52284d642ef46d717e4de80554ff7a0'
+  /vendor/topthink/framework/README.md:
+    newFile: !uuid '6bb78e9b95c6ab026fb8af71926bc566463ebd56'
+    oldFile: !uuid 'be0bb4e68a29c27d374e4f0ece29abf6862d231f'
+  /vendor/topthink/framework/composer.json:
+    newFile: !uuid '9afc513a675b90d9cd934beb3955b6054ae42b16'
+    oldFile: !uuid '1405162ee92895103b6f343b809b5757020bb241'
+  /vendor/topthink/framework/src:
+    newFile: !uuid 'e095d3eee434ded93b62c36e342d03a5101277b8'
+    oldFile: !uuid '099bc31673a78867fb031c9b402ed4cd46b17957'
+  /vendor/topthink/framework/src/think:
+    newFile: !uuid '824e8f755be29f118b15740d9c80a86845e686c8'
+    oldFile: !uuid '2c04cc55ceffdca1fb37578f662084ca7f1b28b5'
+  /vendor/topthink/framework/src/think/App.php:
+    newFile: !uuid 'c23a03c8ae85752f3cfb9400416b6bc96b721c85'
+    oldFile: !uuid '094339501dd88ad06a870c1c2b0fc77dc4a8ed16'
+  /vendor/topthink/framework/src/think/Config.php:
+    newFile: !uuid '3a15755558852f0d388900a417d3f75870ef4b76'
+    oldFile: !uuid '78933adcaf5b15259cab22d97234cf42169a188c'
+  /vendor/topthink/framework/src/think/Console.php:
+    newFile: !uuid '389d104d572825d1789c2edf82d8b2e3749a59b6'
+    oldFile: !uuid 'a1398d5d95ccf68eb1d7945f441d27a34f47d5cf'
+  /vendor/topthink/framework/src/think/Container.php:
+    newFile: !uuid '7910bb3d676a9da03fe997b2db6b5ee293030c10'
+    oldFile: !uuid '215524f1ee58f8358e30bdd75a6f6ad2ff5caf6b'
+  /vendor/topthink/framework/src/think/Http.php:
+    newFile: !uuid '4bc632c4f00f27747ed710024aafd24d68274487'
+    oldFile: !uuid '6de30b597e4e71bfe8a02c6ce19b1e6337ebd57a'
+  /vendor/topthink/framework/src/think/Lang.php:
+    newFile: !uuid 'd811ea71508b3045ed2a8a74110b642f3cc69238'
+    oldFile: !uuid 'be27f5e74188d81dce88ffd933162b680b79508d'
+  /vendor/topthink/framework/src/think/Route.php:
+    newFile: !uuid 'a8b9718deaedf25c266e4bacaaf0492c80d39684'
+    oldFile: !uuid 'e3be55da99b80bef5df06ba00bcf8cef9cbbe27e'
+  /vendor/topthink/framework/src/think/Validate.php:
+    newFile: !uuid '801a69af7d44b369e4017aa6ae6293095dc6ae72'
+    oldFile: !uuid '42e64e381e9eda0a5e4a581e939ca35abbd45967'
+  /vendor/topthink/framework/src/think/cache:
+    newFile: !uuid '9851981b8866a8c40a5579133a154808476a2f43'
+    oldFile: !uuid '7d444d9da86363591775220d341883b70ca53058'
+  /vendor/topthink/framework/src/think/cache/driver:
+    newFile: !uuid '2058d2fbbe1bf8b48c748ca488fcc442caa0c546'
+    oldFile: !uuid 'a6cf427d1988b4908273d7518279cb1f829c16a8'
+  /vendor/topthink/framework/src/think/cache/driver/Redis.php:
+    newFile: !uuid '151b37c610a702e234d8321b1099e11fa2a237f2'
+    oldFile: !uuid '487f66ba313b4c2d15c54e6d688eb6f54dad997f'
+  /vendor/topthink/framework/src/think/console:
+    newFile: !uuid '3d7fb733f08f736c83aee5b7dc1f7390a63ddfd0'
+    oldFile: !uuid '4818d9c8d412dc915ac3d04ff655cc4338300338'
+  /vendor/topthink/framework/src/think/console/command:
+    newFile: !uuid '1ffff32fb1af47851071e968a72be2f387f0251e'
+    oldFile: !uuid 'aaabbd81026a28b5dfd1b4abfb8861c0dfdab28c'
+  /vendor/topthink/framework/src/think/console/command/make:
+    newFile: !uuid '73dba58ab93560145084b23867463530421dbdca'
+    oldFile: !uuid '004565719e37f656a4001feb3212cc8bd8a0e845'
+  /vendor/topthink/framework/src/think/console/command/make/stubs:
+    newFile: !uuid '6e426cf8776b964179e3bd95818fb0de9e40e16b'
+    oldFile: !uuid '9b3f41dd7174c5266c206ce08f5aeec59dd0d5c1'
+  /vendor/topthink/framework/src/think/console/command/make/stubs/command.stub:
+    newFile: !uuid '3ee2b1cf997a2cac324b245194543ba89a999a4a'
+    oldFile: !uuid 'e9121cdd78de1bc20b2bc01ce3e671dad0b4b7b8'
+  /vendor/topthink/framework/src/think/console/command/make/stubs/listener.stub:
+    newFile: !uuid '03724380b8a9ca772f4abd00847226863826d871'
+    oldFile: !uuid 'd55e7c4ed9fe55a7fce552fd035f7b8c9ecda753'
+  /vendor/topthink/framework/src/think/console/command/make/stubs/service.stub:
+    newFile: !uuid '5d74d15c16aaeabf38d0052e6f29739323b8eb4c'
+    oldFile: !uuid '6ec93fe8428fde262ee126ed8d3e2140ebf71f8e'
+  /vendor/topthink/framework/src/think/console/command/make/stubs/validate.stub:
+    newFile: !uuid 'd1fedd8d6af91a8b95245072bb58784a4f967ef1'
+    oldFile: !uuid 'b59697970bd7183f5fd88238d07134dd7fcc5afb'
+  /vendor/topthink/framework/src/think/console/command/optimize:
+    newFile: !uuid '71a5ac7ea11e6ba6f8811a0fa1dbc3c025a69d6c'
+    oldFile: !uuid 'b064589982b74c07a2630890989901138af42045'
+  /vendor/topthink/framework/src/think/console/command/optimize/Route.php:
+    newFile: !uuid '56f7f5a9ba223e5db2cb7fc0ea03f433cd25ada7'
+    oldFile: !uuid 'bd4f79c15af8e86db69b1fa32b4d5c3ca3dbb432'
+  /vendor/topthink/framework/src/think/console/input:
+    newFile: !uuid '5736b60eb45f4bfca55245c939faf188da343e30'
+    oldFile: !uuid '87fc18b6c6ac2ab187dfdc4358a8a050e4a36de4'
+  /vendor/topthink/framework/src/think/console/input/Option.php:
+    newFile: !uuid '19c7e1e86cddec9a023caa26078cfb5d4f78956e'
+    oldFile: !uuid 'e5707c9ae254081363433135cf1c44ff555de348'
+  /vendor/topthink/framework/src/think/middleware:
+    newFile: !uuid '4e7d249526c3a92462bd2c5c4a2ce1857e4e8ab5'
+    oldFile: !uuid '87996e9d91519ef43730d14e29164b18db763a7e'
+  /vendor/topthink/framework/src/think/middleware/CheckRequestCache.php:
+    newFile: !uuid '6e2205621441056bff98e50567a937de5b40a5bb'
+    oldFile: !uuid 'f2d8a62df73c8d8f7c39bb2dd69a8d97778bcb0a'
+  /vendor/topthink/framework/src/think/route:
+    newFile: !uuid '0c653d5f1c8989afe54bd1844e99814fe24444ea'
+    oldFile: !uuid '26f0df3dec5fd2993ae4970fa3ec444a2eee369d'
+  /vendor/topthink/framework/src/think/route/Rule.php:
+    newFile: !uuid 'df99fe9de7968f12445af59dadcf6ce4697e7b05'
+    oldFile: !uuid '05213934c5418cbb372a6419d092103a1fced022'
+  /vendor/topthink/framework/src/think/route/RuleGroup.php:
+    newFile: !uuid '94bf2b9821ab2b937af3860caa2ceb73fda08a2c'
+    oldFile: !uuid '3d5e9bc82963b23ad8761183322825fc5d902470'
+  /vendor/topthink/framework/src/think/route/RuleItem.php:
+    newFile: !uuid '3ca4885ebd3c914fa1130834bd90d6acc36eeb9f'
+    oldFile: !uuid 'f7f72ba1f267ceb4b9e34ad003e3e7a51d01804b'
+  /vendor/topthink/framework/src/think/route/RuleName.php:
+    newFile: !uuid '5ddc7a7b67f5597583b3e440d4e255ca71b05c13'
+    oldFile: !uuid '9b1088aedb4343a20d49f523bc45c35efa3e18fa'
+  /vendor/topthink/framework/src/think/route/Url.php:
+    newFile: !uuid '270439edb41607285d834eeb6d02d6bc56fc06ce'
+    oldFile: !uuid 'd0d808b25aedde14cec19544411581d334ed7e94'
+  /vendor/topthink/framework/src/think/session:
+    newFile: !uuid 'ab08b2bd27ee11c7e62b0e4d2682d2e2eb785f5f'
+    oldFile: !uuid '41e616eb93ecf5581b8406c1b586a1461edf3b86'
+  /vendor/topthink/framework/src/think/session/driver:
+    newFile: !uuid 'f4f916a10594274e35eda7ebeb0a86bf85bfeba8'
+    oldFile: !uuid '46abb4acb10a21cf541954f5e0a0e03f84c075e9'
+  /vendor/topthink/framework/src/think/session/driver/File.php:
+    newFile: !uuid '258458a6aeb933ab5aea29c93bce70769faf51e8'
+    oldFile: !uuid '991f2cc93a4d27b3609eb33efb3efd46a5c8611e'
+  /vendor/topthink/framework/tests:
+    newFile: !uuid 'fdf010f52bd779ea04314d42779495e6375c63e9'
+    oldFile: !uuid '5f5283f44063de726c13e1c6db6f9739d3316de4'
+  /vendor/topthink/framework/tests/ContainerTest.php:
+    newFile: !uuid 'e27deb088a3e3b8fd7f2d67f2bcfe3c4e8348a40'
+    oldFile: !uuid '72ff1d071b890ee49d7f705a4155310dc26b16a1'
+  /vendor/topthink/framework/tests/HttpTest.php:
+    newFile: !uuid 'c3e0abd33eddbe69eb24efebb3956e5a9d39fbe5'
+    oldFile: !uuid '8b6f28fd6c9c662b71b5f97fc08cf9e6ff975010'
+  /vendor/topthink/think-orm:
+    newFile: !uuid 'ab6ffe75511ed89ac2faf6c10d6bb79a493b0f1f'
+    oldFile: !uuid '4a3722862c30f76d46949b2fcc15fa7921a5ec2a'
+  /vendor/topthink/think-orm/src:
+    newFile: !uuid '323cde34b07969be3f5df0b389e1287e36c778f4'
+    oldFile: !uuid '2e76ca7ad20dbd999d2ed4a15f0d9ebbfcc1f9a4'
+  /vendor/topthink/think-orm/src/db:
+    newFile: !uuid '8dcef48ffe98a5c063bcf9f2d4512222ced87b8c'
+    oldFile: !uuid '36df9c1452e0ed5c34d2e65e094327282871b87b'
+  /vendor/topthink/think-orm/src/db/PDOConnection.php:
+    newFile: !uuid 'e8a1dbf49a81edf78555b64d35c73b1e8219838e'
+    oldFile: !uuid '540f135364040d3b7bcb34a6bb4607d062331aff'
+  /vendor/topthink/think-orm/src/db/concern:
+    newFile: !uuid '5eeaeafdc44f7b5d1d2bd931641a750714146179'
+    oldFile: !uuid 'd6b6da4c84ae37c1fef721e7979344c0539a4bf7'
+  /vendor/topthink/think-orm/src/db/concern/WhereQuery.php:
+    newFile: !uuid 'a95c697587461d42944ec2499a2b1fe4fa1cc696'
+    oldFile: !uuid '62dc98366d252f54a42fb5114115c6a714446bd4'
+  /vendor/topthink/think-orm/src/db/exception:
+    newFile: !uuid '64053e6f9639f17a219c16f011c109ad329c6d7a'
+    oldFile: !uuid '3eba350bfb40a4abccbbc0a995837d65f59d8ffc'
+  /vendor/topthink/think-orm/src/db/exception/DbException.php:
+    newFile: !uuid '7d1deaadf800bcbafdcfe3950297ab72161917d5'
+    oldFile: !uuid 'd5bfc3f0431139c06ae402923a4a1cad218648f2'
+  /vendor/topthink/think-orm/src/model:
+    newFile: !uuid 'be316a3619a963d2d81f902985f4ec4aca8e9d88'
+    oldFile: !uuid 'd13724ed3a3b5968f585d46b12a63b95299fa3c8'
+  /vendor/topthink/think-orm/src/model/Relation.php:
+    newFile: !uuid 'e823bd90bee2ab799fedfa3722076f524ff2ff53'
+    oldFile: !uuid 'd9d02e33c501d845172cb68ff1177d3a7015847a'
+  /vendor/topthink/think-orm/src/model/concern:
+    newFile: !uuid '3a76bf8a174a975696b935a06d435b46cde9872a'
+    oldFile: !uuid 'e5f413419cedacc371211665d085e507c8bad291'
+  /vendor/topthink/think-orm/src/model/concern/Attribute.php:
+    newFile: !uuid '6358bf8b8076233e6c78165649b89a888e4a8473'
+    oldFile: !uuid '9e4367b8f3d2154893c0e211345fffec051efb50'
+  /vendor/topthink/think-orm/src/model/concern/Conversion.php:
+    newFile: !uuid 'f81850cb2ce96510fb20017e535a293d0e1deb62'
+    oldFile: !uuid 'e12d0affb766ef85638248eb337b6b450302274a'
+  /vendor/topthink/think-orm/src/model/relation:
+    newFile: !uuid 'e7e8d5fcf2838eddefec6640c8f20b8e23657880'
+    oldFile: !uuid 'd9148d155172f8910d51dfa2a96c4cbd235d7a68'
+  /vendor/topthink/think-orm/src/model/relation/BelongsToMany.php:
+    newFile: !uuid '6b64d95300a98eeb4b265cd500158179afcd60ff'
+    oldFile: !uuid 'a3c8aa478afd7268351e97dadb4f6dbc80298727'
+  /vendor/topthink/think-orm/src/model/relation/HasOne.php:
+    newFile: !uuid '7fcd20a03c4fa016e913acb62b95c35a54046af6'
+    oldFile: !uuid 'd0dc21d63a0cdd782f40e182aa03b63e6bac2626'
+  /vendor/topthink/think-orm/src/model/relation/OneToOne.php:
+    newFile: !uuid '65bbfdae8fde14eab49a36b7f67914c113217267'
+    oldFile: !uuid 'efb2359c7c02a090a01dbbe9aa55536f39c29f98'
+  /vendor/topthink/think-trace:
+    newFile: !uuid '4025e7abac6632c581bd82ca83b3f18932741768'
+    oldFile: !uuid '0ccb9986c878a3cdf6a36275e9fc8eee5edf8283'
+  /vendor/topthink/think-trace/src:
+    newFile: !uuid '3c5a35a2e005f69a0c9a6ec4272163c92bf73e27'
+    oldFile: !uuid '0771416c1072d66d6a55e936429e2540d133f582'
+  /vendor/topthink/think-trace/src/Console.php:
+    newFile: !uuid '179d4ea2bff44fd5964fb1e1198ef21d64e3ad66'
+    oldFile: !uuid '01140b500d11da3e9e486889be797f93ec95adc6'
+  /vendor/topthink/think-trace/src/Html.php:
+    newFile: !uuid 'bcb2f50d895b5c659f1e01cd8254c2a65d597ba6'
+    oldFile: !uuid 'aeb5e1bd9256cadd191acfa06e2800dfb97c0438'
+  /vendor/yansongda:
+    newFile: !uuid '70b83f308fc20448bbdce8c60d1b22224cb6d0e4'
+    oldFile: null
+  /vendor/yansongda/pay:
+    newFile: !uuid '0949a1137cd1b86a4a488a73c58b408baa5738a6'
+    oldFile: null
+  /vendor/yansongda/pay/LICENSE:
+    newFile: !uuid '6ceb153eceb4e0653e0676711f2761f79a17a5a9'
+    oldFile: null
+  /vendor/yansongda/pay/README.md:
+    newFile: !uuid '73f0ee1e8e460b6f8ee263e08abaeabb9d3bbe3d'
+    oldFile: null
+  /vendor/yansongda/pay/composer.json:
+    newFile: !uuid '17c0cf75fd75acab9c9f35394af05dff77cca7e4'
+    oldFile: null
+  /vendor/yansongda/pay/src:
+    newFile: !uuid '70d00d576c9e7ba81e2a65a5bbf104a4ee7b6095'
+    oldFile: null
+  /vendor/yansongda/pay/src/Contracts:
+    newFile: !uuid 'c0cc4c1a84047c8c1ac474d0cfc1b6caedffd641'
+    oldFile: null
+  /vendor/yansongda/pay/src/Contracts/GatewayApplicationInterface.php:
+    newFile: !uuid 'b4e296a686a04340b4bf9b9c7648793ec60e7dfe'
+    oldFile: null
+  /vendor/yansongda/pay/src/Contracts/GatewayInterface.php:
+    newFile: !uuid '8286763206f96da9921260dfd49edd8d3bcc71b7'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events:
+    newFile: !uuid '3ebe71851285e2ff17a3b24ce20e9784d466e609'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events.php:
+    newFile: !uuid 'a747305add9f927695c9ff5274f2d5eea06cb6dc'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/ApiRequested.php:
+    newFile: !uuid '845ac876842e05910ee54c1620ee9203f3751fa1'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/ApiRequesting.php:
+    newFile: !uuid '14c9fdd2f6b419e0712d26e95d530511b71cfe83'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/Event.php:
+    newFile: !uuid '1ef883cb44cd0e05e91aafe00b5e4400815d2a0e'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/MethodCalled.php:
+    newFile: !uuid 'd199f23a0d9bde7b85e5af762f2c8013f144c2ed'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/PayStarted.php:
+    newFile: !uuid '845d93cf6b1910295b3004946b7e86cec9c0abbb'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/PayStarting.php:
+    newFile: !uuid 'ad73d9dbe4411eb5e868355213754e3da6b457ae'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/RequestReceived.php:
+    newFile: !uuid '3620b129152d18b8d4d5ac95dccbb42290bfee9a'
+    oldFile: null
+  /vendor/yansongda/pay/src/Events/SignFailed.php:
+    newFile: !uuid '4e4593298659703b52dc25c8145bf73ef4882253'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions:
+    newFile: !uuid 'dfbd4b132c18424c11ab7419cdf82ca0296b17c7'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/BusinessException.php:
+    newFile: !uuid '8e94a4f0fefc04ab9efe20ea74777d2315369644'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/Exception.php:
+    newFile: !uuid '9d007ad57cc38d3cd0f096021dca191128d74b53'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/GatewayException.php:
+    newFile: !uuid 'e8448016a2b7f5dd3632640bf0be544bd0b9dc55'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/InvalidArgumentException.php:
+    newFile: !uuid '2ecb16b69f5bd90004d51c70d169045d778504b9'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/InvalidConfigException.php:
+    newFile: !uuid '57193101ee4874049532971e56624f1bce40a917'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/InvalidGatewayException.php:
+    newFile: !uuid '3f4067dbfc2e12f09d857ab31040ebb51a3bb321'
+    oldFile: null
+  /vendor/yansongda/pay/src/Exceptions/InvalidSignException.php:
+    newFile: !uuid '135c8a5b9ff0547ca4e9051d620ebb7140caf029'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways:
+    newFile: !uuid '6822bdd046925e34a20e9c46fe94ebd159f3a94b'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay:
+    newFile: !uuid '889f3fe7c46edd946d5d3edda4b11c1d249e9006'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay.php:
+    newFile: !uuid 'aa94ca454e850942fc3bd04198f1a34e09702048'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/AppGateway.php:
+    newFile: !uuid '860b44b344ef2316a7155c8d5478e5081d5d902b'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/Gateway.php:
+    newFile: !uuid '5f57cc3e2e8ecb3067c6bcbb2342de103cc3ca6e'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/MiniGateway.php:
+    newFile: !uuid '0198194d4869dfe8cd8c3883b3b8dabbb84a6bf2'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/PosGateway.php:
+    newFile: !uuid 'de047613d1009ecf58cdac78c767e18bd3e674e3'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/RefundGateway.php:
+    newFile: !uuid 'abbb71f288e6c93819e0870d0504d6a688dec63e'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/ScanGateway.php:
+    newFile: !uuid '9d6cbc3f4b9dfa8f1cdf3fd7983ea1d662cbce59'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/Support.php:
+    newFile: !uuid '289bb946fc08b2337b23f8a72ffd5ba23a253812'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/TransferGateway.php:
+    newFile: !uuid '1015ac3c63d0e42faadb00f4201e521dc7157cfc'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/WapGateway.php:
+    newFile: !uuid 'dda8c65c256efcd56b59025d2267cd0d4e2acdec'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Alipay/WebGateway.php:
+    newFile: !uuid '37a0cd9cffd978a9d70953c685a4787c9b30f2e0'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat:
+    newFile: !uuid '3989790435edfde1e7fd595e64192cbcc0927083'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat.php:
+    newFile: !uuid '9873da2da88026db544628e16f0015b4cd1250ea'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/AppGateway.php:
+    newFile: !uuid 'b37b965cb912f6a9588c878317acad463f2b75f8'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/Gateway.php:
+    newFile: !uuid '439a908831c169400c744d21ca7db96f155c3f0e'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/GroupRedpackGateway.php:
+    newFile: !uuid 'de690d6ebbe116890567005b22428a5691890149'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/MiniappGateway.php:
+    newFile: !uuid '8878dd2562adcd8b04f1146a140d0d795574c614'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/MpGateway.php:
+    newFile: !uuid '1c7fd9d45e0029cb949b6eebec56e6a92b067157'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/PosGateway.php:
+    newFile: !uuid '01061b6b99ae7485d5ace20baa1f177c9e515222'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/RedpackGateway.php:
+    newFile: !uuid 'db7d06ff4b5541387815bcd425073de56913e178'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/RefundGateway.php:
+    newFile: !uuid 'e354cf50e2c00f39fb7bb73316912a81b521c806'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/ScanGateway.php:
+    newFile: !uuid '133866564d23fdff9add1910bd19dd10cb26b0cb'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/Support.php:
+    newFile: !uuid '6b8f54fe86882589b48d1ad159ddc6eae7e6fb99'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/TransferGateway.php:
+    newFile: !uuid 'bbd97b3d486a16472151654e02896b013f04cf15'
+    oldFile: null
+  /vendor/yansongda/pay/src/Gateways/Wechat/WapGateway.php:
+    newFile: !uuid '0c0c920ae07123ca9410e29d623083766d859212'
+    oldFile: null
+  /vendor/yansongda/pay/src/Listeners:
+    newFile: !uuid '3eabab85bcdfe081f6641b6f586ca30fed6d84ed'
+    oldFile: null
+  /vendor/yansongda/pay/src/Listeners/KernelLogSubscriber.php:
+    newFile: !uuid '2250de3f7fb3c604b0dd66620dfc47dc4bb23121'
+    oldFile: null
+  /vendor/yansongda/pay/src/Log.php:
+    newFile: !uuid 'c1f8c3e614faaaf1244d1b1b00ec1c04a4952a26'
+    oldFile: null
+  /vendor/yansongda/pay/src/Pay.php:
+    newFile: !uuid 'eb33e3dafa56e345e7c672870dcfe755d76597aa'
+    oldFile: null
+  /vendor/yansongda/supports:
+    newFile: !uuid 'dc1104e84aa84b12f6c58d60b3c11f0044a4e68e'
+    oldFile: null
+  /vendor/yansongda/supports/LICENSE:
+    newFile: !uuid '6ceb153eceb4e0653e0676711f2761f79a17a5a9'
+    oldFile: null
+  /vendor/yansongda/supports/README.md:
+    newFile: !uuid 'c092ee88e100a74c5b717da7e6ec42e5b83df0d0'
+    oldFile: null
+  /vendor/yansongda/supports/composer.json:
+    newFile: !uuid '64c8a6e9d642b4752c32271923bc96f5d75bd233'
+    oldFile: null
+  /vendor/yansongda/supports/src:
+    newFile: !uuid '03ec0e7be9d4b916fb78bc1eccbd7c2334c54069'
+    oldFile: null
+  /vendor/yansongda/supports/src/Arr.php:
+    newFile: !uuid '011719c8b91a3454c2d8c1234080db5af21e7ecb'
+    oldFile: null
+  /vendor/yansongda/supports/src/Collection.php:
+    newFile: !uuid 'f2f6e2f871a43944e7429fe2bd52705bbecd7cdd'
+    oldFile: null
+  /vendor/yansongda/supports/src/Config.php:
+    newFile: !uuid 'c6e3ae975196c130dfcbe6f7e063e8382706d3b5'
+    oldFile: null
+  /vendor/yansongda/supports/src/Log.php:
+    newFile: !uuid '14f744117b794487c2f98c1cba49107d0d6e2cf9'
+    oldFile: null
+  /vendor/yansongda/supports/src/Logger:
+    newFile: !uuid 'bea727b8a1323d8e9a5ef0588087d055b21a0305'
+    oldFile: null
+  /vendor/yansongda/supports/src/Logger.php:
+    newFile: !uuid '1ec07cb940af27294d0656e36707fde087dfeb34'
+    oldFile: null
+  /vendor/yansongda/supports/src/Logger/StdoutHandler.php:
+    newFile: !uuid '1cfa090d6bfd9a057154c47da3a1db6f0b08a1ca'
+    oldFile: null
+  /vendor/yansongda/supports/src/Str.php:
+    newFile: !uuid '58703d32267cbfd330c173b1d4841e5d4139f006'
+    oldFile: null
+  /vendor/yansongda/supports/src/Traits:
+    newFile: !uuid 'dbe57403637e721738efb4c17c273c3b4d9e886b'
+    oldFile: null
+  /vendor/yansongda/supports/src/Traits/Accessable.php:
+    newFile: !uuid 'bf6a1f1d7a774ffc6d1465f8e9dcec391c770ec2'
+    oldFile: null
+  /vendor/yansongda/supports/src/Traits/Arrayable.php:
+    newFile: !uuid 'eb73c6c44b5f17f94acd1ac837ad338ba5bd544e'
+    oldFile: null
+  /vendor/yansongda/supports/src/Traits/HasHttpRequest.php:
+    newFile: !uuid '2af501e18b82c0ad03051deb31daf1ef4a88d1b8'
+    oldFile: null
+  /vendor/yansongda/supports/src/Traits/Serializable.php:
+    newFile: !uuid '9803bbb55cb37f85e2eddf017cffa658158504ed'
+    oldFile: null
+  /vendor/yansongda/supports/src/Traits/ShouldThrottle.php:
+    newFile: !uuid 'ab756cadfe92761edbca004d0808099c2de12b70'
+    oldFile: null
+gitCommitId: !uuid 'c3a0219d00477ab62c4f512ba6c3165fd68ca4e8'
 renames: {
   }
-revisionId: 90
+revisionId: 91
