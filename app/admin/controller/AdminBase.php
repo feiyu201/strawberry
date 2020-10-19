@@ -39,7 +39,7 @@ class AdminBase extends BaseController
     }
 	protected function checkLogin(){
 		if(!Session::has('admin')){
-			$this->error('请登陆','login/index');
+			$this->error('请登陆','admin/login/index');
 		}
 	}
 	protected function checkAuth(){

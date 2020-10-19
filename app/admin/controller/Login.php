@@ -28,6 +28,7 @@ class Login extends BaseController
     	$captcha = $this->request->param('captcha');
     	$username = $this->request->param('username');
     	$password = $this->request->param('password');
+    	$keep_login = $this->request->param('keep_login');
     	if(!captcha_check($captcha)){
     		// 验证失败
     		$this->error('验证码错误');
@@ -51,7 +52,7 @@ class Login extends BaseController
     	->field('a.group_id,ag.rules,ag.title')
     	->where('uid', $admininfo['id'])
     	->find();
-    	
+    	$admininfo['expire_time'] = $keep_login == 1 ? true : time() + 7200;
     	session('admin',$admininfo);
     	
     	Session::set('admin.group_id' , $rules['group_id']);
