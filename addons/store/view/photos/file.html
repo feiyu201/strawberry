@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>图库管理power by www.nbnat.com</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <link rel="stylesheet" href="/static/css/dragula.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <style>
+        .icon-img-delete{position: absolute;right: 5px;top: 5px;background-color: rgba(0,0,0,0.5);color: white;padding: 0px;z-index: 8}
+
+        .layui-upload-img{width: 92px; height: 92px; margin: 0 10px 10px 0;}.layui-elip{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 100px;line-height: 22px;height: 22px}.fileManager li{position: relative}.fileManager li::after{content: '';position: absolute;z-index: -1;width: 40px;height: 40px;right: 5px;bottom: 26px;background-image: url('/static/images/success_checked.jpg');background-repeat: no-repeat;}  .fileManager li.checked::after{z-index: 3;}</style>
+</head>
+
+<body style='padding:10px'>
+<button type="button" class="layui-hide" id="test1"></button>
+<div class="layui-fluid">
+    <div id="fileManager" lay-filter="test"></div>
+</div>
+<div style="text-align: right;position: absolute;left: 0;bottom: 10px;right: 10px">
+    <button class="layui-btn layui-btn-normal submit">确认</button>
+    <button class="layui-btn layui-btn-primary cancel">取消</button>
+</div>
+</body>
+<script src="/static/lib/layui/layui.js"></script>
+<script>
+    layui.config({
+        base: '/static/lib/layui/extend/',
+    })
+    layui.extend({'fileManager': 'fileManager/fileManager'})
+    .use(['fileManager', 'layer', 'upload', "okUtils","okLayer"], function () {
+        okLoading.close();
+        var fileManager = layui.fileManager
+            , $ = layui.$
+            , upload = layui.upload
+            , layer = layui.layer
+            ,model = Number('{$Request.param.model}'),
+            imgList = [],
+            imgLimit = 12,
+            okUtils = layui.okUtils,
+            okLayer = layui.okLayer;
+
+        switch (model){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                imgLimit = 1
+                break;
+
+        }
+
+        $('title').html($('title').html() + ' version:' + fileManager.v);
+        fileManager.render({
+            elem: '#fileManager'
+            , method: 'post'
+            , btn_upload: true
+            , id: 'fmTest'
+            , btn_create: false
+            , url: "{:addons_url('store://Photos/getList')}?goods_id={$Request.param.goods_id|default='0'}"
+            , thumb: {'nopic': '/filemanage/upload/null-100x100.jpg', 'width': 100, 'height': 100}
+            , parseData: function (res) {
+                let _res = [];
+                _res.code = 0;
+                _res.data = res.data;
+                _res.count = res.count
+                return _res;
+            }
+            , page: {limit: 10}
+
+        });
+        console.log(fileManager)
+        var upIns = upload.render({
+            elem: '#test1' //绑定元素
+            , url: "{:addons_url('store://Upload/uploadPhotos')}?id={$Request.param.goods_id|default='0'}" //改成您自己的上传接口
+            ,multiple: true
+            ,done: function(res){
+                //上传完毕
+                console.log(res)
+                fileManager.reload('fmTest');
+            }
+        })
+
+
+        //监听图片上传事件
+        fileManager.on('uploadfile(test)', function (obj) {
+            //obj.obj 当前对象
+            //obj.path 路径
+            //更改上传组件参数
+            upIns.config.data = {'path': obj.path};
+            upIns.config.done = function (res) {
+                fileManager.reload('fmTest');
+            }
+            var e = document.createEvent("MouseEvents");
+            e.initEvent("click", true, true);
+            document.getElementById("test1").dispatchEvent(e)
+        });
+        $('.submit').click(function (){
+            for (let i in imgList) {
+                if (!(imgList[i].indexOf('-thumb') > -1)) {
+                    var imgfile = imgList[i].split('.')
+                    imgfile = imgfile[0]+'-thumb.'+imgfile[1]
+                }  else {
+                    var imgfile = imgList[i]
+                }
+                switch (model){
+                    case 1:
+                        parent.tinymce.execCommand('mceReplaceContent',false,`<img src="${imgList[i]}">`)
+                        break;
+                    case 2:
+                        parent.$('#addDom').before(`<li class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover img-spec">
+                    <div class="img-view">
+                        <span class="handle">↔</span>
+                        <img src="${imgfile}" alt="">
+                        <span class="img-border"></span>
+                        <input type="checkbox" name="images[]" style="display: none" value="${imgfile}" checked>
+                    </div>
+                </li>`);
+                        break;
+                    case 3:
+                        parent.$('#addDom2').before(`<div class="layui-col-xs6 layui-col-sm2 layui-col-md1 img-hover img-spec">
+                        <button type="button" class="layui-btn layui-btn-sm">选择图片</button>
+                        <div class="img-view">
+                            <img src="${imgfile}" alt="">
+                            <span class="img-border"></span>
+                            <i class="layui-icon layui-icon-delete icon-delete"></i>
+                        </div>
+                        <input type="text" class="layui-input layui-input-sm img-input" placeholder="规格对应的名称">
+                    </div>`)
+                        parent.reload()
+                        break;
+                }
+            }
+            parent.layer.close(parent.layer.getFrameIndex(window.name));
+        })
+        $('.cancel').click(function (){
+            parent.layer.close(parent.layer.getFrameIndex(window.name));
+        })
+        fileManager.on('delete(test)', function (obj){
+            let id = obj.obj.attr('data-id')
+            layer.confirm('确认删除？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                okUtils.ajax("{:addons_url('store://Photos/delete')}", "post", {id}, true).done(function (response) {
+                    if (response.status === 200) {
+                        okLayer.greenTickMsg(response.msg, function () {
+                            location.reload()
+                        })
+                    }
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            }, function(){
+
+            });
+
+            console.log('delete')
+        })
+        //监听图片选择事件
+        fileManager.on('pic(test)', function (obj) {
+            if (imgList.length === imgLimit) {
+                return layer.msg(`只允许选择${imgLimit}张图片`);
+            }
+            if (obj.obj.parent().parent().attr('class') !== undefined && obj.obj.parent().parent().attr('class').indexOf('checked') > -1){
+                obj.obj.parent().parent().attr('class','')
+                imgList.splice(imgList.indexOf( obj.obj.attr('src')),1)
+            } else {
+                imgList.push(obj.obj.attr('src'))
+                obj.obj.parent().parent().attr('class','checked')
+            }
+            console.log(imgList)
+
+            if (model === 4){
+                imgLimit = 1
+                if (!(obj.obj.attr('src').indexOf('-thumb') > -1)) {
+                    var imgfile = obj.obj.attr('src').split('.')
+                    imgfile = imgfile[0]+'-thumb.'+imgfile[1]
+                }  else {
+                    var imgfile = obj.obj.attr('src')
+                }
+                let item = Number('{$Request.param.item}');
+                parent.$('#specType .img-spec').eq(item).find('img').attr('src',imgfile)
+                parent.layer.close(parent.layer.getFrameIndex(window.name));
+            }
+        });
+
+    });
+</script>
+
+</html>

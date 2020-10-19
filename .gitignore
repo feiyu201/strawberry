@@ -14,3 +14,4 @@ composer.lock
 .vscode
 *.zip
 /config/database.php
+/strawberry.zip

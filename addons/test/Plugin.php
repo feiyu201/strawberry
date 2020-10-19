@@ -34,9 +34,9 @@ class Plugin extends Addons	// 需继承think\Addons类
                 'icon'    => '&#xe66f;',
                 'ismenu'  => 1,//是否是菜单
                 'sublist' => [
-                    ['name' => 'addons/test/index/index', 'title' => '查看'],
-                    ['name' => 'addons/test/index/add', 'title' => '添加'],
-                    ['name' => 'addons/test/index/detail', 'title' => '详情'],
+                    ['name' => 'addons/test/index/index', 'title' => '查看', 'ismenu' => 1],
+                    ['name' => 'addons/test/index/add', 'title' => '添加', 'ismenu' => 1],
+                    ['name' => 'addons/test/index/detail', 'title' => '详情', 'ismenu' => 1],
                 ]
             ]
         ];

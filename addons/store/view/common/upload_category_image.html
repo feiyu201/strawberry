@@ -13,7 +13,7 @@
         <div class="layui-upload">
             <button type="button" class="layui-btn" id="upload-big-images">上传图片</button>
             <div class="layui-upload-list">
-                <img class="layui-upload-img-big" id="upload-big-images-demo">
+                <img class="layui-upload-img-big" id="upload-big-images-demo" style="display: none">
                 <p id="demo2Text"></p>
             </div>
         </div>
@@ -32,7 +32,7 @@
             ,before: function(obj){
                 //预读本地文件示例，不支持ie8
                 obj.preview(function(index, file, result){
-                    $('#upload-big-images-demo').attr('src', result); //图片链接（base64）
+                    $('#upload-big-images-demo').attr('src', result).css('display','block'); //图片链接（base64）
                 });
             }
             ,done: function(res){
@@ -56,11 +56,16 @@
     })
 </script>
 {if !empty($data) }
+{if !empty($data) && empty($data.big_images)}
+<script>let show1 = 'none'</script>
+{else /}
+<script>let show1 = 'block'</script>
+{/if}
 <script>
     layui.use('jquery',function () {
         let $ = layui.jquery;
         $('.upload-big-images input[name="big_images"]').val('{$data.big_images}')
-        $('#upload-big-images-demo').attr('src', '{$data.big_images}')
+        $('#upload-big-images-demo').attr('src', '{$data.big_images|default=""}').css('display',show2)
     })
 </script>
 {else /}
