@@ -12,3 +12,5 @@ composer.lock
 .env
 .svn
 .vscode
+*.zip
+/config/database.php
