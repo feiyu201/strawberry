@@ -48,11 +48,18 @@
 					   lay-verify="required">
 			</div>
 		</div>
-		
-		
-		
-		
-		
+		<div class="layui-form-item">
+			<label class="layui-form-label">选择应用</label>
+			<div class="layui-input-block">
+				<select name="addons" lay-verify="required" lay-search>
+					<option value="">请选择应用</option>
+					{foreach $installPluginList as $v}
+					<option value="{$v.name}">{$v.title}</option>
+					{/foreach}
+				</select>
+			</div>
+		</div>
+
 		<div class="layui-form-item">
 			<label class="layui-form-label">状态</label>
 			<div class="layui-input-block">
@@ -97,7 +104,7 @@
 						parent.layer.close(parent.layer.getFrameIndex(window.name));
 					});
 				}else{
-					okLayer.greenTickMsg(response.msg, function () {
+					okLayer.redCrossMsg(response.msg, function () {
 				        
 				    })
 				}

@@ -318,6 +318,22 @@ class ThinkAddons
             return true;
         }
     }
+
+    // 插件进入应用插件首页
+    public function welcome(string $name)
+    {
+        // 实例化插件
+        $object = $this->getInstance($name);
+        // 获取插件基础信息
+        $info = $object->getInfo();
+        if(!method_exists($object,'welcome')){
+            return false;
+        }else{
+            $object->welcome();
+            return true;
+        }
+    }
+
     // ===========================================
 
     // 验证插件是否完整
