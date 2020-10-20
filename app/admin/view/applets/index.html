@@ -146,6 +146,9 @@
 				case "del":
 					del(data.id);
 					break;
+				case "welcome":
+					welcome(data);
+					break;
 			}
 		});
 
@@ -249,6 +252,11 @@
 				});
 			})
 		}
+
+		function welcome(data){
+			console.log(data);
+			window.open("{:url('welcome')}?id="+data.id);
+		}
 	})
 </script>
 <!-- 头工具栏模板 -->
@@ -262,6 +270,7 @@
 </script>
 <!-- 行工具栏模板 -->
 <script type="text/html" id="operationTpl">
+	{{#  if(d.addons != ''){ }}<a href="javascript:" title="进入" lay-event="welcome"><i class="layui-icon">&#xe68e;</i></a>{{#  } }}
 	<a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
 	<a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
 </script>

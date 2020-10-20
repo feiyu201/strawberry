@@ -244,7 +244,8 @@ CREATE TABLE `st_text_addondownload` (
 --
 
 CREATE TABLE `st_wxapp` (
-  `stid` int(10) UNSIGNED NOT NULL,
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `stid` int(10) unsigned NOT NULL,
   `appid` varchar(50) NOT NULL,
   `token` varchar(32) CHARACTER SET utf8 NOT NULL,
   `encodingaeskey` varchar(43) CHARACTER SET utf8 NOT NULL,
@@ -255,16 +256,18 @@ CREATE TABLE `st_wxapp` (
   `secret` varchar(50) CHARACTER SET utf8 NOT NULL,
   `name` varchar(30) CHARACTER SET utf8 NOT NULL,
   `status` varchar(30) CHARACTER SET utf8 NOT NULL,
-  `id` int(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
+  `addons` varchar(50) NOT NULL DEFAULT '',
+  `createtime` int(10) NOT NULL DEFAULT '0',
+  `updatetime` int(10) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 --
 -- 转存表中的数据 `st_wxapp`
 --
 
-INSERT INTO `st_wxapp` (`stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `id`) VALUES
-(1, '1', '1', '1', 1, '1', '1', '1', '1', '111', 'normal', 4),
-(1, '12', '1212', '121', 1, '1', '12', '121212', '1212', '测试', 'normal', 5);
+INSERT INTO `caomei`.`st_wxapp`(`id`, `stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `addons`, `createtime`, `updatetime`) VALUES (22, 0, 'xxx', '', '', 0, '', 'xxx', '', 'xxx', 'xxx', 'normal', 'test', 1603166762, 1603166762);
+
 
 --
 -- 转储表的索引
