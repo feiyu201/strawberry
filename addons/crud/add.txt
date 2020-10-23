@@ -43,6 +43,8 @@
 		let okLayer = layui.okLayer;
 		let okUtils = layui.okUtils;
 
+        %s
+
 		okLoading.close();
 
 		//laydate.render({elem: "#birthday", type: "datetime"});
