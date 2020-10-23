@@ -113,7 +113,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "add.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/add.txt'),
-                self::getViewAddHtml($table),self::timejs($table)
+                self::getViewAddHtml($table), self::timejs($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -125,7 +125,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "edit.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/edit.txt'),
-                self::getViewEditHtml($table),self::timejs($table)
+                self::getViewEditHtml($table), self::timejs($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -155,7 +155,7 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
-            $s = explode('_',$item['field']);
+            $s = explode('_', $item['field']);
             if ($item['key'] === 'PRI') {
                 continue;
             } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
@@ -205,6 +205,26 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
+            } else if (end($s) === 'id') {
+                $str .= "  <div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <div class=\"layui-input-block\">
+                <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
+                    <option value=\"\"></option>
+                    " . self::xialaid($item) . "
+                </select>
+            </div>
+        </div>";
+            } else if (end($s) === 'ids') {
+                $str .= "        <div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <div class=\"layui-input-block\">
+                <select name=\"" . $item['field'] . "\" multiple=\"multiple\" lay-filter=\"test\">
+                    <option value=\"\"></option>
+                    ".self::xialaids($item)."
+                </select>
+            </div>
+        </div>";
             }else if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
@@ -234,14 +254,14 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
-            $s = explode('_',$item['field']);
+            $s = explode('_', $item['field']);
             if ($item['field'] === Db::name("$table")->getPk()) {
                 $str .= "<input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">";
             } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
                 $str .= "<div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-        " . self::danxuanedit($table,$item['field'], $item) . "
+        " . self::danxuanedit($table, $item['field'], $item) . "
     </div>
   </div>";
             } else if (explode('(', $item['type'])[0] === 'enum') {
@@ -250,7 +270,27 @@ class Crud extends Admin
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
                     <option value=\"\"></option>
-                    " . self::xialaedit($table,$item['field'],$item) . "
+                    " . self::xialaedit($table, $item['field'], $item) . "
+                </select>
+            </div>
+        </div>";
+            }else if (end($s) === 'id') {
+                $str .= "        <div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <div class=\"layui-input-block\">
+                <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
+                    <option value=\"\"></option>
+                    " . self::xialaidedit($table, $item['field'], $item) . "
+                </select>
+            </div>
+        </div>";
+            }else if (end($s) === 'ids') {
+                $str .= "        <div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <div class=\"layui-input-block\">
+                <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
+                    <option value=\"\"></option>
+                    " . self::xialaidedit($table, $item['field'], $item) . "
                 </select>
             </div>
         </div>";
@@ -258,7 +298,7 @@ class Crud extends Admin
                 $str .= "<div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-    " . self::duoxuanedit($table,$item['field'], $item) . "
+    " . self::duoxuanedit($table, $item['field'], $item) . "
     </div>
   </div>";
             } else if (explode('(', $item['type'])[0] === 'text') {
@@ -272,11 +312,10 @@ class Crud extends Admin
                 $str .= "    <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"on|off\" {if $".$table.".".$item['field']." == 'on'}checked{/if}>
+      <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"on|off\" {if $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
     </div>
   </div>";
-            }
-            else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+            } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
                 $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -285,7 +324,7 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-            }else if (explode('(', $item['type'])[0] === 'datetime') {
+            } else if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -315,7 +354,7 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
-            $s = explode('_',$item['field']);
+            $s = explode('_', $item['field']);
             if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
@@ -344,13 +383,13 @@ class Crud extends Admin
         return $str;
     }
 
-    public static function danxuanedit($table,$filed, $item)
+    public static function danxuanedit($table, $filed, $item)
     {
         $arr = explode(',', explode(':', $item['comment'])[1]);
         $str = "";
         foreach ($arr as $k => $v) {
             $array = explode('=', $v);
-            $str .= "<input type=\"radio\" name=\"" . $filed . "\" value=\"$array[0]\" title=\"$array[1]\" {if $".$table.".".$filed." == $array[0]}checked{/if}>";
+            $str .= "<input type=\"radio\" name=\"" . $filed . "\" value=\"$array[0]\" title=\"$array[1]\" {if $" . $table . "." . $filed . " == $array[0]}checked{/if}>";
         }
         return $str;
     }
@@ -366,13 +405,42 @@ class Crud extends Admin
         return $str;
     }
 
-    public static function xialaedit($table,$filed,$item)
+    public static function xialaid($item)
+    {
+        $arr = Db::name(explode('_', $item['field'])[0])->field('id,name')->select();
+        $str = "";
+        foreach ($arr as $k => $v) {
+            $str .= "<option value=\"" . $v["id"] . "\">" . $v["name"] . "</option>";
+        }
+        return $str;
+    }
+
+    public static function xialaids($item){
+        $arr = Db::name(explode('_', $item['field'])[0])->field('id,name')->select();
+        $str = "";
+        foreach ($arr as $k => $v){
+            $str .= "<option value=\"" . $v["id"] . "\" >" . $v["name"] . "</option>";
+        }
+        return $str;
+    }
+
+    public static function xialaedit($table, $filed, $item)
     {
         $arr = explode(',', explode(':', $item['comment'])[1]);
         $str = "";
         foreach ($arr as $k => $v) {
             $array = explode('=', $v);
-            $str .= "<option {if $".$table.".".$filed." == $array[0]}selected=\"\"{/if} value=\"$array[0]\">$array[1]</option>";
+            $str .= "<option {if $" . $table . "." . $filed . " == $array[0]}selected=\"\"{/if} value=\"$array[0]\">$array[1]</option>";
+        }
+        return $str;
+    }
+
+    public static function xialaidedit($table, $filed, $item)
+    {
+        $arr = Db::name(explode('_', $item['field'])[0])->field('id,name')->select();
+        $str = "";
+        foreach ($arr as $k => $v) {
+            $str .= "<option {if $" . $table . "." . $filed . " == ".$v["id"]."}selected=\"\"{/if} value=\"" . $v["id"] . "\">" . $v["name"] . "</option>";
         }
         return $str;
     }
@@ -388,13 +456,13 @@ class Crud extends Admin
         return $str;
     }
 
-    public static function duoxuanedit($table,$filed, $item)
+    public static function duoxuanedit($table, $filed, $item)
     {
         $arr = explode(',', explode(':', $item['comment'])[1]);
         $str = "";
         foreach ($arr as $k => $v) {
             $array = explode('=', $v);
-            $str .= "<input {if in_array('".$array[0]."',explode(',',$".$table.".".$filed."))}checked=\"\"{/if} type=\"checkbox\" name=\"" . $filed . "[$array[0]" . "]\" title=\"$array[1]\">";
+            $str .= "<input {if in_array('" . $array[0] . "',explode(',',$" . $table . "." . $filed . "))}checked=\"\"{/if} type=\"checkbox\" name=\"" . $filed . "[$array[0]" . "]\" title=\"$array[1]\">";
         }
         return $str;
     }
