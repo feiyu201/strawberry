@@ -155,6 +155,7 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
+            $s = explode('_',$item['field']);
             if ($item['key'] === 'PRI') {
                 continue;
             } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
@@ -195,7 +196,16 @@ class Crud extends Admin
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"on|off\">
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'datetime') {
+            } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+                $str .= "  <div class=\"layui-form-item\">
+    <div class=\"layui-inline\">
+      <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+      <div class=\"layui-input-block\">
+        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss'>
+      </div>
+    </div>
+  </div>";
+            }else if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -224,6 +234,7 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
+            $s = explode('_',$item['field']);
             if ($item['field'] === Db::name("$table")->getPk()) {
                 $str .= "<input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">";
             } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
@@ -264,7 +275,17 @@ class Crud extends Admin
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"on|off\" {if $".$table.".".$item['field']." == 'on'}checked{/if}>
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'datetime') {
+            }
+            else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+                $str .= "  <div class=\"layui-form-item\">
+    <div class=\"layui-inline\">
+      <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+      <div class=\"layui-input-block\">
+        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value='" . '{$' . "" . $table . "." . $item['field'] . "|date=\"Y-m-d H:i:s\"}'>
+      </div>
+    </div>
+  </div>";
+            }else if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -294,7 +315,14 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
+            $s = explode('_',$item['field']);
             if (explode('(', $item['type'])[0] === 'datetime') {
+                $str .= "laydate.render({ 
+                          elem: \"#" . $item['field'] . "\"
+                          ,type: 'datetime'
+                        });";
+            }
+            if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
                 $str .= "laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,type: 'datetime'

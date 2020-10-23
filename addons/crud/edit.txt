@@ -71,7 +71,7 @@
 <script>
 layui.use(['upload','laydate'], function(){
   var $ = layui.jquery
-  ,let laydate = layui.laydate
+  , laydate = layui.laydate
   ,upload = layui.upload;
 
   %s

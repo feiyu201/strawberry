@@ -24,7 +24,7 @@ namespace app\admin\controller;
 use think\facade\View;
 use think\facade\Db;
 
-class %s extends AdminBase
+class Test extends AdminBase
 {
 
     public function index(){
@@ -34,8 +34,8 @@ class %s extends AdminBase
    public function getList(){
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
-   		$count = Db::name('%s')->count();
-   		$data = Db::name('%s')->page($page,$limit)->select()->each(function($item,$k){
+   		$count = Db::name('test')->count();
+   		$data = Db::name('test')->page($page,$limit)->select()->each(function($item,$k){
    			return $item;
    		});
    		return json([
@@ -62,7 +62,7 @@ class %s extends AdminBase
                     $data[$key] = strtotime($data[$key]);
                 }
             }
-	   		if(Db::name('%s')->insert($data)){
+	   		if(Db::name('test')->insert($data)){
 	   			$this->success("添加成功");
 	   		}else{
 	   			$this->error("添加失败");
@@ -87,7 +87,7 @@ class %s extends AdminBase
                     $data[$key] = strtotime($data[$key]);
                 }
             }
-            if(Db::name('%s')->where('id',$data['id'])->update($data)){
+            if(Db::name('test')->where('id',$data['id'])->update($data)){
 	   			$this->success("编辑成功");
 	   		}else{
 	   			$this->error("编辑失败");
@@ -97,11 +97,11 @@ class %s extends AdminBase
 	   	if(!$id){
 	   		$this->success("参数错误");
 	   	}
-	   	$%s = Db::name('%s')->where('id',$id)->find();
-   		if(!$%s){
+	   	$test = Db::name('test')->where('id',$id)->find();
+   		if(!$test){
 	   		$this->success("参数错误");
 	   	}
-	   	View::assign('%s',$%s);
+	   	View::assign('test',$test);
         return View::fetch();
    }
 
@@ -110,7 +110,7 @@ class %s extends AdminBase
    		if(!$idsStr){
    			$this->success("参数错误");
    		}
-   		if(Db::name('%s')->where('id','in',$idsStr)->delete()){
+   		if(Db::name('test')->where('id','in',$idsStr)->delete()){
    			$this->success("删除成功");
    		}else{
    			$this->error("删除失败");
