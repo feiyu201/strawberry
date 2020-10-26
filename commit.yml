@@ -2,205 +2,244 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'a3994a28304f45f7e5c9258c7bc804a6aa1a40bc'
-    oldFile: !uuid '5878354caa550d01b6b71dc341e4a555fcce3d64'
   /addons:
-    newFile: !uuid '1826da604df4597debc548d47fd26ac9c8d77891'
-    oldFile: !uuid 'a8de36a5ab72d7b158709c209f3eaba874d497ef'
+    newFile: !uuid '11420d3a57bc9c4144d32b18eae814f654772af0'
+    oldFile: !uuid '1826da604df4597debc548d47fd26ac9c8d77891'
   /addons/crud:
-    newFile: !uuid 'd1ffd276f4df222f56545d0bad40fc9cb20892a6'
-    oldFile: null
-  /addons/crud/Plugin.php:
-    newFile: !uuid 'fc6df198ba9fbb75c2123fac0dbf747386044ee7'
-    oldFile: null
+    newFile: !uuid 'bd24b0d8b030f21867a5289b07a30f40c9cab551'
+    oldFile: !uuid 'd1ffd276f4df222f56545d0bad40fc9cb20892a6'
   /addons/crud/add.txt:
-    newFile: !uuid 'd054694bda45bb769312de06dec70064dd1d7399'
-    oldFile: null
-  /addons/crud/config.php:
-    newFile: !uuid 'ced7791f8a87d2269dc554816fc372e4f3f40355'
-    oldFile: null
+    newFile: !uuid '1d6f382688cd71d406c37c5e7bc2b21c5c635317'
+    oldFile: !uuid 'd054694bda45bb769312de06dec70064dd1d7399'
   /addons/crud/control.txt:
-    newFile: !uuid '43c108cb6a4cde08992b934de73efe1b7d886186'
-    oldFile: null
-  /addons/crud/controller:
-    newFile: !uuid '030734cdfba5f8d8e6ba7b033c5ab82b76cfac45'
-    oldFile: null
-  /addons/crud/controller/Crud.php:
-    newFile: !uuid '30af720ddac26d3ee3e2f2c1610ce5ca0d4c9faf'
-    oldFile: null
+    newFile: !uuid '2e93ba3f1ced6a4eb9148e5f2bd0ba29487723b7'
+    oldFile: !uuid '43c108cb6a4cde08992b934de73efe1b7d886186'
   /addons/crud/edit.txt:
-    newFile: !uuid '77a780abf2b866dfdfa7f9434fb6d3bb7baea14e'
-    oldFile: null
-  /addons/crud/index.txt:
-    newFile: !uuid '3ce76a7176662fb841d03c0e33ad9d4e178b6942'
-    oldFile: null
-  /addons/crud/info.ini:
-    newFile: !uuid '710fe04a29eb850aab3c632b0dbbb51f62e6d816'
-    oldFile: null
-  /addons/crud/model:
-    newFile: !uuid '3de34e9ddb0b3944bbf5e2476de144072f8e0912'
-    oldFile: null
-  /addons/crud/model.txt:
-    newFile: !uuid '2563a9cc16bb446fbbc94e6b3483a0c3ae5d9351'
-    oldFile: null
-  /addons/crud/model/Crud.php:
-    newFile: !uuid '5a97340b35c032d416b6e5292673b5e7b07891c1'
-    oldFile: null
-  /addons/crud/view:
-    newFile: !uuid 'ea426c926368945c336dca12be45b5aa70230739'
-    oldFile: null
-  /addons/crud/view/crud:
-    newFile: !uuid '89d6d388d1b740db3ab3b32ce43c03b454ac3fa9'
-    oldFile: null
-  /addons/crud/view/crud/add.html:
-    newFile: !uuid 'd464ecf28cf6e2e76de5714a9c2ea79ed654acee'
-    oldFile: null
-  /addons/crud/view/crud/edit.html:
-    newFile: !uuid 'af48b58b46e61a70c58fabf14e87729e20da3412'
-    oldFile: null
-  /addons/crud/view/crud/index.html:
-    newFile: !uuid 'e1fb3fabcbba55aee327700f834ffa887b523484'
-    oldFile: null
-  /addons/test:
-    newFile: !uuid '62b454af7414609a416434f92ef0b77d58cccf76'
-    oldFile: !uuid '0ea6fb86ced894448718e7c0cd01cc51a291a000'
-  /addons/test/Plugin.php:
-    newFile: !uuid '7984e5fb9d913d99eae1c385eef122533c001110'
-    oldFile: !uuid '6c338e52c9c357edb55b004b5761302d70a3f42d'
+    newFile: !uuid '5eba1633babb0b849988eeb5eae9226e897af630'
+    oldFile: !uuid '77a780abf2b866dfdfa7f9434fb6d3bb7baea14e'
   /app:
-    newFile: !uuid 'f0558760945ed3687496f87b9c5624b1533c26ef'
-    oldFile: !uuid 'def2a34dbc011bd18ff0aacc29f6edd02218242b'
+    newFile: !uuid '1e7c050b59c83c5b832db202320625d7b46b2081'
+    oldFile: !uuid 'f0558760945ed3687496f87b9c5624b1533c26ef'
   /app/admin:
-    newFile: !uuid 'ca587c1517cedaa455d108bcdd625ab11df36725'
-    oldFile: !uuid '6617de7f98fcc6b273c26d498800b27dd93aad72'
+    newFile: !uuid '53f522aa7de067816725c166ace591a38d63d7a1'
+    oldFile: !uuid 'ca587c1517cedaa455d108bcdd625ab11df36725'
   /app/admin/controller:
-    newFile: !uuid '4f1434fe7fa50e73d919eba687d25b0dfcfb043a'
-    oldFile: !uuid '5fdfb1e186d5404ea4a1919ad1f544c306cb0a30'
-  /app/admin/controller/Applets.php:
-    newFile: !uuid 'b99767965b502bb81b2b70245c7c286c7b94e8f5'
-    oldFile: !uuid '903edd1c01216868a407a2172032d1f2973a105a'
+    newFile: !uuid '03c3e086e1cac6c0e59aa1c89bc2f11afce9deba'
+    oldFile: !uuid '4f1434fe7fa50e73d919eba687d25b0dfcfb043a'
   /app/admin/controller/Crud.php:
-    newFile: !uuid 'b5ee05633f7422bf8271c4e2e7d5ae719575c7a6'
-    oldFile: null
-  /app/admin/controller/Login.php:
-    newFile: !uuid '73ed5af2d6e170d734cac4a0b010d0f8d85ec10d'
-    oldFile: !uuid '250c6888a0087e47469596e7862af5a4b4549514'
-  /app/admin/service:
-    newFile: !uuid '12aae99533535d1add3b0f2046a25e24c8da84eb'
-    oldFile: !uuid '7d0a6a271770aa1152a0b626c266da0444fe9fa2'
-  /app/admin/service/ThinkAddons.php:
-    newFile: !uuid 'a58fd54bb7a33cc421faa25761092c9716c87cdf'
-    oldFile: !uuid 'bc5561c5bd11d289145e4490df5ebf6f6b23d1c7'
-  /app/admin/validate:
-    newFile: !uuid '690a67921ef883dee81eef577d80e91718d4aaf5'
-    oldFile: !uuid 'd2a90068de4ce01a923b17f79e41e5a93250c480'
-  /app/admin/validate/Applets.php:
-    newFile: !uuid '4ec93c770a0a2e0a80c998a2744484ab39630b24'
-    oldFile: !uuid 'fa6725723901365fd795bf31c0c92bb7d16e5f6b'
-  /app/admin/view:
-    newFile: !uuid '1b74257765f2e5d0b854e092855ff0140ddced74'
-    oldFile: !uuid 'c01eb63a5916fdbdacf410665c7503843d07d05b'
-  /app/admin/view/applets:
-    newFile: !uuid 'cf4235330d51d7fba881a3f067d9092442bc7c23'
-    oldFile: !uuid 'eb908bad3a487272f0c513d67e5da3e3f7a3bde9'
-  /app/admin/view/applets/add.html:
-    newFile: !uuid '653960ef494040fa12ea854883d609910f15eb17'
-    oldFile: !uuid '2c1fbc53dcd1c0b9075e2f6e7970ac270b6d926c'
-  /app/admin/view/applets/edit.html:
-    newFile: !uuid 'b1d9ff0598417627701563ca2d0270fe0f8ac4e9'
-    oldFile: !uuid '323cbfb7968266303a0d460519762d99d2e43f59'
-  /app/admin/view/applets/index.html:
-    newFile: !uuid 'a71662f6883d2fd5e6878619b65e354a321da9d8'
-    oldFile: !uuid '04e5119546b234d73fd3461f8702aa8065ac5c8c'
-  /app/admin/view/crud:
-    newFile: !uuid '0a7021ba185f406fbe146b7d33d9cb3ca7ab439d'
-    oldFile: null
-  /app/admin/view/crud/index.html:
-    newFile: !uuid 'c66ae21d0589afca598a2bc0fbd82cb8222ab4bf'
-    oldFile: null
-  /app/admin/view/login:
-    newFile: !uuid '852811f0b166116d86eb152856091bea0523e706'
-    oldFile: !uuid '6aad17f7089d33eb78abd3c83c08b0f7a84dc0d8'
-  /app/admin/view/login/index.html:
-    newFile: !uuid '9e627996bbd0511700a2827048ad8328c80fe45a'
-    oldFile: !uuid 'e9e85b822d17b897fdba71c206cc64ee1b2719e5'
-  /app/admin/view/login/test.html:
-    newFile: !uuid 'c5f858b380a2fce22c3ba510f385521c16757a85'
-    oldFile: null
-  /app/admin/view/plugin:
-    newFile: !uuid 'c25d2af38e2fa1d378631b4ae88cb3c3d07292b9'
-    oldFile: !uuid '0f6b8253fcc07c5f78ad6eee51ce4087be404660'
-  /app/admin/view/plugin/index.html:
-    newFile: !uuid '1e0d92e149b25bb2a83a8655a23c94ebe23de97b'
-    oldFile: !uuid '17da7daadf63a14207c2ec26ef5c8cf99f6c087c'
-  /app/common:
-    newFile: !uuid '95430faf89cc3f2a87dd0658eaf9fbdd8b8b781d'
-    oldFile: !uuid '892a5110b3e3cc6b67ed929c9a98cf8e0c9750f2'
-  /app/common/library:
-    newFile: !uuid '1cb2c9e34e184a82dfbe04cfd0e41236a7079987'
-    oldFile: !uuid 'e72dd48bdc7e833e342a5cff4a0cb92c7cb09278'
-  /app/common/library/Portal.php:
-    newFile: !uuid '802f04dd07a6ccb3f80473cb73ae952f144bb368'
-    oldFile: null
+    newFile: !uuid '202f27c22b65d0b187b3e9cb78d2ec5a11f0347a'
+    oldFile: !uuid 'b5ee05633f7422bf8271c4e2e7d5ae719575c7a6'
   /public:
-    newFile: !uuid '82129534bc81e1d6c1335e59a1c4829c85bcb13a'
-    oldFile: !uuid '53d3d937f4606a0e161e027a33534ffd181aab77'
+    newFile: !uuid 'fe89347d7079b59c828f0b64fdc0ce570c1fa938'
+    oldFile: !uuid '82129534bc81e1d6c1335e59a1c4829c85bcb13a'
   /public/static:
-    newFile: !uuid 'bf1b9c7e3bfaae3db0618aea8db6da12108e5efa'
-    oldFile: !uuid '8e469a11e5780eb8d1467c6459f073cbe181f507'
-  /public/static/css:
-    newFile: !uuid 'bed491ad0a5f1bce1234f1a2f0d23de173f4fa40'
-    oldFile: !uuid 'aed63b266dddf8a3034de84b149c578bb57bceac'
-  /public/static/css/oksub.css:
-    newFile: !uuid '9a53c34170084c6f277306ea75876d044ea6a78b'
-    oldFile: !uuid '4a91cf5b4cbe46e0233ae94d58c91f171aaf28ee'
-  /public/static/js:
-    newFile: !uuid '019cf4e8ded6760f8169c60670b1e6912e0b470f'
-    oldFile: !uuid '8b5e983125f2386d50ac13ecc73cf4ae14efb326'
-  /public/static/js/multiSelect.js:
-    newFile: !uuid '0bffb820f71bde5685b01ad145518f9a18074bf8'
+    newFile: !uuid 'dc68f81813ccde72f826a478b1b864fb11929697'
+    oldFile: !uuid 'bf1b9c7e3bfaae3db0618aea8db6da12108e5efa'
+  /public/static/layui-formSelects-master:
+    newFile: !uuid 'e90fd71b711d2f06d06090dfd7c758ed0fdca138'
     oldFile: null
-  /public/static/lib:
-    newFile: !uuid '03bda384ff7eae5dbe27256831e0ce2cd588cf5f'
-    oldFile: !uuid 'edd5718f6fa920139d35982a2f162e1fa35707f1'
-  /public/static/lib/layui:
-    newFile: !uuid '416f0c9d9e8deb981b890537d6c38bb6d2b74657'
-    oldFile: !uuid 'd3be3a241f3401575bfff13ac91648ab64468733'
-  /public/static/lib/layui/extend:
-    newFile: !uuid 'd8e35cb7013a96d2893e8e7878b545fd2cc885dd'
-    oldFile: !uuid '97547d64faa9218eda253c52b12c35c6a468d20c'
-  /public/static/lib/layui/extend/selectD:
-    newFile: !uuid 'f8b49ca51ff2696c2fa15e75d9fc4d5ee2175168'
+  /public/static/layui-formSelects-master/.gitignore:
+    newFile: !uuid '4b26171558f90c5a31a4e1c39a68fd1eda95cb1e'
     oldFile: null
-  /public/static/lib/layui/extend/selectD/selectD.js:
-    newFile: !uuid 'dee5923699a86e5ba3ddb00f4f6a83b5d6d96853'
+  /public/static/layui-formSelects-master/LICENSE:
+    newFile: !uuid '865da8d735c3b246f3926a8fab0a796d478a00ab'
     oldFile: null
-  /public/stdatabase.sql:
-    newFile: !uuid 'caa42d45d846bb2195c8e483452175ae8e299aca'
-    oldFile: !uuid '3576f5e5ea758352b53420f617b6f3521dd127eb'
-  /vendor:
-    newFile: !uuid '52264d83887c420e61d133c96a8dae2204272ab9'
-    oldFile: !uuid '1f6f8928e3b8b2f3b6c728f9afd260d8688ea3f3'
-  /vendor/ric:
-    newFile: !uuid 'a3836601aec977700c2c582f7af79df1775691b7'
-    oldFile: !uuid '20cd2f46d721aa40e5c501582fb543f65fee4e76'
-  /vendor/ric/thinkphp6-apidoc:
-    newFile: !uuid '6af4f6b4098de15729a1977d8c929ac1a35b1060'
-    oldFile: !uuid 'f66f5ea0ac9039cd4a1b5219eaab9de9400e3062'
-  /vendor/ric/thinkphp6-apidoc/.gitignore:
-    newFile: !uuid '485dee64bcfb48793379b200a1afd14e85a8aaf4'
+  /public/static/layui-formSelects-master/README.md:
+    newFile: !uuid '645d4e556f4e01b7ebabfd5b0c32e43c732771c9'
     oldFile: null
-  /vendor/ric/thinkphp6-apidoc/README.md:
-    newFile: !uuid '6e739668ebd863f5036ab123219249f06a1bc63f'
+  /public/static/layui-formSelects-master/dist:
+    newFile: !uuid '944af1bc03d6acf3e723092294d3d91187250d56'
     oldFile: null
-  /vendor/ric/thinkphp6-helper:
-    newFile: !uuid '267693671d07f0a1d850e1f3aa26cbe65d867a82'
-    oldFile: !uuid '0893a0b41a01f6556e26b284fa2863d8c11e191e'
-  /vendor/ric/thinkphp6-helper/README.md:
-    newFile: !uuid 'b63b60d0d9e64359ed6b7276dac563f1ab6d876f'
+  /public/static/layui-formSelects-master/dist/formSelects-v3.js:
+    newFile: !uuid '276c381ece2f2fd48e0dd29d6339278f4224db87'
     oldFile: null
-gitCommitId: !uuid '85bfea8a12dffc78dca94791e6a72b88a667746c'
+  /public/static/layui-formSelects-master/dist/formSelects-v4.css:
+    newFile: !uuid 'd7d6981f3d59354e3006dbdb05a1b9e392bb4826'
+    oldFile: null
+  /public/static/layui-formSelects-master/dist/formSelects-v4.js:
+    newFile: !uuid '8792ca9d4b019a2387a564b2e215af5b67e96be5'
+    oldFile: null
+  /public/static/layui-formSelects-master/dist/formSelects-v4.min.js:
+    newFile: !uuid '73168557f9b699404b61e1ce5ad2425e137e2619'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs:
+    newFile: !uuid 'b480fe54c865d67a8ff4bf681a4ea46924722b72'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/.nojekyll:
+    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/README.md:
+    newFile: !uuid '04f54c142e40e86be9443faa98b1553406eb6530'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/index.html:
+    newFile: !uuid '52ed1b3db71efc843e571bb853265fd2a9bf9aa9'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module:
+    newFile: !uuid '61bb9698cb5dcb2f57432c26218aeeae8d243c3f'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module/money.md:
+    newFile: !uuid 'b40ed9bf3b54356dec7f455967f402429c3cb5a5'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module/study.md:
+    newFile: !uuid 'c9232a0e1c64f261c82de19b0265e9afb5b62174'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2:
+    newFile: !uuid 'b41f994a4650cddbdb81bf519b017df2b8958750'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/comment.md:
+    newFile: !uuid 'c91274f664de0ee20df631dbd3e945a8ac9e5ce1'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/kcode.md:
+    newFile: !uuid 'aa87383e06edf086681167b35e803b1ff66df122'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/log.md:
+    newFile: !uuid '6ed14853b0cd51b5c8466358f604176ce5defbee'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/meigui.md:
+    newFile: !uuid 'e62aaf8a1bbcb2937930e2d84f0c68dd6a000c22'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/mofang.md:
+    newFile: !uuid '616ad60ae3baf99f680d3eb9790a4136fc83faa7'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/others.md:
+    newFile: !uuid 'f911ef3577422f6602b8fbc33e738ae4cc1e044b'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/params.md:
+    newFile: !uuid '030750c3d3948d585d5224957ae7afec04e7ed9e'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/question.md:
+    newFile: !uuid '7ddb9a30fc491593ee801e8a452d34bc51124b0a'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module2/wzq.md:
+    newFile: !uuid 'd3a73a5d521a4ba6496980624e2ccc08e666ea22'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module3:
+    newFile: !uuid '6f19fb08135b2f9353806b4c3041aa3dd21dff02'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module3/method-filter.md:
+    newFile: !uuid 'df1c4b54ea77710d73d5cf266c0829fcc0aa46c2'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module3/method-maxTips.md:
+    newFile: !uuid 'dd4bfa6a4ef2a7221bc7b0c3dea7ac5279c7394f'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module3/method-on.md:
+    newFile: !uuid 'e74c6d4fa9ab4a9476ff7f943305207ba6848ada'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module3/method-value.md:
+    newFile: !uuid 'b0686ea54bff89a94cb6cff8383a27518708cc20'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/module3/method.md:
+    newFile: !uuid '144b8df71c2635eaeee77dd954804fd0ab673088'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public:
+    newFile: !uuid '66ecec7459b0ec26f73dbad0569706383ffe80a9'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83:
+    newFile: !uuid '08b993fa4778667c32f54a8381e5132e65285d01'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shAllHtml.js:
+    newFile: !uuid '2319b4851cbcb24dc7d059844c9afa9bb4888ebd'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shCore.css:
+    newFile: !uuid 'dd5cd63abfa80586f34a6dfe4d8fa854c15e9532'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shCore.js:
+    newFile: !uuid 'b9a4f0265fb27a5eed22ee5e690f0aaf269c632f'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shThemeEclipse.css:
+    newFile: !uuid 'b93e5fd1396521fbf8d3b9c68b2704b6903929b2'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shThemeFadeToGrey.css:
+    newFile: !uuid 'eb4862d1b0708b963431b428bae17047b5ddcc8e'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify:
+    newFile: !uuid 'f9dd9a79e7e517331b1b38ec7261577c769fa170'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify/docsify.min.js:
+    newFile: !uuid 'b085d5ee69844359ec8e714056b5bb181b2ca580'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify/external-script.min.js:
+    newFile: !uuid '45ffac9b355902900e15f49ea1b78e60cdf578cf'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify/prism-css.min.js:
+    newFile: !uuid '3fe10c8004d29877d0e2d19b6c94b21c8d2fa5a8'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify/prism-javascript.min.js:
+    newFile: !uuid '50a4d54f801e1ca6b079e2c08e27536a8a68d4a8'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify/vue.css:
+    newFile: !uuid 'e6faa051996ade109caa85891fcbe69627e0312b'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/docsify/zoom-image.js:
+    newFile: !uuid '79985d4735cb79834d21feed1e4054e46a4be7bd'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/fs.png:
+    newFile: !uuid 'de535b187abd271c6bfe97b1c6dfa27bff71c3eb'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/icon.png:
+    newFile: !uuid '176247d71f7c5b35f0f0caa76e45897a920a9092'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/index.css:
+    newFile: !uuid 'ad04a0f8e16f3e605a879ba5469644456bcf41b1'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/jquery-v3.2.1.js:
+    newFile: !uuid 'efef247554b96a0557ce466b0ec4c5e4b3fa6526'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/ju_ce.jpg:
+    newFile: !uuid '70cff4915d297b2a1a1ef04e0524bfd8ef28c662'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/ju_top.jpg:
+    newFile: !uuid 'b519f1cfd61fb1bab92fd3cf38dc019eaea2eabd'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/logo.png:
+    newFile: !uuid '1f1813234c589c2d1b6c9987fbabc509b182be32'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/runCode:
+    newFile: !uuid 'c41595b898d41c58b1bb02ca0adaf13996bbb107'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/runCode/runCode.css:
+    newFile: !uuid '1741d58b60f8c59492d0af0fe54276a250492983'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/runCode/runCode.js:
+    newFile: !uuid '6c1572b8f27ae063097d3db0fb35009f5d9deed8'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/wx.jpg:
+    newFile: !uuid 'e5188b1e8bb83c299265d143ffc0087e0e07129e'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/public/wx.png:
+    newFile: !uuid '8d520bf4800caba81cde68b61f5d07c7450e9c22'
+    oldFile: null
+  /public/static/layui-formSelects-master/docs/sidebar.md:
+    newFile: !uuid '1472fbf4a1c14c4fc80f85709568e7ad3eef01d8'
+    oldFile: null
+  /public/static/layui-formSelects-master/example:
+    newFile: !uuid 'ab47e58e32f86171eeb2c4263fdae5a9bd3aa47b'
+    oldFile: null
+  /public/static/layui-formSelects-master/example/example_v4.html:
+    newFile: !uuid 'a5e55af483d6f4de754171fb70a9b960338a0696'
+    oldFile: null
+  /public/static/layui-formSelects-master/src:
+    newFile: !uuid '3a1ad27b3f846b4704a2bd88e39b72a699a82922'
+    oldFile: null
+  /public/static/layui-formSelects-master/src/formSelects-v3.js:
+    newFile: !uuid 'fa6a6647384aa0b7d57205e2a42875ca4daefea6'
+    oldFile: null
+  /public/static/layui-formSelects-master/src/formSelects-v4.js:
+    newFile: !uuid '31b438c0d1f83ca2535c1d49f33dbf508f16fba2'
+    oldFile: null
+  /public/static/layui-formSelects-master/static:
+    newFile: !uuid 'fd339e1ded5692afe14433cab05a792298c80f62'
+    oldFile: null
+  /public/static/layui-formSelects-master/static/img:
+    newFile: !uuid 'e6b7014d90ead6e859c24fa7eb2ceaefe30abd1f'
+    oldFile: null
+  /public/static/layui-formSelects-master/static/img/group.png:
+    newFile: !uuid 'ea93fc51640c1a19cbc62fb42ef48dd8e35dfed8'
+    oldFile: null
+  /public/static/layui-formSelects-master/static/img/wx.jpg:
+    newFile: !uuid 'e5188b1e8bb83c299265d143ffc0087e0e07129e'
+    oldFile: null
+gitCommitId: !uuid 'd1370d3f14ad1fd5a9ac692a603c94bcfc99b093'
 renames: {
   }
-revisionId: 94
+revisionId: 95
