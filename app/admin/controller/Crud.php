@@ -74,26 +74,26 @@ class Crud extends Admin
                 }
             }
 
-            $menu = [
-                [
-                    'name' => 'admin/' . $table . '/index',
-                    'title' => $fix . '管理',
-                    'icon' => 'fa-list',
-                    'remark' => '',
-                    'ismenu' => 1,
-                    'sublist' => [
-                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
-                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
-                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
-                    ]
-                ]
-            ];
-            Menu::create($menu);
+//            $menu = [
+//                [
+//                    'name' => 'admin/' . $table . '/index',
+//                    'title' => $fix . '管理',
+//                    'icon' => 'fa-list',
+//                    'remark' => '',
+//                    'ismenu' => 1,
+//                    'sublist' => [
+//                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
+//                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
+//                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
+//                    ]
+//                ]
+//            ];
+//            Menu::create($menu);
 
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table
+                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table,$table
             );
             fwrite($controllerFile, $controllerText);
             fclose($controllerFile);
@@ -219,11 +219,11 @@ class Crud extends Admin
             </div>
         </div>";
             } else if (end($s) === 'ids') {
-                $str .= "        <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                $str .= "<div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">关联ids</label>
             <div class=\"layui-input-block\">
-                <select name=\"" . $item['field'] . "\" multiple=\"multiple\" lay-filter=\"test\">
-                    <option value=\"\"></option>
+                <select name=\"" . $item['field'] . "\" xm-select=\"select4\">
+                    <option value=\"\">可以多选哟~</option>
                     ".self::xialaids($item)."
                 </select>
             </div>
@@ -288,11 +288,11 @@ class Crud extends Admin
             </div>
         </div>";
             }else if (end($s) === 'ids') {
-                $str .= "        <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                $str .= "<div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">关联ids</label>
             <div class=\"layui-input-block\">
-                <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
-                    <option value=\"\"></option>
+                <select name=\"" . $item['field'] . "\" xm-select=\"select4\">
+                    <option value=\"\">可以多选哟~</option>
                     " . self::xialaidedit($table, $item['field'], $item) . "
                 </select>
             </div>

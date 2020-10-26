@@ -59,7 +59,43 @@ class %s extends AdminBase
                        array_push($arr,$v['name']);
                    }
                    $value[$elt] = implode(',',$arr);
-               }
+               } else if (in_array($value["$elt"], ['on', 'off'])) {
+                    if ($value["$elt"] == 'on') $value["$elt"] = '开';
+                    if ($value["$elt"] == 'off') $value["$elt"] = '关';
+                } else {
+                    $sql = "show full columns from ".config('database.connections.mysql.prefix')."%s";
+                    $res = Db::query($sql);
+                    $set = [];
+                    $str = "";
+                    foreach ($res as $e => $i) {
+                        if ($i['Field'] == 'state' && explode('(', $i['Type'])[0] == 'enum') {
+                            $arrs = explode(",", explode(':', $i['Comment'])[1]);
+                            foreach ($arrs as $keys => $items) {
+                                if (in_array($value['state'], explode('=', $items))) {
+                                    $value['state'] = explode('=', $items)[1];
+                                }
+                            }
+                        } else if ($elt != 'id' && explode('(', $i['Type'])[0] == 'enum') {
+                            $xiala = explode(",", explode(':', $i['Comment'])[1]);
+                            foreach ($xiala as $elts => $its) {
+                                if (in_array($value["$elt"], explode('=', $its))) {
+                                    $str = explode('=', $its)[1];
+                                }
+                            }
+                        } else if (explode('(', $i['Type'])[0] == 'set') {
+                            $duoxuan = explode(",", explode(':', $i['Comment'])[1]);
+                            foreach ($duoxuan as $ds => $d1s) {
+                                if (in_array(explode('=', $d1s)[0], explode(',', $value["$elt"]))) {
+                                    array_push($set, explode('=', $d1s)[1]);
+                                }
+                            }
+                        }
+                    }
+                    if ($set)
+                        $value["$elt"] = implode(',', $set);
+                    if ($str)
+                        $value["$elt"] = $str;
+                }
            }
            $data[$key] = $value;
         }
