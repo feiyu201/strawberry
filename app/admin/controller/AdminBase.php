@@ -41,6 +41,12 @@ class AdminBase extends BaseController
 		if(!Session::has('admin')){
 			$this->error('请登陆','admin/login/index');
 		}
+		$expireTime = session('admin.expire_time');
+		// 判断是否登录过期
+		if ($expireTime !== true && time() > $expireTime) {
+			session('admin', null);
+			$this->error('登录已过期，请重新登录','admin/login/index');
+		}
 	}
 	protected function checkAuth(){
 		// 获取当前用户
