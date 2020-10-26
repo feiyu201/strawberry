@@ -49,6 +49,7 @@
 		let userTable = table.render({
 			elem: '#tableId',
 			url: '{:url("getAllplug")}',
+			cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 			limit: 10000,
 			page: false,
 			toolbar: true,
@@ -56,15 +57,15 @@
 			height:'full',
 			cols: [[
 				// {field: "intro", title: "标识", width: 100, sort: true},
-				{field: "name", title: "名称", width: 300},
-				{field: "version", title: "版本", width: 100},
-				{field: "description", title: "简述", width: 500},
-				{field: "author", title: "作者", width: 100},
-				{field: "price", title: "价格", width: 100},
-				{field: "sales", title: "销量", width: 100},
-				{field: "status", title: "状态", width: 100, templet: "#statusTpl"},
+				{field: "name", title: "名称"},
+				{field: "version", title: "版本", width: 80},
+				{field: "description", title: "简述", width: 420},
+				{field: "author", title: "作者", width: 80},
+				{field: "price", title: "价格", width: 80},
+				{field: "sales", title: "销量", width: 80},
+				{field: "status", title: "状态", templet: "#statusTpl", width: 80},
 				
-				{field: "button", title: "操作按钮"},
+				{field: "button", title: "操作按钮", minWidth:180},
 			]],
 			done: function (res, curr, count) {
 				console.info(res, curr, count);
@@ -75,6 +76,7 @@
 		let userTablebd = table.render({
 			elem: '#tableIdbd',
 			url: '{:url("getList")}',
+		    cellMinWidth: 80, //全局定义常规单元格的最小宽度，layui 2.2.1 新增
 			limit: 10000,
 			page: false,
 			toolbar: true,
@@ -82,14 +84,14 @@
 			height:'full',
 			cols: [[
 				{field: "name", title: "标识", width: 100, sort: true},
-				{field: "title", title: "名称", width: 100},
-				{field: "version", title: "版本", width: 100},
-				{field: "description", title: "简述", width: 200},
+				{field: "title", title: "名称", width: 200},
+				{field: "version", title: "版本", width: 80},
+				{field: "description", title: "简述", width: 420},
 				{field: "author", title: "作者", width: 100},
 				
-				{field: "status", title: "状态", width: 100, templet: "#statusTpl"},
+				{field: "status", title: "状态", width: 80, templet: "#statusTpl"},
 				
-				{field: "button", title: "操作按钮"},
+				{field: "button", width: 180, title: "操作按钮"},
 			]],
 			done: function (res, curr, count) {
 				console.info(res, curr, count);

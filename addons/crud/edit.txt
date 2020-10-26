@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>添加小程序</title>
+	<title>编辑用户</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="/static/css/oksub.css">
 	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
@@ -17,57 +17,7 @@
 <div class="ok-body">
 	<!--form表单-->
 	<form class="layui-form layui-form-pane ok-form">
-
-		
-
-        <div class="layui-form-item">
-			<label class="layui-form-label">小程序名称</label>
-			<div class="layui-input-block">
-				<input type="text" name="name" placeholder="请输入小程序名称" autocomplete="off" class="layui-input"
-					   lay-verify="required">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">AppId</label>
-			<div class="layui-input-block">
-				<input type="text" name="appid" placeholder="请输入小程序AppId" autocomplete="off" class="layui-input"
-				       lay-verify="required">
-			</div>
-		</div>
-        <div class="layui-form-item">
-			<label class="layui-form-label">AppSecret</label>
-			<div class="layui-input-block">
-				<input type="text" name="secret" placeholder="请输入AppSecret" autocomplete="off" class="layui-input"
-					   lay-verify="required">
-			</div>
-		</div>
-        <div class="layui-form-item">
-			<label class="layui-form-label">原始ID</label>
-			<div class="layui-input-block">
-				<input type="text" name="original" placeholder="请输入原始ID" autocomplete="off" class="layui-input"
-					   lay-verify="required">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">选择应用</label>
-			<div class="layui-input-block">
-				<select name="addons" lay-verify="required" lay-search>
-					<option value="">请选择应用</option>
-					{foreach $installPluginList as $v}
-					<option value="{$v.name}">{$v.title}</option>
-					{/foreach}
-				</select>
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">状态</label>
-			<div class="layui-input-block">
-				<input type="checkbox" name="status" lay-skin="switch" lay-text="启用|停用" checked value="1">
-			</div>
-		</div>
-		
-		
+	    %s
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
@@ -97,14 +47,14 @@
 		});
 
 		form.on("submit(add)", function (data) {
-			okUtils.ajax("{:url('add')}", "post", data.field, true).done(function (response) {
+			okUtils.ajax("{:url('edit')}", "post", data.field, true).done(function (response) {
 				//console.log(response);
 				if(response.code==1){
-					okLayer.greenTickMsg("添加成功", function () {
+					okLayer.greenTickMsg("编辑成功", function () {
 						parent.layer.close(parent.layer.getFrameIndex(window.name));
 					});
 				}else{
-					okLayer.redCrossMsg(response.msg, function () {
+					okLayer.greenTickMsg(response.msg, function () {
 				        
 				    })
 				}
@@ -119,10 +69,13 @@
 
 
 <script>
-layui.use('upload', function(){
+layui.use(['upload','laydate'], function(){
   var $ = layui.jquery
+  , laydate = layui.laydate
   ,upload = layui.upload;
-  
+
+  %s
+
   //普通图片上传
   var uploadInst = upload.render({
     elem: '#test1'

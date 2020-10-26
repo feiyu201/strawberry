@@ -23,15 +23,15 @@
         <form class="layui-form">
             <div class="login_face"><img src="/static/images/logo.png?v=1.0"></div>
             <div class="layui-form-item input-item">
-                <label for="username">用户名</label>
+                
                 <input type="text" lay-verify="required" name="username" placeholder="请输入用户名"  autocomplete="off" id="username" class="layui-input">
             </div>
             <div class="layui-form-item input-item">
-                <label for="password">密码</label>
+                
                 <input type="password" lay-verify="required|password" name="password" placeholder="请输入密码"  autocomplete="off" id="password" class="layui-input">
             </div>
             <div class="layui-form-item input-item captcha-box">
-                <label for="captcha">验证码</label>
+                
                 <input type="text" lay-verify="required|captcha" name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">
                 <div class="img ok-none-select" id="captchaImg2">{:captcha_img()}</div>
             </div>
@@ -39,7 +39,7 @@
                 <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
             </div>
              <div class="login-link">
-                <input type="checkbox" name="keep_login" value="1" lay-skin="switch" lay-text="记住我|记住我">
+                <input type="checkbox" name="keep_login" value="1" lay-skin="switch" checked="checked" lay-text="记住我|记住我">
             </div>
             <div class="login-link">
                <!--  <a href="register.html">注册</a>
@@ -99,7 +99,7 @@
                 return false;
             });
 
-            /**
+         /**
              * 表单input组件单击时
              */
             $("#login .input-item .layui-input").click(function (e) {
@@ -126,6 +126,7 @@
                 }
             })
         });
+     
     </script>
 </body>
 </html>

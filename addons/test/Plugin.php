@@ -69,5 +69,16 @@ class Plugin extends Addons	// 需继承think\Addons类
 		return $this->fetch('info');
 	}
 
+    /**
+     * 应用类插件的入口方法，获取系统用户，小程序信息，然后做子应用处理
+     */
+	public function welcome(){
+	    echo 'addons.test';
+        global $_W;
+	    var_dump($_W);
+	    //todo 插件内跳转等操作
+        $uri = $_W['siteroot'] . 'addons/' . $_W['current_module']['name'] . '/index.php' . '?r=mall/we7-entry/login';
+        header('Location: ' . $uri);
+    }
 
 }

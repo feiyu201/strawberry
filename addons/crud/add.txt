@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>添加小程序</title>
+	<title>添加</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="/static/css/oksub.css">
 	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
@@ -20,52 +20,7 @@
 
 		
 
-        <div class="layui-form-item">
-			<label class="layui-form-label">小程序名称</label>
-			<div class="layui-input-block">
-				<input type="text" name="name" placeholder="请输入小程序名称" autocomplete="off" class="layui-input"
-					   lay-verify="required">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">AppId</label>
-			<div class="layui-input-block">
-				<input type="text" name="appid" placeholder="请输入小程序AppId" autocomplete="off" class="layui-input"
-				       lay-verify="required">
-			</div>
-		</div>
-        <div class="layui-form-item">
-			<label class="layui-form-label">AppSecret</label>
-			<div class="layui-input-block">
-				<input type="text" name="secret" placeholder="请输入AppSecret" autocomplete="off" class="layui-input"
-					   lay-verify="required">
-			</div>
-		</div>
-        <div class="layui-form-item">
-			<label class="layui-form-label">原始ID</label>
-			<div class="layui-input-block">
-				<input type="text" name="original" placeholder="请输入原始ID" autocomplete="off" class="layui-input"
-					   lay-verify="required">
-			</div>
-		</div>
-		<div class="layui-form-item">
-			<label class="layui-form-label">选择应用</label>
-			<div class="layui-input-block">
-				<select name="addons" lay-verify="required" lay-search>
-					<option value="">请选择应用</option>
-					{foreach $installPluginList as $v}
-					<option value="{$v.name}">{$v.title}</option>
-					{/foreach}
-				</select>
-			</div>
-		</div>
-
-		<div class="layui-form-item">
-			<label class="layui-form-label">状态</label>
-			<div class="layui-input-block">
-				<input type="checkbox" name="status" lay-skin="switch" lay-text="启用|停用" checked value="1">
-			</div>
-		</div>
+        %s
 		
 		
 		<div class="layui-form-item">
@@ -78,6 +33,25 @@
 </div>
 <!--js逻辑-->
 <script src="/static/lib/layui/layui.js"></script>
+<script src="/static/js/multiSelect.js"></script>
+<script type="text/javascript">
+    layui.use(['multiSelect'],function() {
+        var $ = layui.jquery,form = layui.form,multiSelect = layui.multiSelect;
+        $('#get-val').click(function() {
+            var vals = [],
+                texts = [];
+            $('select[multiple] option:selected').each(function() {
+                vals.push($(this).val());
+                texts.push($(this).text());
+            })
+            console.dir(vals);
+            console.dir(texts);
+        })
+        form.on('select(test)',function(data){
+            console.dir(data);
+        })
+    });
+</script>
 <script>
 	
 	
@@ -87,6 +61,8 @@
 		let laydate = layui.laydate;
 		let okLayer = layui.okLayer;
 		let okUtils = layui.okUtils;
+
+        %s
 
 		okLoading.close();
 
@@ -104,7 +80,7 @@
 						parent.layer.close(parent.layer.getFrameIndex(window.name));
 					});
 				}else{
-					okLayer.redCrossMsg(response.msg, function () {
+					okLayer.greenTickMsg(response.msg, function () {
 				        
 				    })
 				}
