@@ -38,6 +38,31 @@ class %s extends AdminBase
    		$data = Db::name('%s')->page($page,$limit)->select()->each(function($item,$k){
    			return $item;
    		});
+        foreach ($data as $key => $value) {
+           foreach ($value as $elt => $item) {
+               $s = explode('_',$elt);
+               if (end($s) === 'time'){
+                   $value[$elt] = date('Y-m-d H:i:s',$item);
+               }else if (count($s) >= 2 && end($s) === 'id'){
+                   array_pop($s);
+                   $dbanme = implode('_',$s);
+                   $name = Db::name("$dbanme")->where('id',$item)->field('name')->find();
+                   $value[$elt] = $name['name'];
+               }else if (end($s) === 'ids'){
+                   array_pop($s);
+                   $dbanme = implode('_',$s);
+                   $where = [];
+                   $where[] = ['id','in',explode(',',$item)];
+                   $name = Db::name("$dbanme")->where([$where])->field('name')->select();
+                   $arr = [];
+                   foreach ($name as $e => $v){
+                       array_push($arr,$v['name']);
+                   }
+                   $value[$elt] = implode(',',$arr);
+               }
+           }
+           $data[$key] = $value;
+        }
    		return json([
 				'code'=> 0,
 				'count'=> $count,
