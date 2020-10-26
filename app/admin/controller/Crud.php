@@ -41,12 +41,15 @@ class Crud extends Admin
     public function getList()
     {
         // 查询所有表
-        $sql = "show tables";
+        $sql = "SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE table_schema='".config('database.connections.mysql.database')."'";
         $tables = Db::query($sql);
         $data = [];
         foreach ($tables as $k => $v) {
             $data[$k]['id'] = $k + 1;
-            $data[$k]['name'] = substr($v['Tables_in_' . config('database.connections.mysql.database')], strlen(config('database.connections.mysql.prefix')));
+            $name = explode('_',$v['TABLE_NAME']);
+            array_shift($name);
+            $data[$k]['name'] = implode('_',$name);
+            $data[$k]['comment'] = $v['TABLE_COMMENT'];
         }
         return json([
             'code' => 0,
@@ -71,21 +74,21 @@ class Crud extends Admin
                 }
             }
 
-//            $menu = [
-//                [
-//                    'name' => 'admin/' . $table . '/index',
-//                    'title' => $fix . '管理',
-//                    'icon' => 'fa-list',
-//                    'remark' => '',
-//                    'ismenu' => 1,
-//                    'sublist' => [
-//                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
-//                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
-//                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
-//                    ]
-//                ]
-//            ];
-//            Menu::create($menu);
+            $menu = [
+                [
+                    'name' => 'admin/' . $table . '/index',
+                    'title' => $fix . '管理',
+                    'icon' => 'fa-list',
+                    'remark' => '',
+                    'ismenu' => 1,
+                    'sublist' => [
+                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
+                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
+                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
+                    ]
+                ]
+            ];
+            Menu::create($menu);
 
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
