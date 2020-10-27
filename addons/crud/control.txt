@@ -59,10 +59,7 @@ class %s extends AdminBase
                        array_push($arr,$v['name']);
                    }
                    $value[$elt] = implode(',',$arr);
-               } else if (in_array($value["$elt"], ['on', 'off'])) {
-                    if ($value["$elt"] == 'on') $value["$elt"] = '开';
-                    if ($value["$elt"] == 'off') $value["$elt"] = '关';
-                } else {
+               } else {
                     $sql = "show full columns from ".config('database.connections.mysql.prefix')."%s";
                     $res = Db::query($sql);
                     $set = [];
@@ -123,6 +120,8 @@ class %s extends AdminBase
                     $data[$key] = strtotime($data[$key]);
                 }
             }
+            if (!isset($data['switch']))
+                $data['switch'] = 'off';
 	   		if(Db::name('%s')->insert($data)){
 	   			$this->success("添加成功");
 	   		}else{
@@ -148,6 +147,8 @@ class %s extends AdminBase
                     $data[$key] = strtotime($data[$key]);
                 }
             }
+            if (!isset($data['switch']))
+                $data['switch'] = 'off';
             if(Db::name('%s')->where('id',$data['id'])->update($data)){
 	   			$this->success("编辑成功");
 	   		}else{
@@ -167,7 +168,7 @@ class %s extends AdminBase
    }
 
    public function delete(){
-   		$idsStr = $id = $this->request->param('idsStr');
+   		$idsStr = $this->request->param('idsStr');
    		if(!$idsStr){
    			$this->success("参数错误");
    		}
@@ -177,5 +178,15 @@ class %s extends AdminBase
    			$this->error("删除失败");
    		}
    }
+
+   public function sw(){
+      		$id = $this->request->param('id');
+      		$switch = $this->request->param('switch');
+      		if(Db::name('%s')->where('id',$id)->update(['switch' => $switch])){
+      			$this->success("编辑成功");
+      		}else{
+      			$this->error("编辑失败");
+      		}
+      }
 
 }

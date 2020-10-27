@@ -59,7 +59,68 @@
             });
             return false;
         });
+//监听开关事件
+        form.on('switch(stat)', function (data) {
+            var contexts;
+            var sta;
+            var x = data.elem.checked;//判断开关状态
+            if (x==true) {
+                contexts = "打开";
+                sta='on';
+            } else {
+                contexts = "关闭";
+                sta='off';
+            }
+            //自定义弹窗
+            layer.open({
+                content: "你确定要"+contexts+"?"
+                , btn: ['确定', '取消']
+                , yes: function (index, layero) {
+                    //按钮确定【按钮一】的回调
+                    data.elem.checked = x;
+                    //对商品进行上架或下架处理
+                    $.ajax({
+                        type: "post",
+                        url: '{:url("sw")}',
+                        data: {
+                            //上下架的参数
+                            "id": data.value,
+                            "switch":sta
+                        },
+                        success: function (data) {
+                            if (data == 1) {
+                                layer.msg(contexts+'成功',
+                                    // 提示的样式
+                                    {icon: 1, time: 2000,});
 
+                                // 数据重载
+                                active.reload();
+                            }
+                        }
+                    });
+
+                    form.render();
+                    layer.close(index);
+
+                }
+                , btn2: function (index, layero) {
+                    //按钮【按钮二】的回调
+                    data.elem.checked = !x;
+                    form.render();
+                    layer.close(index);
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                , cancel: function () {
+                    //右上角关闭回调
+                    data.elem.checked = !x;
+                    form.render();
+                    // return false; //开启该代码可禁止点击该按钮关闭
+                }
+            });
+
+            return false;
+
+        });
         table.on("toolbar(tableFilter)", function (obj) {
             switch (obj.event) {
                 case "batchEnabled":
