@@ -477,12 +477,14 @@ class Crud extends Admin
             if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
+                          ,trigger:'click'
                           ,type: 'datetime'
                         });";
             }
             if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
                 $str .= "laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
+                          ,trigger:'click'
                           ,type: 'datetime'
                         });";
             }
