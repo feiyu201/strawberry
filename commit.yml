@@ -3,243 +3,246 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '11420d3a57bc9c4144d32b18eae814f654772af0'
-    oldFile: !uuid '1826da604df4597debc548d47fd26ac9c8d77891'
+    newFile: !uuid 'a1aa9716d00da70352465b06086307d1c5af74e5'
+    oldFile: !uuid '11420d3a57bc9c4144d32b18eae814f654772af0'
   /addons/crud:
-    newFile: !uuid 'bd24b0d8b030f21867a5289b07a30f40c9cab551'
-    oldFile: !uuid 'd1ffd276f4df222f56545d0bad40fc9cb20892a6'
+    newFile: !uuid '36dec735224eb323935b974a6813ebf609eff44f'
+    oldFile: !uuid 'bd24b0d8b030f21867a5289b07a30f40c9cab551'
   /addons/crud/add.txt:
-    newFile: !uuid '1d6f382688cd71d406c37c5e7bc2b21c5c635317'
-    oldFile: !uuid 'd054694bda45bb769312de06dec70064dd1d7399'
-  /addons/crud/control.txt:
-    newFile: !uuid '2e93ba3f1ced6a4eb9148e5f2bd0ba29487723b7'
-    oldFile: !uuid '43c108cb6a4cde08992b934de73efe1b7d886186'
+    newFile: !uuid 'db651837fa42d32ab0284e3d4d1829794b00b8a6'
+    oldFile: !uuid '1d6f382688cd71d406c37c5e7bc2b21c5c635317'
   /addons/crud/edit.txt:
-    newFile: !uuid '5eba1633babb0b849988eeb5eae9226e897af630'
-    oldFile: !uuid '77a780abf2b866dfdfa7f9434fb6d3bb7baea14e'
+    newFile: !uuid 'f22f49295834b23ccaeab61886d0d29764be6b1a'
+    oldFile: !uuid '5eba1633babb0b849988eeb5eae9226e897af630'
   /app:
-    newFile: !uuid '1e7c050b59c83c5b832db202320625d7b46b2081'
-    oldFile: !uuid 'f0558760945ed3687496f87b9c5624b1533c26ef'
+    newFile: !uuid '12f963a35d2558629ca2d35a9f4e5a15b450bf0b'
+    oldFile: !uuid '1e7c050b59c83c5b832db202320625d7b46b2081'
   /app/admin:
-    newFile: !uuid '53f522aa7de067816725c166ace591a38d63d7a1'
-    oldFile: !uuid 'ca587c1517cedaa455d108bcdd625ab11df36725'
+    newFile: !uuid '7c3c9d7994fbd3ae8e7c4fc0ff3ec2dd27cdf674'
+    oldFile: !uuid '53f522aa7de067816725c166ace591a38d63d7a1'
   /app/admin/controller:
-    newFile: !uuid '03c3e086e1cac6c0e59aa1c89bc2f11afce9deba'
-    oldFile: !uuid '4f1434fe7fa50e73d919eba687d25b0dfcfb043a'
+    newFile: !uuid '25bf33229b66bfe0277613575fb986dbdf6c9f99'
+    oldFile: !uuid '03c3e086e1cac6c0e59aa1c89bc2f11afce9deba'
   /app/admin/controller/Crud.php:
-    newFile: !uuid '202f27c22b65d0b187b3e9cb78d2ec5a11f0347a'
-    oldFile: !uuid 'b5ee05633f7422bf8271c4e2e7d5ae719575c7a6'
+    newFile: !uuid 'de513a85bdb8ad4434e2b935ee0a3513daee6f30'
+    oldFile: !uuid '202f27c22b65d0b187b3e9cb78d2ec5a11f0347a'
   /public:
-    newFile: !uuid 'fe89347d7079b59c828f0b64fdc0ce570c1fa938'
-    oldFile: !uuid '82129534bc81e1d6c1335e59a1c4829c85bcb13a'
+    newFile: !uuid '679ac9bf0c269ce767ce980a574a3155c5eae1b0'
+    oldFile: !uuid 'fe89347d7079b59c828f0b64fdc0ce570c1fa938'
   /public/static:
-    newFile: !uuid 'dc68f81813ccde72f826a478b1b864fb11929697'
-    oldFile: !uuid 'bf1b9c7e3bfaae3db0618aea8db6da12108e5efa'
+    newFile: !uuid 'ac7f1eed5aed942a5d6be025d7684c14063c2ce1'
+    oldFile: !uuid 'dc68f81813ccde72f826a478b1b864fb11929697'
+  /public/static/dist:
+    newFile: !uuid '1e648d8492e3587108cba296350b5aa315eb6804'
+    oldFile: null
+  /public/static/dist/xm-select.js:
+    newFile: !uuid 'c8257a94322497cb386834308b54d8f3fede7f99'
+    oldFile: null
   /public/static/layui-formSelects-master:
-    newFile: !uuid 'e90fd71b711d2f06d06090dfd7c758ed0fdca138'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e90fd71b711d2f06d06090dfd7c758ed0fdca138'
   /public/static/layui-formSelects-master/.gitignore:
-    newFile: !uuid '4b26171558f90c5a31a4e1c39a68fd1eda95cb1e'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '4b26171558f90c5a31a4e1c39a68fd1eda95cb1e'
   /public/static/layui-formSelects-master/LICENSE:
-    newFile: !uuid '865da8d735c3b246f3926a8fab0a796d478a00ab'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '865da8d735c3b246f3926a8fab0a796d478a00ab'
   /public/static/layui-formSelects-master/README.md:
-    newFile: !uuid '645d4e556f4e01b7ebabfd5b0c32e43c732771c9'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '645d4e556f4e01b7ebabfd5b0c32e43c732771c9'
   /public/static/layui-formSelects-master/dist:
-    newFile: !uuid '944af1bc03d6acf3e723092294d3d91187250d56'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '944af1bc03d6acf3e723092294d3d91187250d56'
   /public/static/layui-formSelects-master/dist/formSelects-v3.js:
-    newFile: !uuid '276c381ece2f2fd48e0dd29d6339278f4224db87'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '276c381ece2f2fd48e0dd29d6339278f4224db87'
   /public/static/layui-formSelects-master/dist/formSelects-v4.css:
-    newFile: !uuid 'd7d6981f3d59354e3006dbdb05a1b9e392bb4826'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'd7d6981f3d59354e3006dbdb05a1b9e392bb4826'
   /public/static/layui-formSelects-master/dist/formSelects-v4.js:
-    newFile: !uuid '8792ca9d4b019a2387a564b2e215af5b67e96be5'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '8792ca9d4b019a2387a564b2e215af5b67e96be5'
   /public/static/layui-formSelects-master/dist/formSelects-v4.min.js:
-    newFile: !uuid '73168557f9b699404b61e1ce5ad2425e137e2619'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '73168557f9b699404b61e1ce5ad2425e137e2619'
   /public/static/layui-formSelects-master/docs:
-    newFile: !uuid 'b480fe54c865d67a8ff4bf681a4ea46924722b72'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b480fe54c865d67a8ff4bf681a4ea46924722b72'
   /public/static/layui-formSelects-master/docs/.nojekyll:
-    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
   /public/static/layui-formSelects-master/docs/README.md:
-    newFile: !uuid '04f54c142e40e86be9443faa98b1553406eb6530'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '04f54c142e40e86be9443faa98b1553406eb6530'
   /public/static/layui-formSelects-master/docs/index.html:
-    newFile: !uuid '52ed1b3db71efc843e571bb853265fd2a9bf9aa9'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '52ed1b3db71efc843e571bb853265fd2a9bf9aa9'
   /public/static/layui-formSelects-master/docs/module:
-    newFile: !uuid '61bb9698cb5dcb2f57432c26218aeeae8d243c3f'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '61bb9698cb5dcb2f57432c26218aeeae8d243c3f'
   /public/static/layui-formSelects-master/docs/module/money.md:
-    newFile: !uuid 'b40ed9bf3b54356dec7f455967f402429c3cb5a5'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b40ed9bf3b54356dec7f455967f402429c3cb5a5'
   /public/static/layui-formSelects-master/docs/module/study.md:
-    newFile: !uuid 'c9232a0e1c64f261c82de19b0265e9afb5b62174'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'c9232a0e1c64f261c82de19b0265e9afb5b62174'
   /public/static/layui-formSelects-master/docs/module2:
-    newFile: !uuid 'b41f994a4650cddbdb81bf519b017df2b8958750'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b41f994a4650cddbdb81bf519b017df2b8958750'
   /public/static/layui-formSelects-master/docs/module2/comment.md:
-    newFile: !uuid 'c91274f664de0ee20df631dbd3e945a8ac9e5ce1'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'c91274f664de0ee20df631dbd3e945a8ac9e5ce1'
   /public/static/layui-formSelects-master/docs/module2/kcode.md:
-    newFile: !uuid 'aa87383e06edf086681167b35e803b1ff66df122'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'aa87383e06edf086681167b35e803b1ff66df122'
   /public/static/layui-formSelects-master/docs/module2/log.md:
-    newFile: !uuid '6ed14853b0cd51b5c8466358f604176ce5defbee'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '6ed14853b0cd51b5c8466358f604176ce5defbee'
   /public/static/layui-formSelects-master/docs/module2/meigui.md:
-    newFile: !uuid 'e62aaf8a1bbcb2937930e2d84f0c68dd6a000c22'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e62aaf8a1bbcb2937930e2d84f0c68dd6a000c22'
   /public/static/layui-formSelects-master/docs/module2/mofang.md:
-    newFile: !uuid '616ad60ae3baf99f680d3eb9790a4136fc83faa7'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '616ad60ae3baf99f680d3eb9790a4136fc83faa7'
   /public/static/layui-formSelects-master/docs/module2/others.md:
-    newFile: !uuid 'f911ef3577422f6602b8fbc33e738ae4cc1e044b'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'f911ef3577422f6602b8fbc33e738ae4cc1e044b'
   /public/static/layui-formSelects-master/docs/module2/params.md:
-    newFile: !uuid '030750c3d3948d585d5224957ae7afec04e7ed9e'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '030750c3d3948d585d5224957ae7afec04e7ed9e'
   /public/static/layui-formSelects-master/docs/module2/question.md:
-    newFile: !uuid '7ddb9a30fc491593ee801e8a452d34bc51124b0a'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '7ddb9a30fc491593ee801e8a452d34bc51124b0a'
   /public/static/layui-formSelects-master/docs/module2/wzq.md:
-    newFile: !uuid 'd3a73a5d521a4ba6496980624e2ccc08e666ea22'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'd3a73a5d521a4ba6496980624e2ccc08e666ea22'
   /public/static/layui-formSelects-master/docs/module3:
-    newFile: !uuid '6f19fb08135b2f9353806b4c3041aa3dd21dff02'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '6f19fb08135b2f9353806b4c3041aa3dd21dff02'
   /public/static/layui-formSelects-master/docs/module3/method-filter.md:
-    newFile: !uuid 'df1c4b54ea77710d73d5cf266c0829fcc0aa46c2'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'df1c4b54ea77710d73d5cf266c0829fcc0aa46c2'
   /public/static/layui-formSelects-master/docs/module3/method-maxTips.md:
-    newFile: !uuid 'dd4bfa6a4ef2a7221bc7b0c3dea7ac5279c7394f'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'dd4bfa6a4ef2a7221bc7b0c3dea7ac5279c7394f'
   /public/static/layui-formSelects-master/docs/module3/method-on.md:
-    newFile: !uuid 'e74c6d4fa9ab4a9476ff7f943305207ba6848ada'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e74c6d4fa9ab4a9476ff7f943305207ba6848ada'
   /public/static/layui-formSelects-master/docs/module3/method-value.md:
-    newFile: !uuid 'b0686ea54bff89a94cb6cff8383a27518708cc20'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b0686ea54bff89a94cb6cff8383a27518708cc20'
   /public/static/layui-formSelects-master/docs/module3/method.md:
-    newFile: !uuid '144b8df71c2635eaeee77dd954804fd0ab673088'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '144b8df71c2635eaeee77dd954804fd0ab673088'
   /public/static/layui-formSelects-master/docs/public:
-    newFile: !uuid '66ecec7459b0ec26f73dbad0569706383ffe80a9'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '66ecec7459b0ec26f73dbad0569706383ffe80a9'
   /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83:
-    newFile: !uuid '08b993fa4778667c32f54a8381e5132e65285d01'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '08b993fa4778667c32f54a8381e5132e65285d01'
   /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shAllHtml.js:
-    newFile: !uuid '2319b4851cbcb24dc7d059844c9afa9bb4888ebd'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '2319b4851cbcb24dc7d059844c9afa9bb4888ebd'
   /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shCore.css:
-    newFile: !uuid 'dd5cd63abfa80586f34a6dfe4d8fa854c15e9532'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'dd5cd63abfa80586f34a6dfe4d8fa854c15e9532'
   /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shCore.js:
-    newFile: !uuid 'b9a4f0265fb27a5eed22ee5e690f0aaf269c632f'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b9a4f0265fb27a5eed22ee5e690f0aaf269c632f'
   /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shThemeEclipse.css:
-    newFile: !uuid 'b93e5fd1396521fbf8d3b9c68b2704b6903929b2'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b93e5fd1396521fbf8d3b9c68b2704b6903929b2'
   /public/static/layui-formSelects-master/docs/public/SyntaxHighlighter-3.0.83/shThemeFadeToGrey.css:
-    newFile: !uuid 'eb4862d1b0708b963431b428bae17047b5ddcc8e'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'eb4862d1b0708b963431b428bae17047b5ddcc8e'
   /public/static/layui-formSelects-master/docs/public/docsify:
-    newFile: !uuid 'f9dd9a79e7e517331b1b38ec7261577c769fa170'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'f9dd9a79e7e517331b1b38ec7261577c769fa170'
   /public/static/layui-formSelects-master/docs/public/docsify/docsify.min.js:
-    newFile: !uuid 'b085d5ee69844359ec8e714056b5bb181b2ca580'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b085d5ee69844359ec8e714056b5bb181b2ca580'
   /public/static/layui-formSelects-master/docs/public/docsify/external-script.min.js:
-    newFile: !uuid '45ffac9b355902900e15f49ea1b78e60cdf578cf'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '45ffac9b355902900e15f49ea1b78e60cdf578cf'
   /public/static/layui-formSelects-master/docs/public/docsify/prism-css.min.js:
-    newFile: !uuid '3fe10c8004d29877d0e2d19b6c94b21c8d2fa5a8'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '3fe10c8004d29877d0e2d19b6c94b21c8d2fa5a8'
   /public/static/layui-formSelects-master/docs/public/docsify/prism-javascript.min.js:
-    newFile: !uuid '50a4d54f801e1ca6b079e2c08e27536a8a68d4a8'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '50a4d54f801e1ca6b079e2c08e27536a8a68d4a8'
   /public/static/layui-formSelects-master/docs/public/docsify/vue.css:
-    newFile: !uuid 'e6faa051996ade109caa85891fcbe69627e0312b'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e6faa051996ade109caa85891fcbe69627e0312b'
   /public/static/layui-formSelects-master/docs/public/docsify/zoom-image.js:
-    newFile: !uuid '79985d4735cb79834d21feed1e4054e46a4be7bd'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '79985d4735cb79834d21feed1e4054e46a4be7bd'
   /public/static/layui-formSelects-master/docs/public/fs.png:
-    newFile: !uuid 'de535b187abd271c6bfe97b1c6dfa27bff71c3eb'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'de535b187abd271c6bfe97b1c6dfa27bff71c3eb'
   /public/static/layui-formSelects-master/docs/public/icon.png:
-    newFile: !uuid '176247d71f7c5b35f0f0caa76e45897a920a9092'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '176247d71f7c5b35f0f0caa76e45897a920a9092'
   /public/static/layui-formSelects-master/docs/public/index.css:
-    newFile: !uuid 'ad04a0f8e16f3e605a879ba5469644456bcf41b1'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'ad04a0f8e16f3e605a879ba5469644456bcf41b1'
   /public/static/layui-formSelects-master/docs/public/jquery-v3.2.1.js:
-    newFile: !uuid 'efef247554b96a0557ce466b0ec4c5e4b3fa6526'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'efef247554b96a0557ce466b0ec4c5e4b3fa6526'
   /public/static/layui-formSelects-master/docs/public/ju_ce.jpg:
-    newFile: !uuid '70cff4915d297b2a1a1ef04e0524bfd8ef28c662'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '70cff4915d297b2a1a1ef04e0524bfd8ef28c662'
   /public/static/layui-formSelects-master/docs/public/ju_top.jpg:
-    newFile: !uuid 'b519f1cfd61fb1bab92fd3cf38dc019eaea2eabd'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'b519f1cfd61fb1bab92fd3cf38dc019eaea2eabd'
   /public/static/layui-formSelects-master/docs/public/logo.png:
-    newFile: !uuid '1f1813234c589c2d1b6c9987fbabc509b182be32'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '1f1813234c589c2d1b6c9987fbabc509b182be32'
   /public/static/layui-formSelects-master/docs/public/runCode:
-    newFile: !uuid 'c41595b898d41c58b1bb02ca0adaf13996bbb107'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'c41595b898d41c58b1bb02ca0adaf13996bbb107'
   /public/static/layui-formSelects-master/docs/public/runCode/runCode.css:
-    newFile: !uuid '1741d58b60f8c59492d0af0fe54276a250492983'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '1741d58b60f8c59492d0af0fe54276a250492983'
   /public/static/layui-formSelects-master/docs/public/runCode/runCode.js:
-    newFile: !uuid '6c1572b8f27ae063097d3db0fb35009f5d9deed8'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '6c1572b8f27ae063097d3db0fb35009f5d9deed8'
   /public/static/layui-formSelects-master/docs/public/wx.jpg:
-    newFile: !uuid 'e5188b1e8bb83c299265d143ffc0087e0e07129e'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e5188b1e8bb83c299265d143ffc0087e0e07129e'
   /public/static/layui-formSelects-master/docs/public/wx.png:
-    newFile: !uuid '8d520bf4800caba81cde68b61f5d07c7450e9c22'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '8d520bf4800caba81cde68b61f5d07c7450e9c22'
   /public/static/layui-formSelects-master/docs/sidebar.md:
-    newFile: !uuid '1472fbf4a1c14c4fc80f85709568e7ad3eef01d8'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '1472fbf4a1c14c4fc80f85709568e7ad3eef01d8'
   /public/static/layui-formSelects-master/example:
-    newFile: !uuid 'ab47e58e32f86171eeb2c4263fdae5a9bd3aa47b'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'ab47e58e32f86171eeb2c4263fdae5a9bd3aa47b'
   /public/static/layui-formSelects-master/example/example_v4.html:
-    newFile: !uuid 'a5e55af483d6f4de754171fb70a9b960338a0696'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'a5e55af483d6f4de754171fb70a9b960338a0696'
   /public/static/layui-formSelects-master/src:
-    newFile: !uuid '3a1ad27b3f846b4704a2bd88e39b72a699a82922'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '3a1ad27b3f846b4704a2bd88e39b72a699a82922'
   /public/static/layui-formSelects-master/src/formSelects-v3.js:
-    newFile: !uuid 'fa6a6647384aa0b7d57205e2a42875ca4daefea6'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'fa6a6647384aa0b7d57205e2a42875ca4daefea6'
   /public/static/layui-formSelects-master/src/formSelects-v4.js:
-    newFile: !uuid '31b438c0d1f83ca2535c1d49f33dbf508f16fba2'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid '31b438c0d1f83ca2535c1d49f33dbf508f16fba2'
   /public/static/layui-formSelects-master/static:
-    newFile: !uuid 'fd339e1ded5692afe14433cab05a792298c80f62'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'fd339e1ded5692afe14433cab05a792298c80f62'
   /public/static/layui-formSelects-master/static/img:
-    newFile: !uuid 'e6b7014d90ead6e859c24fa7eb2ceaefe30abd1f'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'e6b7014d90ead6e859c24fa7eb2ceaefe30abd1f'
   /public/static/layui-formSelects-master/static/img/group.png:
-    newFile: !uuid 'ea93fc51640c1a19cbc62fb42ef48dd8e35dfed8'
-    oldFile: null
+    newFile: null
+    oldFile: !uuid 'ea93fc51640c1a19cbc62fb42ef48dd8e35dfed8'
   /public/static/layui-formSelects-master/static/img/wx.jpg:
-    newFile: !uuid 'e5188b1e8bb83c299265d143ffc0087e0e07129e'
-    oldFile: null
-gitCommitId: !uuid 'd1370d3f14ad1fd5a9ac692a603c94bcfc99b093'
+    newFile: null
+    oldFile: !uuid 'e5188b1e8bb83c299265d143ffc0087e0e07129e'
+gitCommitId: !uuid '54540c020b84e976893623f5270cfe7d575153ed'
 renames: {
   }
-revisionId: 95
+revisionId: 96
