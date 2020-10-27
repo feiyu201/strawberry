@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>编辑用户</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/css/oksub.css">
+	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+	<style>
+		.layui-upload-list img{
+			height:100px;
+			width:100px;
+		}
+	</style>
+</head>
+<body>
+<div class="ok-body">
+	<!--form表单-->
+	<form class="layui-form layui-form-pane ok-form">
+	    <div class="layui-form-item">
+                    <label class="layui-form-label">自增id</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="id" placeholder="请输入自增id" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.id}">
+                    </div>
+                </div>        <div class="layui-form-item">
+            <label class="layui-form-label">品牌id</label>
+            <div class="layui-input-block">
+                <select name="brand_id" lay-verify="required">
+                    <option value=""></option>
+                    <option {if $goods.brand_id == 1}selected=""{/if} value="1">1</option>
+                </select>
+            </div>
+        </div><div class="layui-form-item">
+                    <label class="layui-form-label">商品类型（跟随站点类型一致[0销售, 1展示, 2自提, 3虚拟销售, 4销售+自提]）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="site_type" placeholder="请输入商品类型（跟随站点类型一致[0销售, 1展示, 2自提, 3虚拟销售, 4销售+自提]）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.site_type}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title" placeholder="请输入标题" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.title}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">标题颜色</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="title_color" placeholder="请输入标题颜色" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.title_color}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">简述</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="simple_desc" placeholder="请输入简述" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.simple_desc}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">型号</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="model" placeholder="请输入型号" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.model}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">产地（地区省id）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="place_origin" placeholder="请输入产地（地区省id）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.place_origin}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">库存（所有规格库存总和）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="inventory" placeholder="请输入库存（所有规格库存总和）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.inventory}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">库存单位</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="inventory_unit" placeholder="请输入库存单位" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.inventory_unit}">
+                    </div>
+                </div> <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">图片ID用英文逗号链接，第一张为默认封面</label>
+    <div class="layui-input-block">
+      <textarea name="images" placeholder="请输入内容" class="layui-textarea">{$goods.images}</textarea>
+    </div>
+  </div><div class="layui-form-item">
+                    <label class="layui-form-label">原价（单值:10, 区间:10.00-20.00）一般用于展示使用</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="original_price" placeholder="请输入原价（单值:10, 区间:10.00-20.00）一般用于展示使用" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.original_price}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">最低原价</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="min_original_price" placeholder="请输入最低原价" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.min_original_price}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">最大原价</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="max_original_price" placeholder="请输入最大原价" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.max_original_price}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">销售价格（单值:10, 区间:10.00-20.00）一般用于展示使用</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="price" placeholder="请输入销售价格（单值:10, 区间:10.00-20.00）一般用于展示使用" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.price}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">最低价格</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="min_price" placeholder="请输入最低价格" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.min_price}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">最高价格</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="max_price" placeholder="请输入最高价格" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.max_price}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">购买赠送积分比例</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="give_integral" placeholder="请输入购买赠送积分比例" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.give_integral}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">最低起购数量 （默认1）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="buy_min_number" placeholder="请输入最低起购数量 （默认1）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.buy_min_number}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">最大购买数量（最大数值 100000000, 小于等于0或空则不限）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="buy_max_number" placeholder="请输入最大购买数量（最大数值 100000000, 小于等于0或空则不限）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.buy_max_number}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">是否扣减库存（0否, 1是）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="is_deduction_inventory" placeholder="请输入是否扣减库存（0否, 1是）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.is_deduction_inventory}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">是否上架（下架后用户不可见, 0否, 1是）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="is_shelves" placeholder="请输入是否上架（下架后用户不可见, 0否, 1是）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.is_shelves}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">是否首页推荐（0否, 1是）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="is_home_recommended" placeholder="请输入是否首页推荐（0否, 1是）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.is_home_recommended}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">电脑端详情内容</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="content_web" placeholder="请输入电脑端详情内容" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.content_web}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">相册图片数量</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="photo_count" placeholder="请输入相册图片数量" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.photo_count}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">销量</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="sales_count" placeholder="请输入销量" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.sales_count}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">访问次数</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="access_count" placeholder="请输入访问次数" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.access_count}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">短视频</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="video" placeholder="请输入短视频" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.video}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">是否存在多个规格（0否, 1是）</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="is_exist_many_spec" placeholder="请输入是否存在多个规格（0否, 1是）" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.is_exist_many_spec}">
+                    </div>
+                </div> <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">规格ID用英文逗号链接</label>
+    <div class="layui-input-block">
+      <textarea name="spec_base" placeholder="请输入内容" class="layui-textarea">{$goods.spec_base}</textarea>
+    </div>
+  </div> <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">虚拟商品展示数据</label>
+    <div class="layui-input-block">
+      <textarea name="fictitious_goods_value" placeholder="请输入内容" class="layui-textarea">{$goods.fictitious_goods_value}</textarea>
+    </div>
+  </div><div class="layui-form-item">
+                    <label class="layui-form-label">SEO标题</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="seo_title" placeholder="请输入SEO标题" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.seo_title}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">SEO关键字</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="seo_keywords" placeholder="请输入SEO关键字" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.seo_keywords}">
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">SEO描述</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="seo_desc" placeholder="请输入SEO描述" autocomplete="off" class="layui-input"
+                               lay-verify="required" value="{$goods.seo_desc}">
+                    </div>
+                </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">是否已删除（0 未删除, 大于0则是删除时间）</label>
+      <div class="layui-input-block">
+        <input type="text" name="is_delete_time" id="is_delete_time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value='{$goods.is_delete_time|date="Y-m-d H:i:s"}'>
+      </div>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">添加时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="add_time" id="add_time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value='{$goods.add_time|date="Y-m-d H:i:s"}'>
+      </div>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">更新时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="upd_time" id="upd_time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value='{$goods.upd_time|date="Y-m-d H:i:s"}'>
+      </div>
+    </div>
+  </div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!--js逻辑-->
+<script src="/static/lib/layui/layui.js"></script>
+<script>
+
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
+		let form = layui.form;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+
+		okLoading.close();
+
+		//laydate.render({elem: "#birthday", type: "datetime"});
+
+		form.verify({
+			
+		});
+
+		form.on("submit(add)", function (data) {
+			okUtils.ajax("{:url('edit')}", "post", data.field, true).done(function (response) {
+				//console.log(response);
+				if(response.code==1){
+					okLayer.greenTickMsg("编辑成功", function () {
+						parent.layer.close(parent.layer.getFrameIndex(window.name));
+					});
+				}else{
+					okLayer.greenTickMsg(response.msg, function () {
+				        
+				    })
+				}
+				
+			}).fail(function (error) {
+				console.log(error)
+			});
+			return false;
+		});
+	});
+</script>
+
+
+<script>
+layui.use(['upload','laydate'], function(){
+  var $ = layui.jquery
+  , laydate = layui.laydate
+  ,upload = layui.upload;
+
+  laydate.render({ 
+                          elem: "#is_delete_time"
+                          ,type: 'datetime'
+                        });laydate.render({ 
+                          elem: "#add_time"
+                          ,type: 'datetime'
+                        });laydate.render({ 
+                          elem: "#upd_time"
+                          ,type: 'datetime'
+                        });
+  
+        //全局定义一次, 加载xmSelects
+        //加载组件
+        layui.config({
+            base: '../../static/dist/'
+        })
+
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '{:url("admin/upload/index")}' //改成您自己的上传接口
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+	  console.log(res);
+      //上传成功
+	  $('input[name=avatar]').val(res.path);
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+
+  
+});
+</script>
+</body>
+</html>
