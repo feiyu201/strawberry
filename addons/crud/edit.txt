@@ -5,7 +5,6 @@
 	<title>编辑用户</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="/static/css/oksub.css">
-    <link rel="stylesheet" href="/static/layui-formSelects-master/dist/formSelects-v4.css" />
 	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
 	<style>
 		.layui-upload-list img{
@@ -30,19 +29,7 @@
 <!--js逻辑-->
 <script src="/static/lib/layui/layui.js"></script>
 <script>
-	
-	    //全局定义一次, 加载formSelects
-        layui.config({
-            base: '../../static/layui-formSelects-master/src/' //此处路径请自行处理, 可以使用绝对路径
-        }).extend({
-            formSelects: 'formSelects-v4'
-        });
-        //加载模块
-        layui.use(['jquery', 'formSelects'], function(){
-            var formSelects = layui.formSelects;
 
-        });
-	
 	layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
 		let form = layui.form;
 		let laydate = layui.laydate;
@@ -85,6 +72,7 @@ layui.use(['upload','laydate'], function(){
   , laydate = layui.laydate
   ,upload = layui.upload;
 
+  %s
   %s
 
   //普通图片上传
