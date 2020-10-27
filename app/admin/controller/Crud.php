@@ -93,7 +93,7 @@ class Crud extends Admin
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table
+                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table,$table
             );
             fwrite($controllerFile, $controllerText);
             fclose($controllerFile);
@@ -116,7 +116,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "add.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/add.txt'),
-                self::getViewAddHtml($table), self::xm($table), self::timejs($table)
+                self::getViewAddHtml($table), self::xm($table), self::timejsadd($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -146,7 +146,19 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
-            $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+            if ($item['field'] == 'switch'){
+                $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
+        var state = \"\";
+        if (d.switch == \"on\") {
+            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat' checked='checked' name='switch'  lay-skin='switch' lay-text='开启|关闭' >\";
+        } else {
+            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat'  name='switch'  lay-skin='switch' lay-text='开启|关闭' >\";
+        }
+        return state;
+    }}," . PHP_EOL;
+            }else{
+                $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'},". PHP_EOL;
+            }
         }
         return $str;
     }
@@ -347,6 +359,47 @@ class Crud extends Admin
         return $str;
     }
 
+    public static function timejsadd($table)
+    {
+        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $list = array_map('array_change_key_case', $list);
+        $str = "
+        //全局定义一次, 加载xmSelects
+        //加载组件
+        layui.config({
+            base: '../../static/dist/'
+        })";
+        foreach ($list as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids') {
+                $data = Db::name(array_shift($s))->field('id,name')->select();
+                $arr = [];
+                if ($data) {
+                    foreach ($data as $k => $v) {
+                        $arr[$k]['name'] = $v['name'];
+                        $arr[$k]['value'] = $v['id'];
+                    }
+                }
+
+                $str .= "
+            .extend({
+                xmSelect: 'xm-select'
+            }).use(['xmSelect'], function(){
+                var xmSelect = layui.xmSelect;
+                //渲染多选
+                var " . $demo . " = xmSelect.render({
+                    el: '#" . $demo . "',
+                    name: '" . $demo . "',
+                    data: 
+                        " . json_encode($arr) . "
+                });
+            });
+            ";
+            }
+        }
+        return $str;
+    }
 
     public static function timejs($table)
     {
