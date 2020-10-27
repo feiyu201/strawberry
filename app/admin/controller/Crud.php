@@ -41,14 +41,14 @@ class Crud extends Admin
     public function getList()
     {
         // 查询所有表
-        $sql = "SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE table_schema='".config('database.connections.mysql.database')."'";
+        $sql = "SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE table_schema='" . config('database.connections.mysql.database') . "'";
         $tables = Db::query($sql);
         $data = [];
         foreach ($tables as $k => $v) {
             $data[$k]['id'] = $k + 1;
-            $name = explode('_',$v['TABLE_NAME']);
+            $name = explode('_', $v['TABLE_NAME']);
             array_shift($name);
-            $data[$k]['name'] = implode('_',$name);
+            $data[$k]['name'] = implode('_', $name);
             $data[$k]['comment'] = $v['TABLE_COMMENT'];
         }
         return json([
@@ -93,7 +93,7 @@ class Crud extends Admin
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table,$table
+                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table
             );
             fwrite($controllerFile, $controllerText);
             fclose($controllerFile);
@@ -116,7 +116,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "add.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/add.txt'),
-                self::getViewAddHtml($table), self::timejs($table)
+                self::getViewAddHtml($table), self::xm($table), self::timejs($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -128,7 +128,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "edit.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/edit.txt'),
-                self::getViewEditHtml($table), self::timejs($table)
+                self::getViewEditHtml($table), self::xm($table), self::timejs($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -219,16 +219,14 @@ class Crud extends Admin
             </div>
         </div>";
             } else if (end($s) === 'ids') {
-                $str .= "<div class=\"layui-form-item\">
+                $str .= "
+        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
             <div class=\"layui-input-block\">
-                <select name=\"" . $item['field'] . "\" xm-select=\"select4\">
-                    <option value=\"\">可以多选哟~</option>
-                    ".self::xialaids($item)."
-                </select>
+                <div id=\"" . $item['field'] . "\"></div>
             </div>
         </div>";
-            }else if (explode('(', $item['type'])[0] === 'datetime') {
+            } else if (explode('(', $item['type'])[0] === 'datetime') {
                 $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -277,7 +275,7 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-            }else if (end($s) === 'id') {
+            } else if (end($s) === 'id') {
                 $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -287,23 +285,22 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-            }else if (end($s) === 'ids') {
-                $str .= "<div class=\"layui-form-item\">
+            } else if (end($s) === 'ids') {
+                $str .= "
+        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
             <div class=\"layui-input-block\">
-                <select name=\"" . $item['field'] . "\" xm-select=\"select4\">
-                    <option value=\"\">可以多选哟~</option>
-                    " . self::xialaidedit($table, $item['field'], $item) . "
-                </select>
+                <div id=\"" . $item['field'] . "\"></div>
             </div>
         </div>";
             } else if (explode('(', $item['type'])[0] === 'set') {
-                $str .= "<div class=\"layui-form-item\">
+                $str .= "
+<div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
     " . self::duoxuanedit($table, $item['field'], $item) . "
     </div>
-  </div>";
+</div>";
             } else if (explode('(', $item['type'])[0] === 'text') {
                 $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -352,6 +349,52 @@ class Crud extends Admin
 
 
     public static function timejs($table)
+    {
+        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $list = array_map('array_change_key_case', $list);
+        $str = "
+        //全局定义一次, 加载xmSelects
+        //加载组件
+        layui.config({
+            base: '../../static/dist/'
+        })";
+        foreach ($list as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids') {
+                $data = Db::name(array_shift($s))->field('id,name')->select();
+                $arr = [];
+                $str1 = "[";
+                if ($data) {
+                    foreach ($data as $k => $v) {
+//                        $arr[$k]['name'] = $v['name'];
+//                        $arr[$k]['value'] = $v['id'];
+//                        $arr[$k]['selected'] = "{if in_array('" . $v['id'] . "',explode(',',$" . $table . "." . $demo . "))}true{else /}false{/if}";
+                        $str1 .= "{\"name\":\"" . $v['name'] . "\",\"value\":\"" . $v['id'] . "\",\"selected\":{if in_array('" . $v['id'] . "',explode(',',$$table." . $item['field'] . "))}true{else /}false{/if}},";
+                    }
+                }
+                $str1 .= "]";
+
+                $str .= "
+            .extend({
+                xmSelect: 'xm-select'
+            }).use(['xmSelect'], function(){
+                var xmSelect = layui.xmSelect;
+                //渲染多选
+                var " . $demo . " = xmSelect.render({
+                    el: '#" . $demo . "',
+                    name: '" . $demo . "',
+                    data: 
+                        " . $str1 . "
+                });
+            });
+            ";
+            }
+        }
+        return $str;
+    }
+
+    public static function xm($table)
     {
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
@@ -418,10 +461,11 @@ class Crud extends Admin
         return $str;
     }
 
-    public static function xialaids($item){
+    public static function xialaids($item)
+    {
         $arr = Db::name(explode('_', $item['field'])[0])->field('id,name')->select();
         $str = "";
-        foreach ($arr as $k => $v){
+        foreach ($arr as $k => $v) {
             $str .= "<option value=\"" . $v["id"] . "\" >" . $v["name"] . "</option>";
         }
         return $str;
@@ -443,7 +487,7 @@ class Crud extends Admin
         $arr = Db::name(explode('_', $item['field'])[0])->field('id,name')->select();
         $str = "";
         foreach ($arr as $k => $v) {
-            $str .= "<option {if $" . $table . "." . $filed . " == ".$v["id"]."}selected=\"\"{/if} value=\"" . $v["id"] . "\">" . $v["name"] . "</option>";
+            $str .= "<option {if $" . $table . "." . $filed . " == " . $v["id"] . "}selected=\"\"{/if} value=\"" . $v["id"] . "\">" . $v["name"] . "</option>";
         }
         return $str;
     }
