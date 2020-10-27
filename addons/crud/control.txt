@@ -65,6 +65,8 @@ class %s extends AdminBase
                     $set = [];
                     $str = "";
                     foreach ($res as $e => $i) {
+                        $set = [];
+                        $str = "";
                         if ($i['Field'] == 'state' && explode('(', $i['Type'])[0] == 'enum') {
                             $arrs = explode(",", explode(':', $i['Comment'])[1]);
                             foreach ($arrs as $keys => $items) {
@@ -75,6 +77,8 @@ class %s extends AdminBase
                         } else if ($elt != 'id' && explode('(', $i['Type'])[0] == 'enum') {
                             $xiala = explode(",", explode(':', $i['Comment'])[1]);
                             foreach ($xiala as $elts => $its) {
+                                $set = [];
+                                $str = "";
                                 if (in_array($value["$elt"], explode('=', $its))) {
                                     $str = explode('=', $its)[1];
                                 }
@@ -82,6 +86,8 @@ class %s extends AdminBase
                         } else if (explode('(', $i['Type'])[0] == 'set') {
                             $duoxuan = explode(",", explode(':', $i['Comment'])[1]);
                             foreach ($duoxuan as $ds => $d1s) {
+                                $set = [];
+                                $str = "";
                                 if (in_array(explode('=', $d1s)[0], explode(',', $value["$elt"]))) {
                                     array_push($set, explode('=', $d1s)[1]);
                                 }

@@ -134,6 +134,7 @@ class Crud extends Admin
             fclose($viewFile);
             $this->success("生成成功");
         } catch (Exception $e) {
+//            $this->error($e->getMessage());
             $this->error("生成失败,请先删除原有菜单");
         }
 
