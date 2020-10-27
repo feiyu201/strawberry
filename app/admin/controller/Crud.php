@@ -74,21 +74,21 @@ class Crud extends Admin
                 }
             }
 
-//            $menu = [
-//                [
-//                    'name' => 'admin/' . $table . '/index',
-//                    'title' => $fix . '管理',
-//                    'icon' => 'fa-list',
-//                    'remark' => '',
-//                    'ismenu' => 1,
-//                    'sublist' => [
-//                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
-//                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
-//                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
-//                    ]
-//                ]
-//            ];
-//            Menu::create($menu);
+            $menu = [
+                [
+                    'name' => 'admin/' . $table . '/index',
+                    'title' => $fix . '管理',
+                    'icon' => 'fa-list',
+                    'remark' => '',
+                    'ismenu' => 1,
+                    'sublist' => [
+                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
+                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
+                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
+                    ]
+                ]
+            ];
+            Menu::create($menu);
 
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
@@ -134,7 +134,6 @@ class Crud extends Admin
             fclose($viewFile);
             $this->success("生成成功");
         } catch (Exception $e) {
-            $this->error($e->getMessage());
             $this->error("生成失败,请先删除原有菜单");
         }
 
@@ -171,17 +170,18 @@ class Crud extends Admin
         $str = "";
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
-            if ($item['key'] === 'PRI') {
-                continue;
-            } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
-                $str .= "<div class=\"layui-form-item\">
+            try {
+                if ($item['key'] === 'PRI') {
+                    continue;
+                } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
+                    $str .= "<div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
         " . self::danxuan($item['field'], $item) . "
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'enum') {
-                $str .= "        <div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'enum') {
+                    $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
@@ -190,29 +190,29 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-            } else if (explode('(', $item['type'])[0] === 'set') {
-                $str .= "<div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'set') {
+                    $str .= "<div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
     " . self::duoxuan($item['field'], $item) . "
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'text') {
-                $str .= " <div class=\"layui-form-item layui-form-text\">
+                } else if (explode('(', $item['type'])[0] === 'text') {
+                    $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
       <textarea name=\"" . $item['field'] . "\" placeholder=\"请输入内容\" class=\"layui-textarea\"></textarea>
     </div>
   </div>";
-            } else if ($item['field'] === 'switch') {
-                $str .= "    <div class=\"layui-form-item\">
+                } else if ($item['field'] === 'switch') {
+                    $str .= "    <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"on|off\">
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
-                $str .= "  <div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+                    $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
       <div class=\"layui-input-block\">
@@ -220,8 +220,8 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-            } else if (end($s) === 'id') {
-                $str .= "  <div class=\"layui-form-item\">
+                } else if (end($s) === 'id') {
+                    $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
@@ -230,16 +230,16 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-            } else if (end($s) === 'ids') {
-                $str .= "
+                } else if (end($s) === 'ids') {
+                    $str .= "
         <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
             <div class=\"layui-input-block\">
                 <div id=\"" . $item['field'] . "\"></div>
             </div>
         </div>";
-            } else if (explode('(', $item['type'])[0] === 'datetime') {
-                $str .= "  <div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'datetime') {
+                    $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
       <div class=\"layui-input-block\">
@@ -247,7 +247,16 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-            } else {
+                } else {
+                    $str .= "<div class=\"layui-form-item\">
+                    <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                    <div class=\"layui-input-block\">
+                        <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"
+                               lay-verify=\"required\">
+                    </div>
+                </div>";
+                }
+            }catch (Exception $e){
                 $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
                     <div class=\"layui-input-block\">
@@ -268,17 +277,18 @@ class Crud extends Admin
         $str = "";
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
-            if ($item['field'] === Db::name("$table")->getPk()) {
-                $str .= "<input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">";
-            } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
-                $str .= "<div class=\"layui-form-item\">
+            try {
+                if ($item['field'] === Db::name("$table")->getPk()) {
+                    $str .= "<input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">";
+                } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
+                    $str .= "<div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
         " . self::danxuanedit($table, $item['field'], $item) . "
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'enum') {
-                $str .= "        <div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'enum') {
+                    $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
@@ -287,8 +297,8 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-            } else if (end($s) === 'id') {
-                $str .= "        <div class=\"layui-form-item\">
+                } else if (end($s) === 'id') {
+                    $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
@@ -297,38 +307,38 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-            } else if (end($s) === 'ids') {
-                $str .= "
+                } else if (end($s) === 'ids') {
+                    $str .= "
         <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
             <div class=\"layui-input-block\">
                 <div id=\"" . $item['field'] . "\"></div>
             </div>
         </div>";
-            } else if (explode('(', $item['type'])[0] === 'set') {
-                $str .= "
+                } else if (explode('(', $item['type'])[0] === 'set') {
+                    $str .= "
 <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
     " . self::duoxuanedit($table, $item['field'], $item) . "
     </div>
 </div>";
-            } else if (explode('(', $item['type'])[0] === 'text') {
-                $str .= " <div class=\"layui-form-item layui-form-text\">
+                } else if (explode('(', $item['type'])[0] === 'text') {
+                    $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
       <textarea name=\"" . $item['field'] . "\" placeholder=\"请输入内容\" class=\"layui-textarea\">" . '{$' . "" . $table . "." . $item['field'] . "}</textarea>
     </div>
   </div>";
-            } else if ($item['field'] === 'switch') {
-                $str .= "    <div class=\"layui-form-item\">
+                } else if ($item['field'] === 'switch') {
+                    $str .= "    <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"on|off\" {if $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
-                $str .= "  <div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+                    $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
       <div class=\"layui-input-block\">
@@ -336,8 +346,8 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-            } else if (explode('(', $item['type'])[0] === 'datetime') {
-                $str .= "  <div class=\"layui-form-item\">
+                } else if (explode('(', $item['type'])[0] === 'datetime') {
+                    $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
       <div class=\"layui-input-block\">
@@ -345,7 +355,16 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-            } else {
+                } else {
+                    $str .= "<div class=\"layui-form-item\">
+                    <label class=\"layui-form-label\">" . $item['comment'] . "</label>
+                    <div class=\"layui-input-block\">
+                        <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"
+                               lay-verify=\"required\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
+                    </div>
+                </div>";
+                }
+            }catch (Exception $e){
                 $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
