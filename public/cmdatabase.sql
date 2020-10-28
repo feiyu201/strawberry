@@ -134,7 +134,7 @@ CREATE TABLE `cm_auth_rule` (
   `pid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父ID',
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则名称',
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '规则名称',
-  `icon` varchar(50) NOT NULL DEFAULT '' COMMENT '图标',
+  `icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'fa-circle-o' COMMENT '图标',
   `condition` varchar(255) NOT NULL DEFAULT '' COMMENT '条件',
   `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `ismenu` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否为菜单',
