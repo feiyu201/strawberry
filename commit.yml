@@ -2,16 +2,13 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid 'dcb87dffd76054971842df6eae65999ff2e2a3b8'
-    oldFile: !uuid '7bc829e2767affbf6f2cf644685bc0c62d6a9418'
-  /addons/store:
-    newFile: !uuid '5e42f843ad3f1d6348c45a27cbe7138a4090dd03'
-    oldFile: !uuid '3717fc3c907155316026d42c1f18603fe61eb7b7'
-  /addons/store/Plugin.php:
-    newFile: !uuid '24f3ed7d28c2744c5927cf3dcc284b9788b3a674'
-    oldFile: !uuid '02549bb8d1c48f91ba41d057fb4a60c90392a713'
-gitCommitId: !uuid '70a3d78cf0e0b9bfc393529f3545928181194eec'
+  /public:
+    newFile: !uuid 'cb174f2b7bff7512a4fe30f4a2eab20068055459'
+    oldFile: !uuid '9e5fe8b28a5d3a3a5dc9971c5afa0741d37ce27f'
+  /public/cmdatabase.sql:
+    newFile: !uuid 'e39b53e7de5373b4e2b43320bb21f8c45b9e7287'
+    oldFile: !uuid '1e95e5fce6be98ac9719931c6d5b5771e90c0f06'
+gitCommitId: !uuid '3a96b9e39537a670e4b091ced4a3719b1c8d47e5'
 renames: {
   }
-revisionId: 111
+revisionId: 112
