@@ -49,15 +49,16 @@ class Plugin extends Addons
     {
         $menu = [
             [
-                'name'    => 'admin/lazy/index',
+                'name'    => 'lazy',
                 'title'   => '自动生成(api)',
                 'icon'    => 'fa-list',
                 'remark'  => '',
                 'ismenu'  => 1,
                 'sublist' => [
-                    ['name' => 'admin/lazy/add', 'title' => '添加'],
-                    ['name' => 'admin/lazy/edit', 'title' => '编辑 '],
-                    ['name' => 'admin/lazy/del', 'title' => '删除']
+                    ['name' => 'addons/lazy/lazy/index', 'title' => '列表','ismenu'  => 1,],
+                    ['name' => 'addons/lazy/lazy/add', 'title' => '添加'],
+                    ['name' => 'addons/lazy/lazy/edit', 'title' => '编辑 '],
+                    ['name' => 'addons/lazy/lazy/del', 'title' => '删除']
                 ]
             ]
         ];

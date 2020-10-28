@@ -61,7 +61,7 @@
         });
 
         form.on("submit(add)", function (data) {
-            okUtils.ajax("{:url('add')}", "post", data.field, true).done(function (response) {
+            okUtils.ajax("{:url('/addons/lazy/lazy/add')}", "post", data.field, true).done(function (response) {
                 //console.log(response);
                 if(response.code==1){
                     okLayer.greenTickMsg("添加成功", function () {
