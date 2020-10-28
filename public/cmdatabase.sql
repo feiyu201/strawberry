@@ -155,10 +155,6 @@ INSERT INTO `cm_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condi
 (538, 1, 0, 'admin/Attachment/index', '附件管理', 'fa-file-image-o', '', '', 1, NULL, NULL, 5, 'normal', 1),
 (541, 1, 0, 'admin/plugin/index', '插件管理', 'fa-rocket', '', '', 1, NULL, NULL, 10, 'normal', 1),
 (542, 1, 0, 'admin/applets/index', '小程序管理', 'fa-wechat', '', '', 1, NULL, NULL, 15, 'normal', 1),
-(547, 1, 0, 'test', '测试菜单', 'fa-list', '', '', 1, 1601109097, 1601109097, 10, 'normal', 1),
-(548, 1, 547, 'addons/test/index/index', '查看', 'fa-list', '', '', 1, 1601109097, 1601109097, 20, 'normal', 1),
-(549, 1, 548, 'addons/test/index/add', '添加', '', '', '', 0, 1601109097, 1601109097, 0, 'normal', 1),
-(550, 1, 548, 'addons/test/index/detail', '详情', '', '', '', 0, 1601109097, 1601109097, 0, 'normal', 1),
 (553, 1, 556, 'admin/AuthRule/index', '菜单管理', 'fa-bars', '', '', 1, NULL, 1601167951, 1, 'normal', 1),
 (554, 1, 553, 'admin/AuthRule/add', '菜单添加', 'fa-add', '', '这里是备注', 0, 1601122750, NULL, 100, 'normal', 1),
 (555, 1, 553, 'admin/AuthRule/edit', '菜单编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
@@ -265,7 +261,7 @@ CREATE TABLE `cm_wxapp` (
 -- 转存表中的数据 `cm_wxapp`
 --
 
-INSERT INTO `caomei`.`cm_wxapp`(`id`, `stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `addons`, `createtime`, `updatetime`) VALUES (22, 0, 'xxx', '', '', 0, '', 'xxx', '', 'xxx', 'xxx', 'normal', 'test', 1603166762, 1603166762);
+INSERT INTO `cm_wxapp`(`id`, `stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `addons`, `createtime`, `updatetime`) VALUES (22, 0, 'xxx', '', '', 0, '', 'xxx', '', 'xxx', 'xxx', 'normal', 'test', 1603166762, 1603166762);
 
 
 --
