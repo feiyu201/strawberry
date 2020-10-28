@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', '1');
 //定义目录分隔符
@@ -133,7 +132,7 @@ if ($_GET['c'] = 'start' && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUE
         throw new Exception("无法读取/public/stdatabase.sql文件，请检查是否有读权限");
     }
     //替换表前缀
-    $sql = str_replace("`super_", "`{$mysqlPreFix}", $sql);
+    $sql = str_replace("`cm_", "`{$mysqlPreFix}", $sql);
     try {
         //链接数据库
         $pdo = new PDO("mysql:host={$host};port={$port}", $mysqlUserName, $mysqlPassword, array(
