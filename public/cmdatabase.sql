@@ -257,12 +257,6 @@ CREATE TABLE `cm_wxapp` (
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
---
--- 转存表中的数据 `cm_wxapp`
---
-
-INSERT INTO `cm_wxapp`(`id`, `stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `addons`, `createtime`, `updatetime`) VALUES (22, 0, 'xxx', '', '', 0, '', 'xxx', '', 'xxx', 'xxx', 'normal', 'test', 1603166762, 1603166762);
-
 
 --
 -- 转储表的索引
@@ -359,7 +353,7 @@ ALTER TABLE `cm_market`
 -- 使用表AUTO_INCREMENT `cm_wxapp`
 --
 ALTER TABLE `cm_wxapp`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
