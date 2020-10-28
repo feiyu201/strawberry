@@ -253,8 +253,7 @@ CREATE TABLE `cm_wxapp` (
   `status` varchar(30) CHARACTER SET utf8 NOT NULL,
   `addons` varchar(50) NOT NULL DEFAULT '',
   `createtime` int(10) NOT NULL DEFAULT '0',
-  `updatetime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`) USING BTREE
+  `updatetime` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
 
 
