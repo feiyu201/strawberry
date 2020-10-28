@@ -239,7 +239,7 @@ CREATE TABLE `cm_text_addondownload` (
 --
 
 CREATE TABLE `cm_wxapp` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `id` int(10) NOT NULL,
   `stid` int(10) unsigned NOT NULL,
   `appid` varchar(50) NOT NULL,
   `token` varchar(32) CHARACTER SET utf8 NOT NULL,
