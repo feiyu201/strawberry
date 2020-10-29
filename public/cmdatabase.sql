@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_admin`
+-- 表的结构 `cm_admin`
 --
 
-CREATE TABLE `st_admin` (
+CREATE TABLE `cm_admin` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `username` varchar(20) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
   `nickname` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
@@ -46,20 +46,19 @@ CREATE TABLE `st_admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='管理员表';
 
 --
--- 转存表中的数据 `st_admin`
+-- 转存表中的数据 `cm_admin`
 --
 
-INSERT INTO `st_admin` (`id`, `username`, `nickname`, `password`, `salt`, `avatar`, `email`, `loginfailure`, `logintime`, `loginip`, `createtime`, `updatetime`, `token`, `status`) VALUES
-(1, 'admin', 'Admin', 'f691da52b2e9fa8e4dddf29f1ccabef6', '9ee7ns', '/static/images/avatar.png', 'admin@admin.com', 0, 1600298414, '123.196.11.216', 1492186163, 1601174630, '04e8afb9-646c-4a41-8452-cd6330c3232b', 'normal'),
-(2, 'chaoguan', '超', 'f759ffe375fe2ec5adf88f36c80b1906', 'qeftil', '', '11111@qq.com', 0, NULL, NULL, 1601173715, 1601173982, '', 'normal');
+INSERT INTO `cm_admin` (`id`, `username`, `nickname`, `password`, `salt`, `avatar`, `email`, `loginfailure`, `logintime`, `loginip`, `createtime`, `updatetime`, `token`, `status`) VALUES
+(1, 'admin', 'Admin', 'f691da52b2e9fa8e4dddf29f1ccabef6', '9ee7ns', '/static/images/avatar.png', 'admin@admin.com', 0, 1600298414, '123.196.11.216', 1492186163, 1601174630, '04e8afb9-646c-4a41-8452-cd6330c3232b', 'normal');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_attachment`
+-- 表的结构 `cm_attachment`
 --
 
-CREATE TABLE `st_attachment` (
+CREATE TABLE `cm_attachment` (
   `id` int(20) UNSIGNED NOT NULL COMMENT 'ID',
   `admin_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '管理员ID',
   `user_id` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '会员ID',
@@ -81,10 +80,10 @@ CREATE TABLE `st_attachment` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_auth_group`
+-- 表的结构 `cm_auth_group`
 --
 
-CREATE TABLE `st_auth_group` (
+CREATE TABLE `cm_auth_group` (
   `id` int(8) UNSIGNED NOT NULL,
   `createtime` int(11) NOT NULL,
   `updatetime` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '更新时间',
@@ -95,20 +94,20 @@ CREATE TABLE `st_auth_group` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色组管理';
 
 --
--- 转存表中的数据 `st_auth_group`
+-- 转存表中的数据 `cm_auth_group`
 --
 
-INSERT INTO `st_auth_group` (`id`, `createtime`, `updatetime`, `status`, `title`, `rules`, `remark`) VALUES
+INSERT INTO `cm_auth_group` (`id`, `createtime`, `updatetime`, `status`, `title`, `rules`, `remark`) VALUES
 (1, 1601170339, 1601172768, 'normal', '超级管理员', '536,556,553,554,555,537,557,538,541,547,548,549,550,542,', '超级管理员'),
 (4, 1601170436, 1601181256, 'normal', '插件管理员', '0,536,538,541,547,548,549,550,542,', '这里是备注');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_auth_group_access`
+-- 表的结构 `cm_auth_group_access`
 --
 
-CREATE TABLE `st_auth_group_access` (
+CREATE TABLE `cm_auth_group_access` (
   `uid` mediumint(8) UNSIGNED NOT NULL,
   `group_id` mediumint(8) UNSIGNED NOT NULL,
   `createtime` int(11) DEFAULT '0' COMMENT '添加时间',
@@ -116,26 +115,26 @@ CREATE TABLE `st_auth_group_access` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- 转存表中的数据 `st_auth_group_access`
+-- 转存表中的数据 `cm_auth_group_access`
 --
 
-INSERT INTO `st_auth_group_access` (`uid`, `group_id`, `createtime`, `updatetime`) VALUES
+INSERT INTO `cm_auth_group_access` (`uid`, `group_id`, `createtime`, `updatetime`) VALUES
 (1, 1, 0, 0),
 (2, 4, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_auth_rule`
+-- 表的结构 `cm_auth_rule`
 --
 
-CREATE TABLE `st_auth_rule` (
+CREATE TABLE `cm_auth_rule` (
   `id` int(10) UNSIGNED NOT NULL,
   `type` tinyint(4) NOT NULL DEFAULT '1',
   `pid` int(10) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父ID',
   `name` varchar(100) NOT NULL DEFAULT '' COMMENT '规则名称',
   `title` varchar(50) NOT NULL DEFAULT '' COMMENT '规则名称',
-  `icon` varchar(50) NOT NULL DEFAULT '' COMMENT '图标',
+  `icon` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'fa-circle-o' COMMENT '图标',
   `condition` varchar(255) NOT NULL DEFAULT '' COMMENT '条件',
   `remark` varchar(255) NOT NULL DEFAULT '' COMMENT '备注',
   `ismenu` tinyint(1) UNSIGNED NOT NULL DEFAULT '0' COMMENT '是否为菜单',
@@ -147,19 +146,15 @@ CREATE TABLE `st_auth_rule` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='节点表';
 
 --
--- 转存表中的数据 `st_auth_rule`
+-- 转存表中的数据 `cm_auth_rule`
 --
 
-INSERT INTO `st_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`, `auth_open`) VALUES
+INSERT INTO `cm_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`, `auth_open`) VALUES
 (536, 1, 0, 'admin/index/welcome', '控制台', 'fa-dashboard', '', '', 1, NULL, NULL, 0, 'normal', 1),
 (537, 1, 556, 'admin/admin/index', '人员管理', 'fa-group', '', '', 1, NULL, 1601167961, 2, 'normal', 1),
 (538, 1, 0, 'admin/Attachment/index', '附件管理', 'fa-file-image-o', '', '', 1, NULL, NULL, 5, 'normal', 1),
 (541, 1, 0, 'admin/plugin/index', '插件管理', 'fa-rocket', '', '', 1, NULL, NULL, 10, 'normal', 1),
 (542, 1, 0, 'admin/applets/index', '小程序管理', 'fa-wechat', '', '', 1, NULL, NULL, 15, 'normal', 1),
-(547, 1, 0, 'test', '测试菜单', 'fa-list', '', '', 1, 1601109097, 1601109097, 10, 'normal', 1),
-(548, 1, 547, 'addons/test/index/index', '查看', 'fa-list', '', '', 1, 1601109097, 1601109097, 20, 'normal', 1),
-(549, 1, 548, 'addons/test/index/add', '添加', '', '', '', 0, 1601109097, 1601109097, 0, 'normal', 1),
-(550, 1, 548, 'addons/test/index/detail', '详情', '', '', '', 0, 1601109097, 1601109097, 0, 'normal', 1),
 (553, 1, 556, 'admin/AuthRule/index', '菜单管理', 'fa-bars', '', '', 1, NULL, 1601167951, 1, 'normal', 1),
 (554, 1, 553, 'admin/AuthRule/add', '菜单添加', 'fa-add', '', '这里是备注', 0, 1601122750, NULL, 100, 'normal', 1),
 (555, 1, 553, 'admin/AuthRule/edit', '菜单编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
@@ -169,10 +164,10 @@ INSERT INTO `st_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condi
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_market`
+-- 表的结构 `cm_market`
 --
 
-CREATE TABLE `st_market` (
+CREATE TABLE `cm_market` (
   `id` int(10) UNSIGNED NOT NULL COMMENT 'ID',
   `androidurl` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '安卓地址',
   `author` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '作者',
@@ -221,10 +216,10 @@ CREATE TABLE `st_market` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_text_addondownload`
+-- 表的结构 `cm_text_addondownload`
 --
 
-CREATE TABLE `st_text_addondownload` (
+CREATE TABLE `cm_text_addondownload` (
   `id` int(10) NOT NULL,
   `content` longtext NOT NULL,
   `os` set('windows','linux','mac','ubuntu') DEFAULT '' COMMENT '操作系统',
@@ -240,11 +235,11 @@ CREATE TABLE `st_text_addondownload` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `st_wxapp`
+-- 表的结构 `cm_wxapp`
 --
 
-CREATE TABLE `st_wxapp` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cm_wxapp` (
+  `id` int(10) NOT NULL,
   `stid` int(10) unsigned NOT NULL,
   `appid` varchar(50) NOT NULL,
   `token` varchar(32) CHARACTER SET utf8 NOT NULL,
@@ -258,15 +253,8 @@ CREATE TABLE `st_wxapp` (
   `status` varchar(30) CHARACTER SET utf8 NOT NULL,
   `addons` varchar(50) NOT NULL DEFAULT '',
   `createtime` int(10) NOT NULL DEFAULT '0',
-  `updatetime` int(10) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`) USING BTREE
+  `updatetime` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-
---
--- 转存表中的数据 `st_wxapp`
---
-
-INSERT INTO `caomei`.`st_wxapp`(`id`, `stid`, `appid`, `token`, `encodingaeskey`, `level`, `account`, `original`, `key`, `secret`, `name`, `status`, `addons`, `createtime`, `updatetime`) VALUES (22, 0, 'xxx', '', '', 0, '', 'xxx', '', 'xxx', 'xxx', 'normal', 'test', 1603166762, 1603166762);
 
 
 --
@@ -274,56 +262,56 @@ INSERT INTO `caomei`.`st_wxapp`(`id`, `stid`, `appid`, `token`, `encodingaeskey`
 --
 
 --
--- 表的索引 `st_admin`
+-- 表的索引 `cm_admin`
 --
-ALTER TABLE `st_admin`
+ALTER TABLE `cm_admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `st_attachment`
+-- 表的索引 `cm_attachment`
 --
-ALTER TABLE `st_attachment`
+ALTER TABLE `cm_attachment`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `st_auth_group`
+-- 表的索引 `cm_auth_group`
 --
-ALTER TABLE `st_auth_group`
+ALTER TABLE `cm_auth_group`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `st_auth_group_access`
+-- 表的索引 `cm_auth_group_access`
 --
-ALTER TABLE `st_auth_group_access`
+ALTER TABLE `cm_auth_group_access`
   ADD UNIQUE KEY `uid_group_id` (`uid`,`group_id`),
   ADD KEY `uid` (`uid`),
   ADD KEY `group_id` (`group_id`);
 
 --
--- 表的索引 `st_auth_rule`
+-- 表的索引 `cm_auth_rule`
 --
-ALTER TABLE `st_auth_rule`
+ALTER TABLE `cm_auth_rule`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`) USING BTREE,
   ADD KEY `pid` (`pid`),
   ADD KEY `weigh` (`weigh`);
 
 --
--- 表的索引 `st_market`
+-- 表的索引 `cm_market`
 --
-ALTER TABLE `st_market`
+ALTER TABLE `cm_market`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- 表的索引 `st_text_addondownload`
+-- 表的索引 `cm_text_addondownload`
 --
-ALTER TABLE `st_text_addondownload`
+ALTER TABLE `cm_text_addondownload`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `st_wxapp`
+-- 表的索引 `cm_wxapp`
 --
-ALTER TABLE `st_wxapp`
+ALTER TABLE `cm_wxapp`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
@@ -331,40 +319,40 @@ ALTER TABLE `st_wxapp`
 --
 
 --
--- 使用表AUTO_INCREMENT `st_admin`
+-- 使用表AUTO_INCREMENT `cm_admin`
 --
-ALTER TABLE `st_admin`
+ALTER TABLE `cm_admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=3;
 
 --
--- 使用表AUTO_INCREMENT `st_attachment`
+-- 使用表AUTO_INCREMENT `cm_attachment`
 --
-ALTER TABLE `st_attachment`
+ALTER TABLE `cm_attachment`
   MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
--- 使用表AUTO_INCREMENT `st_auth_group`
+-- 使用表AUTO_INCREMENT `cm_auth_group`
 --
-ALTER TABLE `st_auth_group`
+ALTER TABLE `cm_auth_group`
   MODIFY `id` int(8) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- 使用表AUTO_INCREMENT `st_auth_rule`
+-- 使用表AUTO_INCREMENT `cm_auth_rule`
 --
-ALTER TABLE `st_auth_rule`
+ALTER TABLE `cm_auth_rule`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=558;
 
 --
--- 使用表AUTO_INCREMENT `st_market`
+-- 使用表AUTO_INCREMENT `cm_market`
 --
-ALTER TABLE `st_market`
+ALTER TABLE `cm_market`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID';
 
 --
--- 使用表AUTO_INCREMENT `st_wxapp`
+-- 使用表AUTO_INCREMENT `cm_wxapp`
 --
-ALTER TABLE `st_wxapp`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `cm_wxapp`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
