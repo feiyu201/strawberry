@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '125e064bfb49bd36dd98661a3b55335ebf8fe71f'
-    oldFile: !uuid '1a8400c47eec74dbcb54e2ca6f5d39722fbe5d25'
-  /addons/lazy:
-    newFile: !uuid 'f4d9a011ff0924358edc6cf866e5747159146235'
-    oldFile: !uuid '77dc2578a6c0e049bfec3ac2294166f21d5ba6ed'
-  /addons/lazy/install.sql:
-    newFile: !uuid 'c36a31d1e7238eab2d35d8d6ba6287da63127a6e'
-    oldFile: null
-gitCommitId: !uuid '53372c230b57a5a99594fd062de49f668e82c61c'
+    newFile: !uuid '15131e3fb1eddc0a20abdbf24d54f69c7613072b'
+    oldFile: !uuid '125e064bfb49bd36dd98661a3b55335ebf8fe71f'
+  /addons/pay:
+    newFile: !uuid 'c077799756863992cbce8f29acecc8da6839aae4'
+    oldFile: !uuid '8e496ea1ea49d7e2f5b5096a2b51e5d232340904'
+  /addons/pay/Plugin.php:
+    newFile: !uuid '98d98289bcc99ccc678e6e43ae8b5a7a5788cbb4'
+    oldFile: !uuid '4a031207df852fc4b4452355b0d3cd2bd1e9a880'
+gitCommitId: !uuid 'ce7d6170dac7a5b3e73c0febcbba5a786b8cb506'
 renames: {
   }
-revisionId: 117
+revisionId: 118
