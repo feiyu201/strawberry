@@ -3,15 +3,111 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid 'eb4c089807acfedde3e9cfbd6a20fbb156dc1094'
-    oldFile: !uuid '15131e3fb1eddc0a20abdbf24d54f69c7613072b'
+    newFile: !uuid '7e000fb5cd352bf9b19a69b5b47dd7b9d771db14'
+    oldFile: !uuid 'eb4c089807acfedde3e9cfbd6a20fbb156dc1094'
+  /addons/lazy:
+    newFile: !uuid '0b9fee78b37a9cfa073775d3c5169acaf4b0ea53'
+    oldFile: !uuid 'f4d9a011ff0924358edc6cf866e5747159146235'
+  /addons/lazy/Plugin.php:
+    newFile: !uuid '19cb7fd8ab9d9491482f84926ed26d3c9849e60b'
+    oldFile: !uuid 'cbeb6b3637cf195383d3a548ccafaabf6c2fbc02'
+  /addons/lazy/controller:
+    newFile: !uuid '9d0d569255021df2d2a6707876003319dff56e3a'
+    oldFile: !uuid '888fb218e01d98331ebce756d1ea71e0af1c7efb'
+  /addons/lazy/controller/Lazy.php:
+    newFile: !uuid 'f400e844ed4fca651d6cd31b9e41cc786acde659'
+    oldFile: !uuid '87c29317201ab64c349c4f08d5179486cacf84ae'
+  /addons/lazy/info.ini:
+    newFile: !uuid 'a1aa35b209ad3b662d05daf84e7d8a07d02e5d74'
+    oldFile: !uuid '997a79a322247a12e20707622abacc17404640ae'
+  /addons/lazy/install.sql:
+    newFile: !uuid '0dee999c2e1968dcb88ecb3050a1c7b446e5ffa4'
+    oldFile: !uuid 'c36a31d1e7238eab2d35d8d6ba6287da63127a6e'
+  /addons/lazy/view:
+    newFile: !uuid 'd2097cb44e318a46223eee87fcb51d6382343ea5'
+    oldFile: !uuid '0871ce43e4142e2afa532a70fef73cf64c9b8f98'
+  /addons/lazy/view/lazy:
+    newFile: !uuid 'a4de602ed92daef54dbc9c5639ac534b78e0c8c3'
+    oldFile: !uuid '89d6d388d1b740db3ab3b32ce43c03b454ac3fa9'
+  /addons/lazy/view/lazy/add.html:
+    newFile: !uuid 'a99f683aa789f7416a34da13a995a46fdf17af1c'
+    oldFile: !uuid 'd464ecf28cf6e2e76de5714a9c2ea79ed654acee'
+  /addons/lazy/view/lazy/edit.html:
+    newFile: !uuid 'a99d3a0f5929251e464214401aa4a0475c53af48'
+    oldFile: !uuid 'af48b58b46e61a70c58fabf14e87729e20da3412'
+  /addons/lazy/view/lazy/index.html:
+    newFile: !uuid '3a1e82b71154866706364a7909302989b5fdbd88'
+    oldFile: !uuid 'e1fb3fabcbba55aee327700f834ffa887b523484'
   /addons/pay:
-    newFile: !uuid 'fb66f33e42af415c045cbcc3dde728f671434a71'
-    oldFile: !uuid 'c077799756863992cbce8f29acecc8da6839aae4'
-  /addons/pay/Plugin.php:
-    newFile: !uuid '6db6d9994ee338715d8ba7ca7c923ad518c8a391'
-    oldFile: !uuid '98d98289bcc99ccc678e6e43ae8b5a7a5788cbb4'
-gitCommitId: !uuid 'eb07ab979d8c581080318691eeab9089b610c8f3'
+    newFile: !uuid '0652d0735dc1e3f4c7040c5df3365e3c6f8ef9a4'
+    oldFile: !uuid 'fb66f33e42af415c045cbcc3dde728f671434a71'
+  /addons/pay/info.ini:
+    newFile: !uuid '37127bd5fc30e202f58b5ffbca1c9b8cbac1a876'
+    oldFile: !uuid '4c229f1b585efa29417ad1ba3c2cc32dafabc4d7'
+  /addons/store:
+    newFile: !uuid 'a41918022999cbb2e4cc6b1edbe8e7d257892d05'
+    oldFile: !uuid '5e42f843ad3f1d6348c45a27cbe7138a4090dd03'
+  /addons/store/info.ini:
+    newFile: !uuid 'be3d5bef5438bc6b4f51a6b7f0e54006016e750b'
+    oldFile: !uuid 'db10c2da0247881e97ac2092471b9040b1834fb5'
+  /addons/test:
+    newFile: !uuid '98f82866519d096fb7c284e1321d69e771f02d32'
+    oldFile: !uuid '68b9413d9e40533e68d7b2b497484a4e29d4780f'
+  /addons/test/info.ini:
+    newFile: !uuid 'ad93a2e6d0251284f0e7db7e62dd5bc54ac7b4bb'
+    oldFile: !uuid '97238626d95a10526d8f61f8ff7b8a261dc8f2c5'
+  /app:
+    newFile: !uuid 'edfff447e30820c772479666ac8f12bbaba1b9f6'
+    oldFile: !uuid 'ae6098c7d684ed0da8f65d46f623d79257922870'
+  /app/admin:
+    newFile: !uuid '3a0041d9455938dfc3b87e69000fc7eca9311cd2'
+    oldFile: !uuid 'fe9a6f1f7ace140f000535d7d09dcdd0c07d9066'
+  /app/admin/controller:
+    newFile: !uuid '03ac4921a003c7715796d868fa35aac32e7d3ea3'
+    oldFile: !uuid 'd4f7232a1a3109bd97cd9a3425f840d56b28b916'
+  /app/admin/controller/Lazy.php:
+    newFile: null
+    oldFile: !uuid '87c29317201ab64c349c4f08d5179486cacf84ae'
+  /app/admin/model:
+    newFile: !uuid 'c34c5a521b8e4dfee31882d66960ac55b7a6f9c2'
+    oldFile: !uuid 'e634e280fbc44916d19a8d74d12da1a9678710e8'
+  /app/admin/model/Lazy.php:
+    newFile: null
+    oldFile: !uuid '23ebd140c001a3a944b56a361393228a39cf79fc'
+  /app/admin/view:
+    newFile: !uuid 'a745250fb7c9f812e0c575614b25aed016d9426f'
+    oldFile: !uuid '6298d212a1426e21f7c916b240f5e9a04ab295f5'
+  /app/admin/view/lazy:
+    newFile: null
+    oldFile: !uuid '89d6d388d1b740db3ab3b32ce43c03b454ac3fa9'
+  /app/admin/view/lazy/add.html:
+    newFile: null
+    oldFile: !uuid 'd464ecf28cf6e2e76de5714a9c2ea79ed654acee'
+  /app/admin/view/lazy/edit.html:
+    newFile: null
+    oldFile: !uuid 'af48b58b46e61a70c58fabf14e87729e20da3412'
+  /app/admin/view/lazy/index.html:
+    newFile: null
+    oldFile: !uuid 'e1fb3fabcbba55aee327700f834ffa887b523484'
+  /app/api:
+    newFile: !uuid 'ed447cd14e5e729ade227408a0c75d63db0540fd'
+    oldFile: !uuid '04993190ee1c371f5af4ea22aeddddf7ebdf0d1a'
+  /app/api/controller:
+    newFile: !uuid 'f81088ed0150080fb318d1dd473e60008c96202a'
+    oldFile: !uuid '369911c1da5ab76dc2a614f76138785c04b79946'
+  /app/api/controller/Test.php:
+    newFile: !uuid 'a28223a71b9d74d28f3686bdf8c6fb08a52bb217'
+    oldFile: null
+  /app/common:
+    newFile: !uuid 'c673bca85748070712eadde9327b8aa3f2626f3d'
+    oldFile: !uuid '95430faf89cc3f2a87dd0658eaf9fbdd8b8b781d'
+  /app/common/model:
+    newFile: !uuid '0ddd6032ca4bf81916666a37eda559974eae0a23'
+    oldFile: !uuid 'd38a332edab596146f3abadcad277ef6ecdd7391'
+  /app/common/model/Test.php:
+    newFile: !uuid 'ef24f6d09f0d923b57f06d6c22ea6567e628ae5e'
+    oldFile: null
+gitCommitId: !uuid 'ede46282c94dfc6f654ea007315b7c433b8174aa'
 renames: {
   }
-revisionId: 119
+revisionId: 120
