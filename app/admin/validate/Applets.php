@@ -24,6 +24,6 @@ class Applets extends Validate
 		//'addons.require' => '应用必须选择',
 	];
 	protected $scene = [
-		'edit'  =>  ['appid','original','secret','name','addons'],
+		'edit'  =>  ['appid','original','secret','name'],
 	];
 }
