@@ -3,21 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid 'cf7b27fd8c392a08e4059278e8e18eaec43d4b0e'
-    oldFile: !uuid 'af0e4d7159110e8f319eff3e85624a60ad647106'
-  /addons/lazy:
-    newFile: !uuid 'c92204f0bcc83f50af49e6dd2cae54781bb4bee6'
-    oldFile: !uuid '05ae5d2ca6678f336442438687feb4bf2ba0e607'
-  /addons/lazy/info.ini:
-    newFile: !uuid '1625bfc572ee97cfcf4eba3d905f36c0bcbe88fc'
-    oldFile: !uuid 'a1aa35b209ad3b662d05daf84e7d8a07d02e5d74'
-  /addons/store:
-    newFile: !uuid 'f379320711f18db688469954b3aa366c1baae0d1'
-    oldFile: !uuid 'a41918022999cbb2e4cc6b1edbe8e7d257892d05'
-  /addons/store/info.ini:
-    newFile: !uuid '47ce9fdb7ed78168e54ff2ae018d51144e803f06'
-    oldFile: !uuid 'be3d5bef5438bc6b4f51a6b7f0e54006016e750b'
-gitCommitId: !uuid '0ad28a35f1e70c36753cda9dc97c5bf8fabdea82'
+    newFile: !uuid 'c8c4a61fc9798412c981ab53cd35b504995d52be'
+    oldFile: !uuid 'cf7b27fd8c392a08e4059278e8e18eaec43d4b0e'
+  /addons/test:
+    newFile: !uuid '383ba9c1378d23821e772678e1cff6c7e4cf5e27'
+    oldFile: !uuid '98f82866519d096fb7c284e1321d69e771f02d32'
+  /addons/test/info.ini:
+    newFile: !uuid '3af522f013f83440343cc02e72ed64446c2c9248'
+    oldFile: !uuid 'ad93a2e6d0251284f0e7db7e62dd5bc54ac7b4bb'
+gitCommitId: !uuid '72c50cf4e56e921b738a175bfd42b49428e17fdf'
 renames: {
   }
-revisionId: 122
+revisionId: 123
