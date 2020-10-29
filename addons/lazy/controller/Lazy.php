@@ -1,24 +1,4 @@
 <?php
-//  *+-----------------------------------------------------------------------
-//  *                      .::::.
-//  *                    .::::::::.            | Author: 丶长情
-//  *                    :::::::::::           | Email: zeng1144318071@gmail.com
-//  *                 ..:::::::::::'           | Datetime: 2020/09/30
-//  *             '::::::::::::'               | Remarks: 自动api生成插件
-//  *                .::::::::::
-//  *           '::::::::::::::..
-//  *                ..::::::::::::.
-//  *              ``::::::::::::::::
-//  *               ::::``:::::::::'        .:::.
-//  *              ::::'   ':::::'       .::::::::.
-//  *            .::::'      ::::     .:::::::'::::.
-//  *           .:::'       :::::  .:::::::::' ':::::.
-//  *          .::'        :::::.:::::::::'      ':::::.
-//  *         .::'         ::::::::::::::'         ``::::.
-//  *     ...:::           ::::::::::::'              ``::.
-//  *   ```` ':.          ':::::::::'                  ::::..
-//  *                      '.:::::'                    ':'````..
-//  * +-----------------------------------------------------------------------
 namespace addons\lazy\controller;
 
 use app\common\controller\AddonBase;
@@ -45,9 +25,12 @@ class Lazy extends AddonBase
         $limit = $this->request->param('limit', 10, 'intval');
         $count = Db::name('lazy')->count();
         $data = Db::name('lazy')->page($page, $limit)->select()->each(function ($item, $k) {
+            $item['create_time'] = date('Y-m-d H:i:s',$item['create_time']);
+            $item['admin_id'] = Db::name('admin')->where('id',$item['admin_id'])->field('username')->find()['username'];
             return $item;
         });
-        return json([
+
+    return json([
             'code' => 0,
             'count' => $count,
             'data' => $data,
