@@ -57,21 +57,23 @@
 
 		getorder({$order_sn})
 
-		$('.layui-tab-title').on('click', function(title) {
-			if(title.toElement.textContent=="微信支付"){
-				console.log('微信支付')
-				window.clearInterval(paydsq);
+		 //一些事件监听
+		 element.on('tab(docDemoTabBrief)', function(data){
+            // console.log(data.index); //得到当前Tab的所在下标
+            if (data.index == 0) {
+                console.log('微信支付');
+                // searchCon(pageNum, pageSize,gradeId,subjectId);
+                window.clearInterval(paydsq);
 				getorder({$order_sn})
-			}else if(title.toElement.textContent=="支付宝支付"){
-				console.log('支付宝支付')
-
+            }else if(data.index == 1){
+                console.log('支付宝支付');
+				
 				const Storage = {};
 				Storage.get = function(name) {
 					return localStorage.getItem(name);
 				}
 				var caomei_tokeny = Storage.get("caomeiadmin_userinfo");
 
-				
 				$.ajax({
 					url: 'http://stapi.shiliucrm.com/api/plug/xiazai',
 					type: 'post',
@@ -95,9 +97,49 @@
 						}
 					}
 				})
+            }
+        });
 
-			}
-		});
+		// $('.layui-tab-title').on('click', function(title) {
+		// 	if(title.toElement.textContent=="微信支付"){
+		// 		console.log('微信支付')
+		// 		window.clearInterval(paydsq);
+		// 		getorder({$order_sn})
+		// 	}else if(title.toElement.textContent=="支付宝支付"){
+		// 		console.log('支付宝支付')
+
+		// 		const Storage = {};
+		// 		Storage.get = function(name) {
+		// 			return localStorage.getItem(name);
+		// 		}
+		// 		var caomei_tokeny = Storage.get("caomeiadmin_userinfo");
+
+		// 		$.ajax({
+		// 			url: 'http://stapi.shiliucrm.com/api/plug/xiazai',
+		// 			type: 'post',
+		// 			// 设置的是请求参数
+		// 			data: {name: '{$name}',token: caomei_tokeny,pay_type:'2'},
+		// 			// 用于设置响应体的类型 注意 跟 data 参数没关系！！！
+		// 			dataType: 'json',
+		// 			success: function (res) {
+		// 				// 一旦设置的 dataType 选项，就不再关心 服务端 响应的 Content-Type 了
+		// 				// 客户端会主观认为服务端返回的就是 JSON 格式的字符串
+		// 				console.log(res)
+
+		// 				if(res.code == '-5'){
+		// 					window.clearInterval(paydsq);
+		// 					getorder(res.data.order_sn)
+		// 					$("#zfberweima").attr('src',res.data.img);
+		// 				}else{
+		// 					okLayer.redCrossMsg(res.msg, function () {
+								
+		// 					})
+		// 				}
+		// 			}
+		// 		})
+
+		// 	}
+		// });
 
 		function getorder(order_sn)
 		{
