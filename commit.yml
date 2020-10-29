@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '09a6efee8972787beaa573964e926c8125c87f35'
-    oldFile: !uuid 'dcb87dffd76054971842df6eae65999ff2e2a3b8'
+    newFile: !uuid '88ba4c2752070bb369a6a0ca0730846d1f39e630'
+    oldFile: !uuid '09a6efee8972787beaa573964e926c8125c87f35'
   /addons/test:
-    newFile: !uuid 'f5e385f67079407e7999b7b3fbf13017d64a219c'
-    oldFile: !uuid '62b454af7414609a416434f92ef0b77d58cccf76'
-  /addons/test/Plugin.php:
-    newFile: !uuid 'e03381b2fe15405d820793976dd0f187aa729168'
-    oldFile: !uuid '7984e5fb9d913d99eae1c385eef122533c001110'
-gitCommitId: !uuid '02e6b54ff02accc774022725292a03dd19bfce4c'
+    newFile: !uuid '68b9413d9e40533e68d7b2b497484a4e29d4780f'
+    oldFile: !uuid 'f5e385f67079407e7999b7b3fbf13017d64a219c'
+  /addons/test/info.ini:
+    newFile: !uuid '97238626d95a10526d8f61f8ff7b8a261dc8f2c5'
+    oldFile: !uuid '293a9f9623ab520c424fac1dfefa6a02aaf0ca34'
+gitCommitId: !uuid 'b986c7a0499c78df51a4835f13c2aa3397cf2acc'
 renames: {
   }
-revisionId: 114
+revisionId: 115
