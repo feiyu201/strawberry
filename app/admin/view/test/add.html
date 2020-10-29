@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>添加</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/css/oksub.css">
+	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+	<style>
+		.layui-upload-list img{
+			height:100px;
+			width:100px;
+		}
+	</style>
+</head>
+<body>
+<div class="ok-body">
+	<!--form表单-->
+	<form class="layui-form layui-form-pane ok-form">
+
+		
+
+                <div class="layui-form-item">
+            <label class="layui-form-label">下拉</label>
+            <div class="layui-input-block">
+                <select name="select_test" lay-verify="required">
+                    <option value=""></option>
+                    <option value="10">选项一</option><option value="20">选项二</option>
+                </select>
+            </div>
+        </div><div class="layui-form-item">
+    <label class="layui-form-label">爱好(多选)</label>
+    <div class="layui-input-block">
+    <input type="checkbox" name="set_test[music]" title="音乐"><input type="checkbox" name="set_test[reading]" title="读书"><input type="checkbox" name="set_test[swimming]" title="游泳">
+    </div>
+  </div> <div class="layui-form-item layui-form-text">
+    <label class="layui-form-label">编辑器</label>
+    <div class="layui-input-block">
+      <textarea name="content" placeholder="请输入内容" class="layui-textarea"></textarea>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="time123" id="time123" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss'>
+      </div>
+    </div>
+  </div>    <div class="layui-form-item">
+    <label class="layui-form-label">开关</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="switch" lay-skin="switch" lay-text="开启|关闭">
+    </div>
+  </div><div class="layui-form-item">
+    <label class="layui-form-label">单选</label>
+    <div class="layui-input-block">
+        <input type="radio" name="state" value="10" title="选项一"><input type="radio" name="state" value="20" title="选项二">
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">时间戳</label>
+      <div class="layui-input-block">
+        <input type="text" name="create_time" id="create_time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss'>
+      </div>
+    </div>
+  </div>  <div class="layui-form-item">
+            <label class="layui-form-label">关联id</label>
+            <div class="layui-input-block">
+                <select name="test1_id" lay-verify="required">
+                    <option value=""></option>
+                    <option value="1">name1</option><option value="2">name2</option><option value="3">name3</option><option value="4">name4</option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">关联ids</label>
+            <div class="layui-input-block">
+                <div id="test1_ids"></div>
+            </div>
+        </div>
+		
+		
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!--js逻辑-->
+<script src="/static/lib/layui/layui.js"></script>
+<script>
+	
+
+	
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
+		let form = layui.form;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+
+        laydate.render({ 
+                          elem: "#time123"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });laydate.render({ 
+                          elem: "#create_time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });
+        
+        //全局定义一次, 加载xmSelects
+        //加载组件
+        layui.config({
+            base: '../../static/dist/'
+        })
+            .extend({
+                xmSelect: 'xm-select'
+            }).use(['xmSelect'], function(){
+                var xmSelect = layui.xmSelect;
+                //渲染多选
+                var test1_ids = xmSelect.render({
+                    el: '#test1_ids',
+                    name: 'test1_ids',
+                    data: 
+                        [{"name":"name1","value":1},{"name":"name2","value":2},{"name":"name3","value":3},{"name":"name4","value":4}]
+                });
+            });
+            
+
+		okLoading.close();
+
+		//laydate.render({elem: "#birthday", type: "datetime"});
+
+		form.verify({
+			
+		});
+
+		form.on("submit(add)", function (data) {
+			okUtils.ajax("{:url('add')}", "post", data.field, true).done(function (response) {
+				//console.log(response);
+				if(response.code==1){
+					okLayer.greenTickMsg("添加成功", function () {
+						parent.layer.close(parent.layer.getFrameIndex(window.name));
+					});
+				}else{
+					okLayer.greenTickMsg(response.msg, function () {
+				        
+				    })
+				}
+				
+			}).fail(function (error) {
+				console.log(error)
+			});
+			return false;
+		});
+	});
+</script>
+
+
+<script>
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+  
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '{:url("admin/upload/index")}' //改成您自己的上传接口
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+	  console.log(res);
+      //上传成功
+	  $('input[name=avatar]').val(res.path);
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+
+  
+});
+</script>
+</body>
+</html>

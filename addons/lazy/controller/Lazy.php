@@ -34,44 +34,47 @@ use think\Exception;
 class Lazy extends AddonBase
 {
 
-    public function index(){
+    public function index()
+    {
         return $this->fetch();
     }
 
-    public function getList(){
-        $page = $this->request->param('page',1,'intval');
-        $limit = $this->request->param('limit',10,'intval');
+    public function getList()
+    {
+        $page = $this->request->param('page', 1, 'intval');
+        $limit = $this->request->param('limit', 10, 'intval');
         $count = Db::name('lazy')->count();
-        $data = Db::name('lazy')->page($page,$limit)->select()->each(function($item,$k){
+        $data = Db::name('lazy')->page($page, $limit)->select()->each(function ($item, $k) {
             return $item;
         });
         return json([
-            'code'=> 0,
-            'count'=> $count,
-            'data'=>$data,
-            'msg'=>'查询成功'
+            'code' => 0,
+            'count' => $count,
+            'data' => $data,
+            'msg' => '查询成功'
         ]);
     }
 
-    public function edit(){
-        if($this->request->isPost()){
+    public function edit()
+    {
+        if ($this->request->isPost()) {
             $data = $this->request->post();
-            if(Db::name('lazy')->where('id',$data['id'])->delete()){
+            if (Db::name('lazy')->where('id', $data['id'])->delete()) {
                 self::add();
                 $this->success("编辑成功");
-            }else{
+            } else {
                 $this->error("编辑失败");
             }
         }
         $id = $this->request->param('id');
-        if(!$id){
+        if (!$id) {
             $this->success("参数错误");
         }
-        $wxappinfo = Db::name('lazy')->where('id',$id)->find();
-        if(!$wxappinfo){
+        $wxappinfo = Db::name('lazy')->where('id', $id)->find();
+        if (!$wxappinfo) {
             $this->error("参数错误");
         }
-        $this::assign('wxappinfo',$wxappinfo);
+        $this::assign('wxappinfo', $wxappinfo);
         return $this->fetch();
     }
 
@@ -86,9 +89,9 @@ class Lazy extends AddonBase
             $params['create_time'] = time();
             $params['admin_id'] = $admin['id'];
             $table = $params['table_name'];
-            $sql = "show tables like 'st_{$table}'";
+            $sql = "show tables like '" . config('database.connections.mysql.prefix') . "{$table}'";
             $istable = Db::query($sql);
-            if (!$istable){
+            if (!$istable) {
                 $this->error('Table name does not exist');
             }
 
@@ -185,15 +188,15 @@ class Lazy extends AddonBase
     protected static function annotate(&$data, $primary)
     {
         $str = '* @param   int '
-            . $primary.' '
-            . '&nbsp; 主键' . $primary.' '.'Yes';
+            . $primary . ' '
+            . '&nbsp; 主键' . $primary . ' ' . 'Yes';
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @param   '
-                . self::delString($v['type']).' '
-                . $v['field'].' '
-                .'&nbsp; '
-                . $v['comment'].' '
+                . self::delString($v['type']) . ' '
+                . $v['field'] . ' '
+                . '&nbsp; '
+                . $v['comment'] . ' '
                 . $v['null'];
         }
         return $str;
@@ -206,31 +209,32 @@ class Lazy extends AddonBase
         foreach ($data as $elt => $v) {
             if ($elt == 0)
                 $str = $str
-                    . '* @param   ' . self::delString($v['type']).' '
-                    . $v['field'].' '
-                    .'&nbsp; '
-                    . $v['comment'] .' '
+                    . '* @param   ' . self::delString($v['type']) . ' '
+                    . $v['field'] . ' '
+                    . '&nbsp; '
+                    . $v['comment'] . ' '
                     . $v['null'];
             else
                 // 换行 且需要留5个空格
                 $str = $str . "\r\n" . '     * @param   '
-                    . self::delString($v['type']).' '
-                    . $v['field'].' '
-                    .'&nbsp; '
-                    . $v['comment'].' '
+                    . self::delString($v['type']) . ' '
+                    . $v['field'] . ' '
+                    . '&nbsp; '
+                    . $v['comment'] . ' '
                     . $v['null'];
         }
         return $str;
     }
 
-    public function delete(){
+    public function delete()
+    {
         $idsStr = $id = $this->request->param('idsStr');
-        if(!$idsStr){
+        if (!$idsStr) {
             $this->success("参数错误");
         }
-        if(Db::name('lazy')->where('id','in',$idsStr)->delete()){
+        if (Db::name('lazy')->where('id', 'in', $idsStr)->delete()) {
             $this->success("删除成功");
-        }else{
+        } else {
             $this->error("删除失败");
         }
     }
@@ -275,8 +279,8 @@ class Lazy extends AddonBase
     protected static function primary($primary)
     {
         $str = '* @param   int '
-            . $primary.' '
-            . '&nbsp; 主键' . $primary.' '.'Yes';
+            . $primary . ' '
+            . '&nbsp; 主键' . $primary . ' ' . 'Yes';
         return $str;
     }
 
@@ -287,10 +291,10 @@ class Lazy extends AddonBase
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @return   '
-                . self::delString($v['type']).' '
-                . $v['field'].' '
-                .'&nbsp; '
-                . $v['comment'].' '
+                . self::delString($v['type']) . ' '
+                . $v['field'] . ' '
+                . '&nbsp; '
+                . $v['comment'] . ' '
                 . $v['null'];
         }
         return $str;
@@ -351,14 +355,14 @@ class Lazy extends AddonBase
                 continue;
             }
         }
-        $str = 'foreach($result as $elt => $item){'."\r\n";
+        $str = 'foreach($result as $elt => $item){' . "\r\n";
         if ($tableModel) {
             $str .= "\r\n" . '            $result[$elt]["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$item["' . $tableModel . '_id"])->field(\'username\')->find()[\'username\'];';
         }
         if ($tableModels) {
             $str .= "\r\n" . '            $result[$elt]["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$item["' . $tableModels . '_ids"])]])->column(\'username\'));';
         }
-        $str .= "\r\n".'        }';
+        $str .= "\r\n" . '        }';
         return $str;
     }
 
