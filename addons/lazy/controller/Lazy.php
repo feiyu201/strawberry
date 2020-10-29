@@ -19,21 +19,24 @@
 //  *   ```` ':.          ':::::::::'                  ::::..
 //  *                      '.:::::'                    ':'````..
 //  * +-----------------------------------------------------------------------
-namespace app\admin\controller;
+namespace addons\lazy\controller;
 
-use app\admin\validate\Applets as adminValidate;
+use app\common\controller\AddonBase;
 use think\exception\PDOException;
 use think\facade\Db;
 use think\Exception;
-use think\facade\View;
 
 /**
  * Api自动生成
  *
  * @icon fa fa-circle-o
  */
-class Lazy extends Admin
+class Lazy extends AddonBase
 {
+
+    public function index(){
+        return $this->fetch();
+    }
 
     public function getList(){
         $page = $this->request->param('page',1,'intval');
@@ -46,14 +49,14 @@ class Lazy extends Admin
             'code'=> 0,
             'count'=> $count,
             'data'=>$data,
-            'msg'=>'查询用户成功'
+            'msg'=>'查询成功'
         ]);
     }
 
     public function edit(){
         if($this->request->isPost()){
             $data = $this->request->post();
-            if(Db::name('Lazy')->where('id',$data['id'])->delete()){
+            if(Db::name('lazy')->where('id',$data['id'])->delete()){
                 self::add();
                 $this->success("编辑成功");
             }else{
@@ -66,10 +69,10 @@ class Lazy extends Admin
         }
         $wxappinfo = Db::name('lazy')->where('id',$id)->find();
         if(!$wxappinfo){
-            $this->success("参数错误");
+            $this->error("参数错误");
         }
-        View::assign('wxappinfo',$wxappinfo);
-        return View::fetch();
+        $this::assign('wxappinfo',$wxappinfo);
+        return $this->fetch();
     }
 
     /**
@@ -131,7 +134,7 @@ class Lazy extends Admin
 //                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
 //                        $this->model->validateFailException(true)->validate($validate);
 //                    }
-                    $result = (new \app\admin\model\Lazy())->save($params);
+                    $result = (new \addons\lazy\model\Lazy())->save($params);
                     // 生成控制器
                     $controlFile = fopen("../app/api/controller/" . self::controlName($table) . ".php", "w");
                     $controlTxt = sprintf(self::getFile('control'),
@@ -174,7 +177,7 @@ class Lazy extends Admin
             }
             $this->error('Parameter %s can not be empty', '');
         }
-        return View::fetch();
+        return $this->fetch();
     }
 
 

@@ -61,7 +61,7 @@
         });
 
         form.on("submit(add)", function (data) {
-            okUtils.ajax("{:url('edit')}", "post", data.field, true).done(function (response) {
+            okUtils.ajax("{:url('/addons/lazy/lazy/edit')}", "post", data.field, true).done(function (response) {
                 //console.log(response);
                 if(response.code==1){
                     okLayer.greenTickMsg("编辑成功", function () {

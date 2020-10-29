@@ -1,6 +1,3 @@
--- ----------------------------
--- Table structure for __PREFIX__lazy
--- ----------------------------
 DROP TABLE IF EXISTS `__PREFIX__lazy`;
 CREATE TABLE `__PREFIX__lazy`  (
   `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
