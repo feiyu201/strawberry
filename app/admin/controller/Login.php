@@ -14,7 +14,7 @@ class Login extends BaseController
     		$this->error('111');
     	} */
     	if(Session::has('admin')){
-    		$this->error('你已登陆','index/index');
+    		$this->error('你已登陆','admin/index/index');
     	}
     	
     	// 模板输出
@@ -53,7 +53,7 @@ class Login extends BaseController
     	->where('uid', $admininfo['id'])
     	->find();
     	$admininfo['expire_time'] = $keep_login == 1 ? true : time() + 7200;
-    	session('admin',$admininfo);
+    	Session::set('admin',$admininfo);
     	
     	Session::set('admin.group_id' , $rules['group_id']);
     	Session::set('admin.rules'    , explode(',', $rules['rules']));

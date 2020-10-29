@@ -31,7 +31,7 @@ class Plugin extends Addons	// 需继承think\Addons类
             [
                 'name'    => 'store',
                 'title'   => '商城管理',
-                'icon'    => '&#xe66f;',
+                'icon'    => 'fa-shopping-cart',
                 'ismenu'  => 1,
                 'sublist' => [
                     ['name' => 'addons/store/category/category', 'title' => '商品分类','ismenu'=> 1],
