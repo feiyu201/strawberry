@@ -2,16 +2,28 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid 'c8c4a61fc9798412c981ab53cd35b504995d52be'
-    oldFile: !uuid 'cf7b27fd8c392a08e4059278e8e18eaec43d4b0e'
-  /addons/test:
-    newFile: !uuid '383ba9c1378d23821e772678e1cff6c7e4cf5e27'
-    oldFile: !uuid '98f82866519d096fb7c284e1321d69e771f02d32'
-  /addons/test/info.ini:
-    newFile: !uuid '3af522f013f83440343cc02e72ed64446c2c9248'
-    oldFile: !uuid 'ad93a2e6d0251284f0e7db7e62dd5bc54ac7b4bb'
-gitCommitId: !uuid '72c50cf4e56e921b738a175bfd42b49428e17fdf'
+  /app:
+    newFile: !uuid 'b2e6e4483815d5b248ecee9efb8efb2d47f4c029'
+    oldFile: !uuid 'edfff447e30820c772479666ac8f12bbaba1b9f6'
+  /app/admin:
+    newFile: !uuid 'a6d88ca5d9aa179a24bc2f26af40ef96759c2705'
+    oldFile: !uuid '3a0041d9455938dfc3b87e69000fc7eca9311cd2'
+  /app/admin/view:
+    newFile: !uuid 'b74f3329f4d5ce9de25938b3deaf856b020100ba'
+    oldFile: !uuid 'a745250fb7c9f812e0c575614b25aed016d9426f'
+  /app/admin/view/caomei:
+    newFile: !uuid '7210cb0d2275abd1ae9da42f4bb529a6d3f2a0dc'
+    oldFile: !uuid '12ff75e8f0fb592093dc6fc48e09af8b4e6668b8'
+  /app/admin/view/caomei/payqr.html:
+    newFile: !uuid 'abc6c2e473babbe6de596adfcbf43d0a0cf628b7'
+    oldFile: !uuid 'ed3d912312ba754c36797d412b128096eabaa26a'
+  /app/admin/view/plugin:
+    newFile: !uuid 'fd69692f86184ed3b7c55dcfcdf547906302c050'
+    oldFile: !uuid 'fd95137efa4ad8e6410245600fddc7c16c2d34d6'
+  /app/admin/view/plugin/index.html:
+    newFile: !uuid '6893b6e5cce786e479f8ee09de4fc3dcd46dead0'
+    oldFile: !uuid 'ab4f5d86c6e788989cefcd2cc656415a35328603'
+gitCommitId: !uuid 'a2f47bccb6a656180adb811dcc3660b0f2a77c6d'
 renames: {
   }
-revisionId: 123
+revisionId: 124
