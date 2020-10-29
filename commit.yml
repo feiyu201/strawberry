@@ -2,19 +2,22 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid '122550ac6a0e4f829dd41d614eef70392cc0d7df'
-    oldFile: !uuid 'c8c4a61fc9798412c981ab53cd35b504995d52be'
-  /addons/lazy:
-    newFile: !uuid '7ab8c673d6c19cfe648d40d07cd148f5808e56c5'
-    oldFile: !uuid 'c92204f0bcc83f50af49e6dd2cae54781bb4bee6'
-  /addons/lazy/controller:
-    newFile: !uuid '5cb6222af1451c0dfb569ce64636e26665cb2504'
-    oldFile: !uuid 'b6d52d8102fbd97e5ec10536d12ef566580da01c'
-  /addons/lazy/controller/Lazy.php:
-    newFile: !uuid '51bd310fbd4c113cec29f731a0c385cb822bea4a'
-    oldFile: !uuid 'ec3504d28f12b91f1f5a1e84002b50b7420b4663'
-gitCommitId: !uuid 'e4e4251f4dd4bb871146607484cda2538c4fc907'
+  /app:
+    newFile: !uuid '0f5b69eca7a9223ed6aecf1eeb69a126faad8927'
+    oldFile: !uuid 'b2e6e4483815d5b248ecee9efb8efb2d47f4c029'
+  /app/admin:
+    newFile: !uuid '67b0740cafd3d80644b3d12b09b8b3130f7bd990'
+    oldFile: !uuid 'a6d88ca5d9aa179a24bc2f26af40ef96759c2705'
+  /app/admin/view:
+    newFile: !uuid '10bcd5748b97f899536ebdfaf57621083c2d5b35'
+    oldFile: !uuid 'b74f3329f4d5ce9de25938b3deaf856b020100ba'
+  /app/admin/view/applets:
+    newFile: !uuid 'd6629c2eca00f90b30ff716e39f082d31eac95f6'
+    oldFile: !uuid 'cf4235330d51d7fba881a3f067d9092442bc7c23'
+  /app/admin/view/applets/add.html:
+    newFile: !uuid 'b3396535c872795bbf439157b8229dd2e9d7cbad'
+    oldFile: !uuid '653960ef494040fa12ea854883d609910f15eb17'
+gitCommitId: !uuid 'a9eae0e865e6f4b3ccb1ec4723542ad4db964e32'
 renames: {
   }
-revisionId: 125
+revisionId: 126
