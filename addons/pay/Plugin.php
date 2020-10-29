@@ -46,7 +46,7 @@ class Plugin extends Addons	// 需继承think\Addons类
                 ]
             ]
         ];
-        Menu::create($menu);
+        //Menu::create($menu);
 		return true;
 	}
 
