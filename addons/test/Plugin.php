@@ -13,8 +13,8 @@ class Plugin extends Addons	// 需继承think\Addons类
 	// 该插件的基础信息
 	public $info = [
 		'name' => 'test',	// 插件标识
-		'title' => '插件测试',	// 插件名称
-		'description' => 'thinkph6插件测试',	// 插件简介
+		'title' => '插件代码示例',	// 插件名称
+		'description' => '草莓插件开发代码示例',	// 插件简介
 		'status' => 1,	// 状态
 		'author' => 'bytest',
 		'version' => '0.1',
