@@ -74,26 +74,26 @@ class Crud extends Admin
                 }
             }
 
-            $menu = [
-                [
-                    'name' => 'admin/' . $table . '/index',
-                    'title' => $fix . '管理',
-                    'icon' => 'fa-list',
-                    'remark' => '',
-                    'ismenu' => 1,
-                    'sublist' => [
-                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
-                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
-                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
-                    ]
-                ]
-            ];
-            Menu::create($menu);
+//            $menu = [
+//                [
+//                    'name' => 'admin/' . $table . '/index',
+//                    'title' => $fix . '管理',
+//                    'icon' => 'fa-list',
+//                    'remark' => '',
+//                    'ismenu' => 1,
+//                    'sublist' => [
+//                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
+//                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
+//                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
+//                    ]
+//                ]
+//            ];
+//            Menu::create($menu);
 
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table,$table
+                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table
             );
             fwrite($controllerFile, $controllerText);
             fclose($controllerFile);
@@ -146,7 +146,7 @@ class Crud extends Admin
         $list = array_map('array_change_key_case', $list);
         $str = "";
         foreach ($list as $elt => $item) {
-            if ($item['field'] == 'switch'){
+            if ($item['field'] == 'switch') {
                 $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
         var state = \"\";
         if (d.switch == \"on\") {
@@ -156,8 +156,8 @@ class Crud extends Admin
         }
         return state;
     }}," . PHP_EOL;
-            }else{
-                $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'},". PHP_EOL;
+            } else {
+                $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
             }
         }
         return $str;
@@ -202,7 +202,8 @@ class Crud extends Admin
                     $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <textarea name=\"" . $item['field'] . "\" placeholder=\"请输入内容\" class=\"layui-textarea\"></textarea>
+      <div id=\"" . $item['field'] . "\"></div>
+      <textarea style='display:none ' id=\"text" . $item['field'] . "\" name=\"" . $item['field'] . "\" style=\"width:100%; height:200px;\"></textarea>
     </div>
   </div>";
                 } else if ($item['field'] === 'switch') {
@@ -257,7 +258,7 @@ class Crud extends Admin
                     </div>
                 </div>";
                 }
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
                     <div class=\"layui-input-block\">
@@ -328,7 +329,8 @@ class Crud extends Admin
                     $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <textarea name=\"" . $item['field'] . "\" placeholder=\"请输入内容\" class=\"layui-textarea\">" . '{$' . "" . $table . "." . $item['field'] . "}</textarea>
+      <div id=\"" . $item['field'] . "\"></div>
+      <textarea style='display:none ' id=\"text" . $item['field'] . "\" name=\"" . $item['field'] . "\" style=\"width:100%; height:200px;\">" . '{$' . "" . $table . "." . $item['field'] . "}</textarea>
     </div>
   </div>";
                 } else if ($item['field'] === 'switch') {
@@ -365,7 +367,7 @@ class Crud extends Admin
                     </div>
                 </div>";
                 }
-            }catch (Exception $e){
+            } catch (Exception $e) {
                 $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
@@ -377,6 +379,24 @@ class Crud extends Admin
 
         }
         return $str;
+    }
+
+
+    public static function wangEditor($field)
+    {
+        $text = '$text';
+        $str = "
+                    const E = window.wangEditor
+                    const editor = new E('#" . $field . "')
+                    var $text = $('#text" . $field . "')
+                    editor.config.onchange = function (html) {
+                        $text.val(html)
+                    }
+                    editor.create()
+                    $text.val(editor.txt.html())
+                    ";
+        return $str;
+
     }
 
     public static function timejsadd($table)
@@ -418,6 +438,22 @@ class Crud extends Admin
             ";
             }
         }
+        $text = '$text';
+        foreach ($list as $elts => $items) {
+            if (explode('(', $items['type'])[0] === 'text') {
+                $str .= "
+                    const E = window.wangEditor
+                    const editor = new E('#" . $items['field'] . "')
+                    var $text = $('#text" . $items['field'] . "')
+                    editor.config.onchange = function (html) {
+                        $text.val(html)
+                    }
+                    editor.create()
+                    $text.val(editor.txt.html())
+                    ";
+            }
+        }
+
         return $str;
     }
 
@@ -464,6 +500,24 @@ class Crud extends Admin
             ";
             }
         }
+
+        $text = '$text';
+        $a = '$';
+        foreach ($list as $elts => $items) {
+            if (explode('(', $items['type'])[0] === 'text') {
+                $str .= "
+                    const E = window.wangEditor
+                    const editor = new E('#" . $items['field'] . "')
+                    var $text = $('#text" . $items['field'] . "')
+                    editor.config.onchange = function (html) {
+                        $text.val(html)
+                    }
+                    editor.create()
+                    $text.val(editor.txt.html(\"{".$a.$table.'.'. $items['field'] . "|raw}\"))
+                    ";
+            }
+        }
+
         return $str;
     }
 
