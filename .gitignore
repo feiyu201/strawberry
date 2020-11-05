@@ -15,3 +15,5 @@ composer.lock
 *.zip
 /config/database.php
 /strawberry.zip
+./public/nginx.htaccess
+./public/.htaccess

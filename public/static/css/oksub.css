@@ -97,3 +97,40 @@ ul.ztree>ul li{padding:15px;padding-right:25px}
 ul.ztree>ul li{white-space:normal!important;background: #01AAED}
 ul.ztree li{white-space:inherit;}
 ul.ztree>li>a>span{font-size:15px;font-weight:700}
+
+
+/* 上传图片 */
+.layui-upload {
+    position: relative;
+}
+
+.layui-upload .layui-upload-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+}
+
+.layui-upload-show {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.layui-upload-show li {
+    position: relative;
+    display: inline-block;
+    padding: 5px 0 5px 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: 1px solid #e2e2e2;
+}
+
+.layui-upload-show a img {
+    height: 80px;
+    object-fit: cover;
+}
+
+.layui-upload-show .uploads-delete-tip {
+    position: absolute;
+    right: 10px;
+    font-size: 12px;
+}
