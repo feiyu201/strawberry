@@ -107,6 +107,7 @@ class %s extends AdminBase
    public function add(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
+	   		unset($data['file']);
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
                     $arr = [];
@@ -134,6 +135,7 @@ class %s extends AdminBase
    public function edit(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
+	   		unset($data['file']);
             foreach ($data as $key => $value) {
                 if (is_array($value)) {
                     $arr = [];
