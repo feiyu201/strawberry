@@ -2,19 +2,1003 @@
 branches: {
   }
 fileChange:
+  /.gitignore:
+    newFile: !uuid 'f1cddb28451ca745d0a41a7163dc6b501d8a4833'
+    oldFile: !uuid '0b7ee9e63af18afb0909886ed2013311c44ad99a'
   /app:
-    newFile: !uuid '65bc46e63c52b383ba50926f48b5288b502f2f28'
-    oldFile: !uuid '1ccdc27b621b4b801167984a11937b1554d9da92'
+    newFile: !uuid 'b68282e0b0c05186c4a7e1e9ec951de3726600b3'
+    oldFile: !uuid '65bc46e63c52b383ba50926f48b5288b502f2f28'
   /app/admin:
-    newFile: !uuid 'c210f48a9a0cb2074bb1a3b433a7e61daec80dfb'
-    oldFile: !uuid 'ec215ac5cc4939ff507308cab9e04e36577d5333'
-  /app/admin/validate:
-    newFile: !uuid 'b4d319fde3a700129496c721ecf4561d31d95de1'
-    oldFile: !uuid 'e28aa5cc5462b3dd99875a342f241565c68a8a4b'
-  /app/admin/validate/Applets.php:
-    newFile: !uuid 'c71ab6db69e732e05582d133d3b3a5a683b1cd62'
-    oldFile: !uuid 'f7b2049c06128db23431c1816bf7fd418f8d2fa3'
-gitCommitId: !uuid 'd16f46208348014e83d85505043d330ad80f74bb'
+    newFile: !uuid '70e0f5bd193ba6a96acb764f66ae87b1477bfdf8'
+    oldFile: !uuid 'c210f48a9a0cb2074bb1a3b433a7e61daec80dfb'
+  /app/admin/controller:
+    newFile: !uuid '040373d46ceefc3232ca87813bb3d5277a12f66b'
+    oldFile: !uuid '03ac4921a003c7715796d868fa35aac32e7d3ea3'
+  /app/admin/controller/Example.php:
+    newFile: !uuid '583023d9274833472c7468be483651d563b2cdea'
+    oldFile: null
+  /app/admin/controller/Upload.php:
+    newFile: !uuid '418ab95a96f3382f1f095ea326d8de0080d829ae'
+    oldFile: !uuid 'd38fa519c79072e4476c52ea991d4751ec2b12eb'
+  /app/admin/view:
+    newFile: !uuid '34dca8344ef5dd9927468ca429243d3a3d800a2e'
+    oldFile: !uuid '07f99770992848ef68197e720b603ca3aa050e80'
+  /app/admin/view/example:
+    newFile: !uuid '1c3066d1273f3c247994fd53ce756c218a3e6778'
+    oldFile: null
+  /app/admin/view/example/citypicker.html:
+    newFile: !uuid '812820afa6642f844958e1d9b7a3860c6a3ca1e7'
+    oldFile: null
+  /app/admin/view/example/editor.html:
+    newFile: !uuid '10f55534d2901e71ba7a577ea1e901caa4fd0115'
+    oldFile: null
+  /app/admin/view/example/select.html:
+    newFile: !uuid '0405b8f00a8b96cee8223ab5b1bd1e0770554f1c'
+    oldFile: null
+  /app/admin/view/example/switchto.html:
+    newFile: !uuid '5f6ffb97c6dc8da2a40b1f9e7bf210f998435f49'
+    oldFile: null
+  /app/admin/view/example/uploadimg.html:
+    newFile: !uuid '171a85f80d62aa05bf5578d9ae5778b3e5a91023'
+    oldFile: null
+  /public:
+    newFile: !uuid '72c77aebd377c0210527b6b1581062418c82d070'
+    oldFile: !uuid 'cb174f2b7bff7512a4fe30f4a2eab20068055459'
+  /public/.htaccess:
+    newFile: !uuid 'fe293867e193c28d6b57ba3db48a538c0658a666'
+    oldFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
+  /public/static:
+    newFile: !uuid '421b79335f91b992b5f3bd376b656c866a3afa87'
+    oldFile: !uuid 'ac7f1eed5aed942a5d6be025d7684c14063c2ce1'
+  /public/static/css:
+    newFile: !uuid 'af10a90de0542e0146a6064451d9fb81eea565be'
+    oldFile: !uuid 'bed491ad0a5f1bce1234f1a2f0d23de173f4fa40'
+  /public/static/css/oksub.css:
+    newFile: !uuid 'dd00a90267cff977796d2d4cdef29d87b067cc75'
+    oldFile: !uuid '9a53c34170084c6f277306ea75876d044ea6a78b'
+  /public/static/images:
+    newFile: !uuid 'd64d39159b551d90d03cfd330a9898fa61e13918'
+    oldFile: !uuid 'd9910fb944594b1879e916064bdbc0fd68608321'
+  /public/static/images/upload-icons:
+    newFile: !uuid '830bece7c5038cd86bdc6cb35f60073832631a6c'
+    oldFile: null
+  /public/static/images/upload-icons/doc.png:
+    newFile: !uuid '4d6a6303ecfd3f4cac3b49ddd26df1dca9dff868'
+    oldFile: null
+  /public/static/images/upload-icons/file.png:
+    newFile: !uuid 'b5021c9ffbadfe9bf6c49228385907a5a3370360'
+    oldFile: null
+  /public/static/images/upload-icons/image.png:
+    newFile: !uuid '731d249b7b7cfc8704152143783d8d6d4e8e3046'
+    oldFile: null
+  /public/static/images/upload-icons/mp3.png:
+    newFile: !uuid 'c946e36d0c47a227d83180fc0ce5edb24c03f730'
+    oldFile: null
+  /public/static/images/upload-icons/mp4.png:
+    newFile: !uuid 'f4c5985d02431eed32744aea6e4c6ce64fd4b590'
+    oldFile: null
+  /public/static/images/upload-icons/pdf.png:
+    newFile: !uuid 'c61c3b42b87c58fe54f1d0651a7a640019405e03'
+    oldFile: null
+  /public/static/images/upload-icons/ppt.png:
+    newFile: !uuid '880e1100bb47f2c7c6cbe87d0a83f24ceb7d1be9'
+    oldFile: null
+  /public/static/images/upload-icons/rar.png:
+    newFile: !uuid '8d5e449b3b9c569305b4fd4462f2f94fd3f5ef19'
+    oldFile: null
+  /public/static/images/upload-icons/txt.png:
+    newFile: !uuid '6ba8a57b098bb74e802e4e436025b903eddc6e8c'
+    oldFile: null
+  /public/static/images/upload-icons/visio.png:
+    newFile: !uuid '69de994a7ef40d149e3811f771b15ccd04fec728'
+    oldFile: null
+  /public/static/images/upload-icons/xls.png:
+    newFile: !uuid '47d8aed4fbc0d2b4a1cab702fdc1e7f3332929e3'
+    oldFile: null
+  /public/static/images/upload-icons/zip.png:
+    newFile: !uuid '8d5e449b3b9c569305b4fd4462f2f94fd3f5ef19'
+    oldFile: null
+  /public/static/js:
+    newFile: !uuid '941b7686803291553a4a9a9a330d3d856b3a2600'
+    oldFile: !uuid '019cf4e8ded6760f8169c60670b1e6912e0b470f'
+  /public/static/js/upload.js:
+    newFile: !uuid '7a29257891b7896c09ea9842a930ee55da6bb901'
+    oldFile: null
+  /public/static/lib:
+    newFile: !uuid 'c059bcacc991b4d4932d8706f3617cb7cc7e3f9a'
+    oldFile: !uuid '03bda384ff7eae5dbe27256831e0ce2cd588cf5f'
+  /public/static/lib/ckeditor4:
+    newFile: !uuid '2e8ed7261e2c99d9cda4937412c963d87b308e91'
+    oldFile: null
+  /public/static/lib/ckeditor4/adapters:
+    newFile: !uuid '7df34389a7de8e099953a5e08ccbb60dacd489d0'
+    oldFile: null
+  /public/static/lib/ckeditor4/adapters/jquery.js:
+    newFile: !uuid '3aa2ffa0d934401d773403bbe322a250390cffc1'
+    oldFile: null
+  /public/static/lib/ckeditor4/build-config.js:
+    newFile: !uuid '6aae4d3e621e0a0e742c95900d8f85f1b0fc5df1'
+    oldFile: null
+  /public/static/lib/ckeditor4/ckeditor.js:
+    newFile: !uuid '87bc6bd2deed1217fdfb856ce017c334b8282121'
+    oldFile: null
+  /public/static/lib/ckeditor4/config.js:
+    newFile: !uuid 'b8c9a48d2c5ec03f7e1d4addfd02683309c8e043'
+    oldFile: null
+  /public/static/lib/ckeditor4/contents.css:
+    newFile: !uuid '60cf76e1169e3a82caf00d104e7ec6744b62f966'
+    oldFile: null
+  /public/static/lib/ckeditor4/lang:
+    newFile: !uuid '9ea093c634fb97a26c2475530a08452b2393857f'
+    oldFile: null
+  /public/static/lib/ckeditor4/lang/en.js:
+    newFile: !uuid '18a6881d66739d0545a12fb62d8b56be5d43a967'
+    oldFile: null
+  /public/static/lib/ckeditor4/lang/zh-cn.js:
+    newFile: !uuid 'd2d7b49fe436912d245512c146918a95d59e481d'
+    oldFile: null
+  /public/static/lib/ckeditor4/lang/zh.js:
+    newFile: !uuid 'ffa1167e5017ae8f5804493f77e2c77d681328b5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins:
+    newFile: !uuid '0d80dd4d55d37eccaa1e3844b76462e04dd9aa34'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp:
+    newFile: !uuid '1d2fc5b256377cf2f2f6bcaae3c4e2066cbffd84'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs:
+    newFile: !uuid 'c0f4d42961854161554559c87a3cba0fdcb140b5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/a11yhelp.js:
+    newFile: !uuid '3d14d13a7e4c7aa12c2e60fe9d2722490545dfde'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang:
+    newFile: !uuid '3f8043aba0e923b87600e992ad830216f80342b6'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/_translationstatus.txt:
+    newFile: !uuid '5de2ba0bf5e714bd51c0aee0001e18790e10ff79'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/af.js:
+    newFile: !uuid '5959df37922add0954f089d92dfa2f50200db96e'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ar.js:
+    newFile: !uuid 'db794bed922b838d8f5eb35f16880a7bf4fec409'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/az.js:
+    newFile: !uuid '52124569946492b784ea60bdd15f67f43ce1bc0f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/bg.js:
+    newFile: !uuid 'd197b482c8df6e181381ac30a58e6228483ad3e1'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ca.js:
+    newFile: !uuid '6ff7e703da56290e396e7ba6107b2ea84fea6187'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/cs.js:
+    newFile: !uuid '982fb327588cd71aba11bc830bc62d1f0f9cbb28'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/cy.js:
+    newFile: !uuid '4b3b5155d44cf80ef051098a29a52a08b68242c3'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/da.js:
+    newFile: !uuid '34bd7a73070e3aaa38c110bce9ea31a6ef3ca77c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/de-ch.js:
+    newFile: !uuid 'b38d51e713f5597348614140713a44807e0b0374'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/de.js:
+    newFile: !uuid '085e02cd5194ab75f3198f58e86ec6ccff7930fd'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/el.js:
+    newFile: !uuid 'cd5b982378c0b1b033811ee5ea8db24d67c7faf3'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/en-au.js:
+    newFile: !uuid 'd3086c50efd856bc6c8bc41279d5a1e18d75681c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/en-gb.js:
+    newFile: !uuid '968c5d2100ae0cacb0a48a65dbccf7d9cc60b2b5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/en.js:
+    newFile: !uuid '4c48e4f12f2a4f31296ae3b4db40632d1a0495f0'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/eo.js:
+    newFile: !uuid '6381e5fa237396c0df672ccaefb3c48064a71649'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/es-mx.js:
+    newFile: !uuid 'c633cea7085775c46476c385afd9a587ef8f44a0'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/es.js:
+    newFile: !uuid '49cc01115beee3bfd25cebd81674c876f5c46df8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/et.js:
+    newFile: !uuid '696ef58a26765845e0b6d1e33d62e11c5bf7889c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/eu.js:
+    newFile: !uuid '19b44d2956c60c4c1a087b8ec6c300b4e83fd830'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/fa.js:
+    newFile: !uuid 'ad7b18aa5982e7ceb4ebc9363d0433faedba1555'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/fi.js:
+    newFile: !uuid '1be96c1d0c0dad1a0d839de44647bd2ec01d28e2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/fo.js:
+    newFile: !uuid 'f9faa77634362790f2516a4728ce33d1ef5a4c9a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/fr-ca.js:
+    newFile: !uuid 'f2d22df33a77082b35dbc87e4d2863ccbe7b86d5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/fr.js:
+    newFile: !uuid 'bf79da337aaf58c901c446562c516576a77c4c66'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/gl.js:
+    newFile: !uuid '7837dc68b78b1a71bb6eb939a79658b0a9037414'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/gu.js:
+    newFile: !uuid '31faf6972bdf87c0e0e25a0f619555b565f4c4ab'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/he.js:
+    newFile: !uuid 'e1b687e1b26d64368cd99c0657d0ad538e87a934'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/hi.js:
+    newFile: !uuid 'bb7d8efc1cf1fe22110bb81c046c5b24b7cbfcc0'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/hr.js:
+    newFile: !uuid 'c1afebb7c1d841a636a9c707edf36f7f97c713f8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/hu.js:
+    newFile: !uuid 'd51df49254b87b6812b6c907bf2cef0f7019c1f2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/id.js:
+    newFile: !uuid 'ef03faf2feff901bb8294aa0b6eedc07e2b434d7'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/it.js:
+    newFile: !uuid '4655140336771b7693129976a01d71480ff0b9d8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ja.js:
+    newFile: !uuid '761acfd4447ea7a59a1187bf6f6eee57a4507661'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/km.js:
+    newFile: !uuid '7a284ef5424b1329255dc0aafc29f8d3f1829cdf'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ko.js:
+    newFile: !uuid '108c05576a01e58150de21b4bbdb40eb770cd06d'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ku.js:
+    newFile: !uuid '4eb90aa5743c05ca79c0bb8da44e2d5a3ac97b49'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/lt.js:
+    newFile: !uuid '67a08df68e9c4e68d8101473e6ad490624873d05'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/lv.js:
+    newFile: !uuid 'b26f6f95c4735a05aa4a93fc9c786a4697c5a74f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/mk.js:
+    newFile: !uuid '26721a49a9a2474a1cf7bdab1c95e707fefae68c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/mn.js:
+    newFile: !uuid '57d62a7714613ac2de13509b09e14fa607b2936f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/nb.js:
+    newFile: !uuid 'd2d2d00b12fbdb287b34748e3f49dc21f25db94a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/nl.js:
+    newFile: !uuid 'f18c763f9fb79a4404a631683f21f70f3f71fd32'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/no.js:
+    newFile: !uuid 'c65bd17c771a877670d32a89b64b0d40f8749e32'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/oc.js:
+    newFile: !uuid '3129e18a5ea58445bdf6eb4ff9b97ba258d80d80'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/pl.js:
+    newFile: !uuid '6a0a01c9d6e0505c3c7ec360148dd0cfa31d92f3'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/pt-br.js:
+    newFile: !uuid '2071d9232745263f2742e0bd646db59224572bf8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/pt.js:
+    newFile: !uuid 'e66629e866794ac245afc9feb7e8630528af9043'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ro.js:
+    newFile: !uuid 'cbdcf041a3a21ddcf36ba65fb9e4e21c0f31cbf4'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ru.js:
+    newFile: !uuid '26a0c7c5716e22b5df20702a891ad0130c6e5ad5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/si.js:
+    newFile: !uuid 'e66dd03dcf3307aac9e7a35c2db4136cef2dffba'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/sk.js:
+    newFile: !uuid 'a38ba0d75bd9f75235502d93f6a1aa0a7bff0324'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/sl.js:
+    newFile: !uuid '82828f448884aca23bd89c75fe8c1a489e374b47'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/sq.js:
+    newFile: !uuid 'e2f27e6fce9d4af0fb92d7b2ae45598a696fc9b3'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/sr-latn.js:
+    newFile: !uuid '411c4e8b2e372fa59556e605c093bc571e880aab'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/sr.js:
+    newFile: !uuid '88fd472b01b4614c2dd8d53a043dd4eb8ba0e9f2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/sv.js:
+    newFile: !uuid '9b5fcaece2d1ee997bc7ff9cb4a0ec9fc8257023'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/th.js:
+    newFile: !uuid 'df94b0522abf9ad0ee1fff9f51639c75de5fbde5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/tr.js:
+    newFile: !uuid 'e88a0af503fee39af2796b787f8f16f0078fd057'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/tt.js:
+    newFile: !uuid 'aa2ee3279887bcda93cf85c2c3b2c05ad7a9fca6'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/ug.js:
+    newFile: !uuid '0eee13aa78948b30b0d29c3db83b791c4e272f9e'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/uk.js:
+    newFile: !uuid '98e3adaaf2a0b48ba7eb43ccc76dd3149303b68c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/vi.js:
+    newFile: !uuid 'd73a2ab7a7f1adf9a4462832ac2a1c42326d7a8b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/zh-cn.js:
+    newFile: !uuid 'dec691f6e000b0f023f8ee6a48eb03f2c4f4943a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/a11yhelp/dialogs/lang/zh.js:
+    newFile: !uuid '48b81dcfa1d09609ecc0d223248e5b3c7c12159b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/about:
+    newFile: !uuid '7f9941b152f9dd8b8345a9135af556c7a038f29d'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/about/dialogs:
+    newFile: !uuid 'c20fce5f8c16ea059cdd16bde487a56fecb6ce34'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/about/dialogs/about.js:
+    newFile: !uuid 'c0072ff0733025ff99bc4e6cdcb4ab5b477c0276'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/about/dialogs/hidpi:
+    newFile: !uuid '9bfe767207b192a710e6e854f519e6e8c8d1601c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/about/dialogs/hidpi/logo_ckeditor.png:
+    newFile: !uuid 'd6c88392914ab140ea9444356a5e4002ee6462f8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/about/dialogs/logo_ckeditor.png:
+    newFile: !uuid 'cdf17c024ced2b3b1573058299f6a0681351b395'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/clipboard:
+    newFile: !uuid 'be0295e18e0c7860942ee8abb7c13137199ead21'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/clipboard/dialogs:
+    newFile: !uuid '180aa149267fece0c900cff234407c0367b4a3d5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/clipboard/dialogs/paste.js:
+    newFile: !uuid '43cd1ca22fe0ef1a3260b70513c800e9f0c66bf8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/dialog:
+    newFile: !uuid 'eab5b076b4a11906e7c982aeef3c0da5018d24cd'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/dialog/dialogDefinition.js:
+    newFile: !uuid '6c2b0d628973367a34800d21b032bb707beac446'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/dialog/styles:
+    newFile: !uuid '9c34e8cff8938cae54340f3cb1ba652dbee35978'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/dialog/styles/dialog.css:
+    newFile: !uuid 'add83eb2258afb02fb86516ab337d3942f20ffc5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/icons.png:
+    newFile: !uuid '5cdb2dbbf087425b90cbf295b2cb2256445f12e8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/icons_hidpi.png:
+    newFile: !uuid '3ddfb1d1d35ff51332a7e382a47d36234f1539e9'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/image:
+    newFile: !uuid '61b78e79c95bbb9de44f4cc02fe3a7584d25fd8e'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/image/dialogs:
+    newFile: !uuid 'a0f24f758312c15184acacd1a11f9f1577e894fa'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/image/dialogs/image.js:
+    newFile: !uuid '15c62b488246aa945900e9cdb4a9f8b0ec42a6cc'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/image/images:
+    newFile: !uuid 'f9d582644e3bdd6065f1dc57621051e62cff417e'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/image/images/noimage.png:
+    newFile: !uuid '74c6ee9262bbd0d379738c63f673dca93b34f08b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link:
+    newFile: !uuid 'f7d514adcadc5e1b396d031f552542d70ff9e7b4'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/dialogs:
+    newFile: !uuid 'cf3a335dc454dc341029a1d4f717a8b99651c3c0'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/dialogs/anchor.js:
+    newFile: !uuid 'd28dadac899495e41c949b636e44c63af10fd78c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/dialogs/link.js:
+    newFile: !uuid '91214b160a68fb49d0071b0749eaced6bddd4993'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/images:
+    newFile: !uuid '042656eebf98db306672711314c7b360010050e1'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/images/anchor.png:
+    newFile: !uuid 'd94adb41306ffd96741ae5e5ca1e8d749853f3fb'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/images/hidpi:
+    newFile: !uuid '4bf5ed16fc5a56e67717fffc84129411ca49ce88'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/link/images/hidpi/anchor.png:
+    newFile: !uuid '186c3e916512175f0d6ab12d8eacfe9f320314db'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline:
+    newFile: !uuid '79a0ee9b8b29e66537dfc82c35c5bb7ea8d01478'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline/images:
+    newFile: !uuid '0f269bf1824997460366dddf96c7a01fcd39bc04'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline/images/hidpi:
+    newFile: !uuid '63a7a59ea23b07c6f26a189f76a07fdc2968af5a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline/images/hidpi/icon-rtl.png:
+    newFile: !uuid '4a8d2bfdabcc7271dde74ba441d11deb5adc5663'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline/images/hidpi/icon.png:
+    newFile: !uuid 'b981bb5c6c40ef143fbd1dbd92e17c3471a6e635'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline/images/icon-rtl.png:
+    newFile: !uuid '55b5b5f949a60c8fabc63867fd7827fe33d0ab71'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/magicline/images/icon.png:
+    newFile: !uuid 'e063433632af33f66b95443d81e2548322a280c2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastefromgdocs:
+    newFile: !uuid '16a3273dfff8ff8f29ab017ccb882ebf4bc3433c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastefromgdocs/filter:
+    newFile: !uuid '51da966757648ea007cb91de6a6f252eeec5866b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastefromgdocs/filter/default.js:
+    newFile: !uuid 'eab7cd6e912ac7b57fab9f24fd8c35d9a2346b69'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastefromword:
+    newFile: !uuid '758e1320dc3af2ce0a0f32a64b8400496d5ac5a0'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastefromword/filter:
+    newFile: !uuid '634e65e750a2d40500ac1738b4df27f72e696eef'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastefromword/filter/default.js:
+    newFile: !uuid 'f3b9c99128ff5bc1b9c5e47c5ea3bf78c8be40e8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastetools:
+    newFile: !uuid '81d1fb47c8519a9533977e7d5325130acb57995d'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastetools/filter:
+    newFile: !uuid 'fafc6608749af3b3ca38537ca636fd466bf03f84'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastetools/filter/common.js:
+    newFile: !uuid 'c2e83385fd3374bae2cb53bb16a77d431d1cdd2b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/pastetools/filter/image.js:
+    newFile: !uuid '67648abf1b62824d8870274eafd391bf3af1b857'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt:
+    newFile: !uuid '65dd6bb35f1b113986b8147a5a772e6b748a70e0'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/CHANGELOG.md:
+    newFile: !uuid '05cf2ddc7e4f51e1fd37822e8437babaf8db6222'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/LICENSE.md:
+    newFile: !uuid '610c807808b853d556e10bc6328200534e60780f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/README.md:
+    newFile: !uuid '40254ee2f1b0093f81853c43db8bbfe36e718232'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/dialogs:
+    newFile: !uuid '06e2ade567f35d1f17d828d9b24be94ccfaa575e'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/dialogs/dialog.css:
+    newFile: !uuid '427c4b42dcdc9613e81527e320355491c65601c4'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/dialogs/options.js:
+    newFile: !uuid 'e47c97e932544979a1e9fba0a34bcdd3131ef58d'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/dialogs/toolbar.css:
+    newFile: !uuid '861f43e3b47365e4dc48d906f9538389e8e5c5c1'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/skins:
+    newFile: !uuid 'd5f681c88d18bd17afd67ebd06e8d181266d3c4b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/skins/moono-lisa:
+    newFile: !uuid '225c59526fe613791e8eb31e0b1dfbdce012ad42'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/scayt/skins/moono-lisa/scayt.css:
+    newFile: !uuid '53f522205727858086d8625d4726a9c97fe462ff'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar:
+    newFile: !uuid '7a470b2cd242214efb9ca4621de0cc44527841e1'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs:
+    newFile: !uuid 'cbd176d5ce35c045acd4f9cbc8ccaa6e940ffe55'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang:
+    newFile: !uuid 'ad50dc668341c71e680806e02974a33951cf65b9'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/_translationstatus.txt:
+    newFile: !uuid '13d0402a19d4d665050e9d7869b102b82902cfdc'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/af.js:
+    newFile: !uuid '0742b1d444b56abfe5a943b2df29828e3a471dfb'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ar.js:
+    newFile: !uuid '21b55334e033540f26a05185877da3c00a4445d2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/az.js:
+    newFile: !uuid '0e53e57ee1543fc2175572eb4cbfc86d4295e058'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/bg.js:
+    newFile: !uuid '2ff411a1b1f111d4cbe0ec677ce1d2986391c518'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ca.js:
+    newFile: !uuid '36a9f735414a9cb8c1cd7656c3cf51b80fe1fcd6'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/cs.js:
+    newFile: !uuid '224ed08536a1bfc38c428244e0c1c26eddcf1ab5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/cy.js:
+    newFile: !uuid '2c43f178eabc571d2324dc603312c7806e1f42ed'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/da.js:
+    newFile: !uuid '11c7a7a3132540721a0050155b5cdd8e2b5ba671'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/de-ch.js:
+    newFile: !uuid '09e78fcde060e55accba7dbb057e8ee496cdd838'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/de.js:
+    newFile: !uuid '4cf083bda651a5d6861807bcc8eaf82ade735c76'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/el.js:
+    newFile: !uuid 'c3a6f80d572c4681b933dc6f3e4568f7646aa69a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/en-au.js:
+    newFile: !uuid '802ce2755a32d0389605c51f1ce3fa884230450c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/en-ca.js:
+    newFile: !uuid 'ac6dadf2b9949a61468d02f104346dd2e4afaa44'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/en-gb.js:
+    newFile: !uuid '200eca006962045bee357f04732bf5f612421df2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/en.js:
+    newFile: !uuid 'ccafaf61bfaf1b01d13ddfe36a2c79fea94f7a9a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/eo.js:
+    newFile: !uuid '36929eb8e975f699ff2dea295d9001b8c39fe17f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/es-mx.js:
+    newFile: !uuid 'add7c48e7d5ce20584897a0fcb0b62797ce466c3'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/es.js:
+    newFile: !uuid '05533bcc9326077b70cb2886025a2d81a2af1a62'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/et.js:
+    newFile: !uuid '11324749e3b502bc4f3ddb64b909947740e13551'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/eu.js:
+    newFile: !uuid '4bc6cf441ecf3d68e93105b36980c1368fd46674'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/fa.js:
+    newFile: !uuid 'ffbbb38b53c0e7e7bb01408499573f5aa0ac8aaa'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/fi.js:
+    newFile: !uuid '7803503a271c7250491e92a5c3c5e44cad3a4d4e'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/fr-ca.js:
+    newFile: !uuid '449b41283c22b12d6024ccdcc4e2ce13cf7787a4'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/fr.js:
+    newFile: !uuid 'e03fc2aa3324f8a05c3eba989602bec3c256b439'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/gl.js:
+    newFile: !uuid '8ade2a45a338b2a5134c96df717a0748d91492fa'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/he.js:
+    newFile: !uuid '6f45709f7af04a8699812a2c395298c7f0a1b296'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/hr.js:
+    newFile: !uuid 'fff6f695cc4c0bc9d836ec7bbd45d3612539e973'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/hu.js:
+    newFile: !uuid '191a1ffb4ef3da2c993fcf583c1cd9afebeedd0d'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/id.js:
+    newFile: !uuid '1426e328f52203e9090bfb0102770b1f47d6f2b2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/it.js:
+    newFile: !uuid '9c732f829167e461760a90386b9bad980653d9ce'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ja.js:
+    newFile: !uuid '122c44f0cf19f24817d9a2c5fe33a20561e4faf7'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/km.js:
+    newFile: !uuid '24a7a8a4e1c66ec78e265460a95e33b0086f16da'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ko.js:
+    newFile: !uuid '4e60a26d9c27a4563dc5228a3a642d2d1055b580'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ku.js:
+    newFile: !uuid '9fdea3a810e1546aba9f9baacc7a7132b2ff0e97'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/lt.js:
+    newFile: !uuid 'fa4875620093be1af732aa1560a8e4ecb688190b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/lv.js:
+    newFile: !uuid '26e2493f1a9d577d77a8389844b7e6fbe1823cdf'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/nb.js:
+    newFile: !uuid '3a59cad8560473c5dae2e8a34fee363277310529'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/nl.js:
+    newFile: !uuid '5327ea4b2b05df2f1a7e4505d0af125c2dfc3aba'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/no.js:
+    newFile: !uuid '99ffbd751d43823e79a1b657a79eaa98a358a804'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/oc.js:
+    newFile: !uuid 'f2dbad3c63dba054ac1efe06a237a62155ddee8c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/pl.js:
+    newFile: !uuid 'bbf6e57251ed3411bbec2d4230aaa1eb9d156f3c'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/pt-br.js:
+    newFile: !uuid '0fb8f1b324febd70506ad48f89541d3c04ef74ca'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/pt.js:
+    newFile: !uuid 'c1762c03452c68a68130277ce39f7c169e8697e1'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ro.js:
+    newFile: !uuid '919c01196939e93192b144f019df891d059ba172'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ru.js:
+    newFile: !uuid 'c1c527327f483ba61954335eac8062e8b2161cc5'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/si.js:
+    newFile: !uuid '56f0e5649600a9e1a5c92a945af85cd84fdd8b1a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/sk.js:
+    newFile: !uuid 'f0a63ab9dee92aa00dd3db430cf2f3566a28f751'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/sl.js:
+    newFile: !uuid '203d3c7b05c0e5cd7dbeed4ae9b36156919abe61'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/sq.js:
+    newFile: !uuid '27339e95bc18365bfcf47ff9b099be721b91c841'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/sr-latn.js:
+    newFile: !uuid '8bd2a2b2477dd64342f1bd6cc7dcf82b0af55ee6'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/sr.js:
+    newFile: !uuid '7a5a270c3f87ff22a009bb213e78383b5a407836'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/sv.js:
+    newFile: !uuid '56554b14ff591e6b473558a7c06f284b88fd4687'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/th.js:
+    newFile: !uuid 'dfc9b59bf9b892b8a142ca33a02d0a55abaf5da8'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/tr.js:
+    newFile: !uuid 'c1851941db1f0129ca3064f1cd8d2cb4a880725d'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/tt.js:
+    newFile: !uuid 'b57f113d9dde53649a98c6e6bed3d5cbd4ab6e75'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/ug.js:
+    newFile: !uuid '870b504c80c8f5eb295d0616aeff48c483006048'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/uk.js:
+    newFile: !uuid '696590d6f232c9a1c43d594bbbc45eddfbe4d10f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/vi.js:
+    newFile: !uuid 'd142e9228809526cf5c931aea5c1feb4315e7d57'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/zh-cn.js:
+    newFile: !uuid '532b813bf2892e9099c90e5844050a93137d52cd'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/lang/zh.js:
+    newFile: !uuid '3ec2a009bf89b7d27e1330ba02a137583bbacb38'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/specialchar/dialogs/specialchar.js:
+    newFile: !uuid 'b039d8c0944dcdacc7a0be6f1c8b380f8f1c5e85'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/table:
+    newFile: !uuid '89bd27de755a2de58060022971c09dae07a90b27'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/table/dialogs:
+    newFile: !uuid '7049e593b5d3bad824f9c87aa33680e7a8323b46'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/table/dialogs/table.js:
+    newFile: !uuid '3de3e5321f40668ff4c5cdfac6dad0e1183a49b9'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/tableselection:
+    newFile: !uuid '59ace00e364ea44308e6b398722d1ec3ccb34364'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/tableselection/styles:
+    newFile: !uuid '452d710a2777a60bb6d39a5491fe6fc6755e824a'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/tableselection/styles/tableselection.css:
+    newFile: !uuid '916947233e3bb8435ec2f0eee95c9c54c4f2af65'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/tabletools:
+    newFile: !uuid '538c8c28b106f3d948104ca5a3a023fc9125763b'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/tabletools/dialogs:
+    newFile: !uuid '09040eaa601f326a68be231c90f428614f7caca9'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/tabletools/dialogs/tableCell.js:
+    newFile: !uuid 'b63374dca2eee47e51eb721caebb637722b252fb'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/widget:
+    newFile: !uuid '4e005cfd20ef47353e8732da0aba761e9e183e19'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/widget/images:
+    newFile: !uuid '28fa5e94bba641b53c85af0ec747f4af40cc72fb'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/widget/images/handle.png:
+    newFile: !uuid 'ba8cda5b30650babdd9e9b439bf92dd78e7e3425'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc:
+    newFile: !uuid '7e5a8f568743a1701756584261e5308c434cc6d2'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/LICENSE.md:
+    newFile: !uuid 'c7d374ad19aec9ea26f51b6ebd18e6ac7f7cfe03'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/README.md:
+    newFile: !uuid '9a6daab14b411666c888b16f3297ad82a8b9e706'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/dialogs:
+    newFile: !uuid 'eefbba6ac22c683f79ce43b07a4f8a33b10de438'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/dialogs/ciframe.html:
+    newFile: !uuid '5809fbefe91325c32177bfc5de69593ebe5fe95f'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/dialogs/tmpFrameset.html:
+    newFile: !uuid 'f68e504dffc65007659c989a9d39a57c2c6bd4c7'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/dialogs/wsc.css:
+    newFile: !uuid '1056b45f24bd5bdbb5cef1c2fcf89dcb34fa0e21'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/dialogs/wsc.js:
+    newFile: !uuid '6513a9e71636e77ce2d22509a546437884200d04'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/dialogs/wsc_ie.js:
+    newFile: !uuid '0292f84f76f78de9b16ccf65cf2b74a0a03f3655'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/skins:
+    newFile: !uuid '1b0290b566e085fce57a335ad9fe1d1e5321ecb4'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/skins/moono-lisa:
+    newFile: !uuid 'b5e16af59543557d40975534c9f6f856feb9efd9'
+    oldFile: null
+  /public/static/lib/ckeditor4/plugins/wsc/skins/moono-lisa/wsc.css:
+    newFile: !uuid 'a48a08f9f4dfb9685e6b9f8ab825cf88b0326db4'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins:
+    newFile: !uuid '1ee8a2d8dc8ce632d576d596e4d6ae860db7866f'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa:
+    newFile: !uuid '3bbbd24ed66eab2adbc0a4940953031ccd1eb9e7'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/dialog.css:
+    newFile: !uuid 'aef0323c85c057a672cf5bb3c686c8ba73f4d0cf'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/dialog_ie.css:
+    newFile: !uuid '50403e204e50fb131f98ddae0e42793d0a762602'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/dialog_ie8.css:
+    newFile: !uuid '6b73dc57950e48f8c4a514b22e60983b9d1ca6a3'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/dialog_iequirks.css:
+    newFile: !uuid '2c2ed4c6bd79ff5ff95aedf19cabcab62705948f'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/editor.css:
+    newFile: !uuid '69e9d8750a542345e008c1c48979215f4e652059'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/editor_gecko.css:
+    newFile: !uuid '72371097daa01648e4dd4570c6eb4ae45ba00901'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/editor_ie.css:
+    newFile: !uuid '5f564724356b23c958ad26ccae70df7776656cfb'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/editor_ie8.css:
+    newFile: !uuid 'a2c0fe098c2d5b67f4842f24d0ec7876e777e007'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/editor_iequirks.css:
+    newFile: !uuid '0ae74ea1a936dbfb59709ce901d2a9a9c8b1512c'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/icons.png:
+    newFile: !uuid '5cdb2dbbf087425b90cbf295b2cb2256445f12e8'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/icons_hidpi.png:
+    newFile: !uuid '3ddfb1d1d35ff51332a7e382a47d36234f1539e9'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images:
+    newFile: !uuid 'fcf490ea773233b4cb702fd03754106d64829c43'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/arrow.png:
+    newFile: !uuid 'd72b5f3b8808bd89996ef62f845164d459957a1b'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/close.png:
+    newFile: !uuid '40caa6ddfd01c2a26947761de218e4ce8f5e361e'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/hidpi:
+    newFile: !uuid '4f3ee12c64d13cf28918c79e521e25f07a22e65f'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/hidpi/close.png:
+    newFile: !uuid 'fa00f4fce646958807479472de68a95c5ac44eb2'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/hidpi/lock-open.png:
+    newFile: !uuid 'c89978907d0827713ef3332d20e4ac7ddcf5c458'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/hidpi/lock.png:
+    newFile: !uuid '25ad0f4a31906d0d7f13f55e2ed4e174aa365a48'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/hidpi/refresh.png:
+    newFile: !uuid '117a2d4a4715551e735a14ac0a79d40c9affab8a'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/lock-open.png:
+    newFile: !uuid '42df5f411136270482f7af50e8553832e36b7769'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/lock.png:
+    newFile: !uuid 'bde67727d775326b472106b5e0a82f7744de2fc9'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/refresh.png:
+    newFile: !uuid 'e363764e3d0886333a3b03b04f5502d4cd79d133'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/images/spinner.gif:
+    newFile: !uuid 'd898d41fa7e0d56b5c0da930750e108e50c14d72'
+    oldFile: null
+  /public/static/lib/ckeditor4/skins/moono-lisa/readme.md:
+    newFile: !uuid '33f226f22122868c2dc5274fde1213d35eba0f08'
+    oldFile: null
+  /public/static/lib/ckeditor4/styles.js:
+    newFile: !uuid '333f11f2d09d74ee7eb0374bb8dd7b01a96676b5'
+    oldFile: null
+  /public/static/lib/ckeditor4/vendor:
+    newFile: !uuid '7e85705754eebb6649edaa5833104b243d2492c6'
+    oldFile: null
+  /public/static/lib/ckeditor4/vendor/promise.js:
+    newFile: !uuid 'c4d99120dce5191d0e969c6f7911ba968989e525'
+    oldFile: null
+  /public/static/lib/layui:
+    newFile: !uuid '7f9eb787464572413f4c32c9f0fe71ba233d704c'
+    oldFile: !uuid '416f0c9d9e8deb981b890537d6c38bb6d2b74657'
+  /public/static/lib/layui/extend:
+    newFile: !uuid '241c2aec2f2ac9257152ee3b93a123f5a8f466fe'
+    oldFile: !uuid 'd8e35cb7013a96d2893e8e7878b545fd2cc885dd'
+  /public/static/lib/layui/extend/tableSelect:
+    newFile: !uuid 'a1e27f738155807c10001ff2740cf55948a051ab'
+    oldFile: null
+  /public/static/lib/layui/extend/tableSelect/tableSelect.js:
+    newFile: !uuid 'f38fed6415e6dd28a78d19737117417d9680c639'
+    oldFile: null
+  /public/static/lib/tableSelect:
+    newFile: !uuid 'a1e27f738155807c10001ff2740cf55948a051ab'
+    oldFile: null
+  /public/static/lib/tableSelect/tableSelect.js:
+    newFile: !uuid 'f38fed6415e6dd28a78d19737117417d9680c639'
+    oldFile: null
+  /public/storage:
+    newFile: !uuid '9fd5cbe100115db10c2ebc12afcc313518d9bea8'
+    oldFile: !uuid '6098b5bd396d8bf5e43f7e1bf73fdd8c424b97cf'
+  /public/storage/topic:
+    newFile: !uuid '72226dd0d88c86e9b64b3a9d31081b5e9b433eca'
+    oldFile: !uuid '4f49841bdb11de928cf617bf3737fe0b35e61ff0'
+  /public/storage/topic/20201104:
+    newFile: !uuid '5f90055b9052198a345fcffff1932c5fc837b1d2'
+    oldFile: null
+  /public/storage/topic/20201104/05f9e3b2b5eaf4f49999f66a5d9ff884.png:
+    newFile: !uuid 'cca76dbca28ccd051ac2e8e4e58966babbeb98db'
+    oldFile: null
+  /public/storage/topic/20201104/0c4cdd8dd01b1242173aeb6b46423384.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/topic/20201104/66c4c34af3de03ed5b9dce82b6769974.png:
+    newFile: !uuid 'cca76dbca28ccd051ac2e8e4e58966babbeb98db'
+    oldFile: null
+  /public/storage/topic/20201104/67f12434edc5d430431d82b0da2e73bb.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/topic/20201104/78759943a18a3a3382707d583f4df924.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/topic/20201104/c380790165836407a8cd5302eb68b663.png:
+    newFile: !uuid '877bf549d251caa4e74795e3440327455fcdcdb5'
+    oldFile: null
+  /public/storage/topic/20201104/d7f13b3046fa0931c4799c3ac0772c1c.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/topic/20201104/fd91a709b43828842387dcecf4ebf362.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/upload:
+    newFile: !uuid 'a7e477f4dda54861a6c7ff32615481ec21ef5c27'
+    oldFile: null
+  /public/storage/upload/20201104:
+    newFile: !uuid '6da030328f8cbb53e14e7121055f96228358051e'
+    oldFile: null
+  /public/storage/upload/20201104/082209fb724515d29fda5440f4a7f02b.jpg:
+    newFile: !uuid '487b194301246d0b09b13d16e62081f6352ad03c'
+    oldFile: null
+  /public/storage/upload/20201104/33c630e4a63b9ab0b56ae8e090eaace5.png:
+    newFile: !uuid '877bf549d251caa4e74795e3440327455fcdcdb5'
+    oldFile: null
+  /public/storage/upload/20201104/38e47a42047d371d57782e30643ce535.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/upload/20201104/47d5e4eb63caa2735a92432af6bb80d4.png:
+    newFile: !uuid '877bf549d251caa4e74795e3440327455fcdcdb5'
+    oldFile: null
+  /public/storage/upload/20201104/61f1bf03ad4bae9f99aa4313f346e878.png:
+    newFile: !uuid '6d02ca9e065a0749605eaa5c77c5e40f84400c8b'
+    oldFile: null
+  /public/storage/upload/20201104/6ec7a416107be4c4db31e55f07bafca5.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/upload/20201104/72b4c491f59066cdb1f6067d9c45f38f.png:
+    newFile: !uuid '6d02ca9e065a0749605eaa5c77c5e40f84400c8b'
+    oldFile: null
+  /public/storage/upload/20201104/74b8ac29b0fdf3433f827e45f3658700.png:
+    newFile: !uuid '6d02ca9e065a0749605eaa5c77c5e40f84400c8b'
+    oldFile: null
+  /public/storage/upload/20201104/7b432a4d26380c98ec2e22b43041a0c9.png:
+    newFile: !uuid '6d02ca9e065a0749605eaa5c77c5e40f84400c8b'
+    oldFile: null
+  /public/storage/upload/20201104/7b695d2f98a5dba99f716ad450cbfe54.png:
+    newFile: !uuid '877bf549d251caa4e74795e3440327455fcdcdb5'
+    oldFile: null
+  /public/storage/upload/20201104/812ec0e6d5780f70c3bc446d1b6ee5b8.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/upload/20201104/8833014710085a3143d9597b0eea7d56.png:
+    newFile: !uuid '6d02ca9e065a0749605eaa5c77c5e40f84400c8b'
+    oldFile: null
+  /public/storage/upload/20201104/8f71c1005c0336ff3a5a304308c9aec7.png:
+    newFile: !uuid '0fc19bd3434fe331d5f52a59020a8e040b9a80a9'
+    oldFile: null
+  /public/storage/upload/20201104/937a7bc9321f64f98a20451d698585fb.png:
+    newFile: !uuid '877bf549d251caa4e74795e3440327455fcdcdb5'
+    oldFile: null
+  /public/storage/upload/20201104/939819945bf3877e70c8c09d868186da.ico:
+    newFile: !uuid 'f24d1bf6a4b8aeec7edb1a6e4c05f102453b58c1'
+    oldFile: null
+  /public/storage/upload/20201104/abfe98cbdb92a27c3b65767b4db28498.jpg:
+    newFile: !uuid '8b942b9e1d3815591d2b4b6c021691e602d03b5b'
+    oldFile: null
+  /public/storage/upload/20201104/c848df649dea6a7b6ccb8c27873fb656.jpg:
+    newFile: !uuid '8b942b9e1d3815591d2b4b6c021691e602d03b5b'
+    oldFile: null
+  /public/storage/upload/20201104/c848df649dea6a7b6ccb8c27873fb656.png:
+    newFile: !uuid '877bf549d251caa4e74795e3440327455fcdcdb5'
+    oldFile: null
+  /public/storage/upload/20201104/d138b332150b78bcf53d4c9c0ee53c5c.png:
+    newFile: !uuid '6d02ca9e065a0749605eaa5c77c5e40f84400c8b'
+    oldFile: null
+  /public/storage/upload/20201104/dd76b496ca12438cfe3968d6a6aeef75.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+  /public/storage/upload/20201104/e79aec9186f63792566691c9cf97cfde.jpg:
+    newFile: !uuid '8b942b9e1d3815591d2b4b6c021691e602d03b5b'
+    oldFile: null
+  /public/storage/upload/20201105:
+    newFile: !uuid '8c5b6befb5d5d9ee2eb268ded827132463cf0d2e'
+    oldFile: null
+  /public/storage/upload/20201105/52e005e06bbd0e33199c0966e32a6b52.jpg:
+    newFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
+    oldFile: null
+gitCommitId: !uuid 'e85eb9b90cc7e3ca6dbf0745eb1e90db08e010ae'
 renames: {
   }
-revisionId: 129
+revisionId: 130
