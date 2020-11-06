@@ -2,19 +2,94 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '736f6a2a07a7e0942eb45185b35a9c485389d0a0'
-    oldFile: !uuid 'ca642e4770f13d91af39bb4abced20b51b6728a2'
-  /public/static:
-    newFile: !uuid 'ddad718cbad0350079ffb1f710007c449db41a15'
-    oldFile: !uuid '764b6632aaf9361927e5613cdb3a967d62b8fc52'
-  /public/static/js:
-    newFile: !uuid '457e7ac095f1711d2d4a2ff804c984712933fc99'
-    oldFile: !uuid '941b7686803291553a4a9a9a330d3d856b3a2600'
-  /public/static/js/upload.js:
-    newFile: !uuid '0a2996e32a436146d43d120c191e255fed3b26ad'
-    oldFile: !uuid '7a29257891b7896c09ea9842a930ee55da6bb901'
-gitCommitId: !uuid '7d549a75f93f45f74327c83d6c489eb3fe73e954'
+  /addons:
+    newFile: !uuid '65e456b4602de37c56e39fff4c8d8ddca2559094'
+    oldFile: !uuid '446bfc8aad9e079c455c3f698507387982d041d9'
+  /addons/qiniu_storage:
+    newFile: !uuid 'ecdcaaa2528437151ba3c0aa2f7d52f8061e2b5e'
+    oldFile: null
+  /addons/qiniu_storage/Plugin.php:
+    newFile: !uuid 'b30a743fe5b463f442c0e19579a30c2e42eda2fe'
+    oldFile: null
+  /addons/qiniu_storage/common:
+    newFile: !uuid '6c61d1c0b48186469ff54d63f6b7b1bd1b947bd8'
+    oldFile: null
+  /addons/qiniu_storage/common/library:
+    newFile: !uuid '41abc2ddd9dbb1a021bab1ca6d17929183e4b962'
+    oldFile: null
+  /addons/qiniu_storage/common/library/storage:
+    newFile: !uuid '62720ae836fb9b32c5ee1125c4d8953ca6338e01'
+    oldFile: null
+  /addons/qiniu_storage/common/library/storage/Driver.php:
+    newFile: !uuid '4eb84179531fb96ffd1d18d8360f9cc4f70cc1b8'
+    oldFile: null
+  /addons/qiniu_storage/common/library/storage/engine:
+    newFile: !uuid 'e8159d3b06e287afd5b50fe2bde29448726397bc'
+    oldFile: null
+  /addons/qiniu_storage/common/library/storage/engine/Local.php:
+    newFile: !uuid '497a93fa763596b5e916d802a23a8b88ff899f81'
+    oldFile: null
+  /addons/qiniu_storage/common/library/storage/engine/Qiniu.php:
+    newFile: !uuid '61ee5e5f9551d82dc1be27dcc6376c818e8842d3'
+    oldFile: null
+  /addons/qiniu_storage/common/library/storage/engine/Server.php:
+    newFile: !uuid 'b885ee51a3b3b02b04b6e437836d05ac97ebb554'
+    oldFile: null
+  /addons/qiniu_storage/config.php:
+    newFile: !uuid 'f8dc9a0f9c28a4b655483f673eae1fe91d0fc9cb'
+    oldFile: null
+  /addons/qiniu_storage/controller:
+    newFile: !uuid 'f1251fc01b5d2ee26ade2856361ca06a73b3fe91'
+    oldFile: null
+  /addons/qiniu_storage/controller/Index.php:
+    newFile: !uuid 'daa542286814a17296f2ded312c40a451f4c9c98'
+    oldFile: null
+  /addons/qiniu_storage/event:
+    newFile: !uuid 'b93e413299fd44fedc2c7d10c2d3a10e9b367a64'
+    oldFile: null
+  /addons/qiniu_storage/event/Storage.php:
+    newFile: !uuid '8f10554b1aaf7c8c3b1e98283453b1cb8f492581'
+    oldFile: null
+  /addons/qiniu_storage/info.ini:
+    newFile: !uuid 'ab0013608b20e5428c95843c5d2ccf769049e340'
+    oldFile: null
+  /addons/qiniu_storage/install.sql:
+    newFile: !uuid '8b137891791fe96927ad78e64b0aad7bded08bdc'
+    oldFile: null
+  /addons/qiniu_storage/view:
+    newFile: !uuid '0038fb00eb937eae71eb879271124774946736e0'
+    oldFile: null
+  /addons/qiniu_storage/view/index:
+    newFile: !uuid '987676ccd1679d4ab967d773fbe80c1365a869d8'
+    oldFile: null
+  /addons/qiniu_storage/view/index/index.html:
+    newFile: !uuid 'c89fb3c98cc31f2af22a3cda2e1768c6782bada2'
+    oldFile: null
+  /app:
+    newFile: !uuid 'c1f75ab33e9e9c2de199266f0600799ced46c0b7'
+    oldFile: !uuid '171014d8c590589f94ea4d0fd346f76da3e9c553'
+  /app/admin:
+    newFile: !uuid '1cb992c99356dc037079e9425e3c3fb62d4b7419'
+    oldFile: !uuid '68357c1b140b91e06448c45e2cd74f749434e3a2'
+  /app/admin/controller:
+    newFile: !uuid '4aa1b92ba16f250f7af9431c590cbf9482956bdb'
+    oldFile: !uuid '88b09a8880d26b8bb178ac040f357c089af10bc7'
+  /app/admin/controller/Upload.php:
+    newFile: !uuid '414d55f6155591437f921ade5dad2d4cca45c1f0'
+    oldFile: !uuid '418ab95a96f3382f1f095ea326d8de0080d829ae'
+  /app/admin/view:
+    newFile: !uuid 'e23abef08091931ebf7099e65e344d12b158cd65'
+    oldFile: !uuid '34dca8344ef5dd9927468ca429243d3a3d800a2e'
+  /app/admin/view/attachment:
+    newFile: !uuid '9d67cdeb46df35fed38dc013e8241d3d4c97b064'
+    oldFile: !uuid 'c7eb097b1e73cf1714f72348f42a37b2b2d43c3e'
+  /app/admin/view/attachment/index.html:
+    newFile: !uuid 'e419d712c11c8425ae45acf8156d8be33aea537b'
+    oldFile: !uuid '2704c8f2237888f7caf6d02e947a7bc96a32c6c7'
+  /composer.json:
+    newFile: !uuid '8eb6a2cd222b04a43196d1b65fcf83fbc86334df'
+    oldFile: !uuid '9643fd80665cea319bf0edca0b40d7a728f1f411'
+gitCommitId: !uuid '771621f96949e829bb02c59b940e7347aa14b46d'
 renames: {
   }
-revisionId: 140
+revisionId: 141
