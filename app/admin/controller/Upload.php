@@ -5,6 +5,8 @@ use app\BaseController;
 use think\facade\View;
 use think\facade\Db;
 use think\facade\Cache;
+use think\facade\Event;
+
 class Upload extends BaseController
 {
 	/**
@@ -34,18 +36,33 @@ class Upload extends BaseController
 	//附件上传
     public function attachment()
     {
-        $file = request()->file('file');
-        $savename = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
-        $file_path = 'storage/'.$savename;
-        $add['url'] = $file_path;
-        $add['storage'] = $file_path;
+        //钩子事件 存储插件
+        Event::listen('Storage', 'addons\qiniu_storage\event\Storage');
+        $hook_res = event('Storage');
+        if ($hook_res) {
+            $hook_res  = $hook_res[0];
+            $url       = $hook_res['url'];
+            $storage   = $hook_res['storage'];
+            $savename  = $hook_res['fileName'];
+            $file_path = $hook_res['fileGetRealPath'];
+            $mimetype  = $hook_res['fileGetOriginalMime'];
+//            dd($hook_res); //本地存储逻辑也可以写钩子里面
+        } else {
+            $file      = request()->file('file');
+            $savename  = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
+            $url = $file_path = 'storage/' . $savename;
+            $storage = 'localhost';
+            $mimetype  = mime_content_type($file_path);  //mime_content_type 5.3已经废弃
+        }
+
+        $add['url'] = $url;
+        $add['storage'] = $storage;
         $add['filesize'] = filesize($file_path);
-        $add['mimetype'] = mime_content_type($file_path);
+        $add['mimetype'] = $mimetype;
         $add['sha1'] = sha1_file($file_path);
         $add['createtime'] = time();
         $add['updatetime'] = time();
         $add['uploadtime'] = time();
-
 
         //检测文件信息
         if(in_array($add['mimetype'],array('image/png','image/jpeg','image/gif','image/bmp'))){
