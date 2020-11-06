@@ -73,22 +73,22 @@ class Crud extends Admin
                     $fix = $value['comment'];
                 }
             }
-//
-//            $menu = [
-//                [
-//                    'name' => 'admin/' . $table . '/index',
-//                    'title' => $fix . '管理',
-//                    'icon' => 'fa-list',
-//                    'remark' => '',
-//                    'ismenu' => 1,
-//                    'sublist' => [
-//                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
-//                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
-//                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
-//                    ]
-//                ]
-//            ];
-//            Menu::create($menu);
+
+            $menu = [
+                [
+                    'name' => 'admin/' . $table . '/index',
+                    'title' => $fix . '管理',
+                    'icon' => 'fa-list',
+                    'remark' => '',
+                    'ismenu' => 1,
+                    'sublist' => [
+                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
+                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
+                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
+                    ]
+                ]
+            ];
+            Menu::create($menu);
 
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
