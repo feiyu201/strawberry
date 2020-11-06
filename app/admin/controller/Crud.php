@@ -73,7 +73,7 @@ class Crud extends Admin
                     $fix = $value['comment'];
                 }
             }
-//
+
             $menu = [
                 [
                     'name' => 'admin/' . $table . '/index',
@@ -620,6 +620,35 @@ class Crud extends Admin
             $str .= "<input {if in_array('" . $array[0] . "',explode(',',$" . $table . "." . $filed . "))}checked=\"\"{/if} type=\"checkbox\" name=\"" . $filed . "[$array[0]" . "]\" title=\"$array[1]\">";
         }
         return $str;
+    }
+
+
+    public function upload()
+    {
+//{
+//    "code": 0 //0表示成功，其它失败
+//,"msg": "" //提示信息 //一般上传失败后返回
+//,"data": {
+//    "src": "图片路径"
+//,"title": "图片名称" //可选
+//}
+//}
+        // file('文件域的字段名')
+        $file = request()->file('file');
+
+        // 上传到本地服务器 返回文件存储位置
+        //
+        // disk('磁盘配置名称') 该配置 在 config/filesystem.php中的 disks 中查看
+        // disk('public') 代表使用的是 disks 中的 public 键名对应的磁盘配置
+        // putFile('目录名', $file);
+        //
+        // $savename 执行上传 返回文件存储位置
+        //
+        // 当前文件存储位置：public/storage/topic/当前时间/文件名
+        $savename = \think\facade\Filesystem::disk('public')->putFile('topic', $file);
+
+        // 将上传后的文件位置返回给前端
+        return json(['code' => 0, 'msg' => 'ok', 'data' => ['src' => $this->request->domain() . '/storage/' . $savename, 'title' => 'title']]);
     }
 
 }
