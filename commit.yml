@@ -2,22 +2,19 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid 'ca642e4770f13d91af39bb4abced20b51b6728a2'
-    oldFile: !uuid '2c34581943ce99178c23909f7d18a49003f727ce'
-  /public/storage:
-    newFile: !uuid '887d9d86a87dceac460e3edd57cf81997a7ee65f'
-    oldFile: !uuid '67b9651d3d1b8f1d0f98f5e47490f9ac97644f65'
-  /public/storage/upload:
-    newFile: null
-    oldFile: !uuid 'a3b7ab40c53187c082bfb3ffcd409dd5152835ae'
-  /public/storage/upload/20201105:
-    newFile: null
-    oldFile: !uuid '8c5b6befb5d5d9ee2eb268ded827132463cf0d2e'
-  /public/storage/upload/20201105/52e005e06bbd0e33199c0966e32a6b52.jpg:
-    newFile: null
-    oldFile: !uuid '1550a42821efeeee669835bca41b6c1c8135cc75'
-gitCommitId: !uuid '88a02a3171271cd35096878509a019ad9a834dab'
+  /app:
+    newFile: !uuid '171014d8c590589f94ea4d0fd346f76da3e9c553'
+    oldFile: !uuid 'cf331e952354e724769386b85696ea7895f6693b'
+  /app/admin:
+    newFile: !uuid '68357c1b140b91e06448c45e2cd74f749434e3a2'
+    oldFile: !uuid 'ea70ae837410c191b677a1dbdc319bb62cf5134e'
+  /app/admin/controller:
+    newFile: !uuid '88b09a8880d26b8bb178ac040f357c089af10bc7'
+    oldFile: !uuid '580be1929602a4f8137c52577d94cf8b3eb52df7'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid '365a3000dea81729d1b455106c50f2c37d625872'
+    oldFile: !uuid '1e2e5fe660b0b8f7831541427c3198cd3cbd42c9'
+gitCommitId: !uuid 'df6d07284f0c94dc60dc72572f738a88b4a99f1d'
 renames: {
   }
-revisionId: 138
+revisionId: 139
