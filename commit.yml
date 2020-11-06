@@ -2,10 +2,34 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '364e233e9ac4d9d5017c1703e82e5788c483b924'
-    oldFile: !uuid 'f1cddb28451ca745d0a41a7163dc6b501d8a4833'
-gitCommitId: !uuid '2e566a10339f3b4cee0cd86ba8e0ff34a54ae139'
+  /public:
+    newFile: !uuid '1073ba63a0b548f48058b75bd124ec4ba7584719'
+    oldFile: !uuid 'b63527b944b8bc80d712db7a17390d937660fcd7'
+  /public/storage:
+    newFile: !uuid '2c34ebd2deee026a621c3bf5ed0761f30cbc8824'
+    oldFile: !uuid '9fd5cbe100115db10c2ebc12afcc313518d9bea8'
+  /public/storage/topic:
+    newFile: !uuid 'f38c5780f9f6aee8454e94f6bf3f8c3ce7b5a5ef'
+    oldFile: !uuid '72226dd0d88c86e9b64b3a9d31081b5e9b433eca'
+  /public/storage/topic/20200919:
+    newFile: null
+    oldFile: !uuid 'b1b7a9519a17296f0ed578bbb022d731aaad293e'
+  /public/storage/topic/20200919/180aa14f0a4662a609681724830f7003.png:
+    newFile: null
+    oldFile: !uuid '68b8869acf1387cfc7ce22943b760e7475ff0945'
+  /public/storage/topic/20200919/4d25b047b7105152c4e7f37dd9e41358.png:
+    newFile: null
+    oldFile: !uuid '3c5463116928a8f8b3698b6223c7a15ac3434782'
+  /public/storage/topic/20200919/697fc10c02160b1f2e7cdec35330708b.jpg:
+    newFile: null
+    oldFile: !uuid 'f9346aa7eacc1928184c5ca48ff1a6b590dab394'
+  /public/storage/topic/20200919/9cdece8ea5bdd015f4fc48fc4998eda9.jpg:
+    newFile: null
+    oldFile: !uuid '9a4e630ae995166b1c56a3f84e2aecb2994dad90'
+  /public/storage/topic/20200919/f8c822af5bd1c3c1fe37b5f89b764871.png:
+    newFile: null
+    oldFile: !uuid 'cd1f15f96b91c5893f3bd0367be026925af665f9'
+gitCommitId: !uuid 'a2d341ca8a2419d30d67c6accac35dec2dc75f14'
 renames: {
   }
-revisionId: 133
+revisionId: 134
