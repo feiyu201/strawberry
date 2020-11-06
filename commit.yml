@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid 'c861aa48df7a71d3b6e8658625e884716a2bd3b3'
-    oldFile: !uuid '65e456b4602de37c56e39fff4c8d8ddca2559094'
+    newFile: !uuid '77a04c0ec4f9f73b0966bfa6673cd305f90689f6'
+    oldFile: !uuid 'c861aa48df7a71d3b6e8658625e884716a2bd3b3'
   /addons/qiniu_storage:
-    newFile: !uuid '3c0674a65c321ca8939a5e196792ef36647eb5b3'
-    oldFile: !uuid 'ecdcaaa2528437151ba3c0aa2f7d52f8061e2b5e'
-  /addons/qiniu_storage/info.ini:
-    newFile: !uuid '0e3b0557cb38b18f596dc7a08cb46467002f46bd'
-    oldFile: !uuid 'ab0013608b20e5428c95843c5d2ccf769049e340'
-gitCommitId: !uuid '4a5de16ad8cce5c118077b6bdc84b8456c4be332'
+    newFile: !uuid '2dbb4e7c643da8baecdae88357f3ddc1938cbe72'
+    oldFile: !uuid '3c0674a65c321ca8939a5e196792ef36647eb5b3'
+  /addons/qiniu_storage/Plugin.php:
+    newFile: !uuid '3187fa824950d6c87463baa757a5c1a43b47327b'
+    oldFile: !uuid 'b30a743fe5b463f442c0e19579a30c2e42eda2fe'
+gitCommitId: !uuid '77a6a8c59db4b33f3646d5730a6623ec9917ebb7'
 renames: {
   }
-revisionId: 142
+revisionId: 143
