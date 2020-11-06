@@ -97,8 +97,9 @@ base: '/static/lib/layui/extend/' //静态资源所在路径
 				  var parant = $(this).parent('div');
 				  var liHtml = '';
 				  $.each(urlArray, function (i, v) {
+					  var originurl = v; 
 					  v = init.image_pre+v;
-					  liHtml += '<li><a><img src="' + v + '" data-image  onerror="this.src=\'/static/images/upload-icons/' + uploadIcon + '.png\';this.onerror=null"></a><small class="uploads-delete-tip bg-red badge" data-upload-delete="' + uploadName + '" data-upload-url="' + v + '" data-upload-sign="' + uploadSign + '">×</small></li>\n';
+					  liHtml += '<li><a><img src="' + v + '" data-image  onerror="this.src=\'/static/images/upload-icons/' + uploadIcon + '.png\';this.onerror=null"></a><small class="uploads-delete-tip bg-red badge" data-upload-delete="' + uploadName + '" data-upload-url="' + originurl + '" data-upload-sign="' + uploadSign + '">×</small></li>\n';
 				  });
 				  parant.after('<ul id="bing-' + uploadName + '" class="layui-input-block layui-upload-show">\n' + liHtml + '</ul>');
 			  }
@@ -119,9 +120,14 @@ base: '/static/lib/layui/extend/' //静态资源所在路径
 		  var confirm = layer.confirm("确认删除", {title: '操作确认', btn: ['确认', '取消']}, function () {
 			  var elem = "input[name='" + uploadName + "']";
 			  var currentUrl = $(elem).val();
+			  //console.log(currentUrl);
+			   //console.log(deleteUrl);
 			  var url = '';
 			  if (currentUrl !== deleteUrl) {
-				  url = currentUrl.replace(sign + deleteUrl, '');
+				  url = currentUrl.replace(deleteUrl, '');
+				  url = url.replace(sign+sign, '');
+				  var reg =new RegExp("(^\\"+sign+"{1})|"+"(\\"+sign+"{1}$)","g");
+				  url = url.replace(reg,''); 
 				  $(elem).val(url);
 				  $(elem).trigger("input");
 			  } else {
