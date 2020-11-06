@@ -4,6 +4,7 @@ runtime/
 /public/install.lock
 /public/uploads/*
 public/storage/attachment/*
+/public/storage/*
 .idea
 composer.lock
 *.log
