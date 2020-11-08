@@ -2,13 +2,10 @@
 branches: {
   }
 fileChange:
-  /config:
-    newFile: !uuid 'f1bbe5de7c3978abea46039b0518353e1ad10287'
-    oldFile: !uuid 'ba78ee239eff8c239a9b996725a4e4c7b9fde162'
-  /config/database.php:
-    newFile: !uuid 'da8cc340099cf49adf63e1da166facaebca9ca23'
-    oldFile: !uuid '64d53f6eeb3978058fafa289622e4b1b22fce2af'
-gitCommitId: !uuid '484f06dc81b0868f1e17fef7fdec43d920193188'
+  /README.md:
+    newFile: !uuid '0d44fc4f1ca144d6e519106631d29c23124e0f62'
+    oldFile: !uuid 'b31794a4beb66709c9f34abfe60f18221354c814'
+gitCommitId: !uuid '9aba340d05934bd69f737ed043a3e3137b0e284e'
 renames: {
   }
-revisionId: 145
+revisionId: 146
