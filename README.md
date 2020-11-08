@@ -46,11 +46,11 @@ thinkphp6 php>=7.1
 2020.9.19 完成了基本的登陆和管理员管理功能。万里长征的第一步。
 
 #### 演示地址
-http://stadmin.shiliucrm.com/
+http://caomei.shiliucrm.com/
 
 用户名：admin 密码 112233
 
-自动生成的文档地址：http://stadmin.shiliucrm.com/doc/ 开发者可以换成自己的url
+自动生成的文档地址：http://caomei.shiliucrm.com/doc/ 开发者可以换成自己的url
 
 请不要删数据
 持续更新中...
