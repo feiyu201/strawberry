@@ -30,7 +30,8 @@ use think\facade\Db;
 
 class Admin extends Api
 {
-
+    //设置控制器中间件
+    protected $middleware = [\app\middleware\AuthMiddleWare::class];
     //如果$noNeedLogin为空表示所有接口都需要登录才能请求
     //如果$noNeedRight为空表示所有接口都需要验证权限才能请求
     //如果接口已经设置无需登录,那也就无需鉴权了
@@ -78,7 +79,6 @@ class Admin extends Api
             $this->success();
         else
             $this->error('添加失败');
-
     }
 
     /**
@@ -116,7 +116,6 @@ class Admin extends Api
             $this->success();
         else
             $this->error('编辑失败');
-
     }
 
     /**
@@ -149,12 +148,11 @@ class Admin extends Api
     {
         $id = request()->param('id');
         $result = Db::name('admin')->where('id', $id)->find();
-        
+
         if ($result)
             $this->success('查询成功', $result);
         else
             $this->error('信息不存在');
-
     }
 
     /**
@@ -200,39 +198,38 @@ class Admin extends Api
      * */
     public function _list()
     {
-        $page = $this->request->param('page',1,'intval');
-        $limit = $this->request->param('limit',10,'intval');
+        $page = $this->request->param('page', 1, 'intval');
+        $limit = $this->request->param('limit', 10, 'intval');
         $where = [];
-        $username=request()->param("username");
-        $nickname=request()->param("nickname");
-        $password=request()->param("password");
-        $salt=request()->param("salt");
-        $avatar=request()->param("avatar");
-        $email=request()->param("email");
-        $loginfailure=request()->param("loginfailure");
-        $logintime=request()->param("logintime");
-        $loginip=request()->param("loginip");
-        $createtime=request()->param("createtime");
-        $updatetime=request()->param("updatetime");
-        $token=request()->param("token");
-        $status=request()->param("status");
-        if ($username)$where["username"] = ['like', '%' .$username. '%'];
-        if ($nickname)$where["nickname"] = ['like', '%' .$nickname. '%'];
-        if ($password)$where["password"] = ['like', '%' .$password. '%'];
-        if ($salt)$where["salt"] = ['like', '%' .$salt. '%'];
-        if ($avatar)$where["avatar"] = ['like', '%' .$avatar. '%'];
-        if ($email)$where["email"] = ['like', '%' .$email. '%'];
-        if ($loginfailure)$where["loginfailure"] = ['like', '%' .$loginfailure. '%'];
-        if (request()->param("startlogintime") && request()->param("endlogintime"))$where["logintime"] = [['>=', request()->param("startlogintime")], ['<=', request()->param("endlogintime")], 'and'];
-        if ($loginip)$where["loginip"] = ['like', '%' .$loginip. '%'];
-        if (request()->param("startcreatetime") && request()->param("endcreatetime"))$where["createtime"] = [['>=', request()->param("startcreatetime")], ['<=', request()->param("endcreatetime")], 'and'];
-        if (request()->param("startupdatetime") && request()->param("endupdatetime"))$where["updatetime"] = [['>=', request()->param("startupdatetime")], ['<=', request()->param("endupdatetime")], 'and'];
-        if ($token)$where["token"] = ['like', '%' .$token. '%'];
-        if ($status)$where["status"] = ['like', '%' .$status. '%'];
+        $username = request()->param("username");
+        $nickname = request()->param("nickname");
+        $password = request()->param("password");
+        $salt = request()->param("salt");
+        $avatar = request()->param("avatar");
+        $email = request()->param("email");
+        $loginfailure = request()->param("loginfailure");
+        $logintime = request()->param("logintime");
+        $loginip = request()->param("loginip");
+        $createtime = request()->param("createtime");
+        $updatetime = request()->param("updatetime");
+        $token = request()->param("token");
+        $status = request()->param("status");
+        if ($username) $where["username"] = ['like', '%' . $username . '%'];
+        if ($nickname) $where["nickname"] = ['like', '%' . $nickname . '%'];
+        if ($password) $where["password"] = ['like', '%' . $password . '%'];
+        if ($salt) $where["salt"] = ['like', '%' . $salt . '%'];
+        if ($avatar) $where["avatar"] = ['like', '%' . $avatar . '%'];
+        if ($email) $where["email"] = ['like', '%' . $email . '%'];
+        if ($loginfailure) $where["loginfailure"] = ['like', '%' . $loginfailure . '%'];
+        if (request()->param("startlogintime") && request()->param("endlogintime")) $where["logintime"] = [['>=', request()->param("startlogintime")], ['<=', request()->param("endlogintime")], 'and'];
+        if ($loginip) $where["loginip"] = ['like', '%' . $loginip . '%'];
+        if (request()->param("startcreatetime") && request()->param("endcreatetime")) $where["createtime"] = [['>=', request()->param("startcreatetime")], ['<=', request()->param("endcreatetime")], 'and'];
+        if (request()->param("startupdatetime") && request()->param("endupdatetime")) $where["updatetime"] = [['>=', request()->param("startupdatetime")], ['<=', request()->param("endupdatetime")], 'and'];
+        if ($token) $where["token"] = ['like', '%' . $token . '%'];
+        if ($status) $where["status"] = ['like', '%' . $status . '%'];
 
-        $result = Db::name('admin')->where($where)->page($page,$limit)->select()->toArray();
-        foreach($result as $elt => $item){
-
+        $result = Db::name('admin')->where($where)->page($page, $limit)->select()->toArray();
+        foreach ($result as $elt => $item) {
         }
         if ($result)
             $this->success('查询成功', $result);
@@ -261,5 +258,4 @@ class Admin extends Api
         else
             $this->error('删除失败');
     }
-
 }
