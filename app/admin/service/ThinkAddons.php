@@ -209,7 +209,7 @@ class ThinkAddons
                 $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
                     return [
-                        'code' => 1,
+                        'code' => 0,
                         'msg'  => $result['msg'],
                     ];
                 }
