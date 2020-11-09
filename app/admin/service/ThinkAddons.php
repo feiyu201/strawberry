@@ -40,6 +40,7 @@ class ThinkAddons
             'app',    // 此文件夹中所有文件会覆盖到根目录的/app文件夹
             'public', // 此文件夹中所有文件会覆盖到根目录的/public文件夹
         ];
+        
     }
 
     // 获得本地插件列表 [目前只获取本地插件，后期会扩展为获取线上插件]
@@ -209,7 +210,7 @@ class ThinkAddons
                 $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
                     return [
-                        'code' => 1,
+                        'code' => 0,
                         'msg'  => $result['msg'],
                     ];
                 }
