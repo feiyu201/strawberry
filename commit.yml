@@ -2,10 +2,85 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '1f3fb4ccb42d86ddfc0447ff52092691f8963a20'
-    oldFile: !uuid 'e1f2fb9f5f5d2cd0348ada1242f6b63bbf74e039'
-gitCommitId: !uuid '450f8c6d6bdc51ab9e947009943dc3465f0c8725'
+  /addons:
+    newFile: !uuid 'f5a9b49908b10b684ab1922067d142994e6c24ef'
+    oldFile: !uuid '9fcc657d5a78084b50a63b74d4bfe73c078d6812'
+  /addons/aliyun_sms:
+    newFile: !uuid 'fba9326f680be60f470c3de219077e9ddbc134ad'
+    oldFile: null
+  /addons/aliyun_sms/Plugin.php:
+    newFile: !uuid '0806f79ccfcc0eba736a16f0e64ac9674aab1dc5'
+    oldFile: null
+  /addons/aliyun_sms/common:
+    newFile: !uuid 'd9a9dc342d3022eb1263f6ea60c35615d6f144a5'
+    oldFile: null
+  /addons/aliyun_sms/common/library:
+    newFile: !uuid 'bccabf25df48341b14f9df538bb6f2891a0b6135'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms:
+    newFile: !uuid '27a6914fda11476f315a9d3b29277af81c5ae5ec'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/Driver.php:
+    newFile: !uuid 'e1a2216ca2c919dd39b89c81c243fbaf1f61e526'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/engine:
+    newFile: !uuid '89cf9ea646429a96e5b4708960ccccdd4fb81ec3'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/engine/Aliyun.php:
+    newFile: !uuid '836dedabd0a8c3c84b67fe494ddc354af1df4cef'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/engine/Server.php:
+    newFile: !uuid '1e36d7d57af2a834f93c2413a380ba63327fad3f'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/package:
+    newFile: !uuid '1c25d64be5b2321d2f15fe2633e97b5248678d69'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/package/aliyun:
+    newFile: !uuid 'b0ee5ed6bc795af394f81620d72c68cd38ee9ecd'
+    oldFile: null
+  /addons/aliyun_sms/common/library/sms/package/aliyun/SignatureHelper.php:
+    newFile: !uuid '939a2b7a04bdae0c7075725ce7636f17cf1c8f8f'
+    oldFile: null
+  /addons/aliyun_sms/config.php:
+    newFile: !uuid '7146b359cf01d9ccd89a3920649714ac16ca605b'
+    oldFile: null
+  /addons/aliyun_sms/controller:
+    newFile: !uuid 'a5c474751dbd6e1db78c6e141686bb68fd31010a'
+    oldFile: null
+  /addons/aliyun_sms/controller/Base.php:
+    newFile: !uuid '2913f1c5dec5b4ddcf7d81b8607ce9836242bdcd'
+    oldFile: null
+  /addons/aliyun_sms/controller/Index.php:
+    newFile: !uuid '469cd5beb11ae325894e70735f0da3b804401236'
+    oldFile: null
+  /addons/aliyun_sms/event:
+    newFile: !uuid '581de2d085e5ef8d158801f52b9c5f7e14394446'
+    oldFile: null
+  /addons/aliyun_sms/event/AliyunSms.php:
+    newFile: !uuid '6a2cdab5ca9a19f897098ee6ab4defd9b526dbf0'
+    oldFile: null
+  /addons/aliyun_sms/info.ini:
+    newFile: !uuid '4dec8a9a52c43bb77e0331c88110443aa933f0ea'
+    oldFile: null
+  /addons/aliyun_sms/install.sql:
+    newFile: !uuid '3bc3c61ba5cd85abf7b19c0a903604f35d7a4c47'
+    oldFile: null
+  /addons/aliyun_sms/model:
+    newFile: !uuid '190ebf5a5ede4104b079945a9379d41f7534f460'
+    oldFile: null
+  /addons/aliyun_sms/model/SmsLog.php:
+    newFile: !uuid 'c6dcf883975c3d716d1bbe8515e77dbcf33e70d2'
+    oldFile: null
+  /addons/aliyun_sms/view:
+    newFile: !uuid 'a83f31b571da9922c6089e759d6a33fac1c1bb2a'
+    oldFile: null
+  /addons/aliyun_sms/view/index:
+    newFile: !uuid '6fbaa981bcf084591884f2b59321b9be46321b06'
+    oldFile: null
+  /addons/aliyun_sms/view/index/index.html:
+    newFile: !uuid '1134f8e631404f784e81c55806b3d856fd5d4008'
+    oldFile: null
+gitCommitId: !uuid '28dcbc970be55e363499fdc270c845bf413a72f7'
 renames: {
   }
-revisionId: 151
+revisionId: 152
