@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '6c73a68ee41d5d13687e73214d9d61bf7eba015d'
-    oldFile: !uuid 'f5a9b49908b10b684ab1922067d142994e6c24ef'
+    newFile: !uuid '3f7108b7b623926ca548aad06cfa1f3506eff765'
+    oldFile: !uuid '6c73a68ee41d5d13687e73214d9d61bf7eba015d'
   /addons/aliyun_sms:
-    newFile: !uuid '2d043f5f281bcb6d06304b51ac2e0f9f28f3fa91'
-    oldFile: !uuid 'fba9326f680be60f470c3de219077e9ddbc134ad'
-  /addons/aliyun_sms/info.ini:
-    newFile: null
-    oldFile: !uuid '4dec8a9a52c43bb77e0331c88110443aa933f0ea'
-gitCommitId: !uuid 'c447f3bf8e7c39ed9071d29190074122faefc9b8'
+    newFile: !uuid '42c01ad06ff31c5b51b707b19256835978acb678'
+    oldFile: !uuid '2d043f5f281bcb6d06304b51ac2e0f9f28f3fa91'
+  /addons/aliyun_sms/Plugin.php:
+    newFile: !uuid 'bc1f1db18522e1ad33e86202794f79d22e8a9f72'
+    oldFile: !uuid '0806f79ccfcc0eba736a16f0e64ac9674aab1dc5'
+gitCommitId: !uuid '3e5cfb01e6a93a01a0574ca520a0bcefab32150f'
 renames: {
   }
-revisionId: 154
+revisionId: 155
