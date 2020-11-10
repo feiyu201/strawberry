@@ -2,10 +2,10 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '04cf0f5638bbf6abd685f8299ec7453feec1ce6c'
-    oldFile: !uuid '364e233e9ac4d9d5017c1703e82e5788c483b924'
-gitCommitId: !uuid 'd895c41b50a585f25e2546e9135b77dc370a262f'
+  /composer.json:
+    newFile: !uuid '35e0d05dbef6c0336c8db645cb75980959624fd8'
+    oldFile: !uuid 'a6fb2e76d1a1912d39969738c676de099727c93e'
+gitCommitId: !uuid '854762fc9eafddce02da43b1a78b561c6ac0a2f0'
 renames: {
   }
-revisionId: 158
+revisionId: 159
