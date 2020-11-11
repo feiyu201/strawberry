@@ -3,6 +3,8 @@
 namespace addons\social_login\controller;
 
 use app\common\controller\AddonBase;
+use think\facade\Event;
+
 class Index extends AddonBase
 {
     public function index()

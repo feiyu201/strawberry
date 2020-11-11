@@ -5,6 +5,7 @@ use app\BaseController;
 use think\facade\View;
 use think\facade\Db;
 use think\facade\Session;
+use think\facade\Event;
 class Login extends BaseController
 {
 	
@@ -16,9 +17,11 @@ class Login extends BaseController
     	if(Session::has('admin')){
     		$this->error('你已登陆','admin/index/index');
     	}
-    	
+
+    	//判断是否启用社会化登入
+        $social_login = whetherToUsePlugin('social_login')? true:false;
     	// 模板输出
-        return View::fetch();
+        return View::fetch('',['socail_login'=>$social_login]);
     }
 	
     public function signin(){
@@ -85,4 +88,21 @@ class Login extends BaseController
 		}
 		return View::fetch();
 	}
+
+    /**
+     * 调用方法demo 默认微信登入
+     * @param string $type 登入类型 'config/social.php 配置文件'  //'Qq', 'Weixin', 'Sina', 'Baidu', 'Gitee', 'Github', 'Google', 'Facebook', 'Taobao', 'Oschina', 'Douyin', 'Xiaomi', 'Dingtalk'
+     */
+    public function social_login($type='Weixin')
+    {
+        $type = input()['type'];
+        //钩子事件 短信插件
+        $plugin_name = 'Aaliyun';
+        Event::listen($plugin_name, 'addons\social_login\event\SocialLogin');
+        $hoddok_res = event($plugin_name,$type);
+//        var_dump($hoddok_res);
+
+        //登入成功 登入注册等用户信息业务逻辑
+
+    }
 }

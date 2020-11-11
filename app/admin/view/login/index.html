@@ -38,6 +38,11 @@
             <div class="layui-form-item">
                 <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
             </div>
+            <div style="margin: auto;">
+                <span>第三方登录</span>
+                <a class="" href="{:url('Login/social_login?type=Qq')}">QQ登入 | </a>
+                <a class="" href="{:url('Login/social_login?type=Weixin')}">微信登入</a>
+            </div>
              <div class="login-link">
                 <input type="checkbox" name="keep_login" value="1" lay-skin="switch" checked="checked" lay-text="记住我|记住我">
             </div>
@@ -46,6 +51,7 @@
                 <a href="forget.html">忘记密码?</a> -->
             </div>
         </form>
+
     </div>
     <!--js逻辑-->
     <script src="/static/lib/layui/layui.js?v=1.0"></script>

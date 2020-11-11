@@ -18,7 +18,6 @@ class SocialLogin
      */
     public function handle($type)
     {
-
         $this->plugin_name        = 'social_login';
         $this->engine_plugin_name = 'Social';
         // 获取插件基础信息
@@ -27,8 +26,14 @@ class SocialLogin
             return false;
         }
 
+        $config                   = [];
+        $config['default']        = $this->engine_plugin_name;//插件引擎 实例化对象
+        $config['engine']         = [
+            $config['default'] => $type,//配置参数
+        ];
+
         // 实例化对应插件驱动
-        $PluginDriver = new PluginDriver($type);
+        $PluginDriver = new PluginDriver($config);
         // 调用方法
         $res = $PluginDriver->login();
         if (!$res) {
