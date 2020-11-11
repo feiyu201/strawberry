@@ -15,18 +15,32 @@ return array (
     'value' => '',
     'placeholder' => '应用注册成功后分配的KEY',
   ),
-  'wechat_app_key' =>
+  'qq_app_callback' =>
+      array (
+          'title' => '回调地址',
+          'type' => 'text',
+          'value' => '',
+          'placeholder' => 'QQ回调地址',
+      ),
+  'weixin_app_key' =>
   array (
     'title' => '微信',
     'type' => 'text',
     'value' => '',
     'placeholder' => '应用注册成功后分配的 APP ID',
   ),
-  'wechat_app_secret' =>
+  'weixin_app_secret' =>
       array (
           'title' => '微信',
           'type' => 'text',
           'value' => '',
           'placeholder' => '应用注册成功后分配的KEY',
+      ),
+  'weixin_app_callback' =>
+      array (
+          'title' => '回调地址',
+          'type' => 'text',
+          'value' => '',
+          'placeholder' => '微信回调地址',
       ),
 );

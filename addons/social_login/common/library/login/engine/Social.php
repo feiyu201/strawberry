@@ -3,6 +3,7 @@
 namespace addons\social_login\common\library\login\engine;
 
 use think\Exception;
+use think\facade\Config;
 
 /**
  * Class Social
@@ -19,7 +20,7 @@ class Social extends Server
      */
     public function __construct($type=null)
     {
-        $this->type = $type;
+        $this->type = strtolower($type);
     }
 
     /**
@@ -31,10 +32,23 @@ class Social extends Server
         if ($this->type == null) {
             throw new Exception('参数错误: ' . $this->engineName);
         }
+        //social.php
+//        $social = config('social');
+//        dd($social);
+        $addon_social       = config('addon_social_login_config');
+        $app_key            = $this->type . '_app_key';
+        $app_secret         = $this->type . '_app_secret';
+        $app_callback       = $this->type . '_app_callback';
+        $type_social_config = [
+            'app_key'    => $addon_social[$app_key],
+            'app_secret' => $addon_social[$app_secret],
+            'callback'   => $addon_social[$app_callback],
+        ];
+        config::set([$this->type =>$type_social_config],'social');
         // 获取对象实例
         $sns = \liliuwei\social\Oauth::getInstance($this->type);
         //跳转到授权页面
-        $this->redirect($sns->getRequestCodeURL());
+        return redirect($sns->getRequestCodeURL());
     }
 
     /**
