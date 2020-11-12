@@ -18,7 +18,7 @@ class Plugin extends Addons	// 需继承think\Addons类
 		'status' => 1,	// 状态
 		'author' => 'bytest',
 		'version' => '0.1',
-		'install'     => 1,                 // 是否已安装[1 已安装，0 未安装]
+		'install'     => 0,                 // 是否已安装[1 已安装，0 未安装]
 	];
 
 	/**

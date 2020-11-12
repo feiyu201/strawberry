@@ -1,6 +1,7 @@
 runtime/
 .idea
 *.log
+/vendor/
 /public/install.lock
 /public/uploads/*
 public/storage/attachment/*

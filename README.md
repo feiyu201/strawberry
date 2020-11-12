@@ -23,6 +23,8 @@ thinkphp6 php>=7.1
 
 #### 更新日志
 
+2020.11.8 完成了api接口jwt功能。
+
 2020.11.7 完成微信授权和获取手机号的接口。
 
 2020.11.5 完成一键crud编辑器的生成。
@@ -104,12 +106,12 @@ Echarts：https://github.com/apache/incubator-echarts
 
 #### 如何参与一起开发？
 
-1、首先Fork仓库代码
+1、首先Fork仓库代码到自己的仓库
 
-2、然后git clone 到你本地，注意是clone你fork后的自己的仓库地址。
+2、然后git clone 自己的仓库到你本地，注意是clone你fork后的自己的仓库地址。
 
 3、编写代码并提交
 
-4、Push 到你的分支
+4、Push到你自己的仓库
 
-5、创建 Pull Request 并描述你完成的功能或者做出的修改。
+5、到gitee上自己的仓库里创建 Pull Request 并描述你完成的功能或者做出的修改。
