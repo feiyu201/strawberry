@@ -120,9 +120,13 @@ class %s extends AdminBase
                 if (end($s) === 'time'){
                     $data[$key] = strtotime($data[$key]);
                 }
+                if((end($s) === 'img') ||(end($s) === 'imge')){
+                    $data[$key] = ("/storage/".$data[$key]);
+                }
             }
             if (!isset($data['switch']))
                 $data['switch'] = 'off';
+                
 	   		if(Db::name('%s')->insert($data)){
 	   			$this->success("添加成功");
 	   		}else{
@@ -148,9 +152,14 @@ class %s extends AdminBase
                 if (end($s) === 'time'){
                     $data[$key] = strtotime($data[$key]);
                 }
+                if((end($s) === 'img') ||(end($s) === 'imge')){
+                    $data[$key] = ("/storage/".$data[$key]);
+                }
             }
             if (!isset($data['switch']))
                 $data['switch'] = 'off';
+
+            
             if(Db::name('%s')->where('id',$data['id'])->update($data)){
 	   			$this->success("编辑成功");
 	   		}else{

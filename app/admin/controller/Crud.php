@@ -88,6 +88,7 @@ class Crud extends Admin
                     ]
                 ]
             ];
+            //生成菜单
             Menu::create($menu);
 
             // 生成controller
@@ -95,17 +96,20 @@ class Crud extends Admin
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
                 ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table
             );
+
             fwrite($controllerFile, $controllerText);
             fclose($controllerFile);
             // 生成view index
             $path = "../app/admin/view/" . $table;
+
             if (!file_exists($path))
                 mkdir($path, 0777, true);
 
             $viewFile = fopen($path . "/" . "index.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/index.txt'),
-                self::getViewFiledList($table), '90%', '90%', '90%', '90%', '100%'
+                self::getViewFiledList($table), '90%', '90%', '90%', '90%', self::getViewImgList($table)
             );
+            // dump($viewFile);
             fwrite($viewFile, $viewText);
             fclose($viewFile);
 
@@ -116,7 +120,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "add.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/add.txt'),
-                self::getViewAddHtml($table), self::xm($table), self::timejsadd($table)
+                self::getViewAddHtml($table), self::xm($table), self::timejsadd($table),self::Imgsrc($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -128,7 +132,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "edit.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/edit.txt'),
-                self::getViewEditHtml($table), self::xm($table), self::timejs($table)
+                self::getViewEditHtml($table), self::xm($table), self::timejs($table),self::Imgsrc($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -145,7 +149,9 @@ class Crud extends Admin
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
+        
         foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
             if ($item['field'] == 'switch') {
                 $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
         var state = \"\";
@@ -157,8 +163,40 @@ class Crud extends Admin
         return state;
     }}," . PHP_EOL;
             } else {
-                $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+
+                if(end($s) === 'img'){
+                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' ,width: 100, templet:'#logoTpl'}," . PHP_EOL;
+                }else{
+                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+                }
+
+                
             }
+        }
+        return $str;
+    }
+    public static function getViewImgList($table){
+        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $list = array_map('array_change_key_case', $list);
+        $str = "";
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            try{
+                if ($item['key'] === 'PRI') {
+                    continue;
+                }else if(explode('(', $item['type'])[0] === 'varchar' && end($s) === 'img'){
+                    $str .="<script type=\"text/html\" id=\"logoTpl\">
+                                <image src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/>
+                            </script>";
+                }else if(explode('(', $item['type'])[0] === 'varchar' && end($s) === 'imge'){
+                    $str .="<script type=\"text/html\" id=\"logoTpl\">
+                                <image src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/>
+                            </script>";
+                }
+            }catch (Exception $e) {
+                return $str;
+            }
+            
         }
         return $str;
     }
@@ -221,7 +259,7 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-                } else if (end($s) === 'id') {
+            }  else if (end($s) === 'id') {
                     $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -231,7 +269,33 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-                } else if (end($s) === 'ids') {
+                }else if (explode('(', $item['type'])[0] === 'varchar' &&  end($s) === 'img') {
+                    $str .= "<div class=\"layui-form-item\">
+                    <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                    <div class=\"layui-input-block\">
+                    <div class=\"layui-upload\">
+                        <div class=\"layui-upload-list\">
+                            <input type=\"text\" name=\"" . $item['field'] . "\" id=\"img\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"lay-verify=\"required\" style=\"width: 60%;display: inline-block;\">
+                            <button type=\"button\" class=\"layui-btn\" id=\"test1\" style=\"display: inline-block;\">上传头像</button>
+                            <img class=\"layui-upload-img\" id=\"demo1\" style=\"display:none;\">
+                        </div>
+                    </div>
+                    </div>
+                </div>";
+            }else if (explode('(', $item['type'])[0] === 'varchar' &&  end($s) === 'image') {
+                $str .= "<div class=\"layui-form-item\">
+                <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                <div class=\"layui-input-block\">
+                <div class=\"layui-upload\">
+                    <div class=\"layui-upload-list\">
+                        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"imge\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"lay-verify=\"required\" style=\"width: 60%;display: inline-block;\">
+                        <button type=\"button\" class=\"layui-btn\" id=\"test2\" style=\"display: inline-block;\">上传头像</button>
+                        <img class=\"layui-upload-img\" id=\"demo2\" style=\"display:none;\">
+                    </div>
+                </div>
+                </div>
+            </div>";
+        } else if (end($s) === 'ids') {
                     $str .= "
         <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
@@ -298,7 +362,33 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-                } else if (end($s) === 'id') {
+                } else if (explode('(', $item['type'])[0] === 'varchar' && end($s) === 'img' ) {
+                    $str .= "<div class=\"layui-form-item\">
+                    <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                    <div class=\"layui-input-block\">
+                    <div class=\"layui-upload\">
+                        <div class=\"layui-upload-list\">
+                            <input type=\"text\" name=\"" . $item['field'] . "\" id=\"img\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\"  placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"lay-verify=\"required\" style=\"width: 60%;display: inline-block;\">
+                            <button type=\"button\" class=\"layui-btn\" id=\"test1\" style=\"display: inline-block;\">上传头像</button>
+                            <img class=\"layui-upload-img\" src=\"" . '{$' . "" . $table . "." . $item['field'] . "}\" id=\"demo1\" style=\"display:block;\">
+                        </div>
+                    </div>
+                    </div>
+                </div>";
+            }else if (explode('(', $item['type'])[0] === 'varchar' && end($s) === 'image' ) {
+                $str .= "<div class=\"layui-form-item\">
+                <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                <div class=\"layui-input-block\">
+                <div class=\"layui-upload\">
+                    <div class=\"layui-upload-list\">
+                        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"imge\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\"  placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"lay-verify=\"required\" style=\"width: 60%;display: inline-block;\">
+                        <button type=\"button\" class=\"layui-btn\" id=\"test2\" style=\"display: inline-block;\">上传头像</button>
+                        <img class=\"layui-upload-img\" src=\"" . '{$' . "" . $table . "." . $item['field'] . "}\" id=\"demo2\" style=\"display:block;\">
+                    </div>
+                </div>
+                </div>
+            </div>";
+        }else if (end($s) === 'id') {
                     $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -621,7 +711,72 @@ class Crud extends Admin
         }
         return $str;
     }
-
+    public static function Imgsrc($table){
+        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $list = array_map('array_change_key_case', $list);
+        $str = "";
+        foreach($list as $key=>$item){
+            
+            $s = explode('_', $item['field']);
+                if(end($s) === 'img'){
+                    $str .="//普通图片上传
+                        var uploadInst = upload.render({
+                            elem: '#test1'
+                            ,url: '{:url(\"admin/upload/index\")}'
+                            ,before: function(obj){
+                                obj.preview(function(index, file, result){
+                                    $('#demo1').css('display','block');
+                                    $('#demo1').attr('src', result); 
+                                });
+                            }
+                            ,done: function(res){
+                                if(res.code > 0){
+                                    return layer.msg('上传失败');
+                                }
+                                console.log(res);
+                                $('#img').val(res.path);
+                                }
+                                ,error: function(){
+                                    //演示失败状态，并实现重传
+                                    var demoText = $('#demoText');
+                                    demoText.html('<span style=\"color: #FF5722;\">上传失败</span> <a class=\"layui-btn layui-btn-xs demo-reload\">重试</a>');
+                                    demoText.find('.demo-reload').on('click', function(){
+                                        uploadInst.upload();
+                                    });
+                                    }
+                                });";
+                }
+                if(end($s) === 'imge'){
+                    $str .="//多图片上传
+                        var uploadInst = upload.render({
+                            elem: '#test2'
+                            ,url: '{:url(\"admin/upload/index\")}'
+                            ,before: function(obj){
+                                obj.preview(function(index, file, result){
+                                    $('#demo2').css('display','block');
+                                    $('#demo2').attr('src', result); 
+                                });
+                            }
+                            ,done: function(res){
+                                if(res.code > 0){
+                                    return layer.msg('上传失败');
+                                }
+                                console.log(res);
+                                $('#imge').val(res.path);
+                                }
+                                ,error: function(){
+                                    //演示失败状态，并实现重传
+                                    var demoText = $('#demoText');
+                                    demoText.html('<span style=\"color: #FF5722;\">上传失败</span> <a class=\"layui-btn layui-btn-xs demo-reload\">重试</a>');
+                                    demoText.find('.demo-reload').on('click', function(){
+                                        uploadInst.upload();
+                                    });
+                                    }
+                                });";
+                }
+        }
+        return $str;
+    }
 
     public function upload()
     {
