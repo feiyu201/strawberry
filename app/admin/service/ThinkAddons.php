@@ -23,6 +23,8 @@ use think\facade\Config;
 use think\facade\Db;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
+use app\admin\model\Plugin;
+
 
 class ThinkAddons
 {
@@ -42,7 +44,42 @@ class ThinkAddons
         ];
         
     }
-
+    /**
+     * 获取插件信息
+     * 重写以前的方法
+     * 增加表信息
+     * @return array
+     */
+    protected function getPluginInfo($name)
+    {
+    	$addon_info = "addon_{$name}_info";
+    	$addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
+    	$info = Config::get($addon_info, []);
+    	if ($info) {
+    		return $info;
+    	}
+    
+    	// 文件属性
+    	$info = $this->info ?? [];
+    	// 文件配置
+    	$info_file = $addon_path . 'info.ini';
+    
+    	if (is_file($info_file)) {
+    		$_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
+    
+    		$_info['url'] = addons_url();
+    		$info = array_merge( $info,$_info);
+    	}
+    	
+    	$tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
+    	if($tableinfo) $info = array_merge( $info,$tableinfo->toArray());
+    	
+    	Config::set($info, $addon_info);
+    
+    	return isset($info) ? $info : [];
+    }
+	
+    
     // 获得本地插件列表 [目前只获取本地插件，后期会扩展为获取线上插件]
     public function localAddons()
     {
@@ -60,7 +97,8 @@ class ThinkAddons
             $object = $this->getInstance($name);
             if ($object) {
                 // 获取插件基础信息
-                $info = $object->getInfo();
+                //$info = $object->getInfo();
+                $info = $this->getPluginInfo($name);
                // var_dump($info);exit();
                 // 增加右侧按钮组
                 $str = '';
@@ -174,8 +212,8 @@ class ThinkAddons
         $object = $this->getInstance($name);
       
         // 获取插件基础信息
-        $info = $object->getInfo();
-       
+        //$info = $object->getInfo();
+        $info = $this->getPluginInfo($name);
         if (!$info) {
             return [
                 'code' => 0,
@@ -200,8 +238,8 @@ class ThinkAddons
         // 实例化插件
         $object = $this->getInstance($name);
         // 获取插件基础信息
-        $info = $object->getInfo();
-
+        //$info = $object->getInfo();
+        $info = $this->getPluginInfo($name);
         if (false !== $object->install()) {
             $info['status'] = 1;
             $info['install'] = 1;
@@ -218,6 +256,8 @@ class ThinkAddons
                 $this->copyDir($name);
                 // 导入SQL
                 $this->importsql($name);
+                //更新或插入插件信息
+                Plugin::create($info,[],true);
             } catch (\Exception $e) {
                 return [
                     'code' => 0,
@@ -239,11 +279,12 @@ class ThinkAddons
     // 卸载插件
     public function uninstall(string $name)
     {
+    	
         // 实例化插件
         $object = $this->getInstance($name);
         // 获取插件基础信息
-        $info = $object->getInfo();
-        
+        //$info = $object->getInfo();
+        $info = $this->getPluginInfo($name);
         if (false !== $object->uninstall()) {
             $info['status'] = 0;
             $info['install'] = 0;
@@ -255,11 +296,20 @@ class ThinkAddons
                     'msg'  => $result['msg'],
                 ];
             } else {
-            	
-                return [
-                    'code' => 1,
-                    'msg'  => '插件卸载成功',
-                ];
+            	//删除插件表信息
+            	$delres = Plugin::where('name','=',$name)->delete();
+            	if($delres!==false){
+            		return [
+            			'code' => 1,
+            			'msg'  => '插件卸载成功',
+            		];
+            	}else{
+            		return [
+            			'code' => 0,
+            			'msg'  => '插件卸载删除表信息出错',
+            		];
+            	}
+                
             }
         } else {
             return [
@@ -275,8 +325,8 @@ class ThinkAddons
         // 实例化插件
         $object = $this->getInstance($name);
         // 获取插件基础信息
-        $info = $object->getInfo();
-
+        //$info = $object->getInfo();
+        $info = $this->getPluginInfo($name);
         if ($info['install']==1) {
             $info['status'] = $info['status'] == 1 ? 0 : 1;
             try {
@@ -284,7 +334,7 @@ class ThinkAddons
                 $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
                     return [
-                        'code' => 1,
+                        'code' => 0,
                         'msg'  => $result['msg'],
                     ];
                 }
@@ -300,10 +350,20 @@ class ThinkAddons
                 'msg'  => '插件实例化失败',
             ];
         }
-        return [
-            'code' => 1,
-            'msg'  => '状态变动成功',
-        ];
+        
+        //更新或插入插件信息
+        $updateres = Plugin::update(['status' => $info['status']], ['name' => $name]);
+        if($updateres!==false){
+        	return [
+        	'code' => 1,
+        	'msg'  => '状态变动成功',
+        	];
+        }else{
+        	return [
+        	'code' => 0,
+        	'msg'  => '状态变动更新表信息出错',
+        	];
+        }
     }
 
     // 判断插件配置文件是否进行了分组
@@ -326,7 +386,8 @@ class ThinkAddons
         // 实例化插件
         $object = $this->getInstance($name);
         // 获取插件基础信息
-        $info = $object->getInfo();
+        //$info = $object->getInfo();
+        $info = $this->getPluginInfo($name);
         if(!method_exists($object,'welcome')){
             return false;
         }else{
