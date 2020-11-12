@@ -67,10 +67,10 @@ http://caomei.shiliucrm.com/
 
 1、cd到自己想安装的目录 git clone https://gitee.com/qzxc_admin/strawberry.git
 
-2、然后在目录下执行：composer install 如果太慢的话可以执行composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
+2、然后cd strawberry 然后在该目录下执行：composer install 如果太慢的话可以执行composer config -g repo.packagist composer https://mirrors.aliyun.com/composer/
 切换到淘宝镜像。
 
-3、修改runtime config public权限777
+3、修改runtime config public addons文件包权限777（如果是windows本地安装的话可以先忽略）
 
 4、宝塔别忘了配置网站的伪静态为thinkphp的规则.
 
