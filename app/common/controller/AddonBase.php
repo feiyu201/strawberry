@@ -6,6 +6,7 @@ use think\helper\Str;
 use think\facade\Config;
 use think\facade\View;
 use app\admin\controller\AdminBase;
+use app\admin\model\Plugin;
 
 class AddonBase extends AdminBase
 {
@@ -120,25 +121,48 @@ class AddonBase extends AdminBase
 	 */
 	final public function getInfo()
 	{
-		$info = Config::get($this->addon_info, []);
-		if ($info) {
-			return $info;
-		}
-	
-		// 文件属性
-		$info = $this->info ?? [];
-		// 文件配置
-		$info_file = $this->addon_path . 'info.ini';
-		if (is_file($info_file)) {
-			$_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
-			$_info['url'] = addons_url();
-			$info = array_merge($info, $_info);
-		}
-		Config::set($info, $this->addon_info);
-	
-		return isset($info) ? $info : [];
+		
+    	$addon_info = "addon_{$this->name}_info";
+    	
+    	/* $info = Config::get($addon_info, []);
+    	if ($info) {
+    		return $info;
+    	} */
+    	$object = $this->getInstance($this->name);
+    	// 文件属性
+    	$info = $object->info ?? [];
+    	// 文件配置
+    	/* $info_file = $addon_path . 'info.ini';
+    
+    	if (is_file($info_file)) {
+    		$_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
+    
+    		$_info['url'] = addons_url();
+    		$info = array_merge( $info,$_info);
+    	} */
+    	
+    	$tableinfo = Plugin::where('name', $this->name)->field('name,title,description,status,author,version,install')->find();
+		if($tableinfo) {
+    		$info = array_merge( $info,$tableinfo->toArray());
+    	}else{
+    		$info['install'] = 0;
+    		$info['status'] = 0;
+    	}
+    	Config::set($info, $addon_info);
+    
+    	return isset($info) ? $info : [];
+    
 	}
-	
+	// 获取插件实例
+	private function getInstance(string $file)
+	{
+		$class = "\\addons\\{$file}\\Plugin";
+		if (class_exists($class)) {
+			// 容器类的工作由think\Container类完成，但大多数情况我们只需要通过app助手函数或者think\App类即可容器操作
+			return app($class);
+		}
+		return false;
+	}
 	/**
 	 * 获取配置信息
 	 * @param bool $type 是否获取完整配置

@@ -53,15 +53,15 @@ class ThinkAddons
     protected function getPluginInfo($name)
     {
     	$addon_info = "addon_{$name}_info";
-    	$addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
-    	$info = Config::get($addon_info, []);
+    	//$addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
+    	/* $info = Config::get($addon_info, []);
     	if ($info) {
     		return $info;
-    	}
-    
+    	} */
+    	$object = $this->getInstance($name);
     	// 文件属性
-    	$info = $this->info ?? [];
-    	// 文件配置
+    	$info = $object->info ?? [];
+    	/* // 文件配置
     	$info_file = $addon_path . 'info.ini';
     
     	if (is_file($info_file)) {
@@ -69,11 +69,15 @@ class ThinkAddons
     
     		$_info['url'] = addons_url();
     		$info = array_merge( $info,$_info);
-    	}
+    	} */
     	
     	$tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
-    	if($tableinfo) $info = array_merge( $info,$tableinfo->toArray());
-    	
+    	if($tableinfo) {
+    		$info = array_merge( $info,$tableinfo->toArray());
+    	}else{
+    		$info['install'] = 0;
+    		$info['status'] = 0;
+    	}
     	Config::set($info, $addon_info);
     
     	return isset($info) ? $info : [];
@@ -245,13 +249,13 @@ class ThinkAddons
             $info['install'] = 1;
             try {
                 // 更新或创建插件的ini文件
-                $result = $this->setPluginIni($name, $info);
+                /* $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
                     return [
                         'code' => 0,
                         'msg'  => $result['msg'],
                     ];
-                }
+                } */
                 // 复制文件
                 $this->copyDir($name);
                 // 导入SQL
@@ -289,13 +293,13 @@ class ThinkAddons
             $info['status'] = 0;
             $info['install'] = 0;
             // 更新或创建插件的ini文件
-            $result = $this->setPluginIni($name, $info);
-            if ($result['code'] == 0) {
+            //$result = $this->setPluginIni($name, $info);
+            /* if ($result['code'] == 0) {
                 return [
                     'code' => 0,
                     'msg'  => $result['msg'],
                 ];
-            } else {
+            } else { */
             	//删除插件表信息
             	$delres = Plugin::where('name','=',$name)->delete();
             	if($delres!==false){
@@ -310,7 +314,7 @@ class ThinkAddons
             		];
             	}
                 
-            }
+            //}
         } else {
             return [
                 'code' => 0,
@@ -329,7 +333,7 @@ class ThinkAddons
         $info = $this->getPluginInfo($name);
         if ($info['install']==1) {
             $info['status'] = $info['status'] == 1 ? 0 : 1;
-            try {
+           /*  try {
                 // 更新或创建插件的ini文件
                 $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
@@ -343,7 +347,7 @@ class ThinkAddons
                     'code' => 0,
                     'msg'  => '状态变动失败：' . $e->getMessage(),
                 ];
-            }
+            } */
         } else {
             return [
                 'code' => 0,
