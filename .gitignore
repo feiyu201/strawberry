@@ -19,3 +19,4 @@ composer.lock
 /strawberry.zip
 ./public/nginx.htaccess
 ./public/.htaccess
+info.ini
