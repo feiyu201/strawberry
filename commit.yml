@@ -2,10 +2,10 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '3ffea390fb5fb259c24a2a4c9cbff06e89afd33f'
-    oldFile: !uuid '3b64d0fc195d2afd2be61156e6c2d7d0fadd8b7a'
-gitCommitId: !uuid '211a8318f5ddb095aeb9a47d2439782d5892c149'
+  /composer.json:
+    newFile: !uuid '331c68ec4146640dce6a7574126aab3ffb20021d'
+    oldFile: !uuid 'ea66654cf394b6950ea2d4127dabd54bdad2e35e'
+gitCommitId: !uuid '3847cc6d6a2923045bd243eba21c886939b4eebe'
 renames: {
   }
-revisionId: 166
+revisionId: 167
