@@ -2,10 +2,16 @@
 branches: {
   }
 fileChange:
-  /composer.json:
-    newFile: !uuid '9217fb25d62e21f1ea58d985155e69ffa64c8d02'
-    oldFile: !uuid '331c68ec4146640dce6a7574126aab3ffb20021d'
-gitCommitId: !uuid '1e81f048ed6532ced5b0921427da637d63f003a1'
+  /addons:
+    newFile: !uuid '8257a9df889145730fbad259af074880c97e0b73'
+    oldFile: !uuid 'f38e0881c911622e5306c6ab91fcf9ec18cd34c5'
+  /addons/social_login:
+    newFile: !uuid '1269c410934bf43f25340371a093bc735ffd81e7'
+    oldFile: !uuid '26b616b7438cb6686358b9ecff368b949d6f45c6'
+  /addons/social_login/info.ini:
+    newFile: !uuid 'c63800079b58dc7e3069486fa330c68a80af8605'
+    oldFile: !uuid '11e7e55bfec00577122bf1d37c865abe0aad0843'
+gitCommitId: !uuid '3dcc7425b3dbddc28e00102f2e8b6ef9f3b663dc'
 renames: {
   }
-revisionId: 168
+revisionId: 169
