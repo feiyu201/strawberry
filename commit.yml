@@ -3,9 +3,9 @@ branches: {
   }
 fileChange:
   /composer.json:
-    newFile: !uuid '331c68ec4146640dce6a7574126aab3ffb20021d'
-    oldFile: !uuid 'ea66654cf394b6950ea2d4127dabd54bdad2e35e'
-gitCommitId: !uuid '3847cc6d6a2923045bd243eba21c886939b4eebe'
+    newFile: !uuid '9217fb25d62e21f1ea58d985155e69ffa64c8d02'
+    oldFile: !uuid '331c68ec4146640dce6a7574126aab3ffb20021d'
+gitCommitId: !uuid '1e81f048ed6532ced5b0921427da637d63f003a1'
 renames: {
   }
-revisionId: 167
+revisionId: 168
