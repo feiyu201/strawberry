@@ -132,22 +132,22 @@ class AddonBase extends AdminBase
     	// 文件属性
     	$info = $object->info ?? [];
     	// 文件配置
-    	/* $info_file = $addon_path . 'info.ini';
+    	$info_file = $this->addon_path . 'info.ini';
     
     	if (is_file($info_file)) {
     		$_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
     
     		$_info['url'] = addons_url();
     		$info = array_merge( $info,$_info);
-    	} */
+    	}
     	
-    	$tableinfo = Plugin::where('name', $this->name)->field('name,title,description,status,author,version,install')->find();
+    	/* $tableinfo = Plugin::where('name', $this->name)->field('name,title,description,status,author,version,install')->find();
 		if($tableinfo) {
     		$info = array_merge( $info,$tableinfo->toArray());
     	}else{
     		$info['install'] = 0;
     		$info['status'] = 0;
-    	}
+    	} */
     	Config::set($info, $addon_info);
     
     	return isset($info) ? $info : [];

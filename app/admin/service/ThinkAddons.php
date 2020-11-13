@@ -53,7 +53,7 @@ class ThinkAddons
     protected function getPluginInfo($name)
     {
     	$addon_info = "addon_{$name}_info";
-    	//$addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
+    	$addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
     	/* $info = Config::get($addon_info, []);
     	if ($info) {
     		return $info;
@@ -61,7 +61,7 @@ class ThinkAddons
     	$object = $this->getInstance($name);
     	// 文件属性
     	$info = $object->info ?? [];
-    	/* // 文件配置
+    	// 文件配置
     	$info_file = $addon_path . 'info.ini';
     
     	if (is_file($info_file)) {
@@ -69,15 +69,15 @@ class ThinkAddons
     
     		$_info['url'] = addons_url();
     		$info = array_merge( $info,$_info);
-    	} */
+    	}
     	
-    	$tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
+    	/* $tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
     	if($tableinfo) {
     		$info = array_merge( $info,$tableinfo->toArray());
     	}else{
     		$info['install'] = 0;
     		$info['status'] = 0;
-    	}
+    	} */
     	Config::set($info, $addon_info);
     
     	return isset($info) ? $info : [];
@@ -249,19 +249,19 @@ class ThinkAddons
             $info['install'] = 1;
             try {
                 // 更新或创建插件的ini文件
-                /* $result = $this->setPluginIni($name, $info);
+                $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
                     return [
                         'code' => 0,
                         'msg'  => $result['msg'],
                     ];
-                } */
+                }
                 // 复制文件
                 $this->copyDir($name);
                 // 导入SQL
                 $this->importsql($name);
                 //更新或插入插件信息
-                Plugin::create($info,[],true);
+                //Plugin::create($info,[],true);
             } catch (\Exception $e) {
                 return [
                     'code' => 0,
@@ -293,28 +293,28 @@ class ThinkAddons
             $info['status'] = 0;
             $info['install'] = 0;
             // 更新或创建插件的ini文件
-            //$result = $this->setPluginIni($name, $info);
-            /* if ($result['code'] == 0) {
+            $result = $this->setPluginIni($name, $info);
+            if ($result['code'] == 0) {
                 return [
                     'code' => 0,
                     'msg'  => $result['msg'],
                 ];
-            } else { */
+            } else {
             	//删除插件表信息
-            	$delres = Plugin::where('name','=',$name)->delete();
-            	if($delres!==false){
+            	//$delres = Plugin::where('name','=',$name)->delete();
+            	//if($delres!==false){
             		return [
             			'code' => 1,
             			'msg'  => '插件卸载成功',
             		];
-            	}else{
+            	/* }else{
             		return [
             			'code' => 0,
             			'msg'  => '插件卸载删除表信息出错',
             		];
-            	}
+            	} */
                 
-            //}
+            }
         } else {
             return [
                 'code' => 0,
@@ -333,7 +333,7 @@ class ThinkAddons
         $info = $this->getPluginInfo($name);
         if ($info['install']==1) {
             $info['status'] = $info['status'] == 1 ? 0 : 1;
-           /*  try {
+            try {
                 // 更新或创建插件的ini文件
                 $result = $this->setPluginIni($name, $info);
                 if ($result['code'] == 0) {
@@ -347,7 +347,7 @@ class ThinkAddons
                     'code' => 0,
                     'msg'  => '状态变动失败：' . $e->getMessage(),
                 ];
-            } */
+            }
         } else {
             return [
                 'code' => 0,
@@ -356,18 +356,18 @@ class ThinkAddons
         }
         
         //更新或插入插件信息
-        $updateres = Plugin::update(['status' => $info['status']], ['name' => $name]);
-        if($updateres!==false){
+        //$updateres = Plugin::update(['status' => $info['status']], ['name' => $name]);
+        //if($updateres!==false){
         	return [
         	'code' => 1,
         	'msg'  => '状态变动成功',
         	];
-        }else{
+        /* }else{
         	return [
         	'code' => 0,
         	'msg'  => '状态变动更新表信息出错',
         	];
-        }
+        } */
     }
 
     // 判断插件配置文件是否进行了分组
