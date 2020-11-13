@@ -124,8 +124,7 @@ class %s extends AdminBase
                     $data[$key] = ("/storage/".$data[$key]);
                 }
             }
-            if (!isset($data['switch']))
-                $data['switch'] = 'off';
+            %s
                 
 	   		if(Db::name('%s')->insert($data)){
 	   			$this->success("添加成功");
@@ -153,11 +152,10 @@ class %s extends AdminBase
                     $data[$key] = strtotime($data[$key]);
                 }
                 if((end($s) === 'img') ||(end($s) === 'imge')){
-                    $data[$key] = ("/storage/".$data[$key]);
+                    $data[$key] = strstr($data[$key],"/storage/")? ($data[$key].' '): ("/storage/".$data[$key]);
                 }
             }
-            if (!isset($data['switch']))
-                $data['switch'] = 'off';
+            %s
 
             
             if(Db::name('%s')->where('id',$data['id'])->update($data)){

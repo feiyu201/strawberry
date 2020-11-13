@@ -94,7 +94,7 @@ class Crud extends Admin
             // 生成controller
             $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                ucwords($table), $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table, $table
+                ucwords($table), $table, $table, $table,self::getsWitchMethod($table), $table,self::getsWitchMethod($table), $table, $table, $table, $table, $table, $table, $table, $table
             );
 
             fwrite($controllerFile, $controllerText);
@@ -719,6 +719,7 @@ class Crud extends Admin
             
             $s = explode('_', $item['field']);
                 if(end($s) === 'img'){
+                    $input = $item['field'];
                     $str .="//普通图片上传
                         var uploadInst = upload.render({
                             elem: '#test1'
@@ -734,7 +735,7 @@ class Crud extends Admin
                                     return layer.msg('上传失败');
                                 }
                                 console.log(res);
-                                $('#img').val(res.path);
+                                $('input[name=$input]').val(res.path);
                                 }
                                 ,error: function(){
                                     //演示失败状态，并实现重传
@@ -747,6 +748,7 @@ class Crud extends Admin
                                 });";
                 }
                 if(end($s) === 'imge'){
+                    $input = $item['field'];
                     $str .="//多图片上传
                         var uploadInst = upload.render({
                             elem: '#test2'
@@ -762,7 +764,7 @@ class Crud extends Admin
                                     return layer.msg('上传失败');
                                 }
                                 console.log(res);
-                                $('#imge').val(res.path);
+                                $('input[name=$input]').val(res.path);
                                 }
                                 ,error: function(){
                                     //演示失败状态，并实现重传
@@ -773,6 +775,19 @@ class Crud extends Admin
                                     });
                                     }
                                 });";
+                }
+        }
+        return $str;
+    }
+    public static function getsWitchMethod($table){
+         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $list = array_map('array_change_key_case', $list);
+        $str = "";
+        foreach($list as $key=>$item){
+                if($item['field'] === 'switch'){
+                    $str .="if (!isset(\$data['switch']))
+                            \$data['switch'] = 'off';
+                            ";
                 }
         }
         return $str;
