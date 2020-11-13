@@ -3,27 +3,27 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '951abc93c50393e1fbad6f372acf7188d442a2a6'
-    oldFile: !uuid '1fa48949f263294815548d3a76cfe04be8cb6ab6'
+    newFile: !uuid 'c5c3f4fbe70e88af7ac58911bfa5e8873842bd53'
+    oldFile: !uuid '951abc93c50393e1fbad6f372acf7188d442a2a6'
   /app/admin:
-    newFile: !uuid 'a92ed80df5e00610d253223bc60561de9ab87c24'
-    oldFile: !uuid 'c3a225ecc6d9c41a1e137ffc33fc26f07b122fe6'
+    newFile: !uuid '7f01a726f39342032c26e1e2101dd349afd0b04b'
+    oldFile: !uuid 'a92ed80df5e00610d253223bc60561de9ab87c24'
   /app/admin/service:
-    newFile: !uuid '8988ceed1accf53206b56de99f169813a289b5f1'
-    oldFile: !uuid 'f6ebb07035f34aace311e7685fc9a09ae7d2a5ee'
+    newFile: !uuid '3a97a0a030cfce0c994b9a9c61bce2db60dd2eae'
+    oldFile: !uuid '8988ceed1accf53206b56de99f169813a289b5f1'
   /app/admin/service/ThinkAddons.php:
-    newFile: !uuid '18d8cac6c2ec4b55babf9ae3c1b329ae8d5e92a0'
-    oldFile: !uuid '195ce6cb3f719daf905a13f0fe99602276c38d1a'
+    newFile: !uuid '8d812e24e86333fb3ee62da5e547574ed9e2bb0d'
+    oldFile: !uuid '18d8cac6c2ec4b55babf9ae3c1b329ae8d5e92a0'
   /app/common:
-    newFile: !uuid '80394589e94c19483a8fd3e5d96c817cbc9da8bd'
-    oldFile: !uuid 'c673bca85748070712eadde9327b8aa3f2626f3d'
+    newFile: !uuid 'dc56b2229c545b3e798faf1d72cae7537282523e'
+    oldFile: !uuid '80394589e94c19483a8fd3e5d96c817cbc9da8bd'
   /app/common/controller:
-    newFile: !uuid '5b7510893898e8e3c1fe9ec63e97491eedfff77c'
-    oldFile: !uuid '3f8127002f22d269142cc14ef33818516d3c4770'
+    newFile: !uuid 'ea2db99f1f2824c41dbb5b19980ca00f256b6716'
+    oldFile: !uuid '5b7510893898e8e3c1fe9ec63e97491eedfff77c'
   /app/common/controller/AddonBase.php:
-    newFile: !uuid 'e4d4dc0c204385e02ae6824dbd3de6ab22f02792'
-    oldFile: !uuid '68dd9acbadf68252f8f1e211ac7af0314e2265ed'
-gitCommitId: !uuid 'b8bd03dd5776885af9f8029153f589f1079b7299'
+    newFile: !uuid '0b02e3bb420024e975449017590aaf6f0ae91fa4'
+    oldFile: !uuid 'e4d4dc0c204385e02ae6824dbd3de6ab22f02792'
+gitCommitId: !uuid 'b83b9c231e75b90b768e885ec1d9f04e5bf511cf'
 renames: {
   }
-revisionId: 171
+revisionId: 172
