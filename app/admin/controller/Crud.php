@@ -271,7 +271,7 @@ class Crud extends Admin
         </div>";
                 }else if (explode('(', $item['type'])[0] === 'varchar' &&  end($s) === 'img') {
                     $str .= "<div class=\"layui-form-item\">
-                    <label class=\"layui-form-label\">单张图片</label>
+                    <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"\">
                         <div class=\"layui-upload-btn\" >
@@ -282,7 +282,7 @@ class Crud extends Admin
                 </div>";
             }else if (explode('(', $item['type'])[0] === 'varchar' &&  end($s) === 'image') {
                 $str .= "<div class=\"layui-form-item\">
-                <label class=\"layui-form-label\">单张图片</label>
+                <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                   <div class=\"layui-input-block layui-upload\">
                     <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"\">
                     <div class=\"layui-upload-btn\" >
@@ -360,7 +360,7 @@ class Crud extends Admin
         </div>";
                 } else if (explode('(', $item['type'])[0] === 'varchar' && end($s) === 'img' ) {
                     $str .= "<div class=\"layui-form-item\">
-                    <label class=\"layui-form-label\">单张图片</label>
+                    <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
                         <div class=\"layui-upload-btn\" >
@@ -371,7 +371,7 @@ class Crud extends Admin
                 </div>";
             }else if (explode('(', $item['type'])[0] === 'varchar' && end($s) === 'image' ) {
                 $str .= "<div class=\"layui-form-item\">
-                    <label class=\"layui-form-label\">单张图片</label>
+                    <label class=\"layui-form-label\">" . $item['comment'] . " </label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
                         <div class=\"layui-upload-btn\" >
