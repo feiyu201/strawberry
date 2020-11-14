@@ -243,7 +243,13 @@ class Lazy extends AddonBase
     protected static function delString($str)
     {
         $location = strpos($str, '(');
+
+      //修复没有括号的字段类型不生成注释的问题
+        if(!empty($location)){
+
         $str = substr($str, '0', $location);
+        }
+       
         return $str;
     }
 
