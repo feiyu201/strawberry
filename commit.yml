@@ -3,18 +3,93 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '11891d6f9e5a8796087ef1633ba263124443290d'
-    oldFile: !uuid 'c1ebc2df1162e9473bd4a689906083ad8702c903'
-  /app/admin:
-    newFile: !uuid 'a2e8c5a22ffc89ba74be16134a4fe18b439ecd91'
-    oldFile: !uuid '1de172144661016c29a18550708863e95c0c5638'
-  /app/admin/controller:
-    newFile: !uuid '25f44655823e97471465a1c9e193550b30e8aac7'
-    oldFile: !uuid '092d45d33f74c9045c7c67b296aee9e0645e8d88'
-  /app/admin/controller/Crud.php:
-    newFile: !uuid 'ec55de799208b2de46fceffa03e88fb772107c44'
-    oldFile: !uuid '9c1100fcbe643e509830acc44211854f7f1b704a'
-gitCommitId: !uuid '4919e53b1fbef11562798874784c8b5e845372ba'
+    newFile: !uuid '50b87872357af37e1ad5253462ee6b02556cea13'
+    oldFile: !uuid '11891d6f9e5a8796087ef1633ba263124443290d'
+  /app/api:
+    newFile: !uuid '0fb0152025db96b77e47ca518b9379f253705bcd'
+    oldFile: !uuid '6baad150c4bfe993b83a4aff91cce84a7ae87437'
+  /app/api/controller:
+    newFile: !uuid '81217076f6dc93b65530c9b35225bffc96203ecb'
+    oldFile: !uuid '0c8669b9ed6fa0cc2cfbcb21ea27315f4208079a'
+  /app/api/controller/Upload.php:
+    newFile: !uuid '3ce21d780ce7545f1e909b4052ce1eb91ada5f91'
+    oldFile: null
+  /public:
+    newFile: !uuid '72aeb85a468928a8b493b26c28a661edbb3b3621'
+    oldFile: !uuid '2604c65ce9243e50891f5b8d1cebc2ac5c10fbe5'
+  /public/storage:
+    newFile: !uuid 'db416db01d7df73aae63772a480dc9a24febf2f0'
+    oldFile: !uuid '887d9d86a87dceac460e3edd57cf81997a7ee65f'
+  /public/storage/attachment:
+    newFile: !uuid '7902e272b423d6a64da73c721849fd32a15c05c1'
+    oldFile: !uuid '6d9745e4241df8a244ca16f9d8605dc667300267'
+  /public/storage/attachment/20200924:
+    newFile: !uuid 'dd4b5c9bbaeb9c9e4eb193ed41e2b6690f495f5e'
+    oldFile: !uuid '035fc49e098a46aa05098648c3ffa5f0934c71fa'
+  /public/storage/attachment/20200924/166277cbcae91ba0d66082db573f8930.gif:
+    newFile: !uuid 'b2b78b218996f70773540d0d3a8649d3c2d199a2'
+    oldFile: !uuid 'b2b78b218996f70773540d0d3a8649d3c2d199a2'
+  /public/storage/attachment/20200924/2372595b80d942a735ef903aeafffb04.js:
+    newFile: !uuid '99dba905ff953277b14dffc41e58bc7f6b07de1e'
+    oldFile: !uuid '99dba905ff953277b14dffc41e58bc7f6b07de1e'
+  /public/storage/attachment/20200924/2b8147c80520ee662d5f695183342001.gif:
+    newFile: !uuid '556c7e326801a0ea090bd693ca43807925d3cbc2'
+    oldFile: !uuid '556c7e326801a0ea090bd693ca43807925d3cbc2'
+  /public/storage/attachment/20200924/3395ecbaba9981f68a47b143676b54d9.jpg:
+    newFile: !uuid '001666378df24baadecfa3286c9378984d6a5fcb'
+    oldFile: !uuid '001666378df24baadecfa3286c9378984d6a5fcb'
+  /public/storage/attachment/20200924/3b0784dc88d1ea2b620b087c2c283d00.png:
+    newFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+    oldFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+  /public/storage/attachment/20200924/48d9988569cefc557678f54aa08749f1.txt:
+    newFile: !uuid '134e73108c2a541ef469d00f9b53c65fad0d43a6'
+    oldFile: !uuid '134e73108c2a541ef469d00f9b53c65fad0d43a6'
+  /public/storage/attachment/20200924/7b58b70a4ad0ea3218a23907626b0901.txt:
+    newFile: !uuid '134e73108c2a541ef469d00f9b53c65fad0d43a6'
+    oldFile: !uuid '134e73108c2a541ef469d00f9b53c65fad0d43a6'
+  /public/storage/attachment/20200924/840112910700666507c56d637f947e16.js:
+    newFile: !uuid 'af3355c23913323c44ca0d0c95516301c6cdd595'
+    oldFile: !uuid 'af3355c23913323c44ca0d0c95516301c6cdd595'
+  /public/storage/attachment/20200924/931f883407c21c9e67e5055b89842e10.png:
+    newFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+    oldFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+  /public/storage/attachment/20200924/9ed8db7781e65d80d796fb87f12027e1.png:
+    newFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+    oldFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+  /public/storage/attachment/20200924/b1e1330f3d32943409264b73eb3fd8c4.png:
+    newFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+    oldFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+  /public/storage/attachment/20200924/da0433a07dfa654e017c0ea78bab539f.png:
+    newFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+    oldFile: !uuid 'd3b3a076fa5a55dbec3cfc0f866483a8751d4cc1'
+  /public/storage/attachment/20200924/feb88ac426c44316969e0f27786b7deb.txt:
+    newFile: !uuid '134e73108c2a541ef469d00f9b53c65fad0d43a6'
+    oldFile: !uuid '134e73108c2a541ef469d00f9b53c65fad0d43a6'
+  /public/storage/categoryImages:
+    newFile: !uuid '29922350e9a1294e34edbfff80e338388923c780'
+    oldFile: !uuid '71e06246155f4417b7ffc7d8d0473795b65941e2'
+  /public/storage/categoryImages/e6:
+    newFile: !uuid '7ba1b92dab2f6f2a5866521e7d0ff8c796fc697b'
+    oldFile: !uuid '6717721e078826b901a0d4a556aba2c88839969e'
+  /public/storage/categoryImages/e6/9715b2cf918749558e15c8d39dfe5e.png:
+    newFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
+    oldFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
+  /public/storage/icon:
+    newFile: !uuid '16560e5f9603adaf4e7979bcdee694663016aa2a'
+    oldFile: !uuid 'e2bdddea0da0e32e7be248bd32f41e2bbe8f9de2'
+  /public/storage/icon/df:
+    newFile: !uuid 'b2e00ecdbe4047d95a4491c76a050ff7288d524a'
+    oldFile: !uuid '241e889333f560d41a49ca07169afe6283c0d31f'
+  /public/storage/icon/df/6ffdf853f537f89440f19cc2004602.png:
+    newFile: !uuid '174789055a2414b088de40e9cedfde3aef6130ad'
+    oldFile: !uuid '174789055a2414b088de40e9cedfde3aef6130ad'
+  /public/storage/icon/f7:
+    newFile: !uuid '3882afd340da0b16751f175bea89cae3c20c0fcb'
+    oldFile: !uuid 'b65ae6b35d83811a08547fd718fc98d572d7e272'
+  /public/storage/icon/f7/2808d9e0c25e7188e955381b41f544.png:
+    newFile: !uuid '424efa6d2c5ed339c499f15d071359415ee1d835'
+    oldFile: !uuid '424efa6d2c5ed339c499f15d071359415ee1d835'
+gitCommitId: !uuid '8589d990ff1eddf524d2bd15cdd6518bccd96f24'
 renames: {
   }
-revisionId: 177
+revisionId: 178
