@@ -32,7 +32,7 @@ class Upload extends BaseController
 	
 		if ($savename) {
 			$savename = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
-			$file_path = 'storage/'.$savename;
+			$file_path = '/storage/'.$savename;
 			$add['url'] = $file_path;
 			$add['storage'] = $file_path;
 			$add['filesize'] = filesize($file_path);
@@ -79,7 +79,7 @@ class Upload extends BaseController
 		$savename = \think\facade\Filesystem::disk('public')->putFile('upload', $file);
 		if ($savename) {
 			$savename = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
-			$file_path = 'storage/'.$savename;
+			$file_path = '/storage/'.$savename;
 			$add['url'] = $file_path;
 			$add['storage'] = $file_path;
 			$add['filesize'] = filesize($file_path);
@@ -123,7 +123,7 @@ class Upload extends BaseController
         } else {
             $file      = request()->file('file');
             $savename  = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
-            $url = $file_path = 'storage/' . $savename;
+            $url = $file_path = '/storage/' . $savename;
             $storage = 'localhost';
             $mimetype  = mime_content_type($file_path);  //mime_content_type 5.3已经废弃
         }
@@ -166,7 +166,7 @@ class Upload extends BaseController
     	
     	if ($savename) {
     		$savename = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
-    		$file_path = 'storage/'.$savename;
+    		$file_path = '/storage/'.$savename;
     		$add = [];
     		$add['url'] = $file_path;
     		$add['storage'] = $file_path;
