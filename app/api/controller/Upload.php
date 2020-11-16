@@ -45,7 +45,7 @@ class Upload extends Api
         } else {
             $file     = request()->file('file');
             $savename = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
-            $url      = $file_path = 'storage/' . $savename;
+            $url      = $file_path = '/storage/' . $savename;
             $storage  = 'localhost';
             $mimetype = $file->getOriginalExtension();
         }
