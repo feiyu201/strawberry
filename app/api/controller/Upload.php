@@ -103,7 +103,7 @@ class Upload extends Api
         $savename = \think\facade\Filesystem::disk('public')->putFile('upload', $file);
         if ($savename) {
             $savename  = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
-            $file_path = 'storage/' . $savename;
+            $file_path = '/storage/' . $savename;
             $add['url']        = $file_path;
             $add['storage']    = $file_path;
             $add['filesize']   = filesize($file_path);
