@@ -2,22 +2,10 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '275faa08185ae34a621c68cddf168ffd8282b4e0'
-    oldFile: !uuid '7251419f3e88ce9e7bd517280a4b7e951f1a840a'
-  /public/storage:
-    newFile: !uuid '8cd8cc9204f2112ae0db3b609eae8a8509050e03'
-    oldFile: !uuid '778027794d5a6485745a65d9780bff4a6890937e'
-  /public/storage/categoryImages:
-    newFile: null
-    oldFile: !uuid '29922350e9a1294e34edbfff80e338388923c780'
-  /public/storage/categoryImages/e6:
-    newFile: null
-    oldFile: !uuid '7ba1b92dab2f6f2a5866521e7d0ff8c796fc697b'
-  /public/storage/categoryImages/e6/9715b2cf918749558e15c8d39dfe5e.png:
-    newFile: null
-    oldFile: !uuid '8f5eccd8e764a815a553368bc73b299eebd3c1e4'
-gitCommitId: !uuid '4d959e53a662a0a56aa8ed856973ca74bcf3a01e'
+  /.gitignore:
+    newFile: !uuid 'fe881df637979a0a464747e5942eec1edf56f8d3'
+    oldFile: !uuid 'b4ce759e4c51e42e6b99ab4ee00e056aaee27c9d'
+gitCommitId: !uuid '81ea171b1fbb94a0950ea2cfed86c8c532f55b2e'
 renames: {
   }
-revisionId: 180
+revisionId: 181
