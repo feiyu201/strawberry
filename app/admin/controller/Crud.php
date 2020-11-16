@@ -132,7 +132,7 @@ class Crud extends Admin
 
             $viewFile = fopen($path . "/" . "edit.html", "w");
             $viewText = sprintf(file_get_contents('../addons/crud/edit.txt'),
-                self::getViewEditHtml($table), self::xm($table), self::timejs($table),
+                self::getViewEditHtml($table), self::xm($table), self::timejs($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
