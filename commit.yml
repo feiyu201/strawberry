@@ -2,19 +2,28 @@
 branches: {
   }
 fileChange:
+  /addons:
+    newFile: !uuid '0b6f335f45561da1d21153aabac9d9181045910c'
+    oldFile: !uuid '6c74c8e3d3a6516e9052d350d298fb3459bb9cfd'
+  /addons/crud:
+    newFile: !uuid 'e6817a70830dca7343c7530a655490a093951cc2'
+    oldFile: !uuid '7a0bf07273e104ef6238337bd3e77c39f137785a'
+  /addons/crud/index.txt:
+    newFile: !uuid '724245a120f4791a2a54f699c970438d1e81a9ef'
+    oldFile: !uuid '23f1189498ac1e0d732a822c3e120b35b4fd53ab'
   /app:
-    newFile: !uuid '55669a30a30f32aefb8209c96d5ef13c887f4840'
-    oldFile: !uuid '17fba0db4c3e6142560dfb01aa11e7e8f456456e'
+    newFile: !uuid '930f56cae2a8da55f882b40a5d798cafd0d310e1'
+    oldFile: !uuid '55669a30a30f32aefb8209c96d5ef13c887f4840'
   /app/admin:
-    newFile: !uuid '8bafb651a82b162daa3cef585b3bdf283fcc5f5a'
-    oldFile: !uuid 'a2e8c5a22ffc89ba74be16134a4fe18b439ecd91'
+    newFile: !uuid 'acc8ce0ed213c8fbab796ca3b1a1290ea893f4b3'
+    oldFile: !uuid '8bafb651a82b162daa3cef585b3bdf283fcc5f5a'
   /app/admin/controller:
-    newFile: !uuid '0ab0a0332d8ca36c193a1b48d6eed5375215bcbf'
-    oldFile: !uuid '25f44655823e97471465a1c9e193550b30e8aac7'
-  /app/admin/controller/Upload.php:
-    newFile: !uuid '938b88c34313f44e261ea35791c6a0559aac337f'
-    oldFile: !uuid '414d55f6155591437f921ade5dad2d4cca45c1f0'
-gitCommitId: !uuid '7e6b4c89b3db76669014589356b1fc9c0e9c564e'
+    newFile: !uuid '6b18c8d34179ad89494fe4db9ec1b16626e74b94'
+    oldFile: !uuid '0ab0a0332d8ca36c193a1b48d6eed5375215bcbf'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid '494d8c2f85c406ca703323c2b11e98a5e095d39a'
+    oldFile: !uuid 'ec55de799208b2de46fceffa03e88fb772107c44'
+gitCommitId: !uuid 'c5f3e4a650f234a18ddf90ceb4363abd6ac31ede'
 renames: {
   }
-revisionId: 187
+revisionId: 188
