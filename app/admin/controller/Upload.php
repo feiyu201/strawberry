@@ -33,8 +33,8 @@ class Upload extends BaseController
 		if ($savename) {
 			$savename = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
 			$file_path = 'storage/'.$savename;
-			$add['url'] = $file_path;
-			$add['storage'] = $file_path;
+			$add['url'] = '/'.$file_path;
+			$add['storage'] = '/'.$file_path;
 			$add['filesize'] = filesize($file_path);
 			$add['mimetype'] = mime_content_type($file_path);
 			$add['sha1'] = sha1_file($file_path);
@@ -80,8 +80,8 @@ class Upload extends BaseController
 		if ($savename) {
 			$savename = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
 			$file_path = 'storage/'.$savename;
-			$add['url'] = $file_path;
-			$add['storage'] = $file_path;
+			$add['url'] = '/'.$file_path;
+			$add['storage'] = '/'.$file_path;
 			$add['filesize'] = filesize($file_path);
 			$add['mimetype'] = mime_content_type($file_path);
 			$add['sha1'] = sha1_file($file_path);
@@ -168,8 +168,8 @@ class Upload extends BaseController
     		$savename = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
     		$file_path = 'storage/'.$savename;
     		$add = [];
-    		$add['url'] = $file_path;
-    		$add['storage'] = $file_path;
+    		$add['url'] = '/'.$file_path;
+    		$add['storage'] = '/'.$file_path;
     		$add['filesize'] = filesize($file_path);
     		$add['mimetype'] = mime_content_type($file_path);
     		$add['sha1'] = sha1_file($file_path);
