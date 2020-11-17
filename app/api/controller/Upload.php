@@ -15,6 +15,9 @@ class Upload extends Api
     public function uploadFile()
     {
         $res = $this->upload();
+        
+        
+        
         //储存文件信息到数据库
         if ($res) {
             $savename = $res['savename'];
@@ -45,7 +48,7 @@ class Upload extends Api
         } else {
             $file     = request()->file('file');
             $savename = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
-            $url      = $file_path = '/storage/' . $savename;
+            $url      = $file_path = 'storage/' . $savename;
             $storage  = 'localhost';
             $mimetype = $file->getOriginalExtension();
         }
@@ -103,9 +106,9 @@ class Upload extends Api
         $savename = \think\facade\Filesystem::disk('public')->putFile('upload', $file);
         if ($savename) {
             $savename  = str_replace(DIRECTORY_SEPARATOR, '/', $savename);
-            $file_path = '/storage/' . $savename;
-            $add['url']        = $file_path;
-            $add['storage']    = $file_path;
+            $file_path = 'storage/' . $savename;
+            $add['url']        = '/' . $file_path;
+            $add['storage']    = '/' . $file_path;
             $add['filesize']   = filesize($file_path);
             $add['mimetype']   = $file->getOriginalExtension();
             $add['sha1']       = sha1_file($file_path);
