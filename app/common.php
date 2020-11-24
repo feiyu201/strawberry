@@ -234,3 +234,23 @@ if (!function_exists('whetherToUsePlugin')) {
         return false;
     }
 }
+
+if (!function_exists('cdnurl')) {
+
+    /**
+     * 获取上传资源的CDN的地址
+     * @param string  $url    资源相对地址
+     * @param boolean $domain 是否显示域名 或者直接传入域名
+     * @return string
+     */
+    function cdnurl($url, $domain = false)
+    {
+        $regex = "/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/i";
+        $url = preg_match($regex, $url) ? $url : \think\Config::get('upload.cdnurl') . $url;
+        if ($domain && !preg_match($regex, $url)) {
+            $domain = is_bool($domain) ? request()->domain() : $domain;
+            $url = $domain . $url;
+        }
+        return $url;
+    }
+}

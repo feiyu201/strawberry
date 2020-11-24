@@ -212,7 +212,6 @@
 			});
 		}
 
-
 		function add() {
 			okLayer.open("添加附件", "{:url('add')}", "90%", "90%", null, function () {
 				userTable.reload();
@@ -258,6 +257,7 @@
 	<div class="layui-btn-container">
 		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>
 		<button class="layui-btn layui-btn-sm" lay-event="add">上传附件</button>
+		<a href="{:url('multipart_upload_add')}" class="layui-btn layui-btn-sm ajax-iframe" data-width="90%" data-height="90%">分片上传附件</a>
 	</div>
 </script>
 <!-- 行工具栏模板 -->

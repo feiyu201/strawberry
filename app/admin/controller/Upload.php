@@ -6,6 +6,7 @@ use think\facade\View;
 use think\facade\Db;
 use think\facade\Cache;
 use think\facade\Event;
+use think\facade\Config;
 
 class Upload extends BaseController
 {
@@ -228,5 +229,71 @@ class Upload extends BaseController
     	];
     	return json($data);
     }
-    
+
+    /**
+     *
+     *  分片上传文件
+     *
+     */
+    public function multipart_upload()
+    {
+        Config::set(['default_return_type'=>'json'],'config');
+        //必须设定cdnurl为空,否则cdnurl函数计算错误
+        Config::set(['cdnurl'=>''],'upload');
+        $chunkid = $this->request->post("chunkid")?? md5(md5($this->request->post("name"))); //文件唯一标识
+        if (!Config::get('upload.chunking')) {
+            $this->error(__('未开启分片上传'));
+        }
+
+        $chunkindex = $this->request->post("chunk/d");//当前分割的个数 从0开始
+        $chunkcount = $this->request->post("chunks/d");//分割数量
+        $filename = $this->request->post("name");//文件名字
+        $method = $this->request->method(true);
+        $action = $this->request->post("action");//merge 合并 clean取消清除上传 需要前端传递对应的参数判断 目前通过后台判断
+        $merge = $chunkindex + 1;
+        if($merge == $chunkcount){
+            //最后一次上传分片文件 进行合并
+            $file = $this->request->file('file');
+            try {
+                $upload = new \app\common\library\Upload($file);
+                $upload->chunk($chunkid, $chunkindex, $chunkcount);
+            } catch (UploadException $e) {
+                $this->error($e->getMessage());
+            }
+            $action = 'merge';//合并
+        }
+        $upload = new \app\common\library\Upload();
+        if ($action == 'merge') {
+            $attachment = null;
+            //合并分片文件
+            try {
+                $attachment = $upload->merge($chunkid, $chunkcount, $filename);
+                dd($attachment);
+            } catch (UploadException $e) {
+                $this->error($e->getMessage());
+            }
+//            $this->success(__('Uploaded successful'), '', ['url' => $attachment->url, 'fullurl' => cdnurl($attachment->url, true)]);
+        } elseif ($action == 'clean') {
+            //删除冗余的分片文件
+            try {
+                $upload = new Upload();
+                $upload->clean($chunkid);
+            } catch (UploadException $e) {
+                $this->error($e->getMessage());
+            }
+
+            return json(['code' => 0, 'path' =>'','key'=>'']);
+        } else {
+            //上传分片文件
+            //默认普通上传文件
+            $file = $this->request->file('file');
+            try {
+                $upload = new \app\common\library\Upload($file);
+                $res = $upload->chunk($chunkid, $chunkindex, $chunkcount);
+                return json(['code' => 0, 'path' => $res,'key'=>$res]);
+            } catch (UploadException $e) {
+                $this->error($e->getMessage());
+            }
+        }
+    }
 }
