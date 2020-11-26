@@ -92,4 +92,11 @@ class Attachment extends AdminBase
    		}
    }
 
+    /**
+     * 分片上传
+     */
+   public function multipart_upload_add(){
+
+       return View::fetch();
+   }
 }
