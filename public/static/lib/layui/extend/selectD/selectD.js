@@ -28,9 +28,9 @@ layui.define(['layer', 'form'], function (exports) {
                         var list = res.data;
                         list.forEach(val => {
                             if (value !== undefined && key.toString() === value) {
-                                html += '<option value="' + key + '" selected="">' + val[fields[0]] + '</option>';
+                                html += '<option value="' + val[key] + '" selected="">' + val[fields[0]] + '</option>';
                             } else {
-                                html += '<option value="' + key + '">' + val[fields[0]] + '</option>';
+                                html += '<option value="' + val[key] + '">' + val[fields[0]] + '</option>';
                             }
                         });
                         $(that).html(html);
