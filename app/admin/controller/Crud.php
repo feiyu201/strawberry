@@ -58,7 +58,20 @@ class Crud extends Admin
             'msg' => '查询成功'
         ]);
     }
-
+    function controlName($str) 
+    {
+        $array = explode('_', $str);
+        $result = $array[0];
+        $len=count($array);
+        if($len>1)
+        {
+            for($i=1;$i<$len;$i++)
+            {
+                $result.= ucfirst($array[$i]);
+            }
+        }
+        return ucwords($result);
+    }
     public function crud(Request $request)
     {
 
@@ -89,12 +102,12 @@ class Crud extends Admin
                 ]
             ];
             //生成菜单
-            Menu::create($menu);
+            // Menu::create($menu);
 
             // 生成controller
-            $controllerFile = fopen("../app/admin/controller/" . ucwords($table) . ".php", "w");
+            $controllerFile = fopen("../app/admin/controller/" . $this->controlName($table) . ".php", "w");
             $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                ucwords($table), $table, $table, $table,self::getsWitchMethod($table), $table,self::getsWitchMethod($table), $table, $table, $table, $table, $table, $table, $table, $table
+                $this->controlName($table), $table, $table, $table,self::getsWitchMethod($table), $table,self::getsWitchMethod($table), $table, $table, $table, $table, $table, $table, $table, $table
             );
 
             fwrite($controllerFile, $controllerText);
@@ -138,8 +151,8 @@ class Crud extends Admin
             fclose($viewFile);
             $this->success("生成成功");
         } catch (Exception $e) {
-//            $this->error($e->getMessage());
-            $this->error("生成失败,请先删除原有菜单");
+           $this->error($e->getMessage());
+            // $this->error("生成失败,请先删除原有菜单");
         }
 
     }
@@ -164,7 +177,7 @@ class Crud extends Admin
     }}," . PHP_EOL;
             } else {
 
-                if((end($s) === 'img') || (end($s) === 'imge')){
+                if(end($s) === 'img' || end($s) === 'image' || end($s) === 'images'||end($s) === 'imgs'){
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl'}," . PHP_EOL;
                 }else{
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
@@ -201,7 +214,7 @@ class Crud extends Admin
                                     });
                                 }
                             </script>";
-                }else if(explode('(', $item['type'])[0] === 'varchar' && end($s) === 'imge'){
+                }else if(explode('(', $item['type'])[0] === 'varchar' && end($s) === 'image'){
                     $str .="<script type=\"text/html\" id=\"logoTpl\">
                     <a href=\"javascript:amplificationImg('".$item['comment']."','{{d." . $item['field'] . "}}')\">
                     <img src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/></a>
@@ -231,11 +244,16 @@ class Crud extends Admin
 
     public static function getViewAddHtml($table)
     {
-
+        
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
+
+
+
         foreach ($list as $elt => $item) {
+           
+           
             $s = explode('_', $item['field']);
             try {
                 if ($item['key'] === 'PRI') {
@@ -278,7 +296,7 @@ class Crud extends Admin
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"开启|关闭\">
     </div>
   </div>";
-                } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+                } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time'|| end($s) === 'at' || endWith($item['field'],'time')) ) {
                     $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -297,29 +315,18 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-                }else if (explode('(', $item['type'])[0] === 'varchar' &&  end($s) === 'img') {
+                }else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img'||end($s) === 'imgs'||end($s) === 'image'||end($s) === 'images')) {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"\">
                         <div class=\"layui-upload-btn\" >
-                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
+                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"".(strpos($item['field'],'s') !== false?'more':'one')."\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
                             <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
                         </div>
                     </div>
                 </div>";
-            }else if (explode('(', $item['type'])[0] === 'varchar' &&  end($s) === 'image') {
-                $str .= "<div class=\"layui-form-item\">
-                <label class=\"layui-form-label\">" . $item['comment'] . "</label>
-                  <div class=\"layui-input-block layui-upload\">
-                    <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"\">
-                    <div class=\"layui-upload-btn\" >
-                        <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
-                        <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
-                    </div>
-                </div>
-            </div>";
-        } else if (end($s) === 'ids') {
+            }else if (end($s) === 'ids') {
                     $str .= "
         <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
@@ -386,29 +393,18 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-                } else if (explode('(', $item['type'])[0] === 'varchar' && end($s) === 'img' ) {
+                } else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img'||end($s) === 'imgs'||end($s) === 'image'||end($s) === 'images') ) {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
                         <div class=\"layui-upload-btn\" >
-                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
-                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
+                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"".(strpos($item['field'],'s') !== false?'more':'one')."\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
+                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"".(strpos($item['field'],'s') === true?'more':'one')."\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
                         </div>
                     </div>
                 </div>";
-            }else if (explode('(', $item['type'])[0] === 'varchar' && end($s) === 'image' ) {
-                $str .= "<div class=\"layui-form-item\">
-                    <label class=\"layui-form-label\">" . $item['comment'] . " </label>
-                      <div class=\"layui-input-block layui-upload\">
-                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
-                        <div class=\"layui-upload-btn\" >
-                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
-                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
-                        </div>
-                    </div>
-                </div>";
-        }else if (end($s) === 'id') {
+            }else if (end($s) === 'id') {
                     $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -448,7 +444,7 @@ class Crud extends Admin
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"开启|关闭\" {if $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
     </div>
   </div>";
-                } else if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+                } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time'|| end($s) === 'at' || endWith($item['field'],'time'))) {
                     $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -624,7 +620,7 @@ class Crud extends Admin
                           ,type: 'datetime'
                         });";
             }
-            if (explode('(', $item['type'])[0] === 'int' && end($s) === 'time') {
+            if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time'||end($s) === 'at' || endWith($item['field'],'time'))) {
                 $str .= "laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
