@@ -59,6 +59,8 @@ class %s extends AdminBase
                        array_push($arr,$v['name']);
                    }
                    $value[$elt] = implode(',',$arr);
+               }else if (end($s) === 'imgs'||end($s) === 'images'){
+                   $value[$elt] = array_filter(explode('|',$item));
                } else {
                     $sql = "show full columns from ".config('database.connections.mysql.prefix')."%s";
                     $res = Db::query($sql);

@@ -178,7 +178,7 @@ class Crud extends Admin
             } else {
 
                 if(end($s) === 'img' || end($s) === 'image' || end($s) === 'images'||end($s) === 'imgs'){
-                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl'}," . PHP_EOL;
+                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl".(strpos($item['field'],'s')!=false?'More':'One')."'}," . PHP_EOL;
                 }else{
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 }
@@ -192,46 +192,25 @@ class Crud extends Admin
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
+        $flag  =false;
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             try{
-                 if(explode('(', $item['type'])[0] === 'varchar' && end($s) === 'img'){
-                    $str .="<script type=\"text/html\" id=\"logoTpl\">
+                if(explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'img'||end($s) === 'image')){
+                    $flag =true;
+                    $str .="<script type=\"text/html\" id=\"logoTplOne\">
                                 <a href=\"javascript:amplificationImg('".$item['comment']."','{{d." . $item['field'] . "}}')\">
                                 <img src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/></a>
-                                <img alt=\"\" style=\"display:none;\" id=\"ImgSrc\" src=\"\" />
-                            </script>
-                            <script>
-                                function amplificationImg(name, url) {
-                                    let img = $(\"#ImgSrc\").attr(\"src\", url);
-                                    layer.open({
-                                        type: 1,
-                                        title: false,
-                                        closeBtn: 0,
-                                        shadeClose: true,
-                                        area: ['70%', '70%'], //宽高
-                                        content: '<img style=\"display: inline-block; width: 100%; height: 100%;\" src=\"'+ url +'\">'
-                                    });
-                                }
                             </script>";
-                }else if(explode('(', $item['type'])[0] === 'varchar' && end($s) === 'image'){
-                    $str .="<script type=\"text/html\" id=\"logoTpl\">
-                    <a href=\"javascript:amplificationImg('".$item['comment']."','{{d." . $item['field'] . "}}')\">
-                    <img src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/></a>
-                    <img alt=\"\" style=\"display:none;\" id=\"ImgSrc\" src=\"\" />
-                </script>
-                <script>
-                    function amplificationImg(name, url) {
-                        let img = $(\"#ImgSrc\").attr(\"src\", url);
-                        layer.open({
-                            type: 1,
-                            title: false,
-                            closeBtn: 0,
-                            shadeClose: true,
-                            area: ['70%', '70%'], //宽高
-                            content: '<img style=\"display: inline-block; width: 100%; height: 100%;\" src=\"'+ url +'\">'
-                        });
-                    }
+                }else if(explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'images'||end($s) === 'imgs')){
+                    $flag =true;
+                    $str .="<script type=\"text/html\" id=\"logoTplMore\">
+                    {{# var img = d." . $item['field'] . "}}
+                    {{# for(var i=0;i < img.length;i++){}}
+                    <a href=\"javascript:amplificationImg('图片','{{img[i]}}')\">
+                        <img src=\"{{img[i]}}\" style=\"width: auto;height: 100%;\"/>
+                    </a>
+                    {{# } }}
                 </script>";
                 }
             }catch (Exception $e) {
@@ -239,6 +218,22 @@ class Crud extends Admin
             }
             
         }
+        if($flag){
+            $str .="<script type=\"text/javascript\">
+            function amplificationImg(name, url) {
+                let img = $(\"#ImgSrc\").attr(\"src\", url);
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    area: ['70%', '70%'], //宽高
+                    content: '<img style=\"display: inline-block; width: 100%; height: 100%;\" src=\"'+ url +'\">'
+                });
+            }
+        </script>";
+        }
+
         return $str;
     }
 
