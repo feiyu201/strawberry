@@ -37,7 +37,7 @@ use think\facade\View;
  */
 class Crud extends Admin
 {
-
+    public $stubList = [];
     public function getList()
     {
         // 查询所有表
@@ -58,19 +58,148 @@ class Crud extends Admin
             'msg' => '查询成功'
         ]);
     }
-    function controlName($str) 
+    function controlName($str, $ucwords = true)
     {
         $array = explode('_', $str);
         $result = $array[0];
-        $len=count($array);
-        if($len>1)
-        {
-            for($i=1;$i<$len;$i++)
-            {
-                $result.= ucfirst($array[$i]);
+        $len = count($array);
+        if ($len > 1) {
+            for ($i = 1; $i < $len; $i++) {
+                $result .= ucfirst($array[$i]);
             }
         }
-        return ucwords($result);
+        if ($ucwords) {
+            return ucwords($result);
+        } else {
+            return $result;
+        }
+    }
+
+    public function getTableColumn($table)
+    {
+        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $list = array_map('array_change_key_case', $list);
+        return $list;
+    }
+
+    public function buildModel($table)
+    {
+
+        $tableColumns = $this->getTableColumn($table);
+        $relateTable = [];
+        //生成关联model
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            $tableName = null;
+            if (end($s) === 'ids') {
+                $tableName = str_replace('_ids', '', $demo);
+            }
+            if (endWith($demo, '_id')) {
+                $tableName = str_replace('_id', '', $demo);
+            }
+
+            if ($tableName) {
+                $relateTable[$tableName] = $tableName;
+                $this->buildModel($tableName);
+            }
+        }
+        // 生成model
+        $modelFile = fopen("../app/admin/model/" . $this->controlName($table) . ".php", "w");
+
+        fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
+            'className' => $this->controlName($table),
+            'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
+        ]));
+        fclose($modelFile);
+    }
+    public function buildTableFiledNameAttrTpl($tableColumns)
+    {
+        $str = '';
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids') {
+                $tableName = str_replace('_ids', '', $demo);
+
+                $str .= $this->getReplacedStub('model/relation/more.stub', [
+                    'relation' => $this->controlName($demo, false),
+                    'relationClass' => '\\app\\admin\\model\\' . $this->controlName($tableName) . '::class',
+                    'foreignKey' => 'id',
+                    'localKey' => $demo
+                ]) . "\n";
+            }
+            if (endWith($demo, '_id')) {
+                $tableName = str_replace('_id', '', $demo);
+
+                $str .= $this->getReplacedStub('model/relation/one.stub', [
+                    'relation' => $this->controlName($demo, false),
+                    'relationClass' => '\\app\\admin\\model\\' . $this->controlName($tableName) . '::class',
+                    'foreignKey' => 'id',
+                    'localKey' => $demo
+                ]) . "\n";
+            }
+            if (endWith($demo, 'time') || endWith($demo, '_at')) {
+                $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
+                    'fieldName' => $this->controlName($demo, true),
+                ]) . "\n";
+            }
+            if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
+                $str .= $this->getReplacedStub('model/fieldNameAttr/imgs.stub', [
+                    'fieldName' => $this->controlName($demo, true),
+                    'delimiter' => '|',
+                ]) . "\n";
+            }
+            if (endWith($demo, 'img') || endWith($demo, 'image')) {
+                $str .= $this->getReplacedStub('model/fieldNameAttr/img.stub', [
+                    'fieldName' => $this->controlName($demo, true),
+                    'delimiter' => '|',
+                ]) . "\n";
+            }
+        }
+        return $str;
+    }
+    protected function getReplacedStub($stubname, $data)
+    {
+        foreach ($data as $index => &$datum) {
+            $datum = is_array($datum) ? '' : $datum;
+        }
+        unset($datum);
+        $search = $replace = [];
+        foreach ($data as $k => $v) {
+            $search[] = "{%{$k}%}";
+            $replace[] = $v;
+        }
+        $stubname = '../addons/crud/tpl/' . $stubname;
+        if (isset($this->stubList[$stubname])) {
+            $stub = $this->stubList[$stubname];
+        } else {
+            $this->stubList[$stubname] = $stub = file_get_contents($stubname);
+        }
+        $content = str_replace($search, $replace, $stub);
+        return $content;
+    }
+    public function buildController($table)
+    {
+        $tableColumns = $this->getTableColumn($table);
+        $relation = [];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids' || endWith($demo, '_id')) {
+                $relation[] = $this->controlName($demo, false);
+            }
+        }
+        $controllerFile = fopen("../app/admin/controller/" . $this->controlName($table) . ".php", "w");
+
+        fwrite($controllerFile, $this->getReplacedStub('controller/body.stub', [
+            'className' => $this->controlName($table),
+            'modelClassName' => '\\app\\admin\\model\\' . $this->controlName($table),
+            'witchMethod' =>  self::getsWitchMethod($table),
+            'table' => $table,
+            'relations' => json_encode($relation),
+        ]));
+        fclose($controllerFile);
     }
     public function crud(Request $request)
     {
@@ -80,13 +209,13 @@ class Crud extends Admin
             $sql = 'show table status';
             $tableList = Db::query($sql);
             $tableList = array_map('array_change_key_case', $tableList);
+
             $fix = "";
             foreach ($tableList as $key => $value) {
                 if ($value['name'] === config('database.connections.mysql.prefix') . $table) {
                     $fix = $value['comment'];
                 }
             }
-
             $menu = [
                 [
                     'name' => 'admin/' . $table . '/index',
@@ -104,14 +233,15 @@ class Crud extends Admin
             //生成菜单
             // Menu::create($menu);
 
-            // 生成controller
-            $controllerFile = fopen("../app/admin/controller/" . $this->controlName($table) . ".php", "w");
-            $controllerText = sprintf(file_get_contents('../addons/crud/control.txt'),
-                $this->controlName($table), $table, $table, $table,self::getsWitchMethod($table), $table,self::getsWitchMethod($table), $table, $table, $table, $table, $table, $table, $table, $table
-            );
 
-            fwrite($controllerFile, $controllerText);
-            fclose($controllerFile);
+            // 生成controller
+
+
+
+            $this->buildController($table);
+            $this->buildModel($table);
+
+
             // 生成view index
             $path = "../app/admin/view/" . $table;
 
@@ -119,8 +249,14 @@ class Crud extends Admin
                 mkdir($path, 0777, true);
 
             $viewFile = fopen($path . "/" . "index.html", "w");
-            $viewText = sprintf(file_get_contents('../addons/crud/index.txt'),
-                self::getViewFiledList($table), '90%', '90%', '90%', '90%', self::getViewImgList($table)
+            $viewText = sprintf(
+                file_get_contents('../addons/crud/index.txt'),
+                self::getViewFiledList($table),
+                '90%',
+                '90%',
+                '90%',
+                '90%',
+                self::getViewImgList($table)
             );
             // dump($viewFile);
             fwrite($viewFile, $viewText);
@@ -132,8 +268,11 @@ class Crud extends Admin
                 mkdir($path, 0777, true);
 
             $viewFile = fopen($path . "/" . "add.html", "w");
-            $viewText = sprintf(file_get_contents('../addons/crud/add.txt'),
-                self::getViewAddHtml($table), self::xm($table), self::timejsadd($table)
+            $viewText = sprintf(
+                file_get_contents('../addons/crud/add.txt'),
+                self::getViewAddHtml($table),
+                self::xm($table),
+                self::timejsadd($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -144,17 +283,19 @@ class Crud extends Admin
                 mkdir($path, 0777, true);
 
             $viewFile = fopen($path . "/" . "edit.html", "w");
-            $viewText = sprintf(file_get_contents('../addons/crud/edit.txt'),
-                self::getViewEditHtml($table), self::xm($table), self::timejs($table)
+            $viewText = sprintf(
+                file_get_contents('../addons/crud/edit.txt'),
+                self::getViewEditHtml($table),
+                self::xm($table),
+                self::timejs($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
             $this->success("生成成功");
         } catch (Exception $e) {
-           $this->error($e->getMessage());
+            $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
             // $this->error("生成失败,请先删除原有菜单");
         }
-
     }
 
     public static function getViewFiledList($table)
@@ -162,7 +303,7 @@ class Crud extends Admin
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
-        
+
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             if ($item['field'] == 'switch') {
@@ -177,34 +318,33 @@ class Crud extends Admin
     }}," . PHP_EOL;
             } else {
 
-                if(end($s) === 'img' || end($s) === 'image' || end($s) === 'images'||end($s) === 'imgs'){
-                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl".(strpos($item['field'],'s')!=false?'More':'One')."'}," . PHP_EOL;
-                }else{
+                if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
+                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl" . (strpos($item['field'], 's') != false ? 'More' : 'One') . "'}," . PHP_EOL;
+                } else {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 }
-
-                
             }
         }
         return $str;
     }
-    public static function getViewImgList($table){
+    public static function getViewImgList($table)
+    {
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
-        $flag  =false;
+        $flag  = false;
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
-            try{
-                if(explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'img'||end($s) === 'image')){
-                    $flag =true;
-                    $str .="<script type=\"text/html\" id=\"logoTplOne\">
-                                <a href=\"javascript:amplificationImg('".$item['comment']."','{{d." . $item['field'] . "}}')\">
+            try {
+                if (explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'img' || end($s) === 'image')) {
+                    $flag = true;
+                    $str .= "<script type=\"text/html\" id=\"logoTplOne\">
+                                <a href=\"javascript:amplificationImg('" . $item['comment'] . "','{{d." . $item['field'] . "}}')\">
                                 <img src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/></a>
                             </script>";
-                }else if(explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'images'||end($s) === 'imgs')){
-                    $flag =true;
-                    $str .="<script type=\"text/html\" id=\"logoTplMore\">
+                } else if (explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'images' || end($s) === 'imgs')) {
+                    $flag = true;
+                    $str .= "<script type=\"text/html\" id=\"logoTplMore\">
                     {{# var img = d." . $item['field'] . "}}
                     {{# for(var i=0;i < img.length;i++){}}
                     <a href=\"javascript:amplificationImg('图片','{{img[i]}}')\">
@@ -213,13 +353,12 @@ class Crud extends Admin
                     {{# } }}
                 </script>";
                 }
-            }catch (Exception $e) {
+            } catch (Exception $e) {
                 return $str;
             }
-            
         }
-        if($flag){
-            $str .="<script type=\"text/javascript\">
+        if ($flag) {
+            $str .= "<script type=\"text/javascript\">
             function amplificationImg(name, url) {
                 let img = $(\"#ImgSrc\").attr(\"src\", url);
                 layer.open({
@@ -239,7 +378,7 @@ class Crud extends Admin
 
     public static function getViewAddHtml($table)
     {
-        
+
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
@@ -247,8 +386,8 @@ class Crud extends Admin
 
 
         foreach ($list as $elt => $item) {
-           
-           
+
+
             $s = explode('_', $item['field']);
             try {
                 if ($item['key'] === 'PRI') {
@@ -291,7 +430,7 @@ class Crud extends Admin
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"开启|关闭\">
     </div>
   </div>";
-                } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time'|| end($s) === 'at' || endWith($item['field'],'time')) ) {
+                } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                     $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -300,7 +439,7 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-            }  else if (end($s) === 'id') {
+                } else if (end($s) === 'id') {
                     $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -310,18 +449,18 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-                }else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img'||end($s) === 'imgs'||end($s) === 'image'||end($s) === 'images')) {
+                } else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img' || end($s) === 'imgs' || end($s) === 'image' || end($s) === 'images')) {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"\">
                         <div class=\"layui-upload-btn\" >
-                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"".(strpos($item['field'],'s') !== false?'more':'one')."\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
+                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
                             <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"one\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
                         </div>
                     </div>
                 </div>";
-            }else if (end($s) === 'ids') {
+                } else if (end($s) === 'ids') {
                     $str .= "
         <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">关联ids</label>
@@ -362,7 +501,7 @@ class Crud extends Admin
 
     public static function getViewEditHtml($table)
     {
-//        SHOW FULL COLUMNS FROM tbl_name [FROM db_name]
+        //        SHOW FULL COLUMNS FROM tbl_name [FROM db_name]
         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
@@ -388,18 +527,18 @@ class Crud extends Admin
                 </select>
             </div>
         </div>";
-                } else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img'||end($s) === 'imgs'||end($s) === 'image'||end($s) === 'images') ) {
+                } else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img' || end($s) === 'imgs' || end($s) === 'image' || end($s) === 'images')) {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
                         <div class=\"layui-upload-btn\" >
-                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"".(strpos($item['field'],'s') !== false?'more':'one')."\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
-                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"".(strpos($item['field'],'s') === true?'more':'one')."\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
+                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
+                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
                         </div>
                     </div>
                 </div>";
-            }else if (end($s) === 'id') {
+                } else if (end($s) === 'id') {
                     $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -439,7 +578,7 @@ class Crud extends Admin
       <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"开启|关闭\" {if $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
     </div>
   </div>";
-                } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time'|| end($s) === 'at' || endWith($item['field'],'time'))) {
+                } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                     $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -475,7 +614,6 @@ class Crud extends Admin
                     </div>
                 </div>";
             }
-
         }
         return $str;
     }
@@ -489,7 +627,6 @@ class Crud extends Admin
             layedit.build('" . $field . "'); //建立编辑器
         });";
         return $str;
-
     }
 
     public static function timejsadd($table)
@@ -506,7 +643,7 @@ class Crud extends Admin
             $demo = $item['field'];
             $s = explode('_', $item['field']);
             if (end($s) === 'ids') {
-                $data = Db::name(array_shift($s))->field('id,name')->select();
+                $data = Db::name(str_replace('_ids', '', $demo))->field('id,name')->select();
                 $arr = [];
                 if ($data) {
                     foreach ($data as $k => $v) {
@@ -558,14 +695,14 @@ class Crud extends Admin
             $demo = $item['field'];
             $s = explode('_', $item['field']);
             if (end($s) === 'ids') {
-                $data = Db::name(array_shift($s))->field('id,name')->select();
+                $data = Db::name(str_replace('_ids', '', $demo))->field('id,name')->select();
                 $arr = [];
                 $str1 = "[";
                 if ($data) {
                     foreach ($data as $k => $v) {
-//                        $arr[$k]['name'] = $v['name'];
-//                        $arr[$k]['value'] = $v['id'];
-//                        $arr[$k]['selected'] = "{if in_array('" . $v['id'] . "',explode(',',$" . $table . "." . $demo . "))}true{else /}false{/if}";
+                        //                        $arr[$k]['name'] = $v['name'];
+                        //                        $arr[$k]['value'] = $v['id'];
+                        //                        $arr[$k]['selected'] = "{if in_array('" . $v['id'] . "',explode(',',$" . $table . "." . $demo . "))}true{else /}false{/if}";
                         $str1 .= "{\"name\":\"" . $v['name'] . "\",\"value\":\"" . $v['id'] . "\",\"selected\":{if in_array('" . $v['id'] . "',explode(',',$$table." . $item['field'] . "))}true{else /}false{/if}},";
                     }
                 }
@@ -615,7 +752,7 @@ class Crud extends Admin
                           ,type: 'datetime'
                         });";
             }
-            if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time'||end($s) === 'at' || endWith($item['field'],'time'))) {
+            if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                 $str .= "laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
@@ -722,31 +859,32 @@ class Crud extends Admin
         }
         return $str;
     }
-    
-    public static function getsWitchMethod($table){
-         $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+
+    public static function getsWitchMethod($table)
+    {
+        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
         $list = array_map('array_change_key_case', $list);
         $str = "";
-        foreach($list as $key=>$item){
-                if($item['field'] === 'switch'){
-                    $str .="if (!isset(\$data['switch']))
+        foreach ($list as $key => $item) {
+            if ($item['field'] === 'switch') {
+                $str .= "if (!isset(\$data['switch']))
                             \$data['switch'] = 'off';
                             ";
-                }
+            }
         }
         return $str;
     }
 
     public function upload()
     {
-//{
-//    "code": 0 //0表示成功，其它失败
-//,"msg": "" //提示信息 //一般上传失败后返回
-//,"data": {
-//    "src": "图片路径"
-//,"title": "图片名称" //可选
-//}
-//}
+        //{
+        //    "code": 0 //0表示成功，其它失败
+        //,"msg": "" //提示信息 //一般上传失败后返回
+        //,"data": {
+        //    "src": "图片路径"
+        //,"title": "图片名称" //可选
+        //}
+        //}
         // file('文件域的字段名')
         $file = request()->file('file');
 
@@ -764,5 +902,4 @@ class Crud extends Admin
         // 将上传后的文件位置返回给前端
         return json(['code' => 0, 'msg' => 'ok', 'data' => ['src' => $this->request->domain() . '/storage/' . $savename, 'title' => 'title']]);
     }
-
 }

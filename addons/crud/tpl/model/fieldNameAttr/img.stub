@@ -1,0 +1,10 @@
+public function set{%fieldName%}Attr($value)
+{
+    if(is_array($value)){
+        foreach($value as &$item){
+            $item = "/storage/".$item;
+        }
+        return implode('|',$value);
+    }
+    return '/storage/'.$value;
+}

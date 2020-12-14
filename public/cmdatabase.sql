@@ -282,27 +282,35 @@ CREATE TABLE `cm_plugin` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cm_test`
+-- 表的结构 `cm_test_name`
 --
 
-CREATE TABLE `cm_test` (
+CREATE TABLE `cm_test_name` (
   `id` int NOT NULL COMMENT 'ID',
-  `select_test` enum('10','20') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '下拉:10=选项一,20=选项二',
-  `set_test` set('music','reading','swimming') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '爱好(多选):music=音乐,reading=读书,swimming=游泳',
+  `select_test_name` enum('10','20') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '下拉:10=选项一,20=选项二',
+  `set_test_name` set('music','reading','swimming') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '爱好(多选):music=音乐,reading=读书,swimming=游泳',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编辑器',
   `time123` datetime NOT NULL COMMENT '时间',
   `switch` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '开关',
   `state` enum('10','20') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '单选:10=选项一,20=选项二',
   `create_time` int NOT NULL COMMENT '时间戳',
-  `test1_id` int NOT NULL COMMENT '关联id',
-  `test1_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '关联ids'
+  `createtime` int NOT NULL COMMENT 'createtime',
+  `createt_at` int NOT NULL COMMENT 'createt_at',
+  `updatetime` int NOT NULL COMMENT 'updatetime',
+  `update_at` int NOT NULL COMMENT 'update_at',
+  `img` varchar(255) COMMENT 'img',
+  `imgs` varchar(255) COMMENT 'imgs',
+  `images` varchar(255) COMMENT 'images',
+  `image` varchar(255) COMMENT 'image',
+  `test1_name_id` int NOT NULL COMMENT '关联id',
+  `test1_name_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '关联ids'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci COMMENT='自动CRUD测试表' ROW_FORMAT=DYNAMIC;
 
 --
--- 转存表中的数据 `cm_test`
+-- 转存表中的数据 `cm_test_name`
 --
 
-INSERT INTO `cm_test` (`id`, `select_test`, `set_test`, `content`, `time123`, `switch`, `state`, `create_time`, `test1_id`, `test1_ids`) VALUES
+INSERT INTO `cm_test_name` (`id`, `select_test_name`, `set_test_name`, `content`, `time123`, `switch`, `state`, `create_time`, `test1_id`, `test1_ids`) VALUES
 (18, '10', '', '', '0000-00-00 00:00:00', 'off', '10', 0, 3, ''),
 (8, '10', 'music,reading,swimming', '11', '2020-10-23 00:00:00', 'off', '10', 1603382400, 1, '1'),
 (15, '10', 'music', '', '2020-10-15 00:00:00', 'off', '10', 0, 2, '3'),
@@ -312,19 +320,19 @@ INSERT INTO `cm_test` (`id`, `select_test`, `set_test`, `content`, `time123`, `s
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cm_test1`
+-- 表的结构 `cm_test1_name`
 --
 
-CREATE TABLE `cm_test1` (
+CREATE TABLE `cm_test1_name` (
   `id` int NOT NULL COMMENT 'ID',
   `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
 --
--- 转存表中的数据 `cm_test1`
+-- 转存表中的数据 `cm_test1_name`
 --
 
-INSERT INTO `cm_test1` (`id`, `name`) VALUES
+INSERT INTO `cm_test1_name` (`id`, `name`) VALUES
 (1, 'name89'),
 (2, 'name2'),
 (3, 'name3'),
