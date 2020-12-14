@@ -83,7 +83,7 @@ class {%className%} extends AdminBase
 	   		$this->success("参数错误");
 	   	}
 		{%editViewCode%}
-	   	View::assign('info',$info);
+	   	View::assign('{%table%}',$info);
         return View::fetch();
    }
 

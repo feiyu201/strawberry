@@ -590,10 +590,12 @@ class Crud extends Admin
             </div>
         </div>";
                 } else if (explode('(', $item['type'])[0] === 'varchar' &&  (end($s) === 'img' || end($s) === 'imgs' || end($s) === 'image' || end($s) === 'images')) {
+
+                    $fieldName = strpos($item['field'], 's') !== false ?('{$' . "" . $table . "." . $item['field'].'|implode=\'\'}'):('{$' . "" . $table . "." . $item['field'].'}');
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
-                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "}\">
+                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" .$fieldName  . "\">
                         <div class=\"layui-upload-btn\" >
                             <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
                             <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
