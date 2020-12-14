@@ -31,7 +31,7 @@
 <script src="/static/js/upload.js" charset="utf-8"></script>
 <script>
 
-	layui.use(["element", "form", "laydate", "okLayer", "okUtils",'layedit'], function () {
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils",'layedit','multiSelect'], function () {
 		let form = layui.form;
 		let laydate = layui.laydate;
 		let okLayer = layui.okLayer;

@@ -58,7 +58,7 @@ class Crud extends Admin
             'msg' => '查询成功'
         ]);
     }
-    function controlName($str, $ucwords = true)
+    public static function controlName($str, $ucwords = true)
     {
         $array = explode('_', $str);
         $result = $array[0];
@@ -105,10 +105,10 @@ class Crud extends Admin
             }
         }
         // 生成model
-        $modelFile = fopen("../app/admin/model/" . $this->controlName($table) . ".php", "w");
+        $modelFile = fopen("../app/admin/model/" . self::controlName($table) . ".php", "w");
 
         fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
-            'className' => $this->controlName($table),
+            'className' => self::controlName($table),
             'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
         ]));
         fclose($modelFile);
@@ -123,8 +123,8 @@ class Crud extends Admin
                 $tableName = str_replace('_ids', '', $demo);
 
                 $str .= $this->getReplacedStub('model/relation/more.stub', [
-                    'relation' => $this->controlName($demo, false),
-                    'relationClass' => '\\app\\admin\\model\\' . $this->controlName($tableName) . '::class',
+                    'relation' => self::controlName($demo, false),
+                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName) . '::class',
                     'foreignKey' => 'id',
                     'localKey' => $demo
                 ]) . "\n";
@@ -133,26 +133,26 @@ class Crud extends Admin
                 $tableName = str_replace('_id', '', $demo);
 
                 $str .= $this->getReplacedStub('model/relation/one.stub', [
-                    'relation' => $this->controlName($demo, false),
-                    'relationClass' => '\\app\\admin\\model\\' . $this->controlName($tableName) . '::class',
+                    'relation' => self::controlName($demo, false),
+                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName) . '::class',
                     'foreignKey' => 'id',
                     'localKey' => $demo
                 ]) . "\n";
             }
             if (endWith($demo, 'time') || endWith($demo, '_at')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
-                    'fieldName' => $this->controlName($demo, true),
+                    'fieldName' => self::controlName($demo, true),
                 ]) . "\n";
             }
             if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/imgs.stub', [
-                    'fieldName' => $this->controlName($demo, true),
+                    'fieldName' => self::controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
             }
             if (endWith($demo, 'img') || endWith($demo, 'image')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/img.stub', [
-                    'fieldName' => $this->controlName($demo, true),
+                    'fieldName' => self::controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
             }
@@ -179,6 +179,47 @@ class Crud extends Admin
         $content = str_replace($search, $replace, $stub);
         return $content;
     }
+    public static function buildAddCode($tableColumns){
+
+        $str = "";
+        $loadModel = [];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids' || endWith($demo, '_id')) {
+                $fieldName = self::controlName(str_replace(end($s) === 'ids'?'_ids':"_id",'',$demo), false).'s';
+                $className = self::controlName(str_replace(end($s) === 'ids'?'_ids':"_id",'',$demo), true);
+               
+                if(!in_array($fieldName,$loadModel)){
+                    $str .="\$$fieldName = (new \\app\\admin\\model\\$className())->select();";
+                    $str .="View::assign('$fieldName',\$$fieldName);";
+                    $loadModel[] = $fieldName;
+                }
+               
+            }
+        }
+        return $str;
+    }
+    public static function buildEditCode($tableColumns){
+        $str = "";
+        $loadModel = [];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids' || endWith($demo, '_id')) {
+                $fieldName = self::controlName(str_replace(end($s) === 'ids'?'_ids':"_id",'',$demo), false).'s';
+                $className = self::controlName(str_replace(end($s) === 'ids'?'_ids':"_id",'',$demo), true);
+               
+                if(!in_array($fieldName,$loadModel)){
+                    $str .="\$$fieldName = (new \\app\\admin\\model\\$className())->select();";
+                    $str .="View::assign('$fieldName',\$$fieldName);";
+                    $loadModel[] = $fieldName;
+                }
+               
+            }
+        }
+        return $str;
+    }
     public function buildController($table)
     {
         $tableColumns = $this->getTableColumn($table);
@@ -187,15 +228,17 @@ class Crud extends Admin
             $demo = $item['field'];
             $s = explode('_', $item['field']);
             if (end($s) === 'ids' || endWith($demo, '_id')) {
-                $relation[] = $this->controlName($demo, false);
+                $relation[] = self::controlName($demo, false);
             }
         }
-        $controllerFile = fopen("../app/admin/controller/" . $this->controlName($table) . ".php", "w");
+        $controllerFile = fopen("../app/admin/controller/" . self::controlName($table) . ".php", "w");
 
         fwrite($controllerFile, $this->getReplacedStub('controller/body.stub', [
-            'className' => $this->controlName($table),
-            'modelClassName' => '\\app\\admin\\model\\' . $this->controlName($table),
+            'className' => self::controlName($table),
+            'modelClassName' => '\\app\\admin\\model\\' . self::controlName($table),
             'witchMethod' =>  self::getsWitchMethod($table),
+            'addViewCode'=>self::buildAddCode( $tableColumns),
+            'editViewCode'=>self::buildEditCode( $tableColumns),
             'table' => $table,
             'relations' => json_encode($relation),
         ]));
@@ -320,7 +363,19 @@ class Crud extends Admin
 
                 if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl" . (strpos($item['field'], 's') != false ? 'More' : 'One') . "'}," . PHP_EOL;
-                } else {
+                } else if(endWith($item['field'],'_id')){
+                    $str .= "{field: '" . self::controlName($item['field'],false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d.".(self::controlName($item['field'],false) . '.name')."} }," . PHP_EOL;
+                }else if(end($s)==='ids'){
+                    $filedName =self::controlName($item['field'],false);
+                    $str .= "{field: '" . $filedName . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
+                        var data = d.{$filedName};
+                        var arr = [];
+                        for(var key in data){
+                            arr.push(data[key].name);
+                        }
+                        return arr.join(',')
+                    } }," . PHP_EOL;
+                }else {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 }
             }
@@ -375,7 +430,6 @@ class Crud extends Admin
 
         return $str;
     }
-
     public static function getViewAddHtml($table)
     {
 
@@ -439,13 +493,16 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-                } else if (end($s) === 'id') {
+                } else if (endWith($item['field'],'_id')) {
+                    $filedName = self::controlName(str_replace('_id','',$item['field']),false).'s';
                     $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
                     <option value=\"\"></option>
-                    " . self::xialaid($item) . "
+                    {foreach \${$filedName} as \$key=>\$vo } 
+                        <option value=\"{\$vo.id}\">{\$vo.name}</option>
+                    {/foreach}
                 </select>
             </div>
         </div>";
@@ -461,11 +518,16 @@ class Crud extends Admin
                     </div>
                 </div>";
                 } else if (end($s) === 'ids') {
-                    $str .= "
-        <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">关联ids</label>
+                    $filedName = self::controlName(str_replace('_ids','',$item['field']),false).'s';
+                    $str .= "  <div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
-                <div id=\"" . $item['field'] . "\"></div>
+                <select name=\"" . $item['field'] . "\" lay-verify=\"required\" multiple=\"multiple\">
+                    <option value=\"\"></option>
+                    {foreach \${$filedName} as \$key=>\$vo } 
+                        <option value=\"{\$vo.id}\">{\$vo.name}</option>
+                    {/foreach}
+                </select>
             </div>
         </div>";
                 } else if (explode('(', $item['type'])[0] === 'datetime') {
@@ -538,22 +600,30 @@ class Crud extends Admin
                         </div>
                     </div>
                 </div>";
-                } else if (end($s) === 'id') {
-                    $str .= "        <div class=\"layui-form-item\">
+                } else if (endWith($item['field'],'_id')) {
+                    $filedName = self::controlName(str_replace('_id','',$item['field']),false).'s';
+                    $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
                     <option value=\"\"></option>
-                    " . self::xialaidedit($table, $item['field'], $item) . "
+                    {foreach \${$filedName} as \$key=>\$vo } 
+                        <option value=\"{\$vo.id}\">{\$vo.name}</option>
+                    {/foreach}
                 </select>
             </div>
         </div>";
-                } else if (end($s) === 'ids') {
-                    $str .= "
-        <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">关联ids</label>
+                }else if (endWith($item['field'],'_ids')) {
+                    $filedName = self::controlName(str_replace('_ids','',$item['field']),false).'s';
+                    $str .= "  <div class=\"layui-form-item\">
+            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
-                <div id=\"" . $item['field'] . "\"></div>
+                <select name=\"" . $item['field'] . "\" lay-verify=\"required\" multiple=\"multiple\"> 
+                    <option value=\"\"></option>
+                    {foreach \${$filedName} as \$key=>\$vo } 
+                        <option value=\"{\$vo.id}\">{\$vo.name}</option>
+                    {/foreach}
+                </select>
             </div>
         </div>";
                 } else if (explode('(', $item['type'])[0] === 'set') {

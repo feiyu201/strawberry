@@ -59,6 +59,7 @@ class {%className%} extends AdminBase
 	   			$this->error("添加失败");
 	   		}
 	   	}
+		   {%addViewCode%}
 	   	return View::fetch();
    }
 
@@ -81,7 +82,8 @@ class {%className%} extends AdminBase
    		if(!$info){
 	   		$this->success("参数错误");
 	   	}
-	   	View::assign('{%table%}',$info);
+		{%editViewCode%}
+	   	View::assign('info',$info);
         return View::fetch();
    }
 
