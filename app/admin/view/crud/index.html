@@ -189,7 +189,7 @@
 
         function crud(res) {
             okLayer.confirm("确定要crud吗？", function () {
-                okUtils.ajax("{:url('crud')}","crud",{name:res},true).done(function (res) {
+                okUtils.ajax("{:url('crud')}","post",{name:res},true).done(function (res) {
                     if(res.code===1){
                         okUtils.tableSuccessMsg(res.msg);
                     }else{

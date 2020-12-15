@@ -1,0 +1,8 @@
+public function get{%fieldName%}Attr($value)
+{
+    return date('Y-m-d H:i:s',$value);
+}
+public function set{%fieldName%}Attr($value)
+{
+    return strtotime($value);
+}

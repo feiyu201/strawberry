@@ -1,0 +1,112 @@
+<?php
+//  *+-----------------------------------------------------------------------
+//  *                      .::::.
+//  *                    .::::::::.            | Author: 丶长情
+//  *                    :::::::::::           | Email: zeng1144318071@gmail.com
+//  *                 ..:::::::::::'           | Datetime: 2020/09/24
+//  *             '::::::::::::'               | Remarks: 11
+//  *                .::::::::::
+//  *           '::::::::::::::..
+//  *                ..::::::::::::.
+//  *              ``::::::::::::::::
+//  *               ::::``:::::::::'        .:::.
+//  *              ::::'   ':::::'       .::::::::.
+//  *            .::::'      ::::     .:::::::'::::.
+//  *           .:::'       :::::  .:::::::::' ':::::.
+//  *          .::'        :::::.:::::::::'      ':::::.
+//  *         .::'         ::::::::::::::'         ``::::.
+//  *     ...:::           ::::::::::::'              ``::.
+//  *   ```` ':.          ':::::::::'                  ::::..
+//  *                      '.:::::'                    ':'````..
+//  * +-----------------------------------------------------------------------
+namespace app\admin\controller;
+
+use think\facade\View;
+use think\facade\Db;
+
+class {%className%} extends AdminBase
+{
+
+    public function initialize(){
+        $this->model = new {%modelClassName%}();
+    }
+    public function index(){
+        return View::fetch();
+    }
+
+   public function getList(){
+   		$page = $this->request->param('page',1,'intval');
+   		$limit = $this->request->param('limit',10,'intval');
+   		$count = $this->model->count();
+   		$data = $this->model->with({%relations%})->page($page,$limit)->select();
+   		return json([
+				'code'=> 0,
+				'count'=> $count,
+   				'data'=>$data,
+   				'msg'=>'查询用户成功'
+   		]);
+   }
+
+   public function add(){
+	   	if($this->request->isPost()){
+	   		$data = $this->request->post();
+	   		unset($data['file']);
+            {%witchMethod%}
+                
+	   		if( $this->model->save($data,false)){
+	   			$this->success("添加成功");
+	   		}else{
+	   			$this->error("添加失败");
+	   		}
+	   	}
+		   {%addViewCode%}
+	   	return View::fetch();
+   }
+
+   public function edit(){
+	   	if($this->request->isPost()){
+	   		$data = $this->request->post();
+	   		unset($data['file']);
+            {%witchMethod%}
+            if( $this->model->find($data['id'])->save($data)){
+	   			$this->success("编辑成功");
+	   		}else{
+	   			$this->error("编辑失败");
+	   		}
+	   	}
+	   	$id = $this->request->param('id');
+	   	if(!$id){
+	   		$this->success("参数错误");
+	   	}
+	   	$info =  $this->model->where('id',$id)->find();
+   		if(!$info){
+	   		$this->success("参数错误");
+	   	}
+		{%editViewCode%}
+	   	View::assign('{%table%}',$info);
+        return View::fetch();
+   }
+
+   public function delete(){
+   		$idsStr = $this->request->param('idsStr');
+   		if(!$idsStr){
+   			$this->success("参数错误");
+   		}
+   		if( $this->model->where('id','in',$idsStr)->delete()){
+   			$this->success("删除成功");
+   		}else{
+   			$this->error("删除失败");
+   		}
+   }
+
+   public function sw(){
+      		$id = $this->request->param('id');
+      		$switch = $this->request->param('switch');
+      		if( $this->model->where('id',$id)->update(['switch' => $switch])){
+      			$this->success("编辑成功");
+      		}else{
+      			$this->error("编辑失败");
+      		}
+      }
+
+}

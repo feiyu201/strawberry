@@ -15,7 +15,14 @@ function GetRandStr($len) {
 	}
 	return $output;
 }
-
+function endWith($haystack, $needle) {
+    $length = strlen($needle);
+    if($length == 0)
+    {
+    return true;
+    }
+    return (substr($haystack, -$length) === $needle);
+    }
 
 /**
  * HTTP请求

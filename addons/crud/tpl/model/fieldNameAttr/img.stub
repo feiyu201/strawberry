@@ -1,0 +1,8 @@
+public function set{%fieldName%}Attr($value)
+{
+    preg_match('/^\/storage/', $value, $match);
+    if(empty($match)){
+        return '/storage/'.$value;
+    }
+    return $value;
+}
