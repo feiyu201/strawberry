@@ -38,7 +38,7 @@
 	
 
 	
-	layui.use(["element", "form", "laydate", "okLayer", "okUtils",'layedit','multiSelect'], function () {
+	layui.use(["element", "form", "laydate", "okLayer", "okUtils",'layedit'], function () {
 		let form = layui.form;
 		let laydate = layui.laydate;
 		let okLayer = layui.okLayer;

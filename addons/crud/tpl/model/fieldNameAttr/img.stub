@@ -1,10 +1,8 @@
 public function set{%fieldName%}Attr($value)
 {
-    if(is_array($value)){
-        foreach($value as &$item){
-            $item = "/storage/".$item;
-        }
-        return implode('|',$value);
+    preg_match('/^\/storage/', $value, $match);
+    if(empty($match)){
+        return '/storage/'.$value;
     }
-    return '/storage/'.$value;
+    return $value;
 }

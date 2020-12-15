@@ -53,7 +53,7 @@ class {%className%} extends AdminBase
 	   		unset($data['file']);
             {%witchMethod%}
                 
-	   		if( $this->model->insert($data)){
+	   		if( $this->model->save($data,false)){
 	   			$this->success("添加成功");
 	   		}else{
 	   			$this->error("添加失败");
@@ -68,7 +68,7 @@ class {%className%} extends AdminBase
 	   		$data = $this->request->post();
 	   		unset($data['file']);
             {%witchMethod%}
-            if( $this->model->where('id',$data['id'])->update($data)){
+            if( $this->model->find($data['id'])->save($data)){
 	   			$this->success("编辑成功");
 	   		}else{
 	   			$this->error("编辑失败");
