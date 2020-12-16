@@ -307,7 +307,7 @@ class Crud extends Admin
                 ]
             ];
             //生成菜单
-            // Menu::create($menu);
+            Menu::create($menu);
 
 
             // 生成controller
