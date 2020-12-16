@@ -294,13 +294,13 @@ CREATE TABLE `cm_test_name` (
   `switch` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '开关',
   `state` enum('10','20') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '单选:10=选项一,20=选项二',
   `create_time` int NOT NULL COMMENT 'create_time',
-  `createtime` int COMMENT 'createtime',
+  `create1time` int COMMENT 'create1time',
   `update_time` int  COMMENT 'update_time',
   `create_at` int  COMMENT 'create_at',
   `img` varchar(255)  COMMENT 'img',
   `image` varchar(255)  COMMENT 'image',
-  `images` varchar(255) COMMENT 'images',
-  `imgs` varchar(255)  COMMENT 'imgs',
+  `images` text COMMENT 'images',
+  `imgs` text  COMMENT 'imgs',
 
   `test1_name_id` int NOT NULL COMMENT '关联id',
   `test1_name_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '关联ids'
