@@ -1,0 +1,13 @@
+public function get{%fieldName%}Attr($value)
+{
+    $arr = {%data%};
+    $data = explode(',',$value);
+    foreach($data as &$item){
+        if(array_key_exists($item,$arr)){
+            $item = $arr[$item];
+        }
+    }
+    $this->set('{%otherFieldName%}',implode(',',$data)) ;
+    $this->append(array_merge($this->append,['{%otherFieldName%}']));
+    return $value;
+}
