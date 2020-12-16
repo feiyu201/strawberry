@@ -122,23 +122,63 @@ class Crud extends Admin
             if (end($s) === 'ids') {
                 $tableName = str_replace('_ids', '', $demo);
 
-                $str .= $this->getReplacedStub('model/relation/more.stub', [
+                $str .= $this->getReplacedStub('model/fieldNameAttr/ids.stub', [
+                    'fieldName' => self::controlName($demo, true),
                     'relation' => self::controlName($demo, false),
-                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName) . '::class',
-                    'foreignKey' => 'id',
-                    'localKey' => $demo
+                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName),
+                    'fieldNameList' => self::controlName($demo, false).'List',
                 ]) . "\n";
             }
             if (endWith($demo, '_id')) {
                 $tableName = str_replace('_id', '', $demo);
 
-                $str .= $this->getReplacedStub('model/relation/one.stub', [
+                $str .= $this->getReplacedStub('model/fieldNameAttr/id.stub', [
+                    'fieldName' => self::controlName($demo, true),
                     'relation' => self::controlName($demo, false),
-                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName) . '::class',
-                    'foreignKey' => 'id',
-                    'localKey' => $demo
+                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName),
+                    'fieldNameList' => self::controlName($demo, false).'List',
                 ]) . "\n";
             }
+             if (startWith($demo, 'set')) {
+                $arr = explode(',', explode(':', $item['comment'])[1]);
+                $data = [];
+                foreach ($arr as $k => $v) {
+                    $array = explode('=', $v);
+                    $data[$array[0]] = $array[1];
+                }
+                $str .= $this->getReplacedStub('model/fieldNameAttr/set.stub', [
+                    'fieldName' => self::controlName($demo, true),
+                    'otherFieldName'=>$demo.'_name',
+                    'data'=>var_export($data,true)
+                ]) . "\n";
+            }
+             if (startWith($demo, 'select')) {
+                $arr = explode(',', explode(':', $item['comment'])[1]);
+                $data = [];
+                foreach ($arr as $k => $v) {
+                    $array = explode('=', $v);
+                    $data[$array[0]] = $array[1];
+                }
+                $str .= $this->getReplacedStub('model/fieldNameAttr/select.stub', [
+                    'fieldName' => self::controlName($demo, true),
+                    'otherFieldName'=>$demo.'_name',
+                    'data'=>var_export($data,true)
+                ]) . "\n";
+            }
+             if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
+                $arr = explode(',', explode(':', $item['comment'])[1]);
+                $data = [];
+                foreach ($arr as $k => $v) {
+                    $array = explode('=', $v);
+                    $data[$array[0]] = $array[1];
+                }
+                $str .= $this->getReplacedStub('model/fieldNameAttr/radio.stub', [
+                    'fieldName' => self::controlName($demo, true),
+                    'otherFieldName'=>$demo.'_name',
+                    'data'=>var_export($data,true)
+                ]) . "\n";
+            }
+
             if (endWith($demo, 'time') || endWith($demo, '_at')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
                     'fieldName' => self::controlName($demo, true),
@@ -224,13 +264,6 @@ class Crud extends Admin
     {
         $tableColumns = $this->getTableColumn($table);
         $relation = [];
-        foreach ($tableColumns as $elt => $item) {
-            $demo = $item['field'];
-            $s = explode('_', $item['field']);
-            if (end($s) === 'ids' || endWith($demo, '_id')) {
-                $relation[] = self::controlName($demo, false);
-            }
-        }
         $controllerFile = fopen("../app/admin/controller/" . self::controlName($table) . ".php", "w");
 
         fwrite($controllerFile, $this->getReplacedStub('controller/body.stub', [
@@ -274,7 +307,7 @@ class Crud extends Admin
                 ]
             ];
             //生成菜单
-            Menu::create($menu);
+            // Menu::create($menu);
 
 
             // 生成controller
@@ -364,9 +397,9 @@ class Crud extends Admin
                 if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl" . (strpos($item['field'], 's') != false ? 'More' : 'One') . "'}," . PHP_EOL;
                 } else if (endWith($item['field'], '_id')) {
-                    $str .= "{field: '" . self::controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . (self::controlName($item['field'], false) . '.name') . "} }," . PHP_EOL;
+                    $str .= "{field: '" . self::controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . (self::controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
                 } else if (end($s) === 'ids') {
-                    $filedName = self::controlName($item['field'], false);
+                    $filedName = self::controlName($item['field'], false).'List';
                     $str .= "{field: '" . $filedName . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
                         var data = d.{$filedName};
                         var arr = [];
@@ -375,6 +408,9 @@ class Crud extends Admin
                         }
                         return arr.join(',')
                     } }," . PHP_EOL;
+                }else if (startWith($item['field'], 'set') ||startWith($item['field'], 'select')|| (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
+                    $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+
                 } else {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 }

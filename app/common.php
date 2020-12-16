@@ -15,6 +15,13 @@ function GetRandStr($len) {
 	}
 	return $output;
 }
+function startWith($str, $needle) {
+
+    return strpos($str, $needle) === 0;
+
+}
+
+
 function endWith($haystack, $needle) {
     $length = strlen($needle);
     if($length == 0)
