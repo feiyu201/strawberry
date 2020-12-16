@@ -86,6 +86,7 @@ class Login extends BaseController
 			];
 			return json($data);
 		}
+        View::assign('role_id', 3);
 		return View::fetch();
 	}
 
