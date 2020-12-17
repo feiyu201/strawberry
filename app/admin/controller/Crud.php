@@ -82,36 +82,19 @@ class Crud extends Admin
         return $list;
     }
 
-    public function buildModel($table)
+    public function buildModel($table,$deep=0)
     {
-
+        $filedName = "../app/admin/model/" . self::controlName($table) . ".php";
         $tableColumns = $this->getTableColumn($table);
-        $relateTable = [];
-        //生成关联model
-        foreach ($tableColumns as $elt => $item) {
-            $demo = $item['field'];
-            $s = explode('_', $item['field']);
-            $tableName = null;
-            if (end($s) === 'ids') {
-                $tableName = str_replace('_ids', '', $demo);
-            }
-            if (endWith($demo, '_id')) {
-                $tableName = str_replace('_id', '', $demo);
-            }
-
-            if ($tableName) {
-                $relateTable[$tableName] = $tableName;
-                $this->buildModel($tableName);
-            }
-        }
         // 生成model
-        $modelFile = fopen("../app/admin/model/" . self::controlName($table) . ".php", "w");
+        $modelFile = fopen($filedName, "w");
 
         fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
             'className' => self::controlName($table),
             'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
         ]));
         fclose($modelFile);
+       
     }
     public function buildTableFiledNameAttrTpl($tableColumns)
     {
@@ -125,7 +108,7 @@ class Crud extends Admin
                 $str .= $this->getReplacedStub('model/fieldNameAttr/ids.stub', [
                     'fieldName' => self::controlName($demo, true),
                     'relation' => self::controlName($demo, false),
-                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName),
+                    'relationTable' => $tableName,
                     'fieldNameList' => self::controlName($demo, false).'List',
                 ]) . "\n";
             }
@@ -135,7 +118,7 @@ class Crud extends Admin
                 $str .= $this->getReplacedStub('model/fieldNameAttr/id.stub', [
                     'fieldName' => self::controlName($demo, true),
                     'relation' => self::controlName($demo, false),
-                    'relationClass' => '\\app\\admin\\model\\' . self::controlName($tableName),
+                    'relationTable' => $tableName,
                     'fieldNameList' => self::controlName($demo, false).'List',
                 ]) . "\n";
             }
