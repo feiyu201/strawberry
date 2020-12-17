@@ -84,34 +84,37 @@ class Crud extends Admin
 
     public function buildModel($table)
     {
-
-        $tableColumns = $this->getTableColumn($table);
-        $relateTable = [];
-        //生成关联model
-        foreach ($tableColumns as $elt => $item) {
-            $demo = $item['field'];
-            $s = explode('_', $item['field']);
-            $tableName = null;
-            if (end($s) === 'ids') {
-                $tableName = str_replace('_ids', '', $demo);
+        $filedName = "../app/admin/model/" . self::controlName($table) . ".php";
+        if(!file_exists($filedName)){
+            $tableColumns = $this->getTableColumn($table);
+            $relateTable = [];
+            //生成关联model
+            foreach ($tableColumns as $elt => $item) {
+                $demo = $item['field'];
+                $s = explode('_', $item['field']);
+                $tableName = null;
+                if (end($s) === 'ids') {
+                    $tableName = str_replace('_ids', '', $demo);
+                }
+                if (endWith($demo, '_id')) {
+                    $tableName = str_replace('_id', '', $demo);
+                }
+    
+                if ($tableName) {
+                    $relateTable[$tableName] = $tableName;
+                    $this->buildModel($tableName);
+                }
             }
-            if (endWith($demo, '_id')) {
-                $tableName = str_replace('_id', '', $demo);
-            }
-
-            if ($tableName) {
-                $relateTable[$tableName] = $tableName;
-                $this->buildModel($tableName);
-            }
+            // 生成model
+            $modelFile = fopen($filedName, "w");
+    
+            fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
+                'className' => self::controlName($table),
+                'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
+            ]));
+            fclose($modelFile);
         }
-        // 生成model
-        $modelFile = fopen("../app/admin/model/" . self::controlName($table) . ".php", "w");
-
-        fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
-            'className' => self::controlName($table),
-            'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
-        ]));
-        fclose($modelFile);
+       
     }
     public function buildTableFiledNameAttrTpl($tableColumns)
     {
