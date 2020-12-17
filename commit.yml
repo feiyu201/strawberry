@@ -2,28 +2,40 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid 'e2d0e328c80dac3224a489569a2bbf2479b9d155'
-    oldFile: !uuid '209a7139449cd48b05000298efa8fb1ca32591d6'
-  /public/static:
-    newFile: !uuid '71fb1c4cc207353c5462d2e9f6e98ad91ded385c'
-    oldFile: !uuid 'fa1a0730b455e971f7d4a2dcc97e2117116e7672'
-  /public/static/lib:
-    newFile: !uuid '421adf303b6763b6013989882aa297c9c4f02ae1'
-    oldFile: !uuid '3e316d7680266649cf738a1a8e6ea4d12f94f84f'
-  /public/static/lib/layui:
-    newFile: !uuid 'ff3c6835541720188e7235467c736919b8dd6caa'
-    oldFile: !uuid '6327cdc7e831ce9fb1abd49fa7b1b11793706396'
-  /public/static/lib/layui/extend:
-    newFile: !uuid '17d12739dac567424b213d988b2176cbd62d29a4'
-    oldFile: !uuid '6849d2ed3e2b8f81695d43c3ee728f75349cb2a8'
-  /public/static/lib/layui/extend/selectD:
-    newFile: !uuid '3fd4d33deccd4c4a075464ef5e4b664711548dfc'
-    oldFile: !uuid '3062015a54deb43e74ecbcbbd8464b8936ea16ac'
-  /public/static/lib/layui/extend/selectD/selectD.js:
-    newFile: !uuid '74ab47d635f9c55a6ffc9c97ff3f2743032489cf'
-    oldFile: !uuid '8eb098c45b2252b0b83af638ad37527768622f55'
-gitCommitId: !uuid 'c2bdba864125478c29f7a8884487593a0cce7d5d'
+  /addons:
+    newFile: !uuid '9529f2e4d6a0f4616936d9cd36a89513555aef72'
+    oldFile: !uuid '7ae4624dc4139c4431848c04758692694d9a8c2c'
+  /addons/crud:
+    newFile: !uuid '920c2798bbcb5ebde976c63d149efa5624576922'
+    oldFile: !uuid 'ee34768b145aaa8c6fd2884d23179b6daf2d0b5c'
+  /addons/crud/tpl:
+    newFile: !uuid '748ea1efd240fc61a8c2d395acd93340de0c0ea7'
+    oldFile: !uuid '9eaf48d06aee811d2324a054591fd2724c9d3d9d'
+  /addons/crud/tpl/model:
+    newFile: !uuid '9339ad2b19aa33b24ced095d9b1f9b1018c2d397'
+    oldFile: !uuid 'a78e1abfb02bd892f370918267879699652962f3'
+  /addons/crud/tpl/model/fieldNameAttr:
+    newFile: !uuid 'a788e18a021d0fa0fedf3d378d48476c5ddcfaba'
+    oldFile: !uuid 'cab2413c4be8d4fdbdddfc9d5ece640aa6d0836c'
+  /addons/crud/tpl/model/fieldNameAttr/id.stub:
+    newFile: !uuid '0f12a74dd1cc243bd91c4025c552d3841e367b1d'
+    oldFile: !uuid 'fe2bd89746e750943b657be99285ebca4c630959'
+  /addons/crud/tpl/model/fieldNameAttr/ids.stub:
+    newFile: !uuid '0ab6a7eea1d7f6b776be4cc727c24ecf5e0a43f2'
+    oldFile: !uuid 'da851f4dd96758133a8d77874e913cc95ca4fbdc'
+  /app:
+    newFile: !uuid '71ed936b8729758cfc82e90bb3bbbbd98e367c31'
+    oldFile: !uuid '5e06b125f643769b346f97950784812fce67eb93'
+  /app/admin:
+    newFile: !uuid '5583b58826554d81839f44fb2211c01a4d264e06'
+    oldFile: !uuid 'f9727d9eebe0a7ffa4c9b86c2c98a59a179eced5'
+  /app/admin/controller:
+    newFile: !uuid '49326bf15af9f4315854fc35f468d7d04fc87ac8'
+    oldFile: !uuid '1ee66b7d3e8a3c204a34b0ea12699277265fac56'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid '01ba29f36284e98314cd17703828906a162d2fa5'
+    oldFile: !uuid '84e0503181b3268c80505fb32cbd4aabdb83abec'
+gitCommitId: !uuid 'ba6c4b85e58061a6a98699ac72d0daadb2152487'
 renames: {
   }
-revisionId: 197
+revisionId: 198
