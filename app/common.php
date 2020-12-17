@@ -1,4 +1,5 @@
 <?php
+
 // 应用公共文件
 /**
  * 生成随机数
@@ -252,5 +253,42 @@ if (!function_exists('cdnurl')) {
             $url = $domain . $url;
         }
         return $url;
+    }
+}
+
+if (!function_exists('__')) {
+
+    /**
+     * 获取语言变量值
+     * @param string $name 语言变量名
+     * @param array  $vars 动态变量值
+     * @param string $lang 语言
+     * @return mixed
+     */
+    function __($name, $vars = [], $lang = '')
+    {
+        if (is_numeric($name) || !$name) {
+            return $name;
+        }
+        if (!is_array($vars)) {
+            $vars = func_get_args();
+            array_shift($vars);
+            $lang = '';
+        }
+//        return $name;
+        return \think\facade\Lang::get($name, $vars, $lang);
+    }
+}
+
+if (!function_exists('var_export_short')) {
+
+    /**
+     * 返回打印数组结构
+     * @param string $var 数组
+     * @return string
+     */
+    function var_export_short($var)
+    {
+        return VarExporter::export($var);
     }
 }
