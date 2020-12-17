@@ -37,26 +37,17 @@
 		let okLayer = layui.okLayer;
 		let okUtils = layui.okUtils;
 		let layedit = layui.layedit;
+		
+  		let editorArr = {};
 
+		  
+  %s
+  %s
 		okLoading.close();
 
 		//laydate.render({elem: "#birthday", type: "datetime"});
 
-        var index = layedit.build('content',{
-            uploadImage:{
-                url:"{:url('admin/crud/upload')}",
-                type:'post'
-            }
-        }); //建立编辑器
-		form.verify({
-			//content富文本域中的lay-verify值
-            content: function(value) {
-                return layedit.sync(index);
-            }
-		});
-
 		form.on("submit(add)", function (data) {
-		    data.field.content = layedit.getContent(index);
 			okUtils.ajax("{:url('edit')}", "post", data.field, true).done(function (response) {
 				//console.log(response);
 				if(response.code==1){
@@ -84,8 +75,6 @@ layui.use(['upload','laydate'], function(){
   , laydate = layui.laydate
   ,upload = layui.upload;
 
-  %s
-  %s
 
   //普通图片上传
   var uploadInst = upload.render({

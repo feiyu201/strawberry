@@ -213,9 +213,9 @@ class Crud extends Admin
             if (end($s) === 'ids' || endWith($demo, '_id')) {
                 $fieldName = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
                 $className = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
-
+                $tableName = str_replace('_id', '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
-                    $str .= "\$$fieldName = (new \\app\\admin\\model\\$className())->select();";
+                    $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
                     $str .= "View::assign('$fieldName',\$$fieldName);";
                     $loadModel[] = $fieldName;
                 }
@@ -233,9 +233,9 @@ class Crud extends Admin
             if (end($s) === 'ids' || endWith($demo, '_id')) {
                 $fieldName = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
                 $className = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
-
+                $tableName = str_replace('_id', '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
-                    $str .= "\$$fieldName = (new \\app\\admin\\model\\$className())->select();";
+                    $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
                     $str .= "View::assign('$fieldName',\$$fieldName);";
                     $loadModel[] = $fieldName;
                 }
@@ -536,11 +536,11 @@ class Crud extends Admin
                 <div id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\"  ></div>
             </div>
         </div>";
-                } else if (explode('(', $item['type'])[0] === 'text') {
+                } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'],'content')) {
                     $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <textarea id=\"" . $item['field'] . "\" style=\"display: none;\"></textarea>
+      <textarea id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\"  lay-verify=\"" . $item['field'] . "\" style=\"display: none;\"></textarea>
     </div>
   </div>";
                 } else if (explode('(', $item['type'])[0] === 'datetime') {
@@ -649,11 +649,11 @@ class Crud extends Admin
     " . self::duoxuanedit($table, $item['field'], $item) . "
     </div>
 </div>";
-                } else if (explode('(', $item['type'])[0] === 'text') {
+                } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'],'content')) {
                     $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <textarea id=\"" . $item['field'] . "\" style=\"display: none;\">" . '{$' . "" . $table . "." . $item['field'] . "}</textarea>
+      <textarea id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\" style=\"display: none;\">" . '{$' . "" . $table . "." . $item['field'] . "}</textarea>
     </div>
   </div>";
                 } else if ($item['field'] === 'switch') {
@@ -761,11 +761,20 @@ class Crud extends Admin
             }
         }
         foreach ($list as $elts => $items) {
-            if (explode('(', $items['type'])[0] === 'text') {
+            if (explode('(', $items['type'])[0] === 'text' && endWith($items['field'],'content')) {
                 $str .= "
-                layui.use('layedit', function(){
-                  var layedit = layui.layedit;
-                  layedit.build('" . $items['field'] . "'); //建立编辑器
+                //创建{$items['field']}编辑器
+                editorArr['{$items['field']}'] = layedit.build('{$items['field']}',{
+                    uploadImage:{
+                        url:\"{:url('admin/crud/upload')}\",
+                        type:'post'
+                    }
+                });
+                form.verify({
+                    //content富文本域中的lay-verify值
+                    '{$items['field']}': function(value) {
+                        return layedit.sync(editorArr['{$items['field']}']);
+                    }
                 });";
             }
         }
@@ -830,11 +839,20 @@ class Crud extends Admin
         }
 
         foreach ($list as $elts => $items) {
-            if (explode('(', $items['type'])[0] === 'text') {
+            if (explode('(', $items['type'])[0] === 'text' && endWith($items['field'],'content')) {
                 $str .= "
-                layui.use('layedit', function(){
-                  var layedit = layui.layedit;
-                  layedit.build('" . $items['field'] . "'); //建立编辑器
+                //创建{$items['field']}编辑器
+                editorArr['{$items['field']}'] = layedit.build('{$items['field']}',{
+                    uploadImage:{
+                        url:\"{:url('admin/crud/upload')}\",
+                        type:'post'
+                    }
+                });
+                form.verify({
+                    //content富文本域中的lay-verify值
+                    '{$items['field']}': function(value) {
+                        return layedit.sync(editorArr['{$items['field']}']);
+                    }
                 });";
             }
         }
