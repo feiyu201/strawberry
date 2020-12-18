@@ -292,3 +292,17 @@ if (!function_exists('var_export_short')) {
         return VarExporter::export($var);
     }
 }
+
+//写入日志
+function write_log($remark ,$data, $path = '',$filename = ''){
+    $path = $path ? $path : app()->getRuntimePath().'cm_log/';
+    $filename = $filename ? $filename : date('Ymd').'.txt';
+    $data = is_array($data) ? json_encode($data,JSON_UNESCAPED_UNICODE) : $data;
+    if(!is_dir($path)){
+        mkdir($path,0777);
+    }
+    if($fp = fopen($path.$filename,"a")){
+        fwrite($fp,'['.date("Y-m-d H:i:s").'] '.$remark."\r\n".$data."\r\n");
+        fclose($fp);
+    }
+}
