@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'd19cfc0847e8e98ca7f2ef2bd9b23bc5ccebeccc'
-    oldFile: !uuid '7ddb07b7d9be5351b9bc19070911149117aeccfb'
+    newFile: !uuid '9943e55c48587c54d1113e8737594a862d55c61c'
+    oldFile: !uuid 'd19cfc0847e8e98ca7f2ef2bd9b23bc5ccebeccc'
   /app/api:
-    newFile: !uuid '9fe021f9dfe1c1a7c8e95d21da290f4660061551'
-    oldFile: !uuid 'c57fc62c94066d1dc12d239fb9fa442e606add0f'
+    newFile: !uuid '81aa395cd2c677257f56fceec095f4e2d1f9c671'
+    oldFile: !uuid '9fe021f9dfe1c1a7c8e95d21da290f4660061551'
   /app/api/controller:
-    newFile: !uuid '6af32c89c3ac483da469ae0e8f77ff1663256b65'
-    oldFile: !uuid 'ee374ff888c77c7ab19511ec21b3cfb9177ed336'
-  /app/api/controller/PayNotify.php:
-    newFile: !uuid '03821d22936dc91a70810bd1cb2b056b580fcfc8'
-    oldFile: !uuid '2decee15e226caf4a070e34821522cafd493e335'
-gitCommitId: !uuid 'd3d4713c757011f88334e36bff2538c7c165adde'
+    newFile: !uuid 'e41df58a3b069f8eff509db09795cbe34cf46bb7'
+    oldFile: !uuid '6af32c89c3ac483da469ae0e8f77ff1663256b65'
+  /app/api/controller/Pay.php:
+    newFile: !uuid '86657128f3e2cdcaaf89dc7ff746e4bad0e5e9dc'
+    oldFile: !uuid '41fc0a03e21e8dc156dd26b2de489573400e0ac0'
+gitCommitId: !uuid '0455be8194b84121c3de955b58ad2af1da653672'
 renames: {
   }
-revisionId: 202
+revisionId: 203
