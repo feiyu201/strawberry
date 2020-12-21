@@ -125,8 +125,7 @@ class PayNotify extends Api
                         $res = $this->pay_notify_all_order();
                         break;
                 }
-
-                if(!$res){
+                if($res){
                     //通知微信 回调失败
                     echo $this->wechat_notify_pay_result($res, 'fail');
                     exit;
@@ -191,6 +190,7 @@ class PayNotify extends Api
 
             //分配佣金 FIVE LEVEL
             $res = $this->assign_commission();
+
             if(!$res){
                 Db::rollback();
             }
@@ -292,41 +292,49 @@ class PayNotify extends Api
 
         return true;
     }
+
     //佣金分配
     private function assign_commission()
     {
-        //所有用户
-        $all_user = Db::name('user')->field('id,inviter_mem_info_id as pid,nickname')->where([
-            'status' => 1,
-        ])->select();
-        //等级对应的佣金表
-        $share_percent = Db::name('sharepercent')->select();
-        $user_id  = $this->all_order_info['userid'];
-        $max_level    = 5;//最多5级
-        //递归查询用户的上级
-        $users = get_downline($all_user, $user_id, $max_level);
-        $this->pay_log('用户的所有上级',$users);
-        //查询上级等级和对应的佣金比例
-        foreach ($users as $k => $v) {
-            $level_name = $v['level'] . 'level';
-            $poin       = empty($share_percent[0][$level_name]) ? 0 : $share_percent[0][$level_name];
-            //对应等级
-            if ($poin) {
-                $commission_log[] = [
-                    'user_id'        => $v['id'],
-                    'parent_id'      => $v['pid'],//父级
-                    'orderno'        => $this->order_no,//单号
-                    'pay_price'      => $this->total_fee,//金额
-                    'poin'           => $poin,//百分比
-                    'earnings_price' => $this->total_fee * $poin,
-                    'create_time'    => time(),
-                ];
+        $user_id  = 45;
+//        $user_id  = $this->all_order_info['userid'];
+        $parent_user_id = Db::name('user')->where(['status' => 1,'id'=>$user_id])->value('inviter_mem_info_id');
+        $commission_log = [];
+        //有上级
+        if($parent_user_id){
+            //所有用户
+            $all_user = Db::name('user')->field('id,inviter_mem_info_id as pid,nickname')->where([
+                'status' => 1,
+            ])->select();
+            //等级对应的佣金表
+            $share_percent = Db::name('sharepercent')->select();
+            $max_level    = 5;//最多5级
+            //递归查询用户的上级
+            $users = get_downline($all_user, $parent_user_id, $max_level);
+            $this->pay_log('用户的所有上级',$users);
+            //查询上级等级和对应的佣金比例
+            foreach ($users as $k => $v) {
+                $level_name = $v['level'] . 'level';
+                $poin       = empty($share_percent[0][$level_name]) ? 0 : $share_percent[0][$level_name];
+                //对应等级
+                if ($poin) {
+                    $commission_log[] = [
+                        'user_id'        => $v['pid'],
+                        'parent_id'      => Db::name('user')->where(['status' => 1,'id'=>$v['pid']])->value('inviter_mem_info_id'),//父级
+                        'orderno'        => $this->order_no,//单号
+                        'pay_price'      => $this->total_fee,//金额
+                        'poin'           => $poin,//百分比
+                        'earnings_price' => $this->total_fee * $poin,
+                        'create_time'    => time(),
+                    ];
+                }
             }
+
+            Db::name('earning')->insertAll($commission_log);
         }
 
         //记录给予上级佣金
         $this->pay_log('记录给予上级佣金',$commission_log);
-        Db::name('earning')->insertAll($commission_log);
         //更新账户余额
         $this->pay_log('分配佣金完毕,回调订单完成。', []);
         return true;
