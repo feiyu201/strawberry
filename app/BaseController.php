@@ -9,6 +9,13 @@ use think\Validate;
 use think\exception\HttpResponseException;
 use think\facade\Request;
 use think\Response;
+use think\facade\Config;
+use think\facade\View;
+
+/**
+ * 基本常量定义
+ */
+define('DS', DIRECTORY_SEPARATOR);
 
 /**
  * 控制器基础类
@@ -49,6 +56,9 @@ abstract class BaseController
         $this->app     = $app;
         $this->request = $this->app->request;
 
+        //获取网站基本配置
+        $site = Config::get('site');
+        View::assign('site',$site);
         // 控制器初始化
         $this->initialize();
     }
