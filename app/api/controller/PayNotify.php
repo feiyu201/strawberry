@@ -29,9 +29,12 @@ class PayNotify extends Api
     protected $order_type_symbol = '_';
     //订单类型
     protected $order_type;
+    //订单金额
+    protected $total_fee;
     //订单号 生成订单时随机生成带订单类型前缀
     protected $order_no;
-
+    //总表订单信息
+    protected $all_order_info;
     public function _initialize()
     {
         parent::_initialize();
@@ -136,14 +139,14 @@ class PayNotify extends Api
     //订单验证处理
     private function order_check(){
         //查询订单是否存在
-        $order_info = (new Order())->where([
+        $order_info = $this->all_order_info = (new Order())->where([
             'order_no' => $this->order_no,//订单号
             'status'   => (new Order())::UNPAID,//未付款
         ])->find();
         if(!$order_info){
             //查询不到订单
             //通知微信 记录日志
-            echo '查询不到订单/订单已经支付过了';
+            echo '查询不到总订单/订单已经支付过了';
         }
         if($order_info['total_price'] != $this->notify_data['total_fee']){
             //订单金额对应不上
@@ -159,6 +162,10 @@ class PayNotify extends Api
         //开启事务处理订单
         Db::startTrans();
         try{
+            //总订单处理
+            if(!$this->all_order_update()){
+                Db::rollback();
+            }
             //查询订单是否存在
             $where_order = [
                 'order_no' => $this->order_no,//订单号
@@ -176,7 +183,7 @@ class PayNotify extends Api
             Db::name('estate_report')->where($where_order)->update($update_data);//修改订单为已支付
 
             //分配佣金 FIVE LEVEL
-            $res = $this->assign_commission($order_info);
+            $res = $this->assign_commission();
             if(!$res){
                 Db::rollback();
             }
@@ -194,12 +201,16 @@ class PayNotify extends Api
         //开启事务处理订单
         Db::startTrans();
         try{
+            //总订单处理
+            if(!$this->all_order_update()){
+                Db::rollback();
+            }
             //查询订单是否存在
             $where_order = [
                 'order_no' => $this->order_no,//订单号
                 'status'   => 0,//未付款
             ];
-            $order_info = Db::name('estate_report')->where($where_order)->find();
+            $order_info = Db::name('agent_apply_record')->where($where_order)->find();
             if(!$order_info){
                 //查询不到订单
                 //通知微信 记录日志
@@ -211,7 +222,7 @@ class PayNotify extends Api
             Db::name('agent_apply_record')->where($where_order)->update($update_data);//修改订单为已支付
 
             //分配佣金 FIVE LEVEL
-            $res = $this->assign_commission($order_info);
+            $res = $this->assign_commission();
             if(!$res){
                 Db::rollback();
             }
@@ -228,34 +239,12 @@ class PayNotify extends Api
         //开启事务处理订单
         Db::startTrans();
         try{
-            //查询订单是否存在
-            $where_order = [
-                'order_no' => $this->order_no,//订单号
-                'status'   => 0,//未付款
-            ];
-            $order_info = Db::name('estate_report')->where($where_order)->find();
-            if(!$order_info){
-                //查询不到订单
-                //通知微信 记录日志
-                echo $this->wechat_notify_pay_result('查询不到AGENT订单/订单已经支付过了', 'fail');
+            //总订单处理
+            if(!$this->all_order_update()){
+                Db::rollback();
             }
-            $where_order = [
-                'order_no' => $this->order_no,//订单号
-                'status'   => (new Order())::UNPAID,//未付款
-            ];
-            $update_data = [
-                'status' => (new Order())::PAID,//已付款
-                'pay_way' => (new Order())::WECHAT_WAY,//支付方式
-                'is_settle' => 1,//是否结算
-                'trade_no' => $this->notify_data['transaction_id'],//支付流水号
-                'pay_time' => time(),//支付时间
-                'shop_money_time' => time(),//结算时间
-                'update_time' => time(),
-            ];
-            (new Order())->where($where_order)->update($update_data);//修改订单为已支付
-
             //分配佣金 FIVE LEVEL
-            $res = $this->assign_commission($order_info);
+            $res = $this->assign_commission();
             if(!$res){
                 Db::rollback();
             }
@@ -266,17 +255,64 @@ class PayNotify extends Api
         }
     }
 
+    //总订单更新
+    private function all_order_update(){
+
+        $where_order = [
+            'order_no' => $this->order_no,//订单号
+            'status'   => (new Order())::UNPAID,//未付款
+        ];
+        $update_data = [
+            'status' => (new Order())::PAID,//已付款
+            'pay_way' => (new Order())::WECHAT_WAY,//支付方式
+            'is_settle' => 1,//是否结算
+            'trade_no' => $this->notify_data['transaction_id'],//支付流水号
+            'pay_time' => time(),//支付时间
+            'shop_money_time' => time(),//结算时间
+            'update_time' => time(),
+        ];
+        $res = (new Order())->where($where_order)->update($update_data);//修改订单为已支付
+        if(!$res){
+            $this->pay_log('总订单更新失败',['$where_order'=>$where_order,'$update_data'=>$where_order]);
+            echo $this->wechat_notify_pay_result('总订单更新失败','fail');
+        }
+    }
     //佣金分配
-    private function assign_commission($order_info){
-        $user_id = $order_info['userid'];
+    private function assign_commission($order_info)
+    {
+        //所有用户
+        $all_user = Db::name('user')->field('id,inviter_mem_info_id as pid,nickname')->where([
+            'status' => 1,
+        ])->select();
+        //等级对应的佣金表
+        $share_percent = Db::name('sharepercent')->select();
+        $user_id  = $this->all_order_info['userid'];
+        $max_level    = 5;//最多5级
         //递归查询用户的上级
-
+        $users = get_downline($all_user, $user_id, $max_level);
+        $this->pay_log('用户的所有上级',$users);
         //查询上级等级和对应的佣金比例
+        foreach ($users as $k=>$v) {
+            $level_name = $v['level'].'level';
+            //对应等级
+            if($share_percent[$level_name]){
+                $poin = $share_percent[$level_name];
+                $commission_log[] = [
+                    'user_id' => $v['id'],
+                    'parent_id' => $v['pid'],//父级
+                    'orderno' => $this->order_no,//单号
+                    'pay_price' => $this->total_fee,//金额
+                    'poin' => $poin,//百分比
+                    'earnings_price' => $this->total_fee * $poin,
+                ];
+            }
+        }
 
-        //给予上级佣金
-        
+        //记录给予上级佣金
+        $this->pay_log('记录给予上级佣金',$commission_log);
+        Db::name('sharepercent')->insertAll($commission_log);
         //更新账户余额
-        $this->pay_log('分配佣金完毕,回调订单完成。',[]);
+        $this->pay_log('分配佣金完毕,回调订单完成。', []);
         return true;
     }
 

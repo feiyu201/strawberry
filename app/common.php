@@ -294,15 +294,38 @@ if (!function_exists('var_export_short')) {
 }
 
 //写入日志
-function write_log($remark ,$data, $path = '',$filename = ''){
-    $path = $path ? $path : app()->getRuntimePath().'cm_log/';
-    $filename = $filename ? $filename : date('Ymd').'.txt';
-    $data = is_array($data) ? json_encode($data,JSON_UNESCAPED_UNICODE) : $data;
-    if(!is_dir($path)){
-        mkdir($path,0777);
+if (!function_exists('write_log')) {
+    function write_log($remark ,$data, $path = '',$filename = ''){
+        $path = $path ? $path : app()->getRuntimePath().'cm_log/';
+        $filename = $filename ? $filename : date('Ymd').'.txt';
+        $data = is_array($data) ? json_encode($data,JSON_UNESCAPED_UNICODE) : $data;
+        if(!is_dir($path)){
+            mkdir($path,0777);
+        }
+        if($fp = fopen($path.$filename,"a")){
+            fwrite($fp,'['.date("Y-m-d H:i:s").'] '.$remark."\r\n".$data."\r\n");
+            fclose($fp);
+        }
     }
-    if($fp = fopen($path.$filename,"a")){
-        fwrite($fp,'['.date("Y-m-d H:i:s").'] '.$remark."\r\n".$data."\r\n");
-        fclose($fp);
+}
+
+
+// 递归方法
+//获取用户的所有下级ID
+//默认5级
+if (!function_exists('get_downline')) {
+    function get_downline($datas,$id,$max_level=5,$level=0){
+        $arr=array();
+        foreach ($datas as $key => $v) {
+            if($v['pid']==$id){  //pid为0的是顶级分类
+                $v['level'] = $level+1;
+                if ($v['level']  > $max_level){
+                    return $arr;
+                }
+                $arr[]=$v;
+                $arr = array_merge($arr,get_downline($datas,$v['id'],$max_level,$level+1));
+            }
+        }
+        return $arr;
     }
 }
