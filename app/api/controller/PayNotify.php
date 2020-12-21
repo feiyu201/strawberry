@@ -278,7 +278,7 @@ class PayNotify extends Api
         }
     }
     //佣金分配
-    private function assign_commission($order_info)
+    private function assign_commission()
     {
         //所有用户
         $all_user = Db::name('user')->field('id,inviter_mem_info_id as pid,nickname')->where([
