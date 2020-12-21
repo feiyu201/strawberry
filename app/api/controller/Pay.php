@@ -53,10 +53,10 @@ class Pay extends Api
         $param = request()->param();
 
         $order = [
-            'out_trade_no' => time(),
-            'body' => '小程序支付',
-            'total_fee' => '1',
-            'openid' => 'onkVf1FjWS5SBxxxxxxxx',
+              'out_trade_no' => $param['out_trade_no'],
+            'body' => $param['body'],
+            'total_fee' => $param['total_fee'],
+            'openid' => $param['openid'],
         ];
 
         $payres = hook('payhook', ['type'=>'wx_xcx','order'=>$order]);
