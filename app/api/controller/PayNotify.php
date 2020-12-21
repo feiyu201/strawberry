@@ -108,22 +108,29 @@ class PayNotify extends Api
                 $this->total_fee   = $this->notify_data['total_fee'] * 100;//总金额 微信单位是：分
                 //验证订单
                 if ($msg = $this->order_check()) {
-                    echo $this->wechat_notify_pay_result($msg,'fail');
-                    exit;
+                    return $this->wechat_notify_pay_result($msg,'fail');
                 }
                 //分别处理不同业务逻辑订单
                 $out_trade_no_explode = explode($this->order_type_symbol, $this->order_no);//分割订单号 符号分割
                 switch ($out_trade_no_explode[0]) {
                     case 'ES' : //房产预约支付订单
                         $this->order_type = 'ES';
-                        $this->pay_notify_estate_order();
+                        $res = $this->pay_notify_estate_order();
+                        break;
                     case 'AG' : //代理商支付订单
                         $this->order_type = 'AG';
-                        $this->pay_notify_agent_order();
+                        $res = $this->pay_notify_agent_order();
+                        break;
                     default : //普通订单操作
-                        $this->pay_notify_all_order();
+                        $res = $this->pay_notify_all_order();
+                        break;
                 }
 
+                if(!$res){
+                    //通知微信 回调失败
+                    echo $this->wechat_notify_pay_result($res, 'fail');
+                    exit;
+                }
                 //通知微信 回调成功
                 echo $this->wechat_notify_pay_result('已经成功收到回调信息了', 'success');
                 exit;
@@ -146,12 +153,12 @@ class PayNotify extends Api
         if(!$order_info){
             //查询不到订单
             //通知微信 记录日志
-            echo '查询不到总订单/订单已经支付过了';
+            return '查询不到总订单/订单已经支付过了';
         }
         if($order_info['total_price'] != $this->notify_data['total_fee']){
             //订单金额对应不上
             //通知微信 记录日志
-            echo '与实际订单支付金额不符';
+            return '与实际订单支付金额不符';
         }
         return false;
     }
@@ -175,7 +182,7 @@ class PayNotify extends Api
             if(!$order_info){
                 //查询不到订单
                 //通知微信 记录日志
-                echo $this->wechat_notify_pay_result('查询不到ESTATE订单/订单已经支付过了', 'fail');
+                return '查询不到ESTATE订单/订单已经支付过了';
             }
             $update_data = [
                 'status' => 1,
@@ -189,8 +196,10 @@ class PayNotify extends Api
             }
             //提交事务
             Db::commit();
+            return false;
         }catch (\Exception $e) {
             Db::rollback();
+            return 'ESTATE订单错误' . $e;
         }
 
     }
@@ -214,7 +223,7 @@ class PayNotify extends Api
             if(!$order_info){
                 //查询不到订单
                 //通知微信 记录日志
-                echo $this->wechat_notify_pay_result('查询不到AGENT订单/订单已经支付过了', 'fail');
+                return '查询不到AGENT订单/订单已经支付过了';
             }
             $update_data = [
                 'status' => 1,
@@ -228,8 +237,10 @@ class PayNotify extends Api
             }
             //提交事务
             Db::commit();
+            return false;
         }catch (\Exception $e) {
             Db::rollback();
+            return 'AGENT订单错误' . $e;
         }
     }
 
@@ -250,8 +261,10 @@ class PayNotify extends Api
             }
             //提交事务
             Db::commit();
+            return false;
         }catch (\Exception $e) {
             Db::rollback();
+            return '总订单错误' . $e;
         }
     }
 
@@ -274,8 +287,10 @@ class PayNotify extends Api
         $res = (new Order())->where($where_order)->update($update_data);//修改订单为已支付
         if(!$res){
             $this->pay_log('总订单更新失败',['$where_order'=>$where_order,'$update_data'=>$where_order]);
-            echo $this->wechat_notify_pay_result('总订单更新失败','fail');
+            return '总订单更新失败';
         }
+
+        return true;
     }
     //佣金分配
     private function assign_commission()
@@ -292,25 +307,26 @@ class PayNotify extends Api
         $users = get_downline($all_user, $user_id, $max_level);
         $this->pay_log('用户的所有上级',$users);
         //查询上级等级和对应的佣金比例
-        foreach ($users as $k=>$v) {
-            $level_name = $v['level'].'level';
+        foreach ($users as $k => $v) {
+            $level_name = $v['level'] . 'level';
+            $poin       = empty($share_percent[0][$level_name]) ? 0 : $share_percent[0][$level_name];
             //对应等级
-            if($share_percent[$level_name]){
-                $poin = $share_percent[$level_name];
+            if ($poin) {
                 $commission_log[] = [
-                    'user_id' => $v['id'],
-                    'parent_id' => $v['pid'],//父级
-                    'orderno' => $this->order_no,//单号
-                    'pay_price' => $this->total_fee,//金额
-                    'poin' => $poin,//百分比
+                    'user_id'        => $v['id'],
+                    'parent_id'      => $v['pid'],//父级
+                    'orderno'        => $this->order_no,//单号
+                    'pay_price'      => $this->total_fee,//金额
+                    'poin'           => $poin,//百分比
                     'earnings_price' => $this->total_fee * $poin,
+                    'create_time'    => time(),
                 ];
             }
         }
 
         //记录给予上级佣金
         $this->pay_log('记录给予上级佣金',$commission_log);
-        Db::name('sharepercent')->insertAll($commission_log);
+        Db::name('earning')->insertAll($commission_log);
         //更新账户余额
         $this->pay_log('分配佣金完毕,回调订单完成。', []);
         return true;
@@ -343,6 +359,6 @@ class PayNotify extends Api
         }
         $res = "<xml><return_code><![CDATA[$status]]></return_code><return_msg><![CDATA[$msg]]></return_msg></xml>";
         $this->pay_log('通知微信回调结果',$res);
-        echo $res;
+        return $res;
     }
 }
