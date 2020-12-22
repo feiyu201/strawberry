@@ -299,7 +299,7 @@ class PayNotify extends Api
     //佣金分配
     private function assign_commission()
     {
-        $user_id  = $this->order_info['userid'];//子订单表用户ID
+        $user_id  = $this->order_info['user_id'];//子订单表用户ID
 //        $user_id  = $this->all_order_info['userid'];//总订单表用户ID
         $parent_user_id = Db::name('user')->where(['status' => 1,'id'=>$user_id])->value('inviter_mem_info_id');
         $commission_log = [];
