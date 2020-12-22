@@ -35,6 +35,8 @@ class PayNotify extends Api
     protected $order_no;
     //总表订单信息
     protected $all_order_info;
+    //子订单信息表
+    protected $order_info;
     public function _initialize()
     {
         parent::_initialize();
@@ -105,11 +107,11 @@ class PayNotify extends Api
                 //执行业务逻辑改变订单状态等操作
                 $this->notify_data = $result;//array 结果
                 $this->order_no    = $this->notify_data['out_trade_no'];//对外订单号
-                $this->total_fee   = $this->notify_data['total_fee'] * 100;//总金额 微信单位是：分
-                //验证订单
-                if ($msg = $this->order_check()) {
-                    return $this->wechat_notify_pay_result($msg,'fail');
-                }
+                $this->total_fee   = $this->notify_data['total_fee'];//总金额 微信单位是：分
+//                //验证总订单
+//                if ($msg = $this->order_check()) {
+//                    return $this->wechat_notify_pay_result($msg,'fail');
+//                }
                 //分别处理不同业务逻辑订单
                 $out_trade_no_explode = explode($this->order_type_symbol, $this->order_no);//分割订单号 符号分割
                 switch ($out_trade_no_explode[0]) {
@@ -122,7 +124,8 @@ class PayNotify extends Api
                         $res = $this->pay_notify_agent_order();
                         break;
                     default : //普通订单操作
-                        $res = $this->pay_notify_all_order();
+//                        $res = $this->pay_notify_all_order();
+                        $res = '订单/类型不存在';
                         break;
                 }
                 if($res){
@@ -168,16 +171,16 @@ class PayNotify extends Api
         //开启事务处理订单
         Db::startTrans();
         try{
-            //总订单处理
-            if(!$this->all_order_update()){
-                Db::rollback();
-            }
+//            //总订单处理
+//            if(!$this->all_order_update()){
+//                Db::rollback();
+//            }
             //查询订单是否存在
             $where_order = [
                 'order_no' => $this->order_no,//订单号
                 'status'   => 0,//未付款
             ];
-            $order_info = Db::name('estate_report')->where($where_order)->find();
+            $order_info = $this->order_info = Db::name('estate_report')->where($where_order)->find();
             if(!$order_info){
                 //查询不到订单
                 //通知微信 记录日志
@@ -210,16 +213,16 @@ class PayNotify extends Api
         //开启事务处理订单
         Db::startTrans();
         try{
-            //总订单处理
-            if(!$this->all_order_update()){
-                Db::rollback();
-            }
+//            //总订单处理
+//            if(!$this->all_order_update()){
+//                Db::rollback();
+//            }
             //查询订单是否存在
             $where_order = [
                 'order_no' => $this->order_no,//订单号
                 'status'   => 0,//未付款
             ];
-            $order_info = Db::name('agent_apply_record')->where($where_order)->find();
+            $order_info = $this->order_info = Db::name('agent_apply_record')->where($where_order)->find();
             if(!$order_info){
                 //查询不到订单
                 //通知微信 记录日志
@@ -296,8 +299,8 @@ class PayNotify extends Api
     //佣金分配
     private function assign_commission()
     {
-        $user_id  = 45;
-//        $user_id  = $this->all_order_info['userid'];
+        $user_id  = $this->order_info['userid'];//子订单表用户ID
+//        $user_id  = $this->all_order_info['userid'];//总订单表用户ID
         $parent_user_id = Db::name('user')->where(['status' => 1,'id'=>$user_id])->value('inviter_mem_info_id');
         $commission_log = [];
         //有上级
