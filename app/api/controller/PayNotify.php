@@ -306,7 +306,7 @@ class PayNotify extends Api
         //有上级
         if($parent_user_id){
             //所有用户
-            $all_user = Db::name('user')->field('id,inviter_mem_info_id as pid,nickname')->where([
+            $all_user = Db::name('user')->field('id,inviter_mem_info_id as pid,nickname,money')->where([
                 'status' => 1,
             ])->select();
             //等级对应的佣金表
@@ -321,13 +321,25 @@ class PayNotify extends Api
                 $poin       = empty($share_percent[0][$level_name]) ? 0 : $share_percent[0][$level_name];
                 //对应等级
                 if ($poin) {
+                    $v['money'] = $v['money']?? 0;
+                    $earnings_price = ($this->total_fee * $poin);
+                    $total          = ($v['money'] + $earnings_price);
+                    //更新账户余额
+                    Db::name('user')->where('id', $v['pid'])->update(['money' => $total]);
+                    $this->pay_log('账户佣金:', [
+                        $v['nickname'] => [//昵称
+                            '账户之前余额' => $v['money'],
+                            '增加余额'    => $earnings_price,
+                            '更新之后余额' => $total,
+                        ],
+                    ]);
                     $commission_log[] = [
                         'user_id'        => $v['pid'],
                         'parent_id'      => Db::name('user')->where(['status' => 1,'id'=>$v['pid']])->value('inviter_mem_info_id'),//父级
                         'orderno'        => $this->order_no,//单号
                         'pay_price'      => $this->total_fee,//金额
                         'poin'           => $poin,//百分比
-                        'earnings_price' => $this->total_fee * $poin,
+                        'earnings_price' => $earnings_price,//佣金
                         'create_time'    => time(),
                     ];
                 }
@@ -338,7 +350,6 @@ class PayNotify extends Api
 
         //记录给予上级佣金
         $this->pay_log('记录给予上级佣金',$commission_log);
-        //更新账户余额
         $this->pay_log('分配佣金完毕,回调订单完成。', []);
         return true;
     }
