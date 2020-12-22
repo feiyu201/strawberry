@@ -111,8 +111,7 @@ class Crud extends Admin
                     'relationTable' => $tableName,
                     'fieldNameList' => self::controlName($demo, false).'List',
                 ]) . "\n";
-            }
-            if (endWith($demo, '_id')) {
+            }else if (endWith($demo, '_id')) {
                 $tableName = str_replace('_id', '', $demo);
 
                 $str .= $this->getReplacedStub('model/fieldNameAttr/id.stub', [
@@ -121,8 +120,7 @@ class Crud extends Admin
                     'relationTable' => $tableName,
                     'fieldNameList' => self::controlName($demo, false).'List',
                 ]) . "\n";
-            }
-             if (startWith($demo, 'set')) {
+            }else if (startWith($demo, 'set')) {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -134,8 +132,7 @@ class Crud extends Admin
                     'otherFieldName'=>$demo.'_name',
                     'data'=>var_export($data,true)
                 ]) . "\n";
-            }
-             if (startWith($demo, 'select')) {
+            }else if (startWith($demo, 'select')) {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -147,8 +144,7 @@ class Crud extends Admin
                     'otherFieldName'=>$demo.'_name',
                     'data'=>var_export($data,true)
                 ]) . "\n";
-            }
-             if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
+            }else if (explode('(', $item['type'])[0] === 'enum') {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -160,20 +156,16 @@ class Crud extends Admin
                     'otherFieldName'=>$demo.'_name',
                     'data'=>var_export($data,true)
                 ]) . "\n";
-            }
-
-            if (endWith($demo, 'time') || endWith($demo, '_at')) {
+            }else if (endWith($demo, 'time') || endWith($demo, '_at')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
                     'fieldName' => self::controlName($demo, true),
                 ]) . "\n";
-            }
-            if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
+            }else if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/imgs.stub', [
                     'fieldName' => self::controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
-            }
-            if (endWith($demo, 'img') || endWith($demo, 'image')) {
+            }else if (endWith($demo, 'img') || endWith($demo, 'image')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/img.stub', [
                     'fieldName' => self::controlName($demo, true),
                     'delimiter' => '|',
@@ -290,7 +282,7 @@ class Crud extends Admin
                 ]
             ];
             //生成菜单
-            Menu::create($menu);
+            // Menu::create($menu);
 
 
             // 生成controller
