@@ -107,7 +107,7 @@ class PayNotify extends Api
                 //执行业务逻辑改变订单状态等操作
                 $this->notify_data = $result;//array 结果
                 $this->order_no    = $this->notify_data['out_trade_no'];//对外订单号
-                $this->total_fee   = $this->notify_data['total_fee'];//总金额 微信单位是：分
+                $this->total_fee   = ($this->notify_data['total_fee'] / 100);//总金额 微信单位是：分
 //                //验证总订单
 //                if ($msg = $this->order_check()) {
 //                    return $this->wechat_notify_pay_result($msg,'fail');
