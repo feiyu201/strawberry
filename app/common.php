@@ -328,16 +328,16 @@ if (!function_exists('write_log')) {
 //获取用户的所有下级ID
 //默认5级
 if (!function_exists('get_downline')) {
-    function get_downline($datas,$id,$max_level=5,$level=0){
+    function get_downline($datas,$pid,$max_level=5,$level=0){
         $arr=array();
         foreach ($datas as $key => $v) {
-            if($v['pid'] == $id && $v['pid'] != 0){  //pid为0的是顶级分类
+            if($v['id'] == $pid){  //pid为0的是顶级分类
                 $v['level'] = $level+1;
                 if ($v['level']  > $max_level){
                     return $arr;
                 }
                 $arr[]=$v;
-                $arr = array_merge($arr,get_downline($datas,$v['id'],$max_level,$level+1));
+                $arr = array_merge($arr,get_downline($datas,$v['pid'],$max_level,$level+1));
             }
         }
         return $arr;
