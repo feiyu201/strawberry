@@ -112,7 +112,6 @@ class PayNotify extends Api
 //                if ($msg = $this->order_check()) {
 //                    return $this->wechat_notify_pay_result($msg,'fail');
 //                }
-                dd($this->assign_commission());
                 //分别处理不同业务逻辑订单
                 $out_trade_no_explode = explode($this->order_type_symbol, $this->order_no);//分割订单号 符号分割
                 switch ($out_trade_no_explode[0]) {
@@ -336,7 +335,8 @@ class PayNotify extends Api
                     ]);
                     $commission_log[] = [
                         'user_id'        => $v['id'],
-                        'parent_id'      => Db::name('user')->where(['status' => 1,'id'=>$v['pid']])->value('inviter_mem_info_id'),//父级
+                        'parent_id'      => Db::name('user')->where(['id'=>$v['id']])->value('inviter_mem_info_id'),//父级
+//                        'order_user_id'        => $user_id,//下单人USER ID 需要是的话去掉注释 表增加这个字段就行了
                         'orderno'        => $this->order_no,//单号
                         'pay_price'      => $this->total_fee,//金额
                         'poin'           => $poin,//百分比
