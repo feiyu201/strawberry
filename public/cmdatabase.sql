@@ -438,6 +438,26 @@ ALTER TABLE `cm_market`
 --
 ALTER TABLE `cm_wxapp`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- 转储表的索引
+--
+
+--
+-- 表的索引 `cm_test_name`
+--
+ALTER TABLE `cm_test_name`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- 转储表的索引
+--
+
+--
+-- 表的索引 `cm_test1_name`
+--
+ALTER TABLE `cm_test1_name`
+  ADD PRIMARY KEY (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
