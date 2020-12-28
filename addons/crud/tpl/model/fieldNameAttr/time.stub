@@ -1,6 +1,11 @@
 public function get{%fieldName%}Attr($value)
 {
-    return date('Y-m-d H:i:s',$value);
+    if($value){
+        return date('Y-m-d H:i:s',$value);
+    }else{
+        return null;
+    }
+   
 }
 public function set{%fieldName%}Attr($value)
 {
