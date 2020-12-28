@@ -44,7 +44,7 @@ http://caomei.shiliucrm.com/
 
 3、修改runtime config public addons文件包权限777（如果是windows本地安装的话可以先忽略）
 
-4、宝塔别忘了配置网站的伪静态为thinkphp的规则.
+4、宝塔别忘了配置网站的伪静态为thinkphp的规则.宝塔要安装fileinfo扩展，否则图片上传会报错。
 
 5、执行在线安装。www.xxx.com/install.php 注意前面是你自己的在线网址或者本地网址。
 
