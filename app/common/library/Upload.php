@@ -11,10 +11,9 @@ use think\File;
 use think\Hook;
 use think\facade\Db;
 
-define('DS', DIRECTORY_SEPARATOR);
-defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . DS);
-defined('ROOT_PATH') or define('ROOT_PATH', dirname(realpath(APP_PATH)) . DS);
-defined('RUNTIME_PATH') or define('RUNTIME_PATH', ROOT_PATH . 'runtime' . DS);
+defined('APP_PATH') or define('APP_PATH', dirname($_SERVER['SCRIPT_FILENAME']) . DIRECTORY_SEPARATOR);
+defined('ROOT_PATH') or define('ROOT_PATH', dirname(realpath(APP_PATH)) . DIRECTORY_SEPARATOR);
+defined('RUNTIME_PATH') or define('RUNTIME_PATH', ROOT_PATH . 'runtime' . DIRECTORY_SEPARATOR);
 /**
  * 文件上传类
  */
@@ -177,7 +176,7 @@ class Upload
      */
     public function clean($chunkid)
     {
-        $iterator = new \GlobIterator($this->chunkDir . DS . $chunkid . '-*', FilesystemIterator::KEY_AS_FILENAME);
+        $iterator = new \GlobIterator($this->chunkDir . DIRECTORY_SEPARATOR . $chunkid . '-*', FilesystemIterator::KEY_AS_FILENAME);
         $array = iterator_to_array($iterator);
         foreach ($array as $index => &$item) {
             $sourceFile = $item->getRealPath() ?: $item->getPathname();
@@ -196,7 +195,7 @@ class Upload
      */
     public function merge($chunkid, $chunkcount, $filename)
     {
-        $filePath = $this->chunkDir . DS . $chunkid;
+        $filePath = $this->chunkDir . DIRECTORY_SEPARATOR . $chunkid;
 //        var_dump($chunkid);
 //        var_dump($chunkcount);
 //        var_dump($filename);
@@ -280,7 +279,7 @@ class Upload
 
         $destDir = RUNTIME_PATH . 'chunks';
         $fileName = $chunkid . "-" . $chunkindex . '.part';
-        $destFile = $destDir . DS . $fileName;
+        $destFile = $destDir . DIRECTORY_SEPARATOR . $fileName;
         if (!is_dir($destDir)) {
             @mkdir($destDir, 0755, true);
         }
@@ -313,8 +312,8 @@ class Upload
         $uploadDir = substr($savekey, 0, strripos($savekey, '/') + 1);
         $fileName = substr($savekey, strripos($savekey, '/') + 1);
 
-//        $destDir = ROOT_PATH . 'public' . str_replace('/', DS, $uploadDir);
-        $storage = config::get('filesystem.disks.public.url') . str_replace('/', DS, $uploadDir);
+//        $destDir = ROOT_PATH . 'public' . str_replace('/', DIRECTORY_SEPARATOR, $uploadDir);
+        $storage = config::get('filesystem.disks.public.url') . str_replace('/', DIRECTORY_SEPARATOR, $uploadDir);
         $destDir = ROOT_PATH . 'public' . $storage;
         $sha1 = sha1($savekey);
 
