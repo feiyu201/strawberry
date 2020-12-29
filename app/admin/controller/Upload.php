@@ -112,9 +112,8 @@ class Upload extends BaseController
     {
         //钩子事件 存储插件
         Event::listen('Storage', 'addons\qiniu_storage\event\Storage');
-        $hook_res = event('Storage');
+        $hook_res = event('Storage')[0];
         if ($hook_res) {
-            $hook_res  = $hook_res[0];
             $url       = $hook_res['url'];
             $storage   = $hook_res['storage'];
             $savename  = $hook_res['fileName'];
@@ -126,9 +125,8 @@ class Upload extends BaseController
             $savename  = \think\facade\Filesystem::disk('public')->putFile('attachment', $file);
             $url = $file_path = 'storage/' . $savename;
             $storage = 'localhost';
-            $mimetype  = mime_content_type($file_path);  //mime_content_type 5.3已经废弃
+            $mimetype  = $file->getOriginalExtension();  //mime_content_type 5.3已经废弃
         }
-
         $add['url'] = $url;
         $add['storage'] = $storage;
         $add['filesize'] = filesize($file_path);
@@ -268,11 +266,10 @@ class Upload extends BaseController
             //合并分片文件
             try {
                 $attachment = $upload->merge($chunkid, $chunkcount, $filename);
-                dd($attachment);
             } catch (UploadException $e) {
                 $this->error($e->getMessage());
             }
-//            $this->success(__('Uploaded successful'), '', ['url' => $attachment->url, 'fullurl' => cdnurl($attachment->url, true)]);
+            $this->success(__('Uploaded successful'), '', ['url' => $attachment->url, 'fullurl' => cdnurl($attachment->url, true)]);
         } elseif ($action == 'clean') {
             //删除冗余的分片文件
             try {
