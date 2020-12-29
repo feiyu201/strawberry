@@ -208,10 +208,10 @@
         // });
 
         // 添加“添加文件”的按钮，
-        uploader.addButton({
-            id: '#filePicker2',
-            label: '继续添加'
-        });
+        // uploader.addButton({
+        //     id: '#filePicker2',
+        //     label: '继续添加'
+        // });
 
         uploader.on('ready', function() {
             window.uploader = uploader;

@@ -28,14 +28,15 @@ class Login extends BaseController
     	if(Session::has('admin')){
     		$this->error('你已登陆','index/index');
     	}
-    	$captcha = $this->request->param('captcha');
     	$username = $this->request->param('username');
     	$password = $this->request->param('password');
     	$keep_login = $this->request->param('keep_login');
-    	if(!captcha_check($captcha)){
-    		// 验证失败
-    		$this->error('验证码错误');
-    	};
+    	//拖动验证
+//      $captcha = $this->request->param('captcha');
+//    	if(!captcha_check($captcha)){
+//    		// 验证失败
+//    		$this->error('验证码错误');
+//    	};
     	
     	$admininfo = Db::name('admin')->where('username',$username)->find();
     	if(empty($admininfo)){
