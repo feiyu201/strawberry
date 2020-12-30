@@ -205,7 +205,7 @@ class Crud extends Admin
             if (end($s) === 'ids' || endWith($demo, '_id')) {
                 $fieldName = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
                 $className = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
-                $tableName = str_replace('_id', '', $demo);
+                $tableName = str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
                     $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
                     $str .= "View::assign('$fieldName',\$$fieldName);";
@@ -225,7 +225,7 @@ class Crud extends Admin
             if (end($s) === 'ids' || endWith($demo, '_id')) {
                 $fieldName = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
                 $className = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
-                $tableName = str_replace('_id', '', $demo);
+                $tableName = str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
                     $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
                     $str .= "View::assign('$fieldName',\$$fieldName);";
