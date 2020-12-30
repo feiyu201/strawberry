@@ -249,6 +249,15 @@
                 </form>
             </div>
             {/volist}
+            <!--显示地图DEMO 哪里需要就用这个就行了-->
+            <div class="map">
+                {if $item.group == 'map'}
+                <div class="baidu_map" style="color: grey">
+                    <b><a href="stadmin.shiliucrm.com/admin/general.Config/baidu_map.html" target="_blank">百度地图DEMO</a></b>
+                    <i style="color: red;font-size: 12px;">API文档：http://lbsyun.baidu.com/jsdemo.htm#a1_2</i>
+                </div>
+                {/if}
+            </div>
         </div>
     </div>
     <!--js逻辑-->
@@ -268,7 +277,6 @@
 
         })
     </script>
-
 </div>
 </body>
 </html>

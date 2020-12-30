@@ -142,7 +142,7 @@
         uploader = WebUploader.create({
             pick: {
                 id: '#filePicker',//指定选择文件的按钮容器
-                label: '点击选择图片',
+                label: '点击选择文件',
                 multiple:false //是否开起同时选择多个文件能力
             },
             //文件上传请求的参数表，每次发送都会发送此对象中的参数
