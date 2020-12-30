@@ -306,4 +306,9 @@ class Config extends BaseController
         $fieldList = Db::query($sql, [$dbname, $table]);
         $this->success("", null, ['fieldList' => $fieldList]);
     }
+
+    public function baidu_map(){
+
+        return view();
+    }
 }
