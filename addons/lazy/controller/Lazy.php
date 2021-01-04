@@ -322,10 +322,10 @@ class Lazy extends AddonBase
         }
         $str = "";
         if ($tableModel) {
-            $str .= '$result["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$result["' . $tableModel . '_id"])->field(\'username\')->find()[\'username\'];';
+            $str .= '$result["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$result["' . $tableModel . '_id"])->field(\'name\')->find()[\'name\'];';
         }
         if ($tableModels) {
-            $str .= "\r\n" . '        $result["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$result["' . $tableModels . '_ids"])]])->column(\'username\'));';
+            $str .= "\r\n" . '        $result["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$result["' . $tableModels . '_ids"])]])->column(\'name\'));';
         }
         return $str;
     }
@@ -346,10 +346,10 @@ class Lazy extends AddonBase
         }
         $str = 'foreach($result as $elt => $item){' . "\r\n";
         if ($tableModel) {
-            $str .= "\r\n" . '            $result[$elt]["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$item["' . $tableModel . '_id"])->field(\'username\')->find()[\'username\'];';
+            $str .= "\r\n" . '            $result[$elt]["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$item["' . $tableModel . '_id"])->field(\'name\')->find()[\'name\'];';
         }
         if ($tableModels) {
-            $str .= "\r\n" . '            $result[$elt]["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$item["' . $tableModels . '_ids"])]])->column(\'username\'));';
+            $str .= "\r\n" . '            $result[$elt]["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$item["' . $tableModels . '_ids"])]])->column(\'name\'));';
         }
         $str .= "\r\n" . '        }';
         return $str;
