@@ -126,7 +126,7 @@ class %s extends Api
      * @ApiRoute    (/api/%s/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      * @param   int page &nbsp; 第几页 Yes
-     * @param   int page &nbsp; 显示条数 Yes
+     * @param   int limit &nbsp; 显示条数 Yes
      %s
      * @return   int code &nbsp; 返回参数 200
      * @return   string message &nbsp; 返回信息 successful
