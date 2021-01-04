@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '48c1eeea84c5f4458c32c24378213eab63a52a40'
-    oldFile: !uuid 'ac9fa2a0a740068779f9fad5222e7873d9346b2c'
+    newFile: !uuid '21d3a0e7c32c77e3b4ed19c052c4985c4d58bd3d'
+    oldFile: !uuid '48c1eeea84c5f4458c32c24378213eab63a52a40'
   /addons/lazy:
-    newFile: !uuid '532fbf5a36cf28a89aa45c1c08581e51342d0dc5'
-    oldFile: !uuid '47f840cbdaa91c68459a3845f52ed6831da6dcdf'
+    newFile: !uuid 'db3d5ad3b20c0e5571c223576e2d1148de0b508c'
+    oldFile: !uuid '532fbf5a36cf28a89aa45c1c08581e51342d0dc5'
   /addons/lazy/controller:
-    newFile: !uuid '5f25f92defeb52b3a2b037dad750611de7a017f7'
-    oldFile: !uuid '4d5a95fa0e89b69161a2c5bef9db1b5fdfa18c39'
+    newFile: !uuid 'd8758dd1e279326a54c7464311763f771735926b'
+    oldFile: !uuid '5f25f92defeb52b3a2b037dad750611de7a017f7'
   /addons/lazy/controller/Lazy.php:
-    newFile: !uuid '8c2cb6056c5a7834b7ad2fb93ae8953efc6d28a4'
-    oldFile: !uuid '6e3413b7382f368ad1d15f3611162c36984d7755'
-gitCommitId: !uuid 'fc21a0aaeca2209fa2c3a5ad06776e9c749ee56b'
+    newFile: !uuid '5461ad7ab423be1e1bdffbf3fef4175980392d9b'
+    oldFile: !uuid '8c2cb6056c5a7834b7ad2fb93ae8953efc6d28a4'
+gitCommitId: !uuid 'f8aba9537b4733558ad75e1f3865855ed31f0b8d'
 renames: {
   }
-revisionId: 227
+revisionId: 228
