@@ -300,7 +300,7 @@ class Lazy extends AddonBase
             if (strpos($v['field'], 'time')) {
                 $str = $str . '        if (request()->param("start' . $v["field"] . '") && request()->param("end' . $v["field"] . '"))$where["' . $v["field"] . '"] = [[\'>=\', request()->param("start' . $v["field"] . '")], [\'<=\', request()->param("end' . $v["field"] . '")], \'and\'];' . "\r\n";
             } else {
-                $str = $str . '        if (' . '$' . $v["field"] . ')$where[] = ['$v["field"]', \'like\', \'%\' .$' . $v["field"] . '. \'%\'];' . "\r\n";
+                $str = $str . '        if (' . '$' . $v["field"] . ')$where[] = [\'$v["field"]\', \'like\', \'%\' .$' . $v["field"] . '. \'%\'];' . "\r\n";
             }
         }
         return $str;
