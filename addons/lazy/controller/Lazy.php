@@ -325,7 +325,7 @@ class Lazy extends AddonBase
             $str .= '$result["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$result["' . $tableModel . '_id"])->field(\'name\')->find()[\'name\'];';
         }
         if ($tableModels) {
-            $str .= "\r\n" . '        $result["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$result["' . $tableModels . '_ids"])]])->column(\'name\'));';
+            $str .= "\r\n" . '        $result["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where([['id', 'in',explode(",",$result["' . $tableModels . '_ids"])]])->column(\'name\'));';
         }
         return $str;
     }
