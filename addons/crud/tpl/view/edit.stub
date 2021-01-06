@@ -43,7 +43,7 @@
 	//集成插件
 	.extend({%extendAddons%})
 	//使用插件
-	.use({%editAddonUsed%}, function () {
+	.use({%layuiAddonUsed%}, function () {
 		{%varInit%}
 		
   		let editorArr = {};

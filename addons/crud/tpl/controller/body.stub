@@ -38,7 +38,9 @@ class {%className%} extends AdminBase
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
    		$count = $this->model->count();
-   		$data = $this->model->with({%relations%})->page($page,$limit)->select();
+   		$data = $this->model->with({%relations%})
+		   {%action%}
+		   ->page($page,$limit)->select();
    		return json([
 				'code'=> 0,
 				'count'=> $count,

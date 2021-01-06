@@ -8,12 +8,18 @@
     <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
 </head>
 <body>
-<div class="ok-body">
-    <!--模糊搜索区域-->
-    <div class="layui-row">
-
+<div class="layui-fluid ok-body" style="padding:10px;">
+    <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" lay-filter="search-form">
+       <div class="layui-form-item" >
+            {%searchForm%}
+             <div class="layui-inline">
+                <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
+                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
+                </button>
+            </div>
+        </div>
     </div>
-    <!--数据表格-->
+     <!--数据表格-->
     <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
 </div>
 <!--js逻辑-->
@@ -28,12 +34,10 @@
         let okUtils = layui.okUtils;
         let okMock = layui.okMock;
         let $ = layui.jquery;
+        
 
         okLoading.close($);
-
-        laydate.render({elem: "#startTime", type: "datetime"});
-        laydate.render({elem: "#endTime", type: "datetime"});
-
+        {%formInit%}
         let userTable = table.render({
             elem: '#tableId',
             url: '{:url("getList")}',
@@ -45,7 +49,7 @@
             cellMinWidth: 120,
             cols: [[
                 {type: "checkbox", fixed: "left"},
-                %s
+                {%tableCols%}
                 {title: "操作",  align: "center", fixed: "right", templet: "#operationTpl"}
             ]],
             done: function (res, curr, count) {
@@ -218,13 +222,13 @@
         }
 
         function add() {
-            okLayer.open("添加", "{:url('add')}", "%s", "%s", null, function () {
+            okLayer.open("添加", "{:url('add')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
                 userTable.reload();
             })
         }
 
         function edit(data) {
-            okLayer.open("更新", "edit?id="+data.id, "%s", "%s", function (layero) {
+            okLayer.open("更新", "edit?id="+data.id, "{%modalWidth%}", "{%modalHeight%}", function (layero) {
                 //let iframeWin = window[layero.find("iframe")[0]["name"]];
                 //iframeWin.initForm(data);
             }, function () {
@@ -284,7 +288,7 @@
     {{#  } }}
 </script>
 
-%s
+{%imageList%}
     
 </body>
 </html>

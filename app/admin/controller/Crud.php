@@ -39,8 +39,8 @@ class Crud extends Admin
 {
     public $stubList = [];
     public $tableColumns;
-    public $editAddonUsed=[];
-    public $importFile=[];
+    public $layuiAddonUsed = [];
+    public $importFile = [];
     public function getList()
     {
         // 查询所有表
@@ -80,7 +80,7 @@ class Crud extends Admin
 
     public function getTableColumn($table)
     {
-        if($this->tableColumns){
+        if ($this->tableColumns) {
             return $this->tableColumns;
         }
         $this->tableColumns = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
@@ -88,7 +88,7 @@ class Crud extends Admin
         return $this->tableColumns;
     }
 
-    public function buildModel($table,$deep=0)
+    public function buildModel($table, $deep = 0)
     {
         $filedName = "../app/admin/model/" . $this->controlName($table) . ".php";
         $tableColumns = $this->getTableColumn($table);
@@ -97,10 +97,76 @@ class Crud extends Admin
 
         fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
             'className' => $this->controlName($table),
+            'scopeTpl'=>$this->buildScopeTpl($tableColumns),
             'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
         ]));
         fclose($modelFile);
-       
+    }
+    public function buildScopeTpl($tableColumns)
+    {
+        $arr = [];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids') {
+               
+            } else if (endWith($demo, '_id')) {
+               
+            } else if (startWith($demo, 'set')) {
+               
+            } else if (startWith($demo, 'select')) {
+              
+            } else if (explode('(', $item['type'])[0] === 'enum') {
+              
+            } else if (endWith($demo, 'time') || endWith($demo, '_at')) {
+                if(!isset($arr['daterange'])){
+                    $arr['daterange'] = $this->getReplacedStub('model/scope/daterange.stub', [
+                        ]);
+                }
+              
+            } 
+        }
+        return implode(PHP_EOL,$arr);
+    }
+    public function buildSearchCode($table,$tableColumns)
+    {
+        $arr = [];
+        $ifarr = [];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids') {
+               
+            }if (endWith($item['field'],'_id')) {
+               
+            } else  if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
+               
+            }else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')){
+
+            } else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar'){
+
+            }else if (startWith($demo, 'set')) {
+                $ifarr[] ="
+                \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                if(\${$item['field']}){
+                    \$query->whereLike('{$item['field']}',\${$item['field']});
+                }
+                ";
+            }else if (endWith($demo, 'time') || endWith($demo, '_at')) {
+                    $arr[] ="->dateRange('{$item['field']}',\$this->request->param('{$item['field']}',null))";
+            } else{
+                $ifarr[] ="
+                \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                if(\${$item['field']}){
+                    \$query->where('{$item['field']}',\${$item['field']});
+                }
+                ";
+            } 
+        }
+        return count($arr)>0?'->where(function($query){
+            $query'.implode(PHP_EOL,$arr).';
+            '.implode(PHP_EOL,$ifarr).'
+        })':'';
     }
     public function buildTableFiledNameAttrTpl($tableColumns)
     {
@@ -115,18 +181,18 @@ class Crud extends Admin
                     'fieldName' => $this->controlName($demo, true),
                     'relation' => $this->controlName($demo, false),
                     'relationTable' => $tableName,
-                    'fieldNameList' => $this->controlName($demo, false).'List',
+                    'fieldNameList' => $this->controlName($demo, false) . 'List',
                 ]) . "\n";
-            }else if (endWith($demo, '_id')) {
+            } else if (endWith($demo, '_id')) {
                 $tableName = str_replace('_id', '', $demo);
 
                 $str .= $this->getReplacedStub('model/fieldNameAttr/id.stub', [
                     'fieldName' => $this->controlName($demo, true),
                     'relation' => $this->controlName($demo, false),
                     'relationTable' => $tableName,
-                    'fieldNameList' => $this->controlName($demo, false).'List',
+                    'fieldNameList' => $this->controlName($demo, false) . 'List',
                 ]) . "\n";
-            }else if (startWith($demo, 'set')) {
+            } else if (startWith($demo, 'set')) {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -135,10 +201,10 @@ class Crud extends Admin
                 }
                 $str .= $this->getReplacedStub('model/fieldNameAttr/set.stub', [
                     'fieldName' => $this->controlName($demo, true),
-                    'otherFieldName'=>$demo.'_name',
-                    'data'=>var_export($data,true)
+                    'otherFieldName' => $demo . '_name',
+                    'data' => var_export($data, true)
                 ]) . "\n";
-            }else if (startWith($demo, 'select')) {
+            } else if (startWith($demo, 'select')) {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -147,10 +213,10 @@ class Crud extends Admin
                 }
                 $str .= $this->getReplacedStub('model/fieldNameAttr/select.stub', [
                     'fieldName' => $this->controlName($demo, true),
-                    'otherFieldName'=>$demo.'_name',
-                    'data'=>var_export($data,true)
+                    'otherFieldName' => $demo . '_name',
+                    'data' => var_export($data, true)
                 ]) . "\n";
-            }else if (explode('(', $item['type'])[0] === 'enum') {
+            } else if (explode('(', $item['type'])[0] === 'enum') {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -159,19 +225,19 @@ class Crud extends Admin
                 }
                 $str .= $this->getReplacedStub('model/fieldNameAttr/radio.stub', [
                     'fieldName' => $this->controlName($demo, true),
-                    'otherFieldName'=>$demo.'_name',
-                    'data'=>var_export($data,true)
+                    'otherFieldName' => $demo . '_name',
+                    'data' => var_export($data, true)
                 ]) . "\n";
-            }else if (endWith($demo, 'time') || endWith($demo, '_at')) {
+            } else if (endWith($demo, 'time') || endWith($demo, '_at')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
                     'fieldName' => $this->controlName($demo, true),
                 ]) . "\n";
-            }else if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
+            } else if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/imgs.stub', [
                     'fieldName' => $this->controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
-            }else if (endWith($demo, 'img') || endWith($demo, 'image')) {
+            } else if (endWith($demo, 'img') || endWith($demo, 'image')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/img.stub', [
                     'fieldName' => $this->controlName($demo, true),
                     'delimiter' => '|',
@@ -254,6 +320,7 @@ class Crud extends Admin
             'addViewCode' => $this->buildAddCode($tableColumns),
             'editViewCode' => $this->buildEditCode($tableColumns),
             'table' => $table,
+            'action'=> $this->buildSearchCode($table,$tableColumns),
             'relations' => json_encode($relation),
         ]));
         fclose($controllerFile);
@@ -288,7 +355,7 @@ class Crud extends Admin
                 ]
             ];
             //生成菜单
-             Menu::create($menu);
+            //  Menu::create($menu);
 
 
             // 生成controller
@@ -297,118 +364,237 @@ class Crud extends Admin
             $this->buildModel($table);
 
 
+            //生成添加编辑的公用view
+            $this->buildIndexView($table);
 
-            // 生成view index
-            $path = "../app/admin/view/" . $table;
-
-            if (!file_exists($path))
-                mkdir($path, 0777, true);
-
-            $viewFile = fopen($path . "/" . "index.html", "w");
-            $viewText = sprintf(
-                file_get_contents('../addons/crud/index.txt'),
-                $this->getViewFiledList($table),
-                '90%',
-                '90%',
-                '90%',
-                '90%',
-                $this->getViewImgList($table)
-            );
-            fwrite($viewFile, $viewText);
-            fclose($viewFile);
 
             //生成添加编辑的公用view
             $this->buildEditView($table);
-           
+
             $this->success("生成成功");
         } catch (Exception $e) {
             $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
             // $this->error("生成失败,请先删除原有菜单");
         }
     }
-    public function buildEditView($table){
-        $path = "../app/admin/view/" . $table;
-        if (!file_exists($path))
-            mkdir($path, 0777, true);
-        $viewFile = fopen($path . "/" . "edit.html", "w");
-        $this->editAddonUsed=[ 'form','okLayer','okUtils'];
-        $this->varInit=[];
-        fwrite($viewFile, $this->getReplacedStub('view/edit.stub', [
-            'table' => $table,
-            'formHtml'=>$this->getViewEditHtml($table),
-            'extendAddons'=>$this->getViewEditExtendAddons($table),
-            'formInit'=> $this->getEditAddonInitJs($table),
-            'editAddonUsed'=>$this->getEditAddonUsed($table),
-            'varInit'=> $this->getEditVarInitJs(),
-            'importFile'=> $this->getImportFile(),
-
-        ]));
-        $this->editAddonUsed = [];
-        fclose($viewFile);
-    }
-    public function getImportFile(){
-        $str = "";
-        foreach($this->importFile as $type=>$files){
-            
-            foreach($files as $file){
-                if($type=='css'){
-                    $str.="<link href='$file' rel='stylesheet'/>".PHP_EOL;
-                }else if($type=='js'){
-                    $str.="<script src='$file' type='text/javascript'></script>".PHP_EOL;
+   
+    public function buildSeachFormItem($label,$type,$name,$item){
+        $html = "";
+        switch($type){
+            case 'input':
+                $html = '<input type="text" name="'.$name.'" id="'.$name.'" placeholder="请输入" autocomplete="off" class="layui-input">';
+                break;
+            case 'switch':
+                $html = '
+                <select name="'.$name.'"  id="'.$name.'">
+                    <option value=""></option>
+                    <option value="on">开启</option>
+                    <option value="off">关闭</option>
+                </select>
+                ';
+                break;
+            case 'select':
+                $arr = explode(',', explode(':', $item['comment'])[1]);
+                $str = "";
+                foreach ($arr as $k => $v) {
+                    $array = explode('=', $v);
+                    $str .= "<option  value=\"$array[0]\">$array[1]</option>";
                 }
+                $html = '
+                <select name="'.$name.'"  id="'.$name.'">
+                    <option value=""></option>
+                    '.$str.'
+                </select>
+                ';
+                break;
+            case 'datepicker':
+                $html = '<input type="text" id="'.$name.'" name="'.$name.'" placeholder="请输入" autocomplete="off" class="layui-input">';
+                break;
+        }
+        return '
+        <div class="layui-inline">
+            <label class="layui-form-label">'.$label.'</label>
+            <div class="layui-input-block">
+            '.$html.'
+            </div>
+        </div>
+      ';
+    }
+    public function getSearchFormHtml($table){
+        $list = $this->getTableColumn($table);
+        $arr = [];
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            try {
+                if ($item['field'] === Db::name("$table")->getPk()) {
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'input',$item['field'],$item);
+                } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
+                } else if (explode('(', $item['type'])[0] === 'enum') {
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
+                }  else if (endWith($item['field'], '_id')) {
+                   continue;
+                } else if (endWith($item['field'], '_ids')) {
+                    continue;
+                }else if (endWith($item['field'],'switch')){
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'switch',$item['field'],$item);
+                } else if (explode('(', $item['type'])[0] === 'set') {
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
+                } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
+                    continue;
+                }else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'datepicker',$item['field'],$item);
+                } else if (explode('(', $item['type'])[0] === 'datetime') {
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'datepicker',$item['field'],$item);
+                } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                } 
+            } catch (Exception $e) {
             }
         }
-        return $str;
+        return implode(PHP_EOL,$arr);
     }
-    public function addEditAddonUsed($addon){
-        if(!in_array($addon,$this->editAddonUsed)){
-            $this->editAddonUsed[] = $addon;     
-        }
+    public function buildIndexView($table)
+    {
+        // 生成view index
+        $path = "../app/admin/view/" . $table;
+
+        if (!file_exists($path))
+            mkdir($path, 0777, true);
+
+        $viewFile = fopen($path . "/" . "index.html", "w");
+        $this->layuiAddonUsed = ['form', 'okLayer', 'okUtils'];
+        fwrite($viewFile, $this->getReplacedStub('view/index.stub', [
+            'table' => $table,
+            'searchForm'=> $this->getSearchFormHtml($table),
+            'tableCols' => $this->getViewFiledList($table),
+            'modalWidth'=>'90%',
+            'modalHeight'=>'90%',
+            'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
+            'imageList'=>$this->getViewImgList($table),
+            'formInit'=> $this->getViewIndexFormInit($table),
+
+        ]));
+        $this->layuiAddonUsed = [];
+        fclose($viewFile);
     }
-    public function getEditVarInitJs(){
-        $str ="";
-        foreach($this->editAddonUsed as $value){
-            $str.="let $value = layui.$value;".PHP_EOL;
-        }
-        return $str;
-    }
-    public function import($type,$href){
-        if(!isset($this->importFile[$type])){
-            $this->importFile[$type]=[];
-        }
-        if(!in_array($href,$this->importFile[$type])){
-            $this->importFile[$type][] = $href;
-        }
-    }
-    public function getEditAddonInitJs($table){
+    public function getViewIndexFormInit($table){
         $list = $this->getTableColumn($table);
         $arr = [];
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             if (explode('(', $item['type'])[0] === 'datetime') {
                 $this->addEditAddonUsed('laydate');
-                $arr[]= "
+                $arr[] = "
+                //渲染字段{$item['comment']}组件
+                laydate.render({ 
+                          elem: \"#" . $item['field'] . "\"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });";
+            } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
+                $this->addEditAddonUsed('laydate');
+                $arr[] = "
+                //=============渲染字段{$item['comment']}组件
+                laydate.render({ 
+                          elem: \"#" . $item['field'] . "\"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });";
+            } 
+        }
+        return implode(PHP_EOL, $arr);
+    }
+    public function buildEditView($table)
+    {
+        $path = "../app/admin/view/" . $table;
+        if (!file_exists($path))
+            mkdir($path, 0777, true);
+        $viewFile = fopen($path . "/" . "edit.html", "w");
+        $this->layuiAddonUsed = ['form', 'okLayer', 'okUtils'];
+        $this->varInit = [];
+        fwrite($viewFile, $this->getReplacedStub('view/edit.stub', [
+            'table' => $table,
+            'formHtml' => $this->getViewEditHtml($table),
+            'extendAddons' => $this->getViewEditExtendAddons($table),
+            'formInit' => $this->getEditAddonInitJs($table),
+            'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
+            'varInit' => $this->getEditVarInitJs(),
+            'importFile' => $this->getImportFile(),
+
+        ]));
+        $this->layuiAddonUsed = [];
+        fclose($viewFile);
+    }
+    public function getImportFile()
+    {
+        $str = "";
+        foreach ($this->importFile as $type => $files) {
+
+            foreach ($files as $file) {
+                if ($type == 'css') {
+                    $str .= "<link href='$file' rel='stylesheet'/>" . PHP_EOL;
+                } else if ($type == 'js') {
+                    $str .= "<script src='$file' type='text/javascript'></script>" . PHP_EOL;
+                }
+            }
+        }
+        return $str;
+    }
+    public function addEditAddonUsed($addon)
+    {
+        if (!in_array($addon, $this->layuiAddonUsed)) {
+            $this->layuiAddonUsed[] = $addon;
+        }
+    }
+    public function getEditVarInitJs()
+    {
+        $str = "";
+        foreach ($this->layuiAddonUsed as $value) {
+            $str .= "let $value = layui.$value;" . PHP_EOL;
+        }
+        return $str;
+    }
+    public function import($type, $href)
+    {
+        if (!isset($this->importFile[$type])) {
+            $this->importFile[$type] = [];
+        }
+        if (!in_array($href, $this->importFile[$type])) {
+            $this->importFile[$type][] = $href;
+        }
+    }
+    public function getEditAddonInitJs($table)
+    {
+        $list = $this->getTableColumn($table);
+        $arr = [];
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            if (explode('(', $item['type'])[0] === 'datetime') {
+                $this->addEditAddonUsed('laydate');
+                $arr[] = "
                 //渲染字段{$item['comment']}组件
                 laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
                           ,type: 'datetime'
                         });";
-            }else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
+            } else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                 $this->addEditAddonUsed('laydate');
-                $arr[]= "
+                $arr[] = "
                 //=============渲染字段{$item['comment']}组件
                 laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
                           ,type: 'datetime'
                         });";
-            } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar'){
-                $this->import('js','/static/lib/city-picker/city-picker.data.js');
-                $this->import('css','/static/lib/city-picker/city-picker.css');
+            } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                $this->import('js', '/static/lib/city-picker/city-picker.data.js');
+                $this->import('css', '/static/lib/city-picker/city-picker.css');
                 $this->addEditAddonUsed('citypicker');
-                $filedName = $this->controlName($item['field'],false);
-                $arr[]= "
+                $filedName = $this->controlName($item['field'], false);
+                $arr[] = "
                 //===============渲染字段{$item['comment']}组件
                 let $filedName =  new citypicker('#{$item['field']}', {
                     provincename:'provinceId',
@@ -417,14 +603,14 @@ class Crud extends Admin
                     level: 'districtId',// 级别
                 });
                 $filedName.setValue('{\${$table}.{$item['field']}??\"\"}')";
-            }else if(end($s) === 'ids') {
+            } else if (end($s) === 'ids') {
                 $this->addEditAddonUsed('xmSelect');
                 $filedName = $this->controlName(str_replace('_ids', '', $item['field']), false) . 's';
                 $demo = $item['field'];
-                $arr[]= "
+                $arr[] = "
                 //==================渲染字段{$item['comment']}组件
                 var data = JSON.parse('{:json_encode(\${$filedName})}');
-                var ids = JSON.parse('[{:isset(\$$table)?\$".$table."[\"$demo\"]:null}]');
+                var ids = JSON.parse('[{:isset(\$$table)?\$" . $table . "[\"$demo\"]:null}]');
                 var arr = [];
                 for(var key in data){
                     arr[key] = {
@@ -441,10 +627,10 @@ class Crud extends Admin
                     data:arr
                 });
                 ";
-            }else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'],'content')) {
+            } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
 
                 $this->addEditAddonUsed('layedit');
-                $arr[]= "
+                $arr[] = "
                 //创建{$item['field']}编辑器
                 editorArr['{$item['field']}'] = layedit.build('{$item['field']}',{
                     uploadImage:{
@@ -460,12 +646,14 @@ class Crud extends Admin
                 });";
             }
         }
-        return implode(PHP_EOL,$arr);
+        return implode(PHP_EOL, $arr);
     }
-    public function getEditAddonUsed(){
-        return json_encode($this->editAddonUsed);
+    public function getLayuiAddonUsed()
+    {
+        return json_encode($this->layuiAddonUsed);
     }
-    public function getViewEditExtendAddons($table){
+    public function getViewEditExtendAddons($table)
+    {
 
         $list = $this->getTableColumn($table);
         $addons = [];
@@ -474,7 +662,7 @@ class Crud extends Admin
             $s = explode('_', $item['field']);
             if (end($s) === 'ids') {
                 $addons['xmSelect'] = 'xm-select';
-            }else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+            } else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                 $addons['citypicker'] = 'city-picker/city-picker';
             }
         }
@@ -487,7 +675,7 @@ class Crud extends Admin
 
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
-            if ($item['field'] == 'switch') {
+            if (endWith($item['field'],'switch') == 'switch') {
                 $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
         var state = \"\";
         if (d.switch == \"on\") {
@@ -504,7 +692,7 @@ class Crud extends Admin
                 } else if (endWith($item['field'], '_id')) {
                     $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
                 } else if (end($s) === 'ids') {
-                    $filedName = $this->controlName($item['field'], false).'List';
+                    $filedName = $this->controlName($item['field'], false) . 'List';
                     $str .= "{field: '" . $filedName . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
                         var data = d.{$filedName};
                         var arr = [];
@@ -513,12 +701,10 @@ class Crud extends Admin
                         }
                         return arr.join(',')
                     } }," . PHP_EOL;
-                }else if (startWith($item['field'], 'set') ||startWith($item['field'], 'select')|| (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
+                } else if (startWith($item['field'], 'set') || startWith($item['field'], 'select') || (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
                     $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
-
                 } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
-
                 } else {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 }
@@ -650,14 +836,14 @@ class Crud extends Admin
     " . $this->duoxuanedit($table, $item['field'], $item) . "
     </div>
 </div>";
-                } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'],'content')) {
+                } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
                     $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
       <textarea id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\" style=\"display: none;\">" . '{$' . "" . $table . "." . $item['field'] . "??''}</textarea>
     </div>
   </div>";
-                } else if ($item['field'] === 'switch') {
+                } else if (endWith($item['field'],'switch')) {
                     $str .= "    <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
@@ -683,7 +869,7 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-                }  else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
@@ -691,8 +877,7 @@ class Crud extends Admin
                         readonly=\"readonly\" data-toggle=\"city-picker\">
                     </div>
                 </div>" . PHP_EOL;
-
-                }else {
+                } else {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
@@ -709,7 +894,7 @@ class Crud extends Admin
                         <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"
                                lay-verify=\"required\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
                     </div>
-                </div>".$e->getMessage();
+                </div>" . $e->getMessage();
             }
         }
         return $str;
@@ -766,10 +951,10 @@ class Crud extends Admin
     }
     public function getsWitchMethod($table)
     {
-      $list = $this->getTableColumn($table);
+        $list = $this->getTableColumn($table);
         $str = "";
         foreach ($list as $key => $item) {
-            if ($item['field'] === 'switch') {
+            if (endWith($item['field'],'switch') === 'switch') {
                 $str .= "if (!isset(\$data['switch']))
                             \$data['switch'] = 'off';
                             ";
