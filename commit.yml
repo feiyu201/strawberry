@@ -2,111 +2,19 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid 'fef8944b2741782909a35451f31c7499ae1c8e38'
-    oldFile: !uuid 'fe881df637979a0a464747e5942eec1edf56f8d3'
-  /addons:
-    newFile: !uuid '42ad708383a71074a836e524b81cc4d0e987e7a4'
-    oldFile: !uuid 'f23a816ef4658aeffe157e09831520aebc77ca5a'
-  /addons/crud:
-    newFile: !uuid '060b77f0f09b6ad1c96c5a156d32f0095075802f'
-    oldFile: !uuid '2af9796dc9105f25222150bdf574e4099b16b3f9'
-  /addons/crud/index.txt:
-    newFile: null
-    oldFile: !uuid '724245a120f4791a2a54f699c970438d1e81a9ef'
-  /addons/crud/tpl:
-    newFile: !uuid '696564409bdd7cfae5a147d38a5a16a36280101d'
-    oldFile: !uuid 'f4dab052905279befe1129e9372459d52b74336d'
-  /addons/crud/tpl/controller:
-    newFile: !uuid '97a04d20a892d4e335d08c64ca494657f52fd2be'
-    oldFile: !uuid '0fd1546bd8b02a7de7be29eb69a39e0585b11099'
-  /addons/crud/tpl/controller/body.stub:
-    newFile: !uuid 'e0fef81167405ef138fc116de4219da65045a69a'
-    oldFile: !uuid '101db7d0e8350d8d2ec36bdef6fedc93b1ea1203'
-  /addons/crud/tpl/model:
-    newFile: !uuid '582d32a4200b5c75c86a97b3664985558b70c2e2'
-    oldFile: !uuid '263e65c26b84c69f8fd17b54b2702bb2aa8b4d9d'
-  /addons/crud/tpl/model/body.stub:
-    newFile: !uuid '7a1963c9847a940a931122ae88f866ff433c8f0e'
-    oldFile: !uuid '4d6f5c616feb0031e807dfa4dfd4f229f6156520'
-  /addons/crud/tpl/model/scope:
-    newFile: !uuid '6ce70ec62ee259c8f2a59f38f01d8711f617843f'
-    oldFile: null
-  /addons/crud/tpl/model/scope/daterange.stub:
-    newFile: !uuid '768f64b046bd7e0d502941e4d34c3d0654437ce2'
-    oldFile: null
-  /addons/crud/tpl/view:
-    newFile: !uuid '376f69b44d8014e52216ccd17a536a3e3ac58356'
-    oldFile: !uuid '4ec881ac3dede39b4a0bc27cb03e7a30009f594a'
-  /addons/crud/tpl/view/edit.stub:
-    newFile: !uuid 'f9f05d70d74fc8821c36dc2895fa12f41a597de8'
-    oldFile: !uuid '73db180bb659cbd9941bd4c5ecc48d3a17e59737'
-  /addons/crud/tpl/view/index.stub:
-    newFile: !uuid '438c73f88a3d446147e90149867522ade5b2f3cb'
-    oldFile: null
   /app:
-    newFile: !uuid 'a7297609a17d47927440f9cbd37ea37920de6f25'
-    oldFile: !uuid 'bfdd7f17564ca8905ff859ddfc2f33a5ba834c92'
+    newFile: !uuid 'b1913aa1c303359fe97b0b8736952b1e3bcea70b'
+    oldFile: !uuid 'a7297609a17d47927440f9cbd37ea37920de6f25'
   /app/admin:
-    newFile: !uuid 'b3fac89e1f636c2cb1ecdcf850be90dda3f0c3e7'
-    oldFile: !uuid '4d6ee7ee8a822838d71e2baa2fb31592dbf2c25f'
+    newFile: !uuid 'da44261ce83201575aab0b446ef42a7655c7acab'
+    oldFile: !uuid 'b3fac89e1f636c2cb1ecdcf850be90dda3f0c3e7'
   /app/admin/controller:
-    newFile: !uuid 'e6cb7aa0041101dd69db1ef51d9628cac3d10b9b'
-    oldFile: !uuid '40090663f9aad64c560009eea8a77fa77f300eb1'
+    newFile: !uuid 'bc2cfb617e0446ad5d327cba4439ad6b7d3d8b9f'
+    oldFile: !uuid 'e6cb7aa0041101dd69db1ef51d9628cac3d10b9b'
   /app/admin/controller/Crud.php:
-    newFile: !uuid '4f1b9b317eee3ecf0a0b7133710393e471ab8bb5'
-    oldFile: !uuid '7c62bcb8728765972c56842ac464a52fb4d76224'
-  /public:
-    newFile: !uuid 'ccfbb4f0820899cdf37fdcd7a558b68f9c05255a'
-    oldFile: !uuid '9003cf5806aeaf5d4ff83070a02921ba1d2cd80f'
-  /public/cmdatabase.sql:
-    newFile: !uuid '5f997658cf079d477d5ad70f528bd1849abb5c43'
-    oldFile: !uuid '27dfe46d14b94250e40d2f908ad93b0d2c212834'
-  /public/static:
-    newFile: !uuid '0d114580f7dc97a3e8981b4771417ee044b2ba96'
-    oldFile: !uuid '23ee6e5d26d284f2550b51842ccdbd65f4effc2d'
-  /public/static/css:
-    newFile: !uuid 'a4eb2081e9db473c76713dde8a08174611aca352'
-    oldFile: !uuid 'af10a90de0542e0146a6064451d9fb81eea565be'
-  /public/static/css/okadmin.css:
-    newFile: !uuid 'd4e83a0711aa7d7fd2cbcc21a462e733750b49cb'
-    oldFile: !uuid 'c2da6ad7d8582eea8e78cf99cbbfa8d54ed182dc'
-  /public/static/dist:
-    newFile: null
-    oldFile: !uuid 'ca82c6d673eb4e0674dcf3659b843aba9314cfd5'
-  /public/static/dist/wangEditor.min.js:
-    newFile: null
-    oldFile: !uuid 'd1fe292aa919f23fbbfab4c5f55c04065b4e6973'
-  /public/static/dist/xm-select.js:
-    newFile: null
-    oldFile: !uuid 'c8257a94322497cb386834308b54d8f3fede7f99'
-  /public/static/lib:
-    newFile: !uuid '05189136167ff49c4c8922db6ed32306436e71fc'
-    oldFile: !uuid '4dbf97893ea1da2f114d7f02b924b32cdb36aee8'
-  /public/static/lib/city-picker:
-    newFile: !uuid '55415af427a198c12f4b26354d65f787d25cb50c'
-    oldFile: null
-  /public/static/lib/city-picker/city-picker.css:
-    newFile: !uuid '3ed49e699cec4fbc79efbbfd39d641ef993b51b8'
-    oldFile: null
-  /public/static/lib/city-picker/city-picker.data.js:
-    newFile: !uuid '14e5e8d7d26367fbcbe31d5a9ee91e4d89b99a87'
-    oldFile: null
-  /public/static/lib/city-picker/city-picker.js:
-    newFile: !uuid 'd8abe7cd4c83e0b42ccbbc5d2c693b51a7a97a67'
-    oldFile: null
-  /public/static/lib/city-picker/drop-arrow.png:
-    newFile: !uuid '308dae5f492f8f5e39ee9175ced7004da80fddad'
-    oldFile: null
-  /public/static/lib/wangEditor.min.js:
-    newFile: !uuid 'd1fe292aa919f23fbbfab4c5f55c04065b4e6973'
-    oldFile: null
-  /public/static/lib/xm-select.js:
-    newFile: !uuid 'c8257a94322497cb386834308b54d8f3fede7f99'
-    oldFile: null
-gitCommitId: !uuid '557e72346a4468a163727320f1cd3fed6e22a83b'
-renames:
-  /addons/crud/tpl/view/index.stub: /addons/crud/index.txt
-  /public/static/lib/wangEditor.min.js: /public/static/dist/wangEditor.min.js
-  /public/static/lib/xm-select.js: /public/static/dist/xm-select.js
-revisionId: 230
+    newFile: !uuid '228da77160f162fe7b37b2f003d0ef8e2e6beafc'
+    oldFile: !uuid '4f1b9b317eee3ecf0a0b7133710393e471ab8bb5'
+gitCommitId: !uuid '3201b417a098b66a680ea00c687bbbca03e61e60'
+renames: {
+  }
+revisionId: 231
