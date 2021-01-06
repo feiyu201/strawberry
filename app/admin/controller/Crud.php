@@ -38,6 +38,9 @@ use think\facade\View;
 class Crud extends Admin
 {
     public $stubList = [];
+    public $tableColumns;
+    public $editAddonUsed=[];
+    public $importFile=[];
     public function getList()
     {
         // 查询所有表
@@ -58,7 +61,7 @@ class Crud extends Admin
             'msg' => '查询成功'
         ]);
     }
-    public static function controlName($str, $ucwords = true)
+    public function controlName($str, $ucwords = true)
     {
         $array = explode('_', $str);
         $result = $array[0];
@@ -77,20 +80,23 @@ class Crud extends Admin
 
     public function getTableColumn($table)
     {
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
-        return $list;
+        if($this->tableColumns){
+            return $this->tableColumns;
+        }
+        $this->tableColumns = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
+        $this->tableColumns = array_map('array_change_key_case', $this->tableColumns);
+        return $this->tableColumns;
     }
 
     public function buildModel($table,$deep=0)
     {
-        $filedName = "../app/admin/model/" . self::controlName($table) . ".php";
+        $filedName = "../app/admin/model/" . $this->controlName($table) . ".php";
         $tableColumns = $this->getTableColumn($table);
         // 生成model
         $modelFile = fopen($filedName, "w");
 
         fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
-            'className' => self::controlName($table),
+            'className' => $this->controlName($table),
             'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
         ]));
         fclose($modelFile);
@@ -106,19 +112,19 @@ class Crud extends Admin
                 $tableName = str_replace('_ids', '', $demo);
 
                 $str .= $this->getReplacedStub('model/fieldNameAttr/ids.stub', [
-                    'fieldName' => self::controlName($demo, true),
-                    'relation' => self::controlName($demo, false),
+                    'fieldName' => $this->controlName($demo, true),
+                    'relation' => $this->controlName($demo, false),
                     'relationTable' => $tableName,
-                    'fieldNameList' => self::controlName($demo, false).'List',
+                    'fieldNameList' => $this->controlName($demo, false).'List',
                 ]) . "\n";
             }else if (endWith($demo, '_id')) {
                 $tableName = str_replace('_id', '', $demo);
 
                 $str .= $this->getReplacedStub('model/fieldNameAttr/id.stub', [
-                    'fieldName' => self::controlName($demo, true),
-                    'relation' => self::controlName($demo, false),
+                    'fieldName' => $this->controlName($demo, true),
+                    'relation' => $this->controlName($demo, false),
                     'relationTable' => $tableName,
-                    'fieldNameList' => self::controlName($demo, false).'List',
+                    'fieldNameList' => $this->controlName($demo, false).'List',
                 ]) . "\n";
             }else if (startWith($demo, 'set')) {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
@@ -128,7 +134,7 @@ class Crud extends Admin
                     $data[$array[0]] = $array[1];
                 }
                 $str .= $this->getReplacedStub('model/fieldNameAttr/set.stub', [
-                    'fieldName' => self::controlName($demo, true),
+                    'fieldName' => $this->controlName($demo, true),
                     'otherFieldName'=>$demo.'_name',
                     'data'=>var_export($data,true)
                 ]) . "\n";
@@ -140,7 +146,7 @@ class Crud extends Admin
                     $data[$array[0]] = $array[1];
                 }
                 $str .= $this->getReplacedStub('model/fieldNameAttr/select.stub', [
-                    'fieldName' => self::controlName($demo, true),
+                    'fieldName' => $this->controlName($demo, true),
                     'otherFieldName'=>$demo.'_name',
                     'data'=>var_export($data,true)
                 ]) . "\n";
@@ -152,22 +158,22 @@ class Crud extends Admin
                     $data[$array[0]] = $array[1];
                 }
                 $str .= $this->getReplacedStub('model/fieldNameAttr/radio.stub', [
-                    'fieldName' => self::controlName($demo, true),
+                    'fieldName' => $this->controlName($demo, true),
                     'otherFieldName'=>$demo.'_name',
                     'data'=>var_export($data,true)
                 ]) . "\n";
             }else if (endWith($demo, 'time') || endWith($demo, '_at')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
-                    'fieldName' => self::controlName($demo, true),
+                    'fieldName' => $this->controlName($demo, true),
                 ]) . "\n";
             }else if (endWith($demo, 'imgs') || endWith($demo, 'images')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/imgs.stub', [
-                    'fieldName' => self::controlName($demo, true),
+                    'fieldName' => $this->controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
             }else if (endWith($demo, 'img') || endWith($demo, 'image')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/img.stub', [
-                    'fieldName' => self::controlName($demo, true),
+                    'fieldName' => $this->controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
             }
@@ -194,7 +200,7 @@ class Crud extends Admin
         $content = str_replace($search, $replace, $stub);
         return $content;
     }
-    public static function buildAddCode($tableColumns)
+    public function buildAddCode($tableColumns)
     {
 
         $str = "";
@@ -203,8 +209,8 @@ class Crud extends Admin
             $demo = $item['field'];
             $s = explode('_', $item['field']);
             if (end($s) === 'ids' || endWith($demo, '_id')) {
-                $fieldName = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
-                $className = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
+                $fieldName = $this->controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
+                $className = $this->controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
                 $tableName = str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
                     $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
@@ -215,7 +221,7 @@ class Crud extends Admin
         }
         return $str;
     }
-    public static function buildEditCode($tableColumns)
+    public function buildEditCode($tableColumns)
     {
         $str = "";
         $loadModel = [];
@@ -223,8 +229,8 @@ class Crud extends Admin
             $demo = $item['field'];
             $s = explode('_', $item['field']);
             if (end($s) === 'ids' || endWith($demo, '_id')) {
-                $fieldName = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
-                $className = self::controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
+                $fieldName = $this->controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
+                $className = $this->controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
                 $tableName = str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
                     $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
@@ -239,14 +245,14 @@ class Crud extends Admin
     {
         $tableColumns = $this->getTableColumn($table);
         $relation = [];
-        $controllerFile = fopen("../app/admin/controller/" . self::controlName($table) . ".php", "w");
+        $controllerFile = fopen("../app/admin/controller/" . $this->controlName($table) . ".php", "w");
 
         fwrite($controllerFile, $this->getReplacedStub('controller/body.stub', [
-            'className' => self::controlName($table),
-            'modelClassName' => '\\app\\admin\\model\\' . self::controlName($table),
-            'witchMethod' =>  self::getsWitchMethod($table),
-            'addViewCode' => self::buildAddCode($tableColumns),
-            'editViewCode' => self::buildEditCode($tableColumns),
+            'className' => $this->controlName($table),
+            'modelClassName' => '\\app\\admin\\model\\' . $this->controlName($table),
+            'witchMethod' =>  $this->getsWitchMethod($table),
+            'addViewCode' => $this->buildAddCode($tableColumns),
+            'editViewCode' => $this->buildEditCode($tableColumns),
             'table' => $table,
             'relations' => json_encode($relation),
         ]));
@@ -301,12 +307,12 @@ class Crud extends Admin
             $viewFile = fopen($path . "/" . "index.html", "w");
             $viewText = sprintf(
                 file_get_contents('../addons/crud/index.txt'),
-                self::getViewFiledList($table),
+                $this->getViewFiledList($table),
                 '90%',
                 '90%',
                 '90%',
                 '90%',
-                self::getViewImgList($table)
+                $this->getViewImgList($table)
             );
             fwrite($viewFile, $viewText);
             fclose($viewFile);
@@ -325,18 +331,158 @@ class Crud extends Admin
         if (!file_exists($path))
             mkdir($path, 0777, true);
         $viewFile = fopen($path . "/" . "edit.html", "w");
+        $this->editAddonUsed=[ 'form','okLayer','okUtils'];
+        $this->varInit=[];
         fwrite($viewFile, $this->getReplacedStub('view/edit.stub', [
             'table' => $table,
-            'formHtml'=>self::getViewEditHtml($table),
-            'formInit'=> self::xm($table).self::timejs($table),
+            'formHtml'=>$this->getViewEditHtml($table),
+            'extendAddons'=>$this->getViewEditExtendAddons($table),
+            'formInit'=> $this->getEditAddonInitJs($table),
+            'editAddonUsed'=>$this->getEditAddonUsed($table),
+            'varInit'=> $this->getEditVarInitJs(),
+            'importFile'=> $this->getImportFile(),
 
         ]));
+        $this->editAddonUsed = [];
         fclose($viewFile);
     }
-    public static function getViewFiledList($table)
+    public function getImportFile(){
+        $str = "";
+        foreach($this->importFile as $type=>$files){
+            
+            foreach($files as $file){
+                if($type=='css'){
+                    $str.="<link href='$file' rel='stylesheet'/>".PHP_EOL;
+                }else if($type=='js'){
+                    $str.="<script src='$file' type='text/javascript'></script>".PHP_EOL;
+                }
+            }
+        }
+        return $str;
+    }
+    public function addEditAddonUsed($addon){
+        if(!in_array($addon,$this->editAddonUsed)){
+            $this->editAddonUsed[] = $addon;     
+        }
+    }
+    public function getEditVarInitJs(){
+        $str ="";
+        foreach($this->editAddonUsed as $value){
+            $str.="let $value = layui.$value;".PHP_EOL;
+        }
+        return $str;
+    }
+    public function import($type,$href){
+        if(!isset($this->importFile[$type])){
+            $this->importFile[$type]=[];
+        }
+        if(!in_array($href,$this->importFile[$type])){
+            $this->importFile[$type][] = $href;
+        }
+    }
+    public function getEditAddonInitJs($table){
+        $list = $this->getTableColumn($table);
+        $arr = [];
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            if (explode('(', $item['type'])[0] === 'datetime') {
+                $this->addEditAddonUsed('laydate');
+                $arr[]= "
+                //渲染字段{$item['comment']}组件
+                laydate.render({ 
+                          elem: \"#" . $item['field'] . "\"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });";
+            }else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
+                $this->addEditAddonUsed('laydate');
+                $arr[]= "
+                //=============渲染字段{$item['comment']}组件
+                laydate.render({ 
+                          elem: \"#" . $item['field'] . "\"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });";
+            } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar'){
+                $this->import('js','/static/lib/city-picker/city-picker.data.js');
+                $this->import('css','/static/lib/city-picker/city-picker.css');
+                $this->addEditAddonUsed('citypicker');
+                $filedName = $this->controlName($item['field'],false);
+                $arr[]= "
+                //===============渲染字段{$item['comment']}组件
+                let $filedName =  new citypicker('#{$item['field']}', {
+                    provincename:'provinceId',
+                    cityname:'cityId',
+                    districtname: 'districtId',
+                    level: 'districtId',// 级别
+                });
+                $filedName.setValue('{\${$table}.{$item['field']}??\"\"}')";
+            }else if(end($s) === 'ids') {
+                $this->addEditAddonUsed('xmSelect');
+                $filedName = $this->controlName(str_replace('_ids', '', $item['field']), false) . 's';
+                $demo = $item['field'];
+                $arr[]= "
+                //==================渲染字段{$item['comment']}组件
+                var data = JSON.parse('{:json_encode(\${$filedName})}');
+                var ids = JSON.parse('[{:isset(\$$table)?\$".$table."[\"$demo\"]:null}]');
+                var arr = [];
+                for(var key in data){
+                    arr[key] = {
+                        'name':data[key].name,
+                        'value':data[key].id,
+                    }
+                    if(ids.indexOf(data[key].id)!=-1){
+                        arr[key]['selected'] = true;
+                    }
+                }
+                var " . $demo . " = xmSelect.render({
+                    el: '#" . $demo . "',
+                    name: '" . $demo . "',
+                    data:arr
+                });
+                ";
+            }else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'],'content')) {
+
+                $this->addEditAddonUsed('layedit');
+                $arr[]= "
+                //创建{$item['field']}编辑器
+                editorArr['{$item['field']}'] = layedit.build('{$item['field']}',{
+                    uploadImage:{
+                        url:\"{:url('admin/crud/upload')}\",
+                        type:'post'
+                    }
+                });
+                form.verify({
+                    //content富文本域中的lay-verify值
+                    '{$item['field']}': function(value) {
+                        return layedit.sync(editorArr['{$item['field']}']);
+                    }
+                });";
+            }
+        }
+        return implode(PHP_EOL,$arr);
+    }
+    public function getEditAddonUsed(){
+        return json_encode($this->editAddonUsed);
+    }
+    public function getViewEditExtendAddons($table){
+
+        $list = $this->getTableColumn($table);
+        $addons = [];
+
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids') {
+                $addons['xmSelect'] = 'xm-select';
+            }else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                $addons['citypicker'] = 'city-picker/city-picker';
+            }
+        }
+        return json_encode($addons);
+    }
+    public function getViewFiledList($table)
     {
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
+        $list = $this->getTableColumn($table);
         $str = "";
 
         foreach ($list as $elt => $item) {
@@ -356,9 +502,9 @@ class Crud extends Admin
                 if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl" . (strpos($item['field'], 's') != false ? 'More' : 'One') . "'}," . PHP_EOL;
                 } else if (endWith($item['field'], '_id')) {
-                    $str .= "{field: '" . self::controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . (self::controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
+                    $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
                 } else if (end($s) === 'ids') {
-                    $filedName = self::controlName($item['field'], false).'List';
+                    $filedName = $this->controlName($item['field'], false).'List';
                     $str .= "{field: '" . $filedName . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
                         var data = d.{$filedName};
                         var arr = [];
@@ -370,6 +516,9 @@ class Crud extends Admin
                 }else if (startWith($item['field'], 'set') ||startWith($item['field'], 'select')|| (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
                     $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
 
+                } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+
                 } else {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 }
@@ -377,10 +526,9 @@ class Crud extends Admin
         }
         return $str;
     }
-    public static function getViewImgList($table)
+    public function getViewImgList($table)
     {
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
+        $list = $this->getTableColumn($table);
         $str = "";
         $flag  = false;
         foreach ($list as $elt => $item) {
@@ -425,22 +573,24 @@ class Crud extends Admin
 
         return $str;
     }
-    public static function getViewEditHtml($table)
+    public function getViewEditHtml($table)
     {
-        //        SHOW FULL COLUMNS FROM tbl_name [FROM db_name]
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
+        $list = $this->getTableColumn($table);
         $str = "";
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             try {
                 if ($item['field'] === Db::name("$table")->getPk()) {
-                    $str .= "<input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">";
+                    $str .= "
+                    {if " . '$' . "" . $table . "." . $item['field'] . "??null}
+                    <input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
+                    {/if}
+                    ";
                 } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
                     $str .= "<div class=\"layui-form-item\">
                             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
                             <div class=\"layui-input-block\">
-                                " . self::danxuanedit($table, $item['field'], $item) . "
+                                " . $this->danxuanedit($table, $item['field'], $item) . "
                             </div>
                         </div>";
                 } else if (explode('(', $item['type'])[0] === 'enum') {
@@ -449,7 +599,7 @@ class Crud extends Admin
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
                     <option value=\"\"></option>
-                    " . self::xialaedit($table, $item['field'], $item) . "
+                    " . $this->xialaedit($table, $item['field'], $item) . "
                 </select>
             </div>
         </div>";
@@ -467,7 +617,7 @@ class Crud extends Admin
                     </div>
                 </div>";
                 } else if (endWith($item['field'], '_id')) {
-                    $filedName = self::controlName(str_replace('_id', '', $item['field']), false) . 's';
+                    $filedName = $this->controlName(str_replace('_id', '', $item['field']), false) . 's';
                     $field  = $table . "." . $item['field'];
                     $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
@@ -485,7 +635,7 @@ class Crud extends Admin
             </div>
         </div>";
                 } else if (endWith($item['field'], '_ids')) {
-                    $filedName = self::controlName(str_replace('_ids', '', $item['field']), false) . 's';
+                    $filedName = $this->controlName(str_replace('_ids', '', $item['field']), false) . 's';
                     $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
@@ -497,7 +647,7 @@ class Crud extends Admin
 <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-    " . self::duoxuanedit($table, $item['field'], $item) . "
+    " . $this->duoxuanedit($table, $item['field'], $item) . "
     </div>
 </div>";
                 } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'],'content')) {
@@ -533,7 +683,16 @@ class Crud extends Admin
       </div>
     </div>
   </div>";
-                } else {
+                }  else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                    $str .= "<div class=\"layui-form-item\">
+                    <label class=\"layui-form-label\">" . $item['comment'] . "</label>
+                    <div class=\"layui-input-block\">
+                        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"on\" placeholder=\"请输入" . $item['comment'] . "\"  class=\"layui-input\"
+                        readonly=\"readonly\" data-toggle=\"city-picker\">
+                    </div>
+                </div>" . PHP_EOL;
+
+                }else {
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
@@ -557,7 +716,7 @@ class Crud extends Admin
     }
 
 
-    public static function wangEditor($field)
+    public  function wangEditor($field)
     {
         $str = "    
         layui.use('layedit', function(){
@@ -566,111 +725,10 @@ class Crud extends Admin
         });";
         return $str;
     }
-    public static function timejs($table)
-    {
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
-        $str = "
-        //全局定义一次, 加载xmSelects
-        //加载组件
-        layui.config({
-            base: '../../static/dist/'
-        })";
-        foreach ($list as $elt => $item) {
-            $demo = $item['field'];
-            $s = explode('_', $item['field']);
-            if (end($s) === 'ids') {
-                $data = Db::name(str_replace('_ids', '', $demo))->field('id,name')->select();
-                $arr = [];
-                $str1 = "[";
-                if ($data) {
-                    foreach ($data as $k => $v) {
-                        //                        $arr[$k]['name'] = $v['name'];
-                        //                        $arr[$k]['value'] = $v['id'];
-                        //                        $arr[$k]['selected'] = "{if in_array('" . $v['id'] . "',explode(',',$" . $table . "." . $demo . "))}true{else /}false{/if}";
-                        $str1 .= "{\"name\":\"" . $v['name'] . "\",\"value\":\"" . $v['id'] . "\",\"selected\":{if in_array('" . $v['id'] . "',explode(',',$$table." . $item['field'] . "))}true{else /}false{/if}},";
-                    }
-                }
-                $str1 .= "]";
-                $filedName = self::controlName(str_replace('_ids', '', $item['field']), false) . 's';
-                $str .= "
-            .extend({
-                xmSelect: 'xm-select'
-            }).use(['xmSelect'], function(){
-                var xmSelect = layui.xmSelect;
-                var data = {:json_encode(\${$filedName})};
-                var ids = JSON.parse('[{:isset(\$$table)?\$".$table."[\"$demo\"]:null}]');
-                var arr = [];
-                for(var key in data){
-                    arr[key] = {
-                        'name':data[key].name,
-                        'value':data[key].id,
-                    }
-                    if(ids.indexOf(data[key].id)!=-1){
-                        arr[key]['selected'] = true;
-                    }
-                }
-                //渲染多选
-                var " . $demo . " = xmSelect.render({
-                    el: '#" . $demo . "',
-                    name: '" . $demo . "',
-                    data:arr
-                });
-            });
-            ";
-            }
-        }
-
-        foreach ($list as $elts => $items) {
-            if (explode('(', $items['type'])[0] === 'text' && endWith($items['field'],'content')) {
-                $str .= "
-                //创建{$items['field']}编辑器
-                editorArr['{$items['field']}'] = layedit.build('{$items['field']}',{
-                    uploadImage:{
-                        url:\"{:url('admin/crud/upload')}\",
-                        type:'post'
-                    }
-                });
-                form.verify({
-                    //content富文本域中的lay-verify值
-                    '{$items['field']}': function(value) {
-                        return layedit.sync(editorArr['{$items['field']}']);
-                    }
-                });";
-            }
-        }
-
-        return $str;
-    }
-
-    public static function xm($table)
-    {
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
-        $str = "";
-        foreach ($list as $elt => $item) {
-            $s = explode('_', $item['field']);
-            if (explode('(', $item['type'])[0] === 'datetime') {
-                $str .= "\nlaydate.render({ 
-                          elem: \"#" . $item['field'] . "\"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });";
-            }
-            if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
-                $str .= "\nlaydate.render({ 
-                          elem: \"#" . $item['field'] . "\"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });";
-            }
-        }
-        return $str;
-    }
 
 
 
-    public static function danxuanedit($table, $filed, $item)
+    public function danxuanedit($table, $filed, $item)
     {
         $arr = explode(',', explode(':', $item['comment'])[1]);
         $str = "";
@@ -683,7 +741,7 @@ class Crud extends Admin
 
 
 
-    public static function xialaedit($table, $filed, $item)
+    public function xialaedit($table, $filed, $item)
     {
         $arr = explode(',', explode(':', $item['comment'])[1]);
         $str = "";
@@ -696,7 +754,7 @@ class Crud extends Admin
 
 
 
-    public static function duoxuanedit($table, $filed, $item)
+    public function duoxuanedit($table, $filed, $item)
     {
         $arr = explode(',', explode(':', $item['comment'])[1]);
         $str = "";
@@ -706,11 +764,9 @@ class Crud extends Admin
         }
         return $str;
     }
-
-    public static function getsWitchMethod($table)
+    public function getsWitchMethod($table)
     {
-        $list = Db::query('SHOW FULL FIELDS FROM ' . config('database.connections.mysql.prefix') . $table);
-        $list = array_map('array_change_key_case', $list);
+      $list = $this->getTableColumn($table);
         $str = "";
         foreach ($list as $key => $item) {
             if ($item['field'] === 'switch') {
