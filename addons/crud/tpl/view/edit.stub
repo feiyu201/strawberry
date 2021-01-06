@@ -10,6 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="/static/css/oksub.css">
 	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+	{%importFile%}
 	<style>
 		.layui-upload-list img{
 			height:100px;
@@ -35,18 +36,19 @@
 <script src="/static/js/upload.js" charset="utf-8"></script>
 <script>
 
-	layui.use(["element", "form", "laydate", "okLayer", "okUtils",'layedit'], function () {
-		let form = layui.form;
-		let laydate = layui.laydate;
-		let okLayer = layui.okLayer;
-		let okUtils = layui.okUtils;
-		let layedit = layui.layedit;
+	//设置插件路径
+	layui.config({
+            base: '../../static/lib/'
+    })
+	//集成插件
+	.extend({%extendAddons%})
+	//使用插件
+	.use({%layuiAddonUsed%}, function () {
+		{%varInit%}
 		
   		let editorArr = {};
 		okLoading.close();
-        
         {%formInit%}
-		//laydate.render({elem: "#birthday", type: "datetime"});
 
 		form.on("submit(add)", function (data) {
 			okUtils.ajax("", "post", data.field, true).done(function (response) {
