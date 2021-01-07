@@ -7,6 +7,7 @@ use app\common\model\Config as ConfigModel;
 use think\facade\Db;
 use think\facade\View;
 use think\facade\Config as ConfigFile;
+use think\facade\Event;
 
 /**
  * 系统配置
@@ -58,9 +59,13 @@ class Config extends BaseController
             $v['active'] = !$index ? true : false;
             $index++;
         }
-        
+
+        //钩子事件 存储插件
+        Event::listen('Map', 'addons\map\event\Baidu');
+        $hook_res = event('Map');
         return view('', [
-            'siteList'  => $siteList
+            'siteList'   => $siteList,
+            'map_config' => $hook_res
         ]);
     }
 
@@ -305,5 +310,10 @@ class Config extends BaseController
         //加载主表的列
         $fieldList = Db::query($sql, [$dbname, $table]);
         $this->success("", null, ['fieldList' => $fieldList]);
+    }
+
+    public function baidu_map(){
+
+        return view();
     }
 }

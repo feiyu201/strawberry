@@ -23,12 +23,15 @@ return array (
   'configgroup' => 
   array (
     'basic' => '基本配置',
+    'map' => '地图配置',
   ),
   'mail_type' => '1',
-  'mail_smtp_host' => 'smtp.mxhichina.com',
-  'mail_smtp_port' => '465',
-  'mail_smtp_user' => 'nrbc@nrblockchain.com',
-  'mail_smtp_pass' => 'xinxi*2020',
-  'mail_verify_type' => '2',
-  'mail_from' => 'nrbc@nrblockchain.com',
+  'mail_smtp_host' => '',
+  'mail_smtp_port' => '',
+  'mail_smtp_user' => '',
+  'mail_smtp_pass' => '',
+  'mail_verify_type' => '',
+  'mail_from' => '',
+  'baidumap' => 'api',
+  'baidumapscrect' => 'secret',
 );
