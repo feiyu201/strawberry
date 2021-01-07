@@ -1,0 +1,12 @@
+
+function get{%fieldName%}List(id) {
+    okUtils.ajax("{:url('get{%fieldName%}List')}","get").done(function (response) {
+            var data = response.data;
+            for(var item of data){
+                $("#"+id).append("<option value="+item.id+">"+item.name+"</option>");  
+            }
+             form.render();
+    }).fail(function (error) {
+        console.log(error)
+    });
+}

@@ -9,16 +9,22 @@
 </head>
 <body>
 <div class="layui-fluid ok-body" style="padding:10px;">
-    <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" lay-filter="search-form">
-       <div class="layui-form-item" >
-            {%searchForm%}
-             <div class="layui-inline">
-                <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
-                    <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
-                </button>
+    <form class="layui-form" lay-filter="search-form">  
+
+        <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" >
+        <div class="layui-form-item" >
+                {%searchForm%}
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>搜索
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-primary icon-btn" type="reset">
+                                <i class="layui-icon layui-icon-refresh-3"></i>重置
+                            </button>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
      <!--数据表格-->
     <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
 </div>
@@ -58,6 +64,13 @@
         });
 
         form.on("submit(search)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+        form.on("submit(reset)", function (data) {
             userTable.reload({
                 where: data.field,
                 page: {curr: 1}
@@ -154,7 +167,7 @@
                     break;
             }
         });
-
+        {%getListFunction%}
         function batchEnabled() {
             okLayer.confirm("确定要批量启用吗？", function (index) {
                 layer.close(index);
