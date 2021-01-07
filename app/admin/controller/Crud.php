@@ -135,32 +135,57 @@ class Crud extends Admin
         foreach ($tableColumns as $elt => $item) {
             $demo = $item['field'];
             $s = explode('_', $item['field']);
-            if (end($s) === 'ids') {
-               
-            }if (endWith($item['field'],'_id')) {
-               
+            if (endWith($item['field'],'_ids')) {
+                $ifarr[] ="
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->whereFindInSet('{$item['field']}',\${$item['field']}.'');
+                    }
+                    ";
+            }else if (endWith($item['field'],'_id')) {
+                $ifarr[] ="
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->where('{$item['field']}',\${$item['field']});
+                    }
+                    ";
             } else  if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
                
             }else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')){
 
             } else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar'){
 
-            }else if (startWith($demo, 'set')) {
-                $ifarr[] ="
-                \${$item['field']} = \$this->request->param('{$item['field']}',null);
-                if(\${$item['field']}){
-                    \$query->whereLike('{$item['field']}',\${$item['field']});
-                }
-                ";
-            }else if (endWith($demo, 'time') || endWith($demo, '_at')) {
-                    $arr[] ="->dateRange('{$item['field']}',\$this->request->param('{$item['field']}',null))";
-            } else{
+            }else if (startWith($demo, 'select')) {
                 $ifarr[] ="
                 \${$item['field']} = \$this->request->param('{$item['field']}',null);
                 if(\${$item['field']}){
                     \$query->where('{$item['field']}',\${$item['field']});
                 }
                 ";
+            }else if (explode('(', $item['type'])[0] === 'enum') {
+                $ifarr[] ="
+                \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                if(\${$item['field']}){
+                    \$query->where('{$item['field']}',\${$item['field']});
+                }
+                ";
+            }else if (startWith($demo, 'set')) {
+                $ifarr[] ="
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->whereFindInSet('{$item['field']}',\${$item['field']}.'');
+                    }
+                    ";
+            }else if (endWith($demo, 'time') || endWith($demo, '_at')) {
+                    $arr[] ="->dateRange('{$item['field']}',\$this->request->param('{$item['field']}',null))";
+            } else{
+                $ifarr[] ="
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->whereLike('{$item['field']}',\"%{\${$item['field']}}%\");
+                    }
+                    ";
+               
             } 
         }
         return count($arr)>0?'->where(function($query){
@@ -322,6 +347,7 @@ class Crud extends Admin
             'table' => $table,
             'action'=> $this->buildSearchCode($table,$tableColumns),
             'relations' => json_encode($relation),
+            'functions'=>$this->buildIndexFunction($table),
         ]));
         fclose($controllerFile);
     }
@@ -355,7 +381,7 @@ class Crud extends Admin
                 ]
             ];
             //生成菜单
-            //  Menu::create($menu);
+             Menu::create($menu);
 
 
             // 生成controller
@@ -393,7 +419,7 @@ class Crud extends Admin
                 </select>
                 ';
                 break;
-            case 'select':
+            case 'comment-select':
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $str = "";
                 foreach ($arr as $k => $v) {
@@ -407,6 +433,13 @@ class Crud extends Admin
                 </select>
                 ';
                 break;
+            case 'select':
+                $html = '
+                <select name="'.$name.'"  id="'.$name.'">
+                    <option value=""></option>
+                </select>
+                ';
+                break;
             case 'datepicker':
                 $html = '<input type="text" id="'.$name.'" name="'.$name.'" placeholder="请输入" autocomplete="off" class="layui-input">';
                 break;
@@ -414,7 +447,7 @@ class Crud extends Admin
         return '
         <div class="layui-inline">
             <label class="layui-form-label">'.$label.'</label>
-            <div class="layui-input-block">
+            <div class="layui-input-inline">
             '.$html.'
             </div>
         </div>
@@ -429,17 +462,19 @@ class Crud extends Admin
                 if ($item['field'] === Db::name("$table")->getPk()) {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'input',$item['field'],$item);
                 } else if (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'comment-select',$item['field'],$item);
                 } else if (explode('(', $item['type'])[0] === 'enum') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'comment-select',$item['field'],$item);
+                }else if((explode('(', $item['type'])[0] === 'text'||explode('(', $item['type'])[0] === 'varchar') && (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs')){
+                    
                 }  else if (endWith($item['field'], '_id')) {
-                   continue;
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
                 } else if (endWith($item['field'], '_ids')) {
-                    continue;
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
                 }else if (endWith($item['field'],'switch')){
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'switch',$item['field'],$item);
                 } else if (explode('(', $item['type'])[0] === 'set') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'comment-select',$item['field'],$item);
                 } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
                     continue;
                 }else if (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
@@ -447,8 +482,11 @@ class Crud extends Admin
                 } else if (explode('(', $item['type'])[0] === 'datetime') {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'datepicker',$item['field'],$item);
                 } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
-                } 
+                } else{
+                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'input',$item['field'],$item);
+                }
             } catch (Exception $e) {
+                echo $e->getMessage();
             }
         }
         return implode(PHP_EOL,$arr);
@@ -472,10 +510,58 @@ class Crud extends Admin
             'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
             'imageList'=>$this->getViewImgList($table),
             'formInit'=> $this->getViewIndexFormInit($table),
+            'getListFunction'=> $this->getViewIndexGetListFunction($table),
 
         ]));
         $this->layuiAddonUsed = [];
         fclose($viewFile);
+    }
+    public function buildRelationListFunction($table){
+        return $this->getReplacedStub('controller/relation/getList.stub', [
+            'fieldName' => $this->controlName($table),
+            'table'=>$table,
+
+        ]);
+    }
+    public function buildIndexFunction($table){
+        $list = $this->getTableColumn($table);
+        $tables = [];
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            if (endWith($item['field'],'_ids')||endWith($item['field'],'_id')) {
+                $tableName = str_replace(endWith($item['field'],'_ids') ? '_ids' : "_id", '', $item['field']);
+                if(!array_key_exists($tableName,$tables)){
+                    $tables[$tableName] = $this->buildRelationListFunction($tableName);
+                }
+               
+            }
+        }
+        return implode(PHP_EOL, $tables);
+    }
+
+    public function getViewIndexGetListFunction($table){
+        $list = $this->getTableColumn($table);
+        $arr = [];
+        $list = $this->getTableColumn($table);
+        $tables = [];
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            if (endWith($item['field'],'_ids')||endWith($item['field'],'_id')) {
+                $tableName = str_replace(endWith($item['field'],'_ids') ? '_ids' : "_id", '', $item['field']);
+                $name = $this->controlName($tableName);
+                if(!array_key_exists($tableName,$tables)){
+                    $tables[$tableName] = $this->getReplacedStub('view/js/getList.stub', [
+                        'fieldName' => $name,
+                    ]);
+                }
+
+                if(!array_key_exists($item['field'],$tables)){
+                    $tables[$item['field']] = "get{$name}List('{$item['field']}');";
+                }
+               
+            }
+        }
+        return implode(PHP_EOL, $tables);
     }
     public function getViewIndexFormInit($table){
         $list = $this->getTableColumn($table);

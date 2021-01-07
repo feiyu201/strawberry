@@ -48,7 +48,7 @@ class {%className%} extends AdminBase
    				'msg'=>'查询用户成功'
    		]);
    }
-
+   {%functions%}
    public function add(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
