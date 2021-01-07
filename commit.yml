@@ -2,19 +2,52 @@
 branches: {
   }
 fileChange:
+  /addons:
+    newFile: !uuid '820461a99e8b8b34c345e0571ba3a502a8a26f95'
+    oldFile: !uuid '42ad708383a71074a836e524b81cc4d0e987e7a4'
+  /addons/crud:
+    newFile: !uuid '864e2dac3a084b3a916438e652a5cafb4fbd5142'
+    oldFile: !uuid '060b77f0f09b6ad1c96c5a156d32f0095075802f'
+  /addons/crud/tpl:
+    newFile: !uuid 'a1d75325e8a3a69fd6979d1f3f78dcfb20c5afeb'
+    oldFile: !uuid '696564409bdd7cfae5a147d38a5a16a36280101d'
+  /addons/crud/tpl/controller:
+    newFile: !uuid '01e06fcac0771075d995d3964515cac1a3f61ea4'
+    oldFile: !uuid '97a04d20a892d4e335d08c64ca494657f52fd2be'
+  /addons/crud/tpl/controller/body.stub:
+    newFile: !uuid 'a57f3efc202c855ea3c37214f32386381ff34995'
+    oldFile: !uuid 'e0fef81167405ef138fc116de4219da65045a69a'
+  /addons/crud/tpl/controller/relation:
+    newFile: !uuid '9016f50f34b2ba9fd7cf06176b2d97b1924ef83a'
+    oldFile: null
+  /addons/crud/tpl/controller/relation/getList.stub:
+    newFile: !uuid 'd40665f930bcf003b124158b7740bef5ac673e80'
+    oldFile: null
+  /addons/crud/tpl/view:
+    newFile: !uuid 'ccbc897dcc341729918a648bab0e790a56969532'
+    oldFile: !uuid '376f69b44d8014e52216ccd17a536a3e3ac58356'
+  /addons/crud/tpl/view/index.stub:
+    newFile: !uuid '1b004f24abd50969c331d8bde8ae5474baa8ebd4'
+    oldFile: !uuid '438c73f88a3d446147e90149867522ade5b2f3cb'
+  /addons/crud/tpl/view/js:
+    newFile: !uuid '300b71535f4cfbb7fe09a82bf2a726591c5af296'
+    oldFile: null
+  /addons/crud/tpl/view/js/getList.stub:
+    newFile: !uuid '07947cb988e4f01b35c1eb9e3010452ed3f56a56'
+    oldFile: null
   /app:
-    newFile: !uuid 'b1913aa1c303359fe97b0b8736952b1e3bcea70b'
-    oldFile: !uuid 'a7297609a17d47927440f9cbd37ea37920de6f25'
+    newFile: !uuid 'fb7319d0a432e95928331d8631ba15e6c4734409'
+    oldFile: !uuid 'b1913aa1c303359fe97b0b8736952b1e3bcea70b'
   /app/admin:
-    newFile: !uuid 'da44261ce83201575aab0b446ef42a7655c7acab'
-    oldFile: !uuid 'b3fac89e1f636c2cb1ecdcf850be90dda3f0c3e7'
+    newFile: !uuid '91b3cda7c617b61944ddc02b3f841f439c856e4c'
+    oldFile: !uuid 'da44261ce83201575aab0b446ef42a7655c7acab'
   /app/admin/controller:
-    newFile: !uuid 'bc2cfb617e0446ad5d327cba4439ad6b7d3d8b9f'
-    oldFile: !uuid 'e6cb7aa0041101dd69db1ef51d9628cac3d10b9b'
+    newFile: !uuid '695878e15365e5f2e47d95a52b65302d8e111c45'
+    oldFile: !uuid 'bc2cfb617e0446ad5d327cba4439ad6b7d3d8b9f'
   /app/admin/controller/Crud.php:
-    newFile: !uuid '228da77160f162fe7b37b2f003d0ef8e2e6beafc'
-    oldFile: !uuid '4f1b9b317eee3ecf0a0b7133710393e471ab8bb5'
-gitCommitId: !uuid '3201b417a098b66a680ea00c687bbbca03e61e60'
+    newFile: !uuid '5f2829f9e922fed70c80cfabc7460c6da8a100d6'
+    oldFile: !uuid '228da77160f162fe7b37b2f003d0ef8e2e6beafc'
+gitCommitId: !uuid '631404e2950eb459e37e31b25699d917f5c64f96'
 renames: {
   }
-revisionId: 231
+revisionId: 232
