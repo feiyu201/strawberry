@@ -3,18 +3,21 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'ff882fc3c1754197200a0c352591d8fea89b0b2e'
-    oldFile: !uuid 'fb7319d0a432e95928331d8631ba15e6c4734409'
+    newFile: !uuid 'b84089b35e701c32014781951ad66f4614d3bc67'
+    oldFile: !uuid 'ff882fc3c1754197200a0c352591d8fea89b0b2e'
   /app/api:
-    newFile: !uuid '7f4f3ef7b7a8f0ff981025553eb8987c54429cbd'
-    oldFile: !uuid 'e947f807633fcaaa1627ea3d349b4225d43dd810'
+    newFile: !uuid '02f26e8cb86eaa3b224386007c216d3a71ad813b'
+    oldFile: !uuid '7f4f3ef7b7a8f0ff981025553eb8987c54429cbd'
   /app/api/controller:
-    newFile: !uuid 'cb3c5ea20225341a93431542996449ad53170efe'
-    oldFile: !uuid '313616cdd208b780f55cbf8cfbda2fa9992a32a4'
+    newFile: !uuid 'cc0e5e419a5ff5b9b5554fc1e5a090affd34f01c'
+    oldFile: !uuid 'cb3c5ea20225341a93431542996449ad53170efe'
   /app/api/controller/Wechat (1).php:
+    newFile: null
+    oldFile: !uuid 'b97fafa6ba8b6adafd4ddbc0bf062ad436b28e5b'
+  /app/api/controller/Wechat.php:
     newFile: !uuid 'b97fafa6ba8b6adafd4ddbc0bf062ad436b28e5b'
     oldFile: null
-gitCommitId: !uuid '912fe91267a095e6ec9722a503bf76523c4729f7'
-renames: {
-  }
-revisionId: 233
+gitCommitId: !uuid '7d63c83ee7d5b4339e42425ef199ee21eb18794d'
+renames:
+  /app/api/controller/Wechat.php: /app/api/controller/Wechat (1).php
+revisionId: 234
