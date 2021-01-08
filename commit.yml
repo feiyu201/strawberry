@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'b84089b35e701c32014781951ad66f4614d3bc67'
-    oldFile: !uuid 'ff882fc3c1754197200a0c352591d8fea89b0b2e'
-  /app/api:
-    newFile: !uuid '02f26e8cb86eaa3b224386007c216d3a71ad813b'
-    oldFile: !uuid '7f4f3ef7b7a8f0ff981025553eb8987c54429cbd'
-  /app/api/controller:
-    newFile: !uuid 'cc0e5e419a5ff5b9b5554fc1e5a090affd34f01c'
-    oldFile: !uuid 'cb3c5ea20225341a93431542996449ad53170efe'
-  /app/api/controller/Wechat (1).php:
-    newFile: null
-    oldFile: !uuid 'b97fafa6ba8b6adafd4ddbc0bf062ad436b28e5b'
-  /app/api/controller/Wechat.php:
-    newFile: !uuid 'b97fafa6ba8b6adafd4ddbc0bf062ad436b28e5b'
-    oldFile: null
-gitCommitId: !uuid '7d63c83ee7d5b4339e42425ef199ee21eb18794d'
-renames:
-  /app/api/controller/Wechat.php: /app/api/controller/Wechat (1).php
-revisionId: 234
+    newFile: !uuid '719d3d7ac2ec6831dc9ae4a3ce3d8ecd6879bb5d'
+    oldFile: !uuid 'b84089b35e701c32014781951ad66f4614d3bc67'
+  /app/admin:
+    newFile: !uuid 'f118fb9e857d39c8deb9933d11e208a01aedff65'
+    oldFile: !uuid '91b3cda7c617b61944ddc02b3f841f439c856e4c'
+  /app/admin/controller:
+    newFile: !uuid '3b4d8eb44fc6306d5cf70a8c829c8221d8d93ac2'
+    oldFile: !uuid '695878e15365e5f2e47d95a52b65302d8e111c45'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid 'b1fcc906ca3691e981685a3204097d55fceaeb20'
+    oldFile: !uuid '5f2829f9e922fed70c80cfabc7460c6da8a100d6'
+gitCommitId: !uuid '63ca5a3f5ed9c127e7617a86f5921c1865ef3073'
+renames: {
+  }
+revisionId: 235
