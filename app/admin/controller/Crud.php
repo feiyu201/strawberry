@@ -355,6 +355,7 @@ class Crud extends Admin
     {
 
         try {
+            $createMenuError = null;
             $table = $request->post('name');
             $sql = 'show table status';
             $tableList = Db::query($sql);
@@ -380,8 +381,13 @@ class Crud extends Admin
                     ]
                 ]
             ];
-            //生成菜单
-             Menu::create($menu);
+            try{
+                //生成菜单
+                Menu::create($menu);
+            }catch(Exception $e){
+                $createMenuError = "生成代码成功，已自动忽略菜单生成";
+            }
+            
 
 
             // 生成controller
@@ -397,10 +403,10 @@ class Crud extends Admin
             //生成添加编辑的公用view
             $this->buildEditView($table);
 
-            $this->success("生成成功");
+            $this->success($createMenuError??"生成成功");
         } catch (Exception $e) {
-            $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
-            // $this->error("生成失败,请先删除原有菜单");
+            // $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
+            $this->error("生成失败");
         }
     }
    
