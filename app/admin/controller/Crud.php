@@ -719,6 +719,14 @@ class Crud extends Admin
                     data:arr
                 });
                 ";
+            }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
+                $this->addEditAddonUsed('fieldList');
+                $this->import('css', '/static/lib/field-list/field-list.css');
+                $arr[] = "
+                var {$item['field']} = fieldList.render({
+                    el: '#{$item['field']}',
+                    name: '{$item['field']}',
+                });";
             } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
 
                 $this->addEditAddonUsed('layedit');
@@ -754,6 +762,8 @@ class Crud extends Admin
             $s = explode('_', $item['field']);
             if (end($s) === 'ids') {
                 $addons['xmSelect'] = 'xm-select';
+            }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
+                $addons['fieldList'] = 'field-list/field-list';
             } else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                 $addons['citypicker'] = 'city-picker/city-picker';
             }
@@ -871,7 +881,14 @@ class Crud extends Admin
                                 " . $this->danxuanedit($table, $item['field'], $item) . "
                             </div>
                         </div>";
-                } else if (explode('(', $item['type'])[0] === 'enum') {
+                } else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
+                    $str .= "<div class=\"layui-form-item\">
+                            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                            <div class=\"layui-input-block\">
+                                <textarea id=\"{$item['field']}\" name=\"{$item['field']}\"></textarea>
+                            </div>
+                        </div>";
+                }else if (explode('(', $item['type'])[0] === 'enum') {
                     $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
             <div class=\"layui-input-block\">
