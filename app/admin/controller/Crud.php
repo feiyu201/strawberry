@@ -477,6 +477,7 @@ class Crud extends Admin
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'comment-select',$item['field'],$item);
                 }else if((explode('(', $item['type'])[0] === 'text'||explode('(', $item['type'])[0] === 'varchar') && (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs')){
                     
+                }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
                 }  else if (endWith($item['field'], '_id')) {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0],'select',$item['field'],$item);
                 } else if (endWith($item['field'], '_ids')) {
