@@ -217,7 +217,11 @@ class Crud extends Admin
                     'relationTable' => $tableName,
                     'fieldNameList' => $this->controlName($demo, false) . 'List',
                 ]) . "\n";
-            } else if (startWith($demo, 'set')) {
+            }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
+                $str .= $this->getReplacedStub('model/fieldNameAttr/json.stub', [
+                    'fieldName' => $this->controlName($demo, true),
+                ]) . "\n";
+             } else if (startWith($demo, 'set')) {
                 $arr = explode(',', explode(':', $item['comment'])[1]);
                 $data = [];
                 foreach ($arr as $k => $v) {
@@ -720,12 +724,20 @@ class Crud extends Admin
                 });
                 ";
             }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
-                $this->addEditAddonUsed('fieldList');
+                $this->addEditAddonUsed('FieldList');
                 $this->import('css', '/static/lib/field-list/field-list.css');
+                $list = $this->controlName($item['field'].'_list',false);
                 $arr[] = "
-                var {$item['field']} = fieldList.render({
+                var {$list} = '{:isset(\$test_name)?json_encode(\${$table}.{$item['field']}):null}';
+                try{
+                    {$list} = JSON.parse({$list});
+                }catch(e){
+                    {$list} = [];
+                }
+                var {$item['field']} = new FieldList('{$item['field']}',{
                     el: '#{$item['field']}',
                     name: '{$item['field']}',
+                    data:{$list}
                 });";
             } else if (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
 
@@ -763,7 +775,7 @@ class Crud extends Admin
             if (end($s) === 'ids') {
                 $addons['xmSelect'] = 'xm-select';
             }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
-                $addons['fieldList'] = 'field-list/field-list';
+                $addons['FieldList'] = 'field-list/field-list';
             } else  if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                 $addons['citypicker'] = 'city-picker/city-picker';
             }
@@ -803,7 +815,16 @@ class Crud extends Admin
                         }
                         return arr.join(',')
                     } }," . PHP_EOL;
-                } else if (startWith($item['field'], 'set') || startWith($item['field'], 'select') || (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
+                }else if ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'],'_fieldlist')) {
+                    $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
+                        var data = d.{$item['field']};
+                        var arr = [];
+                        for(var item of data){
+                            arr.push(item.key+':'+item.value);
+                        }
+                        return arr.join(',')
+                    } }," . PHP_EOL;
+                 } else if (startWith($item['field'], 'set') || startWith($item['field'], 'select') || (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
                     $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
                 } else if (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                     $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
@@ -885,7 +906,7 @@ class Crud extends Admin
                     $str .= "<div class=\"layui-form-item\">
                             <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
                             <div class=\"layui-input-block\">
-                                <textarea id=\"{$item['field']}\" name=\"{$item['field']}\"></textarea>
+                                <div id=\"{$item['field']}\" name=\"{$item['field']}\"></div>
                             </div>
                         </div>";
                 }else if (explode('(', $item['type'])[0] === 'enum') {
