@@ -2,19 +2,55 @@
 branches: {
   }
 fileChange:
+  /addons:
+    newFile: !uuid 'c183a5e30d504455b234022f1e141f0af6bb3382'
+    oldFile: !uuid '820461a99e8b8b34c345e0571ba3a502a8a26f95'
+  /addons/crud:
+    newFile: !uuid 'd55f86d335618b1d00d1277b2b8289ca1495e3be'
+    oldFile: !uuid '864e2dac3a084b3a916438e652a5cafb4fbd5142'
+  /addons/crud/tpl:
+    newFile: !uuid 'a7a35a6f9f0ef0c98ad66329d19e77e55d1567f6'
+    oldFile: !uuid 'a1d75325e8a3a69fd6979d1f3f78dcfb20c5afeb'
+  /addons/crud/tpl/model:
+    newFile: !uuid '63497b58c791b382aeab4b99971a63a69c8bd431'
+    oldFile: !uuid '582d32a4200b5c75c86a97b3664985558b70c2e2'
+  /addons/crud/tpl/model/fieldNameAttr:
+    newFile: !uuid '80e1825103792191f21d2d1d5a9c800197ae7280'
+    oldFile: !uuid 'feebbc31629e171655c44d148a0c94b29a02f638'
+  /addons/crud/tpl/model/fieldNameAttr/json.stub:
+    newFile: !uuid '53f4c9d4ab6d765d04e56263a5e2722009b8f860'
+    oldFile: null
   /app:
-    newFile: !uuid 'cbb77672f3d9176544e7af74378492c51d8a4e0e'
-    oldFile: !uuid '719d3d7ac2ec6831dc9ae4a3ce3d8ecd6879bb5d'
+    newFile: !uuid '2ae29e1267f0eae24153ebb630b9a19437dc7d77'
+    oldFile: !uuid 'cbb77672f3d9176544e7af74378492c51d8a4e0e'
   /app/admin:
-    newFile: !uuid '12c08537d17ad3a36adc02ca9b7755982427daed'
-    oldFile: !uuid 'f118fb9e857d39c8deb9933d11e208a01aedff65'
+    newFile: !uuid '7576701a97aa66468675d01657538f00f1063c3f'
+    oldFile: !uuid '12c08537d17ad3a36adc02ca9b7755982427daed'
   /app/admin/controller:
-    newFile: !uuid '86c3ddb65591cefb3a6d63a6b6bee0dadb56600a'
-    oldFile: !uuid '3b4d8eb44fc6306d5cf70a8c829c8221d8d93ac2'
-  /app/admin/controller/Upload.php:
-    newFile: !uuid 'f4ce8b5801eccdfde5857a86cd0f34e7d9ede2da'
-    oldFile: !uuid '6c8b4563c8ca5322fc09bb0363fce61e7385a62b'
-gitCommitId: !uuid '98146e0ac7da225a6b24d9a79a1fa2c688d57311'
+    newFile: !uuid '85608b98269e2bce3406cf2e7712d9119389db79'
+    oldFile: !uuid '86c3ddb65591cefb3a6d63a6b6bee0dadb56600a'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid '8295612b3409f86a13b4ef3d1ca6b7f9b86a22c4'
+    oldFile: !uuid 'b1fcc906ca3691e981685a3204097d55fceaeb20'
+  /public:
+    newFile: !uuid 'a05ca72af1ad185b47b498881bf88a6adc57c34d'
+    oldFile: !uuid 'ccfbb4f0820899cdf37fdcd7a558b68f9c05255a'
+  /public/static:
+    newFile: !uuid 'd8ea3d1be44a39465db7fb68b6b31d55acbece9e'
+    oldFile: !uuid '0d114580f7dc97a3e8981b4771417ee044b2ba96'
+  /public/static/lib:
+    newFile: !uuid '29020ddbcd122f1537f3d5e13a1d1f8d09c9aa51'
+    oldFile: !uuid '05189136167ff49c4c8922db6ed32306436e71fc'
+  /public/static/lib/field-list:
+    newFile: !uuid 'cdd2ac221bb8ccf4782a3e6ff4f7828dd4cd25d4'
+    oldFile: null
+  /public/static/lib/field-list/field-list.css:
+    newFile: !uuid 'ba4f6550e7f610523321989b243e0debfb88dc84'
+    oldFile: null
+  /public/static/lib/field-list/field-list.js:
+    newFile: !uuid '6b992718be84e3874cf9036f0e4234c98fe3609c'
+    oldFile: null
+gitCommitId: !uuid 'ec300453386b543ad201e29deadc1029357e5ffd'
 renames: {
   }
-revisionId: 236
+revisionId: 237
