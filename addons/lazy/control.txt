@@ -53,9 +53,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function add()
     {
@@ -77,9 +77,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function edit()
     {
@@ -102,9 +102,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/info/%s/{%s})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function info()
     {
@@ -125,12 +125,12 @@ class %s extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/%s/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int page &nbsp; 第几页 Yes
-     * @param   int limit &nbsp; 显示条数 Yes
+     * @param   int page null 第几页 Yes
+     * @param   int limit null 显示条数 Yes
      %s
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function _list()
     {
@@ -153,9 +153,9 @@ class %s extends Api
      * @ApiRoute    (/api/%s/del/%s/{%s})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
      %s
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function del()
     {

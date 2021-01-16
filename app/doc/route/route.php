@@ -10,7 +10,7 @@ Route::any( '/', function () {
 } );
 Route::get( 'assets', "\\ric\\apidoc\\Controller@assets", [ 'deny_ext' => 'php|.htacess' ] );
 Route::get( 'module', "\\ric\\apidoc\\Controller@module" );
-Route::get( 'action', "\\ric\\apidoc\\Controller@action" );
+Route::get( 'action', "\\ric\\apidoc\\Controller@action" )->middleware(\app\middleware\DocMiddleWare::class);
 Route::get( 'document', "\\ric\\apidoc\\Controller@document" );
 Route::any( 'login$', "\\ric\\apidoc\\Controller@login" );
 Route::any( 'format_params', "\\ric\\apidoc\\Controller@format_params" );

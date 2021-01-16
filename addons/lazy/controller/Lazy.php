@@ -172,13 +172,13 @@ class Lazy extends AddonBase
     {
         $str = '* @param   int '
             . $primary . ' '
-            . '&nbsp; 主键' . $primary . ' ' . 'Yes';
+            . 'null 主键' . $primary . ' ' . 'Yes';
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @param   '
                 . self::delString($v['type']) . ' '
                 . $v['field'] . ' '
-                . '&nbsp; '
+                . 'null '
                 . $v['comment'] . ' '
                 . $v['null'];
         }
@@ -194,7 +194,7 @@ class Lazy extends AddonBase
                 $str = $str
                     . '* @param   ' . self::delString($v['type']) . ' '
                     . $v['field'] . ' '
-                    . '&nbsp; '
+                    . 'null '
                     . $v['comment'] . ' '
                     . $v['null'];
             else
@@ -202,7 +202,7 @@ class Lazy extends AddonBase
                 $str = $str . "\r\n" . '     * @param   '
                     . self::delString($v['type']) . ' '
                     . $v['field'] . ' '
-                    . '&nbsp; '
+                    . 'null '
                     . $v['comment'] . ' '
                     . $v['null'];
         }
@@ -242,12 +242,13 @@ class Lazy extends AddonBase
     // 删除（）中的字符
     protected static function delString($str)
     {
+        $str = explode(' ',$str)[0];
         $location = strpos($str, '(');
 
       //修复没有括号的字段类型不生成注释的问题
         if(!empty($location)){
 
-        $str = substr($str, '0', $location);
+            $str = substr($str, '0', $location);
         }
        
         return $str;
@@ -269,20 +270,20 @@ class Lazy extends AddonBase
     {
         $str = '* @param   int '
             . $primary . ' '
-            . '&nbsp; 主键' . $primary . ' ' . 'Yes';
+            . 'null 主键' . $primary . ' ' . 'Yes';
         return $str;
     }
 
     // 返回参数
     protected static function apiReturnParams($data, $primary, $type = true)
     {
-        $str = ($type ? "\r\n     " : "") . '* @return   int ' . $primary . ' &nbsp; 主键' . $primary;;
+        $str = ($type ? "\r\n     " : "") . '* @return   int ' . $primary . ' null 主键' . $primary;;
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @return   '
                 . self::delString($v['type']) . ' '
                 . $v['field'] . ' '
-                . '&nbsp; '
+                . 'null '
                 . $v['comment'] . ' '
                 . $v['null'];
         }
