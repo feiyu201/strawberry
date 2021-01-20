@@ -30,8 +30,7 @@ use think\facade\Db;
 
 class Admin extends Api
 {
-    //设置控制器中间件
-    protected $middleware = [\app\middleware\AuthMiddleWare::class];
+
     //如果$noNeedLogin为空表示所有接口都需要登录才能请求
     //如果$noNeedRight为空表示所有接口都需要验证权限才能请求
     //如果接口已经设置无需登录,那也就无需鉴权了
@@ -53,22 +52,22 @@ class Admin extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/add)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   varchar username &nbsp; 用户名 NO
-     * @param   varchar nickname &nbsp; 昵称 NO
-     * @param   varchar password &nbsp; 密码 NO
-     * @param   varchar salt &nbsp; 密码盐 NO
-     * @param   varchar avatar &nbsp; 头像 NO
-     * @param   varchar email &nbsp; 电子邮箱 NO
-     * @param   tinyint loginfailure &nbsp; 失败次数 NO
-     * @param   int logintime &nbsp; 登录时间 YES
-     * @param   varchar loginip &nbsp; 登录IP YES
-     * @param   int createtime &nbsp; 创建时间 YES
-     * @param   int updatetime &nbsp; 更新时间 YES
-     * @param   varchar token &nbsp; Session标识 NO
-     * @param   varchar status &nbsp; 状态 NO
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @param   varchar username null 用户名 NO
+     * @param   varchar nickname null 昵称 NO
+     * @param   varchar password null 密码 NO
+     * @param   varchar salt null 密码盐 NO
+     * @param   varchar avatar null 头像 NO
+     * @param   varchar email null 电子邮箱 NO
+     * @param   tinyint loginfailure null 失败次数 NO
+     * @param   int logintime null 登录时间 YES
+     * @param   varchar loginip null 登录IP YES
+     * @param   int createtime null 创建时间 YES
+     * @param   int updatetime null 更新时间 YES
+     * @param   varchar token null Session标识 NO
+     * @param   varchar status null 状态 NO
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function add()
     {
@@ -79,6 +78,7 @@ class Admin extends Api
             $this->success();
         else
             $this->error('添加失败');
+
     }
 
     /**
@@ -88,23 +88,23 @@ class Admin extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/edit)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int id &nbsp; 主键id Yes
-     * @param   varchar username &nbsp; 用户名 NO
-     * @param   varchar nickname &nbsp; 昵称 NO
-     * @param   varchar password &nbsp; 密码 NO
-     * @param   varchar salt &nbsp; 密码盐 NO
-     * @param   varchar avatar &nbsp; 头像 NO
-     * @param   varchar email &nbsp; 电子邮箱 NO
-     * @param   tinyint loginfailure &nbsp; 失败次数 NO
-     * @param   int logintime &nbsp; 登录时间 YES
-     * @param   varchar loginip &nbsp; 登录IP YES
-     * @param   int createtime &nbsp; 创建时间 YES
-     * @param   int updatetime &nbsp; 更新时间 YES
-     * @param   varchar token &nbsp; Session标识 NO
-     * @param   varchar status &nbsp; 状态 NO
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @param   int id null 主键id Yes
+     * @param   varchar username null 用户名 NO
+     * @param   varchar nickname null 昵称 NO
+     * @param   varchar password null 密码 NO
+     * @param   varchar salt null 密码盐 NO
+     * @param   varchar avatar null 头像 NO
+     * @param   varchar email null 电子邮箱 NO
+     * @param   tinyint loginfailure null 失败次数 NO
+     * @param   int logintime null 登录时间 YES
+     * @param   varchar loginip null 登录IP YES
+     * @param   int createtime null 创建时间 YES
+     * @param   int updatetime null 更新时间 YES
+     * @param   varchar token null Session标识 NO
+     * @param   varchar status null 状态 NO
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function edit()
     {
@@ -116,6 +116,7 @@ class Admin extends Api
             $this->success();
         else
             $this->error('编辑失败');
+
     }
 
     /**
@@ -125,34 +126,35 @@ class Admin extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/info/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int id &nbsp; 主键id Yes
-     * @return   int id &nbsp; 主键id
-     * @return   varchar username &nbsp; 用户名 NO
-     * @return   varchar nickname &nbsp; 昵称 NO
-     * @return   varchar password &nbsp; 密码 NO
-     * @return   varchar salt &nbsp; 密码盐 NO
-     * @return   varchar avatar &nbsp; 头像 NO
-     * @return   varchar email &nbsp; 电子邮箱 NO
-     * @return   tinyint loginfailure &nbsp; 失败次数 NO
-     * @return   int logintime &nbsp; 登录时间 YES
-     * @return   varchar loginip &nbsp; 登录IP YES
-     * @return   int createtime &nbsp; 创建时间 YES
-     * @return   int updatetime &nbsp; 更新时间 YES
-     * @return   varchar token &nbsp; Session标识 NO
-     * @return   varchar status &nbsp; 状态 NO
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @param   int id null 主键id Yes
+     * @return   int id null 主键id
+     * @return   varchar username null 用户名 NO
+     * @return   varchar nickname null 昵称 NO
+     * @return   varchar password null 密码 NO
+     * @return   varchar salt null 密码盐 NO
+     * @return   varchar avatar null 头像 NO
+     * @return   varchar email null 电子邮箱 NO
+     * @return   tinyint loginfailure null 失败次数 NO
+     * @return   int logintime null 登录时间 YES
+     * @return   varchar loginip null 登录IP YES
+     * @return   int createtime null 创建时间 YES
+     * @return   int updatetime null 更新时间 YES
+     * @return   varchar token null Session标识 NO
+     * @return   varchar status null 状态 NO
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function info()
     {
         $id = request()->param('id');
         $result = Db::name('admin')->where('id', $id)->find();
-
+        
         if ($result)
             $this->success('查询成功', $result);
         else
             $this->error('信息不存在');
+
     }
 
     /**
@@ -162,74 +164,75 @@ class Admin extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/_list)
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int page &nbsp; 第几页 Yes
-     * @param   int page &nbsp; 显示条数 Yes
-     * @param   int id &nbsp; 主键id Yes
-     * @param   varchar username &nbsp; 用户名 NO
-     * @param   varchar nickname &nbsp; 昵称 NO
-     * @param   varchar password &nbsp; 密码 NO
-     * @param   varchar salt &nbsp; 密码盐 NO
-     * @param   varchar avatar &nbsp; 头像 NO
-     * @param   varchar email &nbsp; 电子邮箱 NO
-     * @param   tinyint loginfailure &nbsp; 失败次数 NO
-     * @param   int logintime &nbsp; 登录时间 YES
-     * @param   varchar loginip &nbsp; 登录IP YES
-     * @param   int createtime &nbsp; 创建时间 YES
-     * @param   int updatetime &nbsp; 更新时间 YES
-     * @param   varchar token &nbsp; Session标识 NO
-     * @param   varchar status &nbsp; 状态 NO
-     * @return   int id &nbsp; 主键id
-     * @return   varchar username &nbsp; 用户名 NO
-     * @return   varchar nickname &nbsp; 昵称 NO
-     * @return   varchar password &nbsp; 密码 NO
-     * @return   varchar salt &nbsp; 密码盐 NO
-     * @return   varchar avatar &nbsp; 头像 NO
-     * @return   varchar email &nbsp; 电子邮箱 NO
-     * @return   tinyint loginfailure &nbsp; 失败次数 NO
-     * @return   int logintime &nbsp; 登录时间 YES
-     * @return   varchar loginip &nbsp; 登录IP YES
-     * @return   int createtime &nbsp; 创建时间 YES
-     * @return   int updatetime &nbsp; 更新时间 YES
-     * @return   varchar token &nbsp; Session标识 NO
-     * @return   varchar status &nbsp; 状态 NO
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @param   int page null 第几页 Yes
+     * @param   int limit null 显示条数 Yes
+     * @param   int id null 主键id Yes
+     * @param   varchar username null 用户名 NO
+     * @param   varchar nickname null 昵称 NO
+     * @param   varchar password null 密码 NO
+     * @param   varchar salt null 密码盐 NO
+     * @param   varchar avatar null 头像 NO
+     * @param   varchar email null 电子邮箱 NO
+     * @param   tinyint loginfailure null 失败次数 NO
+     * @param   int logintime null 登录时间 YES
+     * @param   varchar loginip null 登录IP YES
+     * @param   int createtime null 创建时间 YES
+     * @param   int updatetime null 更新时间 YES
+     * @param   varchar token null Session标识 NO
+     * @param   varchar status null 状态 NO
+     * @return   int id null 主键id
+     * @return   varchar username null 用户名 NO
+     * @return   varchar nickname null 昵称 NO
+     * @return   varchar password null 密码 NO
+     * @return   varchar salt null 密码盐 NO
+     * @return   varchar avatar null 头像 NO
+     * @return   varchar email null 电子邮箱 NO
+     * @return   tinyint loginfailure null 失败次数 NO
+     * @return   int logintime null 登录时间 YES
+     * @return   varchar loginip null 登录IP YES
+     * @return   int createtime null 创建时间 YES
+     * @return   int updatetime null 更新时间 YES
+     * @return   varchar token null Session标识 NO
+     * @return   varchar status null 状态 NO
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function _list()
     {
-        $page = $this->request->param('page', 1, 'intval');
-        $limit = $this->request->param('limit', 10, 'intval');
+        $page = $this->request->param('page',1,'intval');
+        $limit = $this->request->param('limit',10,'intval');
         $where = [];
-        $username = request()->param("username");
-        $nickname = request()->param("nickname");
-        $password = request()->param("password");
-        $salt = request()->param("salt");
-        $avatar = request()->param("avatar");
-        $email = request()->param("email");
-        $loginfailure = request()->param("loginfailure");
-        $logintime = request()->param("logintime");
-        $loginip = request()->param("loginip");
-        $createtime = request()->param("createtime");
-        $updatetime = request()->param("updatetime");
-        $token = request()->param("token");
-        $status = request()->param("status");
-        if ($username) $where["username"] = ['like', '%' . $username . '%'];
-        if ($nickname) $where["nickname"] = ['like', '%' . $nickname . '%'];
-        if ($password) $where["password"] = ['like', '%' . $password . '%'];
-        if ($salt) $where["salt"] = ['like', '%' . $salt . '%'];
-        if ($avatar) $where["avatar"] = ['like', '%' . $avatar . '%'];
-        if ($email) $where["email"] = ['like', '%' . $email . '%'];
-        if ($loginfailure) $where["loginfailure"] = ['like', '%' . $loginfailure . '%'];
-        if (request()->param("startlogintime") && request()->param("endlogintime")) $where["logintime"] = [['>=', request()->param("startlogintime")], ['<=', request()->param("endlogintime")], 'and'];
-        if ($loginip) $where["loginip"] = ['like', '%' . $loginip . '%'];
-        if (request()->param("startcreatetime") && request()->param("endcreatetime")) $where["createtime"] = [['>=', request()->param("startcreatetime")], ['<=', request()->param("endcreatetime")], 'and'];
-        if (request()->param("startupdatetime") && request()->param("endupdatetime")) $where["updatetime"] = [['>=', request()->param("startupdatetime")], ['<=', request()->param("endupdatetime")], 'and'];
-        if ($token) $where["token"] = ['like', '%' . $token . '%'];
-        if ($status) $where["status"] = ['like', '%' . $status . '%'];
+        $username=request()->param("username");
+        $nickname=request()->param("nickname");
+        $password=request()->param("password");
+        $salt=request()->param("salt");
+        $avatar=request()->param("avatar");
+        $email=request()->param("email");
+        $loginfailure=request()->param("loginfailure");
+        $logintime=request()->param("logintime");
+        $loginip=request()->param("loginip");
+        $createtime=request()->param("createtime");
+        $updatetime=request()->param("updatetime");
+        $token=request()->param("token");
+        $status=request()->param("status");
+        if ($username)$where[] = ['username', 'like', '%' .$username. '%'];
+        if ($nickname)$where[] = ['nickname', 'like', '%' .$nickname. '%'];
+        if ($password)$where[] = ['password', 'like', '%' .$password. '%'];
+        if ($salt)$where[] = ['salt', 'like', '%' .$salt. '%'];
+        if ($avatar)$where[] = ['avatar', 'like', '%' .$avatar. '%'];
+        if ($email)$where[] = ['email', 'like', '%' .$email. '%'];
+        if ($loginfailure)$where[] = ['loginfailure', 'like', '%' .$loginfailure. '%'];
+        if (request()->param("startlogintime") && request()->param("endlogintime"))$where["logintime"] = [['>=', request()->param("startlogintime")], ['<=', request()->param("endlogintime")], 'and'];
+        if ($loginip)$where[] = ['loginip', 'like', '%' .$loginip. '%'];
+        if (request()->param("startcreatetime") && request()->param("endcreatetime"))$where["createtime"] = [['>=', request()->param("startcreatetime")], ['<=', request()->param("endcreatetime")], 'and'];
+        if (request()->param("startupdatetime") && request()->param("endupdatetime"))$where["updatetime"] = [['>=', request()->param("startupdatetime")], ['<=', request()->param("endupdatetime")], 'and'];
+        if ($token)$where[] = ['token', 'like', '%' .$token. '%'];
+        if ($status)$where[] = ['status', 'like', '%' .$status. '%'];
 
-        $result = Db::name('admin')->where($where)->page($page, $limit)->select()->toArray();
-        foreach ($result as $elt => $item) {
+        $result = Db::name('admin')->where($where)->page($page,$limit)->select()->toArray();
+        foreach($result as $elt => $item){
+
         }
         if ($result)
             $this->success('查询成功', $result);
@@ -244,10 +247,10 @@ class Admin extends Api
      * @method   (POST/GET)
      * @ApiRoute    (/api/Admin/del/id/{id})
      * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
-     * @param   int id &nbsp; 主键id Yes
-     * @return   int code &nbsp; 返回参数 200
-     * @return   string message &nbsp; 返回信息 successful
-     * @return   array data &nbsp; 返回数据 successful
+     * @param   int id null 主键id Yes
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
      * */
     public function del()
     {
@@ -258,4 +261,5 @@ class Admin extends Api
         else
             $this->error('删除失败');
     }
+
 }
