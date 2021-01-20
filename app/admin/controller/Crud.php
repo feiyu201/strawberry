@@ -974,7 +974,7 @@ class Crud extends Admin
                     <div class="layui-form-item">
                         <label class="layui-form-label">{$item['comment']}</label>
                         <div class="layui-input-block layui-upload filemanage" data-id="{$item['field']}">
-                            <input id="{$item['field']}" name="{$item['field']}" type="text" style="display: none;" value="{:implode('|',{$fieldName})}"/>
+                            <input id="{$item['field']}" name="{$item['field']}" type="text" style="display: none;" value="{:implode('|',{$fieldName}??[])}"/>
                             <div class="layui-upload-list">
                             <table class="layui-table" style="margin:0 10px;table-layout:fixed">
                                 <thead>
@@ -984,6 +984,7 @@ class Crud extends Admin
                                 </tr>
                                 </thead>
                                 <tbody id="{$item['field']}_list">
+                                    {if \${$table}??null}
                                     {foreach {$fieldName} as \$key=>\$vo } 
                                     <tr data-path="\$vo">
                                         <td style="word-break: break-all;">{\$vo}</td>
@@ -992,6 +993,7 @@ class Crud extends Admin
                                         </td>
                                     </tr>
                                     {/foreach}
+                                    {/if}
                                 </tbody>
                             </table>
                             <button type='button' class='layui-btn upload'  style="margin: 10px;">上传文件</button>
