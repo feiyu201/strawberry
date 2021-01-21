@@ -676,7 +676,6 @@ class Crud extends Admin
                 laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
-                          ,value:'{:date(\"Y-m-d H:i:s\")}'
                           ,type: 'datetime'
                         });";
             } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
@@ -686,8 +685,6 @@ class Crud extends Admin
                 laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
-
-                          ,value:'{:date(\"Y-m-d H:i:s\")}'
                           ,type: 'datetime'
                         });";
             } elseif (endWith($item['field'], 'file')) {
@@ -1072,7 +1069,7 @@ EOF;
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
       <div class=\"layui-input-block\">
-        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
+        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value=\"" . '{$' . "" . $table . "." . $item['field'] . "??date('Y-m-d H:i:s')}\">
       </div>
     </div>
   </div>";
@@ -1081,7 +1078,7 @@ EOF;
     <div class=\"layui-inline\">
       <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
       <div class=\"layui-input-block\">
-        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
+        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value=\"" . '{$' . "" . $table . "." . $item['field'] . "??date('Y-m-d H:i:s')}\">
       </div>
     </div>
   </div>";
