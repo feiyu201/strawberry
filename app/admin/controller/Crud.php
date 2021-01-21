@@ -687,7 +687,7 @@ class Crud extends Admin
                         });";
             } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
                 $this->addEditAddonUsed('jquery', '$');
-                $arr[] = <<<EOD
+                $arr[] = <<<EOF
                 $(".filemanage .upload").click(function () {
                     let id = $(this).parents(".filemanage").attr("data-id");
                     filemangeWindowId = okLayer.open("附件管理", "{:url('attachment/filemanage')}", "94%", "94%", function (layero) {
@@ -722,7 +722,7 @@ class Crud extends Admin
                         data.splice( data.indexOf(path), 1); 
                         $("#" + id).val(data.join('|'))
                   })
-                EOD;
+EOF;
             } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                 $this->import('js', '/static/lib/city-picker/city-picker.data.js');
                 $this->import('css', '/static/lib/city-picker/city-picker.css');
@@ -970,7 +970,7 @@ class Crud extends Admin
                 } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
                     $fieldName = '$'.$table . "." . $item['field'];
                     $field  = $table . "." . $item['field'];
-                    $str .= <<<EOD
+                    $str .= <<<EOF
                     <div class="layui-form-item">
                         <label class="layui-form-label">{$item['comment']}</label>
                         <div class="layui-input-block layui-upload filemanage" data-id="{$item['field']}">
@@ -1000,7 +1000,7 @@ class Crud extends Admin
                             </div>
                         </div>
                     </div>
-                    EOD;
+EOF;
                 } elseif (endWith($item['field'], '_id')) {
                     $filedName = $this->controlName(str_replace('_id', '', $item['field']), false) . 's';
                     $field  = $table . "." . $item['field'];
