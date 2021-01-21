@@ -143,10 +143,10 @@ class Crud extends Admin
                         \$query->where('{$item['field']}',\${$item['field']});
                     }
                     ";
-            } elseif (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
-            } elseif (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
+            } elseif (endWith($item['field'], 'images')||endWith($item['field'], 'image')||endWith($item['field'], 'img')||endWith($item['field'], 'imgs')) {
+            } elseif (endWith($item['field'], 'content')) {
             } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
-            } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
+            } elseif (endWith($item['field'], 'file')) {
             } elseif (startWith($demo, 'select')) {
                 $ifarr[] ="
                 \${$item['field']} = \$this->request->param('{$item['field']}',null);
@@ -257,7 +257,7 @@ class Crud extends Admin
                     'fieldName' => $this->controlName($demo, true),
                     'delimiter' => '|',
                 ]) . "\n";
-            } elseif (endWith($demo, 'file') && explode('(', $item['type'])[0] === 'text') {
+            } elseif (endWith($item['field'], 'file')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/files.stub', [
                     'fieldName' => $this->controlName($demo, true),
                     'delimiter' => '|',
@@ -471,18 +471,18 @@ class Crud extends Admin
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'comment-select', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'enum') {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'comment-select', $item['field'], $item);
-                } elseif ((explode('(', $item['type'])[0] === 'text'||explode('(', $item['type'])[0] === 'varchar') && (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs')) {
+                } elseif (endWith($item['field'], 'images')||endWith($item['field'], 'image')||endWith($item['field'], 'img')||endWith($item['field'], 'imgs')) {
                 } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
                 } elseif (endWith($item['field'], '_id')) {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'select', $item['field'], $item);
-                } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
+                } elseif (endWith($item['field'], 'file')) {
                 } elseif (endWith($item['field'], '_ids')) {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'select', $item['field'], $item);
                 } elseif (endWith($item['field'], 'switch')) {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'switch', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'set') {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'comment-select', $item['field'], $item);
-                } elseif (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
+                } elseif (endWith($item['field'], 'content')) {
                     continue;
                 } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                     $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'datepicker', $item['field'], $item);
@@ -508,17 +508,18 @@ class Crud extends Admin
         }
 
         $viewFile = fopen($path . "/" . "index.html", "w");
-        $this->layuiAddonUsed = ['form', 'okLayer', 'okUtils'];
+        $this->layuiAddonUsed = ['form', 'okLayer', 'okUtils','table','$'=>'jquery'];
         fwrite($viewFile, $this->getReplacedStub('view/index.stub', [
             'table' => $table,
             'searchForm'=> $this->getSearchFormHtml($table),
             'tableCols' => $this->getViewFiledList($table),
             'modalWidth'=>'90%',
             'modalHeight'=>'90%',
-            'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
-            'imageList'=>$this->getViewImgList($table),
             'formInit'=> $this->getViewIndexFormInit($table),
+            'imageList'=>$this->getViewImgList($table),
+            'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
             'getListFunction'=> $this->getViewIndexGetListFunction($table),
+            'varInit'=>$this->getEditVarInitJs(),
 
         ]));
         $this->layuiAddonUsed = [];
@@ -665,6 +666,7 @@ class Crud extends Admin
     {
         $list = $this->getTableColumn($table);
         $arr = [];
+        $initFileManage = false;
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             if (explode('(', $item['type'])[0] === 'datetime') {
@@ -674,6 +676,7 @@ class Crud extends Admin
                 laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
+                          ,value:'{:date(\"Y-m-d H:i:s\")}'
                           ,type: 'datetime'
                         });";
             } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
@@ -683,11 +686,14 @@ class Crud extends Admin
                 laydate.render({ 
                           elem: \"#" . $item['field'] . "\"
                           ,trigger:'click'
+
+                          ,value:'{:date(\"Y-m-d H:i:s\")}'
                           ,type: 'datetime'
                         });";
-            } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
+            } elseif (endWith($item['field'], 'file')) {
                 $this->addEditAddonUsed('jquery', '$');
-                $arr[] = <<<EOF
+                if (!$initFileManage) {
+                    $arr[] = <<<EOF
                 $(".filemanage .upload").click(function () {
                     let id = $(this).parents(".filemanage").attr("data-id");
                     filemangeWindowId = okLayer.open("附件管理", "{:url('attachment/filemanage')}", "94%", "94%", function (layero) {
@@ -723,6 +729,9 @@ class Crud extends Admin
                         $("#" + id).val(data.join('|'))
                   })
 EOF;
+
+                    $initFileManage = true;
+                }
             } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                 $this->import('js', '/static/lib/city-picker/city-picker.data.js');
                 $this->import('css', '/static/lib/city-picker/city-picker.css');
@@ -777,7 +786,7 @@ EOF;
                     name: '{$item['field']}',
                     data:{$list}
                 });";
-            } elseif (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
+            } elseif (endWith($item['field'], 'content')) {
                 $this->addEditAddonUsed('layedit');
                 $arr[] = "
                 //创建{$item['field']}编辑器
@@ -836,9 +845,21 @@ EOF;
         return state;
     }}," . PHP_EOL;
             } else {
-                if (end($s) === 'img' || end($s) === 'image' || end($s) === 'images' || end($s) === 'imgs') {
-                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "' , templet:'#logoTpl" . (strpos($item['field'], 's') != false ? 'More' : 'One') . "'}," . PHP_EOL;
-                } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
+                if (endWith($item['field'], 'images')||endWith($item['field'], 'image')||endWith($item['field'], 'img')||endWith($item['field'], 'imgs')) {
+                    $field  =$item['field'];
+                    $name  = explode(':', $item['comment'])[0];
+                    $this->addEditAddonUsed('laytpl');
+                    $code = (endWith($item['field'], 'images')|| endWith($item['field'], 'imgs'))?'':"d.{$field} = [d.{$field}];";
+                    $str .=<<<EOF
+                    {
+                        field: '{$field}', title: '{$name}', templet: function (d) {
+                            d.imageField = '{$field}';
+                            {$code}
+                            return laytpl($("#imageTpl").html()).render(d);
+                        }
+                    },
+EOF;
+                } elseif (endWith($item['field'], 'file')) {
                 } elseif (endWith($item['field'], '_id')) {
                     $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
                 } elseif (end($s) === 'ids') {
@@ -879,22 +900,18 @@ EOF;
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             try {
-                if (explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'img' || end($s) === 'image')) {
+                if (endWith($item['field'], 'image') || endWith($item['field'], 'image')||endWith($item['field'], 'images')  || endWith($item['field'], 'imgs')) {
+                    if (!$flag) {
+                        $str .= "<script type=\"text/html\" id=\"imageTpl\">
+                        {{# var img = d[d.imageField] }}
+                        {{# for(var i=0;i < img.length;i++){}}
+                        <a href=\"javascript:amplificationImg('图片','{{img[i]}}')\">
+                            <img src=\"{{img[i]}}\" style=\"width: auto;height: 100%;\"/>
+                        </a>
+                        {{# } }}
+                    </script>";
+                    }
                     $flag = true;
-                    $str .= "<script type=\"text/html\" id=\"logoTplOne\">
-                                <a href=\"javascript:amplificationImg('" . $item['comment'] . "','{{d." . $item['field'] . "}}')\">
-                                <img src=\"{{d." . $item['field'] . "}}\" style=\"width: auto;height: 100%;\"/></a>
-                            </script>";
-                } elseif (explode('(', $item['type'])[0] === 'text' && (end($s) === 'images' || end($s) === 'imgs')) {
-                    $flag = true;
-                    $str .= "<script type=\"text/html\" id=\"logoTplMore\">
-                    {{# var img = d." . $item['field'] . "}}
-                    {{# for(var i=0;i < img.length;i++){}}
-                    <a href=\"javascript:amplificationImg('图片','{{img[i]}}')\">
-                        <img src=\"{{img[i]}}\" style=\"width: auto;height: 100%;\"/>
-                    </a>
-                    {{# } }}
-                </script>";
                 }
             } catch (Exception $e) {
                 return $str;
@@ -955,7 +972,7 @@ EOF;
                 </select>
             </div>
         </div>";
-                } elseif ((explode('(', $item['type'])[0] === 'varchar' && (end($s) === 'img' || end($s) === 'image')) || (explode('(', $item['type'])[0] === 'text' && (end($s) === 'images' || end($s) === 'imgs'))) {
+                } elseif (endWith($item['field'], 'images') || endWith($item['field'], 'image')||endWith($item['field'], 'img')||endWith($item['field'], 'imgs')) {
                     $fieldName = strpos($item['field'], 's') !== false ? ('{:implode(\'|\',$' . "" . $table . "." . $item['field'] . '??[])}') : ('{$' . "" . $table . "." . $item['field'] . '??null}');
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
@@ -967,7 +984,7 @@ EOF;
                         </div>
                     </div>
                 </div>";
-                } elseif (explode('(', $item['type'])[0] === 'text' && end($s) === 'file') {
+                } elseif (endWith($item['field'], 'file')) {
                     $fieldName = '$'.$table . "." . $item['field'];
                     $field  = $table . "." . $item['field'];
                     $str .= <<<EOF
@@ -1035,7 +1052,7 @@ EOF;
     " . $this->duoxuanedit($table, $item['field'], $item) . "
     </div>
 </div>";
-                } elseif (explode('(', $item['type'])[0] === 'text' && endWith($item['field'], 'content')) {
+                } elseif (endWith($item['field'], 'content')) {
                     $str .= " <div class=\"layui-form-item layui-form-text\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
