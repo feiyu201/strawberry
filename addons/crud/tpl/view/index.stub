@@ -32,14 +32,8 @@
 <script src="/static/lib/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script>
-    layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
-        let table = layui.table;
-        let form = layui.form;
-        let laydate = layui.laydate;
-        let okLayer = layui.okLayer;
-        let okUtils = layui.okUtils;
-        let okMock = layui.okMock;
-        let $ = layui.jquery;
+    layui.use({%layuiAddonUsed%}, function () {
+        {%varInit%}
         
 
         okLoading.close($);

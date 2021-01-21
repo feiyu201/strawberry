@@ -74,7 +74,7 @@
     layui.config({
         base: '/static/lib/layui/extend/',
     })
-    layui.extend({ 'fileManager': 'fileManager/fileManager' })
+    layui.extend({ 'fileManager': 'fileManager/fileManager_src' })
         .use(['fileManager', 'layer', 'upload', "okUtils", "okLayer"], function () {
             okLoading.close();
             var fileManager = layui.fileManager
@@ -111,7 +111,7 @@
                 , btn_upload: true
                 , id: 'fmTest'
                 , btn_create: false
-                , url: "{:url('attachment/getList')}"
+                , url: "{:url('attachment/getList',['sort'=>'id desc'])}"
                 , icon_url: '/static/filemanage/ico/'
                 , thumb: { 'nopic': '/static/filemanage/null-100x100.jpg', 'width': 100, 'height': 100 }
                 , parseData: function (res) {
@@ -125,10 +125,10 @@
                             'path': item.storage,
                             'type': getType(item.mimetype),
                             'name': item.sha1,
-                            'id': item.id
+                            'id': item.id,
+                            data: item
                         })
                     }
-                    console.log(_res.data);
                     _res.count = res.count
                     return _res;
                 }
@@ -175,7 +175,7 @@
                     btn: ['确定', '取消'] //按钮
                 }, function () {
                     okUtils.ajax("{:url('attachment/delete')}", "post", { idsStr }, true).done(function (response) {
-                        if (response.status === 200) {
+                        if (response.code === 1) {
                             okLayer.greenTickMsg(response.msg, function () {
                                 location.reload()
                             })
@@ -194,12 +194,17 @@
                 if (imgList.length === imgLimit) {
                     return layer.msg(`只允许选择${imgLimit}张图片`);
                 }
-                if (obj.obj.parents('li').attr('class') !== undefined && obj.obj.parents('li').attr('class').indexOf('checked') > -1) {
-                    obj.obj.parents('li').attr('class', '')
-                    imgList.splice(imgList.indexOf(obj.obj.attr('src')), 1)
+                let li = obj.obj;
+                let data = obj.data.data;
+
+                console.log(data)
+                if (li.hasClass('checked')) {
+                    li.removeClass('checked');
+
+                    imgList.splice(data.url, 1)
                 } else {
-                    imgList.push(obj.obj.attr('src'))
-                    obj.obj.parents('li').attr('class', 'checked')
+                    imgList.push(data.url)
+                    li.addClass('checked');
                 }
             });
 
