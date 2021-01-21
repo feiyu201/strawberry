@@ -74,7 +74,7 @@
     layui.config({
         base: '/static/lib/layui/extend/',
     })
-    layui.extend({ 'fileManager': 'fileManager/fileManager_src' })
+    layui.extend({ 'fileManager': 'fileManager/fileManager' })
         .use(['fileManager', 'layer', 'upload', "okUtils", "okLayer"], function () {
             okLoading.close();
             var fileManager = layui.fileManager
