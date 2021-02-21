@@ -772,7 +772,7 @@ EOF;
                 $this->import('css', '/static/lib/field-list/field-list.css');
                 $list = $this->controlName($item['field'].'_list', false);
                 $arr[] = "
-                var {$list} = '{:isset(\$test_name)?json_encode(\${$table}.{$item['field']}):null}';
+                var {$list} = '{:isset(\${$table})?json_encode(\${$table}.{$item['field']}):null}';
                 try{
                     {$list} = JSON.parse({$list});
                 }catch(e){
