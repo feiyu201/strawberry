@@ -783,22 +783,6 @@ EOF;
                     name: '{$item['field']}',
                     data:{$list}
                 });";
-            } elseif (endWith($item['field'], 'content')) {
-                $this->addEditAddonUsed('layedit');
-                $arr[] = "
-                //创建{$item['field']}编辑器
-                editorArr['{$item['field']}'] = layedit.build('{$item['field']}',{
-                    uploadImage:{
-                        url:\"{:url('admin/crud/upload')}\",
-                        type:'post'
-                    }
-                });
-                form.verify({
-                    //content富文本域中的lay-verify值
-                    '{$item['field']}': function(value) {
-                        return layedit.sync(editorArr['{$item['field']}']);
-                    }
-                });";
             }
         }
         return implode(PHP_EOL, $arr);
@@ -1050,10 +1034,10 @@ EOF;
     </div>
 </div>";
                 } elseif (endWith($item['field'], 'content')) {
-                    $str .= " <div class=\"layui-form-item layui-form-text\">
+                    $str .= " <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <textarea id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\" style=\"display: none;\">" . '{$' . "" . $table . "." . $item['field'] . "??''}</textarea>
+      <textarea class=\"layui-textarea editor\" id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\">" . '{$' . "" . $table . "." . $item['field'] . "??''}</textarea>
     </div>
   </div>";
                 } elseif (endWith($item['field'], 'switch')) {

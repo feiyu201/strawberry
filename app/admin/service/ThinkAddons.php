@@ -18,13 +18,14 @@
  */
 namespace app\admin\service;
 
+use app\admin\facade\ThinkAddons as FacadeThinkAddons;
 use think\Facade;
 use think\facade\Config;
 use think\facade\Db;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use app\admin\model\Plugin;
-
+use think\facade\App;
 
 class ThinkAddons
 {
@@ -42,7 +43,6 @@ class ThinkAddons
             'app',    // 此文件夹中所有文件会覆盖到根目录的/app文件夹
             'public', // 此文件夹中所有文件会覆盖到根目录的/public文件夹
         ];
-        
     }
     /**
      * 获取插件信息
@@ -52,37 +52,37 @@ class ThinkAddons
      */
     protected function getPluginInfo($name)
     {
-    	$addon_info = "addon_{$name}_info";
-    	$addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
-    	/* $info = Config::get($addon_info, []);
+        $addon_info = "addon_{$name}_info";
+        $addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
+        /* $info = Config::get($addon_info, []);
     	if ($info) {
     		return $info;
     	} */
-    	$object = $this->getInstance($name);
-    	// 文件属性
-    	$info = $object->info ?? [];
-    	// 文件配置
-    	$info_file = $addon_path . 'info.ini';
+        $object = $this->getInstance($name);
+        // 文件属性
+        $info = $object->info ?? [];
+        // 文件配置
+        $info_file = $addon_path . 'info.ini';
     
-    	if (is_file($info_file)) {
-    		$_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
+        if (is_file($info_file)) {
+            $_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
     
-    		$_info['url'] = addons_url();
-    		$info = array_merge( $info,$_info);
-    	}
-    	
-    	/* $tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
+            $_info['url'] = addons_url();
+            $info = array_merge($info, $_info);
+        }
+        
+        /* $tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
     	if($tableinfo) {
     		$info = array_merge( $info,$tableinfo->toArray());
     	}else{
     		$info['install'] = 0;
     		$info['status'] = 0;
     	} */
-    	Config::set($info, $addon_info);
+        Config::set($info, $addon_info);
     
-    	return isset($info) ? $info : [];
+        return isset($info) ? $info : [];
     }
-	
+    
     
     // 获得本地插件列表 [目前只获取本地插件，后期会扩展为获取线上插件]
     public function localAddons()
@@ -90,36 +90,39 @@ class ThinkAddons
         $plugins = scandir($this->addonsPath);
         $list = [];
         foreach ($plugins as $name) {
-            if ($name === '.' or $name === '..')
+            if ($name === '.' or $name === '..') {
                 continue;
-            if (is_file($this->addonsPath . DIRECTORY_SEPARATOR . $name))
+            }
+            if (is_file($this->addonsPath . DIRECTORY_SEPARATOR . $name)) {
                 continue;
+            }
             $addonDir = $this->addonsPath . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR;
-            if (!is_dir($addonDir))
+            if (!is_dir($addonDir)) {
                 continue;
+            }
 
             $object = $this->getInstance($name);
             if ($object) {
                 // 获取插件基础信息
                 //$info = $object->getInfo();
                 $info = $this->getPluginInfo($name);
-               // var_dump($info);exit();
+                // var_dump($info);exit();
                 // 增加右侧按钮组
                 $str = '';
                 if (isset($info['install'])&&$info['install'] == 1) {
                     // 已安装，增加配置按钮
                     $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
                     $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
-                    if($info['status']==1){
-                    	$str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
-                    }else{
-                    	$str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
+                    if ($info['status']==1) {
+                        $str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
+                    } else {
+                        $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
                     }
                 } else {
                     // 未安装，增加安装按钮
                     $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="install"><i class="fa fa-edit"></i> 安装</a>';
                 }
-				
+                
                 $info['button'] = $str;
 
                 $list[] = $info;
@@ -204,7 +207,6 @@ class ThinkAddons
     // 启用插件或禁用插件
     public function state(string $name)
     {
-    	
         $check = $this->check($name);
         if ($check !== true) {
             return [
@@ -235,7 +237,6 @@ class ThinkAddons
             }
         }
     }
-
     // 安装插件
     public function install(string $name)
     {
@@ -244,12 +245,14 @@ class ThinkAddons
         // 获取插件基础信息
         //$info = $object->getInfo();
         $info = $this->getPluginInfo($name);
+        $addonDir = $this->getAddonDir($name);
         if (false !== $object->install()) {
             $info['status'] = 1;
             $info['install'] = 1;
             try {
                 // 更新或创建插件的ini文件
                 $result = $this->setPluginIni($name, $info);
+                $this->refresh();
                 if ($result['code'] == 0) {
                     return [
                         'code' => 0,
@@ -263,6 +266,7 @@ class ThinkAddons
                 //更新或插入插件信息
                 //Plugin::create($info,[],true);
             } catch (\Exception $e) {
+                @rmdirs($addonDir);
                 return [
                     'code' => 0,
                     'msg'  => '安装失败：' . $e->getMessage(),
@@ -283,7 +287,7 @@ class ThinkAddons
     // 卸载插件
     public function uninstall(string $name)
     {
-    	
+        
         // 实例化插件
         $object = $this->getInstance($name);
         // 获取插件基础信息
@@ -294,26 +298,27 @@ class ThinkAddons
             $info['install'] = 0;
             // 更新或创建插件的ini文件
             $result = $this->setPluginIni($name, $info);
+            $this->refresh();
+
             if ($result['code'] == 0) {
                 return [
                     'code' => 0,
                     'msg'  => $result['msg'],
                 ];
             } else {
-            	//删除插件表信息
-            	//$delres = Plugin::where('name','=',$name)->delete();
-            	//if($delres!==false){
-            		return [
-            			'code' => 1,
-            			'msg'  => '插件卸载成功',
-            		];
-            	/* }else{
+                //删除插件表信息
+                //$delres = Plugin::where('name','=',$name)->delete();
+                //if($delres!==false){
+                return [
+                        'code' => 1,
+                        'msg'  => '插件卸载成功',
+                    ];
+                /* }else{
             		return [
             			'code' => 0,
             			'msg'  => '插件卸载删除表信息出错',
             		];
             	} */
-                
             }
         } else {
             return [
@@ -322,7 +327,45 @@ class ThinkAddons
             ];
         }
     }
-
+    /**
+    * 获取指定插件的目录
+    */
+    public function getAddonDir($name)
+    {
+        $dir = $this->addonsPath . DS. $name . DS;
+        return $dir;
+    }
+    public function getBootstrapFile($name)
+    {
+        return $this->addonsPath . DS . $name . DS . 'bootstrap.js';
+    }
+    /**
+      * 刷新插件缓存文件
+      *
+      * @return  boolean
+      * @throws  Exception
+      */
+    public function refresh()
+    {
+        $addons = $this->localAddons();
+        $bootstrapArr = [];
+        foreach ($addons as $name => $addon) {
+            $bootstrapFile = $this->getBootstrapFile($addon['name']);
+            if ($addon['status'] && is_file($bootstrapFile)) {
+                $bootstrapArr[] = file_get_contents($bootstrapFile);
+            }
+        }
+        $addonsFile = App::getRootPath() . str_replace("/", DS, "public/static/js/addons.js");
+        if ($handle = fopen($addonsFile, 'w')) {
+            $tpl = <<<EOD
+            {__JS__}
+EOD;
+            fwrite($handle, str_replace("{__JS__}", implode("\n", $bootstrapArr), $tpl));
+            fclose($handle);
+        } else {
+            throw new \Exception(__("Unable to open file '%s' for writing", "addons.js"));
+        }
+    }
     // 启用/禁用插件
     public function changeStatus(string $name)
     {
@@ -336,6 +379,12 @@ class ThinkAddons
             try {
                 // 更新或创建插件的ini文件
                 $result = $this->setPluginIni($name, $info);
+                
+                $method = $info['status'] == 1 ? 'enable' : 'disable';
+                if (method_exists($object, $method)) {
+                    call_user_func([$object, $method]);
+                }
+                $this->refresh();
                 if ($result['code'] == 0) {
                     return [
                         'code' => 0,
@@ -358,10 +407,10 @@ class ThinkAddons
         //更新或插入插件信息
         //$updateres = Plugin::update(['status' => $info['status']], ['name' => $name]);
         //if($updateres!==false){
-        	return [
-        	'code' => 1,
-        	'msg'  => '状态变动成功',
-        	];
+        return [
+            'code' => 1,
+            'msg'  => '状态变动成功',
+            ];
         /* }else{
         	return [
         	'code' => 0,
@@ -392,9 +441,9 @@ class ThinkAddons
         // 获取插件基础信息
         //$info = $object->getInfo();
         $info = $this->getPluginInfo($name);
-        if(!method_exists($object,'welcome')){
+        if (!method_exists($object, 'welcome')) {
             return false;
-        }else{
+        } else {
             $object->welcome();
             return true;
         }
@@ -450,7 +499,7 @@ class ThinkAddons
             ];
         }
         if ($handle = fopen($file, 'w')) {
-            fwrite($handle, "<?php\n\n" . "return " . var_export($array, TRUE) . ";\n");
+            fwrite($handle, "<?php\n\n" . "return " . var_export($array, true) . ";\n");
             fclose($handle);
         } else {
             return [
@@ -528,8 +577,9 @@ class ThinkAddons
             $lines = file($sqlFile);
             $templine = '';
             foreach ($lines as $line) {
-                if (substr($line, 0, 2) == '--' || $line == '' || substr($line, 0, 2) == '/*')
+                if (substr($line, 0, 2) == '--' || $line == '' || substr($line, 0, 2) == '/*') {
                     continue;
+                }
 
                 $templine .= $line;
                 if (substr(trim($line), -1, 1) == ';') {

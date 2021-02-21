@@ -20,22 +20,22 @@ use think\facade\Log;
 
 class Plugin extends AdminBase
 {
-	public function getList(){
-		 // 获取插件列表
-            $list = ThinkAddons::localAddons();
+    public function getList()
+    {
+        // 获取插件列表
+        $list = ThinkAddons::localAddons();
             
-			return json([
-					'code'=> 0,
-					'count'=> count($list),
-					'data'=>$list,
-					'msg'=>'查询成功'
-					]);
-	}
+        return json([
+                    'code'=> 0,
+                    'count'=> count($list),
+                    'data'=>$list,
+                    'msg'=>'查询成功'
+                    ]);
+    }
     // 列表
     public function index()
     {
-       
-       return View::fetch();
+        return View::fetch();
     }
 
     // 插件配置信息预览
@@ -86,6 +86,11 @@ class Plugin extends AdminBase
     public function install(string $id)
     {
         return ThinkAddons::install($id);
+    }
+    // 安装插件
+    public function refresh()
+    {
+        return ThinkAddons::refresh();
     }
 
     // 卸载插件
@@ -147,8 +152,7 @@ class Plugin extends AdminBase
                     $field['setup']['placeholder'],// 占位符
                     $field['required'],            // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'textarea' || $field['type'] == 'password') {
+            } elseif ($field['type'] == 'textarea' || $field['type'] == 'password') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -160,8 +164,7 @@ class Plugin extends AdminBase
                     $field['setup']['placeholder'] ?? '', // 占位符
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'radio' || $field['type'] == 'checkbox') {
+            } elseif ($field['type'] == 'radio' || $field['type'] == 'checkbox') {
                 $columns[] = [
                     $field['type'],                // 类型
                     $field['field'],               // 字段名称
@@ -173,8 +176,7 @@ class Plugin extends AdminBase
                     '',                            // 额外CSS extra_class
                     $field['required'],            // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'select' || $field['type'] == 'select2' ) {
+            } elseif ($field['type'] == 'select' || $field['type'] == 'select2') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -187,8 +189,7 @@ class Plugin extends AdminBase
                     $field['setup']['placeholder'] ?? '', // 占位符
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'number') {
+            } elseif ($field['type'] == 'number') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -203,16 +204,14 @@ class Plugin extends AdminBase
                     $field['setup']['placeholder'] ?? '', // 占位符
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'hidden') {
+            } elseif ($field['type'] == 'hidden') {
                 $columns[] = [
                     $field['type'],                      // 类型
                     $field['field'],                     // 字段名称
                     $field['setup']['default'] ?? '',    // 默认值
                     $field['setup']['extra_attr'] ?? '', // 额外属性 extra_attr
                 ];
-            }
-            elseif ($field['type'] == 'date' || $field['type'] == 'time' || $field['type'] == 'datetime') {
+            } elseif ($field['type'] == 'date' || $field['type'] == 'time' || $field['type'] == 'datetime') {
                 // 使用每个字段设定的格式
                 if ($field['type'] == 'time') {
                     $field['setup']['format'] = str_replace("HH", "h", $field['setup']['format']);
@@ -241,8 +240,7 @@ class Plugin extends AdminBase
                     $field['setup']['placeholder'],// 占位符
                     $field['required'],            // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'daterange') {
+            } elseif ($field['type'] == 'daterange') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -254,8 +252,7 @@ class Plugin extends AdminBase
                     $field['setup']['extra_class'] ?? '', // 额外CSS
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'tag') {
+            } elseif ($field['type'] == 'tag') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -266,8 +263,7 @@ class Plugin extends AdminBase
                     $field['setup']['extra_class'] ?? '', // 额外CSS
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'image' || $field['type'] == 'images' || $field['type'] == 'file' || $field['type'] == 'files') {
+            } elseif ($field['type'] == 'image' || $field['type'] == 'images' || $field['type'] == 'file' || $field['type'] == 'files') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -281,8 +277,7 @@ class Plugin extends AdminBase
                     $field['setup']['placeholder'] ?? '', // 占位符
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'editor') {
+            } elseif ($field['type'] == 'editor') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -294,8 +289,7 @@ class Plugin extends AdminBase
                     $field['setup']['extra_class'] ?? '', // 额外CSS
                     $field['required'],                   // 是否必填
                 ];
-            }
-            elseif ($field['type'] == 'color') {
+            } elseif ($field['type'] == 'color') {
                 $columns[] = [
                     $field['type'],                       // 类型
                     $field['field'],                      // 字段名称
@@ -342,9 +336,8 @@ class Plugin extends AdminBase
     {
         //$list = Market::field('name,intro,description,author,version,price,sales')->select();
         $res = Http::get(self::getServerUrl() . '/api/plug/index');
-        $list = json_decode($res,true)['data'];
-        foreach ($list as $key => $value) 
-        {
+        $list = json_decode($res, true)['data'];
+        foreach ($list as $key => $value) {
             // 增加右侧按钮组
             $str = '';
             $file = $value['intro'];
@@ -354,26 +347,25 @@ class Plugin extends AdminBase
                 $appinfo = app($class);
                 $info    = $appinfo->getInfo();
 
-                if (isset($info['install'])&&$info['install'] == 1) 
-                {
+                if (isset($info['install'])&&$info['install'] == 1) {
                     // 已安装，增加配置按钮
                     $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
                     $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
-                    if($info['status']==1){
-                    	$str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
-                    }else{
-                    	$str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
+                    if ($info['status']==1) {
+                        $str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
+                    } else {
+                        $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
                     }
                 } else {
                     // 未安装，增加安装按钮
                     $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="installyuancheng"><i class="fa fa-edit"></i> 安装</a>';
                 }
-				
+                
                 $list[$key]['button']  = $str;
                 $list[$key]['status']  = $info['status'];
                 $list[$key]['name']    = $value['intro'];//插件识别标识
                 $list[$key]['title']   = $value['name'];
-            }else{
+            } else {
                 //本地没安装此插件跳出
                 // 未安装，增加安装按钮
                 $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="installyuancheng"><i class="fa fa-edit"></i> 安装</a>';
@@ -396,8 +388,8 @@ class Plugin extends AdminBase
     {
         $parmers = input();
         $caomei_tokeny = '';
-        if( isset($parmers['token']) && !empty($parmers['token'])){
-           $caomei_tokeny =  $parmers['token'];
+        if (isset($parmers['token']) && !empty($parmers['token'])) {
+            $caomei_tokeny =  $parmers['token'];
         }
 
         // $list = Market::where(['intro'=>$id])->find();
@@ -409,7 +401,7 @@ class Plugin extends AdminBase
         
         // 远程下载插件
         $tmpFile = $this->download($id, ['token'=>$caomei_tokeny,'pay_type'=>$pay_type]);
-        if($tmpFile['code'] != '1'){
+        if ($tmpFile['code'] != '1') {
             return json($tmpFile);
         }
 
@@ -419,7 +411,6 @@ class Plugin extends AdminBase
         return ThinkAddons::install($id);
 
         //return json(['code'=> 1,'count'=>0,'data'=>$list, 'msg'=>$list['name'].'插件安装成功']);
-        
     }
 
     /**
@@ -433,7 +424,7 @@ class Plugin extends AdminBase
      */
     public static function download($name, $extend = [])
     {
-        $addonTmpDir = $_SERVER['DOCUMENT_ROOT'] . '/../runtime/addons/'; 
+        $addonTmpDir = $_SERVER['DOCUMENT_ROOT'] . '/../runtime/addons/';
         if (!is_dir($addonTmpDir)) {
             @mkdir($addonTmpDir, 0755, true);
         }
@@ -484,13 +475,13 @@ class Plugin extends AdminBase
      */
     public static function unzip($name)
     {
-        $addonTmpDir = $_SERVER['DOCUMENT_ROOT'] . '/../runtime/addons/'; 
+        $addonTmpDir = $_SERVER['DOCUMENT_ROOT'] . '/../runtime/addons/';
         $file = $addonTmpDir . $name . ".zip";
         
         $dir = $_SERVER['DOCUMENT_ROOT'] . '/../addons/';
         if (class_exists('ZipArchive')) {
             $zip = new ZipArchive;
-            if ($zip->open($file) !== TRUE) {
+            if ($zip->open($file) !== true) {
                 exit('Unable to open the zip file');
             }
             if (!$zip->extractTo($dir)) {

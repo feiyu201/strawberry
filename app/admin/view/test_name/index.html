@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>列表</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+</head>
+<body>
+<div class="layui-fluid ok-body" style="padding:10px;">
+    <form class="layui-form" lay-filter="search-form">  
+
+        <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" >
+        <div class="layui-form-item" >
+                
+        <div class="layui-inline">
+            <label class="layui-form-label">ID</label>
+            <div class="layui-input-inline">
+            <input type="text" name="id" id="id" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">下拉</label>
+            <div class="layui-input-inline">
+            
+                <select name="select_test"  id="select_test">
+                    <option value=""></option>
+                    <option  value="10">选项一</option><option  value="20">选项二</option>
+                </select>
+                
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">爱好(多选)</label>
+            <div class="layui-input-inline">
+            
+                <select name="set_test"  id="set_test">
+                    <option value=""></option>
+                    <option  value="music">音乐</option><option  value="reading">读书</option><option  value="swimming">游泳</option>
+                </select>
+                
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">时间</label>
+            <div class="layui-input-inline">
+            <input type="text" id="time123" name="time123" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">开关</label>
+            <div class="layui-input-inline">
+            
+                <select name="switch"  id="switch">
+                    <option value=""></option>
+                    <option value="on">开启</option>
+                    <option value="off">关闭</option>
+                </select>
+                
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">单选</label>
+            <div class="layui-input-inline">
+            
+                <select name="state"  id="state">
+                    <option value=""></option>
+                    <option  value="10">选项一</option><option  value="20">选项二</option>
+                </select>
+                
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">create_time</label>
+            <div class="layui-input-inline">
+            <input type="text" id="create_time" name="create_time" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">create1time</label>
+            <div class="layui-input-inline">
+            <input type="text" id="create1time" name="create1time" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">update_time</label>
+            <div class="layui-input-inline">
+            <input type="text" id="update_time" name="update_time" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">create_at</label>
+            <div class="layui-input-inline">
+            <input type="text" id="create_at" name="create_at" placeholder="请输入" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">关联id</label>
+            <div class="layui-input-inline">
+            
+                <select name="test1_name_id"  id="test1_name_id">
+                    <option value=""></option>
+                </select>
+                
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">关联ids</label>
+            <div class="layui-input-inline">
+            
+                <select name="test1_name_ids"  id="test1_name_ids">
+                    <option value=""></option>
+                </select>
+                
+            </div>
+        </div>
+      
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>搜索
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-primary icon-btn" type="reset">
+                                <i class="layui-icon layui-icon-refresh-3"></i>重置
+                            </button>
+                </div>
+            </div>
+        </div>
+    </form>
+     <!--数据表格-->
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+<!--js逻辑-->
+<script src="/static/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script>
+    layui.use(["form","okLayer","okUtils","table","jquery","laytpl","laydate"], function () {
+        let form = layui.form;
+let okLayer = layui.okLayer;
+let okUtils = layui.okUtils;
+let table = layui.table;
+let $ = layui.jquery;
+let laytpl = layui.laytpl;
+let laydate = layui.laydate;
+
+        
+
+        okLoading.close($);
+        
+                //渲染字段时间组件
+                laydate.render({ 
+                          elem: "#time123"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段create_time组件
+                laydate.render({ 
+                          elem: "#create_time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段create1time组件
+                laydate.render({ 
+                          elem: "#create1time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段update_time组件
+                laydate.render({ 
+                          elem: "#update_time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段create_at组件
+                laydate.render({ 
+                          elem: "#create_at"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+        let userTable = table.render({
+            elem: '#tableId',
+            url: '{:url("getList")}',
+            limit: 20,
+            page: true,
+            toolbar: true,
+            toolbar: "#toolbarTpl",
+            height:'full',
+            cellMinWidth: 120,
+            cols: [[
+                {type: "checkbox", fixed: "left"},
+                {field: 'id', title: 'ID'},
+{field: 'select_test_name', title: '下拉'},
+{field: 'set_test_name', title: '爱好(多选)'},
+{field: 'content', title: '编辑器'},
+{field: 'test_content', title: 'test_content'},
+{field: 'time123', title: '时间'},
+{field: 'switch', title: '开关',templet: function (d) {
+        var state = "";
+        if (d.switch == "on") {
+            state = "<input type='checkbox' value='" + d.id + "' id='switch' lay-filter='stat' checked='checked' name='switch'  lay-skin='switch' lay-text='开启|关闭' >";
+        } else {
+            state = "<input type='checkbox' value='" + d.id + "' id='switch' lay-filter='stat'  name='switch'  lay-skin='switch' lay-text='开启|关闭' >";
+        }
+        return state;
+    }},
+{field: 'state_name', title: '单选'},
+{field: 'create_time', title: 'create_time'},
+{field: 'create1time', title: 'create1time'},
+{field: 'update_time', title: 'update_time'},
+{field: 'create_at', title: 'create_at'},
+{field: 'test_city', title: 'test_city'},
+                    {
+                        field: 'img', title: 'img', templet: function (d) {
+                            d.imageField = 'img';
+                            d.img = [d.img];
+                            return laytpl($("#imageTpl").html()).render(d);
+                        }
+                    },                    {
+                        field: 'image', title: 'image', templet: function (d) {
+                            d.imageField = 'image';
+                            d.image = [d.image];
+                            return laytpl($("#imageTpl").html()).render(d);
+                        }
+                    },                    {
+                        field: 'images', title: 'images', templet: function (d) {
+                            d.imageField = 'images';
+                            
+                            return laytpl($("#imageTpl").html()).render(d);
+                        }
+                    },                    {
+                        field: 'imgs', title: 'imgs', templet: function (d) {
+                            d.imageField = 'imgs';
+                            
+                            return laytpl($("#imageTpl").html()).render(d);
+                        }
+                    },{field: 'test1NameId', title: '关联id',templet: function (d) {return d.test1NameIdList.name} },
+{field: 'test1NameIdsList', title: '关联ids',templet: function (d) {
+                        var data = d.test1NameIdsList;
+                        var arr = [];
+                        for(var key in data){
+                            arr.push(data[key].name);
+                        }
+                        return arr.join(',')
+                    } },
+{field: 'a_fieldlist_name', title: 'a_fieldlist',templet: function (d) {
+                        var data = d.a_fieldlist;
+                        var arr = [];
+                        for(var item of data){
+                            arr.push(item.key+':'+item.value);
+                        }
+                        return arr.join(',')
+                    } },
+{field: 'b_fieldlist_name', title: 'b_fieldlist',templet: function (d) {
+                        var data = d.b_fieldlist;
+                        var arr = [];
+                        for(var item of data){
+                            arr.push(item.key+':'+item.value);
+                        }
+                        return arr.join(',')
+                    } },
+
+                {title: "操作",  align: "center", fixed: "right", templet: "#operationTpl"}
+            ]],
+            done: function (res, curr, count) {
+                console.info(res, curr, count);
+            }
+        });
+
+        form.on("submit(search)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+        form.on("submit(reset)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+//监听开关事件
+        form.on('switch(stat)', function (data) {
+            var contexts;
+            var sta;
+            var x = data.elem.checked;//判断开关状态
+            if (x==true) {
+                contexts = "打开";
+                sta='on';
+            } else {
+                contexts = "关闭";
+                sta='off';
+            }
+            //自定义弹窗
+            layer.open({
+                content: "你确定要"+contexts+"?"
+                , btn: ['确定', '取消']
+                , yes: function (index, layero) {
+                    //按钮确定【按钮一】的回调
+                    data.elem.checked = x;
+                    //对商品进行上架或下架处理
+                    $.ajax({
+                        type: "post",
+                        url: '{:url("sw")}',
+                        data: {
+                            //上下架的参数
+                            "id": data.value,
+                            "switch":sta
+                        },
+                        success: function (data) {
+                            if (data == 1) {
+                                layer.msg(contexts+'成功',
+                                    // 提示的样式
+                                    {icon: 1, time: 2000,});
+
+                                // 数据重载
+                                active.reload();
+                            }
+                        }
+                    });
+
+                    form.render();
+                    layer.close(index);
+
+                }
+                , btn2: function (index, layero) {
+                    //按钮【按钮二】的回调
+                    data.elem.checked = !x;
+                    form.render();
+                    layer.close(index);
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                , cancel: function () {
+                    //右上角关闭回调
+                    data.elem.checked = !x;
+                    form.render();
+                    // return false; //开启该代码可禁止点击该按钮关闭
+                }
+            });
+
+            return false;
+
+        });
+        table.on("toolbar(tableFilter)", function (obj) {
+            switch (obj.event) {
+                case "batchEnabled":
+                    batchEnabled();
+                    break;
+                case "batchDisabled":
+                    batchDisabled();
+                    break;
+                case "batchDel":
+                    batchDel();
+                    break;
+                case "add":
+                    add();
+                    break;
+            }
+        });
+
+        table.on("tool(tableFilter)", function (obj) {
+            let data = obj.data;
+            switch (obj.event) {
+                case "edit":
+                    edit(data);
+                    break;
+                case "del":
+                    del(data.id);
+                    break;
+            }
+        });
+        
+function getTest1NameList(id) {
+    okUtils.ajax("{:url('getTest1NameList')}","get").done(function (response) {
+            var data = response.data;
+            for(var item of data){
+                $("#"+id).append("<option value="+item.id+">"+item.name+"</option>");  
+            }
+             form.render();
+    }).fail(function (error) {
+        console.log(error)
+    });
+}
+getTest1NameList('test1_name_id');
+getTest1NameList('test1_name_ids');
+        function batchEnabled() {
+            okLayer.confirm("确定要批量启用吗？", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('setNormal')}", "put", {idsStr: idsStr}, true).done(function (response) {
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function batchDisabled() {
+            okLayer.confirm("确定要批量停用吗？", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('setStop')}", "put", {idsStr: idsStr}, true).done(function (response) {
+
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function batchDel() {
+            okLayer.confirm("确定要批量删除吗？", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('delete')}", "delete", {idsStr: idsStr}, true).done(function (response) {
+                        //console.log(response);
+                        //okUtils.tableSuccessMsg(response.msg);
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function add() {
+            okLayer.open("添加", "{:url('add')}", "90%", "90%", null, function () {
+                userTable.reload();
+            })
+        }
+
+        function edit(data) {
+            okLayer.open("更新", "edit?id="+data.id, "90%", "90%", function (layero) {
+                //let iframeWin = window[layero.find("iframe")[0]["name"]];
+                //iframeWin.initForm(data);
+            }, function () {
+                userTable.reload();
+            })
+        }
+
+        function del(id) {
+            okLayer.confirm("确定要删除吗？", function () {
+                okUtils.ajax("{:url('delete')}", "delete", {idsStr: id}, true).done(function (response) {
+
+
+                    if(response.code==1){
+                        console.log(response);
+                        okUtils.tableSuccessMsg(response.msg);
+                    }else{
+                        okLayer.greenTickMsg(response.msg, function () {
+
+                        })
+                    }
+
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            })
+        }
+    })
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+    <div class="layui-btn-container">
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">批量启用</button>-->
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">批量停用</button>-->
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">批量删除</button>-->
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+    </div>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+    <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+    <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+
+<script type="text/html" id="statusTpl">
+    {{#  if(d.status == 'normal'){ }}
+    <span class="layui-btn layui-btn-normal layui-btn-xs">启用</span>
+    {{#  } else if(d.status != 'normal') { }}
+    <span class="layui-btn layui-btn-warm layui-btn-xs">停用</span>
+    {{#  } }}
+</script>
+
+<script type="text/html" id="roleTpl">
+    {{#  if(d.role == 0){ }}
+    <span class="layui-btn layui-btn-normal layui-btn-xs">超级会员</span>
+    {{#  } else if(d.role == 1) { }}
+    <span class="layui-btn layui-btn-warm layui-btn-xs">普通用户</span>
+    {{#  } }}
+</script>
+
+<script type="text/html" id="imageTpl">
+                        {{# var img = d[d.imageField] }}
+                        {{# for(var i=0;i < img.length;i++){}}
+                        <a href="javascript:amplificationImg('图片','{{img[i]}}')">
+                            <img src="{{img[i]}}" style="width: auto;height: 100%;"/>
+                        </a>
+                        {{# } }}
+                    </script><script type="text/javascript">
+            function amplificationImg(name, url) {
+                let img = $("#ImgSrc").attr("src", url);
+                layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    area: ['70%', '70%'], //宽高
+                    content: '<img style="display: inline-block; width: 100%; height: 100%;" src="'+ url +'">'
+                });
+            }
+        </script>
+    
+</body>
+</html>
