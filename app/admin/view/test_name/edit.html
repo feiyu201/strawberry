@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	{if isset($test_name)}
+    <title>编辑</title>
+    {else/}
+    <title>添加</title>
+    {/if}
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="/static/css/oksub.css">
+
+	<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+	<script src='/static/lib/city-picker/city-picker.data.js' type='text/javascript'></script>
+<link href='/static/lib/city-picker/city-picker.css' rel='stylesheet'/>
+<link href='/static/lib/field-list/field-list.css' rel='stylesheet'/>
+
+	<style>
+		.layui-upload-list img{
+			height:100px;
+			width:100px;
+		}
+	</style>
+</head>
+<body>
+<div class="ok-body">
+	<!--form表单-->
+	<form class="layui-form layui-form-pane ok-form">
+	    
+                    {if $test_name.id??null}
+                    <input type="hidden" name="id" placeholder="" autocomplete="off" class="layui-input" value="{$test_name.id??''}">
+                    {/if}
+                            <div class="layui-form-item">
+            <label class="layui-form-label">下拉</label>
+            <div class="layui-input-block">
+                <select name="select_test" lay-verify="required">
+                    <option value=""></option>
+                    <option {if $test_name.select_test??null == 10}selected=""{/if} value="10">选项一</option><option {if $test_name.select_test??null == 20}selected=""{/if} value="20">选项二</option>
+                </select>
+            </div>
+        </div>
+<div class="layui-form-item">
+    <label class="layui-form-label">爱好(多选)</label>
+    <div class="layui-input-block">
+    <input {if isset($test_name) && in_array('music',explode(',',$test_name.set_test))}checked=""{/if} type="checkbox" name="set_test[music]" title="音乐">
+<input {if isset($test_name) && in_array('reading',explode(',',$test_name.set_test))}checked=""{/if} type="checkbox" name="set_test[reading]" title="读书">
+<input {if isset($test_name) && in_array('swimming',explode(',',$test_name.set_test))}checked=""{/if} type="checkbox" name="set_test[swimming]" title="游泳">
+
+    </div>
+</div> <div class="layui-form-item">
+    <label class="layui-form-label">编辑器</label>
+    <div class="layui-input-block">
+      <textarea class="layui-textarea editor" id="content" name="content" lay-verify="content">{$test_name.content??''}</textarea>
+    </div>
+  </div> <div class="layui-form-item">
+    <label class="layui-form-label">test_content</label>
+    <div class="layui-input-block">
+      <textarea class="layui-textarea editor" id="test_content" name="test_content" lay-verify="test_content">{$test_name.test_content??''}</textarea>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">时间</label>
+      <div class="layui-input-block">
+        <input type="text" name="time123" id="time123" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value="{$test_name.time123??date('Y-m-d H:i:s')}">
+      </div>
+    </div>
+  </div>    <div class="layui-form-item">
+    <label class="layui-form-label">开关</label>
+    <div class="layui-input-block">
+      <input type="checkbox" name="switch" lay-skin="switch" lay-text="开启|关闭" {if isset($test_name) && $test_name.switch == 'on'}checked{/if}>
+    </div>
+  </div><div class="layui-form-item">
+                            <label class="layui-form-label">单选</label>
+                            <div class="layui-input-block">
+                                <input type="radio" name="state" value="10" title="选项一" {if isset($test_name) && $test_name.state == 10}checked{/if}><input type="radio" name="state" value="20" title="选项二" {if isset($test_name) && $test_name.state == 20}checked{/if}>
+                            </div>
+                        </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">create_time</label>
+      <div class="layui-input-block">
+        <input type="text" name="create_time" id="create_time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value="{$test_name.create_time??date('Y-m-d H:i:s')}">
+      </div>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">create1time</label>
+      <div class="layui-input-block">
+        <input type="text" name="create1time" id="create1time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value="{$test_name.create1time??date('Y-m-d H:i:s')}">
+      </div>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">update_time</label>
+      <div class="layui-input-block">
+        <input type="text" name="update_time" id="update_time" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value="{$test_name.update_time??date('Y-m-d H:i:s')}">
+      </div>
+    </div>
+  </div>  <div class="layui-form-item">
+    <div class="layui-inline">
+      <label class="layui-form-label">create_at</label>
+      <div class="layui-input-block">
+        <input type="text" name="create_at" id="create_at" autocomplete="off" class="layui-input" placeholder='yy-mm-dd HH:ii:ss' value="{$test_name.create_at??date('Y-m-d H:i:s')}">
+      </div>
+    </div>
+  </div><div class="layui-form-item">
+                    <label class="layui-form-label">test_city</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="test_city" id="test_city" autocomplete="on" placeholder="请输入test_city"  class="layui-input"
+                        readonly="readonly" data-toggle="city-picker">
+                    </div>
+                </div>
+<div class="layui-form-item">
+                    <label class="layui-form-label">img</label>
+                      <div class="layui-input-block layui-upload">
+                        <input name="img" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传图片" value="{$test_name.img??null}">
+                        <div class="layui-upload-btn" >
+                            <span><a class="layui-btn" data-upload="img" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                            <span><a class="layui-btn layui-btn-normal" id="select_logo" data-upload-select="img" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                        </div>
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">image</label>
+                      <div class="layui-input-block layui-upload">
+                        <input name="image" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传图片" value="{$test_name.image??null}">
+                        <div class="layui-upload-btn" >
+                            <span><a class="layui-btn" data-upload="image" data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                            <span><a class="layui-btn layui-btn-normal" id="select_logo" data-upload-select="image" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                        </div>
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">images</label>
+                      <div class="layui-input-block layui-upload">
+                        <input name="images" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传图片" value="{:implode('|',$test_name.images??[])}">
+                        <div class="layui-upload-btn" >
+                            <span><a class="layui-btn" data-upload="images" data-upload-number="more" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                            <span><a class="layui-btn layui-btn-normal" id="select_logo" data-upload-select="images" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                        </div>
+                    </div>
+                </div><div class="layui-form-item">
+                    <label class="layui-form-label">imgs</label>
+                      <div class="layui-input-block layui-upload">
+                        <input name="imgs" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传图片" value="{:implode('|',$test_name.imgs??[])}">
+                        <div class="layui-upload-btn" >
+                            <span><a class="layui-btn" data-upload="imgs" data-upload-number="more" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i class="fa fa-upload"></i> 上传</a></span>
+                            <span><a class="layui-btn layui-btn-normal" id="select_logo" data-upload-select="imgs" data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i> 选择</a></span>
+                        </div>
+                    </div>
+                </div>  <div class="layui-form-item">
+            <label class="layui-form-label">关联id</label>
+            <div class="layui-input-block">
+                <select name="test1_name_id" lay-verify="required">
+                    <option value=""></option>
+                    {foreach $test1Names as $key=>$vo } 
+                        {if isset($test_name.test1_name_id) && $test_name.test1_name_id==$vo.id}}
+                        <option value="{$vo.id}" selected>{$vo.name}</option>
+                        {else/}
+                        <option value="{$vo.id}" >{$vo.name}</option>
+                        {/if}
+                    {/foreach}
+                </select>
+            </div>
+        </div>  <div class="layui-form-item">
+            <label class="layui-form-label">关联ids</label>
+            <div class="layui-input-block">
+            <div id="test1_name_ids" name="test1_name_ids"  ></div>
+            </div>
+        </div><div class="layui-form-item">
+                            <label class="layui-form-label">a_fieldlist</label>
+                            <div class="layui-input-block">
+                                <div id="a_fieldlist" name="a_fieldlist"></div>
+                            </div>
+                        </div><div class="layui-form-item">
+                            <label class="layui-form-label">b_fieldlist</label>
+                            <div class="layui-input-block">
+                                <div id="b_fieldlist" name="b_fieldlist"></div>
+                            </div>
+                        </div>                    <div class="layui-form-item">
+                        <label class="layui-form-label">文件集合</label>
+                        <div class="layui-input-block layui-upload filemanage" data-id="a_file">
+                            <input id="a_file" name="a_file" type="text" style="display: none;" value="{:implode('|',$test_name.a_file??[])}"/>
+                            <div class="layui-upload-list">
+                            <table class="layui-table" style="margin:0 10px;table-layout:fixed">
+                                <thead>
+                                <tr>
+                                    <th>文件名</th>
+                                    <th width="50">操作</th>
+                                </tr>
+                                </thead>
+                                <tbody id="a_file_list">
+                                    {if $test_name??null}
+                                    {foreach $test_name.a_file as $key=>$vo } 
+                                    <tr data-path="$vo">
+                                        <td style="word-break: break-all;">{$vo}</td>
+                                        <td>
+                                        <button type="button" class="layui-btn layui-btn-danger delete">删除</button>
+                                        </td>
+                                    </tr>
+                                    {/foreach}
+                                    {/if}
+                                </tbody>
+                            </table>
+                            <button type='button' class='layui-btn upload'  style="margin: 10px;">上传文件</button>
+                            </div>
+                        </div>
+                    </div>
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
+				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			</div>
+		</div>
+	</form>
+</div>
+<!--js逻辑-->
+<script src="/static/lib/layui/layui.js"></script>
+<script src="/static/js/upload.js" charset="utf-8"></script>
+
+<script>
+
+	//设置插件路径
+	layui.config({
+            base: '../../static/lib/'
+    })
+	//集成插件
+	.extend({"citypicker":"city-picker\/city-picker","xmSelect":"xm-select","FieldList":"field-list\/field-list"})
+	//使用插件
+	.use(["form","okLayer","okUtils","laydate","citypicker","xmSelect","FieldList","jquery"], function () {
+		let form = layui.form;
+let okLayer = layui.okLayer;
+let okUtils = layui.okUtils;
+let laydate = layui.laydate;
+let citypicker = layui.citypicker;
+let xmSelect = layui.xmSelect;
+let FieldList = layui.FieldList;
+let $ = layui.jquery;
+
+		
+  		let editorArr = {};
+		okLoading.close();
+        
+                //渲染字段时间组件
+                laydate.render({ 
+                          elem: "#time123"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });
+
+                //=============渲染字段create_time组件
+                laydate.render({ 
+                          elem: "#create_time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });
+
+                //=============渲染字段create1time组件
+                laydate.render({ 
+                          elem: "#create1time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });
+
+                //=============渲染字段update_time组件
+                laydate.render({ 
+                          elem: "#update_time"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });
+
+                //=============渲染字段create_at组件
+                laydate.render({ 
+                          elem: "#create_at"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                        });
+
+                //===============渲染字段test_city组件
+                let testCity =  new citypicker('#test_city', {
+                    provincename:'provinceId',
+                    cityname:'cityId',
+                    districtname: 'districtId',
+                    level: 'districtId',// 级别
+                });
+                testCity.setValue('{$test_name.test_city??""}')
+
+                //==================渲染字段关联ids组件
+                var data = JSON.parse('{:json_encode($test1Names)}');
+                var ids = JSON.parse('[{:isset($test_name)?$test_name["test1_name_ids"]:null}]');
+                var arr = [];
+                for(var key in data){
+                    arr[key] = {
+                        'name':data[key].name,
+                        'value':data[key].id,
+                    }
+                    if(ids.indexOf(data[key].id)!=-1){
+                        arr[key]['selected'] = true;
+                    }
+                }
+                var test1_name_ids = xmSelect.render({
+                    el: '#test1_name_ids',
+                    name: 'test1_name_ids',
+                    data:arr
+                });
+                
+
+                var aFieldlistList = '{:isset($test_name)?json_encode($test_name.a_fieldlist):null}';
+                try{
+                    aFieldlistList = JSON.parse(aFieldlistList);
+                }catch(e){
+                    aFieldlistList = [];
+                }
+                var a_fieldlist = new FieldList('a_fieldlist',{
+                    el: '#a_fieldlist',
+                    name: 'a_fieldlist',
+                    data:aFieldlistList
+                });
+
+                var bFieldlistList = '{:isset($test_name)?json_encode($test_name.b_fieldlist):null}';
+                try{
+                    bFieldlistList = JSON.parse(bFieldlistList);
+                }catch(e){
+                    bFieldlistList = [];
+                }
+                var b_fieldlist = new FieldList('b_fieldlist',{
+                    el: '#b_fieldlist',
+                    name: 'b_fieldlist',
+                    data:bFieldlistList
+                });
+                $(".filemanage .upload").click(function () {
+                    let id = $(this).parents(".filemanage").attr("data-id");
+                    filemangeWindowId = okLayer.open("附件管理", "{:url('attachment/filemanage')}", "94%", "94%", function (layero) {
+                      $(layero).find("iframe")[0].contentWindow.getImages = function (images) {
+                        
+                        let data = [];
+                        if($("#" + id).val()!=''){
+                            data = $("#" + id).val().split('|');
+                        }
+                        for(let key in images){
+                            if(data.indexOf(images[key])==-1 ){
+                                data.push(images[key]);
+                            }
+                        }
+                        $("#" + id).val(data.join('|'))
+                        let content = '';
+                        for (let item of data) {
+                          content += '<tr data-path="'+item+'">';
+                          content += '<td style="word-break : break-all;">' + item + '</td>';
+                          content += '<td> <button type="button" class="layui-btn layui-btn-danger delete">删除</button></td >';
+                          content += '</tr>';
+                        }
+                        $("#" + id + "_list").html(content);
+                      }
+                    })
+                  })
+                  $(".filemanage").on("click",".delete",function(){
+                        let id = $(this).parents(".filemanage").attr("data-id");
+                        let path = $(this).parents('tr').attr('data-path');
+                        $(this).parents('tr').remove();
+                        let data = $("#" + id).val().split('|');
+                        data.splice( data.indexOf(path), 1); 
+                        $("#" + id).val(data.join('|'))
+                  })
+
+		form.on("submit(add)", function (data) {
+			okUtils.ajax("", "post", data.field, true).done(function (response) {
+				//console.log(response);
+				if(response.code==1){
+					okLayer.greenTickMsg("编辑成功", function () {
+						parent.layer.close(parent.layer.getFrameIndex(window.name));
+					});
+				}else{
+					okLayer.greenTickMsg(response.msg, function () {
+				        
+				    })
+				}
+				
+			}).fail(function (error) {
+				console.log(error)
+			});
+			return false;
+		});
+	});
+</script>
+
+
+<script>
+layui.use(['upload','laydate'], function(){
+  var $ = layui.jquery
+  , laydate = layui.laydate
+  ,upload = layui.upload;
+
+
+  //普通图片上传
+  var uploadInst = upload.render({
+    elem: '#test1'
+    ,url: '{:url("admin/upload/index")}' //改成您自己的上传接口
+    ,before: function(obj){
+      //预读本地文件示例，不支持ie8
+      obj.preview(function(index, file, result){
+        $('#demo1').attr('src', result); //图片链接（base64）
+      });
+    }
+    ,done: function(res){
+      //如果上传失败
+      if(res.code > 0){
+        return layer.msg('上传失败');
+      }
+	  console.log(res);
+      //上传成功
+	  $('input[name=avatar]').val(res.path);
+    }
+    ,error: function(){
+      //演示失败状态，并实现重传
+      var demoText = $('#demoText');
+      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+      demoText.find('.demo-reload').on('click', function(){
+        uploadInst.upload();
+      });
+    }
+  });
+
+  
+});
+</script>
+<script type="text/javascript" src="/static/lib/require.js"></script>
+<script type="text/javascript" src="/static/js/addons.js"></script>
+
+</body>
+</html>
