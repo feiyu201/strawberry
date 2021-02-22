@@ -2,19 +2,94 @@
 branches: {
   }
 fileChange:
+  /.DS_Store:
+    newFile: null
+    oldFile: !uuid 'fc0f45eb571699e3595d6044adc309958bbf7bce'
+  /addons:
+    newFile: !uuid 'ba4f4d3b8bb45ba654f80e66c4ec3dd58556d443'
+    oldFile: !uuid 'b9ebe1975ef55016cdac142b0224ea8479d5f013'
+  /addons/crud:
+    newFile: !uuid '987ff5cf22c0f4ee80fcb75dc5f0222ceb5a26ae'
+    oldFile: !uuid 'db652b2dcd3d1c5fdf9c8afd2113d0d67bc1cad1'
+  /addons/crud/tpl:
+    newFile: !uuid '2f93c4a3442527a4b172119ac028a967602abdba'
+    oldFile: !uuid '70a59fb19c97758bddf7289ab7e2b4410c480fbf'
+  /addons/crud/tpl/view:
+    newFile: !uuid '44b1a8eab002178d204e9e67d2a7d56a314f2e19'
+    oldFile: !uuid '6824b6e70baea451e40bf0473f7cba8cb0da1c28'
+  /addons/crud/tpl/view/edit.stub:
+    newFile: !uuid '7950e7b36759206b20bb3f6afdd943a9ea36e48a'
+    oldFile: !uuid 'f9f05d70d74fc8821c36dc2895fa12f41a597de8'
   /app:
-    newFile: !uuid '069a101173205c0df8a06a13b6b558577db2bc0b'
-    oldFile: !uuid 'c5906e6a8afc8557fdd973b6d79fabb6ed6bc21d'
+    newFile: !uuid '587ec7fce9cefdfdfc1c85697fa22710e6717515'
+    oldFile: !uuid '069a101173205c0df8a06a13b6b558577db2bc0b'
   /app/admin:
-    newFile: !uuid '282410d3e3f8ad77e1b94832fca1e80842ffd0c8'
-    oldFile: !uuid '6b88fb084335d76eb52d9694a538f61851678ce5'
+    newFile: !uuid '5ca03014c3b3fc28376c71f64d66a7417f4ed381'
+    oldFile: !uuid '282410d3e3f8ad77e1b94832fca1e80842ffd0c8'
   /app/admin/controller:
-    newFile: !uuid 'e7177e59d515cfed6996a2a2f9763c1ee7002ece'
-    oldFile: !uuid '6fdac3049ba270d473df75e203b23f4d11ea604b'
+    newFile: !uuid 'f1e9a2b5ba8abc515a44184233efcb37f420ad63'
+    oldFile: !uuid 'e7177e59d515cfed6996a2a2f9763c1ee7002ece'
   /app/admin/controller/Crud.php:
-    newFile: !uuid '00d33b174e693a8075048d6f48a9c6701290e5c4'
-    oldFile: !uuid '67b7c34a867edd12581cc84fdf019b6f44adb4f8'
-gitCommitId: !uuid 'a404d5815cefb0861a1f5cf2b6154d5fcb8a7eb7'
+    newFile: !uuid '6c40fe357effac70549a01db542fed9c9dceebd2'
+    oldFile: !uuid '00d33b174e693a8075048d6f48a9c6701290e5c4'
+  /app/admin/controller/Plugin.php:
+    newFile: !uuid '441ccc8b6cf09a09d324491c74bdde4624dcf8be'
+    oldFile: !uuid 'b9c6fa990b065790d6e026d15e72c4721194a465'
+  /app/admin/model:
+    newFile: !uuid '80759ee3cf2e4347816d8480dfd3db8e09f81789'
+    oldFile: !uuid '685f17b299cdf880c2aa78ca7283c49ee76edbbe'
+  /app/admin/model/TestName.php:
+    newFile: !uuid '0406b263c69f6e057695a865614e1b954c63a62f'
+    oldFile: null
+  /app/admin/service:
+    newFile: !uuid 'cfb940d02e81d560916c1f0bdb2151006791db61'
+    oldFile: !uuid '3a97a0a030cfce0c994b9a9c61bce2db60dd2eae'
+  /app/admin/service/ThinkAddons.php:
+    newFile: !uuid 'e9ee2575c48ef92a411e25b1b20b5c157486ce60'
+    oldFile: !uuid '8d812e24e86333fb3ee62da5e547574ed9e2bb0d'
+  /app/admin/view:
+    newFile: !uuid 'a69b350e48e694c9835503945a5bd53efec458c3'
+    oldFile: !uuid '3c3f1d7cbdd6b2c4189f0f3d24a4cceed970019d'
+  /app/admin/view/test_name:
+    newFile: !uuid '69a58865106c01e06467e0934aa3138820b200bf'
+    oldFile: null
+  /app/admin/view/test_name/edit.html:
+    newFile: !uuid '924bca20a20abe474c20bd95023953a65fd807e6'
+    oldFile: null
+  /app/admin/view/test_name/index.html:
+    newFile: !uuid 'e1e98b34ad188b7d402c4b820d0ca12393a55ba8'
+    oldFile: null
+  /app/common.php:
+    newFile: !uuid '8f9914a8ec8433c4546f00b8f3ccf26eb4f3957e'
+    oldFile: !uuid '3980de49434a3ac65e8c39d2efe7d7ffc8c51ba6'
+  /public:
+    newFile: !uuid '3b2af29f81fe42c09599b0f7085f987c17d3bf75'
+    oldFile: !uuid '4aed99e4049b5f0df00d22ee2d8ca840e0b242ef'
+  /public/.DS_Store:
+    newFile: null
+    oldFile: !uuid 'a56153e91472dfb24bb63b0d821ce38c628069a0'
+  /public/static:
+    newFile: !uuid '7fa25b0cade0179c7c6dc079fb035b0f461fd5ef'
+    oldFile: !uuid 'ec204650990fc9783fa57e8c38defe00e7a1a97c'
+  /public/static/.DS_Store:
+    newFile: null
+    oldFile: !uuid '5945b6a5ab9552ed35d1a703de5b03a40b9a4ff4'
+  /public/static/js:
+    newFile: !uuid 'a7cc0827efc472ada83f2691c27dcebb5caed0c8'
+    oldFile: !uuid '813b14b54e32ba533ef6a18c98f2324ef7f0d8a6'
+  /public/static/js/addons.js:
+    newFile: !uuid 'f17a0a4efc417ce116e036ab9e2b4c5e65e79d17'
+    oldFile: null
+  /public/static/lib:
+    newFile: !uuid '981d35c9ff010f5831092bef098b3a92dab5c7d8'
+    oldFile: !uuid 'ffc88a225e1ab117955796139931d90daf0813c6'
+  /public/static/lib/require.js:
+    newFile: !uuid '5910c37caca25e972f49d3561838519c004c0e44'
+    oldFile: null
+  /public/static/lib/xm-select.js:
+    newFile: !uuid 'a4c285b56b6e9c6c473ef851757f9e44be1de316'
+    oldFile: !uuid 'c8257a94322497cb386834308b54d8f3fede7f99'
+gitCommitId: !uuid '0cd94bbe8ff4b0992f50a736023ccca6c7235212'
 renames: {
   }
-revisionId: 247
+revisionId: 248
