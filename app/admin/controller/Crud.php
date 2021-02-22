@@ -783,22 +783,6 @@ EOF;
                     name: '{$item['field']}',
                     data:{$list}
                 });";
-            } elseif (endWith($item['field'], 'content')) {
-                $this->addEditAddonUsed('layedit');
-                $arr[] = "
-                //创建{$item['field']}编辑器
-                editorArr['{$item['field']}'] = layedit.build('{$item['field']}',{
-                    uploadImage:{
-                        url:\"{:url('admin/crud/upload')}\",
-                        type:'post'
-                    }
-                });
-                form.verify({
-                    //content富文本域中的lay-verify值
-                    '{$item['field']}': function(value) {
-                        return layedit.sync(editorArr['{$item['field']}']);
-                    }
-                });";
             }
         }
         return implode(PHP_EOL, $arr);
@@ -977,7 +961,7 @@ EOF;
                         <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . $fieldName  . "\">
                         <div class=\"layui-upload-btn\" >
                             <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
-                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
+                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo_".$item['field']."\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
                         </div>
                     </div>
                 </div>";
@@ -1050,10 +1034,10 @@ EOF;
     </div>
 </div>";
                 } elseif (endWith($item['field'], 'content')) {
-                    $str .= " <div class=\"layui-form-item layui-form-text\">
+                    $str .= " <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
     <div class=\"layui-input-block\">
-      <textarea id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\" style=\"display: none;\">" . '{$' . "" . $table . "." . $item['field'] . "??''}</textarea>
+      <textarea class=\"layui-textarea editor\" id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\">" . '{$' . "" . $table . "." . $item['field'] . "??''}</textarea>
     </div>
   </div>";
                 } elseif (endWith($item['field'], 'switch')) {

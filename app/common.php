@@ -6,31 +6,60 @@
  * @param $len
  * @return string
  */
-function GetRandStr($len) {
-	$chars = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k","l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v","w", "x", "y", "z","0", "1", "2","3", "4", "5", "6", "7", "8", "9");
-	$charsLen = count($chars) - 1;
-	shuffle($chars);
-	$output = "";
-	for ($i=0; $i<$len; $i++){
-		$output .= $chars[mt_rand(0, $charsLen)];
-	}
-	return $output;
+function GetRandStr($len)
+{
+    $chars = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k","l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v","w", "x", "y", "z","0", "1", "2","3", "4", "5", "6", "7", "8", "9");
+    $charsLen = count($chars) - 1;
+    shuffle($chars);
+    $output = "";
+    for ($i=0; $i<$len; $i++) {
+        $output .= $chars[mt_rand(0, $charsLen)];
+    }
+    return $output;
 }
-function startWith($str, $needle) {
-
+function startWith($str, $needle)
+{
     return strpos($str, $needle) === 0;
+}
 
+if (!function_exists('rmdirs')) {
+
+    /**
+     * 删除文件夹
+     * @param string $dirname  目录
+     * @param bool   $withself 是否删除自身
+     * @return boolean
+     */
+    function rmdirs($dirname, $withself = true)
+    {
+        if (!is_dir($dirname)) {
+            return false;
+        }
+        $files = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($dirname, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::CHILD_FIRST
+        );
+
+        foreach ($files as $fileinfo) {
+            $todo = ($fileinfo->isDir() ? 'rmdir' : 'unlink');
+            $todo($fileinfo->getRealPath());
+        }
+        if ($withself) {
+            @rmdir($dirname);
+        }
+        return true;
+    }
 }
 
 
-function endWith($haystack, $needle) {
+function endWith($haystack, $needle)
+{
     $length = strlen($needle);
-    if($length == 0)
-    {
-    return true;
+    if ($length == 0) {
+        return true;
     }
     return (substr($haystack, -$length) === $needle);
-    }
+}
 
 /**
  * HTTP请求
@@ -41,9 +70,8 @@ function endWith($haystack, $needle) {
  * @param int $timeout			请求超时
  * @return mixed
  */
-function do_curl_request($url, $params = "", $requestType = 'post', $headers = ['Content-type:application/x-www-form-urlencoded;charset=UTF-8'], $timeout = 30, $options = []) 
+function do_curl_request($url, $params = "", $requestType = 'post', $headers = ['Content-type:application/x-www-form-urlencoded;charset=UTF-8'], $timeout = 30, $options = [])
 {
-
     if ($url == '' || $timeout <= 0) {
         return false;
     }
@@ -102,7 +130,7 @@ function do_curl_request($url, $params = "", $requestType = 'post', $headers = [
     $res = curl_exec($curl);
     curl_close($curl);
 
-	return $res;
+    return $res;
 }
 /**
  * 过滤数组元素前后空格 (支持多维数组)
@@ -111,9 +139,10 @@ function do_curl_request($url, $params = "", $requestType = 'post', $headers = [
  */
 function trim_array_element($array)
 {
-	if (!is_array($array))
-		return trim($array);
-	return array_map('trim_array_element', $array);
+    if (!is_array($array)) {
+        return trim($array);
+    }
+    return array_map('trim_array_element', $array);
 }
 
 /**
@@ -124,38 +153,42 @@ function trim_array_element($array)
  */
 function convert_arr_kv($arr, $key_name, $value)
 {
-	$arr2 = array();
-	foreach ($arr as $key => $val) {
-		$arr2[$val[$key_name]] = $val[$value];
-	}
-	return $arr2;
+    $arr2 = array();
+    foreach ($arr as $key => $val) {
+        $arr2[$val[$key_name]] = $val[$value];
+    }
+    return $arr2;
 }
 
 function string2array($info)
 {
-	if ($info == '') return array();
-	eval("\$r = $info;");
-	return $r;
+    if ($info == '') {
+        return array();
+    }
+    eval("\$r = $info;");
+    return $r;
 }
 
 function array2string($info)
 {
-	//删除空格，某些情况下字段的设置会出现换行和空格的情况
-	if (is_array($info)) {
-		if (array_key_exists('options', $info)) {
-			$info['options'] = trim($info['options']);
-		}
-	}
-	if ($info == '') return '';
-	if (!is_array($info)) {
-		//删除反斜杠
-		$string = stripslashes($info);
-	}
-	foreach ($info as $key => $val) {
-		$string[$key] = stripslashes($val);
-	}
-	$setup = var_export($string, TRUE);
-	return $setup;
+    //删除空格，某些情况下字段的设置会出现换行和空格的情况
+    if (is_array($info)) {
+        if (array_key_exists('options', $info)) {
+            $info['options'] = trim($info['options']);
+        }
+    }
+    if ($info == '') {
+        return '';
+    }
+    if (!is_array($info)) {
+        //删除反斜杠
+        $string = stripslashes($info);
+    }
+    foreach ($info as $key => $val) {
+        $string[$key] = stripslashes($val);
+    }
+    $setup = var_export($string, true);
+    return $setup;
 }
 
 /**
@@ -165,10 +198,10 @@ function array2string($info)
  */
 function textareaBr($info)
 {
-	$info = str_replace("\r\n", "<br />", $info);
-	$info = str_replace("\n", "<br />", $info);
-	$info = str_replace("\r", "<br />", $info);
-	return $info;
+    $info = str_replace("\r\n", "<br />", $info);
+    $info = str_replace("\n", "<br />", $info);
+    $info = str_replace("\r", "<br />", $info);
+    return $info;
 }
 
 /**
@@ -178,20 +211,21 @@ function textareaBr($info)
  * @param $rules 规则
  * @return array
  */
-function auth($cate , $pid = 0,$rules){
-	$arr = array();
-	$rulesArr = explode(',',$rules);
-	foreach ($cate as $v){
-		if ($v['pid'] == $pid) {
-			if (in_array($v['id'], $rulesArr)) {
-				$v['checked'] = true;
-			}
-			$v['open'] = true;
-			$arr[]=$v;
-			$arr = array_merge($arr, auth($cate, $v['id'], $rules));
-		}
-	}
-	return $arr;
+function auth($cate, $pid = 0, $rules)
+{
+    $arr = array();
+    $rulesArr = explode(',', $rules);
+    foreach ($cate as $v) {
+        if ($v['pid'] == $pid) {
+            if (in_array($v['id'], $rulesArr)) {
+                $v['checked'] = true;
+            }
+            $v['open'] = true;
+            $arr[]=$v;
+            $arr = array_merge($arr, auth($cate, $v['id'], $rules));
+        }
+    }
+    return $arr;
 }
 /**
  * 节点状态
@@ -201,29 +235,30 @@ function auth($cate , $pid = 0,$rules){
  * @param $rules 规则
  * @return array
  */
-function authNew($cate , $pid = 0,$rules){
-	$arr = array();
-	$rulesArr = explode(',',$rules);
-	foreach ($cate as $v){
-		if ($v['pid'] == $pid) {
-			$v = array_merge($v, ['field' => 'node', 'spread' => true]);
-			
-			//$v['open'] = true;
-			$subcate = authNew($cate, $v['id'], $rules);
-			if($subcate){
-				$v['children'] =  $subcate;
-			}
-			//解决tree回显bug
-			if (in_array($v['id'], $rulesArr)&&empty($subcate)) {
-				$v['checked'] = true;
-			}else{
-				$v['checked'] = false;
-			}
-			unset($v['pid']);
-			$arr[]=$v;
-		}
-	}
-	return $arr;
+function authNew($cate, $pid = 0, $rules)
+{
+    $arr = array();
+    $rulesArr = explode(',', $rules);
+    foreach ($cate as $v) {
+        if ($v['pid'] == $pid) {
+            $v = array_merge($v, ['field' => 'node', 'spread' => true]);
+            
+            //$v['open'] = true;
+            $subcate = authNew($cate, $v['id'], $rules);
+            if ($subcate) {
+                $v['children'] =  $subcate;
+            }
+            //解决tree回显bug
+            if (in_array($v['id'], $rulesArr)&&empty($subcate)) {
+                $v['checked'] = true;
+            } else {
+                $v['checked'] = false;
+            }
+            unset($v['pid']);
+            $arr[]=$v;
+        }
+    }
+    return $arr;
 }
 
 /**
@@ -309,15 +344,16 @@ if (!function_exists('var_export_short')) {
 
 //写入日志
 if (!function_exists('write_log')) {
-    function write_log($remark ,$data, $path = '',$filename = ''){
+    function write_log($remark, $data, $path = '', $filename = '')
+    {
         $path = $path ? $path : app()->getRuntimePath().'cm_log/';
         $filename = $filename ? $filename : date('Ymd').'.txt';
-        $data = is_array($data) ? json_encode($data,JSON_UNESCAPED_UNICODE) : $data;
-        if(!is_dir($path)){
-            mkdir($path,0777);
+        $data = is_array($data) ? json_encode($data, JSON_UNESCAPED_UNICODE) : $data;
+        if (!is_dir($path)) {
+            mkdir($path, 0777);
         }
-        if($fp = fopen($path.$filename,"a")){
-            fwrite($fp,'['.date("Y-m-d H:i:s").'] '.$remark."\r\n".$data."\r\n");
+        if ($fp = fopen($path.$filename, "a")) {
+            fwrite($fp, '['.date("Y-m-d H:i:s").'] '.$remark."\r\n".$data."\r\n");
             fclose($fp);
         }
     }
@@ -328,16 +364,17 @@ if (!function_exists('write_log')) {
 //获取用户的所有下级ID
 //默认5级
 if (!function_exists('get_downline')) {
-    function get_downline($datas,$pid,$max_level=5,$level=0){
+    function get_downline($datas, $pid, $max_level=5, $level=0)
+    {
         $arr=array();
         foreach ($datas as $key => $v) {
-            if($v['id'] == $pid){  //pid为0的是顶级分类
+            if ($v['id'] == $pid) {  //pid为0的是顶级分类
                 $v['level'] = $level+1;
-                if ($v['level']  > $max_level){
+                if ($v['level']  > $max_level) {
                     return $arr;
                 }
                 $arr[]=$v;
-                $arr = array_merge($arr,get_downline($datas,$v['pid'],$max_level,$level+1));
+                $arr = array_merge($arr, get_downline($datas, $v['pid'], $max_level, $level+1));
             }
         }
         return $arr;
