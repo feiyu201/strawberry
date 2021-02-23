@@ -195,8 +195,9 @@ require(['../../static/neditor/third-party/zeroclipboard/ZeroClipboard', 'nedito
     initServiceConfig();
     window.ZeroClipboard = ZeroClipboard;
 
-    $(".editor").each(function () {
+    $("textarea.editor").each(function () {
         let option = {
+            zIndex: 898, //编辑器层级的基数,默认
             UEDITOR_HOME_URL: '../../static/neditor/',
             theme: 'notadd',
             serverUrl: "/addons/neditor/upload/attachment.html",
