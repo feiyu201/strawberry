@@ -304,8 +304,7 @@ CREATE TABLE `cm_test_name` (
   `images` text COMMENT 'images',
   `imgs` text  COMMENT 'imgs',
   `test1_name_id` int NOT NULL COMMENT '关联id',
-  `test1_name_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '关联ids',
-  PRIMARY KEY (`id`)
+  `test1_name_ids` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '关联ids'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1 COLLATE=utf8mb4_general_ci COMMENT='自动CRUD测试表' ROW_FORMAT=DYNAMIC;
 --
 -- 转存表中的数据 `cm_test_name`
