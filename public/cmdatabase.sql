@@ -286,7 +286,7 @@ CREATE TABLE `cm_plugin` (
 --
 DROP TABLE IF EXISTS `cm_test_name`;
 CREATE TABLE `cm_test_name` (
-  `id` int NOT NULL AUTO_INCREMENT COMMENT 'ID',
+  `id` int NOT NULL COMMENT 'ID',
   `select_test` enum('10','20') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '下拉:10=选项一,20=选项二',
   `set_test` set('music','reading','swimming') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '爱好(多选):music=音乐,reading=读书,swimming=游泳',
   `content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '编辑器',
