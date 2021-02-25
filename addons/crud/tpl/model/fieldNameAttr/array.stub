@@ -9,7 +9,12 @@ public function set{%fieldName%}Attr($value)
 public function get{%fieldName%}Attr($value)
 {
     try{
-        return json_decode($value,true);
+        $array = json_decode($value,true);
+        $keys = array_keys($array);
+        if( $keys != array_keys($keys)){
+            return [];
+        }
+        return $array;
     }catch(\Exception $e){
         return [];
     }
