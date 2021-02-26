@@ -2,13 +2,37 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid 'ac80984cb44722b19f0add99c0ff638b5fd276c8'
-    oldFile: !uuid '3b44904232563d44574e200cd025f8ac9fc3ebe2'
-  /public/cmdatabase.sql:
-    newFile: !uuid 'd8a5bac0bb81ab2897882820d2fcc837f2994e68'
-    oldFile: !uuid '45e558abc60b6f01d00a0cf13a60a4b61d7d5a40'
-gitCommitId: !uuid '799b55ebf25a732a377f6cc319f314655fd81ce8'
+  /addons:
+    newFile: !uuid '27b2b16a7006aa93ac530f2d2a2acc858cd9f5e5'
+    oldFile: !uuid 'ba4f4d3b8bb45ba654f80e66c4ec3dd58556d443'
+  /addons/crud:
+    newFile: !uuid 'e7ac093c39a88a69d7fa4814d17a86114b828746'
+    oldFile: !uuid '987ff5cf22c0f4ee80fcb75dc5f0222ceb5a26ae'
+  /addons/crud/tpl:
+    newFile: !uuid 'b3b4b369307748e72671e1a23c64019f97565a60'
+    oldFile: !uuid '2f93c4a3442527a4b172119ac028a967602abdba'
+  /addons/crud/tpl/model:
+    newFile: !uuid 'dc5db3965f3c2fc4981e13793cb8e7f2dffec7f6'
+    oldFile: !uuid '6288c12920f96e52f67c2d704f901b32a048993b'
+  /addons/crud/tpl/model/fieldNameAttr:
+    newFile: !uuid '335f68e4c073630f2af25b5d3f7903ffddb5cae2'
+    oldFile: !uuid 'ae1859709a158e379158642093876b84b6b3615e'
+  /addons/crud/tpl/model/fieldNameAttr/array.stub:
+    newFile: !uuid '781694e14dc794265021d03241a3861a1103b0f1'
+    oldFile: null
+  /app:
+    newFile: !uuid 'b684b4162a3222b6cb05cf9ab9a090bdd7ec7e4a'
+    oldFile: !uuid '587ec7fce9cefdfdfc1c85697fa22710e6717515'
+  /app/admin:
+    newFile: !uuid '76c75014f67e9d6c8ea0192251a0c1f25f2bf4bd'
+    oldFile: !uuid '5ca03014c3b3fc28376c71f64d66a7417f4ed381'
+  /app/admin/controller:
+    newFile: !uuid '1fbb59e1a2ea35d40fad21280c965317b2cf185d'
+    oldFile: !uuid 'f1e9a2b5ba8abc515a44184233efcb37f420ad63'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid '118a17524de43e9eb2b0904af1f8f95e49b7262f'
+    oldFile: !uuid '6c40fe357effac70549a01db542fed9c9dceebd2'
+gitCommitId: !uuid 'aeb63265415025b64824df304e03e5a3e1e5c0d2'
 renames: {
   }
-revisionId: 250
+revisionId: 251
