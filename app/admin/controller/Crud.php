@@ -208,7 +208,11 @@ class Crud extends Admin
                     'relationTable' => $tableName,
                     'fieldNameList' => $this->controlName($demo, false) . 'List',
                 ]) . "\n";
-            } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
+            } elseif ((explode('(', $item['type'])[0] === 'json'||explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
+                $str .= $this->getReplacedStub('model/fieldNameAttr/array.stub', [
+                    'fieldName' => $this->controlName($demo, true),
+                ]) . "\n";
+            } elseif (explode('(', $item['type'])[0] === 'json') {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/json.stub', [
                     'fieldName' => $this->controlName($demo, true),
                 ]) . "\n";
