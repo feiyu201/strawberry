@@ -25,7 +25,7 @@ class Caomei extends BaseController
 			exit('错误');
 		}
 
-		View::assign('img', 'http://api.k780.com:88/?app=qr.get&data='.$data['img'].'&level=L&size=6');
+		View::assign('img', 'http://api.k780.com/?app=qr.get&data='.$data['img'].'&level=L&size=6&appkey=57800&sign=8885b084c401d4c2e5c55f906be45446');
 		View::assign('order_sn', $data['order_sn']);
 		View::assign('name', $data['name']);
     	// 模板输出
