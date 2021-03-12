@@ -10,10 +10,14 @@ class Index extends Base
 {
     public function index()
     {
-        $title = '阿里云短信插件';
-        return $this->fetch('', [
-            'title' => $title,
-        ]);
+        if (!$this->request->isAjax()) {
+            $title = '阿里云短信插件';
+            return $this->fetch('', [
+                'title' => $title,
+            ]);
+        } else {
+            return $this->index_json();
+        }
     }
 
     public function index_json()
@@ -73,6 +77,5 @@ class Index extends Base
             'ip'         => request()->ip(),
             'createtime' => time(),
         ]);
-
     }
 }

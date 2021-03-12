@@ -202,13 +202,18 @@ public function setAFieldlistAttr($value)
     if(!is_array($value)){
         throw new \Exception("参数必须是数组");
     }
-    return json_encode($value);
+    return json_encode(array_values($value));
 }
 
 public function getAFieldlistAttr($value)
 {
     try{
-        return json_decode($value,true);
+        $array = json_decode($value,true);
+        $keys = array_keys($array);
+        if( $keys != array_keys($keys)){
+            return [];
+        }
+        return $array;
     }catch(\Exception $e){
         return [];
     }
@@ -219,13 +224,18 @@ public function setBFieldlistAttr($value)
     if(!is_array($value)){
         throw new \Exception("参数必须是数组");
     }
-    return json_encode($value);
+    return json_encode(array_values($value));
 }
 
 public function getBFieldlistAttr($value)
 {
     try{
-        return json_decode($value,true);
+        $array = json_decode($value,true);
+        $keys = array_keys($array);
+        if( $keys != array_keys($keys)){
+            return [];
+        }
+        return $array;
     }catch(\Exception $e){
         return [];
     }

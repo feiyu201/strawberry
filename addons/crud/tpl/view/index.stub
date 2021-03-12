@@ -40,7 +40,7 @@
         {%formInit%}
         let userTable = table.render({
             elem: '#tableId',
-            url: '{:url("getList")}',
+            url: '{:url("index")}',
             limit: 20,
             page: true,
             toolbar: true,

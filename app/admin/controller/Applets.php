@@ -30,12 +30,15 @@ use app\common\model\Wxapp;
 use think\facade\Session;
 use app\common\library\Portal;
 
-
 class Applets extends AdminBase
 {
     public function index()
     {
-        return View::fetch();
+        if (!$this->request->isAjax()) {
+            return View::fetch();
+        } else {
+            return $this->getList();
+        }
     }
 
     public function getList()
@@ -195,10 +198,10 @@ class Applets extends AdminBase
             'name'=>$wxappinfo['addons']
         );
 
-        if(empty($wxappinfo['addons'])){
+        if (empty($wxappinfo['addons'])) {
             $this->error("请绑定应用插件！");
         }
-        if(!ThinkAddons::welcome($wxappinfo['addons'])){
+        if (!ThinkAddons::welcome($wxappinfo['addons'])) {
             $this->error("应用插件无入口welcome方法！");
         };
     }
