@@ -107,7 +107,7 @@
                 , btn_upload: true
                 , id: 'fmTest'
                 , btn_create: false
-                , url: "{:addons_url('store://Photos/index')}?goods_id={$Request.param.goods_id|default='0'}"
+                , url: "{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id|default='0'}"
                 , thumb: { 'nopic': '/filemanage/upload/null-100x100.jpg', 'width': 100, 'height': 100 }
                 , parseData: function (res) {
                     let _res = [];
