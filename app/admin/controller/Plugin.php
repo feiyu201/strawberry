@@ -35,7 +35,11 @@ class Plugin extends AdminBase
     // 列表
     public function index()
     {
-        return View::fetch();
+        if (!$this->request->isAjax()) {
+            return View::fetch();
+        } else {
+            return $this->getList();
+        }
     }
 
     // 插件配置信息预览

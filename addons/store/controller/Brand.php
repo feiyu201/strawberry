@@ -6,40 +6,45 @@ use think\facade\Request;
 use addons\store\model\Brand as BrandM;
 use addons\store\model\BrandCategoryJoin;
 
-
 class Brand extends AddonBase
 {
     public function index()
     {
-
-        return \app\common\http\Json::success(200,'成功');
+        return \app\common\http\Json::success(200, '成功');
     }
     public function list()
     {
-        return $this->fetch();
+        if (!$this->request->isAjax()) {
+            return $this->fetch();
+        } else {
+            return $this->getList();
+        }
     }
 
-    public  function getList(){
+    public function getList()
+    {
         $param = Request::param();
         if (empty($param['page'])) {
             $param['page'] = 1;
         }
         $list = BrandM::page($param['page'])->limit($param['limit'])->select();
-        return \app\common\http\Json::success('成功',$list,BrandM::count());
+        return \app\common\http\Json::success('成功', $list, BrandM::count());
     }
 
-    public function addEdit(){
+    public function addEdit()
+    {
         $param = Request::param();
         $data = null;
         if (!empty($param['id'])) {
             $data = BrandM::find($param['id']);
             $data['icon'] = $data['logo'];
         }
-        $this->assign('data',$data);
+        $this->assign('data', $data);
         return $this->fetch();
     }
 
-    public function upcAdd(){
+    public function upcAdd()
+    {
         $param = Request::param();
         $data = null;
         if (!empty($param['id'])) {
@@ -58,15 +63,14 @@ class Brand extends AddonBase
         }
     }
 
-    public function delete(){
+    public function delete()
+    {
         $param = Request::param();
-        if (!empty($param['id'])){
-            BrandM::where('id',$param['id'])->delete();
-            BrandCategoryJoin::where('brand_id',$param['id'])->delete();
+        if (!empty($param['id'])) {
+            BrandM::where('id', $param['id'])->delete();
+            BrandCategoryJoin::where('brand_id', $param['id'])->delete();
             return \app\common\http\Json::success('删除成功');
         }
         return \app\common\http\Json::error('删除失败');
     }
-
-
 }

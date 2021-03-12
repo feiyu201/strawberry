@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <title>{$title}</title>
@@ -7,126 +8,129 @@
     <link rel="stylesheet" href="/static/css/oksub.css">
     <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
 </head>
+
 <body>
-<div class="ok-body">
-    <div class="layui-row">
-        <div class="layui-col-md6">
-            <div class="layui-inline layui-show-xs-block">
-                <input type="text" name="sms_test_mobile"  autocomplete="off" class="layui-input" value="" id="sms_test_mobile" />
-            </div>
-            <div class="layui-btn-group">
-                <a href="#" class="layui-btn" id="sms_test">测试短信发送</a>
+    <div class="ok-body">
+        <div class="layui-row">
+            <div class="layui-col-md6">
+                <div class="layui-inline layui-show-xs-block">
+                    <input type="text" name="sms_test_mobile" autocomplete="off" class="layui-input" value=""
+                        id="sms_test_mobile" />
+                </div>
+                <div class="layui-btn-group">
+                    <a href="#" class="layui-btn" id="sms_test">测试短信发送</a>
+                </div>
             </div>
         </div>
+        <!--模糊搜索区域-->
+
+        <!--数据表格-->
+        <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
     </div>
-    <!--模糊搜索区域-->
+    <!--js逻辑-->
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <script>
+        layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+            let table = layui.table;
+            let form = layui.form;
+            let okMock = layui.okMock;
+            let $ = layui.jquery;
 
-    <!--数据表格-->
-    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
-</div>
-<!--js逻辑-->
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/lib/layui/layui.js"></script>
-<script>
-    layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
-        let table = layui.table;
-        let form = layui.form;
-        let okMock = layui.okMock;
-        let $ = layui.jquery;
+            okLoading.close($);
 
-        okLoading.close($);
-
-        let userTable = table.render({
-            elem: '#tableId',
-            url: '{:url("addons\\aliyun_sms\\Index\\index_json")}',
-            limit: 20,
-            page: false,
-            toolbar: true,
-            toolbar: "#toolbarTpl",
-            size: 'sm',
-            even: true,
-            height: 'full',
-            cellMinWidth: 120,
-            cols: [[
-                {type: "checkbox", fixed: "left"},
-                {field: "id", title: "ID"},
-                {field: "event", title: "事件"},
-                {field: "title", title: "发送标题"},
-                {field: "content", title: "发送内容"},
-                {field: "mobile", title: "手机号"},
-                {field: "ip", title: "IP"},
-                {field: "createtime", title: "createtime"},
-            ]],
-            done: function (res, curr, count) {
-                console.info(res, curr, count);
-            },
-            parseData: function (res) { //res 即为原始返回的数据
-                return {
-                    "code": res.code, //解析接口状态
-                    "msg": res.msg, //解析提示文本
-                    "count": res.data.total, //解析数据长度
-                    "data": res.data.data //解析数据列表
-                };
-            },
-        });
-
-        form.on("submit(search)", function (data) {
-            userTable.reload({
-                where: data.field,
-                page: {curr: 1}
+            let userTable = table.render({
+                elem: '#tableId',
+                url: '{:url("addons\\aliyun_sms\\Index\\index")}',
+                limit: 20,
+                page: false,
+                toolbar: true,
+                toolbar: "#toolbarTpl",
+                size: 'sm',
+                even: true,
+                height: 'full',
+                cellMinWidth: 120,
+                cols: [[
+                    { type: "checkbox", fixed: "left" },
+                    { field: "id", title: "ID" },
+                    { field: "event", title: "事件" },
+                    { field: "title", title: "发送标题" },
+                    { field: "content", title: "发送内容" },
+                    { field: "mobile", title: "手机号" },
+                    { field: "ip", title: "IP" },
+                    { field: "createtime", title: "createtime" },
+                ]],
+                done: function (res, curr, count) {
+                    console.info(res, curr, count);
+                },
+                parseData: function (res) { //res 即为原始返回的数据
+                    return {
+                        "code": res.code, //解析接口状态
+                        "msg": res.msg, //解析提示文本
+                        "count": res.data.total, //解析数据长度
+                        "data": res.data.data //解析数据列表
+                    };
+                },
             });
-            return false;
-        });
 
-        table.on("toolbar(tableFilter)", function (obj) {
-            switch (obj.event) {
-                case "batchEnabled":
-                    batchEnabled();
-                    break;
-                case "batchDisabled":
-                    batchDisabled();
-                    break;
-                case "batchDel":
-                    batchDel();
-                    break;
-                case "add":
-                    add();
-                    break;
-            }
-        });
+            form.on("submit(search)", function (data) {
+                userTable.reload({
+                    where: data.field,
+                    page: { curr: 1 }
+                });
+                return false;
+            });
 
-        table.on("tool(tableFilter)", function (obj) {
-            let data = obj.data;
-            switch (obj.event) {
-                case "crud":
-                    crud(data.name);
-                    break;
-            }
-        });
-    })
+            table.on("toolbar(tableFilter)", function (obj) {
+                switch (obj.event) {
+                    case "batchEnabled":
+                        batchEnabled();
+                        break;
+                    case "batchDisabled":
+                        batchDisabled();
+                        break;
+                    case "batchDel":
+                        batchDel();
+                        break;
+                    case "add":
+                        add();
+                        break;
+                }
+            });
 
-    $('#sms_test').click(function (){
-        var phone = $('#sms_test_mobile').val();
-        if (!phone){
-            layer.msg('请输入测试手机号码');
-            return;
-        }
-        var url = '{:url("addons\\aliyun_sms\\Index\\sms_test")}';
-        var data = {"phone":phone};
-        $.ajax({
-            type: "POST",
-            url: url,
-            data:data,
-            success: function (data) {
-                console.log(data);
-                lsg.msg();
-            },error: function (data) {
-                console.log(data);
-                layer.msg(data);
-            }
+            table.on("tool(tableFilter)", function (obj) {
+                let data = obj.data;
+                switch (obj.event) {
+                    case "crud":
+                        crud(data.name);
+                        break;
+                }
+            });
         })
-    });
-</script>
+
+        $('#sms_test').click(function () {
+            var phone = $('#sms_test_mobile').val();
+            if (!phone) {
+                layer.msg('请输入测试手机号码');
+                return;
+            }
+            var url = '{:url("addons\\aliyun_sms\\Index\\sms_test")}';
+            var data = { "phone": phone };
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: data,
+                success: function (data) {
+                    console.log(data);
+                    lsg.msg();
+                }, error: function (data) {
+                    console.log(data);
+                    layer.msg(data);
+                }
+            })
+        });
+    </script>
 
 </body>
+
 </html>

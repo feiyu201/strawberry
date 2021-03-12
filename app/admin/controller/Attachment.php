@@ -15,7 +15,11 @@ class Attachment extends AdminBase
     }
     public function index()
     {
-        return View::fetch();
+        if (!$this->request->isAjax()) {
+            return View::fetch();
+        } else {
+            return $this->getList();
+        }
     }
     public function getList()
     {

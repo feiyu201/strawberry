@@ -15,7 +15,11 @@ class Lazy extends AddonBase
 {
     public function index()
     {
-        return $this->fetch();
+        if (!$this->request->isAjax()) {
+            return $this->fetch();
+        } else {
+            return $this->getList();
+        }
     }
 
     public function getList()
