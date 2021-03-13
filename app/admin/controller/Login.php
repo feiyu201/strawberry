@@ -16,7 +16,7 @@ class Login extends BaseController
     		$this->error('111');
     	} */
         if (Session::has('admin')) {
-            $this->error('你已登陆', 'admin/index/index');
+            $this->error(__('You are logged'), 'admin/index/index');
         }
 
         //判断是否启用社会化登入
@@ -28,7 +28,7 @@ class Login extends BaseController
     public function signin()
     {
         if (Session::has('admin')) {
-            $this->error('你已登陆', 'index/index');
+            $this->error(__('You are logged'), 'index/index');
         }
         $username = $this->request->param('username');
         $password = $this->request->param('password');
@@ -37,18 +37,18 @@ class Login extends BaseController
 //      $captcha = $this->request->param('captcha');
 //    	if(!captcha_check($captcha)){
 //    		// 验证失败
-//    		$this->error('验证码错误');
+//    		$this->error(__('Verification code error'));
 //    	};
         
         $admininfo = Db::name('admin')->where('username', $username)->find();
         if (empty($admininfo)) {
-            $this->error('账号/密码错误.');
+            $this->error(__('Incorrect username or password'));
         }
         if ($admininfo['status']!='normal') {
-            $this->error('账户被禁用');
+            $this->error(__('Account is disabled'));
         }
         if ($admininfo['password']!=md5(md5($password).$admininfo['salt'])) {
-            $this->error('账号/密码错误');
+            $this->error(__('Incorrect username or password'));
         }
         
         // 查找规则
@@ -66,7 +66,7 @@ class Login extends BaseController
         Session::set('admin.title', $rules['title']);
          
         
-        $this->success('登陆成功');
+        $this->success(__('Login successful'));
     }
     public function logout()
     {

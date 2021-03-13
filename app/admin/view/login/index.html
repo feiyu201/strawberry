@@ -1,159 +1,152 @@
-<!DOCTYPE html>
-<html lang="en" class="page-fill">
-<head>
-    <meta charset="UTF-8">
-    <title>草莓快速开发框架 - 登录</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="草莓快速开发框架">
-    <meta name="description" content="草莓快速开发框架 thinkphp6开源版">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
-    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="/static/css/oksub.css?v=1.1"/>
-    <style>
-	#captchaImg2 img{
-		width:100%;
-		height:100%;
-	}
-	</style>
-</head>
-<body class="page-fill">
-    <div class="page-fill" id="login">
-        <form class="layui-form">
-            <div class="login_face"><img src="/static/images/logo.png?v=1.0"></div>
-            <div class="layui-form-item input-item">
+{extend name="layout/default" /}
+{block name="head"}
+<title>{:__('Login')}</title>
+<style>
+    #captchaImg2 img {
+        width: 100%;
+        height: 100%;
+    }
+</style>
+{/block}
 
-                <input type="text" lay-verify="required" name="username" placeholder="请输入用户名"  autocomplete="off" id="username" class="layui-input">
-            </div>
-            <div class="layui-form-item input-item">
 
-                <input type="password" lay-verify="required|password" name="password" placeholder="请输入密码"  autocomplete="off" id="password" class="layui-input">
+{block name="content"}
+<div id="login">
+    <form class="layui-form">
+        <div class="login_face"><img src="/static/images/logo.png?v=1.0"></div>
+        <div class="layui-form-item input-item">
+
+            <input type="text" lay-verify="required" name="username" placeholder="{:__('Please input username')}"
+                autocomplete="off" id="username" class="layui-input">
+        </div>
+        <div class="layui-form-item input-item">
+
+            <input type="password" lay-verify="required|password" name="password"
+                placeholder="{:__('Please input password')}" autocomplete="off" id="password" class="layui-input">
+        </div>
+        <!--            <div class="layui-form-item input-item captcha-box">-->
+        <!--                <input type="text" lay-verify="required|captcha" name="captcha" placeholder="{:__('Please input code')}" autocomplete="off" id="captcha" maxlength="4" class="layui-input">-->
+        <!--                <div class="img ok-none-select" id="captchaImg2">{:captcha_img()}</div>-->
+        <!--            </div>-->
+        <div class="layui-form-item">
+            <label class="layui-form-label"></label>
+            <div class="layui-input-block" style="margin-left: 0px!important;">
+                <div id="slider"></div>
             </div>
-<!--            <div class="layui-form-item input-item captcha-box">-->
-<!--                <input type="text" lay-verify="required|captcha" name="captcha" placeholder="请输入验证码" autocomplete="off" id="captcha" maxlength="4" class="layui-input">-->
-<!--                <div class="img ok-none-select" id="captchaImg2">{:captcha_img()}</div>-->
-<!--            </div>-->
-            <div class="layui-form-item">
-                <label class="layui-form-label"></label>
-                <div class="layui-input-block" style="margin-left: 0px!important;">
-                    <div id="slider"></div>
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <button class="layui-btn layui-block" lay-filter="login" lay-submit="">登录</button>
-            </div>
-            <div style="margin: auto;">
-                <span>第三方登录</span>
-                <a class="" href="{:url('Login/social_login?type=Qq')}">QQ登入 | </a>
-                <a class="" href="{:url('Login/social_login?type=Weixin')}">微信登入</a>
-            </div>
-             <div class="login-link">
-                <input type="checkbox" name="keep_login" value="1" lay-skin="switch" checked="checked" lay-text="记住我|记住我">
-            </div>
-            <div class="login-link">
-               <!--  <a href="register.html">注册</a>
+        </div>
+        <div class="layui-form-item">
+            <button class="layui-btn layui-block" lay-filter="login" lay-submit="">{:__('Login')}</button>
+        </div>
+        <div style="margin: auto;">
+            <span>{:__('Third party login')}</span>
+            <a class="" href="{:url('Login/social_login?type=Qq')}">{:__('QQ login')} | </a>
+            <a class="" href="{:url('Login/social_login?type=Weixin')}">{:__('Wechat login')}</a>
+        </div>
+        <div class="login-link">
+            <input type="checkbox" name="keep_login" value="1" lay-skin="switch" checked="checked"
+                lay-text="{:__('Remember')}|{:__('Remember')}">
+        </div>
+        <div class="login-link">
+            <!--  <a href="register.html">注册</a>
                 <a href="forget.html">忘记密码?</a> -->
-            </div>
-        </form>
+        </div>
+    </form>
 
-    </div>
-    <!--js逻辑-->
-    <script src="/static/lib/layui/layui.js?v=1.0"></script>
-    <script>
-        layui.config({
-            base: '/static/lib/layui/sliderVerify/'
+</div>
+{/block}
+{block name="scripts"}
+<script>
+    layui.config({
+        base: '/static/lib/layui/sliderVerify/'
+    });
+</script>
+<script>
+    layui.use(["form", "okUtils", "okLayer", "sliderVerify"], function () {
+        let form = layui.form;
+        let $ = layui.jquery;
+        let okGVerify = layui.okGVerify;
+        let okUtils = layui.okUtils;
+        let okLayer = layui.okLayer;
+        var sliderVerify = layui.sliderVerify;
+        var slider = sliderVerify.render({
+            elem: '#slider'
+        })
+
+        /**
+         * 初始化验证码
+         */
+        //let verifyCode = new okGVerify("#captchaImg");
+
+        /**
+         * 数据校验
+         */
+        form.verify({
+            password: [/^[\S]{6,12}$/, "{:__('Password length verify error',['min'=>6,'max'=>12])}"],
+            /*  captcha: function (val) {
+                 if (verifyCode.validate(val) != "true") {
+                     return verifyCode.validate(val)
+                 }
+             } */
         });
-    </script>
-    <script>
-        layui.use(["form", "okUtils", "okLayer", "sliderVerify"], function () {
-            let form = layui.form;
-            let $ = layui.jquery;
-            let okGVerify = layui.okGVerify;
-            let okUtils = layui.okUtils;
-            let okLayer = layui.okLayer;
-            var sliderVerify = layui.sliderVerify;
-            var slider = sliderVerify.render({
-                elem: '#slider'
-            })
 
-            /**
-             * 初始化验证码
-             */
-            //let verifyCode = new okGVerify("#captchaImg");
+        /**
+         * 表单提交
+         */
+        form.on("submit(login)", function (data) {
+            if (slider.isOk()) {
+            } else {
+                layer.msg("{:__('Please pass the slider verification first')}");
+                return;
+            }
 
-            /**
-             * 数据校验
-             */
-            form.verify({
-                password: [/^[\S]{6,12}$/, "密码必须6到12位，且不能出现空格"],
-               /*  captcha: function (val) {
-                    if (verifyCode.validate(val) != "true") {
-                        return verifyCode.validate(val)
-                    }
-                } */
-            });
+            okUtils.ajax("{:Url('Signin')}", "post", data.field, true).done(function (response) {
+                /* okLayer.greenTickMsg(response.msg, function () {
+                    window.location = "../index.html";
+                }) */
+                console.log(response);
+                if (response.code == 1) {
+                    okLayer.greenTickMsg(response.msg, function () {
+                        location.href = "{:Url('index/index')}";
+                    })
 
-            /**
-             * 表单提交
-             */
-            form.on("submit(login)", function (data) {
-                if(slider.isOk()){
-                }else{
-                    layer.msg("请先通过滑块验证");
-                    return;
-                }
-
-                okUtils.ajax("{:Url('signin')}", "post", data.field, true).done(function (response) {
-                    /* okLayer.greenTickMsg(response.msg, function () {
-                        window.location = "../index.html";
-                    }) */
-                    console.log(response);
-                    if(response.code==1){
-                    	okLayer.greenTickMsg(response.msg, function () {
-                    		location.href = "{:Url('index/index')}";
-                        })
-
-                    }else{
-                    	okLayer.greenTickMsg(response.msg, function () {
-                            $('#captchaImg2 img').click();
-                            slider.reset();//重新拖动验证
-                        })
-                    }
-                }).fail(function (error) {
-                    console.log(error)
-                });
-                return false;
-            });
-
-         /**
-             * 表单input组件单击时
-             */
-            $("#login .input-item .layui-input").click(function (e) {
-                e.stopPropagation();
-                $(this).addClass("layui-input-focus").find(".layui-input").focus();
-            });
-
-            /**
-             * 表单input组件获取焦点时
-             */
-            $("#login .layui-form-item .layui-input").focus(function () {
-                $(this).parent().addClass("layui-input-focus");
-            });
-
-            /**
-             * 表单input组件失去焦点时
-             */
-            $("#login .layui-form-item .layui-input").blur(function () {
-                $(this).parent().removeClass("layui-input-focus");
-                if ($(this).val() != "") {
-                    $(this).parent().addClass("layui-input-active");
                 } else {
-                    $(this).parent().removeClass("layui-input-active");
+                    okLayer.greenTickMsg(response.msg, function () {
+                        $('#captchaImg2 img').click();
+                        slider.reset();//重新拖动验证
+                    })
                 }
-            })
+            }).fail(function (error) {
+                console.log(error)
+            });
+            return false;
         });
 
-    </script>
-</body>
-</html>
+        /**
+            * 表单input组件单击时
+            */
+        $("#login .input-item .layui-input").click(function (e) {
+            e.stopPropagation();
+            $(this).addClass("layui-input-focus").find(".layui-input").focus();
+        });
+
+        /**
+         * 表单input组件获取焦点时
+         */
+        $("#login .layui-form-item .layui-input").focus(function () {
+            $(this).parent().addClass("layui-input-focus");
+        });
+
+        /**
+         * 表单input组件失去焦点时
+         */
+        $("#login .layui-form-item .layui-input").blur(function () {
+            $(this).parent().removeClass("layui-input-focus");
+            if ($(this).val() != "") {
+                $(this).parent().addClass("layui-input-active");
+            } else {
+                $(this).parent().removeClass("layui-input-active");
+            }
+        })
+    });
+</script>
+{/block}

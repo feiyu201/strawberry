@@ -4,6 +4,6 @@ public function get{%fieldName%}List(){
             'code'=> 0,
             'count'=> count($data),
             'data'=>$data,
-            'msg'=>'查询成功'
+            'msg'=>__('Search successful')
    	]);
 }

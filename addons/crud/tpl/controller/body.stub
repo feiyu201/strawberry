@@ -28,6 +28,7 @@ class {%className%} extends AdminBase
 {
 
     public function initialize(){
+		parent::initialize();
         $this->model = new {%modelClassName%}();
     }
     public function index(){
@@ -49,7 +50,7 @@ class {%className%} extends AdminBase
 				'code'=> 0,
 				'count'=> $count,
    				'data'=>$data,
-   				'msg'=>'查询用户成功'
+   				'msg'=>__('Search successful')
    		]);
    }
    {%functions%}
@@ -60,9 +61,9 @@ class {%className%} extends AdminBase
             {%witchMethod%}
                 
 	   		if( $this->model->save($data,false)){
-	   			$this->success("添加成功");
+	   			$this->success(__('Add successful'));
 	   		}else{
-	   			$this->error("添加失败");
+	   			$this->error(__('Add failed'));
 	   		}
 	   	}
 		{%addViewCode%}
@@ -75,18 +76,18 @@ class {%className%} extends AdminBase
 	   		unset($data['file']);
             {%witchMethod%}
             if( $this->model->find($data['id'])->save($data)){
-	   			$this->success("编辑成功");
+	   			$this->success(__('Editor successful'));
 	   		}else{
-	   			$this->error("编辑失败");
+	   			$this->error(__('Editor failed'));
 	   		}
 	   	}
 	   	$id = $this->request->param('id');
 	   	if(!$id){
-	   		$this->success("参数错误");
+	   		$this->success(__('Parameter error'));
 	   	}
 	   	$info =  $this->model->where('id',$id)->find();
    		if(!$info){
-	   		$this->success("参数错误");
+	   		$this->success(__('Parameter error'));
 	   	}
 		{%editViewCode%}
 	   	View::assign('{%table%}',$info);
@@ -96,12 +97,12 @@ class {%className%} extends AdminBase
    public function delete(){
    		$idsStr = $this->request->param('idsStr');
    		if(!$idsStr){
-   			$this->success("参数错误");
+   			$this->success(__('Parameter error'));
    		}
    		if( $this->model->where('id','in',$idsStr)->delete()){
-   			$this->success("删除成功");
+   			$this->success(__('Delete successful'));
    		}else{
-   			$this->error("删除失败");
+   			$this->error(__('Delete error'));
    		}
    }
 
@@ -109,9 +110,9 @@ class {%className%} extends AdminBase
       		$id = $this->request->param('id');
       		$switch = $this->request->param('switch');
       		if( $this->model->where('id',$id)->update(['switch' => $switch])){
-      			$this->success("编辑成功");
+      			$this->success(__('Editor successful'));
       		}else{
-      			$this->error("编辑失败");
+      			$this->error(__('Editor failed'));
       		}
       }
 

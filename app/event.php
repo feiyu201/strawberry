@@ -5,8 +5,11 @@ return [
     ],
 
     'listen'    => [
-        'AppInit'  => [],
-        'HttpRun'  => [],
+        'AppInit'  => [
+
+        ],
+        'HttpRun'  => [
+        ],
         'HttpEnd'  => [],
         'LogLevel' => [],
         'LogWrite' => [],

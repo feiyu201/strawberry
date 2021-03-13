@@ -3,9 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	{if isset(${%table%})}
-    <title>编辑</title>
+    <title>{:__('Edit')}</title>
     {else/}
-    <title>添加</title>
+    <title>{:__('Add')}</title>
     {/if}
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<link rel="stylesheet" href="/static/css/oksub.css">
@@ -26,8 +26,8 @@
 	    {%formHtml%}
 		<div class="layui-form-item">
 			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
-				<button type="reset" class="layui-btn layui-btn-primary">重置</button>
+				<button class="layui-btn" lay-submit lay-filter="add">{:__('Submit')}</button>
+				<button type="reset" class="layui-btn layui-btn-primary">{:__('Reset')}</button>
 			</div>
 		</div>
 	</form>
