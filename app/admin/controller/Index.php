@@ -3,9 +3,14 @@ namespace app\admin\controller;
 
 use think\facade\View;
 use think\facade\Db;
+use think\facade\Lang;
 
 class Index extends AdminBase
 {
+    public function lang($lang)
+    {
+        Lang::setLangSet($lang);
+    }
     public function index()
     {
         // 模板输出

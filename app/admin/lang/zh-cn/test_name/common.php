@@ -1,0 +1,22 @@
+<?php
+ return array (
+  'Id' => 'ID',
+  'Select_test' => '下拉',
+  'Set_test' => '爱好(多选)',
+  'Content' => '编辑器',
+  'Test_content' => 'test_content',
+  'Time123' => '时间',
+  'Switch' => '开关',
+  'State' => '单选',
+  'Create_time' => 'create_time',
+  'Create1time' => 'create1time',
+  'Update_time' => 'update_time',
+  'Create_at' => 'create_at',
+  'Test_city' => 'test_city',
+  'Img' => 'img',
+  'Image' => 'image',
+  'Images' => 'images',
+  'Imgs' => 'imgs',
+  'Test1_name_id' => '关联id',
+  'Test1_name_ids' => '关联ids',
+);

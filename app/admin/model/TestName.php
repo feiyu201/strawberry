@@ -197,62 +197,6 @@ public function getTest1NameIdsAttr($value,$data)
     $this->append(array_merge($this->append,['test1NameIdsList']));
     return $value;
 }
-public function setAFieldlistAttr($value)
-{
-    if(!is_array($value)){
-        throw new \Exception("参数必须是数组");
-    }
-    return json_encode(array_values($value));
-}
-
-public function getAFieldlistAttr($value)
-{
-    try{
-        $array = json_decode($value,true);
-        $keys = array_keys($array);
-        if( $keys != array_keys($keys)){
-            return [];
-        }
-        return $array;
-    }catch(\Exception $e){
-        return [];
-    }
-   
-}
-public function setBFieldlistAttr($value)
-{
-    if(!is_array($value)){
-        throw new \Exception("参数必须是数组");
-    }
-    return json_encode(array_values($value));
-}
-
-public function getBFieldlistAttr($value)
-{
-    try{
-        $array = json_decode($value,true);
-        $keys = array_keys($array);
-        if( $keys != array_keys($keys)){
-            return [];
-        }
-        return $array;
-    }catch(\Exception $e){
-        return [];
-    }
-   
-}
-public function setAFileAttr($value)
-{
-    if(is_string($value)){
-        $value  = explode('|',$value);
-    }
-    return implode('|',$value);
-}
-
-public function getAFileAttr($value)
-{
-    return array_filter(explode('|',$value));
-}
 
     
 public function scopeDateRange($query,$field,$data)

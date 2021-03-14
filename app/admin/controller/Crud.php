@@ -28,7 +28,9 @@ use app\admin\validate\Applets as adminValidate;
 use think\exception\PDOException;
 use think\facade\Db;
 use think\Exception;
+use think\facade\Lang;
 use think\facade\View;
+use think\helper\Str;
 
 /**
  * Api自动生成
@@ -87,7 +89,38 @@ class Crud extends Admin
         $this->tableColumns = array_map('array_change_key_case', $this->tableColumns);
         return $this->tableColumns;
     }
-
+    private function getName($comment, $field)
+    {
+        $comment = explode(":", $comment??'');
+        if (empty($comment)) {
+            $comment = $field;
+        } else {
+            $comment = $comment[0];
+        }
+        return $comment;
+    }
+    public function buildLang($table)
+    {
+        $tableColumns = $this->getTableColumn($table);
+        $langPath = "../app/admin/lang/" . Lang::getLangSet();
+        if (!file_exists($langPath)) {
+            mkdir($langPath);
+        }
+        $langPath .=  '/'.Str::snake($table);
+        if (!file_exists($langPath)) {
+            mkdir($langPath);
+        }
+        $data = [];
+        foreach ($tableColumns as $elt => $item) {
+            $field = $item['field'];
+            $comment = $this->getName($item['comment'], $field);
+            $data[ucfirst($field)] = $comment;
+        }
+        $filedName = $langPath .'/'. "common.php";
+        $commonFile = fopen($filedName, "w");
+        fwrite($commonFile, sprintf("<?php\n return %s;", var_export($data, true)));
+        fclose($commonFile);
+    }
     public function buildModel($table, $deep = 0)
     {
         $filedName = "../app/admin/model/" . $this->controlName($table) . ".php";
@@ -395,6 +428,7 @@ class Crud extends Admin
             // 生成controller
 
             $this->buildController($table);
+            $this->buildLang($table);
             $this->buildModel($table);
 
 
@@ -407,7 +441,7 @@ class Crud extends Admin
 
             $this->success($createMenuError??"生成成功");
         } catch (Exception $e) {
-            // $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
+            $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
             $this->error("生成失败");
         }
     }
@@ -415,16 +449,17 @@ class Crud extends Admin
     public function buildSeachFormItem($label, $type, $name, $item)
     {
         $html = "";
+        $comment = sprintf("{:__('%s')}", ucfirst($item['field']));
         switch ($type) {
             case 'input':
-                $html = '<input type="text" name="'.$name.'" id="'.$name.'" placeholder="请输入" autocomplete="off" class="layui-input">';
+                $html = '<input type="text" name="'.$name.'" id="'.$name.'"  autocomplete="off" class="layui-input" placeholder="'.$comment.'">';
                 break;
             case 'switch':
                 $html = '
                 <select name="'.$name.'"  id="'.$name.'">
-                    <option value=""></option>
-                    <option value="on">开启</option>
-                    <option value="off">关闭</option>
+                    <option value="">{:__(\'Select\')}</option>
+                    <option value="on">{:__(\'Open\')}</option>
+                    <option value="off">{:__(\'Close\')}</option>
                 </select>
                 ';
                 break;
@@ -436,8 +471,8 @@ class Crud extends Admin
                     $str .= "<option  value=\"$array[0]\">$array[1]</option>";
                 }
                 $html = '
-                <select name="'.$name.'"  id="'.$name.'">
-                    <option value=""></option>
+                <select name="'.$name.'"  id="'.$name.'"  >
+                    <option value="">{:__(\'Select\')}</option>
                     '.$str.'
                 </select>
                 ';
@@ -445,12 +480,12 @@ class Crud extends Admin
             case 'select':
                 $html = '
                 <select name="'.$name.'"  id="'.$name.'">
-                    <option value=""></option>
+                    <option value="">{:__(\'Select\')}</option>
                 </select>
                 ';
                 break;
             case 'datepicker':
-                $html = '<input type="text" id="'.$name.'" name="'.$name.'" placeholder="请输入" autocomplete="off" class="layui-input">';
+                $html = '<input type="text" id="'.$name.'" name="'.$name.'"  autocomplete="off" class="layui-input" placeholder="'.$comment.'">';
                 break;
         }
         return '
@@ -468,33 +503,34 @@ class Crud extends Admin
         $arr = [];
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
+            $comment = sprintf("{:__('%s')}", ucfirst($item['field']));
             try {
                 if ($item['field'] === Db::name("$table")->getPk()) {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'input', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'input', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'comment-select', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'comment-select', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'enum') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'comment-select', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'comment-select', $item['field'], $item);
                 } elseif (endWith($item['field'], 'images')||endWith($item['field'], 'image')||endWith($item['field'], 'img')||endWith($item['field'], 'imgs')) {
                 } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
                 } elseif (endWith($item['field'], '_id')) {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'select', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'select', $item['field'], $item);
                 } elseif (endWith($item['field'], 'file')) {
                 } elseif (endWith($item['field'], '_ids')) {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'select', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'select', $item['field'], $item);
                 } elseif (endWith($item['field'], 'switch')) {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'switch', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'switch', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'set') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'comment-select', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'comment-select', $item['field'], $item);
                 } elseif (endWith($item['field'], 'content')) {
                     continue;
                 } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'datepicker', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'datepicker', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'datetime') {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'datepicker', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'datepicker', $item['field'], $item);
                 } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                 } else {
-                    $arr[] = $this->buildSeachFormItem(explode(':', $item['comment'])[0], 'input', $item['field'], $item);
+                    $arr[] = $this->buildSeachFormItem($comment, 'input', $item['field'], $item);
                 }
             } catch (Exception $e) {
                 echo $e->getMessage();
@@ -819,20 +855,21 @@ EOF;
 
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
+            $comment = sprintf('{:__("%s")}', ucfirst($item['field']));
             if (endWith($item['field'], 'switch') == 'switch') {
-                $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
+                $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "',templet: function (d) {
         var state = \"\";
         if (d.switch == \"on\") {
-            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat' checked='checked' name='switch'  lay-skin='switch' lay-text='开启|关闭' >\";
+            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat' checked='checked' name='switch'  lay-skin='switch' lay-text='{:__(\"Open\")}|{:__(\"Close\")}' >\";
         } else {
-            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat'  name='switch'  lay-skin='switch' lay-text='开启|关闭' >\";
+            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat'  name='switch'  lay-skin='switch' lay-text='{:__(\"Open\")}|{:__(\"Close\")}' >\";
         }
         return state;
     }}," . PHP_EOL;
             } else {
                 if (endWith($item['field'], 'images')||endWith($item['field'], 'image')||endWith($item['field'], 'img')||endWith($item['field'], 'imgs')) {
                     $field  =$item['field'];
-                    $name  = explode(':', $item['comment'])[0];
+                    $name  = $comment;
                     $this->addEditAddonUsed('laytpl');
                     $code = (endWith($item['field'], 'images')|| endWith($item['field'], 'imgs'))?'':"d.{$field} = [d.{$field}];";
                     $str .=<<<EOF
@@ -846,10 +883,10 @@ EOF;
 EOF;
                 } elseif (endWith($item['field'], 'file')) {
                 } elseif (endWith($item['field'], '_id')) {
-                    $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
+                    $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . $comment . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
                 } elseif (end($s) === 'ids') {
                     $filedName = $this->controlName($item['field'], false) . 'List';
-                    $str .= "{field: '" . $filedName . "', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
+                    $str .= "{field: '" . $filedName . "', title: '" . $comment . "',templet: function (d) {
                         var data = d.{$filedName};
                         var arr = [];
                         for(var key in data){
@@ -858,7 +895,7 @@ EOF;
                         return arr.join(',')
                     } }," . PHP_EOL;
                 } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
-                    $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "',templet: function (d) {
+                    $str .= "{field: '" . $item['field'] . "_name', title: '" . $comment . "',templet: function (d) {
                         var data = d.{$item['field']};
                         var arr = [];
                         for(var item of data){
@@ -867,11 +904,11 @@ EOF;
                         return arr.join(',')
                     } }," . PHP_EOL;
                 } elseif (startWith($item['field'], 'set') || startWith($item['field'], 'select') || (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
-                    $str .= "{field: '" . $item['field'] . "_name', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+                    $str .= "{field: '" . $item['field'] . "_name', title: '" . $comment . "'}," . PHP_EOL;
                 } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
-                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+                    $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "'}," . PHP_EOL;
                 } else {
-                    $str .= "{field: '" . $item['field'] . "', title: '" . explode(':', $item['comment'])[0] . "'}," . PHP_EOL;
+                    $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "'}," . PHP_EOL;
                 }
             }
         }
@@ -926,6 +963,7 @@ EOF;
         $str = "";
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
+            $comment = sprintf('{:__("%s")}', ucfirst($item['field']));
             try {
                 if ($item['field'] === Db::name("$table")->getPk()) {
                     $str .= "
@@ -935,24 +973,24 @@ EOF;
                     ";
                 } elseif (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
                     $str .= "<div class=\"layui-form-item\">
-                            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                            <label class=\"layui-form-label\">" . $comment . "</label>
                             <div class=\"layui-input-block\">
                                 " . $this->danxuanedit($table, $item['field'], $item) . "
                             </div>
                         </div>";
                 } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
                     $str .= "<div class=\"layui-form-item\">
-                            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+                            <label class=\"layui-form-label\">" . $comment . "</label>
                             <div class=\"layui-input-block\">
                                 <div id=\"{$item['field']}\" name=\"{$item['field']}\"></div>
                             </div>
                         </div>";
                 } elseif (explode('(', $item['type'])[0] === 'enum') {
                     $str .= "        <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <label class=\"layui-form-label\">" . $comment . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
-                    <option value=\"\"></option>
+                    <option value=\"\">{:__('Select')}</option>
                     " . $this->xialaedit($table, $item['field'], $item) . "
                 </select>
             </div>
@@ -962,10 +1000,10 @@ EOF;
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
-                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"请上传图片\" value=\"" . $fieldName  . "\">
+                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"{:__('Please upload')}\" value=\"" . $fieldName  . "\">
                         <div class=\"layui-upload-btn\" >
-                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i> 上传</a></span>
-                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo_".$item['field']."\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i> 选择</a></span>
+                            <span><a class=\"layui-btn\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i>{:__('Upload')}</a></span>
+                            <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo_".$item['field']."\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i>{:__('Select')}</a></span>
                         </div>
                     </div>
                 </div>";
@@ -1007,10 +1045,10 @@ EOF;
                     $filedName = $this->controlName(str_replace('_id', '', $item['field']), false) . 's';
                     $field  = $table . "." . $item['field'];
                     $str .= "  <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <label class=\"layui-form-label\">" . $comment . "</label>
             <div class=\"layui-input-block\">
                 <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
-                    <option value=\"\"></option>
+                    <option value=\"\">{:__('Select')}</option>
                     {foreach \${$filedName} as \$key=>\$vo } 
                         {if isset(\${$field}) && \${$field}==\$vo.id}}
                         <option value=\"{\$vo.id}\" selected>{\$vo.name}</option>
@@ -1024,7 +1062,7 @@ EOF;
                 } elseif (endWith($item['field'], '_ids')) {
                     $filedName = $this->controlName(str_replace('_ids', '', $item['field']), false) . 's';
                     $str .= "  <div class=\"layui-form-item\">
-            <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+            <label class=\"layui-form-label\">" . $comment . "</label>
             <div class=\"layui-input-block\">
             <div id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\"  ></div>
             </div>
@@ -1032,30 +1070,30 @@ EOF;
                 } elseif (explode('(', $item['type'])[0] === 'set') {
                     $str .= "
 <div class=\"layui-form-item\">
-    <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+    <label class=\"layui-form-label\">" . $comment . "</label>
     <div class=\"layui-input-block\">
     " . $this->duoxuanedit($table, $item['field'], $item) . "
     </div>
 </div>";
                 } elseif (endWith($item['field'], 'content')) {
                     $str .= " <div class=\"layui-form-item\">
-    <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+    <label class=\"layui-form-label\">" . $comment . "</label>
     <div class=\"layui-input-block\">
       <textarea class=\"layui-textarea editor\" id=\"" . $item['field'] . "\" name=\"" . $item['field'] . "\" lay-verify=\"" . $item['field'] . "\">" . '{$' . "" . $table . "." . $item['field'] . "??''}</textarea>
     </div>
   </div>";
                 } elseif (endWith($item['field'], 'switch')) {
                     $str .= "    <div class=\"layui-form-item\">
-    <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+    <label class=\"layui-form-label\">" . $comment . "</label>
     <div class=\"layui-input-block\">
-      <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"开启|关闭\" {if isset(\$$table) && $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
+      <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"{:__(\"Open\")}|{:__(\"Close\")}\" {if isset(\$$table) && $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
     </div>
   </div>";
                 } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                     $fieldName = $table . "['{$item['field']}']";
                     $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
-      <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+      <label class=\"layui-form-label\">" . $comment . "</label>
       <div class=\"layui-input-block\">
         <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value=\"" . '{$' . "" . $table . "." . $item['field'] . "??date('Y-m-d H:i:s')}\">
       </div>
@@ -1064,7 +1102,7 @@ EOF;
                 } elseif (explode('(', $item['type'])[0] === 'datetime') {
                     $str .= "  <div class=\"layui-form-item\">
     <div class=\"layui-inline\">
-      <label class=\"layui-form-label\">" . explode(':', $item['comment'])[0] . "</label>
+      <label class=\"layui-form-label\">" . $comment . "</label>
       <div class=\"layui-input-block\">
         <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"off\" class=\"layui-input\" placeholder='yy-mm-dd HH:ii:ss' value=\"" . '{$' . "" . $table . "." . $item['field'] . "??date('Y-m-d H:i:s')}\">
       </div>
@@ -1074,7 +1112,7 @@ EOF;
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
-                        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"on\" placeholder=\"请输入" . $item['comment'] . "\"  class=\"layui-input\"
+                        <input type=\"text\" name=\"" . $item['field'] . "\" id=\"" . $item['field'] . "\" autocomplete=\"on\" placeholder=\"" . $comment . "\"  class=\"layui-input\"
                         readonly=\"readonly\" data-toggle=\"city-picker\">
                     </div>
                 </div>" . PHP_EOL;
@@ -1082,7 +1120,7 @@ EOF;
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
-                        <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"
+                        <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"" . $comment . "\" autocomplete=\"off\" class=\"layui-input\"
                                lay-verify=\"required\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
                     </div>
                 </div>";
@@ -1092,7 +1130,7 @@ EOF;
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
 
-                        <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"请输入" . $item['comment'] . "\" autocomplete=\"off\" class=\"layui-input\"
+                        <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"" . $comment . "\" autocomplete=\"off\" class=\"layui-input\"
                                lay-verify=\"required\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
                     </div>
                 </div>" . $e->getMessage();

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Title11</title>
     <link rel="stylesheet" href="/static/css/oksub.css">
     <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
     <script src="/static/lib/layui/layui.js"></script>
@@ -83,7 +84,8 @@
         .img-md5 button {
             float: right;
         }
-        .checked{
+
+        .checked {
             position: absolute;
             z-index: -1;
             width: 40px;
@@ -93,40 +95,41 @@
             background-image: url('/static/images/success_checked.jpg');
             background-repeat: no-repeat;
         }
-        .img-hover .layui-form-checkbox{
+
+        .img-hover .layui-form-checkbox {
             display: none;
         }
-        .checked-active{
+
+        .checked-active {
             z-index: 3;
         }
 
-        @media screen and (min-width: 992px) {
-        }
-
+        @media screen and (min-width: 992px) {}
     </style>
 </head>
-<body>
-<div class="layui-row" style="height: calc(95vh - 60px);overflow-y: auto">
-    {volist name="list" id="vo" mod="2" }
-    <div class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover">
-        <div class="img-view">
-            <div class="img-md5"><span>{$vo.md5}</span>
-                <button class="layui-btn layui-btn-danger layui-btn-xs" data-id="{$vo.id}"><i
-                        class="layui-icon layui-icon-close"></i></button>
-            </div>
-            <img src="{$vo.images_thumb}" alt="">
-            <input name="images" type="checkbox" value="{$vo.images}" style="display: none">
-            <div class="checked"></div>
-            <div class="img-click"></div>
-        </div>
-    </div>
-    {/volist}
 
-</div>
-<div id="page" style="text-align: center"></div>
+<body>
+    <div class="layui-row" style="height: calc(95vh - 60px);overflow-y: auto">
+        {volist name="list" id="vo" mod="2" }
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover">
+            <div class="img-view">
+                <div class="img-md5"><span>{$vo.md5}</span>
+                    <button class="layui-btn layui-btn-danger layui-btn-xs" data-id="{$vo.id}"><i
+                            class="layui-icon layui-icon-close"></i></button>
+                </div>
+                <img src="{$vo.images_thumb}" alt="">
+                <input name="images" type="checkbox" value="{$vo.images}" style="display: none">
+                <div class="checked"></div>
+                <div class="img-click"></div>
+            </div>
+        </div>
+        {/volist}
+
+    </div>
+    <div id="page" style="text-align: center"></div>
 </body>
 <script>
-    layui.use(['form', "okLayer", "okUtils", 'jquery','laypage'], function () {
+    layui.use(['form', "okLayer", "okUtils", 'jquery', 'laypage'], function () {
         var form = layui.form,
             okLayer = layui.okLayer,
             okUtils = layui.okUtils,
@@ -136,46 +139,47 @@
         //执行一个laypage实例
         laypage.render({
             elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
-            ,count: '{$count}' //数据总数，从服务端得到,
-            ,limit: '18'
-            ,curr: '{$Request.param.page}'
-            ,hash: 'fenye' //自定义hash值
-            ,jump: function(obj, first){
+            , count: '{$count}' //数据总数，从服务端得到,
+            , limit: '18'
+            , curr: '{$Request.param.page}'
+            , hash: 'fenye' //自定义hash值
+            , jump: function (obj, first) {
                 //obj包含了当前分页的所有参数，比如：
                 console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
                 console.log(obj.limit); //得到每页显示的条数
 
                 //首次不执行
-                if(!first){
-                    console.log("{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page="+obj.curr)
-                    location.href = "{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page="+obj.curr
+                if (!first) {
+                    console.log("{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page=" + obj.curr)
+                    location.href = "{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page=" + obj.curr
                 }
             }
         });
 
-        $(".img-hover .img-click").click(function (){
+        $(".img-hover .img-click").click(function () {
             console.log($(this))
             let sty = $(this).parent().find('.checked').attr('class');
             if (sty.indexOf('checked-active') > -1) {
                 $(this).parent().find('.checked').removeClass('checked-active')
-                $(this).parent().find('input').prop("checked",false);
+                $(this).parent().find('input').prop("checked", false);
             } else {
                 $(this).parent().find('.checked').addClass('checked-active')
-                $(this).parent().find('input').prop("checked",true);
+                $(this).parent().find('input').prop("checked", true);
             }
         })
-        $(".img-hover button").click(function (){
+        $(".img-hover button").click(function () {
             let id = $(this).find('.checked').attr('data-id');
             console.log('确认删除？')
             okLayer.confirm('确认删除？', {
-                btn: ['确认','取消'] //按钮
-            }, function(){
+                btn: ['确认', '取消'] //按钮
+            }, function () {
 
-            }, function(){
+            }, function () {
 
             });
         })
         okLoading.close();
     })
 </script>
+
 </html>

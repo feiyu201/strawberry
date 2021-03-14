@@ -1,5 +1,5 @@
 <?php
-declare (strict_types = 1);
+declare(strict_types = 1);
 
 namespace app;
 
@@ -11,6 +11,9 @@ use think\facade\Request;
 use think\Response;
 use think\facade\Config;
 use think\facade\View;
+
+use think\facade\Lang;
+use think\helper\Str;
 
 /**
  * 基本常量定义
@@ -58,14 +61,33 @@ abstract class BaseController
 
         //获取网站基本配置
         $site = Config::get('site');
-        View::assign('site',$site);
+        View::assign('site', $site);
         // 控制器初始化
         $this->initialize();
     }
 
     // 初始化
     protected function initialize()
-    {}
+    {
+        $this->loadLang();
+    }
+    
+    protected function loadLang()
+    {
+        $controller = Str::snake($this->request->controller());
+        $action = Str::snake($this->request->action());
+        $module = $this->app->http->getName();
+        //获取当前模块名称
+       
+
+        $path = $this->app->getAppPath().'/lang/'.Lang::getLangSet().'/'.$controller.'/'.$action.'.php';
+        Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'.php');
+        if ($action!=='common') {
+            Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'/'.$controller.'/common.php');
+        }
+      
+        Lang::load($path);
+    }
 
     /**
      * 验证数据
@@ -122,27 +144,27 @@ abstract class BaseController
      */
     protected function success($msg = '', string $url = null, $data = '', int $wait = 3, array $header = [])
     {
-    	if (is_null($url) && isset($_SERVER["HTTP_REFERER"])) {
-    		$url = $_SERVER["HTTP_REFERER"];
-    	} elseif ($url) {
-    		$url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url);
-    	}
+        if (is_null($url) && isset($_SERVER["HTTP_REFERER"])) {
+            $url = $_SERVER["HTTP_REFERER"];
+        } elseif ($url) {
+            $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : app('route')->buildUrl($url);
+        }
     
-    	$result = [
-    	'code' => 1,
-    	'msg'  => $msg,
-    	'data' => $data,
-    	'url'  => $url,
-    	'wait' => $wait,
-    	];
+        $result = [
+        'code' => 1,
+        'msg'  => $msg,
+        'data' => $data,
+        'url'  => $url,
+        'wait' => $wait,
+        ];
     
-    	$type = $this->getResponseType();
-    	if ($type == 'html'){
-    		$response = view($this->app->config->get('app.dispatch_success_tmpl'), $result);
-    	} else if ($type == 'json') {
-    		$response = json($result);
-    	}
-    	throw new HttpResponseException($response);
+        $type = $this->getResponseType();
+        if ($type == 'html') {
+            $response = view($this->app->config->get('app.dispatch_success_tmpl'), $result);
+        } elseif ($type == 'json') {
+            $response = json($result);
+        }
+        throw new HttpResponseException($response);
     }
     
     /**
@@ -157,27 +179,27 @@ abstract class BaseController
      */
     protected function error($msg = '', string $url = null, $data = '', int $wait = 3, array $header = [])
     {
-    	if (is_null($url)) {
-    		$url = $this->request->isAjax() ? '' : 'javascript:history.back(-1);';
-    	} elseif ($url) {
-    		$url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : $this->app->route->buildUrl($url);
-    	}
+        if (is_null($url)) {
+            $url = $this->request->isAjax() ? '' : 'javascript:history.back(-1);';
+        } elseif ($url) {
+            $url = (strpos($url, '://') || 0 === strpos($url, '/')) ? $url : $this->app->route->buildUrl($url);
+        }
     
-    	$result = [
-    	'code' => 0,
-    	'msg'  => $msg,
-    	'data' => $data,
-    	'url'  => $url,
-    	'wait' => $wait,
-    	];
+        $result = [
+        'code' => 0,
+        'msg'  => $msg,
+        'data' => $data,
+        'url'  => $url,
+        'wait' => $wait,
+        ];
     
-    	$type = $this->getResponseType();
-    	if ($type == 'html'){
-    		$response = view($this->app->config->get('app.dispatch_error_tmpl'), $result);
-    	} else if ($type == 'json') {
-    		$response = json($result);
-    	}
-    	throw new HttpResponseException($response);
+        $type = $this->getResponseType();
+        if ($type == 'html') {
+            $response = view($this->app->config->get('app.dispatch_error_tmpl'), $result);
+        } elseif ($type == 'json') {
+            $response = json($result);
+        }
+        throw new HttpResponseException($response);
     }
     
     /**
@@ -191,7 +213,7 @@ abstract class BaseController
      */
     protected function redirect($url, $params = [], $code = 302, $with = [])
     {
-    	redirect($url,$code)->send();
+        redirect($url, $code)->send();
     }
     
     /**
@@ -201,11 +223,10 @@ abstract class BaseController
      */
     protected function getResponseType()
     {
-    	return $this->request->isJson() || $this->request->isAjax() ? 'json' : 'html';
+        return $this->request->isJson() || $this->request->isAjax() ? 'json' : 'html';
     }
     
     //
     // 以上为新增，为了使用旧版的 success error redirect 跳转  end
     //
-
 }
