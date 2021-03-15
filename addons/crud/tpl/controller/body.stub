@@ -57,7 +57,6 @@ class {%className%} extends AdminBase
    public function add(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
-	   		unset($data['file']);
             {%witchMethod%}
                 
 	   		if( $this->model->save($data,false)){
@@ -73,7 +72,6 @@ class {%className%} extends AdminBase
    public function edit(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
-	   		unset($data['file']);
             {%witchMethod%}
             if( $this->model->find($data['id'])->save($data)){
 	   			$this->success(__('Editor successful'));
