@@ -762,7 +762,9 @@ class Crud extends Admin
                         let path = $(this).parents('tr').attr('data-path');
                         $(this).parents('tr').remove();
                         let data = $("#" + id).val().split('|');
-                        data.splice( data.indexOf(path), 1); 
+                        let index = data.indexOf(path);
+                        if(index==-1) return;
+                        data.splice( index, 1); 
                         $("#" + id).val(data.join('|'))
                   })
 EOF;
@@ -1026,7 +1028,7 @@ EOF;
                                 <tbody id="{$item['field']}_list">
                                     {if \${$table}??null}
                                     {foreach {$fieldName} as \$key=>\$vo } 
-                                    <tr data-path="\$vo">
+                                    <tr data-path="{\$vo}">
                                         <td style="word-break: break-all;">{\$vo}</td>
                                         <td>
                                         <button type="button" class="layui-btn layui-btn-danger delete">删除</button>
