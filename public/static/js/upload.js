@@ -79,6 +79,7 @@ layui.config({
 					delete FILE_UPLOAD_LIST[x];
 				}
 			}
+			var times = {};
 			// 监听上传事件
 			upload.render({
 				elem: this,
@@ -98,6 +99,7 @@ layui.config({
 						}
 						var html = '<li class="progress-li"><div class="progress">文件上传中<div class="layui-progress"  lay-filter="progress_' + index + '" lay-showPercent="yes"><div class="layui-progress-bar" lay-percent="0%"></div></div></div></li>'
 						list.prepend(html)
+						times[index] = new Date().getTime();
 						element.render('progress', 'progress_' + index)
 					});
 				},
@@ -105,9 +107,20 @@ layui.config({
 				xhr: function (index, e) {
 					var percent = e.loaded / e.total * 100;//计算百分比
 					percent = parseInt(percent);
-					setTimeout(function () {
+					if (percent >= 100) {
+						var time = new Date().getTime();
+						if (time - times[index] < 800) {
+							setTimeout(function () {
+								element.progress('progress_' + index + '', '100%');
+							}, 800)
+						} else {
+							element.progress('progress_' + index + '', percent + '%');
+						}
+					} else {
+
 						element.progress('progress_' + index + '', percent + '%');
-					}, 800)
+					}
+
 				},
 				done: function (res, index, upload) {
 					if (res.code === 1) {
