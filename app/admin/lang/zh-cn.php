@@ -16,6 +16,7 @@ return [
     'Delete'    => '删除',
     'Enable'    => '启用',
     'Select'    => '选择',
+    'Upload'    => '上传',
     'Disable'    => '禁用',
     'Unable to display'    => '无法显示',
     'Submit'    => '立即提交',

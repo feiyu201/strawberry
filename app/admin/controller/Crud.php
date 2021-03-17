@@ -1088,7 +1088,7 @@ EOF;
                     $str .= "    <div class=\"layui-form-item\">
     <label class=\"layui-form-label\">" . $comment . "</label>
     <div class=\"layui-input-block\">
-      <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"{:__(\"Open\")}|{:__(\"Close\")}\" {if isset(\$$table) && $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
+      <input type=\"checkbox\" name=\"" . $item['field'] . "\" lay-skin=\"switch\" lay-text=\"{:__('Open')}|{:__('Close')}\" {if isset(\$$table) && $" . $table . "." . $item['field'] . " == 'on'}checked{/if}>
     </div>
   </div>";
                 } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
