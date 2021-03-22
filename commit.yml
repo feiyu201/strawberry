@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '8a79a9d72597a59a71b721b5799ebd1be6aec3c6'
-    oldFile: !uuid '51a99b12e949de59b47d4e5d1df7a2744f32cafc'
-  /addons/test:
-    newFile: !uuid 'edb91f8a8bddcf4c5accc8b0e23d6356c7e0e942'
-    oldFile: !uuid '197289b1d24a7d8cd17bb6ff0cc2911eddf86f59'
-  /addons/test/info.ini:
-    newFile: null
-    oldFile: !uuid 'd0b9348d2138ec1068e5a9616ad5187f3b9b0797'
-gitCommitId: !uuid 'c5273e36fb72629bd36571833a72da05e77f7786'
+    newFile: !uuid '0545ce16d69306951fc77b6726e6f0b80d5840c9'
+    oldFile: !uuid '8a79a9d72597a59a71b721b5799ebd1be6aec3c6'
+  /addons/social_login:
+    newFile: !uuid '8962dc52ff0cff63249bac3344474e33f0be7e0d'
+    oldFile: !uuid '136bddb592f670687bc62a8ad46d5e928ffa6167'
+  /addons/social_login/Plugin.php:
+    newFile: !uuid 'd07e236f64e90c564b05ae7e2675726294d10e47'
+    oldFile: !uuid '428daaeca0368d9f29b82f1435ca597523fc77a8'
+gitCommitId: !uuid 'ba422e59e24df629301fea6a21399850a7554c9d'
 renames: {
   }
-revisionId: 264
+revisionId: 265
