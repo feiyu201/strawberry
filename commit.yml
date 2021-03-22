@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '51a99b12e949de59b47d4e5d1df7a2744f32cafc'
-    oldFile: !uuid '98a591fb16e04f4ec3bbff4a93e840c29607df63'
-  /addons/store:
-    newFile: !uuid '22cd16ab2db756d5be60b6d2ae72c059db97cde2'
-    oldFile: !uuid '20d3301d4015e6eb56e509ef09e8b08e0d3682eb'
-  /addons/store/info.ini:
+    newFile: !uuid '8a79a9d72597a59a71b721b5799ebd1be6aec3c6'
+    oldFile: !uuid '51a99b12e949de59b47d4e5d1df7a2744f32cafc'
+  /addons/test:
+    newFile: !uuid 'edb91f8a8bddcf4c5accc8b0e23d6356c7e0e942'
+    oldFile: !uuid '197289b1d24a7d8cd17bb6ff0cc2911eddf86f59'
+  /addons/test/info.ini:
     newFile: null
-    oldFile: !uuid '01a2bd7d40cf814bb2aa6cb0160d1ea8c0bc6993'
-gitCommitId: !uuid 'eff66fc1637950eccd19f84f9b52bdeb814f6cce'
+    oldFile: !uuid 'd0b9348d2138ec1068e5a9616ad5187f3b9b0797'
+gitCommitId: !uuid 'c5273e36fb72629bd36571833a72da05e77f7786'
 renames: {
   }
-revisionId: 263
+revisionId: 264
