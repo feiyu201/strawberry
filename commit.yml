@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '20510a9f45403a8d218619b9767a43787797cf76'
-    oldFile: !uuid '8c3a048ce9bf646cd049d61db48c35ea778f845e'
-  /addons/crud:
-    newFile: !uuid 'c9050d938a63bfd77483b3c4f8b9cecbafac5b3f'
-    oldFile: !uuid '542d554541877f4e4cd10cf974b72dc0498a683f'
-  /addons/crud/info.ini:
+    newFile: !uuid '6a4145b585264c3572d92cc846a9a4f712817afc'
+    oldFile: !uuid '20510a9f45403a8d218619b9767a43787797cf76'
+  /addons/lazy:
+    newFile: !uuid 'c90ed6a1c65d5459b4767017cd827b506e5cb214'
+    oldFile: !uuid '60ade57fbf12742481ef513668819e42033a64c3'
+  /addons/lazy/info.ini:
     newFile: null
-    oldFile: !uuid 'c3d80069be9920b9414f9235ff00a7bea02b3441'
-gitCommitId: !uuid '0d855d90d60f9b1c5686b2fd4e3f5dd06b264a70'
+    oldFile: !uuid 'a1aa35b209ad3b662d05daf84e7d8a07d02e5d74'
+gitCommitId: !uuid 'e973c4500505a7b5447f1aaa139112c7dcb12dde'
 renames: {
   }
-revisionId: 258
+revisionId: 259
