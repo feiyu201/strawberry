@@ -3,15 +3,15 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '603365668863f0bad37af70cb9ee78a532fcd19f'
-    oldFile: !uuid '6a4145b585264c3572d92cc846a9a4f712817afc'
-  /addons/pay:
-    newFile: !uuid 'a946be9461ed84762852c1d2fe8c58c5a3094800'
-    oldFile: !uuid 'b1960bfbfa7570e7659d7654c6fab4b9efa3768e'
-  /addons/pay/info.ini:
+    newFile: !uuid '9d900001fbe2fda685e0966b71bb9ad33cfa301f'
+    oldFile: !uuid '603365668863f0bad37af70cb9ee78a532fcd19f'
+  /addons/qiniu_storage:
+    newFile: !uuid '86b9b11dfb961a221201c6c24e9f65d5765d9bc3'
+    oldFile: !uuid '2ee7909dc472c5cad995a4cf63a7cb0d96a7294d'
+  /addons/qiniu_storage/info.ini:
     newFile: null
-    oldFile: !uuid '4e263730ca8e8d22b7a63427421f553b47646b18'
-gitCommitId: !uuid '1354fe274bb6e293d2ee0ca6d57591ab8993e684'
+    oldFile: !uuid '066b37eb166eb9e69c12aceda1ac72cd7f18a4bc'
+gitCommitId: !uuid 'e6bff16910f29f713294b4999f323e6b2a24a73f'
 renames: {
   }
-revisionId: 260
+revisionId: 261
