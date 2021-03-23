@@ -113,11 +113,11 @@ class ThinkAddons
                     // 已安装，增加配置按钮
                     $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
                     $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
-                    if ($info['status']==1) {
-                        $str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
-                    } else {
-                        $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
-                    }
+                // if ($info['status']==1) {
+                    //     $str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
+                    // } else {
+                    //     $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
+                    // }
                 } else {
                     // 未安装，增加安装按钮
                     $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="install"><i class="fa fa-edit"></i> 安装</a>';

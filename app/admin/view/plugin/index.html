@@ -65,7 +65,7 @@
 						{ field: "author", title: "作者", width: 80 },
 						{ field: "price", title: "价格", width: 80 },
 						{ field: "sales", title: "销量", width: 80 },
-						{ field: "status", title: "状态", templet: "#statusTpl", width: 80 },
+						{ field: "status", title: "状态", templet: "#statusTpl", width: 120 },
 
 						{ field: "button", title: "操作按钮", minWidth: 180 },
 					]],
@@ -91,7 +91,7 @@
 						{ field: "description", title: "简述", width: 420 },
 						{ field: "author", title: "作者", width: 100 },
 
-						{ field: "status", title: "状态", width: 80, templet: "#statusTpl" },
+						{ field: "status", title: "状态", width: 120, templet: "#statusTpl" },
 
 						{ field: "button", width: 180, title: "操作按钮" },
 					]],
@@ -107,7 +107,13 @@
 					});
 					return false;
 				});
-
+				//监听性别操作
+				form.on('switch(status)', function (obj) {
+					var swt = $(obj.elem);
+					swt.prop('checked', !obj.elem.checked);
+					layui.form.render();//刷新表格
+					state(obj.value, obj.elem)
+				});
 				table.on("toolbar(tableFilter)", function (obj) {
 					switch (obj.event) {
 						case "batchEnabled":
@@ -136,9 +142,6 @@
 							break;
 						case "config":
 							config(data.name);
-							break;
-						case "state":
-							state(data.name);
 							break;
 						case "installyuancheng":
 							installyuancheng(data.name);
@@ -275,6 +278,7 @@
 								//userTable.reload();
 								//okUtils.tableSuccessMsg(response.msg);
 								okLayer.greenTickMsg(response.msg, function () {
+
 									userTable.reload();
 									userTablebd.reload();
 								})
@@ -301,12 +305,13 @@
 
 
 		<script type="text/html" id="statusTpl">
-	{{#  if(d.status == 1){ }}
-	<span class="layui-btn layui-btn-normal layui-btn-xs">启用</span>
-	{{#  } else if(d.status != 1) { }}
-	<span class="layui-btn layui-btn-warm layui-btn-xs">停用</span>
-	{{#  } }}
-</script>
+
+			{{# if(d.install==1){ }}
+			<input type="checkbox" value="{{d.name}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="status" {{ d.status == 1 ? 'checked' : '' }}>
+
+			{{# } }}
+
+		</script>
 
 
 </body>
