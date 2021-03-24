@@ -3,15 +3,114 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '0545ce16d69306951fc77b6726e6f0b80d5840c9'
-    oldFile: !uuid '8a79a9d72597a59a71b721b5799ebd1be6aec3c6'
-  /addons/social_login:
-    newFile: !uuid '8962dc52ff0cff63249bac3344474e33f0be7e0d'
-    oldFile: !uuid '136bddb592f670687bc62a8ad46d5e928ffa6167'
-  /addons/social_login/Plugin.php:
-    newFile: !uuid 'd07e236f64e90c564b05ae7e2675726294d10e47'
-    oldFile: !uuid '428daaeca0368d9f29b82f1435ca597523fc77a8'
-gitCommitId: !uuid 'ba422e59e24df629301fea6a21399850a7554c9d'
-renames: {
-  }
-revisionId: 265
+    newFile: !uuid '7c2f587d6161c5ddeb8cca037dc309777bb4ba22'
+    oldFile: !uuid '0545ce16d69306951fc77b6726e6f0b80d5840c9'
+  /addons/crud:
+    newFile: !uuid '44f9efe08d9ff694102f90e2191c516ada666505'
+    oldFile: !uuid 'c9050d938a63bfd77483b3c4f8b9cecbafac5b3f'
+  /addons/crud/Plugin.php:
+    newFile: !uuid '07948ca579beddd64646d5d03942e42b60338e01'
+    oldFile: !uuid 'fc6df198ba9fbb75c2123fac0dbf747386044ee7'
+  /app:
+    newFile: !uuid '1f747f84f7137509f831dca20d1e5b3aa092a2d3'
+    oldFile: !uuid 'e8f22ea937c0d74eceb7daf10d15ba90b8d281c8'
+  /app/admin:
+    newFile: !uuid '71992cd81482070515823f11eb47aaa0938a44af'
+    oldFile: !uuid '2f11b48e51fe29a0ccf1fd0a719d0ec0354aa022'
+  /app/admin/controller:
+    newFile: !uuid 'aa3c9f94fe98467fb3fe70db7c54f02887fc33fc'
+    oldFile: !uuid '0aa2f67019f20bad7ccfaff65824a97dd2d95688'
+  /app/admin/controller/AdminBase.php:
+    newFile: !uuid '289d5fe356b28b01d3f3eddb2cd25859e354453e'
+    oldFile: !uuid 'f9b06987b9676f7e5eac98b9528eec064ad8b46a'
+  /app/admin/controller/Crud.php:
+    newFile: !uuid '794698454a7f2122cb86a95c94631934c828ce0b'
+    oldFile: !uuid 'b02ce178dddff532b470bafb7a18f43cd99be30b'
+  /app/admin/controller/Login.php:
+    newFile: !uuid 'd20a4adc0c15780847aa57d7151dd67772af9fd6'
+    oldFile: !uuid '06d1fb567a2c729a27f580ca6adb175538601f0c'
+  /app/admin/controller/Plugin.php:
+    newFile: !uuid '78fa4aed6b81cf8b909703dde791f35e5cb5cf3e'
+    oldFile: !uuid '9c6aa6a22b91e4e32e48bbd52218b437abb10e38'
+  /app/admin/lang:
+    newFile: !uuid '2563261ff680d87143a5797c98be8ce9ba3c98a4'
+    oldFile: !uuid 'c9f723db2a1beab6c19322e099c1c5c599b33e75'
+  /app/admin/lang/zh-cn:
+    newFile: !uuid 'c8ae782b3e8ea029e86c6a05a35e539be9a8f2db'
+    oldFile: !uuid 'e4ea7fa481bcd35cbbba284a28792e3f0518aa7e'
+  /app/admin/lang/zh-cn/index:
+    newFile: !uuid 'b3dd66a722ecca6ca190ba53588b26291cc439fc'
+    oldFile: !uuid '247f52c4a20a3a52ae104e96b9ee7f8d38d84da9'
+  /app/admin/lang/zh-cn/index/index.php:
+    newFile: !uuid '73aa92af46a7ecd068a1487f5eeec7772e7c688d'
+    oldFile: !uuid 'e2eab0ad161b9a313cc2486f81376b92e0313199'
+  /app/admin/lang/zh-cn/login:
+    newFile: !uuid 'b35cb59315d79935f18616f64bfa61af18db7f1e'
+    oldFile: !uuid 'f0e476dae2d77d9f1624c2462755a9f9132cda73'
+  /app/admin/lang/zh-cn/login/common.php:
+    newFile: !uuid 'f640e7062ae3b9063b87dfd5d73015018d52228b'
+    oldFile: null
+  /app/admin/lang/zh-cn/login/index.php:
+    newFile: null
+    oldFile: !uuid 'a35342bf6b78edf533946d661845971e37b177ac'
+  /app/admin/middleware:
+    newFile: !uuid '2d8e09372ca3172e1a6b8a73349b0491cc5dd750'
+    oldFile: !uuid 'ff13bbd3d77b4ef21cac5057bfea18249cffb686'
+  /app/admin/middleware/Admin.php:
+    newFile: !uuid '3a2930f74efb5fd79823c4bc973bcfad5a5e1bfb'
+    oldFile: !uuid '81a931c8ac3546de7d201150c244fe747f85f167'
+  /app/admin/model:
+    newFile: !uuid 'bf97601a92e060e246adafe07896171e6b599c59'
+    oldFile: !uuid '685f17b299cdf880c2aa78ca7283c49ee76edbbe'
+  /app/admin/model/Base.php:
+    newFile: !uuid 'aa0b95a1992e62ef9605ad48afa2376e5e4464a8'
+    oldFile: !uuid 'e308aaa6bdff41283f53e9c7be59df54d16e5f24'
+  /app/admin/service:
+    newFile: !uuid '0a6fbea53e4efc61fed6953d07cc4d860e4a7740'
+    oldFile: !uuid 'cfb940d02e81d560916c1f0bdb2151006791db61'
+  /app/admin/service/ThinkAddons.php:
+    newFile: !uuid '1df6083dcfd2fae99f9431e163e5f0c0a956ac19'
+    oldFile: !uuid 'e9ee2575c48ef92a411e25b1b20b5c157486ce60'
+  /app/admin/view:
+    newFile: !uuid '09b6650556d2483ce0a0ed1cd79fd3014dfd0966'
+    oldFile: !uuid '02cb4d878c7290479d5e4a027880a8b2f3adee90'
+  /app/admin/view/plugin:
+    newFile: !uuid '877d82f8cf8d52b286fb7fa832bb4ec4e9bcd124'
+    oldFile: !uuid 'e4598f66660f62a594c40fb9520bf2d4c18c18c9'
+  /app/admin/view/plugin/index.html:
+    newFile: !uuid '5891fb0019fd9460948d19870cbcb77d1f7205e8'
+    oldFile: !uuid '13f8e985f6dabb09b35e8e59cab1889af9646c3a'
+  /config:
+    newFile: !uuid '651a29f75ac1fd5334c8adb2690a0b4307fb84e0'
+    oldFile: !uuid '434bc26c901c4b39f9a15132148e2c9b996baf3f'
+  /config/app.php:
+    newFile: !uuid '78b46387292c1d5afbdd63c7eda7a7dd845aea10'
+    oldFile: !uuid '1ef6735fac8c146af8771791f187ff1e5db57586'
+  /config/database.php:
+    newFile: !uuid 'b1c27f48d0281d4be7f7f361e238b441d616cfb4'
+    oldFile: !uuid '9ba6464d223398a1b6d3f692b14277f823c95e7a'
+  /index.html:
+    newFile: !uuid '72f7b7775105ac9c3a1ee70a8431b84aa09e254f'
+    oldFile: null
+  /public:
+    newFile: !uuid 'f271379d75385cfc22455823fe3f2ac1192241b1'
+    oldFile: !uuid '81753d2a8afadda5c18f59adc6669a12913a15d1'
+  /public/.htaccess:
+    newFile: null
+    oldFile: !uuid 'fe293867e193c28d6b57ba3db48a538c0658a666'
+  /public/404.html:
+    newFile: !uuid '99ff94f2072ac7f569f453985ec6f3da91124886'
+    oldFile: null
+  /public/cmdatabase.sql:
+    newFile: !uuid '8f49be6777001316981174f1d624518ba58dcefd'
+    oldFile: !uuid '6ad6ebd1c3f5ebb8b187c9446ccec2e9eed487b7'
+  /public/index.php:
+    newFile: !uuid 'b680ce13c21d57d68c148fed4e6530efd9e73e24'
+    oldFile: !uuid '68b7458fd630c10e5a016f9a9434c38235f20600'
+  /public/install.php:
+    newFile: !uuid 'e955fbfbfcf5056e9cd0109c99c2a439fd5328a1'
+    oldFile: !uuid 'c07665648a680a83a3e3a916da0040a151bfe06e'
+gitCommitId: !uuid '526b385059dc7d88d107925f293779d9624631a0'
+renames:
+  /app/admin/lang/zh-cn/login/common.php: /app/admin/lang/zh-cn/login/index.php
+revisionId: 266
