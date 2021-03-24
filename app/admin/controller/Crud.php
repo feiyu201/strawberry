@@ -404,15 +404,15 @@ class Crud extends Admin
             }
             $menu = [
                 [
-                    'name' => 'admin/' . $table . '/index',
+                    'name' => '' . $table . '/index',
                     'title' => $fix . '管理',
                     'icon' => 'fa-list',
                     'remark' => '',
                     'ismenu' => 1,
                     'sublist' => [
-                        ['name' => 'admin/' . $table . '/add', 'title' => '添加'],
-                        ['name' => 'admin/' . $table . '/edit', 'title' => '编辑 '],
-                        ['name' => 'admin/' . $table . '/del', 'title' => '删除']
+                        ['name' => '' . $table . '/add', 'title' => '添加'],
+                        ['name' => '' . $table . '/edit', 'title' => '编辑 '],
+                        ['name' => '' . $table . '/del', 'title' => '删除']
                     ]
                 ]
             ];

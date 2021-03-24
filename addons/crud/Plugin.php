@@ -29,15 +29,15 @@ class Plugin extends Addons
     {
         $menu = [
             [
-                'name'    => 'admin/crud/index',
+                'name'    => 'crud/index',
                 'title'   => '自动生成CRUD',
                 'icon'    => 'fa-list',
                 'remark'  => '',
                 'ismenu'  => 1,
                 'sublist' => [
-                    ['name' => 'admin/crud/add', 'title' => '添加'],
-                    ['name' => 'admin/crud/edit', 'title' => '编辑 '],
-                    ['name' => 'admin/crud/del', 'title' => '删除']
+                    ['name' => 'crud/add', 'title' => '添加'],
+                    ['name' => 'crud/edit', 'title' => '编辑 '],
+                    ['name' => 'crud/del', 'title' => '删除']
                 ]
             ]
         ];

@@ -32,7 +32,6 @@ class AdminBase extends BaseController
         $this->checkAuth();
         // 左侧菜单
         $menus = \app\admin\model\Base::getMenus();
-        //var_dump($menus);exit();
         View::assign(['menus'=>$menus]);
         //var_dump(Session::get('admin'));
     }
@@ -40,13 +39,13 @@ class AdminBase extends BaseController
     protected function checkLogin()
     {
         if (!Session::has('admin')) {
-            $this->error('请登陆', 'admin/login/index');
+            $this->error('请登陆', url('login/index'));
         }
         $expireTime = session('admin.expire_time');
         // 判断是否登录过期
         if ($expireTime !== true && time() > $expireTime) {
             session('admin', null);
-            $this->error('登录已过期，请重新登录', 'admin/login/index');
+            $this->error('登录已过期，请重新登录', url('login/index'));
         }
     }
     protected function checkAuth()
@@ -54,17 +53,17 @@ class AdminBase extends BaseController
         // 获取当前用户
         $admin_id = Session::get('admin.id');
         if (empty($admin_id)) {
-            return redirect((string)url('admin/login/index'));
+            return redirect((string)url('login/index'));
         }
         // 定义方法白名单
         $allow = [
-            'Admin/Index/index',      // 首页
-            'Admin/Index/clear',      // 清除缓存
-            'Admin/Upload/index',     // 上传文件
-            'Admin/Upload/attachment',    //附件上传
-            'Admin/Login/index',      // 登录页面
-            'Admin/Login/signin', // 校验登录
-            'Admin/Login/logout',     // 退出登录
+            'Index/index',      // 首页
+            'Index/clear',      // 清除缓存
+            'Upload/index',     // 上传文件
+            'Upload/attachment',    //附件上传
+            'Login/index',      // 登录页面
+            'Login/signin', // 校验登录
+            'Login/logout',     // 退出登录
         ];
         $authRole = \app\common\model\AuthRule::select();
         // 查找当前控制器和方法，控制器首字母大写，方法名首字母小写 如：Index/index
