@@ -1,4 +1,6 @@
 <?php
+
+
 error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 ini_set('display_errors', '1');
 //定义目录分隔符
@@ -17,7 +19,42 @@ $lockFile = "."  . DS . "install.lock";
 //缓存文件
 $runtimeDir =  '..'.DS. 'runtime';
 
-
+function setAdminMap($adminMap){
+    $content = <<<EOF
+    <?php return [
+        // 应用地址
+        'app_host'         => env('app.host', ''),
+        // 应用的命名空间
+        'app_namespace'    => '',
+        // 是否启用路由
+        'with_route'       => true,
+        // 默认应用
+        'default_app'      => 'admin',
+        // 默认时区
+        'default_timezone' => 'Asia/Shanghai',
+    
+        // 应用映射（自动多应用模式有效）
+        'app_map'               => ['%admin_map%' => 'admin'],
+        // 域名绑定（自动多应用模式有效）
+        'domain_bind'      => [],
+        // 禁止URL访问的应用列表（自动多应用模式有效）
+        'deny_app_list'    => ['common','admin'],
+    
+        // 异常页面的模板文件
+        'exception_tmpl'   => app()->getThinkPath() . 'tpl/think_exception.tpl',
+    
+        // 错误显示信息,非调试模式有效
+        'error_message'    => '页面错误！请稍后再试～',
+        // 显示错误信息
+        'show_error_msg'   => true,
+        // 默认跳转页面对应的模板文件【新增】
+        'dispatch_success_tmpl' => app()->getRootPath() . '/public/tpl/dispatch_jump.tpl',
+        'dispatch_error_tmpl'  => app()->getRootPath() . '/public/tpl/dispatch_jump.tpl',
+    ];
+EOF;
+    $content = str_replace('%admin_map%',$adminMap,$content);
+    file_put_contents(realpath(__DIR__.'/../config/app.php'),$content);
+}
 
 // 应用公共文件
 /**
@@ -77,10 +114,16 @@ if (is_file($lockFile)) {
         }
     }
 }
+function ajaxReturnError($msg){
+    echo json_encode([
+        'code'=>0,
+        'msg'=>$msg
+    ]);
+    exit();
+}
 if ($_GET['c'] = 'start' && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($msg) {
-        echo $msg;
-        exit;
+        return ajaxReturnError($msg);
     }
 //执行安装
     $host = isset($_POST['hostname']) ? $_POST['hostname'] : '127.0.0.1';
@@ -105,26 +148,26 @@ if ($_GET['c'] = 'start' && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUE
 
     //php 版本
     if (version_compare(PHP_VERSION, '7.1.0', '<')) {
-        die("当前版本(" . PHP_VERSION . ")过低，请使用PHP7.1.0以上版本");
+        return ajaxReturnError("当前版本(" . PHP_VERSION . ")过低，请使用PHP7.1.0以上版本");
     }
     if (!extension_loaded("PDO")) {
-        die ("当前未开启PDO，无法进行安装" );
+        return ajaxReturnError ("当前未开启PDO，无法进行安装" );
     }
     //判断两次输入是否一致
     if ($adminPassword != $rePassword) {
-        die('两次输入密码不一致！');
+        return ajaxReturnError('两次输入密码不一致！');
     }
     if (!preg_match("/^[\S]+$/", $adminPassword)) {
-        die('密码不能包含空格！');
+        return ajaxReturnError('密码不能包含空格！');
     }
     if (!preg_match("/^\w+$/", $adminUserName)) {
-        die('用户名只能输入字母、数字、下划线！');
+        return ajaxReturnError('用户名只能输入字母、数字、下划线！');
     }
     if (strlen($adminUserName) < 3 || strlen($adminUserName) > 12) {
-        die('用户名请输入3~12位字符！');
+        return ajaxReturnError('用户名请输入3~12位字符！');
     }
     if (strlen($adminPassword) < 5 || strlen($adminPassword) > 16) {
-        die('密码请输入5~16位字符！');
+        return ajaxReturnError('密码请输入5~16位字符！');
     }
     //检测能否读取安装文件
     $sql = @file_get_contents(WWW_ROOT . DS . "" . DS . 'cmdatabase.sql');
@@ -149,7 +192,7 @@ if ($_GET['c'] = 'start' && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUE
         if (!is_null($error)) {
             // 转义防止和alert中的引号冲突
             $error = addslashes($error);
-            die("数据库链接失败:$error");
+            return ajaxReturnError("数据库链接失败:$error");
         }
         // 设置字符集
         $link->query("SET NAMES 'utf8mb4'");
@@ -239,11 +282,11 @@ return [
 EOT;
         $putConfig = @file_put_contents("../config" . DS . "database.php", $config);
         if (!$putConfig) {
-            die('安装失败、请确定database.php是否有写入权限！:'.$error);
+            return ajaxReturnError('安装失败、请确定database.php是否有写入权限！:'.$error);
         }
         $result = @file_put_contents($lockFile, 'ok');
         if (!$result) {
-            die("安装失败、请确定install.lock是否有写入权限！:$error");
+            return ajaxReturnError("安装失败、请确定install.lock是否有写入权限！:$error");
         }
 
         //$password = password_hash($adminPassword, PASSWORD_BCRYPT,['cost'=>12]);
@@ -255,16 +298,24 @@ EOT;
 
         
         if (!$result) {
-            die("安装数据库失败！:$error");
+            return ajaxReturnError("安装数据库失败！:$error");
         }
-        echo  $msg = 'success';exit();
+        //读取文件
+        $adminMap = GetRandStr(8);
+        setAdminMap($adminMap);
+        echo  json_encode([
+            'code'=>1,
+            'msg'=>'success',
+            'map'=>$adminMap
+        ]);
+        exit();
     } catch (PDOException $e) {
-        $errMsg = $e->getMessage();
+        return ajaxReturnError($e->getMessage());
     } catch (Exception $e) {
-        $errMsg = $e->getMessage();
+        return ajaxReturnError($e->getMessage());
 
     }
-    echo $errMsg;exit();
+    return ajaxReturnError($errMsg);
 
 }
 ?>
@@ -420,19 +471,19 @@ EOT;
         form.on('submit(submit)', function(data){
             var that = $(this);
             that.text('安装中...').prop('disabled', true);
-            $.post('', data.field)
+            $.post('', data.field,null,'json')
                 .done(function (res) {
-                    if (res.substr(0, 7) === 'success') {
+                    if (res.code == 1) {
                         $('#error').hide();
                         $("#st-box").remove();
                         that.remove();
                         $("#success").text("恭喜您安装成功！请开始<?php echo $siteName; ?>之旅吧！").show();
                         $('.layui-row').css('margin-top','200px');
-                        var url = 'index.php/admin';
+                        var url = res.map;
                         $('form').append($('<a class="layui-btn" href="/" id="btn-index" style="background:#333">访问前台</a>&nbsp;&nbsp;&nbsp;<a class="layui-btn" href="' + url + '" id="btn-admin" style="background:#bc420c">访问后台</a>'));
                         <?php $_SESSION['install_ok'] = 'installed'; ?>
                     } else {
-                        $('#error').show().text(res);
+                        $('#error').show().text(res.msg);
                         that.prop('disabled', false).text('点击安装');
                         $("html,body").animate({
                             scrollTop: 0

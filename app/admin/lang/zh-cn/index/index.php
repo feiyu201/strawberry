@@ -16,5 +16,5 @@ return [
     'Verification code error'=>'验证码错误',
     'Incorrect username or password'=>'账号/密码错误',
     'Account is disabled'=>'账户被禁用',
-    'Login successful'=>'账户被禁用',
+    'Login successful'=>'登录成功',
 ];

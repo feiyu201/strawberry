@@ -19,18 +19,18 @@ class Admin
         // 获取当前用户
         $admin_id = Session::get('admin.id');
         if (empty($admin_id)) {
-            return redirect((string)url('admin/login/index'));
+            return redirect((string)url('login/index'));
         }
 
         // 定义方法白名单
         $allow = [
-            'Admin/Index/index',      // 首页
-            'Admin/Index/clear',      // 清除缓存
-            'Admin/Upload/index',     // 上传文件
-            'Admin/Upload/attachment',    //附件上传
-            'Admin/Login/index',      // 登录页面
-            'Admin/Login/signin', // 校验登录
-            'Admin/Login/logout',     // 退出登录
+            'Index/index',      // 首页
+            'Index/clear',      // 清除缓存
+            'Upload/index',     // 上传文件
+            'Upload/attachment',    //附件上传
+            'Login/index',      // 登录页面
+            'Login/signin', // 校验登录
+            'Login/logout',     // 退出登录
         ];
 
         

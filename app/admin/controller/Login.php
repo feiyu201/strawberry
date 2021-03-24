@@ -16,7 +16,7 @@ class Login extends BaseController
     		$this->error('111');
     	} */
         if (Session::has('admin')) {
-            $this->error(__('You are logged'), 'admin/index/index');
+            $this->error(__('You are logged'),  url('index/index'));
         }
 
         //判断是否启用社会化登入

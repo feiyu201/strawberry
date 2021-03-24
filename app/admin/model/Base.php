@@ -20,7 +20,6 @@ class Base extends Model
         // 查找一级
         foreach ($authRule as $key => $val) {
         	if(strpos($val['name'], "addons")===0){
-            	//$authRule[$key]['href'] = (string)addons_url($val['name']);
             	$authRule[$key]['href'] = Route::buildUrl("@".$val['name']);
         	}else{
             	$authRule[$key]['href'] = (string)url($val['name']);

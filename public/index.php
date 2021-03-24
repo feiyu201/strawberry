@@ -12,6 +12,12 @@
 // [ 应用入口文件 ]
 namespace think;
 
+// 判断是否安装
+if (! is_file('./install.lock')) {
+    header("location:/install.php");
+    exit;
+}
+
 // 定义项目路径
 define('ADS_PATH', '../addons/');
 
