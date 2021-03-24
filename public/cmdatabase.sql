@@ -151,7 +151,7 @@ CREATE TABLE `cm_auth_rule` (
 
 INSERT INTO `cm_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`, `auth_open`) VALUES
 (536, 1, 0, 'index/welcome', '控制台', 'fa-dashboard', '', '', 1, NULL, NULL, 0, 'normal', 1),
-(537, 1, 556, 'index', '人员管理', 'fa-group', '', '', 1, NULL, 1601167961, 2, 'normal', 1),
+(537, 1, 556, 'admin/index', '人员管理', 'fa-group', '', '', 1, NULL, 1601167961, 2, 'normal', 1),
 (538, 1, 0, 'Attachment/index', '附件管理', 'fa-file-image-o', '', '', 1, NULL, NULL, 5, 'normal', 1),
 (541, 1, 0, 'plugin/index', '插件管理', 'fa-rocket', '', '', 1, NULL, NULL, 10, 'normal', 1),
 (542, 1, 541, 'Plugin/getAllplug', '获取远程插件', 'fa-rocket', '', '', 0, NULL, NULL, 10, 'normal', 1),
@@ -159,7 +159,7 @@ INSERT INTO `cm_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condi
 (553, 1, 556, 'AuthRule/index', '菜单管理', 'fa-bars', '', '', 1, NULL, 1601167951, 1, 'normal', 1),
 (554, 1, 553, 'AuthRule/add', '菜单添加', 'fa-add', '', '这里是备注', 0, 1601122750, NULL, 100, 'normal', 1),
 (555, 1, 553, 'AuthRule/edit', '菜单编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
-(556, 1, 0, 'Auth', '权限管理', 'fa-group', '', '', 1, 1601167936, NULL, 1, 'normal', 1),
+(556, 1, 0, 'admin/Auth', '权限管理', 'fa-group', '', '', 1, 1601167936, NULL, 1, 'normal', 1),
 (557, 1, 556, 'AuthGroup/index', '角色管理', 'fa-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1);
 
 -- --------------------------------------------------------
