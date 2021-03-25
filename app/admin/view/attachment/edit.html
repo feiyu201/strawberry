@@ -46,8 +46,7 @@
                 <label class="layui-form-label">保存路径</label>
                 <div class="layui-input-block">
                     <div class="">
-                        <input type="text" id="path" disabled name="" value="{$admininfo.url}" placeholder="请输入昵称"
-                            autocomplete="off" class="layui-input" lay-verify="required">
+                        <input type="text" id="path" disabled name="" value="{$admininfo.url}" placeholder="请输入昵称" autocomplete="off" class="layui-input" lay-verify="required">
                     </div>
                 </div>
             </div>
@@ -66,10 +65,7 @@
     <!--js逻辑-->
     <script src="/static/lib/layui/layui.js"></script>
     <script>
-
-
-
-        layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
+        layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function() {
             let form = layui.form;
             let laydate = layui.laydate;
             let okLayer = layui.okLayer;
@@ -83,20 +79,20 @@
 
             });
 
-            form.on("submit(edit)", function (data) {
-                okUtils.ajax("{:url('edit')}", "post", data.field, true).done(function (response) {
+            form.on("submit(edit)", function(data) {
+                okUtils.ajax("{:url('edit')}", "post", data.field, true).done(function(response) {
                     //console.log(response);
                     if (response.code == 1) {
-                        okLayer.greenTickMsg("编辑成功", function () {
+                        okLayer.greenTickMsg("编辑成功", function() {
                             parent.layer.close(parent.layer.getFrameIndex(window.name));
                         });
                     } else {
-                        okLayer.greenTickMsg(response.msg, function () {
+                        okLayer.greenTickMsg(response.msg, function() {
 
                         })
                     }
 
-                }).fail(function (error) {
+                }).fail(function(error) {
                     console.log(error)
                 });
                 return false;
@@ -106,22 +102,23 @@
 
 
     <script>
-        layui.use('upload', function () {
-            var $ = layui.jquery
-                , upload = layui.upload;
+        layui.use('upload', function() {
+            var $ = layui.jquery,
+                upload = layui.upload;
 
             //普通图片上传
             var uploadInst = upload.render({
-                elem: '#test2'
-                , accept: 'file'
-                , url: '{:url("admin/upload/attachment")}' //改成您自己的上传接口
-                , before: function (obj) {
+                elem: '#test2',
+                accept: 'file',
+                url: '{:url("upload/attachment")}' //改成您自己的上传接口
+                    ,
+                before: function(obj) {
 
                 },
-                choose: function (obj) {
+                choose: function(obj) {
                     console.log(obj);
-                }
-                , done: function (res) {
+                },
+                done: function(res) {
                     //如果上传失败
                     if (res.code > 0) {
                         return layer.msg('上传失败');
@@ -130,12 +127,12 @@
                     //上传成功
                     $('input[name=key]').val(res.key);
                     $('#path').val(res.path);
-                }
-                , error: function () {
+                },
+                error: function() {
                     //演示失败状态，并实现重传
                     var demoText = $('#demoText');
                     demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                    demoText.find('.demo-reload').on('click', function () {
+                    demoText.find('.demo-reload').on('click', function() {
                         uploadInst.upload();
                     });
                 }
