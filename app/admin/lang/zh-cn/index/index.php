@@ -12,7 +12,6 @@ return [
     'Close other'=>'关闭其他标签页',
     'Close all'=>'关闭所有标签页',
     'Default password'=>'默认密码{:password}',
-    'You are logged'=>'你已登陆',
     'Verification code error'=>'验证码错误',
     'Incorrect username or password'=>'账号/密码错误',
     'Account is disabled'=>'账户被禁用',

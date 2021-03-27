@@ -13,4 +13,6 @@ return [
     'Incorrect username or password'=>'账号/密码错误',
     'Account is disabled'=>'账户被禁用',
     'Login successful'=>'登录成功',
+    'You are logged'=>'你已登陆',
+
 ];

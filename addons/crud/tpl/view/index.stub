@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
+{extend name="layout/default" /}
+{block name="head"}
     <title>{:__('List')}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" href="/static/css/oksub.css">
-    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
-</head>
-<body>
-<div class="layui-fluid ok-body" style="padding:10px;">
+{/block}
+{block name="content"}
+<div class="ok-body">
     <form class="layui-form" lay-filter="search-form">  
 
         <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" >
@@ -28,8 +23,10 @@
      <!--数据表格-->
     <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
 </div>
+{/block}
+{block name="scripts"}
+
 <!--js逻辑-->
-<script src="/static/lib/layui/layui.js"></script>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script>
     layui.use({%layuiAddonUsed%}, function () {
@@ -282,9 +279,5 @@
     <span class="layui-btn layui-btn-warm layui-btn-xs">{:__('Disable')}</span>
     {{#  } }}
 </script>
-
-
 {%imageList%}
-    
-</body>
-</html>
+{/block}

@@ -3,12 +3,6 @@
 {block name="head"}
 <title>草莓快速开发框架</title>
 <link rel="stylesheet" href="/static/css/okadmin.css">
-<link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/lib/loading/okLoading.css" />
-
-<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
-<script type="text/javascript" src="/static/js/okconfig.js"></script>
-
 <style>
    div.layui-table-header>table>thead>tr {
       background-color: #00F7DE;
@@ -79,7 +73,7 @@
             <dd>
                <hr/>
             </dd> -->
-               <dd><a href="javascript:void(0)" id="logout">{:__('Logout')}</a></dd>
+               <dd><a href="javascript:void(0)" id="logout" data-url="{:url('login/logout')}">{:__('Logout')}</a></dd>
             </dl>
          </li>
 
@@ -139,10 +133,6 @@
 
             </li>
             {/volist}
-
-
-
-
          </ul>
       </div>
    </div>
@@ -244,5 +234,4 @@
 {block name="scripts"}
 <script src="/static/js/snowflake.js?snowflake=雪花"></script>
 <script src="/static/js/okadmin.js"></script>
-
 {/block}

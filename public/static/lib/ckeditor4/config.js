@@ -4,20 +4,20 @@ CKEDITOR.editorConfig = function (config) {
     config.height = 500;
     config.width = 'auto';
     config.toolbarGroups = [
-        {name: 'document', groups: ['mode', 'document', 'doctools']},
-        {name: 'styles', groups: ['Font', 'FontSize']},
-        {name: 'colors'},
-        {name: 'basicstyles', groups: ['basicstyles', 'cleanup']},
-        {name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi']},
-        {name: 'insert'},
-        {name: 'others'},
-        {name: 'forms'},
-        {name: 'links'},
-        {name: 'clipboard', groups: ['clipboard', 'undo']},
-        { name: 'insert', groups: [ 'EasyImageUpload' ] },
-        {name: 'tools'},
+        { name: 'document', groups: ['mode', 'document', 'doctools'] },
+        { name: 'styles', groups: ['Font', 'FontSize'] },
+        { name: 'colors' },
+        { name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+        { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
+        { name: 'insert' },
+        { name: 'others' },
+        { name: 'forms' },
+        { name: 'links' },
+        { name: 'clipboard', groups: ['clipboard', 'undo'] },
+        { name: 'insert', groups: ['EasyImageUpload'] },
+        { name: 'tools' },
     ];
-    config.filebrowserImageUploadUrl = config.filebrowserImageUploadUrl || "/admin/upload/uploadEditor";
+    config.filebrowserImageUploadUrl = config.filebrowserImageUploadUrl || window.urls.uploadEditor;
 
     config.removeButtons = 'Underline,Subscript,Superscript';
 
