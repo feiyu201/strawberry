@@ -20,13 +20,13 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
       }
    }); */
    var okTab = layui.okTab([{
-        "title": "控制台",
-        "href": "pages/console.html",
-        "fontFamily": "ok-icon",
-        "icon": "&#xe654;",
-        "spread": true,
-        "isCheck": true
-    }]);
+      "title": "控制台",
+      "href": "pages/console.html",
+      "fontFamily": "ok-icon",
+      "icon": "&#xe654;",
+      "spread": true,
+      "isCheck": true
+   }]);
    var config = okUtils.local("okConfig") || okConfig || {};
    objOkTab = okTab;
    okLoading && okLoading.close();
@@ -45,42 +45,42 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
    /* okTab.render(function () {
      
    }); */
- /**tab栏的鼠标右键事件**/
-      $("body .ok-tab").okContextMenu({
-         width: 'auto',
-         itemHeight: 30,
-         menu: [
-            {
-               text: "定位所在页",
-               icon: "ok-icon ok-icon-location",
-               callback: function () {
-                  okTab.positionTab();
-               }
-            },
-            {
-               text: "关闭当前页",
-               icon: "ok-icon ok-icon-roundclose",
-               callback: function () {
-                  okTab.tabClose(1);
-               }
-            },
-            {
-               text: "关闭其他页",
-               icon: "ok-icon ok-icon-roundclose",
-               callback: function () {
-                  okTab.tabClose(2);
-               }
-            },
-            {
-               text: "关闭所有页",
-               icon: "ok-icon ok-icon-roundclose",
-               callback: function () {
-
-                  okTab.tabClose(3);
-               }
+   /**tab栏的鼠标右键事件**/
+   $("body .ok-tab").okContextMenu({
+      width: 'auto',
+      itemHeight: 30,
+      menu: [
+         {
+            text: "定位所在页",
+            icon: "ok-icon ok-icon-location",
+            callback: function () {
+               okTab.positionTab();
             }
-         ]
-      });
+         },
+         {
+            text: "关闭当前页",
+            icon: "ok-icon ok-icon-roundclose",
+            callback: function () {
+               okTab.tabClose(1);
+            }
+         },
+         {
+            text: "关闭其他页",
+            icon: "ok-icon ok-icon-roundclose",
+            callback: function () {
+               okTab.tabClose(2);
+            }
+         },
+         {
+            text: "关闭所有页",
+            icon: "ok-icon ok-icon-roundclose",
+            callback: function () {
+
+               okTab.tabClose(3);
+            }
+         }
+      ]
+   });
    /**系统设置*/
    $("body").on("click", "#okSetting", function () {
       layer.open({
@@ -122,15 +122,15 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
          var superEle = $(this).parent();
          var ele = $(this).next('.layui-nav-child');
          var height = ele.height();
-         ele.css({"display": "block"});
+         ele.css({ "display": "block" });
          // 是否是展开状态
          if (superEle.is(".layui-nav-itemed")) {
             ele.height(0);
-            ele.animate({height: height + "px"}, function () {
-               ele.css({height: "auto"});
+            ele.animate({ height: height + "px" }, function () {
+               ele.css({ height: "auto" });
             });
          } else {
-            ele.animate({height: 0}, function () {
+            ele.animate({ height: 0 }, function () {
                ele.removeAttr("style");
             });
          }
@@ -336,10 +336,11 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
     * 退出操作
     */
    $("#logout").click(function () {
+      let url = $(this).attr('data-url')
       okLayer.confirm("确定要退出吗？", function (index) {
          okTab.removeTabStorage(function (res) {
             okTab.removeTabStorage();
-            window.location = "/admin/login/logout";
+            window.location = url;
          });
       });
    });
@@ -361,7 +362,7 @@ layui.use(["element", "form", "layer", "okUtils", "okTab", "okLayer", "okContext
    function lockShowInit(okUtils) {
       let localLock = okUtils.local("isLock");
       $("#lockPassword").val("");
-      if(!localLock){
+      if (!localLock) {
          return;
       }
 

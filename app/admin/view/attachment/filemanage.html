@@ -1,65 +1,61 @@
-<!DOCTYPE html>
-<html>
+{extend name="layout/default" /}
 
-<head>
-    <meta charset="utf-8">
-    <title>附件管理</title>
-    <meta name="renderer" content="webkit">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
-    <link rel="stylesheet" href="/static/css/oksub.css">
-    <link rel="stylesheet" href="/static/css/dragula.css">
-    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
-    <style>
-        .icon-img-delete {
-            position: absolute;
-            right: 5px;
-            top: 5px;
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            padding: 0px;
-            z-index: 8
-        }
 
-        .layui-upload-img {
-            width: 92px;
-            height: 92px;
-            margin: 0 10px 10px 0;
-        }
+{block name="head"}
+<title>附件管理</title>
+<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+<link rel="stylesheet" href="/static/css/dragula.css">
+<style>
+    .icon-img-delete {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0px;
+        z-index: 8
+    }
 
-        .layui-elip {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            width: 100px;
-            line-height: 22px;
-            height: 22px
-        }
+    .layui-upload-img {
+        width: 92px;
+        height: 92px;
+        margin: 0 10px 10px 0;
+    }
 
-        .fileManager li {
-            position: relative
-        }
+    .layui-elip {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100px;
+        line-height: 22px;
+        height: 22px
+    }
 
-        .fileManager li::after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            width: 40px;
-            height: 40px;
-            right: 5px;
-            bottom: 26px;
-            background-image: url('/static/images/success_checked.jpg');
-            background-repeat: no-repeat;
-        }
+    .fileManager li {
+        position: relative
+    }
 
-        .fileManager li.checked::after {
-            z-index: 3;
-        }
-    </style>
-</head>
+    .fileManager li::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 40px;
+        height: 40px;
+        right: 5px;
+        bottom: 26px;
+        background-image: url('/static/images/success_checked.jpg');
+        background-repeat: no-repeat;
+    }
 
-<body style='padding:10px'>
+    .fileManager li.checked::after {
+        z-index: 3;
+    }
+</style>
+{/block}
+{block name="content"}
+
+
+<div class="ok-body">
     <button type="button" class="layui-hide" id="test1"></button>
     <div class="layui-fluid">
         <table class="layui-table" id="uploadTable">
@@ -83,8 +79,9 @@
         <button class="layui-btn layui-btn-normal submit">确认</button>
         <button class="layui-btn layui-btn-primary cancel">取消</button>
     </div>
-</body>
-<script src="/static/lib/layui/layui.js"></script>
+</div>
+{/block}
+{block name="scripts"}
 <script>
     layui.config({
         base: '/static/lib/layui/extend/',
@@ -284,5 +281,4 @@
 
         });
 </script>
-
-</html>
+{/block}

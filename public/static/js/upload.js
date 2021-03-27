@@ -5,7 +5,7 @@ layui
     .extend({
         tableSelect: "tableSelect/tableSelect",
     })
-    .use(["upload", "tableSelect", "element"], function() {
+    .use(["upload", "tableSelect", "element"], function () {
         var $ = layui.jquery,
             upload = layui.upload,
             element = layui.element,
@@ -13,11 +13,11 @@ layui
         var init = {
             table_elem: "#currentTable",
             table_render_id: "currentTableRenderId",
-            // upload_url: "/admin/upload/uploadfile",
+            // upload_url: window.urls.uploadfile,
             upload_exts: "doc|gif|ico|icon|jpg|mp3|mp4|p12|pem|png|rar",
             image_pre: "/storage/",
         };
-        var imageTemplate = function(data, option) {
+        var imageTemplate = function (data, option) {
             var option = {};
             option.imageWidth = 200;
             option.imageHeight = 40;
@@ -64,10 +64,10 @@ layui
             }
         };
         //创建监听函数
-        var xhrOnProgress = function(fun) {
+        var xhrOnProgress = function (fun) {
             xhrOnProgress.onprogress = fun; //绑定监听
             //使用闭包实现监听绑
-            return function() {
+            return function () {
                 //通过$.ajaxSettings.xhr();获得XMLHttpRequest对象
                 var xhr = $.ajaxSettings.xhr();
                 //判断监听函数是否为函数
@@ -83,7 +83,7 @@ layui
         var uploadSelectList = document.querySelectorAll("[data-upload-select]");
 
         if (uploadList.length > 0) {
-            $.each(uploadList, function(i, v) {
+            $.each(uploadList, function (i, v) {
                 var exts = $(this).attr("data-upload-exts"),
                     uploadName = $(this).attr("data-upload"),
                     uploadNumber = $(this).attr("data-upload-number"),
@@ -110,9 +110,9 @@ layui
                     exts: exts,
                     // 让多图上传模式下支持多选操作
                     multiple: uploadNumber !== "one" ? true : false,
-                    before: function(obj) {
+                    before: function (obj) {
                         FILE_UPLOAD_LIST = obj.pushFile(); //将每次选择的文件追加到文件队列
-                        obj.preview(function(index, file, result) {
+                        obj.preview(function (index, file, result) {
                             var parant = $(elem).parent("div");
                             var list = parant.parent("div").find(".layui-upload-show");
                             if (list.length == 0) {
@@ -133,13 +133,13 @@ layui
                         });
                     },
                     xhr: xhrOnProgress,
-                    xhr: function(index, e) {
+                    xhr: function (index, e) {
                         var percent = (e.loaded / e.total) * 100; //计算百分比
                         percent = parseInt(percent);
                         if (percent >= 100) {
                             var time = new Date().getTime();
                             if (time - times[index] < 800) {
-                                setTimeout(function() {
+                                setTimeout(function () {
                                     element.progress("progress_" + index + "", "100%");
                                 }, 800);
                             } else {
@@ -149,7 +149,7 @@ layui
                             element.progress("progress_" + index + "", percent + "%");
                         }
                     },
-                    done: function(res, index, upload) {
+                    done: function (res, index, upload) {
                         if (res.code === 1) {
                             var url = res.data.url;
                             if (uploadNumber !== "one") {
@@ -174,7 +174,7 @@ layui
                 });
 
                 // 监听上传input值变化
-                $(elem).bind("input propertychange", function(event) {
+                $(elem).bind("input propertychange", function (event) {
                     var urlString = $(this).val(),
                         urlArray = urlString.split(uploadSign),
                         uploadIcon = $(uploadElem).attr("data-upload-icon");
@@ -194,7 +194,7 @@ layui
                         }
                         list.find("li").not(".progress-li").remove();
                         var liHtml = "";
-                        $.each(urlArray, function(i, v) {
+                        $.each(urlArray, function (i, v) {
                             var originurl = v;
                             if (!(v.indexOf("/storage/") != -1)) {
                                 v = init.image_pre + v;
@@ -223,13 +223,13 @@ layui
             });
 
             // 监听上传文件的删除事件
-            $("body").on("click", "[data-upload-delete]", function() {
+            $("body").on("click", "[data-upload-delete]", function () {
                 var uploadName = $(this).attr("data-upload-delete"),
                     deleteUrl = $(this).attr("data-upload-url"),
                     sign = $(this).attr("data-upload-sign");
                 var confirm = layer.confirm(
                     "确认删除", { title: "操作确认", btn: ["确认", "取消"] },
-                    function() {
+                    function () {
                         var elem = "input[name='" + uploadName + "']";
                         var currentUrl = $(elem).val();
                         //console.log(currentUrl);
@@ -257,7 +257,7 @@ layui
         }
 
         if (uploadSelectList.length > 0) {
-            $.each(uploadSelectList, function(i, v) {
+            $.each(uploadSelectList, function (i, v) {
                 var exts = $(this).attr("data-upload-exts"),
                     uploadName = $(this).attr("data-upload-select"),
                     uploadNumber = $(this).attr("data-upload-number"),
@@ -274,10 +274,10 @@ layui
                     checkedKey: "id",
                     //searchType: 'more',
                     /*searchList: [
-					{searchKey: 'title', searchPlaceholder: '请输入文件名'},
-				],*/
+                    {searchKey: 'title', searchPlaceholder: '请输入文件名'},
+                ],*/
                     table: {
-                        url: "/admin/upload/getUploadFiles",
+                        url: window.urls.getUploadFiles,
                         cols: [
                             [
                                 { type: selectCheck },
@@ -308,9 +308,9 @@ layui
                             ],
                         ],
                     },
-                    done: function(e, data) {
+                    done: function (e, data) {
                         var urlArray = [];
-                        $.each(data.data, function(index, val) {
+                        $.each(data.data, function (index, val) {
                             var urlstr = val.url;
                             urlstr = urlstr.replace(/^storage\//, "");
                             urlArray.push(urlstr);
@@ -319,13 +319,13 @@ layui
 
                         layer.msg(
                             "选择成功", {
-                                icon: 1,
-                                shade: [0.02, "#000"],
-                                scrollbar: false,
-                                time: 2000,
-                                shadeClose: true,
-                            },
-                            function() {
+                            icon: 1,
+                            shade: [0.02, "#000"],
+                            scrollbar: false,
+                            time: 2000,
+                            shadeClose: true,
+                        },
+                            function () {
                                 $(elem).val(url);
                                 $(elem).trigger("input");
                             }

@@ -285,6 +285,7 @@ class Crud extends Admin
                     'data' => var_export($data, true)
                 ]) . "\n";
             } elseif (endWith($demo, 'time') || endWith($demo, '_at')) {
+                //##
                 $str .= $this->getReplacedStub('model/fieldNameAttr/time.stub', [
                     'fieldName' => $this->controlName($demo, true),
                 ]) . "\n";
