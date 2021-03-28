@@ -23,7 +23,9 @@ thinkphp6 php>=7.1
 
 #### 更新日志
 
-迁移到了开发文档里 这里写太长了 写不下了
+迁移到了开发文档里 这里写太长了 写不下了 开发文档地址如下：
+
+http://doc.caomei.zone/
 
 #### 演示地址
 http://caomei.shiliucrm.com/
