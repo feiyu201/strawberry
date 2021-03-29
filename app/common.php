@@ -1,5 +1,31 @@
 <?php
 
+use think\facade\App;
+
+
+
+function get_addon_config($addon)
+{
+    $obejct = get_addons_instance($addon);
+    // 获取token token永不过期
+    return  $obejct->getConfig();
+}
+function app_url($app, $url, $arr = [])
+{
+    $maps = config('app.app_map');
+    $appMap = $app;
+    foreach ($maps as $map => $appName) {
+        if ($appName == $app) {
+            $appMap = $map;
+        }
+    }
+    return url($appMap . '/' . $url, $arr)->build();
+}
+function get_addon_allconfig(string $file)
+{
+    $config = include(App::instance()->addons->getAddonsPath() . $file . DIRECTORY_SEPARATOR . 'config.php');
+    return $config;
+}
 // 应用公共文件
 /**
  * 生成随机数
@@ -8,11 +34,11 @@
  */
 function GetRandStr($len)
 {
-    $chars = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k","l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v","w", "x", "y", "z","0", "1", "2","3", "4", "5", "6", "7", "8", "9");
+    $chars = array("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9");
     $charsLen = count($chars) - 1;
     shuffle($chars);
     $output = "";
-    for ($i=0; $i<$len; $i++) {
+    for ($i = 0; $i < $len; $i++) {
         $output .= $chars[mt_rand(0, $charsLen)];
     }
     return $output;
@@ -221,7 +247,7 @@ function auth($cate, $pid = 0, $rules)
                 $v['checked'] = true;
             }
             $v['open'] = true;
-            $arr[]=$v;
+            $arr[] = $v;
             $arr = array_merge($arr, auth($cate, $v['id'], $rules));
         }
     }
@@ -242,20 +268,20 @@ function authNew($cate, $pid = 0, $rules)
     foreach ($cate as $v) {
         if ($v['pid'] == $pid) {
             $v = array_merge($v, ['field' => 'node', 'spread' => true]);
-            
+
             //$v['open'] = true;
             $subcate = authNew($cate, $v['id'], $rules);
             if ($subcate) {
                 $v['children'] =  $subcate;
             }
             //解决tree回显bug
-            if (in_array($v['id'], $rulesArr)&&empty($subcate)) {
+            if (in_array($v['id'], $rulesArr) && empty($subcate)) {
                 $v['checked'] = true;
             } else {
                 $v['checked'] = false;
             }
             unset($v['pid']);
-            $arr[]=$v;
+            $arr[] = $v;
         }
     }
     return $arr;
@@ -324,7 +350,7 @@ if (!function_exists('__')) {
             array_shift($vars);
             $lang = '';
         }
-//        return $name;
+        //        return $name;
         return \think\facade\Lang::get($name, $vars, $lang);
     }
 }
@@ -346,14 +372,14 @@ if (!function_exists('var_export_short')) {
 if (!function_exists('write_log')) {
     function write_log($remark, $data, $path = '', $filename = '')
     {
-        $path = $path ? $path : app()->getRuntimePath().'cm_log/';
-        $filename = $filename ? $filename : date('Ymd').'.txt';
+        $path = $path ? $path : app()->getRuntimePath() . 'cm_log/';
+        $filename = $filename ? $filename : date('Ymd') . '.txt';
         $data = is_array($data) ? json_encode($data, JSON_UNESCAPED_UNICODE) : $data;
         if (!is_dir($path)) {
             mkdir($path, 0777);
         }
-        if ($fp = fopen($path.$filename, "a")) {
-            fwrite($fp, '['.date("Y-m-d H:i:s").'] '.$remark."\r\n".$data."\r\n");
+        if ($fp = fopen($path . $filename, "a")) {
+            fwrite($fp, '[' . date("Y-m-d H:i:s") . '] ' . $remark . "\r\n" . $data . "\r\n");
             fclose($fp);
         }
     }
@@ -364,17 +390,17 @@ if (!function_exists('write_log')) {
 //获取用户的所有下级ID
 //默认5级
 if (!function_exists('get_downline')) {
-    function get_downline($datas, $pid, $max_level=5, $level=0)
+    function get_downline($datas, $pid, $max_level = 5, $level = 0)
     {
-        $arr=array();
+        $arr = array();
         foreach ($datas as $key => $v) {
             if ($v['id'] == $pid) {  //pid为0的是顶级分类
-                $v['level'] = $level+1;
+                $v['level'] = $level + 1;
                 if ($v['level']  > $max_level) {
                     return $arr;
                 }
-                $arr[]=$v;
-                $arr = array_merge($arr, get_downline($datas, $v['pid'], $max_level, $level+1));
+                $arr[] = $v;
+                $arr = array_merge($arr, get_downline($datas, $v['pid'], $max_level, $level + 1));
             }
         }
         return $arr;

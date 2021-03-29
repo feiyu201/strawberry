@@ -1,4 +1,5 @@
 <?php
+
 namespace addons\lazy\controller;
 
 use app\common\controller\AddonBase;
@@ -9,7 +10,7 @@ use think\Exception;
 /**
  * Api自动生成
  *
- * @icon fa fa-circle-o
+ * 
  */
 class Lazy extends AddonBase
 {
@@ -111,20 +112,20 @@ class Lazy extends AddonBase
             }
 
             if ($params) {
-//                $params = $this->preExcludeFields($params);
-//
-//                if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
-//                    $params[$this->dataLimitField] = $this->auth->id;
-//                }
+                //                $params = $this->preExcludeFields($params);
+                //
+                //                if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
+                //                    $params[$this->dataLimitField] = $this->auth->id;
+                //                }
                 $result = false;
                 Db::startTrans();
                 try {
                     //是否采用模型验证
-//                    if ($this->modelValidate) {
-//                        $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
-//                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
-//                        $this->model->validateFailException(true)->validate($validate);
-//                    }
+                    //                    if ($this->modelValidate) {
+                    //                        $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                    //                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
+                    //                        $this->model->validateFailException(true)->validate($validate);
+                    //                    }
                     $result = (new \addons\lazy\model\Lazy())->save($params);
                     // 生成控制器
                     $controlFile = fopen("../app/api/controller/" . self::controlName($table) . ".php", "w");
@@ -277,7 +278,7 @@ class Lazy extends AddonBase
         if (!empty($location)) {
             $str = substr($str, '0', $location);
         }
-       
+
         return $str;
     }
 
@@ -287,7 +288,7 @@ class Lazy extends AddonBase
         $file_path = ADS_PATH . "lazy/" . $name . ".txt";
         if (file_exists($file_path)) {
             $fp = fopen($file_path, "r");
-            $str = fread($fp, filesize($file_path));//指定读取大小，这里把整个文件内容读取出来
+            $str = fread($fp, filesize($file_path)); //指定读取大小，这里把整个文件内容读取出来
         }
         return $str;
     }
@@ -304,8 +305,7 @@ class Lazy extends AddonBase
     // 返回参数
     protected static function apiReturnParams($data, $primary, $type = true)
     {
-        $str = ($type ? "\r\n     " : "") . '* @return   int ' . $primary . ' null 主键' . $primary;
-        ;
+        $str = ($type ? "\r\n     " : "") . '* @return   int ' . $primary . ' null 主键' . $primary;;
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @return   '
@@ -329,7 +329,7 @@ class Lazy extends AddonBase
             if (strpos($v['field'], 'time')) {
                 $str = $str . '        if (request()->param("start' . $v["field"] . '") && request()->param("end' . $v["field"] . '"))$where["' . $v["field"] . '"] = [[\'>=\', request()->param("start' . $v["field"] . '")], [\'<=\', request()->param("end' . $v["field"] . '")], \'and\'];' . "\r\n";
             } else {
-                $str = $str . '        if (' . '$' . $v["field"] . ')$where[] = [\'' . $v["field"]. '\', \'like\', \'%\' .$' . $v["field"] . '. \'%\'];' . "\r\n";
+                $str = $str . '        if (' . '$' . $v["field"] . ')$where[] = [\'' . $v["field"] . '\', \'like\', \'%\' .$' . $v["field"] . '. \'%\'];' . "\r\n";
             }
         }
         return $str;
@@ -346,10 +346,10 @@ class Lazy extends AddonBase
                 $tableModel = substr($item['field'], 0, -3);
             } elseif (substr($item['field'], -4) === '_ids') {
                 $tableModels = substr($item['field'], 0, -4);
-            } elseif (endWith($item['field'], 'img')||endWith($item['field'], 'image')) {
-                $str .= '$result["' . $item['field'] . '"] = url($result["' . $item['field'] . '"],[],null,true)->build();'.PHP_EOL;
-            } elseif (endWith($item['field'], 'imgs')||endWith($item['field'], 'images')||endWith($item['field'], 'file')) {
-                $str .= '$result["' . $item['field'] . '"] = explode("|",$result["' . $item['field'] . '"]);'.PHP_EOL;
+            } elseif (endWith($item['field'], 'img') || endWith($item['field'], 'image')) {
+                $str .= '$result["' . $item['field'] . '"] = url($result["' . $item['field'] . '"],[],null,true)->build();' . PHP_EOL;
+            } elseif (endWith($item['field'], 'imgs') || endWith($item['field'], 'images') || endWith($item['field'], 'file')) {
+                $str .= '$result["' . $item['field'] . '"] = explode("|",$result["' . $item['field'] . '"]);' . PHP_EOL;
                 $field = $item['field'];
                 $str .= <<<EOT
             \$result['{$field}'] = array_map(function(\$item){
@@ -360,7 +360,7 @@ EOT;
                 continue;
             }
         }
-       
+
         if ($tableModel) {
             $str .= '$result["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$result["' . $tableModel . '_id"])->field(\'name\')->find()[\'name\'];';
         }
@@ -382,10 +382,10 @@ EOT;
                 $tableModel = substr($item['field'], 0, -3);
             } elseif (substr($item['field'], -4) === '_ids') {
                 $tableModels = substr($item['field'], 0, -4);
-            } elseif (endWith($item['field'], 'img')||endWith($item['field'], 'image')) {
-                $str .= '$result[$elt]["' . $item['field'] . '"] = url($item["' . $item['field'] . '"],[],null,true)->build();'.PHP_EOL;
-            } elseif (endWith($item['field'], 'imgs')||endWith($item['field'], 'images')||endWith($item['field'], 'file')) {
-                $str .= '$result[$elt]["' . $item['field'] . '"] = explode("|",$item["' . $item['field'] . '"]);'.PHP_EOL;
+            } elseif (endWith($item['field'], 'img') || endWith($item['field'], 'image')) {
+                $str .= '$result[$elt]["' . $item['field'] . '"] = url($item["' . $item['field'] . '"],[],null,true)->build();' . PHP_EOL;
+            } elseif (endWith($item['field'], 'imgs') || endWith($item['field'], 'images') || endWith($item['field'], 'file')) {
+                $str .= '$result[$elt]["' . $item['field'] . '"] = explode("|",$item["' . $item['field'] . '"]);' . PHP_EOL;
                 $field = $item['field'];
                 $str .= <<<EOT
             \$result[\$elt]['{$field}'] = array_map(function(\$item){

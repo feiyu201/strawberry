@@ -35,7 +35,7 @@ use think\helper\Str;
 /**
  * Api自动生成
  *
- * @icon fa fa-circle-o
+ * 
  */
 class Crud extends Admin
 {

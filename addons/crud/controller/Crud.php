@@ -30,46 +30,48 @@ use think\facade\View;
 /**
  * Api自动生成
  *
- * @icon fa fa-circle-o
+ * 
  */
 class Crud extends AddonBase
 {
 
-    public function getList(){
-        $page = $this->request->param('page',1,'intval');
-        $limit = $this->request->param('limit',10,'intval');
+    public function getList()
+    {
+        $page = $this->request->param('page', 1, 'intval');
+        $limit = $this->request->param('limit', 10, 'intval');
         $count = Db::name('lazy')->count();
-        $data = Db::name('lazy')->page($page,$limit)->select()->each(function($item,$k){
+        $data = Db::name('lazy')->page($page, $limit)->select()->each(function ($item, $k) {
             return $item;
         });
 
         return json([
-            'code'=> 0,
-            'count'=> $count,
-            'data'=>$data,
-            'msg'=>'查询用户成功'
+            'code' => 0,
+            'count' => $count,
+            'data' => $data,
+            'msg' => '查询用户成功'
         ]);
     }
 
-    public function edit(){
-        if($this->request->isPost()){
+    public function edit()
+    {
+        if ($this->request->isPost()) {
             $data = $this->request->post();
-            if(Db::name('Lazy')->where('id',$data['id'])->delete()){
+            if (Db::name('Lazy')->where('id', $data['id'])->delete()) {
                 self::add();
                 $this->success("编辑成功");
-            }else{
+            } else {
                 $this->error("编辑失败");
             }
         }
         $id = $this->request->param('id');
-        if(!$id){
+        if (!$id) {
             $this->success("参数错误");
         }
-        $wxappinfo = Db::name('lazy')->where('id',$id)->find();
-        if(!$wxappinfo){
+        $wxappinfo = Db::name('lazy')->where('id', $id)->find();
+        if (!$wxappinfo) {
             $this->success("参数错误");
         }
-        View::assign('wxappinfo',$wxappinfo);
+        View::assign('wxappinfo', $wxappinfo);
         return View::fetch();
     }
 
@@ -86,7 +88,7 @@ class Crud extends AddonBase
             $table = $params['table_name'];
             $sql = "show tables like 'st_{$table}'";
             $istable = Db::query($sql);
-            if (!$istable){
+            if (!$istable) {
                 $this->error('Table name does not exist');
             }
 
@@ -118,35 +120,57 @@ class Crud extends AddonBase
                 $this->error('The table Api interface has been generated');
 
             if ($params) {
-//                $params = $this->preExcludeFields($params);
-//
-//                if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
-//                    $params[$this->dataLimitField] = $this->auth->id;
-//                }
+                //                $params = $this->preExcludeFields($params);
+                //
+                //                if ($this->dataLimit && $this->dataLimitFieldAutoFill) {
+                //                    $params[$this->dataLimitField] = $this->auth->id;
+                //                }
                 $result = false;
                 Db::startTrans();
                 try {
                     //是否采用模型验证
-//                    if ($this->modelValidate) {
-//                        $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
-//                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
-//                        $this->model->validateFailException(true)->validate($validate);
-//                    }
+                    //                    if ($this->modelValidate) {
+                    //                        $name = str_replace("\\model\\", "\\validate\\", get_class($this->model));
+                    //                        $validate = is_bool($this->modelValidate) ? ($this->modelSceneValidate ? $name . '.add' : $name) : $this->modelValidate;
+                    //                        $this->model->validateFailException(true)->validate($validate);
+                    //                    }
                     $result = (new \app\admin\model\Lazy())->save($params);
                     // 生成控制器
                     $controlFile = fopen("../app/api/controller/" . self::controlName($table) . ".php", "w");
-                    $controlTxt = sprintf(self::getFile('control'),
-                        $fix, self::controlName($table),
+                    $controlTxt = sprintf(
+                        self::getFile('control'),
+                        $fix,
+                        self::controlName($table),
                         // 添加
-                        self::controlName($table), self::annotateNoPrimary($list), self::modelName($table),
+                        self::controlName($table),
+                        self::annotateNoPrimary($list),
+                        self::modelName($table),
                         // 编辑
-                        self::controlName($table), self::annotate($list, $primary), self::modelName($table),
+                        self::controlName($table),
+                        self::annotate($list, $primary),
+                        self::modelName($table),
                         // 查询单条
-                        self::controlName($table), $primary, $primary, self::primary($primary) . self::apiReturnParams($list, $primary), $table, $primary, self::withInfo($list),
+                        self::controlName($table),
+                        $primary,
+                        $primary,
+                        self::primary($primary) . self::apiReturnParams($list, $primary),
+                        $table,
+                        $primary,
+                        self::withInfo($list),
                         // 查询列表
-                        self::controlName($table), self::annotate($list, $primary) . self::apiReturnParams($list, $primary), self::search($list), $table, self::withList($list),
+                        self::controlName($table),
+                        self::annotate($list, $primary) . self::apiReturnParams($list, $primary),
+                        self::search($list),
+                        $table,
+                        self::withList($list),
                         // 删除
-                        self::controlName($table), $primary, $primary, self::primary($primary), $table, $primary);
+                        self::controlName($table),
+                        $primary,
+                        $primary,
+                        self::primary($primary),
+                        $table,
+                        $primary
+                    );
                     fwrite($controlFile, $controlTxt);
                     fclose($controlFile);
 
@@ -183,15 +207,15 @@ class Crud extends AddonBase
     protected static function annotate(&$data, $primary)
     {
         $str = '* @param   int '
-            . $primary.' '
-            . '&nbsp; 主键' . $primary.' '.'Yes';
+            . $primary . ' '
+            . '&nbsp; 主键' . $primary . ' ' . 'Yes';
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @param   '
-                . self::delString($v['type']).' '
-                . $v['field'].' '
-                .'&nbsp; '
-                . $v['comment'].' '
+                . self::delString($v['type']) . ' '
+                . $v['field'] . ' '
+                . '&nbsp; '
+                . $v['comment'] . ' '
                 . $v['null'];
         }
         return $str;
@@ -204,31 +228,32 @@ class Crud extends AddonBase
         foreach ($data as $elt => $v) {
             if ($elt == 0)
                 $str = $str
-                    . '* @param   ' . self::delString($v['type']).' '
-                    . $v['field'].' '
-                    .'&nbsp; '
-                    . $v['comment'] .' '
+                    . '* @param   ' . self::delString($v['type']) . ' '
+                    . $v['field'] . ' '
+                    . '&nbsp; '
+                    . $v['comment'] . ' '
                     . $v['null'];
             else
                 // 换行 且需要留5个空格
                 $str = $str . "\r\n" . '     * @param   '
-                    . self::delString($v['type']).' '
-                    . $v['field'].' '
-                    .'&nbsp; '
-                    . $v['comment'].' '
+                    . self::delString($v['type']) . ' '
+                    . $v['field'] . ' '
+                    . '&nbsp; '
+                    . $v['comment'] . ' '
                     . $v['null'];
         }
         return $str;
     }
 
-    public function delete(){
+    public function delete()
+    {
         $idsStr = $id = $this->request->param('idsStr');
-        if(!$idsStr){
+        if (!$idsStr) {
             $this->success("参数错误");
         }
-        if(Db::name('lazy')->where('id','in',$idsStr)->delete()){
+        if (Db::name('lazy')->where('id', 'in', $idsStr)->delete()) {
             $this->success("删除成功");
-        }else{
+        } else {
             $this->error("删除失败");
         }
     }
@@ -264,7 +289,7 @@ class Crud extends AddonBase
         $file_path = ADS_PATH . "lazy/" . $name . ".txt";
         if (file_exists($file_path)) {
             $fp = fopen($file_path, "r");
-            $str = fread($fp, filesize($file_path));//指定读取大小，这里把整个文件内容读取出来
+            $str = fread($fp, filesize($file_path)); //指定读取大小，这里把整个文件内容读取出来
         }
         return $str;
     }
@@ -273,8 +298,8 @@ class Crud extends AddonBase
     protected static function primary($primary)
     {
         $str = '* @param   int '
-            . $primary.' '
-            . '&nbsp; 主键' . $primary.' '.'Yes';
+            . $primary . ' '
+            . '&nbsp; 主键' . $primary . ' ' . 'Yes';
         return $str;
     }
 
@@ -285,10 +310,10 @@ class Crud extends AddonBase
         foreach ($data as $elt => $v) {
             // 换行 且需要留5个空格
             $str = $str . "\r\n" . '     * @return   '
-                . self::delString($v['type']).' '
-                . $v['field'].' '
-                .'&nbsp; '
-                . $v['comment'].' '
+                . self::delString($v['type']) . ' '
+                . $v['field'] . ' '
+                . '&nbsp; '
+                . $v['comment'] . ' '
                 . $v['null'];
         }
         return $str;
@@ -349,14 +374,14 @@ class Crud extends AddonBase
                 continue;
             }
         }
-        $str = 'foreach($result as $elt => $item){'."\r\n";
+        $str = 'foreach($result as $elt => $item){' . "\r\n";
         if ($tableModel) {
             $str .= "\r\n" . '            $result[$elt]["' . $tableModel . '_name"] = Db::name("' . $tableModel . '")->where("id",$item["' . $tableModel . '_id"])->field(\'username\')->find()[\'username\'];';
         }
         if ($tableModels) {
             $str .= "\r\n" . '            $result[$elt]["' . $tableModels . '_names"] = implode(",",Db::name("' . $tableModels . '")->where(["id" => ["in",explode(",",$item["' . $tableModels . '_ids"])]])->column(\'username\'));';
         }
-        $str .= "\r\n".'        }';
+        $str .= "\r\n" . '        }';
         return $str;
     }
 
@@ -380,5 +405,4 @@ class Crud extends AddonBase
         }
         return $params;
     }
-
 }

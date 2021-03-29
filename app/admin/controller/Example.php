@@ -10,7 +10,7 @@ class Example extends BaseController
 {
     public function select()
     {
-        if (!$this->request->isAjax()) {
+        if ($this->request->isAjax()) {
             $list = [
                 ['user_id' => 1, 'name' => '武则天'],
                 ['user_id' => 2, 'name' => '小乔'],
