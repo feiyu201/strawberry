@@ -80,13 +80,19 @@ abstract class BaseController
         //获取当前模块名称
        
 
-        $path = $this->app->getAppPath().'/lang/'.Lang::getLangSet().'/'.$controller.'/'.$action.'.php';
-        Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'.php');
-        if ($action!=='common') {
-            Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'/'.$controller.'/common.php');
+
+        if (!$this->request->addon) {
+            $path = $this->app->getAppPath().'/lang/'.Lang::getLangSet().'/'.$controller.'/'.$action.'.php';
+            Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'.php');
+            if ($action!=='common') {
+                Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'/'.$controller.'/common.php');
+            }
+          
+            Lang::load($path);
+        } else {
+            Lang::load($this->app->getRootPath().'/addons/'.$this->request->addon.'/lang/'.Lang::getLangSet().'.php');
+            Lang::load($this->app->getAppPath().'/lang/'.Lang::getLangSet().'/addons.php');
         }
-      
-        Lang::load($path);
     }
 
     /**

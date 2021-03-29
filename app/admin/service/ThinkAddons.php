@@ -1,4 +1,5 @@
 <?php
+
 /**
  * +----------------------------------------------------------------------
  * | 插件服务类
@@ -16,6 +17,7 @@
  * ├── info.ini      // 插件信息文件,用于保存插件基本信息，不存在则读取Plugin中的配置
  * └── install.sql   // 插件数据库安装文件,此文件仅在插件安装时会进行导入，如重复安装可能会导致报错
  */
+
 namespace app\admin\service;
 
 use app\admin\facade\ThinkAddons as FacadeThinkAddons;
@@ -53,7 +55,7 @@ class ThinkAddons
     protected function getPluginInfo($name)
     {
         $addon_info = "addon_{$name}_info";
-        $addon_path =  $this->addonsPath .DIRECTORY_SEPARATOR. $name . DIRECTORY_SEPARATOR;
+        $addon_path =  $this->addonsPath . DIRECTORY_SEPARATOR . $name . DIRECTORY_SEPARATOR;
         /* $info = Config::get($addon_info, []);
     	if ($info) {
     		return $info;
@@ -63,14 +65,14 @@ class ThinkAddons
         $info = $object->info ?? [];
         // 文件配置
         $info_file = $addon_path . 'info.ini';
-    
+
         if (is_file($info_file)) {
             $_info = parse_ini_file($info_file, true, INI_SCANNER_TYPED) ?: [];
-    
+
             $_info['url'] = addons_url();
             $info = array_merge($info, $_info);
         }
-        
+
         /* $tableinfo = Plugin::where('name', $name)->field('name,title,description,status,author,version,install')->find();
     	if($tableinfo) {
     		$info = array_merge( $info,$tableinfo->toArray());
@@ -79,11 +81,11 @@ class ThinkAddons
     		$info['status'] = 0;
     	} */
         Config::set($info, $addon_info);
-    
+
         return isset($info) ? $info : [];
     }
-    
-    
+
+
     // 获得本地插件列表 [目前只获取本地插件，后期会扩展为获取线上插件]
     public function localAddons()
     {
@@ -109,20 +111,20 @@ class ThinkAddons
                 // var_dump($info);exit();
                 // 增加右侧按钮组
                 $str = '';
-                if (isset($info['install'])&&$info['install'] == 1) {
+                if (isset($info['install']) && $info['install'] == 1) {
                     // 已安装，增加配置按钮
-                    $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
-                    $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
-                // if ($info['status']==1) {
+                    $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="' . $name . '" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
+                    $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="' . $name . '" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
+                    // if ($info['status']==1) {
                     //     $str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
                     // } else {
                     //     $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>启用</a>';
                     // }
                 } else {
                     // 未安装，增加安装按钮
-                    $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="install"><i class="fa fa-edit"></i> 安装</a>';
+                    $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="' . $name . '" lay-event="install"><i class="fa fa-edit"></i> 安装</a>';
                 }
-                
+
                 $info['button'] = $str;
 
                 $list[] = $info;
@@ -216,7 +218,7 @@ class ThinkAddons
         }
         // 实例化插件
         $object = $this->getInstance($name);
-      
+
         // 获取插件基础信息
         //$info = $object->getInfo();
         $info = $this->getPluginInfo($name);
@@ -287,7 +289,7 @@ class ThinkAddons
     // 卸载插件
     public function uninstall(string $name)
     {
-        
+
         // 实例化插件
         $object = $this->getInstance($name);
         // 获取插件基础信息
@@ -310,9 +312,9 @@ class ThinkAddons
                 //$delres = Plugin::where('name','=',$name)->delete();
                 //if($delres!==false){
                 return [
-                        'code' => 1,
-                        'msg'  => '插件卸载成功',
-                    ];
+                    'code' => 1,
+                    'msg'  => '插件卸载成功',
+                ];
                 /* }else{
             		return [
             			'code' => 0,
@@ -328,11 +330,11 @@ class ThinkAddons
         }
     }
     /**
-    * 获取指定插件的目录
-    */
+     * 获取指定插件的目录
+     */
     public function getAddonDir($name)
     {
-        $dir = $this->addonsPath . DS. $name . DS;
+        $dir = $this->addonsPath . DS . $name . DS;
         return $dir;
     }
     public function getBootstrapFile($name)
@@ -340,11 +342,11 @@ class ThinkAddons
         return $this->addonsPath . DS . $name . DS . 'bootstrap.js';
     }
     /**
-      * 刷新插件缓存文件
-      *
-      * @return  boolean
-      * @throws  Exception
-      */
+     * 刷新插件缓存文件
+     *
+     * @return  boolean
+     * @throws  Exception
+     */
     public function refresh()
     {
         $addons = $this->localAddons();
@@ -374,12 +376,12 @@ EOD;
         // 获取插件基础信息
         //$info = $object->getInfo();
         $info = $this->getPluginInfo($name);
-        if ($info['install']==1) {
+        if ($info['install'] == 1) {
             $info['status'] = $info['status'] == 1 ? 0 : 1;
             try {
                 // 更新或创建插件的ini文件
                 $result = $this->setPluginIni($name, $info);
-                
+
                 $method = $info['status'] == 1 ? 'enable' : 'disable';
                 if (method_exists($object, $method)) {
                     call_user_func([$object, $method]);
@@ -403,14 +405,14 @@ EOD;
                 'msg'  => '插件实例化失败',
             ];
         }
-        
+
         //更新或插入插件信息
         //$updateres = Plugin::update(['status' => $info['status']], ['name' => $name]);
         //if($updateres!==false){
         return [
             'code' => 1,
             'msg'  => '状态变动成功',
-            ];
+        ];
         /* }else{
         	return [
         	'code' => 0,
@@ -620,12 +622,10 @@ EOD;
         if (!is_dir($dest)) {
             mkdir($dest, 0755, true);
         }
-        foreach (
-            $iterator = new RecursiveIteratorIterator(
-                new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
-                RecursiveIteratorIterator::SELF_FIRST
-            ) as $item
-        ) {
+        foreach ($iterator = new RecursiveIteratorIterator(
+            new RecursiveDirectoryIterator($source, RecursiveDirectoryIterator::SKIP_DOTS),
+            RecursiveIteratorIterator::SELF_FIRST
+        ) as $item) {
             if ($item->isDir()) {
                 $sontDir = $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName();
                 if (!is_dir($sontDir)) {

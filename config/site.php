@@ -1,27 +1,28 @@
 <?php
 
-return array (
+return array(
   'name' => '草莓万能开发框架是最好的框架',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
+  'hash'=>'',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
-  'languages' => 
-  array (
+  'languages' =>
+  array(
     'backend' => 'zh-cn',
     'frontend' => 'zh-cn',
   ),
   'fixedpage' => 'dashboard',
-  'categorytype' => 
-  array (
+  'categorytype' =>
+  array(
     'default' => 'Default',
     'page' => 'Page',
     'article' => 'Article',
     'test' => 'Test',
   ),
-  'configgroup' => 
-  array (
+  'configgroup' =>
+  array(
     'basic' => '基本配置',
   ),
   'mail_type' => '1',
