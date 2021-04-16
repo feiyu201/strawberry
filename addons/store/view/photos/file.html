@@ -211,12 +211,15 @@
                 if (imgList.length === imgLimit) {
                     return layer.msg(`只允许选择${imgLimit}张图片`);
                 }
-                if (obj.obj.parent().parent().attr('class') !== undefined && obj.obj.parent().parent().attr('class').indexOf('checked') > -1) {
-                    obj.obj.parent().parent().attr('class', '')
-                    imgList.splice(imgList.indexOf(obj.obj.attr('src')), 1)
+                if (obj.obj.attr('class') !== undefined && obj.obj.attr('class').indexOf('checked') > -1) {
+                    obj.obj.attr('class', '')
+                    imgList.splice(imgList.indexOf(obj.obj.find("img").attr('src')), 1)
                 } else {
-                    imgList.push(obj.obj.attr('src'))
-                    obj.obj.parent().parent().attr('class', 'checked')
+                    imgList.push(obj.obj.find("img").attr('src'))
+                    obj.obj.attr('class', 'checked')
+                    
+                     //obj.obj.parent().parent().attr('class', 'checked')//这里之前可以 奇怪为什么现在选中的位置不对了 必须用上面的
+                    
                 }
                 console.log(imgList)
 
