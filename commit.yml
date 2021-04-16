@@ -3,90 +3,21 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '8a80fa983a6c64cdd550cc6816637fbab9f5d80d'
-    oldFile: !uuid '04f9d0b79d514f06c7563455f0c95d199cd9f931'
-  /addons/crud:
-    newFile: !uuid 'ec26971c5009d065cf6e0273dacad5c504297ceb'
-    oldFile: !uuid '8426c482d0bcb2df284ff70569f602dc1b0692d6'
-  /addons/crud/controller:
-    newFile: !uuid 'ab9bd409b5bf0499e787ae14a5d5a536cf1a647a'
-    oldFile: !uuid '030734cdfba5f8d8e6ba7b033c5ab82b76cfac45'
-  /addons/crud/controller/Crud.php:
-    newFile: !uuid '8f3cd887ce10ccd34779b2898c2090387598b921'
-    oldFile: !uuid '30af720ddac26d3ee3e2f2c1610ce5ca0d4c9faf'
-  /addons/lazy:
-    newFile: !uuid '600d5e8fb0c3c4e5c823071b010fae7777a28e7c'
-    oldFile: !uuid '3faf4197adf6d45b0c4fbeedb2a812b12a6d5c8e'
-  /addons/lazy/controller:
-    newFile: !uuid '3b670f27ffa115f74c6fc8f6e7512d841ca451da'
-    oldFile: !uuid '031c92a25ed1034e9e97f0b59ad42f7eb505ec70'
-  /addons/lazy/controller/Lazy.php:
-    newFile: !uuid '7d1a6bd46e2643569657672bc17c82fb663fd3b6'
-    oldFile: !uuid 'abb6b514828f6f8d939c314b7dc0749b45c3b0ac'
-  /app:
-    newFile: !uuid 'a075de27f3620fc6a6e7311e25e266da88a37c2d'
-    oldFile: !uuid 'f131f1aa242d6f6fcaebb931e7c32296b18e5967'
-  /app/BaseController.php:
-    newFile: !uuid 'eb1979353554cdbcafa53a53e9cf4bb9f42cf9db'
-    oldFile: !uuid '06c248be8e4cb493a99702e938ff7e66f10acaa4'
-  /app/admin:
-    newFile: !uuid 'bae1716bfb24ec7d9244606a00c84c0b87db2e8a'
-    oldFile: !uuid 'b1115b66f9d02e13bd1dbbc440780008d87f1645'
-  /app/admin/common.php:
-    newFile: !uuid 'e3bcaefb31a211aecfffdd77bd28015c9c52ade1'
-    oldFile: !uuid '7ed52d5e6f0d517e3a8c98f5d7c2f4b91e96fc44'
-  /app/admin/controller:
-    newFile: !uuid '422bf2c9f6be3d1eda56587fb006c9497ec0044e'
-    oldFile: !uuid 'f2ba6e8035649ab3defe18f4e16cdfadd1e40f0f'
-  /app/admin/controller/Crud.php:
-    newFile: !uuid '58ade4caf98e3ce080aca56da43a65624246de64'
-    oldFile: !uuid 'f8799d33f410d2a954ded0973870e27a3d53d094'
-  /app/admin/controller/Example.php:
-    newFile: !uuid '4a9f06bd2e9d6cec38dda867c0786a8dea49ef13'
-    oldFile: !uuid '98ff7d34d28ffe97a058886aaf3cc415bf02acd2'
-  /app/admin/service:
-    newFile: !uuid 'b161597f1502a36e4c86633d3c8ac508b3993eeb'
-    oldFile: !uuid '0a6fbea53e4efc61fed6953d07cc4d860e4a7740'
-  /app/admin/service/ThinkAddons.php:
-    newFile: !uuid '2ae0a7f8c22b1ef7367923edd3d063d91914834c'
-    oldFile: !uuid '1df6083dcfd2fae99f9431e163e5f0c0a956ac19'
-  /app/admin/view:
-    newFile: !uuid 'b7195b95aae6f4b8db863dff70cf7ef7b8106103'
-    oldFile: !uuid '955c8391b484242e7bdc2209436d6a1561da307e'
-  /app/admin/view/layout:
-    newFile: !uuid '0bc16a9ab9a31da5f15c817e52c50600b7bb7e2b'
-    oldFile: !uuid '938985239675c2ebd6e4299622e62d1cf73c85a6'
-  /app/admin/view/layout/default.html:
-    newFile: !uuid '3f54040ec9b29b51a7830bdc15abe40c23d3c983'
-    oldFile: !uuid '99e57ddac7ae7e50143222ef79243d3746cc1ab9'
-  /app/common:
-    newFile: !uuid '14d5ad7bbbcbe7407f4d46b9100cac73ab5db936'
-    oldFile: !uuid '8142e2652fe0c9e129775992b2908b933dc5f067'
-  /app/common.php:
-    newFile: !uuid '1489340e5efbc8edd5c75bfc55c9e22f9b2104a3'
-    oldFile: !uuid '8f9914a8ec8433c4546f00b8f3ccf26eb4f3957e'
-  /app/common/controller:
-    newFile: !uuid 'ece17dcb7cb790efab188a2b7c7d3e84c805ec02'
-    oldFile: !uuid 'ea2db99f1f2824c41dbb5b19980ca00f256b6716'
-  /app/common/controller/AddonBase.php:
-    newFile: !uuid 'dd99ab6d07ba3acf020f15952f82d96a72636d1a'
-    oldFile: !uuid '0b02e3bb420024e975449017590aaf6f0ae91fa4'
-  /app/lang:
-    newFile: !uuid 'c1f156a014740422b31ea1775bc506e9f2588808'
-    oldFile: null
-  /app/lang/zh-cn:
-    newFile: !uuid 'c0d865e6ae4e3960bae681b9312a03a6f6c4673b'
-    oldFile: null
-  /app/lang/zh-cn/addons.php:
-    newFile: !uuid '2fc6cd7534a5f086d30d85c020d99b8647c8398f'
-    oldFile: null
-  /config:
-    newFile: !uuid '2722f54bcd810f3d7f667752b01500cb137ac3e7'
-    oldFile: !uuid '651a29f75ac1fd5334c8adb2690a0b4307fb84e0'
-  /config/site.php:
-    newFile: !uuid '47e7ce97424b270c7ff7e00e90e30f010409ff72'
-    oldFile: !uuid '2178c111ac3ab9561884a4bc663a40adf15c981f'
-gitCommitId: !uuid 'b6f009b3fecf2fec7c562fc480942838910c8be5'
+    newFile: !uuid 'd70a4ecad31fe11a99951b75ee020d56f87d28e1'
+    oldFile: !uuid '8a80fa983a6c64cdd550cc6816637fbab9f5d80d'
+  /addons/store:
+    newFile: !uuid '8c67632b7df24f484705dad62da4005be5aca815'
+    oldFile: !uuid '22cd16ab2db756d5be60b6d2ae72c059db97cde2'
+  /addons/store/view:
+    newFile: !uuid 'bc248cfcc822f584a21cf9eb195424f32bfa743d'
+    oldFile: !uuid '0f96257827a89c91697ab8160956749bb8c9da28'
+  /addons/store/view/photos:
+    newFile: !uuid 'd6600554fa58ae2d9294e6e5d7cbbe1c75ebc2ec'
+    oldFile: !uuid '38dae8a64ef4b1e36a6b972e2108c3bd8ea49cba'
+  /addons/store/view/photos/file.html:
+    newFile: !uuid '0103b5f418b97470b3283a7d166e39f2d50f50d3'
+    oldFile: !uuid '704cd5f25b2578b0e4430e3892a44f2940b26f78'
+gitCommitId: !uuid '1fc25eecff51a60691bd24feb612befba57993f2'
 renames: {
   }
-revisionId: 270
+revisionId: 271
