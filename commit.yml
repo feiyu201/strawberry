@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid 'd70a4ecad31fe11a99951b75ee020d56f87d28e1'
-    oldFile: !uuid '8a80fa983a6c64cdd550cc6816637fbab9f5d80d'
-  /addons/store:
-    newFile: !uuid '8c67632b7df24f484705dad62da4005be5aca815'
-    oldFile: !uuid '22cd16ab2db756d5be60b6d2ae72c059db97cde2'
-  /addons/store/view:
-    newFile: !uuid 'bc248cfcc822f584a21cf9eb195424f32bfa743d'
-    oldFile: !uuid '0f96257827a89c91697ab8160956749bb8c9da28'
-  /addons/store/view/photos:
-    newFile: !uuid 'd6600554fa58ae2d9294e6e5d7cbbe1c75ebc2ec'
-    oldFile: !uuid '38dae8a64ef4b1e36a6b972e2108c3bd8ea49cba'
-  /addons/store/view/photos/file.html:
-    newFile: !uuid '0103b5f418b97470b3283a7d166e39f2d50f50d3'
-    oldFile: !uuid '704cd5f25b2578b0e4430e3892a44f2940b26f78'
-gitCommitId: !uuid '1fc25eecff51a60691bd24feb612befba57993f2'
+  /app:
+    newFile: !uuid '64317d012dfb701e73baa985e902a98bf37b3bee'
+    oldFile: !uuid 'a075de27f3620fc6a6e7311e25e266da88a37c2d'
+  /app/admin:
+    newFile: !uuid 'e2a424660c77dd35c2e9f509f18448aa20bf37b3'
+    oldFile: !uuid 'bae1716bfb24ec7d9244606a00c84c0b87db2e8a'
+  /app/admin/view:
+    newFile: !uuid 'f2d06c2936de43d115dfdfc0f7b2ce3b5137de24'
+    oldFile: !uuid 'b7195b95aae6f4b8db863dff70cf7ef7b8106103'
+  /app/admin/view/caomei:
+    newFile: !uuid 'ea7b34e8361fad9f8df318a5d06a2e7808357171'
+    oldFile: !uuid '0c094ff100f99957fb6433adf06eb8dbe4fe312f'
+  /app/admin/view/caomei/payqr.html:
+    newFile: !uuid '9db460fc6dee38ecc94ecbb84df60981fa9b03bf'
+    oldFile: !uuid '547fd5aa27d89012ed0234fe598c0e35ba58d4d5'
+gitCommitId: !uuid '6ed0f0a5aa222e32bf3ab97408cced2a7f88a94a'
 renames: {
   }
-revisionId: 271
+revisionId: 272
