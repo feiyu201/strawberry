@@ -97,7 +97,7 @@
 		});
 
 		form.on("submit(add)", function (data) {
-			okUtils.ajax("http://stapi.shiliucrm.com/api/user/login", "post", data.field, true).done(function (response) {
+			okUtils.ajax("https://www.caomei.zone/api/user/login", "post", data.field, true).done(function (response) {
 				//console.log(response);
 				if (response.code == 1) {
 					okLayer.greenTickMsg("登录成功", function () {
@@ -131,7 +131,7 @@
 
 		//注册
 		form.on("submit(reg)", function (data) {
-			okUtils.ajax("http://stapi.shiliucrm.com/api/user/reg", "post", data.field, true).done(function (response) {
+			okUtils.ajax("https://www.caomei.zone/api/user/reg", "post", data.field, true).done(function (response) {
 				//console.log(response);
 				if (response.code == 1) {
 					okLayer.greenTickMsg("注册成功", function () {
