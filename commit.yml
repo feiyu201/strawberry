@@ -3,21 +3,21 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '64317d012dfb701e73baa985e902a98bf37b3bee'
-    oldFile: !uuid 'a075de27f3620fc6a6e7311e25e266da88a37c2d'
+    newFile: !uuid '58e2b65e7ac176dde18969732cfe5cac429adc27'
+    oldFile: !uuid '64317d012dfb701e73baa985e902a98bf37b3bee'
   /app/admin:
-    newFile: !uuid 'e2a424660c77dd35c2e9f509f18448aa20bf37b3'
-    oldFile: !uuid 'bae1716bfb24ec7d9244606a00c84c0b87db2e8a'
+    newFile: !uuid '32803ad0e0ec902bfb896e488833220b8ad8940d'
+    oldFile: !uuid 'e2a424660c77dd35c2e9f509f18448aa20bf37b3'
   /app/admin/view:
-    newFile: !uuid 'f2d06c2936de43d115dfdfc0f7b2ce3b5137de24'
-    oldFile: !uuid 'b7195b95aae6f4b8db863dff70cf7ef7b8106103'
+    newFile: !uuid '39a7541ae0d5772716e66126e6d7ccb7853fb0aa'
+    oldFile: !uuid 'f2d06c2936de43d115dfdfc0f7b2ce3b5137de24'
   /app/admin/view/caomei:
-    newFile: !uuid 'ea7b34e8361fad9f8df318a5d06a2e7808357171'
-    oldFile: !uuid '0c094ff100f99957fb6433adf06eb8dbe4fe312f'
-  /app/admin/view/caomei/payqr.html:
-    newFile: !uuid '9db460fc6dee38ecc94ecbb84df60981fa9b03bf'
-    oldFile: !uuid '547fd5aa27d89012ed0234fe598c0e35ba58d4d5'
-gitCommitId: !uuid '6ed0f0a5aa222e32bf3ab97408cced2a7f88a94a'
+    newFile: !uuid '08a173e52bfdcca3bae99ccf248a1fd404a47ce4'
+    oldFile: !uuid 'ea7b34e8361fad9f8df318a5d06a2e7808357171'
+  /app/admin/view/caomei/login.html:
+    newFile: !uuid '983fda41e05ddb2bd140665d04b747caa9ac1b41'
+    oldFile: !uuid '79608a8427b9b0e14db12d0e174145f5ae03cb40'
+gitCommitId: !uuid '0cf3be8cdeeeea73f94ef36e6bb158764ba78e45'
 renames: {
   }
-revisionId: 272
+revisionId: 273
