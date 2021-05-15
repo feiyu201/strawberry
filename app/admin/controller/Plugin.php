@@ -501,6 +501,6 @@ class Plugin extends AdminBase
      */
     protected static function getServerUrl()
     {
-        return 'http://stapi.shiliucrm.com';
+       return 'https://www.caomei.zone';
     }
 }
