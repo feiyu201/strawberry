@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '1bc3e9f4ec3fcb21a7e6d1afe10a162b1285aabb'
-    oldFile: !uuid '58e2b65e7ac176dde18969732cfe5cac429adc27'
+    newFile: !uuid 'c0f609c1b8fab492986338507053159d948ecd00'
+    oldFile: !uuid '1bc3e9f4ec3fcb21a7e6d1afe10a162b1285aabb'
   /app/admin:
-    newFile: !uuid 'd8e4825164fbe5c053e9c76ac4f5e1551d8ee60a'
-    oldFile: !uuid '32803ad0e0ec902bfb896e488833220b8ad8940d'
+    newFile: !uuid '8c104212a7a36ae0428ebe336e451c74f9d373c5'
+    oldFile: !uuid 'd8e4825164fbe5c053e9c76ac4f5e1551d8ee60a'
   /app/admin/controller:
-    newFile: !uuid '4b7ee2feb5f839eefa52793f984fa11173add154'
-    oldFile: !uuid '422bf2c9f6be3d1eda56587fb006c9497ec0044e'
-  /app/admin/controller/Caomei.php:
-    newFile: !uuid 'd8063f850c7b21405a6401553f467c8b5c0eb07a'
-    oldFile: !uuid '0ff711697d879f57308804a8a8d2a39c4cfb5919'
-gitCommitId: !uuid 'fdcd5ebbdf8df0179961bdb5640ec540b47a9d24'
+    newFile: !uuid '749832c3632bd738321e5e485d8729dbb4177439'
+    oldFile: !uuid '4b7ee2feb5f839eefa52793f984fa11173add154'
+  /app/admin/controller/Plugin.php:
+    newFile: !uuid 'a3f1c9ed4d5d7eedb6effb43aa325fae01fb4516'
+    oldFile: !uuid '78fa4aed6b81cf8b909703dde791f35e5cb5cf3e'
+gitCommitId: !uuid '495d19e40e6a2f311ecb843d222217f6d16b0fb7'
 renames: {
   }
-revisionId: 274
+revisionId: 275
