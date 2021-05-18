@@ -3,6 +3,8 @@
 #### 介绍
 基于ThinkPHP6+Layui+vue+easywechat开发的开源开发框架
 
+小程序支付 小程序授权 小程序获取手机号都有了
+
 自动生成API接口和接口文档
 
 一键自动生成CRUD
