@@ -442,7 +442,7 @@ EOT;
             <br>
             <div class="footer">
                 
-                <h6>版权所有 2019-2020 © <a href="http://stadmin.shiliucrm.com" target="_blank">草莓万能开发框架</a></h6>
+                <h6>版权所有 2019-2021 © <a href="https://www.caomei.zone/store" target="_blank">草莓万能开发框架</a></h6>
             </div>
         </div>
 
