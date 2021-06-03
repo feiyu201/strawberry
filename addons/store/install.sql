@@ -1,6 +1,7 @@
 DROP TABLE IF EXISTS `__PREFIX__brand`;
 CREATE TABLE `__PREFIX__brand` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
+  `admin_id` int(11) UNSIGNED NOT NULL COMMENT '管理员id',
   `logo` char(255) NOT NULL DEFAULT '' COMMENT 'logo图标',
   `name` char(30) NOT NULL COMMENT '名称',
   `website_url` char(255) NOT NULL DEFAULT '' COMMENT '官网地址',
@@ -29,6 +30,7 @@ ALTER TABLE `__PREFIX__brand_category_join` CHANGE `id` `id` INT(11) UNSIGNED NO
 DROP TABLE IF EXISTS `__PREFIX__goods`;
 CREATE TABLE `__PREFIX__goods` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
+  `admin_id` int(11) UNSIGNED NOT NULL COMMENT '管理员',
   `brand_id` int(11) UNSIGNED DEFAULT '0' COMMENT '品牌id',
   `site_type` tinyint(1) NOT NULL DEFAULT '-1' COMMENT '商品类型（跟随站点类型一致[0销售, 1展示, 2自提, 3虚拟销售, 4销售+自提]）',
   `title` char(60) NOT NULL DEFAULT '' COMMENT '标题',
@@ -84,6 +86,7 @@ ALTER TABLE `__PREFIX__goods_browse` ADD INDEX(`goods_id`);
 DROP TABLE IF EXISTS `__PREFIX__goods_category`;
 CREATE TABLE `__PREFIX__goods_category` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
+  `admin_id` int(11) UNSIGNED NOT NULL COMMENT '管理员id',
   `pid` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '父id',
   `icon` char(255) NOT NULL DEFAULT '' COMMENT 'icon图标',
   `name` char(60) NOT NULL DEFAULT '' COMMENT '名称',
@@ -152,6 +155,7 @@ ALTER TABLE `__PREFIX__goods_favor` ADD INDEX(`goods_id`);
 DROP TABLE IF EXISTS `__PREFIX__goods_photo`;
 CREATE TABLE `__PREFIX__goods_photo` (
   `id` int(11) UNSIGNED NOT NULL COMMENT '自增id',
+  `admin_id` int(11) UNSIGNED NOT NULL COMMENT '管理员id',
   `goods_id` int(11) UNSIGNED NOT NULL DEFAULT '0' COMMENT '商品id',
   `md5` varchar(60) DEFAULT NULL COMMENT '图片MD5',
   `images` varchar(700) DEFAULT NULL COMMENT '图片路径',

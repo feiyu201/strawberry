@@ -4,6 +4,8 @@ namespace addons\store\controller;
 use app\common\controller\AddonBase;
 use think\facade\Request;
 use \addons\store\model\Goods as GoodsM;
+use think\facade\Session;
+
 require_once(app()->getRootPath().'/addons/store/common.php');
 
 class Increase extends AddonBase
@@ -155,6 +157,9 @@ class Increase extends AddonBase
                 'seo_desc',
                 'place',
             ]);
+            //加入管理员id关联
+            $admin_id = Session::get('admin.id');
+            $data['admin_id'] = $admin_id;
             $data['place_origin'] = $param['districtId'];
             if (!empty($param['images']) && count($param['images']) >0) {
                 $data['images'] = join(',',$param['images']);
