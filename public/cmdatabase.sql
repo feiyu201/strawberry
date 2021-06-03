@@ -337,7 +337,30 @@ INSERT INTO `cm_test1_name` (`id`, `name`) VALUES
 
 -- --------------------------------------------------------
 
+-- 表cm_config 结构
+CREATE TABLE IF NOT EXISTS `cm_config` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '变量名',
+  `group` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '分组',
+  `title` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '变量标题',
+  `tip` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '变量描述',
+  `type` varchar(30) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '类型:string,text,int,bool,array,datetime,date,file',
+  `value` text COLLATE utf8mb4_unicode_ci COMMENT '变量值',
+  `content` text COLLATE utf8mb4_unicode_ci COMMENT '变量字典数据',
+  `rule` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '验证规则',
+  `extend` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '扩展属性',
+  `setting` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '' COMMENT '配置',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='系统配置';
 
+
+/*!40000 ALTER TABLE `cm_config` DISABLE KEYS */;
+INSERT INTO `cm_config` (`id`, `name`, `group`, `title`, `tip`, `type`, `value`, `content`, `rule`, `extend`, `setting`) VALUES
+	(1, 'name', 'basic', '站点名称', '请填写站点名称', 'string', '草莓万能开发框架是最好的框架', '', 'required', 'class="layui-input"', NULL),
+	(2, 'beian', 'basic', '备案号', '粤ICP备15000000号-1', 'string', '', '', '', 'class="layui-input"', NULL),
+	(18, 'baidumap', 'map', '百度API', '请配置百度地图API', 'string', 'api', NULL, '', 'class="layui-input"', NULL),
+	(20, 'baidumapscrect', 'map', '百度SECRET', '请配置百度地图', 'string', 'secret', NULL, '', '', NULL);
 
 --
 -- 转储表的索引
