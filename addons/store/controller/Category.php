@@ -4,6 +4,7 @@ namespace addons\store\controller;
 use app\common\controller\AddonBase;
 use addons\store\model\GoodsCategory;
 use think\facade\Request;
+use think\facade\Session;
 
 class Category extends AddonBase
 {
@@ -34,12 +35,22 @@ class Category extends AddonBase
      * @return \think\response\Json
      */
     public function categorySelect(){
+
         $pid = 0;
         function select($pid) {
-            $i = GoodsCategory::where('pid',$pid)->field('name as title')->field(true)->select();
+            $admin_id = Session::get('admin.id');
+            $con1 =array(
+                'pid'=>$pid,
+                'admin_id'=>$admin_id
+            );
+            $i = GoodsCategory::where($con1)->field('name as title')->field(true)->select();
             $child = [];
             foreach ($i as $k1 => $v1) {
-                $l = GoodsCategory::where('pid',$v1['id'])->field('name as title')->field(true)->select();
+                $con2 =array(
+                    'pid'=>$v1['id'],
+                    'admin_id'=>$admin_id
+                );
+                $l = GoodsCategory::where($con2)->field('name as title')->field(true)->select();
                 $child[] = $v1;
                 foreach ($l as $k2 => $v2) {
                     $child[] = $v2;
@@ -122,7 +133,6 @@ class Category extends AddonBase
             $update = Request::only(['icon','name','vice_name','describe','bg_color','big_images','is_home_recommended','sort','is_enable','seo_title','seo_keywords','seo_desc','id']);
             GoodsCategory::update($update);
             return \app\common\http\Json::success('更新成功');
-
         }
         return \app\common\http\Json::error();
     }
@@ -134,6 +144,8 @@ class Category extends AddonBase
             if($update['pid'] == 'null') {
                 $update['pid'] = 0;
             }
+            $admin_id = Session::get('admin.id');
+            $update['admin_id'] = $admin_id;
             GoodsCategory::create($update);
             return \app\common\http\Json::success('创建成功');
         }
