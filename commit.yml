@@ -2,19 +2,31 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '7e722248d538442ec319ce0d70911f9f1e299cc2'
-    oldFile: !uuid 'adb35361836f2645643e08c4ff4d7fe03badc9d0'
-  /app/admin:
-    newFile: !uuid 'f6dbfbed377f501a8ac7e1bbfcc2ccb9df5e6032'
-    oldFile: !uuid 'a04eed238373243be4cb8e69fe7958003c4006a6'
-  /app/admin/controller:
-    newFile: !uuid '7f12ecb0617d30e2621202c958e5db277217ee53'
-    oldFile: !uuid '749832c3632bd738321e5e485d8729dbb4177439'
-  /app/admin/controller/Crud.php:
-    newFile: !uuid '75674d3649f4159a6f89d7dcb4d8176199fd739e'
-    oldFile: !uuid '58ade4caf98e3ce080aca56da43a65624246de64'
-gitCommitId: !uuid 'ee524b945aaaa51405774c5d0448fd9fffd6b42f'
+  /addons:
+    newFile: !uuid '5db2d1bf709e24c98145e3001567f5b0747ffdb8'
+    oldFile: !uuid 'd70a4ecad31fe11a99951b75ee020d56f87d28e1'
+  /addons/store:
+    newFile: !uuid '4c3d3cfdfa1a533613cf8a7fb1d46aee86ddfd36'
+    oldFile: !uuid '8c67632b7df24f484705dad62da4005be5aca815'
+  /addons/store/controller:
+    newFile: !uuid '0b06a9df4bf0e932b1bf9c1374a5d09d9f411368'
+    oldFile: !uuid '197167c277286ae3b93b166e100b22e2d2994cec'
+  /addons/store/controller/Brand.php:
+    newFile: !uuid '68bf28c7e5fde51574d610b622ca9a35cc81d7d1'
+    oldFile: !uuid '3d543517803701bd4052586a46ffcba1fc099601'
+  /addons/store/controller/Category.php:
+    newFile: !uuid '18ca239c279dc4460fc8ace6bfcb01df821b7db2'
+    oldFile: !uuid '35508bf4d9a38296d239b329a21f2dc313ecc598'
+  /addons/store/controller/Goods.php:
+    newFile: !uuid '82781b7221365487cc56d454527c0a7e028ff8b9'
+    oldFile: !uuid '6309d2d77e32302aad5a47f31977d049049ec403'
+  /addons/store/controller/Increase.php:
+    newFile: !uuid '554d977aec1ab0af01fa6067dfdddd9f8c23a1ff'
+    oldFile: !uuid '470c021d88f9f6d6e9cf08288f5aaea47e893987'
+  /addons/store/install.sql:
+    newFile: !uuid '6604d35f08d6fb156fcbd4667075a6b3b3277111'
+    oldFile: !uuid 'c09897c042d8c59657354ae1145c2a868cdb6ca0'
+gitCommitId: !uuid 'aefdc5e0fe6f9d359721ff8bd8542c4758f01346'
 renames: {
   }
-revisionId: 281
+revisionId: 282
