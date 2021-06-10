@@ -15,9 +15,9 @@ class Login extends BaseController
         /* if($this->request->isPost()){
     		$this->error('111');
     	} */
-        if (Session::has('admin')) {
-            $this->error(__('You are logged'),  url('index/index'));
-        }
+        // if (Session::has('admin')) {
+        //     $this->error(__('You are logged'),  url('index/index'));
+        // }
 
         //判断是否启用社会化登入
         $social_login = whetherToUsePlugin('social_login')? true:false;
@@ -27,9 +27,9 @@ class Login extends BaseController
     
     public function signin()
     {
-        if (Session::has('admin')) {
-            $this->error(__('You are logged'), 'index/index');
-        }
+        // if (Session::has('admin')) {
+        //     $this->error(__('You are logged'), 'index/index');
+        // }
         $username = $this->request->param('username');
         $password = $this->request->param('password');
         $keep_login = $this->request->param('keep_login');
