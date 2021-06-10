@@ -85,9 +85,9 @@ class AdminBase extends BaseController
             //开始认证
             $auth = new \Auth();
             $result = $auth->check($route, $admin_id);
-            // if (!$result) {
-            //     $this->error('您无此操作权限!', 'javascript:;');
-            // }
+            if (!$result) {
+                 $this->error('您无此操作权限!', 'javascript:login/index');
+            }
         }
     }
 }
