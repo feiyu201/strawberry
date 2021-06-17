@@ -1,0 +1,49 @@
+{extend name="layout/default" /}
+
+{block name="head"}
+<title>操作日志</title>
+{/block}
+{block name="content"}
+<div class="ok-body">
+    <!--模糊搜索区域-->
+    <div class="layui-row">
+    </div>
+    <!--数据表格-->
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+    <!--js逻辑-->
+</div>
+{/block}
+{block name="scripts"}
+<script>
+    layui.use(["element", "jquery", "table"], function () {
+        let table = layui.table;
+        // let form = layui.form;
+        let $ = layui.jquery;
+
+        okLoading.close($);
+        let userTable = table.render({
+            elem: '#tableId',
+            url: '{:url("adminlog/index")}',
+            limit: 20,
+            page:true,
+            // toolbar:true,
+            height: 'full',
+            cols: [[
+                { type: "checkbox", fixed: "left" },
+                { field: "id", title: "ID", width: 100, sort: true },
+                { field: "admin_id", title: "管理员id", width: 100 },
+                { field: "url", title: "操作地址", width: 300 },
+                { field: "method", title: "访问方式", width: 100 },
+                { field: "content", title: "内容", width: 800 },
+                { field: "create_time", title: "创建时间", width: 200 }
+            ]],
+            done: function (res, curr, count) {
+                console.info(res, curr, count);
+            }
+        });
+
+
+
+    })
+</script>
+{/block}

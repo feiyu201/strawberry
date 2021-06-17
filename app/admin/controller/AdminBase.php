@@ -6,7 +6,7 @@ use app\BaseController;
 use think\facade\Session;
 use think\facade\View;
 use think\facade\Request;
-
+use app\admin\service\SystemLogService;
 class AdminBase extends BaseController
 {
     /**
@@ -48,6 +48,31 @@ class AdminBase extends BaseController
             $this->error('登录已过期，请重新登录', url('login/index'));
         }
     }
+
+    /**
+     * 获取真实IP
+     * @return mixed
+     */
+    protected function getRealIp()
+    {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        if (isset($_SERVER['HTTP_X_FORWARDED_FOR']) && preg_match_all('#\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}#s', $_SERVER['HTTP_X_FORWARDED_FOR'], $matches)) {
+            foreach ($matches[0] AS $xip) {
+                if (!preg_match('#^(10|172\.16|192\.168)\.#', $xip)) {
+                    $ip = $xip;
+                    break;
+                }
+            }
+        } elseif (isset($_SERVER['HTTP_CLIENT_IP']) && preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (isset($_SERVER['HTTP_CF_CONNECTING_IP']) && preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $_SERVER['HTTP_CF_CONNECTING_IP'])) {
+            $ip = $_SERVER['HTTP_CF_CONNECTING_IP'];
+        } elseif (isset($_SERVER['HTTP_X_REAL_IP']) && preg_match('/^([0-9]{1,3}\.){3}[0-9]{1,3}$/', $_SERVER['HTTP_X_REAL_IP'])) {
+            $ip = $_SERVER['HTTP_X_REAL_IP'];
+        }
+        return $ip;
+    }
+
     protected function checkAuth()
     {
         // 获取当前用户
@@ -73,6 +98,22 @@ class AdminBase extends BaseController
             $route = "addons/".$addon."/".Request::controller() . '/' . lcfirst(Request::action());
         } else {
             $route = app('http')->getName()."/".Request::controller() . '/' . lcfirst(Request::action());
+        }
+
+        if(Request::controller()){
+            $url = Request::url();
+            $ip = $this->getRealIp();
+            $params = Request::param();
+            $data = [
+                'admin_id'    => session('admin.id'),
+                'url'         => $url,
+                'method'      => Request::method(),
+                'ip'          => $ip,
+                'content'     => json_encode($params, JSON_UNESCAPED_UNICODE),
+                'useragent'   => $_SERVER['HTTP_USER_AGENT'],
+                'create_time' => time(),
+            ];
+            SystemLogService::instance()->save($data);
         }
         //var_dump($route);exit();
         $flag = false;
