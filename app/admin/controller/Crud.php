@@ -206,10 +206,8 @@ class Crud extends Admin
                 return count($arr) > 0 ? '->where(function($query){
                 $query' . implode(PHP_EOL, $arr) . ';
                 ' . implode(PHP_EOL, $ifarr) . '
-                $query->where(\'deletetime\',\'>\',0);
             })' : '->where(function($query){
                 '. implode(PHP_EOL, $ifarr). '
-                $query->where(\'deletetime\',\'>\',0);
             })';
         }
     }
