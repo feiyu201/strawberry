@@ -23,6 +23,7 @@ class Crud extends Admin
     public $tableColumns;
     public $layuiAddonUsed = [];
     public $importFile = [];
+    public $hasDeleteTime = FALSE;
     public function getList()
     {
         // 查询所有表
@@ -191,11 +192,97 @@ class Crud extends Admin
                     ";
             }
         }
+        
+        if($this->hasDeleteTime){
+            return count($arr) > 0 ? '->where(function($query){
+            $query' . implode(PHP_EOL, $arr) . ';
+            ' . implode(PHP_EOL, $ifarr) . '
+            $query->where(\'deletetime\',0);
+        })' : '->where(function($query){
+            '. implode(PHP_EOL, $ifarr). '
+            $query->where(\'deletetime\',0);
+        })';
+        }else{
+                return count($arr) > 0 ? '->where(function($query){
+                $query' . implode(PHP_EOL, $arr) . ';
+                ' . implode(PHP_EOL, $ifarr) . '
+                $query->where(\'deletetime\',\'>\',0);
+            })' : '->where(function($query){
+                '. implode(PHP_EOL, $ifarr). '
+                $query->where(\'deletetime\',\'>\',0);
+            })';
+        }
+    }
+    
+    
+    public function buildEdpotSearchCode($table, $tableColumns)
+    {
+        $arr = [];
+        $ifarr = [];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (endWith($item['field'], '_ids')) {
+                $ifarr[] = "
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->whereFindInSet('{$item['field']}',\${$item['field']}.'');
+                    }
+                    ";
+            } elseif (endWith($item['field'], '_id')) {
+                $ifarr[] = "
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->where('{$item['field']}',\${$item['field']});
+                    }
+                    ";
+            } elseif (endWith($item['field'], 'images') || endWith($item['field'], 'image') || endWith($item['field'], 'img') || endWith($item['field'], 'imgs')) {
+            } elseif (endWith($item['field'], 'content')) {
+            } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+            } elseif (endWith($item['field'], 'file')) {
+            } elseif (startWith($demo, 'select')) {
+                $ifarr[] = "
+                \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                if(\${$item['field']}){
+                    \$query->where('{$item['field']}',\${$item['field']});
+                }
+                ";
+            } elseif (explode('(', $item['type'])[0] === 'enum') {
+                $ifarr[] = "
+                \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                if(\${$item['field']}){
+                    \$query->where('{$item['field']}',\${$item['field']});
+                }
+                ";
+            } elseif (startWith($demo, 'set')) {
+                $ifarr[] = "
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->whereFindInSet('{$item['field']}',\${$item['field']}.'');
+                    }
+                    ";
+            } elseif (endWith($demo, 'time') || endWith($demo, '_at')) {
+                $arr[] = "->dateRange('{$item['field']}',\$this->request->param('{$item['field']}',null))";
+            } else {
+                $ifarr[] = "
+                    \${$item['field']} = \$this->request->param('{$item['field']}',null);
+                    if(\${$item['field']}){
+                        \$query->whereLike('{$item['field']}',\"%{\${$item['field']}}%\");
+                    }
+                    ";
+            }
+        }
+    
         return count($arr) > 0 ? '->where(function($query){
             $query' . implode(PHP_EOL, $arr) . ';
             ' . implode(PHP_EOL, $ifarr) . '
-        })' : '';
+            $query->where(\'deletetime\',\'>\',0);
+        })' : '->where(function($query){
+            '. implode(PHP_EOL, $ifarr). '
+            $query->where(\'deletetime\',\'>\',0);
+        })';
     }
+    
     public function buildTableFiledNameAttrTpl($tableColumns)
     {
         $str = '';
@@ -358,15 +445,18 @@ class Crud extends Admin
             'className' => $this->controlName($table),
             'modelClassName' => '\\app\\admin\\model\\' . $this->controlName($table),
             'witchMethod' =>  $this->getsWitchMethod($table),
+            'excelMethod' =>  $this->getExcelMethod($table),
             'addViewCode' => $this->buildAddCode($tableColumns),
             'editViewCode' => $this->buildEditCode($tableColumns),
             'table' => $table,
             'action' => $this->buildSearchCode($table, $tableColumns),
+            'actionEdpot'       => $this->buildEdpotSearchCode($table, $tableColumns),
             'relations' => json_encode($relation),
             'functions' => $this->buildIndexFunction($table),
         ]));
         fclose($controllerFile);
     }
+    
     public function crud(Request $request)
     {
         try {
@@ -402,9 +492,15 @@ class Crud extends Admin
             } catch (Exception $e) {
                 $createMenuError = "生成代码成功，已自动忽略菜单生成";
             }
+            
+            //判断是否存在deletetime字段
 
-
-
+            $tabList = $this->getTableColumn($table);
+            foreach ($tabList as $k => $v){
+                if($v['field'] == 'deletetime'){
+                    $this->hasDeleteTime = TRUE;
+                }
+            }
             // 生成controller
 
             $this->buildController($table);
@@ -414,11 +510,15 @@ class Crud extends Admin
 
             //生成添加编辑的公用view
             $this->buildIndexView($table);
+            
+            if($this->hasDeleteTime){
+                $this->buildEdpotView($table);
+            }
 
 
             //生成添加编辑的公用view
             $this->buildEditView($table);
-
+            
             $this->success($createMenuError ?? "生成成功");
         } catch (Exception $e) {
             $this->error($e->getMessage() . '/' . $e->getFile() . ':' . $e->getLine());
@@ -502,7 +602,7 @@ class Crud extends Admin
                     $arr[] = $this->buildSeachFormItem($comment, 'switch', $item['field'], $item);
                 } elseif (explode('(', $item['type'])[0] === 'set') {
                     $arr[] = $this->buildSeachFormItem($comment, 'comment-select', $item['field'], $item);
-                } elseif (endWith($item['field'], 'content')) {
+                } elseif (endWith($item['field'], 'content') || $item['field'] == 'deletetime') {
                     continue;
                 } elseif (explode('(', $item['type'])[0] === 'int' && (end($s) === 'time' || end($s) === 'at' || endWith($item['field'], 'time'))) {
                     $arr[] = $this->buildSeachFormItem($comment, 'datepicker', $item['field'], $item);
@@ -526,9 +626,9 @@ class Crud extends Admin
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
-
         $viewFile = fopen($path . "/" . "index.html", "w");
-        $this->layuiAddonUsed = ['form', 'okLayer', 'okUtils', 'table', '$' => 'jquery'];
+        $this->layuiAddonUsed = ['form', 'okLayer','upload', 'okUtils', 'table', '$' => 'jquery'];
+        
         fwrite($viewFile, $this->getReplacedStub('view/index.stub', [
             'table' => $table,
             'searchForm' => $this->getSearchFormHtml($table),
@@ -540,7 +640,36 @@ class Crud extends Admin
             'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
             'getListFunction' => $this->getViewIndexGetListFunction($table),
             'varInit' => $this->getEditVarInitJs(),
+            'edpotBtn'          => $this->hasDeleteTime?"<button class=\"layui-btn layui-btn-sm\" lay-event=\"edpot\">回收站</button>":"",
+            'delFunction'       => $this->hasDeleteTime?'trash':'del'
 
+        ]));
+        $this->layuiAddonUsed = [];
+        fclose($viewFile);
+    }
+    
+    public function buildEdpotView($table){
+        // 生成view index
+        $path = "../app/admin/view/" . $table;
+    
+        if (!file_exists($path)) {
+            mkdir($path, 0777, true);
+        }
+        $viewFile = fopen($path . "/" . "edpot.html", "w");
+        $this->layuiAddonUsed = ['form', 'okLayer','upload', 'okUtils', 'table', '$' => 'jquery'];
+    
+        fwrite($viewFile, $this->getReplacedStub('view/edpot.stub', [
+            'table' => $table,
+            'searchForm' => $this->getSearchFormHtml($table),
+            'tableCols' => $this->getEdpotViewFiledList($table),
+            'modalWidth' => '90%',
+            'modalHeight' => '90%',
+            'formInit' => $this->getViewIndexFormInit($table),
+            'imageList' => $this->getViewImgList($table),
+            'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
+            'getListFunction' => $this->getViewIndexGetListFunction($table),
+            'varInit' => $this->getEditVarInitJs(),
+    
         ]));
         $this->layuiAddonUsed = [];
         fclose($viewFile);
@@ -593,6 +722,7 @@ class Crud extends Admin
         }
         return implode(PHP_EOL, $tables);
     }
+    
     public function getViewIndexFormInit($table)
     {
         $list = $this->getTableColumn($table);
@@ -645,6 +775,7 @@ class Crud extends Admin
         $this->layuiAddonUsed = [];
         fclose($viewFile);
     }
+    
     public function getImportFile()
     {
         $str = "";
@@ -659,6 +790,7 @@ class Crud extends Admin
         }
         return $str;
     }
+    
     public function addEditAddonUsed($addon, $alias = null)
     {
         if (!in_array($addon, $this->layuiAddonUsed)) {
@@ -830,6 +962,74 @@ EOF;
         }
         return json_encode($addons);
     }
+    
+    public function getEdpotViewFiledList($table)
+    {
+        $list = $this->getTableColumn($table);
+        $str = "";
+        
+        foreach ($list as $elt => $item) {
+            $s = explode('_', $item['field']);
+            $comment = sprintf('{:__("%s")}', ucfirst($item['field']));
+            if (endWith($item['field'], 'switch') == 'switch') {
+                $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "',templet: function (d) {
+        var state = \"\";
+        if (d.switch == \"on\") {
+            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat' checked='checked' name='switch'  lay-skin='switch' lay-text='{:__(\"Open\")}|{:__(\"Close\")}' >\";
+        } else {
+            state = \"<input type='checkbox' value='\" + d.id + \"' id='switch' lay-filter='stat'  name='switch'  lay-skin='switch' lay-text='{:__(\"Open\")}|{:__(\"Close\")}' >\";
+        }
+        return state;
+    }}," . PHP_EOL;
+            } else {
+                if (endWith($item['field'], 'images') || endWith($item['field'], 'image') || endWith($item['field'], 'img') || endWith($item['field'], 'imgs')) {
+                    $field  = $item['field'];
+                    $name  = $comment;
+                    $this->addEditAddonUsed('laytpl');
+                    $code = (endWith($item['field'], 'images') || endWith($item['field'], 'imgs')) ? '' : "d.{$field} = [d.{$field}];";
+                    $str .= <<<EOF
+                    {
+                        field: '{$field}', title: '{$name}', templet: function (d) {
+                            d.imageField = '{$field}';
+                            {$code}
+                            return laytpl($("#imageTpl").html()).render(d);
+                        }
+                    },
+EOF;
+                } elseif (endWith($item['field'], 'file')) {
+                } elseif (endWith($item['field'], '_id')) {
+                    $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . $comment . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
+                } elseif (end($s) === 'ids') {
+                    $filedName = $this->controlName($item['field'], false) . 'List';
+                    $str .= "{field: '" . $filedName . "', title: '" . $comment . "',templet: function (d) {
+                        var data = d.{$filedName};
+                        var arr = [];
+                        for(var key in data){
+                            arr.push(data[key].name);
+                        }
+                        return arr.join(',')
+                    } }," . PHP_EOL;
+                } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
+                    $str .= "{field: '" . $item['field'] . "_name', title: '" . $comment . "',templet: function (d) {
+                        var data = d.{$item['field']};
+                        var arr = [];
+                        for(var item of data){
+                            arr.push(item.key+':'+item.value);
+                        }
+                        return arr.join(',')
+                    } }," . PHP_EOL;
+                } elseif (startWith($item['field'], 'set') || startWith($item['field'], 'select') || (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
+                    $str .= "{field: '" . $item['field'] . "_name', title: '" . $comment . "'}," . PHP_EOL;
+                } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
+                    $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "'}," . PHP_EOL;
+                }else {
+                    $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "'}," . PHP_EOL;
+                }
+            }
+        }
+        return $str;
+    }
+    
     public function getViewFiledList($table)
     {
         $list = $this->getTableColumn($table);
@@ -885,10 +1085,12 @@ EOF;
                         }
                         return arr.join(',')
                     } }," . PHP_EOL;
-                   } elseif (explode('(', $item['type'])[0] === 'enum' || $item['field'] === 'state') {
+                } elseif (startWith($item['field'], 'set') || startWith($item['field'], 'select') || (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state')) {
                     $str .= "{field: '" . $item['field'] . "_name', title: '" . $comment . "'}," . PHP_EOL;
                 } elseif (endWith($item['field'], 'city') && explode('(', $item['type'])[0] === 'varchar') {
                     $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "'}," . PHP_EOL;
+                }else if (endWith($item['field'],'deletetime')){
+                    continue;   //删除时间只在回收站显示
                 } else {
                     $str .= "{field: '" . $item['field'] . "', title: '" . $comment . "'}," . PHP_EOL;
                 }
@@ -953,6 +1155,8 @@ EOF;
                     <input type=\"hidden\" name=\"" . $item['field'] . "\" placeholder=\"\" autocomplete=\"off\" class=\"layui-input\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
                     {/if}
                     ";
+                }elseif ($item['field'] == 'deletetime'){
+                    continue;
                 } elseif (explode('(', $item['type'])[0] === 'enum' && $item['field'] === 'state') {
                     $str .= "<div class=\"layui-form-item\">
                             <label class=\"layui-form-label\">" . $comment . "</label>
@@ -1153,7 +1357,7 @@ EOF;
         $str = "";
         foreach ($arr as $k => $v) {
             $array = explode('=', $v);
-            $str .= "<option {if \${$table}.{$filed}??null == $array[0]}selected=\"\"{/if} value=\"$array[0]\">$array[1]</option>";
+            $str .= "<option {if (\${$table}.{$filed}??null) == $array[0]}selected=\"\"{/if} value=\"$array[0]\">$array[1]</option>";
         }
         return $str;
     }
@@ -1170,6 +1374,34 @@ EOF;
         }
         return $str;
     }
+    
+    
+    public function getExcelMethod($table){
+        $list = $this->getTableColumn($table);
+        $str = "\$insert_data = array();
+            foreach(\$excel_data as \$k=>\$v){
+        
+                
+        if(\$k>0){
+           
+        ";
+        
+        foreach ($list as $key => $value){
+            if ($value['field'] == 'id'){
+                continue;
+            }else{
+                if(!endWith($value['field'], 'time')){
+                    $str .= "\$insert_data[\$k]['" . $value['field'] . "'] = isset(\$v[" . (intval($key)-1) ."]) ? \$v[" . (intval($key)-1) ."] : '';" . PHP_EOL;
+                }
+            }
+        }
+        
+        $str .= "}
+            }";
+        
+        return $str;
+    }
+    
     public function getsWitchMethod($table)
     {
         $list = $this->getTableColumn($table);
