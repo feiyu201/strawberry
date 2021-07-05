@@ -1,6 +1,6 @@
 {extend name="layout/default" /}
 {block name="head"}
-    <title>{:__('List')}</title>
+    <title>回收站</title>
 {/block}
 {block name="content"}
 <div class="ok-body">
@@ -37,7 +37,7 @@
         {%formInit%}
         let userTable = table.render({
             elem: '#tableId',
-            url: '{:url("index")}',
+            url: '{:url("edpot")}',
             limit: 20,
             page: true,
             toolbar: true,
@@ -131,21 +131,22 @@
                 case "batchEnabled":
                     batchEnabled();
                     break;
-                case "batchDisabled":
-                    batchDisabled();
-                    break;
                 case "batchDel":
                     batchDel();
+                    break;
+                case "allEnabled":
+                    allEnabled();
                     break;
                 case "add":
                     add();
                     break;
-                case "leading":
-                    leading();
+                case "allDel":
+                    allDel();
                     break;
-                case 'edpot':
-                    edpot();
+                case 'depot':
+                    depot();
                     break;
+
             }
         });
 
@@ -156,7 +157,10 @@
                     edit(data);
                     break;
                 case "del":
-                    {%delFunction%}(data.id);
+                    del(data.id);
+                    break;
+                case "trash":
+                    trash(data.id);
                     break;
             }
         });
@@ -182,7 +186,7 @@
                 }
         {%getListFunction%}
         function batchEnabled() {
-            okLayer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
+            okLayer.confirm("是否批量还原", function (index) {
                 layer.close(index);
                 let idsStr = okUtils.tableBatchCheck(table);
                 if (idsStr) {
@@ -202,30 +206,47 @@
             });
         }
 
-        function batchDisabled() {
-            okLayer.confirm("{:__('Are you sure you want to disable batches?')}", function (index) {
-                layer.close(index);
-                let idsStr = okUtils.tableBatchCheck(table);
-                if (idsStr) {
-                    okUtils.ajax("{:url('setStop')}", "put", {idsStr: idsStr}, true).done(function (response) {
 
-                        if(response.code==1){
-                            console.log(response);
-                            okUtils.tableSuccessMsg(response.msg);
-                        }else{
-                            okLayer.greenTickMsg(response.msg, function () {
+        function allDel() {
+                    okLayer.confirm("是否全部删除", function (index) {
+                        layer.close(index);
+                        okUtils.ajax("{:url('allDel')}", "put", {}, true).done(function (response) {
 
-                            })
-                        }
-                    }).fail(function (error) {
-                        console.log(error)
+                                                        if(response.code==1){
+                                                            console.log(response);
+                                                            okUtils.tableSuccessMsg(response.msg);
+                                                        }else{
+                                                            okLayer.greenTickMsg(response.msg, function () {
+
+                                                            })
+                                                        }
+                                                    }).fail(function (error) {
+                                                        console.log(error)
+                                                    });
                     });
                 }
+
+        function allEnabled() {
+            okLayer.confirm("是否全部还原", function (index) {
+                layer.close(index);
+                okUtils.ajax("{:url('allEnabled')}", "put", {}, true).done(function (response) {
+
+                                        if(response.code==1){
+                                            console.log(response);
+                                            okUtils.tableSuccessMsg(response.msg);
+                                        }else{
+                                            okLayer.greenTickMsg(response.msg, function () {
+
+                                            })
+                                        }
+                                    }).fail(function (error) {
+                                        console.log(error)
+                                    });
             });
         }
 
         function batchDel() {
-            okLayer.confirm("{:__('Are you sure you want to delete batches?')}", function (index) {
+            okLayer.confirm("是否批量删除", function (index) {
                 layer.close(index);
                 let idsStr = okUtils.tableBatchCheck(table);
                 if (idsStr) {
@@ -247,14 +268,37 @@
             });
         }
 
+        function batchDel() {
+                    okLayer.confirm("是否批量删除", function (index) {
+                        layer.close(index);
+                        let idsStr = okUtils.tableBatchCheck(table);
+                        if (idsStr) {
+                            okUtils.ajax("{:url('delete')}", "delete", {idsStr: idsStr}, true).done(function (response) {
+                                //console.log(response);
+                                //okUtils.tableSuccessMsg(response.msg);
+                                if(response.code==1){
+                                    console.log(response);
+                                    okUtils.tableSuccessMsg(response.msg);
+                                }else{
+                                    okLayer.greenTickMsg(response.msg, function () {
+
+                                    })
+                                }
+                            }).fail(function (error) {
+                                console.log(error)
+                            });
+                        }
+                    });
+                }
+
         function add() {
             okLayer.open("{:__('Add')}", "{:url('add')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
                 userTable.reload();
             })
         }
 
-        function edpot() {
-            okLayer.open("回收站", "{:url('edpot')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
+        function depot() {
+            okLayer.open("回收站", "{:url('depot')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
                  userTable.reload();
             });
 
@@ -267,34 +311,28 @@
         }
 
         function edit(data) {
-            okLayer.open("{:__('Edit')}", "edit?id="+data.id, "{%modalWidth%}", "{%modalHeight%}", function (layero) {
-                //let iframeWin = window[layero.find("iframe")[0]["name"]];
-                //iframeWin.initForm(data);
-            }, function () {
-                userTable.reload();
-            })
+            okLayer.confirm("是否还原", function (index) {
+                                layer.close(index);
+                                let idsStr = okUtils.tableBatchCheck(table);
+                                if (idsStr) {
+                                    okUtils.ajax("{:url('setEnable')}", "delete", {id: data.id}, true).done(function (response) {
+                                        //console.log(response);
+                                        //okUtils.tableSuccessMsg(response.msg);
+                                        if(response.code==1){
+                                            console.log(response);
+                                            okUtils.tableSuccessMsg(response.msg);
+                                        }else{
+                                            okLayer.greenTickMsg(response.msg, function () {
+
+                                            })
+                                        }
+                                    }).fail(function (error) {
+                                        console.log(error)
+                                    });
+                                }
+                            });
+
         }
-
-
-        function trash(id) {
-                    okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
-                        okUtils.ajax("{:url('trash')}", "delete", {idsStr: id}, true).done(function (response) {
-
-
-                            if(response.code==1){
-                                console.log(response);
-                                okUtils.tableSuccessMsg(response.msg);
-                            }else{
-                                okLayer.greenTickMsg(response.msg, function () {
-
-                                })
-                            }
-
-                        }).fail(function (error) {
-                            console.log(error)
-                        });
-                    })
-                }
 
         function del(id) {
             okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
@@ -320,18 +358,17 @@
 <!-- 头工具栏模板 -->
 <script type="text/html" id="toolbarTpl">
     <div class="layui-btn-container">
-        <!--		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">{:__('Batche enable')}</button>-->
-        <!--		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">{:__('Batche disable')}</button>-->
-        <!--		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">{:__('Batche delete')}</button>-->
-        <button class="layui-btn layui-btn-sm" lay-event="add">{:__('Add')}</button>
-        <button class="layui-btn layui-btn-sm" id="leading">{:__('Import')}</button>
+        <button class="layui-btn layui-btn-sm" lay-event="batchEnabled">批量还原</button>
+        <button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDel">批量删除</button>
+        <button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="allEnabled">全部还原</button>
+        <button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="allDel">全部删除</button>
         {%edpotBtn%}
     </div>
 </script>
 <!-- 行工具栏模板 -->
 <script type="text/html" id="operationTpl">
-    <a href="javascript:" title="{:__('Edit')}" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
-    <a href="javascript:" title="{:__('Delete')}" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+    <a href="javascript:" title="还原" lay-event="edit"><i class="layui-icon">&#xe669;</i></a>
+    <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
 </script>
 
 <script type="text/html" id="statusTpl">
