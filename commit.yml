@@ -2,19 +2,13 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '07dd514dd9cf0ef8c4e05b86a2294082466b9f30'
-    oldFile: !uuid 'cec12b747116de268ca4a54dc5b9fe7341c83ed7'
-  /app/admin:
-    newFile: !uuid 'c484969d71726f47db8028db24c6c12e695a1787'
-    oldFile: !uuid '8b5e0605d9ad86aa6a57c842fb5bd53402f4a2ba'
-  /app/admin/controller:
-    newFile: !uuid 'e06271dcce049ed1ec50aaa5ce1d8ee766bd8cba'
-    oldFile: !uuid 'e6b3646fffb98f8c68fb0edcd66cc8da0ad3cd65'
-  /app/admin/controller/Crud.php:
-    newFile: !uuid '30bff8f9970bf4e701d2bbaa7bbd313ade9902a3'
-    oldFile: !uuid 'ed885489e74895d0d98d06c3952ed94659c9bac2'
-gitCommitId: !uuid '6612805fc45e7d9d782e8e72b583ee39dec69f4d'
+  /config:
+    newFile: !uuid '82f7ac7dc51044f15e0e9696f389f04f194656f7'
+    oldFile: !uuid '2722f54bcd810f3d7f667752b01500cb137ac3e7'
+  /config/app.php:
+    newFile: !uuid 'fb50fea9400bc862b300add77756c32c46e30cb5'
+    oldFile: !uuid '78b46387292c1d5afbdd63c7eda7a7dd845aea10'
+gitCommitId: !uuid '56268924f03e650bd064670cf3303b0b5b283183'
 renames: {
   }
-revisionId: 288
+revisionId: 289
