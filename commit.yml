@@ -3,24 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '887b12eb8c2d833fcf0d4bc9f74778fa67d77605'
-    oldFile: !uuid '161d40b472086d0b7954724ad43deeb4707b36f0'
+    newFile: !uuid '00e8500af4db2066ede8fd7f7a7de7563c3926d7'
+    oldFile: !uuid '887b12eb8c2d833fcf0d4bc9f74778fa67d77605'
   /app/admin:
-    newFile: !uuid 'fb186ffe8b8c94cf4d23a94a7c196cfbf668141f'
-    oldFile: !uuid 'fdf334392b4a64ef3ef5030f1658e019bd165a7e'
-  /app/admin/view:
-    newFile: !uuid 'e029503ae62fe61c904da49ce0d0e0d6463dddc7'
-    oldFile: !uuid '3c95601350b99d056109a28a87026c696a5d7761'
-  /app/admin/view/saichengfenlei:
+    newFile: !uuid '2a62d97663fdb1f51b75845f7546dabf7255faae'
+    oldFile: !uuid 'fb186ffe8b8c94cf4d23a94a7c196cfbf668141f'
+  /app/admin/model:
+    newFile: !uuid 'd1d52c98e0d688f41d66effd9786026add653593'
+    oldFile: !uuid 'efd491f0a5aa85d2fa2317b9782404fe55372a51'
+  /app/admin/model/Contract.php:
     newFile: null
-    oldFile: !uuid '6407a91e04852ad0c553a6152d7d7fa181aaba70'
-  /app/admin/view/saichengfenlei/edit.html:
-    newFile: null
-    oldFile: !uuid '3d6ec707859bd5ee0eaf2daf1cb7d8ffec553210'
-  /app/admin/view/saichengfenlei/index.html:
-    newFile: null
-    oldFile: !uuid '7d2be4db12b03b9bab101cbed3c75231a2d1e2b5'
-gitCommitId: !uuid 'dc2962c4d7e8eac3711549cb0529420857b0de9c'
+    oldFile: !uuid '47342c9770223e5e17b2f63a35c50e3d6d300481'
+gitCommitId: !uuid '82c13f399942a9d8284eaee9923940f0be0b8168'
 renames: {
   }
-revisionId: 299
+revisionId: 300
