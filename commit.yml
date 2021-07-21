@@ -2,19 +2,55 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '9c817a8757515f0d93b05323da9ae23e49583ebe'
-    oldFile: !uuid '4e806a05dda5ef74cfdaec241c7ce0cbcb4b139d'
-  /app/admin:
-    newFile: !uuid '81577bb1cadda6393225c926eab8aad510829bf3'
-    oldFile: !uuid '31e6b9c214ef2a42824f26f001026073c5de8a01'
-  /app/admin/controller:
-    newFile: !uuid '0c6bdcec985e4d7569907553fa37f2e51030cfcc'
-    oldFile: !uuid 'fb4b7cdc0f0c4397460602a1df13c7b459686b49'
-  /app/admin/controller/Saichengfenlei.php:
+  /addons:
+    newFile: !uuid '2060e4df99cb25d3d2de9c938ee26394e8789b90'
+    oldFile: !uuid '84c77c0184bb57f682ecba13bdfd245686be5d32'
+  /addons/wechat:
     newFile: null
-    oldFile: !uuid '523dcca1cf252e5374f75966e7895b5ac832a1b7'
-gitCommitId: !uuid '5d83ea392894c3350f069337f8998edfb6f93579'
+    oldFile: !uuid '3a9635be0a57700c2233aea61f6a30ee40de34b6'
+  /addons/wechat/Plugin.php:
+    newFile: null
+    oldFile: !uuid '623581274647293eced155b56b86542d58f3f55a'
+  /addons/wechat/config.php:
+    newFile: null
+    oldFile: !uuid 'd18729a7838fbcd9b02e7054c5fc916330527a9e'
+  /addons/wechat/controller:
+    newFile: null
+    oldFile: !uuid 'ba04700f108772c72c941c1b39ac33f72c6981c9'
+  /addons/wechat/controller/Wx.php:
+    newFile: null
+    oldFile: !uuid '00adad12b350a4d2c487b6a34a9c4865e1558ab4'
+  /addons/wechat/install.sql:
+    newFile: null
+    oldFile: !uuid '5aad734382330e9a781bc62eafdc0876d89ca9cc'
+  /addons/wechat/model:
+    newFile: null
+    oldFile: !uuid 'e49fecbe5a2e78af6547f4bfb1914f7d1447a977'
+  /addons/wechat/model/Wx.php:
+    newFile: null
+    oldFile: !uuid '1349802559038e5ed32b62987ee68dd1fe8c3181'
+  /addons/wechat/view:
+    newFile: null
+    oldFile: !uuid '3e50e55a34a30804b9516c708ada99aa18391891'
+  /addons/wechat/view/info.html:
+    newFile: null
+    oldFile: !uuid '296d6498d5c43050a076fe710a5f604c4805b299'
+  /addons/wechat/view/layout:
+    newFile: null
+    oldFile: !uuid '3fcbc58011076184916c7c1ccdf65c0cbd266f90'
+  /addons/wechat/view/layout/default.html:
+    newFile: null
+    oldFile: !uuid 'f25c8049f0e57ec8fad5de6209984a1f42acddb4'
+  /addons/wechat/view/wx:
+    newFile: null
+    oldFile: !uuid 'e74f569e3407e59f22d0b8b1c102f17f41e87b2a'
+  /addons/wechat/view/wx/edit.html:
+    newFile: null
+    oldFile: !uuid '5529653c1e04af0d67ce0707c9cb722a2b08b020'
+  /addons/wechat/view/wx/index.html:
+    newFile: null
+    oldFile: !uuid 'b0ae1093b7e6d03ae21fdec85675e1831f257a59'
+gitCommitId: !uuid 'b3e87027d2ad8f860bedb1135ed366a2ef3418f1'
 renames: {
   }
-revisionId: 307
+revisionId: 308
