@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'fe130e97265387fa324b2e75b649d4152132261f'
-    oldFile: !uuid '92ac063ab4c7581493cbe08f5e5d5cb9d3aef0a6'
+    newFile: !uuid '2402131a66cd8c3eb8589c29c421025eae42d685'
+    oldFile: !uuid 'fe130e97265387fa324b2e75b649d4152132261f'
   /app/admin:
-    newFile: !uuid '46530b8acf8a7eba9fd8c4749c35b00b6a64393b'
-    oldFile: !uuid '108146941f93af038e5230c40b3b6be935c188ee'
+    newFile: !uuid 'd6cd84f7d4aca2f412c427620a305eb63299332f'
+    oldFile: !uuid '46530b8acf8a7eba9fd8c4749c35b00b6a64393b'
   /app/admin/model:
-    newFile: !uuid '3fc309766cf84a4ae9d314934c00039cf8e7c191'
-    oldFile: !uuid 'a5113b5cbd669cfa017b1d62e1c104a478c4bf95'
-  /app/admin/model/HetongNav.php:
+    newFile: !uuid '2287fdfe28cf0b1539d5f747bab8642e1d9a9fa5'
+    oldFile: !uuid '3fc309766cf84a4ae9d314934c00039cf8e7c191'
+  /app/admin/model/Saichengfenlei.php:
     newFile: null
-    oldFile: !uuid '14b5c9fb86d4651adf00bc0b438bba922d05aaf8'
-gitCommitId: !uuid 'c7c1b1103053dcfe5f368782b0032e486d75c740'
+    oldFile: !uuid 'abf1faebaa28a38c5fb15a0cde76b310de961b82'
+gitCommitId: !uuid '5639b0f87b33ec3383900e91a72189196862a757'
 renames: {
   }
-revisionId: 302
+revisionId: 303
