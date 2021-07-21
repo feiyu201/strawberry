@@ -25,11 +25,11 @@ return [
             'hostname'          => Env::get('database.hostname', '127.0.0.1'),
             // 数据库名
 
-            'database'          => Env::get('database.database', 'saichengdb'),
+            'database'          => Env::get('database.database', ''),
             // 用户名
-            'username'          => Env::get('database.username', 'saichengdb'),
+            'username'          => Env::get('database.username', 'root'),
             // 密码
-            'password'          => Env::get('database.password', '6nyxNjTMcStxzrfc'),
+            'password'          => Env::get('database.password', ''),
 
             // 端口
             'hostport'          => Env::get('database.hostport', '3306'),
