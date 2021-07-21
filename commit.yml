@@ -3,24 +3,24 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '161d40b472086d0b7954724ad43deeb4707b36f0'
-    oldFile: !uuid '7da7858732a880d48024ec8e7307cc7b2f211659'
+    newFile: !uuid '887b12eb8c2d833fcf0d4bc9f74778fa67d77605'
+    oldFile: !uuid '161d40b472086d0b7954724ad43deeb4707b36f0'
   /app/admin:
-    newFile: !uuid 'fdf334392b4a64ef3ef5030f1658e019bd165a7e'
-    oldFile: !uuid '2185f0655b48c4ad577006fb0c52bc54d3458bfa'
+    newFile: !uuid 'fb186ffe8b8c94cf4d23a94a7c196cfbf668141f'
+    oldFile: !uuid 'fdf334392b4a64ef3ef5030f1658e019bd165a7e'
   /app/admin/view:
-    newFile: !uuid '3c95601350b99d056109a28a87026c696a5d7761'
-    oldFile: !uuid '5767929cf594d27dcdba06ff3ab352f2f6d576c4'
-  /app/admin/view/hetong_nav:
+    newFile: !uuid 'e029503ae62fe61c904da49ce0d0e0d6463dddc7'
+    oldFile: !uuid '3c95601350b99d056109a28a87026c696a5d7761'
+  /app/admin/view/saichengfenlei:
     newFile: null
-    oldFile: !uuid '2a0fe4c17aeab4ad3e058c76057c296819608cec'
-  /app/admin/view/hetong_nav/edit.html:
+    oldFile: !uuid '6407a91e04852ad0c553a6152d7d7fa181aaba70'
+  /app/admin/view/saichengfenlei/edit.html:
     newFile: null
-    oldFile: !uuid '745b88f716356f0b8ef4f0ba292ba855688f884c'
-  /app/admin/view/hetong_nav/index.html:
+    oldFile: !uuid '3d6ec707859bd5ee0eaf2daf1cb7d8ffec553210'
+  /app/admin/view/saichengfenlei/index.html:
     newFile: null
-    oldFile: !uuid '097e672020c366a5aed0e5dac7401761b9b40cf3'
-gitCommitId: !uuid '37207ed9f50a089b527bfa21aefdcb9e3d7a2be6'
+    oldFile: !uuid '7d2be4db12b03b9bab101cbed3c75231a2d1e2b5'
+gitCommitId: !uuid 'dc2962c4d7e8eac3711549cb0529420857b0de9c'
 renames: {
   }
-revisionId: 298
+revisionId: 299
