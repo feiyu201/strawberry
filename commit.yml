@@ -3,24 +3,24 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '2487df3246e29e00598831c291ed42245b6c486d'
-    oldFile: !uuid '6622f6fca86b8a85df01d32befb191a4dc385929'
+    newFile: !uuid '7da7858732a880d48024ec8e7307cc7b2f211659'
+    oldFile: !uuid '2487df3246e29e00598831c291ed42245b6c486d'
   /app/admin:
-    newFile: !uuid '1beb1a1d1011fd4da725d17c858f8cc254343efd'
-    oldFile: !uuid '60f5d1449f05ff94872784470dede9f2f234f419'
+    newFile: !uuid '2185f0655b48c4ad577006fb0c52bc54d3458bfa'
+    oldFile: !uuid '1beb1a1d1011fd4da725d17c858f8cc254343efd'
   /app/admin/view:
-    newFile: !uuid '24fa2e76f2a46f0d1732e9c62935fd99ef3fbc4e'
-    oldFile: !uuid 'be634e165a4d35e38380aa7a6204ff7a88acced9'
-  /app/admin/view/contract:
+    newFile: !uuid '5767929cf594d27dcdba06ff3ab352f2f6d576c4'
+    oldFile: !uuid '24fa2e76f2a46f0d1732e9c62935fd99ef3fbc4e'
+  /app/admin/view/category:
     newFile: null
-    oldFile: !uuid '2778c037174b7bf9bcac47811b9c9570fa76675b'
-  /app/admin/view/contract/edit.html:
+    oldFile: !uuid '473c4a35c3628b9902e9e23953c2efca37b90a08'
+  /app/admin/view/category/edit.html:
     newFile: null
-    oldFile: !uuid 'efbdd1d1a76c94670f58b8a21b11a04ee777c4c9'
-  /app/admin/view/contract/index.html:
+    oldFile: !uuid '43ba0c6073fa0e340b1735520aff16d2387161f7'
+  /app/admin/view/category/index.html:
     newFile: null
-    oldFile: !uuid '651b7cfcdd65e5f49be9a9bdca21ceae5b5ec384'
-gitCommitId: !uuid '0bbd6786141a35a8b36a98f08bb604b49e9550a9'
+    oldFile: !uuid '7d2be4db12b03b9bab101cbed3c75231a2d1e2b5'
+gitCommitId: !uuid '6e3126677f0cacc5fe7f738f933a09aee9284a4f'
 renames: {
   }
-revisionId: 296
+revisionId: 297
