@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'a8a704e5ac8fb419e49ec1a3cb646a6742c1e8a6'
-    oldFile: !uuid '9f88e9ab2e081b0080b338d06c5d849f856e14f7'
+    newFile: !uuid '4e806a05dda5ef74cfdaec241c7ce0cbcb4b139d'
+    oldFile: !uuid 'a8a704e5ac8fb419e49ec1a3cb646a6742c1e8a6'
   /app/admin:
-    newFile: !uuid '7fed15a177ff7db3cb581757463e01f7091af2b1'
-    oldFile: !uuid '08a74c9b23b29d44ee8ed348627441cf3ffc7007'
+    newFile: !uuid '31e6b9c214ef2a42824f26f001026073c5de8a01'
+    oldFile: !uuid '7fed15a177ff7db3cb581757463e01f7091af2b1'
   /app/admin/controller:
-    newFile: !uuid '8ec78659d3a73a0dc54c6876444f0e696b979f3a'
-    oldFile: !uuid 'd4565ab4173c7c0f9f3eaba2e3abf385d99c17df'
-  /app/admin/controller/Contract.php:
+    newFile: !uuid 'fb4b7cdc0f0c4397460602a1df13c7b459686b49'
+    oldFile: !uuid '8ec78659d3a73a0dc54c6876444f0e696b979f3a'
+  /app/admin/controller/HetongNav.php:
     newFile: null
-    oldFile: !uuid '7183196ccfc4c2c46ba13cba216ecdc7bf342843'
-gitCommitId: !uuid 'd6751f28c8916e5d424cfd7d8b15a80776d1b7ae'
+    oldFile: !uuid '600d07beb06f8c02022e90d004d8f255849fa181'
+gitCommitId: !uuid 'f94195983bd36d912592455af125d28c48902937'
 renames: {
   }
-revisionId: 305
+revisionId: 306
