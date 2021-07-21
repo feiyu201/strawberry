@@ -1,0 +1,420 @@
+{extend name="layout/default" /}
+{block name="head"}
+    <title>{:__('List')}</title>
+{/block}
+{block name="content"}
+<div class="ok-body">
+    <form class="layui-form" lay-filter="search-form">  
+
+        <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" >
+        <div class="layui-form-item" >
+                
+        <div class="layui-inline">
+            <label class="layui-form-label">序号</label>
+            <div class="layui-input-inline">
+            <input type="text" name="id" id="id"  autocomplete="off" class="layui-input" placeholder="序号">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">公众号名称</label>
+            <div class="layui-input-inline">
+            <input type="text" name="name" id="name"  autocomplete="off" class="layui-input" placeholder="公众号名称">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">APPID</label>
+            <div class="layui-input-inline">
+            <input type="text" name="appid" id="appid"  autocomplete="off" class="layui-input" placeholder="APPID">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">Appsecret</label>
+            <div class="layui-input-inline">
+            <input type="text" name="appsecret" id="appsecret"  autocomplete="off" class="layui-input" placeholder="Appsecret">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">Token</label>
+            <div class="layui-input-inline">
+            <input type="text" name="token" id="token"  autocomplete="off" class="layui-input" placeholder="Token">
+            </div>
+        </div>
+
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">Encodingaeskey</label>
+            <div class="layui-input-inline">
+            <input type="text" name="encodingaeskey" id="encodingaeskey"  autocomplete="off" class="layui-input" placeholder="Encodingaeskey">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline">
+            
+                <select name="type"  id="type"  >
+                    <option value="">选择</option>
+                    <option  value="1">服务号</option><option  value="2">订阅号</option>
+                </select>
+                
+            </div>
+        </div>
+      
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>{:__('Search')}
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-primary icon-btn" type="reset">
+                                <i class="layui-icon layui-icon-refresh-3"></i>{:__('Reset')}
+                            </button>
+                </div>
+            </div>
+        </div>
+    </form>
+     <!--数据表格-->
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+{/block}
+{block name="scripts"}
+
+<!--js逻辑-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script>
+    layui.use(["form","okLayer","upload","okUtils","table","jquery"], function () {
+        let form = layui.form;
+let okLayer = layui.okLayer;
+let upload = layui.upload;
+let okUtils = layui.okUtils;
+let table = layui.table;
+let $ = layui.jquery;
+
+        
+
+        okLoading.close($);
+        
+        let userTable = table.render({
+            elem: '#tableId',
+            url: "{:addons_url('wechat://wx/index')}",
+            limit: 20,
+            page: true,
+            toolbar: true,
+            toolbar: "#toolbarTpl",
+            height:'full',
+            cellMinWidth: 120,
+            cols: [[
+                {type: "checkbox", fixed: "left"},
+                {field: 'id', title: '序号'},
+{field: 'name', title: '名称'},
+{field: 'appid', title: 'Appid'},
+{field: 'appsecret', title: 'Appsecret'},
+{field: 'token', title: 'Token'},
+{field: 'updatetime', title: '更新时间'},
+{field: 'encodingaeskey', title: 'Encodingaeskey'},
+{field: 'type', title: '类型'},
+
+                {title: "操作",  align: "center", fixed: "right", templet: "#operationTpl"}
+            ]],
+            done: function (res, curr, count) {
+                console.info(res, curr, count);
+            }
+        });
+
+        form.on("submit(search)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+        form.on("submit(reset)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+//监听开关事件
+        form.on('switch(stat)', function (data) {
+            var contexts;
+            var sta;
+            var x = data.elem.checked;//判断开关状态
+            if (x==true) {
+                contexts = "{:__('Open')}";
+                sta='on';
+            } else {
+                contexts = "{:__('Close')}";
+                sta='off';
+            }
+            //自定义弹窗
+            layer.open({
+                content:x==true? "{:__('Are you open')}":"{:__('Are you close')}"
+                , btn: ["{:__('OK')}", "{:__('Cancel')}"]
+                , yes: function (index, layero) {
+                    data.elem.checked = x;
+                    $.ajax({
+                        type: "post",
+                        url: '{:url("sw")}',
+                        data: {
+                            "id": data.value,
+                            "switch":sta
+                        },
+                        success: function (data) {
+                            if (data == 1) {
+                                layer.msg(x==true? "{:__('Open successful')}":"{:__('Close successful')}",
+                                    {icon: 1, time: 2000,});
+
+                                // 数据重载
+                                active.reload();
+                            }
+                        }
+                    });
+
+                    form.render();
+                    layer.close(index);
+
+                }
+                , btn2: function (index, layero) {
+                    //按钮【按钮二】的回调
+                    data.elem.checked = !x;
+                    form.render();
+                    layer.close(index);
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                , cancel: function () {
+                    //右上角关闭回调
+                    data.elem.checked = !x;
+                    form.render();
+                    // return false; //开启该代码可禁止点击该按钮关闭
+                }
+            });
+
+            return false;
+
+        });
+        table.on("toolbar(tableFilter)", function (obj) {
+            switch (obj.event) {
+                case "batchEnabled":
+                    batchEnabled();
+                    break;
+                case "batchDisabled":
+                    batchDisabled();
+                    break;
+                case "batchDel":
+                    batchDel();
+                    break;
+                case "add":
+                    add();
+                    break;
+                case "leading":
+                    leading();
+                    break;
+                case 'edpot':
+                    edpot();
+                    break;
+            }
+        });
+
+        table.on("tool(tableFilter)", function (obj) {
+            let data = obj.data;
+            switch (obj.event) {
+                case "edit":
+                    edit(data);
+                    break;
+                case "del":
+                    del(data.id);
+                    break;
+            }
+        });
+        upExcel();
+        function upExcel() {
+                    upload.render({
+                        elem: '#leading' //绑定元素
+                        ,url: '{:url("leading")}' //上传接口
+                        ,accept:'file'
+                        ,exts:'csv|xlsx'
+                        ,done: function(res){
+                            //上传完毕回调
+                            okLayer.greenTickMsg("导入成功", function () {
+                                userTable.reload();
+                                upExcel();
+                            });
+                        }
+                        ,error: function(){
+                            //请求异常回调
+                            console.log(error)
+                        }
+                    });
+                }
+        
+        function batchEnabled() {
+            okLayer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('setNormal')}", "put", {idsStr: idsStr}, true).done(function (response) {
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function batchDisabled() {
+            okLayer.confirm("{:__('Are you sure you want to disable batches?')}", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('setStop')}", "put", {idsStr: idsStr}, true).done(function (response) {
+
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function batchDel() {
+            okLayer.confirm("{:__('Are you sure you want to delete batches?')}", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('delete')}", "delete", {idsStr: idsStr}, true).done(function (response) {
+                        //console.log(response);
+                        //okUtils.tableSuccessMsg(response.msg);
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function add() {
+            okLayer.open("添加", "{:addons_url('wechat://wx/add')}", "90%", "90%", null, function () {
+                userTable.reload();
+            })
+        }
+
+        function edpot() {
+            okLayer.open("回收站", "{:addons_url('wechat://wx/edpot')}", "90%", "90%", null, function () {
+                 userTable.reload();
+            });
+
+        }
+
+        function leading(){
+            okLayer.open("导入", "{:addons_url('wechat://wx/leading')}", "90%", "90%", null, function () {
+                userTable.reload();
+            })
+        }
+
+        function edit(data) {
+            okLayer.open("编辑", "edit?id="+data.id, "90%", "90%", function (layero) {
+                //let iframeWin = window[layero.find("iframe")[0]["name"]];
+                //iframeWin.initForm(data);
+            }, function () {
+                userTable.reload();
+            })
+        }
+
+
+        function trash(id) {
+                    okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
+                        okUtils.ajax("{:url('trash')}", "delete", {idsStr: id}, true).done(function (response) {
+
+
+                            if(response.code==1){
+                                console.log(response);
+                                okUtils.tableSuccessMsg(response.msg);
+                            }else{
+                                okLayer.greenTickMsg(response.msg, function () {
+
+                                })
+                            }
+
+                        }).fail(function (error) {
+                            console.log(error)
+                        });
+                    })
+                }
+
+        function del(id) {
+            okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
+                okUtils.ajax("{:addons_url('wechat://wx/delete')}", "delete", {idsStr: id}, true).done(function (response) {
+
+
+                    if(response.code==1){
+                        console.log(response);
+                        okUtils.tableSuccessMsg(response.msg);
+                    }else{
+                        okLayer.greenTickMsg(response.msg, function () {
+
+                        })
+                    }
+
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            })
+        }
+    })
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+    <div class="layui-btn-container">
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">{:__('Batche enable')}</button>-->
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">{:__('Batche disable')}</button>-->
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">{:__('Batche delete')}</button>-->
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" id="leading">导入</button>
+        
+    </div>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+    <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+    <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+
+<script type="text/html" id="statusTpl">
+    {{#  if(d.status == 'normal'){ }}
+    <span class="layui-btn layui-btn-normal layui-btn-xs">{:__('Enable')}</span>
+    {{#  } else if(d.status != 'normal') { }}
+    <span class="layui-btn layui-btn-warm layui-btn-xs">{:__('Disable')}</span>
+    {{#  } }}
+</script>
+
+{/block}
