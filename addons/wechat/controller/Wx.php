@@ -19,21 +19,22 @@
 //  *   ```` ':.          ':::::::::'                  ::::..
 //  *                      '.:::::'                    ':'````..
 //  * +-----------------------------------------------------------------------
-namespace app\admin\controller;
+namespace addons\wechat\controller;
 
+use app\common\controller\AddonBase;
 use think\facade\View;
 use think\facade\Db;
 
-class {%className%} extends AdminBase
+class Wx extends AddonBase
 {
 
     public function initialize(){
 		parent::initialize();
-        $this->model = new {%modelClassName%}();
+        $this->model = new \addons\wechat\model\Wx();
     }
     public function index(){
 		if(!$this->request->isAjax()){
-        	return View::fetch();
+        	return $this->fetch();
 		}else{
 			return $this->getList();
 		}
@@ -43,8 +44,52 @@ class {%className%} extends AdminBase
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
    		$count = $this->model->count();
-   		$data = $this->model->with({%relations%})
-		   {%action%}
+   		$data = $this->model->with([])
+		   ->where(function($query){
+                $query->dateRange('updatetime',$this->request->param('updatetime',null));
+                
+                    $id = $this->request->param('id',null);
+                    if($id){
+                        $query->whereLike('id',"%{$id}%");
+                    }
+                    
+
+                    $name = $this->request->param('name',null);
+                    if($name){
+                        $query->whereLike('name',"%{$name}%");
+                    }
+                    
+
+                    $appid = $this->request->param('appid',null);
+                    if($appid){
+                        $query->whereLike('appid',"%{$appid}%");
+                    }
+                    
+
+                    $appsecret = $this->request->param('appsecret',null);
+                    if($appsecret){
+                        $query->whereLike('appsecret',"%{$appsecret}%");
+                    }
+                    
+
+                    $token = $this->request->param('token',null);
+                    if($token){
+                        $query->whereLike('token',"%{$token}%");
+                    }
+                    
+
+                    $encodingaeskey = $this->request->param('encodingaeskey',null);
+                    if($encodingaeskey){
+                        $query->whereLike('encodingaeskey',"%{$encodingaeskey}%");
+                    }
+                    
+
+                $type = $this->request->param('type',null);
+                if($type){
+                    $query->where('type',$type);
+                }
+                
+            })
 		   ->page($page,$limit)->select();
    		return json([
 				'code'=> 0,
@@ -53,12 +98,12 @@ class {%className%} extends AdminBase
    				'msg'=>__('Search successful')
    		]);
    }
-   {%functions%}
+   
 
    public function add(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
-            {%witchMethod%}
+            
                 
 	   		if( $this->model->save($data,false)){
 	   			$this->success(__('Add successful'));
@@ -66,13 +111,13 @@ class {%className%} extends AdminBase
 	   			$this->error(__('Add failed'));
 	   		}
 	   	}
-		{%addViewCode%}
-	   	return View::fetch('edit');
+		
+	   	return $this->fetch('edit');
    }
 
    public function edpot(){
    		if(!$this->request->isAjax()){
-           	return View::fetch();
+           	return $this->fetch();
    		}else{
    			return $this->getEdpot();
    		}
@@ -83,8 +128,53 @@ class {%className%} extends AdminBase
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
    		$count = $this->model->count();
-   		$data = $this->model->with({%relations%})
-		   {%actionEdpot%}
+   		$data = $this->model->with([])
+		   ->where(function($query){
+            $query->dateRange('updatetime',$this->request->param('updatetime',null));
+            
+                    $id = $this->request->param('id',null);
+                    if($id){
+                        $query->whereLike('id',"%{$id}%");
+                    }
+                    
+
+                    $name = $this->request->param('name',null);
+                    if($name){
+                        $query->whereLike('name',"%{$name}%");
+                    }
+                    
+
+                    $appid = $this->request->param('appid',null);
+                    if($appid){
+                        $query->whereLike('appid',"%{$appid}%");
+                    }
+                    
+
+                    $appsecret = $this->request->param('appsecret',null);
+                    if($appsecret){
+                        $query->whereLike('appsecret',"%{$appsecret}%");
+                    }
+                    
+
+                    $token = $this->request->param('token',null);
+                    if($token){
+                        $query->whereLike('token',"%{$token}%");
+                    }
+                    
+
+                    $encodingaeskey = $this->request->param('encodingaeskey',null);
+                    if($encodingaeskey){
+                        $query->whereLike('encodingaeskey',"%{$encodingaeskey}%");
+                    }
+                    
+
+                $type = $this->request->param('type',null);
+                if($type){
+                    $query->where('type',$type);
+                }
+                
+            $query->where('deletetime','>',0);
+        })
 		   ->page($page,$limit)->select();
    		return json([
 				'code'=> 0,
@@ -112,7 +202,20 @@ class {%className%} extends AdminBase
              $excel_data = $objPHPExcel->getSheet(0)->toArray();
 
 
-            {%excelMethod%}
+            $insert_data = array();
+            foreach($excel_data as $k=>$v){
+        
+                
+        if($k>0){
+           
+        $insert_data[$k]['name'] = isset($v[0]) ? $v[0] : '';
+$insert_data[$k]['appid'] = isset($v[1]) ? $v[1] : '';
+$insert_data[$k]['appsecret'] = isset($v[2]) ? $v[2] : '';
+$insert_data[$k]['token'] = isset($v[3]) ? $v[3] : '';
+$insert_data[$k]['encodingaeskey'] = isset($v[5]) ? $v[5] : '';
+$insert_data[$k]['type'] = isset($v[6]) ? $v[6] : '';
+}
+            }
 
 
    	   		if( $this->model->saveAll($insert_data,false)){
@@ -121,14 +224,14 @@ class {%className%} extends AdminBase
    	   			$this->error(__('Add failed'));
    	   		}
    	   	}
-   		{%addViewCode%}
-   	   	return View::fetch('leading');
+   		
+   	   	return $this->fetch('leading');
      }
 
    public function edit(){
 	   	if($this->request->isPost()){
 	   		$data = $this->request->post();
-            {%witchMethod%}
+            
             if( $this->model->find($data['id'])->save($data)){
 	   			$this->success(__('Editor successful'));
 	   		}else{
@@ -143,9 +246,9 @@ class {%className%} extends AdminBase
    		if(!$info){
 	   		$this->success(__('Parameter error'));
 	   	}
-		{%editViewCode%}
-	   	View::assign('{%table%}',$info);
-        return View::fetch('edit');
+		
+	   	$this->assign('wx',$info);
+        return $this->fetch('edit');
    }
 
    public function delete(){

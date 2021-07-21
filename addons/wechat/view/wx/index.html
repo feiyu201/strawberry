@@ -8,7 +8,68 @@
 
         <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" >
         <div class="layui-form-item" >
-                {%searchForm%}
+                
+        <div class="layui-inline">
+            <label class="layui-form-label">序号</label>
+            <div class="layui-input-inline">
+            <input type="text" name="id" id="id"  autocomplete="off" class="layui-input" placeholder="序号">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">公众号名称</label>
+            <div class="layui-input-inline">
+            <input type="text" name="name" id="name"  autocomplete="off" class="layui-input" placeholder="公众号名称">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">APPID</label>
+            <div class="layui-input-inline">
+            <input type="text" name="appid" id="appid"  autocomplete="off" class="layui-input" placeholder="APPID">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">Appsecret</label>
+            <div class="layui-input-inline">
+            <input type="text" name="appsecret" id="appsecret"  autocomplete="off" class="layui-input" placeholder="Appsecret">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">Token</label>
+            <div class="layui-input-inline">
+            <input type="text" name="token" id="token"  autocomplete="off" class="layui-input" placeholder="Token">
+            </div>
+        </div>
+
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">Encodingaeskey</label>
+            <div class="layui-input-inline">
+            <input type="text" name="encodingaeskey" id="encodingaeskey"  autocomplete="off" class="layui-input" placeholder="Encodingaeskey">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">类型</label>
+            <div class="layui-input-inline">
+            
+                <select name="type"  id="type"  >
+                    <option value="">选择</option>
+                    <option  value="1">服务号</option><option  value="2">订阅号</option>
+                </select>
+                
+            </div>
+        </div>
+      
                 <div class="layui-inline">
                     <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
                         <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>{:__('Search')}
@@ -29,15 +90,21 @@
 <!--js逻辑-->
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script>
-    layui.use({%layuiAddonUsed%}, function () {
-        {%varInit%}
+    layui.use(["form","okLayer","upload","okUtils","table","jquery"], function () {
+        let form = layui.form;
+let okLayer = layui.okLayer;
+let upload = layui.upload;
+let okUtils = layui.okUtils;
+let table = layui.table;
+let $ = layui.jquery;
+
         
 
         okLoading.close($);
-        {%formInit%}
+        
         let userTable = table.render({
             elem: '#tableId',
-            url: '{:url("index")}',
+            url: "{:addons_url('wechat://wx/index')}",
             limit: 20,
             page: true,
             toolbar: true,
@@ -46,8 +113,16 @@
             cellMinWidth: 120,
             cols: [[
                 {type: "checkbox", fixed: "left"},
-                {%tableCols%}
-                {title: "{:__('Action')}",  align: "center", fixed: "right", templet: "#operationTpl"}
+                {field: 'id', title: '序号'},
+{field: 'name', title: '名称'},
+{field: 'appid', title: 'Appid'},
+{field: 'appsecret', title: 'Appsecret'},
+{field: 'token', title: 'Token'},
+{field: 'updatetime', title: '更新时间'},
+{field: 'encodingaeskey', title: 'Encodingaeskey'},
+{field: 'type', title: '类型'},
+
+                {title: "操作",  align: "center", fixed: "right", templet: "#operationTpl"}
             ]],
             done: function (res, curr, count) {
                 console.info(res, curr, count);
@@ -156,7 +231,7 @@
                     edit(data);
                     break;
                 case "del":
-                    {%delFunction%}(data.id);
+                    del(data.id);
                     break;
             }
         });
@@ -180,7 +255,7 @@
                         }
                     });
                 }
-        {%getListFunction%}
+        
         function batchEnabled() {
             okLayer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
                 layer.close(index);
@@ -248,26 +323,26 @@
         }
 
         function add() {
-            okLayer.open("{:__('Add')}", "{:url('add')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
+            okLayer.open("添加", "{:addons_url('wechat://wx/add')}", "90%", "90%", null, function () {
                 userTable.reload();
             })
         }
 
         function edpot() {
-            okLayer.open("回收站", "{:url('edpot')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
+            okLayer.open("回收站", "{:addons_url('wechat://wx/edpot')}", "90%", "90%", null, function () {
                  userTable.reload();
             });
 
         }
 
         function leading(){
-            okLayer.open("{:__('Import')}", "{:url('leading')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
+            okLayer.open("导入", "{:addons_url('wechat://wx/leading')}", "90%", "90%", null, function () {
                 userTable.reload();
             })
         }
 
         function edit(data) {
-            okLayer.open("{:__('Edit')}", "edit?id="+data.id, "{%modalWidth%}", "{%modalHeight%}", function (layero) {
+            okLayer.open("编辑", "edit?id="+data.id, "90%", "90%", function (layero) {
                 //let iframeWin = window[layero.find("iframe")[0]["name"]];
                 //iframeWin.initForm(data);
             }, function () {
@@ -298,7 +373,7 @@
 
         function del(id) {
             okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
-                okUtils.ajax("{:url('delete')}", "delete", {idsStr: id}, true).done(function (response) {
+                okUtils.ajax("{:addons_url('wechat://wx/delete')}", "delete", {idsStr: id}, true).done(function (response) {
 
 
                     if(response.code==1){
@@ -323,15 +398,15 @@
         <!--		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">{:__('Batche enable')}</button>-->
         <!--		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">{:__('Batche disable')}</button>-->
         <!--		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">{:__('Batche delete')}</button>-->
-        <button class="layui-btn layui-btn-sm" lay-event="add">{:__('Add')}</button>
-        <button class="layui-btn layui-btn-sm" id="leading">{:__('Import')}</button>
-        {%edpotBtn%}
+        <button class="layui-btn layui-btn-sm" lay-event="add">添加</button>
+        <button class="layui-btn layui-btn-sm" id="leading">导入</button>
+        
     </div>
 </script>
 <!-- 行工具栏模板 -->
 <script type="text/html" id="operationTpl">
-    <a href="javascript:" title="{:__('Edit')}" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
-    <a href="javascript:" title="{:__('Delete')}" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+    <a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+    <a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
 </script>
 
 <script type="text/html" id="statusTpl">
@@ -341,5 +416,5 @@
     <span class="layui-btn layui-btn-warm layui-btn-xs">{:__('Disable')}</span>
     {{#  } }}
 </script>
-{%imageList%}
+
 {/block}
