@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '92ac063ab4c7581493cbe08f5e5d5cb9d3aef0a6'
-    oldFile: !uuid '00e8500af4db2066ede8fd7f7a7de7563c3926d7'
+    newFile: !uuid 'fe130e97265387fa324b2e75b649d4152132261f'
+    oldFile: !uuid '92ac063ab4c7581493cbe08f5e5d5cb9d3aef0a6'
   /app/admin:
-    newFile: !uuid '108146941f93af038e5230c40b3b6be935c188ee'
-    oldFile: !uuid '2a62d97663fdb1f51b75845f7546dabf7255faae'
+    newFile: !uuid '46530b8acf8a7eba9fd8c4749c35b00b6a64393b'
+    oldFile: !uuid '108146941f93af038e5230c40b3b6be935c188ee'
   /app/admin/model:
-    newFile: !uuid 'a5113b5cbd669cfa017b1d62e1c104a478c4bf95'
-    oldFile: !uuid 'd1d52c98e0d688f41d66effd9786026add653593'
-  /app/admin/model/Category.php:
+    newFile: !uuid '3fc309766cf84a4ae9d314934c00039cf8e7c191'
+    oldFile: !uuid 'a5113b5cbd669cfa017b1d62e1c104a478c4bf95'
+  /app/admin/model/HetongNav.php:
     newFile: null
-    oldFile: !uuid '04525f7b89df59fcdadb4a2cd5e103869e0463b8'
-gitCommitId: !uuid '3a881ead1225535d2ede8c450655a6884b8af49d'
+    oldFile: !uuid '14b5c9fb86d4651adf00bc0b438bba922d05aaf8'
+gitCommitId: !uuid 'c7c1b1103053dcfe5f368782b0032e486d75c740'
 renames: {
   }
-revisionId: 301
+revisionId: 302
