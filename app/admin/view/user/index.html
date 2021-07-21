@@ -1,0 +1,668 @@
+{extend name="layout/default" /}
+{block name="head"}
+    <title>{:__('List')}</title>
+{/block}
+{block name="content"}
+<div class="ok-body">
+    <form class="layui-form" lay-filter="search-form">  
+
+        <div class="layui-card layui-form" style="border:1px solid #e6e6e6;padding-top:10px" >
+        <div class="layui-form-item" >
+                
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Id')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="id" id="id"  autocomplete="off" class="layui-input" placeholder="{:__('Id')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Username')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="username" id="username"  autocomplete="off" class="layui-input" placeholder="{:__('Username')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Openid')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="openid" id="openid"  autocomplete="off" class="layui-input" placeholder="{:__('Openid')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Nickname')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="nickname" id="nickname"  autocomplete="off" class="layui-input" placeholder="{:__('Nickname')}">
+            </div>
+        </div>
+      
+
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Email')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="email" id="email"  autocomplete="off" class="layui-input" placeholder="{:__('Email')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Mobile')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="mobile" id="mobile"  autocomplete="off" class="layui-input" placeholder="{:__('Mobile')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Avatar')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="avatar" id="avatar"  autocomplete="off" class="layui-input" placeholder="{:__('Avatar')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Level')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="level" id="level"  autocomplete="off" class="layui-input" placeholder="{:__('Level')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Gender')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="gender" id="gender"  autocomplete="off" class="layui-input" placeholder="{:__('Gender')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Birthday')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="birthday" id="birthday"  autocomplete="off" class="layui-input" placeholder="{:__('Birthday')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Bio')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="bio" id="bio"  autocomplete="off" class="layui-input" placeholder="{:__('Bio')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Money')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="money" id="money"  autocomplete="off" class="layui-input" placeholder="{:__('Money')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Score')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="score" id="score"  autocomplete="off" class="layui-input" placeholder="{:__('Score')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Successions')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="successions" id="successions"  autocomplete="off" class="layui-input" placeholder="{:__('Successions')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Maxsuccessions')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="maxsuccessions" id="maxsuccessions"  autocomplete="off" class="layui-input" placeholder="{:__('Maxsuccessions')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Prevtime')}</label>
+            <div class="layui-input-inline">
+            <input type="text" id="prevtime" name="prevtime"  autocomplete="off" class="layui-input" placeholder="{:__('Prevtime')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Logintime')}</label>
+            <div class="layui-input-inline">
+            <input type="text" id="logintime" name="logintime"  autocomplete="off" class="layui-input" placeholder="{:__('Logintime')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Loginip')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="loginip" id="loginip"  autocomplete="off" class="layui-input" placeholder="{:__('Loginip')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Loginfailure')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="loginfailure" id="loginfailure"  autocomplete="off" class="layui-input" placeholder="{:__('Loginfailure')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Joinip')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="joinip" id="joinip"  autocomplete="off" class="layui-input" placeholder="{:__('Joinip')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Jointime')}</label>
+            <div class="layui-input-inline">
+            <input type="text" id="jointime" name="jointime"  autocomplete="off" class="layui-input" placeholder="{:__('Jointime')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Past_time')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="past_time" id="past_time"  autocomplete="off" class="layui-input" placeholder="{:__('Past_time')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Begin_time')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="begin_time" id="begin_time"  autocomplete="off" class="layui-input" placeholder="{:__('Begin_time')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Createtime')}</label>
+            <div class="layui-input-inline">
+            <input type="text" id="createtime" name="createtime"  autocomplete="off" class="layui-input" placeholder="{:__('Createtime')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Updatetime')}</label>
+            <div class="layui-input-inline">
+            <input type="text" id="updatetime" name="updatetime"  autocomplete="off" class="layui-input" placeholder="{:__('Updatetime')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Token')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="token" id="token"  autocomplete="off" class="layui-input" placeholder="{:__('Token')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Status')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="status" id="status"  autocomplete="off" class="layui-input" placeholder="{:__('Status')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Verification')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="verification" id="verification"  autocomplete="off" class="layui-input" placeholder="{:__('Verification')}">
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Inviter_mem_info_id')}</label>
+            <div class="layui-input-inline">
+            
+                <select name="inviter_mem_info_id"  id="inviter_mem_info_id">
+                    <option value="">{:__('Select')}</option>
+                </select>
+                
+            </div>
+        </div>
+      
+
+        <div class="layui-inline">
+            <label class="layui-form-label">{:__('Inviter_code')}</label>
+            <div class="layui-input-inline">
+            <input type="text" name="inviter_code" id="inviter_code"  autocomplete="off" class="layui-input" placeholder="{:__('Inviter_code')}">
+            </div>
+        </div>
+      
+                <div class="layui-inline">
+                    <button class="layui-btn layuiadmin-btn-useradmin" lay-submit="" lay-filter="search">
+                        <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>{:__('Search')}
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-primary icon-btn" type="reset">
+                                <i class="layui-icon layui-icon-refresh-3"></i>{:__('Reset')}
+                            </button>
+                </div>
+            </div>
+        </div>
+    </form>
+     <!--数据表格-->
+    <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+{/block}
+{block name="scripts"}
+
+<!--js逻辑-->
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script>
+    layui.use(["form","okLayer","upload","okUtils","table","jquery","laydate"], function () {
+        let form = layui.form;
+let okLayer = layui.okLayer;
+let upload = layui.upload;
+let okUtils = layui.okUtils;
+let table = layui.table;
+let $ = layui.jquery;
+let laydate = layui.laydate;
+
+        
+
+        okLoading.close($);
+        
+                //=============渲染字段上次登录时间组件
+                laydate.render({ 
+                          elem: "#prevtime"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段登录时间组件
+                laydate.render({ 
+                          elem: "#logintime"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段加入时间组件
+                laydate.render({ 
+                          elem: "#jointime"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段创建时间组件
+                laydate.render({ 
+                          elem: "#createtime"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+
+                //=============渲染字段更新时间组件
+                laydate.render({ 
+                          elem: "#updatetime"
+                          ,trigger:'click'
+                          ,type: 'datetime'
+                          ,range: true
+                        });
+        let userTable = table.render({
+            elem: '#tableId',
+            url: '{:url("index")}',
+            limit: 20,
+            page: true,
+            toolbar: true,
+            toolbar: "#toolbarTpl",
+            height:'full',
+            cellMinWidth: 120,
+            cols: [[
+                {type: "checkbox", fixed: "left"},
+                {field: 'id', title: '{:__("Id")}'},
+{field: 'username', title: '{:__("Username")}'},
+{field: 'openid', title: '{:__("Openid")}'},
+{field: 'nickname', title: '{:__("Nickname")}'},
+
+{field: 'email', title: '{:__("Email")}'},
+{field: 'mobile', title: '{:__("Mobile")}'},
+{field: 'avatar', title: '{:__("Avatar")}'},
+{field: 'level', title: '{:__("Level")}'},
+{field: 'gender', title: '{:__("Gender")}'},
+{field: 'birthday', title: '{:__("Birthday")}'},
+{field: 'bio', title: '{:__("Bio")}'},
+{field: 'money', title: '{:__("Money")}'},
+{field: 'score', title: '{:__("Score")}'},
+{field: 'successions', title: '{:__("Successions")}'},
+{field: 'maxsuccessions', title: '{:__("Maxsuccessions")}'},
+{field: 'prevtime', title: '{:__("Prevtime")}'},
+{field: 'logintime', title: '{:__("Logintime")}'},
+{field: 'loginip', title: '{:__("Loginip")}'},
+{field: 'loginfailure', title: '{:__("Loginfailure")}'},
+{field: 'joinip', title: '{:__("Joinip")}'},
+{field: 'jointime', title: '{:__("Jointime")}'},
+{field: 'past_time', title: '{:__("Past_time")}'},
+{field: 'begin_time', title: '{:__("Begin_time")}'},
+{field: 'createtime', title: '{:__("Createtime")}'},
+{field: 'updatetime', title: '{:__("Updatetime")}'},
+
+{field: 'status', title: '{:__("Status")}'},
+
+
+
+                {title: "{:__('Action')}",  align: "center", fixed: "right", templet: "#operationTpl"}
+            ]],
+            done: function (res, curr, count) {
+                console.info(res, curr, count);
+            }
+        });
+
+        form.on("submit(search)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+        form.on("submit(reset)", function (data) {
+            userTable.reload({
+                where: data.field,
+                page: {curr: 1}
+            });
+            return false;
+        });
+//监听开关事件
+        form.on('switch(stat)', function (data) {
+            var contexts;
+            var sta;
+            var x = data.elem.checked;//判断开关状态
+            if (x==true) {
+                contexts = "{:__('Open')}";
+                sta='on';
+            } else {
+                contexts = "{:__('Close')}";
+                sta='off';
+            }
+            //自定义弹窗
+            layer.open({
+                content:x==true? "{:__('Are you open')}":"{:__('Are you close')}"
+                , btn: ["{:__('OK')}", "{:__('Cancel')}"]
+                , yes: function (index, layero) {
+                    data.elem.checked = x;
+                    $.ajax({
+                        type: "post",
+                        url: '{:url("sw")}',
+                        data: {
+                            "id": data.value,
+                            "switch":sta
+                        },
+                        success: function (data) {
+                            if (data == 1) {
+                                layer.msg(x==true? "{:__('Open successful')}":"{:__('Close successful')}",
+                                    {icon: 1, time: 2000,});
+
+                                // 数据重载
+                                active.reload();
+                            }
+                        }
+                    });
+
+                    form.render();
+                    layer.close(index);
+
+                }
+                , btn2: function (index, layero) {
+                    //按钮【按钮二】的回调
+                    data.elem.checked = !x;
+                    form.render();
+                    layer.close(index);
+                    //return false 开启该代码可禁止点击该按钮关闭
+                }
+                , cancel: function () {
+                    //右上角关闭回调
+                    data.elem.checked = !x;
+                    form.render();
+                    // return false; //开启该代码可禁止点击该按钮关闭
+                }
+            });
+
+            return false;
+
+        });
+        table.on("toolbar(tableFilter)", function (obj) {
+            switch (obj.event) {
+                case "batchEnabled":
+                    batchEnabled();
+                    break;
+                case "batchDisabled":
+                    batchDisabled();
+                    break;
+                case "batchDel":
+                    batchDel();
+                    break;
+                case "add":
+                    add();
+                    break;
+                case "leading":
+                    leading();
+                    break;
+                case 'edpot':
+                    edpot();
+                    break;
+            }
+        });
+
+        table.on("tool(tableFilter)", function (obj) {
+            let data = obj.data;
+            switch (obj.event) {
+                case "edit":
+                    edit(data);
+                    break;
+                case "del":
+                    del(data.id);
+                    break;
+            }
+        });
+        upExcel();
+        function upExcel() {
+                    upload.render({
+                        elem: '#leading' //绑定元素
+                        ,url: '{:url("leading")}' //上传接口
+                        ,accept:'file'
+                        ,exts:'csv|xlsx'
+                        ,done: function(res){
+                            //上传完毕回调
+                            okLayer.greenTickMsg("导入成功", function () {
+                                userTable.reload();
+                                upExcel();
+                            });
+                        }
+                        ,error: function(){
+                            //请求异常回调
+                            console.log(error)
+                        }
+                    });
+                }
+        
+
+
+        function batchEnabled() {
+            okLayer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('setNormal')}", "put", {idsStr: idsStr}, true).done(function (response) {
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function batchDisabled() {
+            okLayer.confirm("{:__('Are you sure you want to disable batches?')}", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('setStop')}", "put", {idsStr: idsStr}, true).done(function (response) {
+
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function batchDel() {
+            okLayer.confirm("{:__('Are you sure you want to delete batches?')}", function (index) {
+                layer.close(index);
+                let idsStr = okUtils.tableBatchCheck(table);
+                if (idsStr) {
+                    okUtils.ajax("{:url('delete')}", "delete", {idsStr: idsStr}, true).done(function (response) {
+                        //console.log(response);
+                        //okUtils.tableSuccessMsg(response.msg);
+                        if(response.code==1){
+                            console.log(response);
+                            okUtils.tableSuccessMsg(response.msg);
+                        }else{
+                            okLayer.greenTickMsg(response.msg, function () {
+
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }
+            });
+        }
+
+        function add() {
+            okLayer.open("{:__('Add')}", "{:url('add')}", "90%", "90%", null, function () {
+                userTable.reload();
+            })
+        }
+
+        function edpot() {
+            okLayer.open("回收站", "{:url('edpot')}", "90%", "90%", null, function () {
+                 userTable.reload();
+            });
+
+        }
+
+        function leading(){
+            okLayer.open("{:__('Import')}", "{:url('leading')}", "90%", "90%", null, function () {
+                userTable.reload();
+            })
+        }
+
+        function edit(data) {
+            okLayer.open("{:__('Edit')}", "edit?id="+data.id, "90%", "90%", function (layero) {
+                //let iframeWin = window[layero.find("iframe")[0]["name"]];
+                //iframeWin.initForm(data);
+            }, function () {
+                userTable.reload();
+            })
+        }
+
+
+        function trash(id) {
+                    okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
+                        okUtils.ajax("{:url('trash')}", "delete", {idsStr: id}, true).done(function (response) {
+
+
+                            if(response.code==1){
+                                console.log(response);
+                                okUtils.tableSuccessMsg(response.msg);
+                            }else{
+                                okLayer.greenTickMsg(response.msg, function () {
+
+                                })
+                            }
+
+                        }).fail(function (error) {
+                            console.log(error)
+                        });
+                    })
+                }
+
+        function del(id) {
+            okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
+                okUtils.ajax("{:url('delete')}", "delete", {idsStr: id}, true).done(function (response) {
+
+
+                    if(response.code==1){
+                        console.log(response);
+                        okUtils.tableSuccessMsg(response.msg);
+                    }else{
+                        okLayer.greenTickMsg(response.msg, function () {
+
+                        })
+                    }
+
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            })
+        }
+    })
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+    <div class="layui-btn-container">
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-normal" lay-event="batchEnabled">{:__('Batche enable')}</button>-->
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-warm" lay-event="batchDisabled">{:__('Batche disable')}</button>-->
+        <!--		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">{:__('Batche delete')}</button>-->
+        <button class="layui-btn layui-btn-sm" lay-event="add">{:__('Add')}</button>
+        <button class="layui-btn layui-btn-sm" id="leading">{:__('Import')}</button>
+        
+    </div>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+    <a href="javascript:" title="{:__('Edit')}" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+    <a href="javascript:" title="{:__('Delete')}" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+
+<script type="text/html" id="statusTpl">
+    {{#  if(d.status == 'normal'){ }}
+    <span class="layui-btn layui-btn-normal layui-btn-xs">{:__('Enable')}</span>
+    {{#  } else if(d.status != 'normal') { }}
+    <span class="layui-btn layui-btn-warm layui-btn-xs">{:__('Disable')}</span>
+    {{#  } }}
+</script>
+
+{/block}
