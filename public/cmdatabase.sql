@@ -279,6 +279,70 @@ CREATE TABLE `cm_plugin` (
   UNIQUE KEY `name` (`name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='插件表';
 
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `cm_user`
+--
+
+CREATE TABLE `cm_user` (
+  `id` int UNSIGNED NOT NULL COMMENT 'ID',
+  `username` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '用户名',
+  `openid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT '微信信息',
+  `nickname` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '昵称',
+  `password` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
+  `salt` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码盐',
+  `email` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '电子邮箱',
+  `mobile` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '手机号',
+  `avatar` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '头像',
+  `level` tinyint UNSIGNED NOT NULL DEFAULT '0' COMMENT '等级',
+  `gender` tinyint UNSIGNED NOT NULL DEFAULT '0' COMMENT '性别',
+  `birthday` date DEFAULT NULL COMMENT '生日',
+  `bio` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '格言',
+  `money` decimal(10,2) UNSIGNED NOT NULL DEFAULT '0.00' COMMENT '余额',
+  `score` int UNSIGNED NOT NULL DEFAULT '0' COMMENT '积分',
+  `successions` int UNSIGNED NOT NULL DEFAULT '1' COMMENT '连续登录天数',
+  `maxsuccessions` int UNSIGNED NOT NULL DEFAULT '1' COMMENT '最大连续登录天数',
+  `prevtime` int DEFAULT NULL COMMENT '上次登录时间',
+  `logintime` int DEFAULT NULL COMMENT '登录时间',
+  `loginip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '登录IP',
+  `loginfailure` tinyint UNSIGNED NOT NULL DEFAULT '0' COMMENT '失败次数',
+  `joinip` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '加入IP',
+  `jointime` int DEFAULT NULL COMMENT '加入时间',
+  `past_time` int UNSIGNED DEFAULT NULL COMMENT '过期时间',
+  `begin_time` int UNSIGNED DEFAULT NULL COMMENT '开始时间',
+  `createtime` int DEFAULT NULL COMMENT '创建时间',
+  `updatetime` int DEFAULT NULL COMMENT '更新时间',
+  `token` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT 'Token',
+  `status` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '状态',
+  `verification` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '验证',
+  `inviter_mem_info_id` int DEFAULT NULL COMMENT '上级用户ID',
+  `inviter_code` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT '用户的邀请码'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='会员表' ROW_FORMAT=DYNAMIC;
+
+--
+-- 转储表的索引
+--
+
+--
+-- 表的索引 `cm_user`
+--
+ALTER TABLE `cm_user`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `username` (`username`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `cm_user`
+--
+ALTER TABLE `cm_user`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'ID', AUTO_INCREMENT=108;
+COMMIT;
+
+
 
 -- --------------------------------------------------------
 
