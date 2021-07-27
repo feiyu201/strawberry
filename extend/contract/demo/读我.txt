@@ -1,0 +1,11 @@
+1本DEMO开发环境：Eclipse for PHP Developers  Neon.3 Release (4.6.3)
+
+2.DEMO的文件：
+  cunnar.core.php   存证云底层的接口，主要是网络请求接口，签名接口
+  cunnar.api.php    存证云的协议接口，可以参照相应的协议文档
+     需要配置 appId、appSecret、url参数
+  contractTest.php  合同类的场景用例
+  saveTest.php      文件存证类的用例
+  hashTest.php      哈希存证类的用例
+  webTest.php       网页存证类的用例
+
