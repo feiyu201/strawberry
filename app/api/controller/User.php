@@ -2,10 +2,9 @@
 
 namespace app\api\controller;
 
-use app\common\controller\Api;
-use sent\jwt\facade\JWTAuth;
-use think\facade\Db;
 use app\api\model\User as UserModel;
+use app\common\controller\Api;
+use think\Cache;
 
 /**
  * 用户模块
@@ -36,6 +35,8 @@ class User extends Api
 
         $token = md5(time() . rand(1, 100));
         (new UserModel)->where(['id' => $user['id']])->update(['token' => $token]);
+        // 用户登录缓存, 缓存一天
+        Cache::set($user, $token, 60*60*24) ;
         $this->success("登录成功！", ["access_token" => $token]);
 
     }
@@ -83,14 +84,37 @@ class User extends Api
     {
         $token = request()->header('token');
         // 登录完善后需验证token真实性
-        if (!$token)
+        if (!$token) {
             $this->error('token不能为空');
-        $userInfo = UserModel::where('token', $token)->find()->toArray();
-        if (!$userInfo)
-            $this->error('用户不存在');
+        }
+
+        // $userInfo = UserModel::where('token', $token)->find()->toArray();
+        $userInfo = Cache::get($token);
+
+        if (!$userInfo) {
+            $this->error('用户未登录');
+        }
+
         $allowFields = $this->allowFields;
         $userInfo = array_intersect_key($userInfo, array_flip($allowFields));
         $this->success('successful', $userInfo);
     }
 
+
+    /**
+     * @remarks 退出登录
+     */
+    public function logout()
+    {
+        $token = request()->header('token');
+        // 登录完善后需验证token真实性
+        if (!$token) {
+            $this->error('token不能为空');
+        }
+        // 删除缓存
+        Cache::delete($token);
+        // 更新数据
+        (new UserModel)->where(['token' => $token])->update(['token' => '']);
+        $this->success('successful');
+    }
 }
