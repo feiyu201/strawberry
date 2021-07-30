@@ -4,7 +4,7 @@ namespace app\api\controller;
 
 use app\api\model\User as UserModel;
 use app\common\controller\Api;
-use think\Cache;
+use think\facade\Cache;
 
 /**
  * 用户模块
