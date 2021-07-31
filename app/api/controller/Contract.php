@@ -23,6 +23,7 @@ namespace app\api\controller;
 
 use app\common\controller\Api;
 use contract\cunnarApi;
+use think\Exception;
 use think\facade\Db;
 use think\facade\Filesystem;
 
@@ -55,6 +56,9 @@ class Contract extends Api
     public function upload()
     {
         $file = \think\facade\Request::file('file');
+        $userId = request()->param('user_id');
+        if (!$userId)
+            $this->error('用户ID不能为空');
         if (!$file)
             $this->error('文件不能为空');
         //上传到服务器,
@@ -65,17 +69,20 @@ class Contract extends Api
         $fileurl = $fileName;
         //结果是 $picCover = storage/upload/20200825/***.jpg
         // 創建userId
-        $outId = 'https://meetyouth.club'; // 固定上传到该用户
-        $userInfo = cunnarApi::accountCreate(null, null, $outId);
-        if (!isset($userInfo['user_id']))
-            $this->error($userInfo['error_code']);
+//        $outId = 'https://meetyouth.club'; // 固定上传到该用户
         // 获取权限
-        $getAccessTokenInfo = cunnarApi::accountAccessToken($userInfo['user_id']);
+        $getAccessTokenInfo = cunnarApi::accountAccessToken($userId);
         if (!isset($getAccessTokenInfo['access_token']))
             $this->error($getAccessTokenInfo['error_code']);
         // 创建文件信息
         $result = [];
         $id = $file->hash();
+
+        // 检测是否上传
+        $fileInfo = Db::name('deposit_evidence_file')->where(['hash' => $id,'member_id' => $userId])->count('id');
+        if ($fileInfo)
+            $this->error('文件已存在~勿重复提交');
+
         $fileName = iconv("UTF-8", "GB2312", app()->getRootPath() . 'public' . $fileName);
         if (file_exists($fileName)) {
             $fp = fopen($fileName, "r");
@@ -95,19 +102,32 @@ class Contract extends Api
             $data['hash'] = $id;
             $data['file_name'] = $file->getOriginalName();
             $data['file_id'] = $result['file_id'];
-            // 上传
-            $uploadLength = cunnarApi::fileLength($getAccessTokenInfo['access_token'], $result['file_id']);
-            $res = [];
-            if (file_exists($fileName)) {
-                $leftLength = filesize($fileName) - $uploadLength ['upload_length'];
-                if ($leftLength > 0) {
-                    // 如果没有全部上传，则需要重头开始上传
-                    $res = cunnarApi::fileUpload($getAccessTokenInfo['access_token'], $result['file_id'], '0', $fileName);
+            $data['create_time'] = time();
+            $data['member_id'] = $userId;
+            Db::startTrans();
+            try {
+                $cz = Db::name('deposit_evidence_file')->insert($data);
+                // 上传
+                $uploadLength = cunnarApi::fileLength($getAccessTokenInfo['access_token'], $result['file_id']);
+                $res = [];
+                if (file_exists($fileName)) {
+                    $leftLength = filesize($fileName) - $uploadLength ['upload_length'];
+                    if ($leftLength > 0) {
+                        // 如果没有全部上传，则需要重头开始上传
+                        $res = cunnarApi::fileUpload($getAccessTokenInfo['access_token'], $result['file_id'], '0', $fileName);
+                    }
                 }
+                if (isset($res['error']) && !$cz) {
+                    Db::rollback();
+                    $this->error($res['error_code']);
+                }
+                Db::commit();
+                $this->success('上传成功', $data);
+            } catch (Exception $e) {
+                Db::rollback();
+                $this->error($e->getMessage());
             }
-            if (isset($res['error']))
-                $this->error($res['error_code']);
-            $this->success('上传成功', $data);
+
         } else
             $this->error($result['error_code']);
     }
@@ -121,10 +141,11 @@ class Contract extends Api
     public function userVerify()
     {
         // 测试账号已认证
-        $name = '';
-        $card = '';
+        $name = request()->param('username');
+        $card = request()->param('card');
+        $userId = request()->param('user_id');
         // 获取权限
-        $getAccessTokenInfo = cunnarApi::accountAccessToken('1755861');
+        $getAccessTokenInfo = cunnarApi::accountAccessToken($userId);
         if (!isset($getAccessTokenInfo['access_token']))
             $this->error($getAccessTokenInfo['error_code']);
         $verify = cunnarApi::accountCardVerify($getAccessTokenInfo['access_token'], $name, $card);
@@ -151,6 +172,35 @@ class Contract extends Api
 //            fclose($fp);
 //        }
 //        halt($result);
+    }
+
+    /**
+     * @remarks 创建存证用户
+     * @author 丶长情
+     * @email  zeng1144318071@gmail.com
+     * @time   2021/07/29
+     */
+    public function createUser()
+    {
+        $outId = request()->param('out_id');
+        if (!$outId)
+            $this->error('用户标识不能为空');
+        // 創建userId
+//        $outId = 'https://meetyouth.club'; // 固定上传到该用户
+        $userInfo = cunnarApi::accountCreate(null, null, $outId);
+        if (!isset($userInfo['user_id']))
+            $this->error($userInfo['error_code']);
+        $this->success('successful', $userInfo);
+    }
+
+    public function fileList()
+    {
+        $userId = request()->param('user_id');
+        $page = request()->param('page') ? request()->param('page') : 1;
+        $limit = request()->param('limit') ? request()->param('limit') : 10;
+        $list = Db::name('deposit_evidence_file')->where('member_id',$userId)->page($page,$limit)->select();
+        $listTotal = Db::name('deposit_evidence_file')->where('member_id',$userId)->count('id');
+        $this->success('successful',$list,$listTotal);
     }
 
 }
