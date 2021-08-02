@@ -117,4 +117,69 @@ class User extends Api
         (new UserModel)->where(['token' => $token])->update(['token' => '']);
         $this->success('successful');
     }
+
+
+/**
+     * @title    忘记密码
+     * @param varchar username null 用户名 NO
+     * @param varchar city null 省市区 NO
+     * @param varchar organization null 机构 NO
+     * @param varchar duty null 职务 NO
+     * @param varchar email null 电子邮箱 NO
+     * @param varchar code null 验证码 YES
+     * @param varchar password null 输入密码 YES
+     * @param varchar rpassword null 确认密码 YES
+     * @return   int code null 返回参数 200
+     * @return   string message null 返回信息 successful
+     * @return   array data null 返回数据 successful
+     * *@author 一笑奈何
+     * @desc  (描述信息)
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/user/forgetpassword)
+     * @ApiHeaders  (name="token", type="string", required=true, description="请求的Token")
+     */
+    public function forgetpassword()
+    {
+        $param = input();
+        $token = $param['token'];
+        
+        $model = new UserModel;
+        $user = $model->where(['token' => $token])->find();
+        if (!$user) {
+            $this->error('用户不存在');
+        }
+        // $email_code = $param['email_captcha_code'];//邮箱验证码
+        // $event = 'forgetpassword';
+        // //验证邮箱
+        // $res = EmailCaptchaLog::captcha_check($email, $email_code, $event);
+        // if ($res['code'] == 0) {$this->error($res['msg']);}
+
+
+
+
+
+        $password = $param['password'];
+        $salt = $param['salt'] = substr(md5(rand(0, 100)), 0, 6);
+        if ($password) {
+            $param['password'] = $password = md5(md5($password) . $salt);
+        } else {
+            $this->error('密码必须');
+        }
+
+        //找回密码
+        $res = $model
+            ->where('id', $user['id'])
+            ->update([
+                'password' => $password,
+                'salt' => $salt
+            ]);
+
+        if (!$res) {
+            $this->error('修改密码失败');
+        }
+
+        $this->success("修改密码成功！");
+
+    }
+
 }
