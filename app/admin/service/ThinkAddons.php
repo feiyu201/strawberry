@@ -268,7 +268,6 @@ class ThinkAddons
                 //更新或插入插件信息
                 //Plugin::create($info,[],true);
             } catch (\Exception $e) {
-                @rmdirs($addonDir);
                 return [
                     'code' => 0,
                     'msg'  => '安装失败：' . $e->getMessage(),
