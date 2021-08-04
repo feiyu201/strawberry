@@ -36,7 +36,7 @@ class User extends Api
         $token = md5(time() . rand(1, 100));
         (new UserModel)->where(['id' => $user['id']])->update(['token' => $token]);
         // 用户登录缓存, 缓存一天
-        Cache::set($user, $token, 60*60*24) ;
+        Cache::set($token, $user, 60*60*24) ;
         $this->success("登录成功！", ["access_token" => $token]);
 
     }
