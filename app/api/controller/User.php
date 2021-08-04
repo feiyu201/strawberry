@@ -20,13 +20,13 @@ class User extends Api
      */
     public function login()
     {
-        $username = input('mobile');
+        $username = input('username');
         $password = input('password');
         //登录
         $user = UserModel::login($username);
 
         if (!$user) {
-            $this->error('手机号不存在');
+            $this->error('手机号或用户名不存在');
         }
 
         if ($user['password'] != md5(md5($password) . $user['salt'])) {
