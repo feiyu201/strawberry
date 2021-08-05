@@ -3,18 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '537c8c59cc95980e39c330b8c47132f310a10b6e'
-    oldFile: !uuid '9db7af69bcf8c26655ec461704224b767c2526f6'
-  /app/api:
-    newFile: !uuid '296d76092421ed8c5a70dd46be9734205e2c796e'
-    oldFile: !uuid '5f0c2301c004ebe36e5aaea0cd60909437608d2b'
-  /app/api/controller:
-    newFile: !uuid 'f988ac552d7a79665d3a516e809c85ff61166fb9'
-    oldFile: !uuid '09fb1540f831f59f8e7d4bc899e989cf2eef5586'
-  /app/api/controller/User.php:
-    newFile: !uuid 'dd1bdbdb7b01b59ee156867a00641d48350bccd8'
-    oldFile: !uuid '63790497e8acf6aeb7057e45fa819053cd4bc39f'
-gitCommitId: !uuid '5019403b6676af91e6c389e94885bbaf42dd0a71'
+    newFile: !uuid '0ea382757ad2b3d88cadad4f19562b0fcca078a3'
+    oldFile: !uuid '537c8c59cc95980e39c330b8c47132f310a10b6e'
+  /app/common:
+    newFile: !uuid '0e7e3d9b705750ff1f3d2fb8e5e7c3e5fb3e9842'
+    oldFile: !uuid 'be258c1fbcd190a055e96d9425f6be362b0c121d'
+  /app/common/controller:
+    newFile: !uuid '17fa355bc6cc8bfb02e8e32abfa77370e024cb5d'
+    oldFile: !uuid 'ece17dcb7cb790efab188a2b7c7d3e84c805ec02'
+  /app/common/controller/Auth.php:
+    newFile: !uuid 'b4040c01d526150be23ba9edc566b355406a4e48'
+    oldFile: null
+gitCommitId: !uuid '9937ac29cafe48963666fe9a47312baeea99796a'
 renames: {
   }
-revisionId: 320
+revisionId: 321
