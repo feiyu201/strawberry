@@ -37,7 +37,11 @@ class User extends Api
         (new UserModel)->where(['id' => $user['id']])->update(['token' => $token]);
         // 用户登录缓存, 缓存一天
         Cache::set($token, $user, 60*60*24) ;
-        $this->success("登录成功！", ["access_token" => $token]);
+        $this->success("登录成功！", [
+            "access_token" => $token,
+            "nickName" => $user['nickname'],
+            "acatar" => $user['nickname'],
+        ]);
 
     }
 
