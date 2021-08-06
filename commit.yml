@@ -2,19 +2,19 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid 'e68b120c8c63c5e206688e216aae43dafaa65924'
-    oldFile: !uuid '0ea382757ad2b3d88cadad4f19562b0fcca078a3'
-  /app/api:
-    newFile: !uuid '762005eb9cf3273724b3e51e332cdb9b35184432'
-    oldFile: !uuid '296d76092421ed8c5a70dd46be9734205e2c796e'
-  /app/api/controller:
-    newFile: !uuid '484a435d43575f88220613e2cbb3cab146285a18'
-    oldFile: !uuid 'f988ac552d7a79665d3a516e809c85ff61166fb9'
-  /app/api/controller/User.php:
-    newFile: !uuid '8c878a3db9646420027a9ce1d621068cbef6a415'
-    oldFile: !uuid 'dd1bdbdb7b01b59ee156867a00641d48350bccd8'
-gitCommitId: !uuid 'f191f5a570a89b89a690bc2c36d46e7f42a92614'
+  /public:
+    newFile: !uuid 'c493b30d87b07f0b0648c8ab9dcc82326d76813b'
+    oldFile: !uuid 'ac6df1142914017ef3094680acc97c57f847a930'
+  /public/static:
+    newFile: !uuid '581c444819fa6a551008e5f966f0c36a5bf53406'
+    oldFile: !uuid 'e0a7e0a4540f22027be605802fb42a9592a6b998'
+  /public/static/images:
+    newFile: !uuid '640b5b7361fb026430162259978aaec56bc3cf17'
+    oldFile: !uuid 'd64d39159b551d90d03cfd330a9898fa61e13918'
+  /public/static/images/avatar.png:
+    newFile: null
+    oldFile: !uuid 'cca76dbca28ccd051ac2e8e4e58966babbeb98db'
+gitCommitId: !uuid '8536d74e7f6ea9c00abc1a490c79971f18416548'
 renames: {
   }
-revisionId: 322
+revisionId: 323
