@@ -465,7 +465,7 @@ ALTER TABLE `cm_auth_group_access`
 --
 ALTER TABLE `cm_auth_rule`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `name` (`name`) USING BTREE,
+  ADD INDEX KEY `name` (`name`) USING BTREE,
   ADD KEY `pid` (`pid`),
   ADD KEY `weigh` (`weigh`);
 
