@@ -465,9 +465,9 @@ ALTER TABLE `cm_auth_group_access`
 --
 ALTER TABLE `cm_auth_rule`
   ADD PRIMARY KEY (`id`),
-  ADD INDEX KEY `name` (`name`) USING BTREE,
   ADD KEY `pid` (`pid`),
-  ADD KEY `weigh` (`weigh`);
+  ADD KEY `weigh` (`weigh`),
+  ADD KEY `name` (`name`) USING BTREE;
 
 --
 -- 表的索引 `cm_market`
@@ -513,7 +513,7 @@ ALTER TABLE `cm_auth_group`
 -- 使用表AUTO_INCREMENT `cm_auth_rule`
 --
 ALTER TABLE `cm_auth_rule`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=558;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=562;
 
 --
 -- 使用表AUTO_INCREMENT `cm_market`
