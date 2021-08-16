@@ -173,8 +173,8 @@ class Plugin extends Addons	// 需继承think\Addons类
 			print_r($pay);
 		}
 
-		//微信小程序支付
-		if($param['type'] == 'wx_xcx')
+		//微信公众号支付
+		if($param['type'] == 'wx_gzh')
 		{
 
 			$info = ['appid'=>$config['appappid'],'app_id'=>$config['gzhappid'],'miniapp_id'=>$config['xcxaapid'],'mch_id'=>$config['mch_id'],'key'=>$config['wxkey'],'notify_url'=>$config['wx_notify_url']];
@@ -201,7 +201,7 @@ class Plugin extends Addons	// 需继承think\Addons类
 				'mode' => 'normal', // optional, dev/hk;当为 `hk` 时，为香港 gateway。
 			];
 	
-			$pay = Pay::wechat($configeasy)->miniapp($param['order']);
+			$pay = Pay::wechat($configeasy)->mp($param['order']);
 			return $pay;
 		}
 
