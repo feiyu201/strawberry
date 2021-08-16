@@ -1,7 +1,7 @@
 # 草莓快速开发框架
 
 #### 介绍
-基于ThinkPHP6+Layui+vue+easywechat开发的开源开发框架
+基于ThinkPHP6+Layui+easywechat开发的开源开发框架.(vue版本也在计划中)
 
 目前已经有了很多功能模块和接口不需要在重复开发了：
 
