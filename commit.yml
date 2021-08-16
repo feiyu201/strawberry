@@ -2,19 +2,10 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '8ee0b662654bebbda499e639e84c05ade6c4e89d'
-    oldFile: !uuid '8028c527b6e526ce992b9fd5a225e458706797ca'
-  /app/api:
-    newFile: !uuid '9fbbb078a9b94a9095bea679e4331db1aafee90f'
-    oldFile: !uuid '762005eb9cf3273724b3e51e332cdb9b35184432'
-  /app/api/controller:
-    newFile: !uuid 'e10add609a1139e817d1d50ccc561576f03203c6'
-    oldFile: !uuid '484a435d43575f88220613e2cbb3cab146285a18'
-  /app/api/controller/Pay.php:
-    newFile: !uuid '785c56f48916ea39f2cb3865159eb4ff213315ad'
-    oldFile: !uuid '86657128f3e2cdcaaf89dc7ff746e4bad0e5e9dc'
-gitCommitId: !uuid '318d0f2a8b53d61ac050d11eb97cecf37dbb61c8'
+  /README.md:
+    newFile: !uuid '82ca0d43c406b6cd553472734401d22a14910c3e'
+    oldFile: !uuid 'e6464132e712e70b130ecb3832422042aa104f19'
+gitCommitId: !uuid '3305ab08c195e76bd4ff86edb575cb112d09a9e4'
 renames: {
   }
-revisionId: 329
+revisionId: 330
