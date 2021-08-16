@@ -58,8 +58,9 @@ class Pay extends Api
             'total_fee' => $param['total_fee'],
             'openid' => $param['openid'],
         ];
-
-        $payres = hook('payhook', ['type'=>'wx_xcx','order'=>$order]);
+        
+        //小程序支付 wx_miniapp 公众号支付：wx_gzh 具体请参考支付插件说明
+        $payres = hook('payhook', ['type'=>'wx_miniapp','order'=>$order]);
         $result = json_decode($payres,true); 
 
         if ($result){
