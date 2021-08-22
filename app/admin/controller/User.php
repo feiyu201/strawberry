@@ -179,6 +179,7 @@ class User extends AdminBase
                     }
                     
             })
+            ->order('id','desc')
 		   ->page($page,$limit)->select();
    		return json([
 				'code'=> 0,
