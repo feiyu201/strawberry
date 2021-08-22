@@ -27,7 +27,7 @@ class Attachment extends AdminBase
         $limit = $this->request->param('limit', 10, 'intval');
         $sort = $this->request->param('sort', null);
         $count = Db::name('attachment')->count();
-        $data = Db::name('attachment')->page($page, $limit)
+        $data = Db::name('attachment')->order('id','desc')->page($page, $limit)
         ->order($sort)
         ->select()->each(function ($item, $k) {
             if (in_array($item['mimetype'], array('image/png','image/jpeg','image/gif','image/bmp'))) {
