@@ -3,15 +3,21 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid '17e0f7c2924e6b614d4e281260399fece848fcb7'
-    oldFile: !uuid '1b020b69e34a0de283ba0a3dbc59486f49231963'
-  /addons/lazy:
-    newFile: !uuid 'dc8327e13c28a8724945b3af2f080be0967aac99'
-    oldFile: !uuid '600d5e8fb0c3c4e5c823071b010fae7777a28e7c'
-  /addons/lazy/control.txt:
-    newFile: !uuid '94fa4271994dd29dd539df8af0071da92268224c'
-    oldFile: !uuid '8eeaa39450c58e22334525531bf3cfc0e530e1cf'
-gitCommitId: !uuid 'fad44863195c6e6cab4dcf9d6b1fc6d695771776'
+    newFile: !uuid '0945a20b5ff6efe26c4185aaace4bff78d4867a1'
+    oldFile: !uuid '17e0f7c2924e6b614d4e281260399fece848fcb7'
+  /addons/crud:
+    newFile: !uuid '97d354a27f3cf8e1632eb5d810f5655268193d46'
+    oldFile: !uuid '4bac2756ac62b6d06d9c397620ee460d4c112871'
+  /addons/crud/tpl:
+    newFile: !uuid '4cbc75f5e2e01d334128c80b817e47be1e6cd805'
+    oldFile: !uuid '9cd1412a682b26fd19db116e0a6336d29b379971'
+  /addons/crud/tpl/controller:
+    newFile: !uuid '5138d01ac2cda302cfaa15a3d1203067e574d3a7'
+    oldFile: !uuid '7c5fb35402a577573c3dddc1e9a660ee3f7930a4'
+  /addons/crud/tpl/controller/body.stub:
+    newFile: !uuid 'd5a004ad07a7045cc4dce419d26e903beafe6cfc'
+    oldFile: !uuid '5d3146758b7eb26c7c306327b500f33b60c258be'
+gitCommitId: !uuid '68446c7f35cf9159ac6f9ae94c3397b66bc8b2dc'
 renames: {
   }
-revisionId: 334
+revisionId: 335
