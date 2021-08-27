@@ -26,12 +26,12 @@ class User extends AdminBase
    		$data = $this->model->with([])
 		   ->where(function($query){
                 $query->dateRange('prevtime',$this->request->param('prevtime',null))
-->dateRange('logintime',$this->request->param('logintime',null))
-->dateRange('jointime',$this->request->param('jointime',null))
-->dateRange('past_time',$this->request->param('past_time',null))
-->dateRange('begin_time',$this->request->param('begin_time',null))
-->dateRange('createtime',$this->request->param('createtime',null))
-->dateRange('updatetime',$this->request->param('updatetime',null));
+                ->dateRange('logintime',$this->request->param('logintime',null))
+                ->dateRange('jointime',$this->request->param('jointime',null))
+                ->dateRange('past_time',$this->request->param('past_time',null))
+                ->dateRange('begin_time',$this->request->param('begin_time',null))
+                ->dateRange('createtime',$this->request->param('createtime',null))
+                ->dateRange('updatetime',$this->request->param('updatetime',null));
                 
                     $id = $this->request->param('id',null);
                     if($id){
