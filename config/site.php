@@ -24,6 +24,7 @@ return array(
   'configgroup' =>
   array(
     'basic' => '基本配置',
+     'map' => '地图配置',
   ),
   'mail_type' => '1',
   'mail_smtp_host' => 'smtp.mxhichina.com',
