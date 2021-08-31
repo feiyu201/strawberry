@@ -8,7 +8,7 @@ use app\common\controller\Auth;
 use think\facade\Cache;
 
 /**
- * 用户模块
+ * @title 用户接口
  */
 class User extends Api
 {
@@ -54,8 +54,45 @@ class User extends Api
     }
 
     /**
-     * 注册
-     */
+     * @title    用户注册
+     * @author 一笑奈何
+     * @desc 只需要传递需要的参数就可以
+     * @method   (POST/GET)
+     * @ApiRoute    (/api/user/register)
+     * @param   varchar username &nbsp; 用户名 YES
+     * @param   varchar openid &nbsp; 微信信息 NO
+     * @param   varchar nickname &nbsp; 昵称 NO
+     * @param   varchar password &nbsp; 密码 NO
+     * @param   varchar email &nbsp; 电子邮箱 NO
+     * @param   varchar mobile &nbsp; 手机号 NO
+     * @param   varchar avatar &nbsp; 头像 NO
+     * @param   tinyint  level &nbsp; 等级 NO
+     * @param   tinyint  gender &nbsp; 性别 NO
+     * @param   date birthday &nbsp; 生日 NO
+     * @param   varchar bio &nbsp; 格言 NO
+     * @param   decimal money &nbsp; 余额 NO
+     * @param   int  score &nbsp; 积分 NO
+     * @param   int  successions &nbsp; 连续登录天数 NO
+     * @param   int  maxsuccessions &nbsp; 最大连续登录天数 NO
+     * @param   int prevtime &nbsp; 上次登录时间 NO
+     * @param   int logintime &nbsp; 登录时间 NO
+     * @param   varchar loginip &nbsp; 登录IP NO
+     * @param   tinyint  loginfailure &nbsp; 失败次数 NO
+     * @param   varchar joinip &nbsp; 加入IP NO
+     * @param   int jointime &nbsp; 加入时间 NO
+     * @param   int  past_time &nbsp; 过期时间 NO
+     * @param   int  begin_time &nbsp; 开始时间 NO
+     * @param   int createtime &nbsp; 创建时间 NO
+     * @param   int updatetime &nbsp; 更新时间 NO
+     * @param   varchar token &nbsp; Token NO
+     * @param   varchar status &nbsp; 状态 NO
+     * @param   varchar verification &nbsp; 验证 NO
+     * @param   int inviter_mem_info_id &nbsp; 上级用户ID NO
+     * @param   varchar inviter_code &nbsp; 用户的邀请码 NO
+     * @return   int code &nbsp; 返回参数 200
+     * @return   string message &nbsp; 返回信息 successful
+     * @return   array data &nbsp; 返回数据 successful
+     * */
     public function register()
     {
         $param = input();
