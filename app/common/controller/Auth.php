@@ -12,7 +12,7 @@ class Auth
 
     protected $allowFields = ['id', 'token', 'avatar', 'nickname'];
     // 不校验token的方法白名单
-    protected $pass = ['User/login'];
+    protected $pass = ['User/login','User/register'];
     public $token;
 
     /**
