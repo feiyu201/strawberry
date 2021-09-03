@@ -1,0 +1,4 @@
+public function {%relation%}()
+{
+    return $this->hasOne({%relationClass%},'{%foreignKey%}','{%localKey%}');
+}

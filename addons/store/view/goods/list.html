@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+</head>
+
+<body>
+    <div class="ok-body">
+        <div>
+            <table class="layui-hide layui-form" id="table" lay-size="sm" lay-filter="tableFilter"></table>
+        </div>
+    </div>
+</body>
+<script src="/static/lib/layui/lay/lay-config.js"></script>
+<script>
+    layui.config({
+        base: '/static/lib/layui/extend/',
+    })
+    layui.use(['form', "okLayer", "okUtils", "table"], function () {
+        var form = layui.form, okLayer = layui.okLayer, okUtils = layui.okUtils, table = layui.table, layer = layui.layer;
+
+        //第一个实例
+        table.render({
+            elem: '#table'
+            , toolbar: "#toolbarTpl"
+            , url: "{:addons_url('store://Goods/list')}" //数据接口
+            , response: {
+                statusName: 'status' //规定数据状态的字段名称，默认：code
+                , statusCode: 200 //规定成功的状态码，默认：0
+                , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+                , countName: 'count' //规定数据总数的字段名称，默认：count
+                , dataName: 'data' //规定数据列表的字段名称，默认：data
+            }
+            , page: true //开启分页
+            , height: 'full'
+            , limit: 20
+            , cols: [[ //表头
+                { field: 'id', title: 'ID', width: 80, sort: true, fixed: 'left' }
+                , { field: 'title', title: '商品信息' }
+                // ,{field: 'brand', title: '商品分类', width:80, sort: true}
+                // ,{field: 'brand', title: '品牌', width:80}
+                , { field: 'price', title: '销售价格', width: 120, sort: true }
+                , { field: 'original_price', title: '原价', width: 120, sort: true }
+                , { field: 'score', title: '库存', width: 120, sort: true }
+                , { field: 'is_shelves', title: '上下架', width: 80 }
+                , { field: 'is_home_recommended', title: '首页推荐', width: 80 }
+                , { field: 'is_deduction_inventory', title: '扣减库存', width: 80 }
+                , { field: 'model', title: '型号', width: 120 }
+                , { field: 'place', title: '产地', width: 120 }
+                , { field: 'add_time', title: '创建时间', width: 180, sort: true }
+                , { title: "操作", width: 150, align: "center", fixed: "right", templet: "#operationTpl" }
+            ]]
+            , done: function (res, curr, count) {
+                console.info(res, curr, count);
+            }
+        });
+        okLoading.close();
+
+        table.on("toolbar(tableFilter)", function (obj) {
+            switch (obj.event) {
+                case "add":
+                    okLayer.open("新增商品", "{:addons_url('store://Increase/addEdit')}", "90%", "90%", null, function () {
+                        // location.reload();
+                    })
+                    break;
+                case "ref":
+                    location.reload();
+                    break;
+            }
+        });
+        table.on("tool(tableFilter)", function (obj) {
+            let data = obj.data;
+            switch (obj.event) {
+                case "upc":
+                    okLayer.open("修改商品", "{:addons_url('store://Increase/addEdit')}?id=" + data.id, "90%", "90%", null, function () {
+                        // location.reload();
+                    })
+                    break;
+                case "del":
+                    del(data.id);
+                    break;
+            }
+        });
+        function del(id) {
+            layer.confirm('确认删除？（将会删除该商品绑定的所有数据表信息，操作前请先备份数据库）', {
+                btn: ['确定', '取消'] //按钮
+            }, function () {
+                okUtils.ajax("{:addons_url('store://Goods/delete')}", "post", { id }, true).done(function (response) {
+                    if (response.status === 200) {
+                        okLayer.greenTickMsg(response.msg, function () {
+                            location.reload();
+                        })
+                    }
+                }).fail(function (error) {
+                    console.log(error)
+                });
+            }, function () {
+
+            });
+
+        }
+    })
+
+</script>
+<script type="text/html" id="toolbarTpl">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="add">新增商品</button>
+        <button class="layui-btn layui-btn-normal layui-btn-sm" lay-event="ref">刷新列表</button>
+    </div>
+</script>
+<script type="text/html" id="operationTpl">
+    <input type="button"  lay-event="upc" name="upc" class="layui-btn layui-btn-normal layui-btn-sm"  value="编辑">
+    <input type="button"  lay-event="del" name="del" class="layui-btn layui-btn-danger layui-btn-sm"  value="删除">
+</script>
+
+</html>

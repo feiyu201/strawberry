@@ -1,0 +1,48 @@
+{extend name="layout/default" /}
+{block name="head"}
+
+<title>上传图片选择图片 demo</title>
+
+{/block}
+{block name="content"}
+<div class="ok-body">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>Layui 上传图片选择图片演示</legend>
+    </fieldset>
+
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">单张图片</label>
+            <div class="layui-input-block layui-upload">
+                <input name="logo" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传图片" value="">
+                <div class="layui-upload-btn">
+                    <span><a class="layui-btn" data-url="{:url('upload/uploadfile')}" data-upload="logo"
+                            data-upload-number="one" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i
+                                class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_logo" data-upload-select="logo"
+                            data-upload-number="one" data-upload-mimetype="image/*"><i class="fa fa-list"></i>
+                            选择</a></span>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">多张图片</label>
+            <div class="layui-input-block layui-upload">
+                <input name="images" class="layui-input layui-col-xs6" lay-verify="required" placeholder="请上传图片"
+                    value="">
+                <div class="layui-upload-btn">
+                    <span><a class="layui-btn" data-url="{:url('upload/uploadfile')}" data-upload="images"
+                            data-upload-number="more" data-upload-exts="png|jpg|ico|jpeg" data-upload-icon="image"><i
+                                class="fa fa-upload"></i> 上传</a></span>
+                    <span><a class="layui-btn layui-btn-normal" id="select_images" data-upload-select="images"
+                            data-upload-number="more" data-upload-mimetype="image/*"><i class="fa fa-list"></i>
+                            选择</a></span>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{/block}
+{block name="scripts"}
+<script src="/static/js/upload.js" charset="utf-8"></script>
+{/block}

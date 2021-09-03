@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <link rel="stylesheet" href="/static/css/dragula.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+    <script src="/static/lib/layui/extend/city-picker/city-picker.data.js"></script>
+    <script src="/static/js/dragula.js"></script>
+    <link href="/static/lib/layui/extend/city-picker/city-picker.css" rel="stylesheet" />
+    <style>
+        #specDetailItem th:hover{
+            background-color: #eee;
+            cursor: pointer;
+        }
+        th:hover .layui-hover-icon{
+            color: #1E9FFF;
+        }
+        .move-img{
+            width: 100%;
+        }
+        .move-img li {
+            position: relative;
+            overflow: hidden;
+        }
+        .img-view{
+            padding-top: 100%;
+            position: relative;
+            cursor: pointer;
+
+        }
+        .img-view .img-border{
+            position: absolute;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            top: 5px;
+            box-sizing: border-box;
+            border: 1px solid #C9C9C9;
+            transition: 0.2s;
+        }
+        .img-view img {
+            position: absolute;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            left: 5px;
+            top: 5px;
+            object-fit: cover;
+        }
+        .img-view:hover .img-border{
+            border: 3px solid #1094fa;
+        }
+        .handle{
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            width: 32px;
+            height: 32px;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            line-height: 32px;
+            text-align: center;
+            z-index: 2;
+        }
+        .img-view .layui-btn{
+            position: absolute;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            top: 5px;
+            left: 5px;
+            z-index: 3;
+        }
+        .img-view .layui-unselect{
+            position: absolute;
+            bottom: 5px;
+            left: 5px;
+        }
+        .input-line-box{
+            display: inline-block;
+            width: 120px;
+            margin-right: 5px;
+            position: relative;
+        }
+        .input-line-box span{
+            display: block;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            height: 38px;
+            line-height: 38px;
+            cursor: pointer;
+            color: #999;
+            transition: 0.1s;
+        }
+        .input-line-box span:hover{
+            color: #666;
+        }
+        .input-line{
+            display: inline;
+            width: calc(100% - 12px);
+        }
+        .img-input{
+            width: calc(100% - 10px);
+            margin-left: 5px;
+            text-align: center;
+        }
+        #specType .layui-btn{
+            width: calc(100% - 10px);
+            margin-left: 5px;
+        }
+        .layui-input-block .city-picker-span{
+            width: 100%!important;
+        }
+        .icon-delete{
+            position: absolute;
+            top: 5px;
+            right: 5px ;
+            z-index: 3;
+            color: white;
+            background-color: rgba(0,0,0,0.5);
+            padding: 4px;
+        }
+    </style>
+</head>
+<body>
+<form class="layui-form" action="" style="padding: 20px">
+    {if !empty($goods) }
+    <input type="hidden" value="{$Request.param.id}" name="id">
+    {else /}
+    {/if}
+    <input type="hidden" value="{$goods.content_web|default=''}" name="content_web" style="display: none">
+    <div id="editContent" style="display: none">{$content|RAW}</div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品名称</label>
+        <div class="layui-input-block">
+            <input type="text" name="title" required lay-verify="required|title" placeholder="请输入商品名称"  value="{$goods.title|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品简述</label>
+        <div class="layui-input-block">
+            <input type="text" name="simple_desc"  lay-verify="simple_desc" placeholder="请输入商品简述" value="{$goods.simple_desc|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品型号</label>
+        <div class="layui-input-block">
+            <input type="text" name="model"  lay-verify="model" placeholder="请输入商品型号" value="{$goods.model|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    {include file="common/select" field="$data" /}
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品品牌</label>
+        <div class="layui-input-block">
+            <select name="brand_id" lay-verify="brand_id">
+                {foreach $brand as $key=>$vo }
+                <option value="{$vo.id}" {php}if (!empty($goods['brand_id']) &&$vo['id'] == $goods['brand_id']){echo 'selected="selected"';}{/php}>{$vo.name}</option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产地：</label>
+        <div class="layui-input-block">
+            <input type="text" value="{$goods.place|default=''}" autocomplete="on" class="layui-input" id="city-picker" name="place"  lay-verify="place" style="width: 100%" readonly="readonly" data-toggle="city-picker" placeholder="请选择">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">库存单位</label>
+        <div class="layui-input-block">
+            <input type="text" name="inventory_unit"  lay-verify="required|inventory_unit" placeholder="请输入库存单位" value="{$goods.inventory_unit|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最低起购</label>
+        <div class="layui-input-block">
+            <input type="text" name="buy_min_number"  lay-verify="required|buy_min_number" placeholder="请输入最低起购" value="{$goods.buy_min_number|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">最高限购</label>
+        <div class="layui-input-block">
+            <input type="text" name="buy_max_number"  lay-verify="required|buy_max_number" placeholder="请输入购买上限" value="{$goods.buy_max_number|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">规格</label>
+        <div class="layui-input-block">
+            <div>
+                <input type="button" value="增加规格" class="addSpec layui-btn">
+                <input type="button" value="生成规格" class="creSpec layui-btn layui-btn-normal">
+            </div>
+            <table class="layui-table">
+                <colgroup>
+                    <col width="100">
+                    <col width="200">
+                    <col width="20">
+                </colgroup>
+                <thead>
+                <tr>
+                    <th>规格名称</th>
+                    <th>规格数值</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="specTab">
+                </tbody>
+            </table>
+            <table class="layui-table">
+                <colgroup id="specDetailItemCol">
+                    <col width="10">
+                    <col width="10">
+                    <col width="10">
+                    <col width="10">
+                    <col width="10">
+                </colgroup>
+                <thead>
+                <tr id="specDetailItem">
+                    <th>价格</th>
+                    <th>重量（KG）</th>
+                    <th>规格编码</th>
+                    <th>条形码</th>
+                    <th>原价</th>
+                </tr>
+                </thead>
+                <tbody id="specDetailsTab">
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">规格相片</label>
+        <div class="layui-input-block" id="specType">
+            <div class="layui-row">
+                {foreach $specImg as $key=>$vo }
+                <div class="layui-col-xs6 layui-col-sm2 layui-col-md1 img-hover img-spec">
+                    <button type="button" class="layui-btn layui-btn-sm">选择图片</button>
+                    <div class="img-view">
+                        <img src="{$vo.img}" alt="">
+                        <span class="img-border"></span>
+                        <i class="layui-icon layui-icon-delete icon-delete"></i>
+                    </div>
+                    <input type="text" class="layui-input layui-input-sm img-input" placeholder="规格对应的名称" value="{$vo.name}">
+                </div>
+                {/foreach}
+                <div class="layui-col-xs6 layui-col-sm2 layui-col-md1 img-hover" id="addDom2">
+                    <button type="button" class="layui-btn layui-btn-sm" style="opacity: 0">选择图片</button>
+                    <div class="img-view">
+                        <button id="addImages2" type="button" class="layui-btn layui-btn-primary" title="添加新图片" style="margin-left: 0">
+                            <i class="layui-icon">&#xe608;</i>
+                        </button>
+                        <span class="img-border"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">商品图片</label>
+        <div class="layui-input-block" style="background-color: #f1f1f1;padding-bottom: 42px">
+            <ul id="sortable" class="move-img layui-row">
+                {foreach $goods.images as $key=>$vo }
+                <li class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover">
+                    <div class="img-view">
+                        <span class="handle">↔</span>
+                        <img src="{$vo}" alt="">
+                        <span class="img-border"></span>
+                        <input type="checkbox" name="images[]" style="display: none" value="{$vo}" checked>
+                    </div>
+                </li>
+                {/foreach}
+                <li class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover" id="addDom">
+                    <div class="img-view">
+                        <button id="addImages" type="button" class="layui-btn layui-btn-primary" title="添加新图片">
+                            <i class="layui-icon">&#xe608;</i>
+                        </button>
+                        <span class="img-border"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">库存扣减</label>
+        <div class="layui-input-block">
+            {if !empty($goods['is_deduction_inventory']) && ($goods['is_deduction_inventory'] == '是')}
+            <input type="checkbox" name="is_deduction_inventory" lay-skin="switch" checked ='checked'>
+            {else /}
+            <input type="checkbox" name="is_deduction_inventory" lay-skin="switch">
+            {/if}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上架</label>
+        <div class="layui-input-block">
+            {if !empty($goods['is_shelves']) &&  ($goods['is_shelves'] == '是')}
+            <input type="checkbox" name="is_shelves" lay-skin="switch" checked ='checked'>
+            {else /}
+            <input type="checkbox" name="is_shelves" lay-skin="switch">
+            {/if}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">首页推荐</label>
+        <div class="layui-input-block">
+            {if !empty($goods['is_home_recommended']) &&  ($goods['is_home_recommended'] == '是')}
+            <input type="checkbox" name="is_home_recommended" lay-skin="switch" checked ='checked'>
+            {else /}
+            <input type="checkbox" name="is_home_recommended" lay-skin="switch">
+            {/if}
+
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">详情页</label>
+        <div class="layui-input-block">
+            {componets:uedit name="content" content=''/}
+            <script> layui.extend({tinymce: "tinymce/tinymce",citypicker: "city-picker/city-picker"}).use(["tinymce", "util", "okLayer","citypicker","jquery"], function () {
+                var tinymce = layui.tinymce,okLayer = layui.okLayer, cityPicker = layui.citypicker,$=layui.jquery;
+
+                var currentPicker = new cityPicker("#city-picker", {
+                    provincename:"provinceId",
+                    cityname:"cityId",
+                    districtname: "districtId",
+                    level: 'districtId',// 级别
+                });
+                currentPicker.setValue("{$goods.place|default=''}");
+                var edit = tinymce.render({
+                    elem: "#edit",
+                    height: 600,
+                    element_format: "html",
+                    width: "100%",
+                    plugins: [
+                        'advlist autolink lists link imageSelector hr',
+                        'visualblocks visualchars code',
+                        'textcolor colorpicker textpattern'
+                    ],
+                    setup: function (ed) {
+                        ed.on("init",function (ed) {
+                            tinyMCE.get('edit').setContent($('#editContent').html());
+                            tinyMCE.execCommand('mceRepaint');
+                        })
+                    },
+                    imageSelectorCallback: showImageSelector,
+                     toolbar: 'styleselect | forecolor backcolor | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link imageSelector',
+                });
+                function showImageSelector () {
+                    console.log('自定义图片上传事件')
+                    okLayer.open("图片管理", "{:addons_url('store://Photos/upload')}?goods_id={$goods.id|default='0'}&page=1&limit=18&model=1", "90%", "90%", null, function () {
+                        // location.reload();
+                    })
+                }
+
+                console.log(tinymce)
+            });
+            </script>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+            <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+        </div>
+    </div>
+</form>
+</body>
+
+<script src="/static/lib/layui/lay/lay-config.js"></script>
+<script>
+    function reload(){
+        layui.use(["jquery", "okLayer","layer"],function (){
+            let okLayer = layui.okLayer,$ = layui.jquery,layer = layui.layer;
+            $.each($('#specType .img-spec'),function (index,item){
+                $(item).find('button').unbind("click");
+                $(item).find('button').click(function (){
+                    okLayer.open("选中一张或者上传一张即可", "{:addons_url('store://Photos/upload')}?goods_id={$goods.id|default='0'}&page=1&limit=18&model=4&item="+index, "90%", "90%", null, function () {
+                        // location.reload();
+                    })
+                })
+                console.log('查询',$(item).find('i'))
+                $(item).find('i').unbind("click");
+                $(item).find('i').click(function (){
+                    layer.confirm('确认删除？', {
+                        btn: ['确定','取消'] //按钮
+                    }, function(){
+                        $(item).remove()
+                        okLayer.greenTickMsg('删除完成', function () {
+
+                        })
+                    }, function(){
+
+                    });
+                })
+            })
+        })
+
+    }
+
+    layui.config({
+        base: '/static/lib/layui/extend/',
+    })
+    layui.use(['form', "okLayer", "okUtils", "jquery","layer"], function () {
+        var form = layui.form;
+        let okLayer = layui.okLayer,
+            okUtils = layui.okUtils,
+            layer = layui.layer,
+            $ = layui.jquery,
+            specTable = [],
+            specDetailTable = [],
+            specDetailCol = [],
+            specType = [];
+        okLoading.close();
+
+        form.on('submit(formDemo)', function(data){
+            console.log(specDetailTable)
+            console.log(specTable)
+            data.field['specBase'] = specTable
+            data.field['specPrice'] = specDetailTable
+            data.field['content_web'] = tinymce.activeEditor.getContent()
+            data.field['is_deduction_inventory'] = data.field['is_deduction_inventory']=='on'?1:0;
+            data.field['is_shelves'] = data.field['is_shelves']=='on'?1:0;
+            data.field['is_home_recommended'] = data.field['is_home_recommended']=='on'?1:0;
+            $.each($('#specType .img-spec'),function (index,item){
+                let name = $(item).find('input').val();
+                let images = $(item).find('img').attr('src');
+                specType.forEach(function (item,index){
+                    for (let x in item.value) {
+                        if (item.value[x].name == name){
+                            item.value[x].images = images
+                        }
+                    }
+                })
+            })
+            data.field['specType'] = specType
+            data.field['pushItem'] = getSpecTableSql()
+            console.log(data.field['pushItem'])
+            okUtils.ajax("{:addons_url('store://Increase/upcAdd')}", "post", data.field, true).done(function (response) {
+                if (response.status === 200) {
+                    okLayer.greenTickMsg(response.msg, function () {
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        // parent.location.reload()
+                    })
+                }
+            }).fail(function (error) {
+                console.log(error)
+            });
+            return false;
+        });
+        dragula([document.getElementById('sortable')], {
+            removeOnSpill: true,
+            moves: function(el, container, handle) {
+                return handle.className === 'handle';
+            }
+        });
+        $('#addImages').click(function (){
+            okLayer.open("图片管理", "{:addons_url('store://Photos/upload')}?goods_id={$goods.id|default='0'}&page=1&limit=18&model=2", "90%", "90%", null, function () {
+                // location.reload();
+                form.render()
+            })
+        })
+        $('#addImages2').click(function (){
+            okLayer.open("图片管理", "{:addons_url('store://Photos/upload')}?goods_id={$goods.id|default='0'}&page=1&limit=18&model=3", "90%", "90%", null, function () {
+                // location.reload();
+                form.render()
+            })
+        })
+        $.each($('#specType .img-spec'),function (index,item){
+            $(item).find('button').click(function (){
+                okLayer.open("选中一张或者上传一张即可", "{:addons_url('store://Photos/upload')}?goods_id={$goods.id|default='0'}&page=1&limit=18&model=4&item="+index, "90%", "90%", null, function () {
+                    // location.reload();
+                    form.render()
+                })
+            })
+        })
+
+        // 增加规格~！！！！
+        $('.addSpec').click(function (){
+            let index = specTable.length
+            specTable.push({
+                title: '',
+                content: []
+            })
+            $('#specTab').append(`<tr id="specTab-${index}">
+                    <td><input type="text" id="specTab-name-${index}" value="" class="layui-input layui-input-sm" placeholder="规格名称"></td>
+                    <td>
+                        <input type="button" id="specTab-add-${index}" value="添加规格值" class="layui-btn layui-btn-sm layui-btn-normal">
+                    </td>
+                    <td><button type="button" id="specTab-delete-${index}"  class="layui-btn layui-btn-sm layui-btn-danger">
+                        <i class="layui-icon"></i>
+                    </button></td>
+                </tr>`)
+            form.render()
+            // 规格删除按钮事件
+            $(`#specTab-delete-${index}`).click(function (){
+                // 移除元素
+                $(`#specTab-${index}`).remove();
+                // 规格数组移除
+                specTable.splice(index,1);
+                console.log(specTable);
+            })
+            // 监听规格名称按钮
+            $(`#specTab-name-${index}`).change(function (){
+                let title = $(this).val();
+                console.log($(this).val());
+                specTable[index].title = title;
+                console.log(specTable);
+            })
+            // 监听规格数值增加按钮
+            $(`#specTab-add-${index}`).click(function (){
+                let valIndex = specTable[index].content.length;
+                specTable[index].content.push('');
+                $(`#specTab-add-${index}`).before(`<div class="input-line-box"><input type="text" id="specTab-value-${index}-${valIndex}" class="layui-input layui-input-sm input-line"><span id="specTab-delete-${index}-${valIndex}">X</span></div>`);
+                // 监听规格数值变化input
+                $(`#specTab-value-${index}-${valIndex}`).change(function (){
+                    specTable[index].content[valIndex] = $(this).val();
+                    console.log(specTable);
+                })
+                // 监听规格数值删除按钮
+                $(`#specTab-delete-${index}-${valIndex}`).click(function (){
+                    specTable[index].content.splice(valIndex,1);
+                    $(this).parent().remove();
+                    console.log(specTable);
+                })
+            })
+
+        })
+        // 生成规格～！！！！
+
+        function setSpec(){
+            let table = [];
+            let col = [];
+            for (let i in specTable) {
+                table.push(specTable[i].content)
+                col.push({
+                    field: specTable[i].title,
+                })
+            }
+            specType = setSpecType()
+            console.log(specType);
+            col.push({
+                field: '价格'
+            })
+            col.push({
+                field: '重量'
+            })
+            col.push({
+                field: '规格'
+            })
+            col.push({
+                field: '条形码'
+            })
+            col.push({
+                field: '原价'
+            })
+            console.log(col)
+            specDetailCol = col
+            function reduceTwoArr (source1, source2) {
+                let result = []
+                source1.forEach(item => {
+                    source2.forEach(item2 => {
+                        result.push(`${item},${item2}`)
+                    })
+                })
+                return result
+            }
+
+            function reduceMultipleArr (arr = []) {
+                return arr.reduce((acc, currentItem) => {
+                    return reduceTwoArr(acc, currentItem)
+                })
+            }
+
+            table = reduceMultipleArr(table);
+            for (let i in table) {
+                table[i] = table[i].split(',')
+                for (let x = 0;x<5;x++){
+                    table[i].push('')
+                }
+            }
+            console.log(table);
+            specDetailTable = table
+            setCol()
+            selRow(table)
+
+        }
+        $('.creSpec').click(function (){
+            layer.confirm('生成规格将会覆盖之前的数据！确认继续？', {
+                btn: ['确认','取消'] //按钮
+            }, function(){
+                layer.msg('生成中...', {icon: 1});
+                setSpec()
+            }, function(){
+                layer.msg('放弃操作', {icon: 5});
+            });
+
+        })
+        let spec = '{$spec}'
+        if (spec !== '' && spec !== 'null') {
+            spec = JSON.parse(spec)
+            console.log(spec)
+            for (let i in spec) {
+                let content = []
+                for (let x in spec[i].content) {
+                    content.push(spec[i].content[x].name)
+                }
+                specTable.push({
+                    title: spec[i].title,
+                    content: content
+                })
+            }
+            specType = setSpecType()
+        }
+        let specPrice = '{$specPrice}'
+        if (specPrice !== ''  && specPrice !== 'null') {
+            specPrice = JSON.parse(specPrice)
+            console.log(specPrice)
+            specDetailCol = getCol();
+            setCol()
+            specPrice.forEach(function(item,index){
+                let specColItem = [item.price,item.weight,item.coding,item.barcode,item.original_price];
+
+                for (let i =item.spec.length - 1; i >=0; i--) {
+                    specColItem.unshift(item.spec[i].value)
+                }
+                specDetailTable.push(specColItem)
+            })
+            console.log(specDetailTable)
+            selRow(specDetailTable)
+        }
+        // 获取规格价格表的提交格式
+        function getSpecTableSql(){
+            let item = ['price','weight','coding','barcode','original_price'];
+            let count = specType.length
+            for (let i = specType.length -1; i>= 0; i--) {
+                item.unshift(specType[i].name)
+            }
+            let pushItem = [];
+            for (let i in specDetailTable){
+                let obj = {};
+                let filed = [];
+                for (let x in specDetailTable[i]) {
+                    if (x <= count-1) {
+                        filed.push(specDetailTable[i][x])
+                    }
+                    for (let y in item) {
+                        if (y == x) {
+                            obj[item[y]] = specDetailTable[i][x]
+                        }
+                    }
+                }
+                obj['filed'] = filed
+                pushItem.push(obj)
+            }
+            return pushItem
+        }
+
+        function setSpecType(){
+            let specType = [];
+            for(let i in specTable) {
+                let content = [];
+                for (let x in specTable[i].content) {
+                    content.push({
+                        name: specTable[i].content[x],
+                        images: ''
+                    })
+                }
+                specType.push({
+                    name: specTable[i].title,
+                    value: content
+                })
+            }
+            return specType;
+        }
+
+
+
+        // 载入规格名与值
+        function setSpecTable(table){
+            specTable = table
+            $('#specTab').html('')
+            for (let i in table) {
+                $('#specTab').append(`<tr id="specTab-${i}">
+                    <td><input type="text" id="specTab-name-${i}" value="${table[i].title}" class="layui-input layui-input-sm" placeholder="规格名称"></td>
+                    <td>
+                        <input type="button" id="specTab-add-${i}" value="添加规格值" class="layui-btn layui-btn-sm layui-btn-normal">
+                    </td>
+                    <td><button type="button" id="specTab-delete-${i}"  class="layui-btn layui-btn-sm layui-btn-danger">
+                        <i class="layui-icon"></i>
+                    </button></td>
+                </tr>`)
+                $(`#specTab-delete-${i}`).click(function (){
+                    // 移除元素
+                    $(`#specTab-${i}`).remove();
+                    // 规格数组移除
+                    specTable.splice(i,1);
+                    console.log(specTable);
+                })
+                // 监听规格名称按钮
+                $(`#specTab-name-${i}`).change(function (){
+                    let title = $(this).val();
+                    console.log($(this).val());
+                    specTable[i].title = title;
+                    console.log(specTable);
+                })
+                // 监听规格数值增加按钮
+                $(`#specTab-add-${i}`).click(function (){
+                    let valIndex = specTable[i].content.length;
+                    specTable[i].content.push('');
+                    $(`#specTab-add-${i}`).before(`<div class="input-line-box"><input type="text" id="specTab-value-${i}-${valIndex}" class="layui-input layui-input-sm input-line"><span id="specTab-delete-${i}-${valIndex}">X</span></div>`);
+                    // 监听规格数值变化input
+                    $(`#specTab-value-${i}-${valIndex}`).change(function (){
+                        specTable[i].content[valIndex] = $(this).val();
+                        console.log(specTable);
+                    })
+                    // 监听规格数值删除按钮
+                    $(`#specTab-delete-${i}-${valIndex}`).click(function (){
+                        specTable[i].content.splice(valIndex,1);
+                        $(this).parent().remove();
+                        console.log(specTable);
+                    })
+                })
+                let content = table[i].content
+                for (let x in content){
+                    $(`#specTab-add-${i}`).before(`<div class="input-line-box"><input type="text" id="specTab-value-${i}-${x}" class="layui-input layui-input-sm input-line" value="${content[x]}"><span id="specTab-delete-${i}-${x}">X</span></div>`);
+                    // 监听规格数值变化input
+                    $(`#specTab-value-${i}-${x}`).change(function (){
+                        specTable[i].content[x] = $(this).val();
+                        console.log(specTable);
+                    })
+                    // 监听规格数值删除按钮
+                    $(`#specTab-delete-${i}-${x}`).click(function (){
+                        specTable[i].content.splice(x,1);
+                        $(this).parent().remove();
+                        console.log(specTable);
+                    })
+                }
+            }
+        }
+        setSpecTable(specTable)
+        // 获取规格价格表表头
+        function getCol(){
+            let col = [];
+            for (let i in specTable) {
+                col.push({
+                    field: specTable[i].title,
+                })
+            }
+            col.push({
+                field: '价格'
+            })
+            col.push({
+                field: '重量'
+            })
+            col.push({
+                field: '规格'
+            })
+            col.push({
+                field: '条形码'
+            })
+            col.push({
+                field: '原价'
+            })
+            console.log(col)
+            specDetailCol = col
+            return specDetailCol;
+        }
+
+        function selRow(table){
+            for (let i in table) {
+                let td = '';
+                let tdArr = table[i];
+                for (let x in tdArr){
+                    td += `<td><input type="text" id="specTabDetail-value-${i}-${x}" class="layui-input layui-input-sm" value="${tdArr[x]}"></td>`
+                }
+                td = `<tr id="specTabDetail-${i}">${td}</tr>`
+                $('#specDetailsTab').append(td)
+                for (let x in tdArr){
+                    $(`#specTabDetail-value-${i}-${x}`).change(function (){
+                        specDetailTable[i][x] = $(this).val();
+                        console.log(specDetailTable[i]);
+                    })
+                }
+            }
+        }
+
+        function setCol(){
+            $('#specDetailsTab').html('')
+            let colStr = '';
+            let colStr2 = '';
+            for (let i in specDetailCol) {
+                colStr += `<th data-index="${i}">${specDetailCol[i].field} <i class="layui-icon layui-icon-edit layui-hover-icon"></i></th>`
+                colStr2 += `<col width="10">`;
+            }
+            $('#specDetailItem').html(colStr)
+            $('#specDetailItemCol').html(colStr2)
+            $('#specDetailItem th').click(function (){
+                let key = $(this).attr('data-index');
+                console.log($(this).attr('data-index'))
+                layer.prompt({title: '批量设置值', formType: 3}, function(val, index){
+                    layer.close(index);
+                    for (let i in specDetailTable) {
+                        specDetailTable[i][key] = val;
+                        $(`#specTabDetail-value-${i}-${key}`).val(val);
+                    }
+                });
+            })
+        }
+        reload()
+    })
+
+</script>
+</html>

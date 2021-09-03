@@ -1,0 +1,286 @@
+{extend name="layout/default" /}
+
+
+{block name="head"}
+<title>{:__('Attachment manage')}</title>
+{/block}
+{block name="content"}
+<div class="ok-body">
+	<!--模糊搜索区域-->
+	<div class="layui-row">
+		<!-- <form class="layui-form ok-search-form">
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">开始日期</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" placeholder="开始日期" autocomplete="off" id="startTime" name="startTime">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">截止日期</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" placeholder="截止日期" autocomplete="off" id="endTime" name="endTime">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">附件名</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" placeholder="账号" autocomplete="off" name="username">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">昵称</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" placeholder="昵称" autocomplete="off" name="nickname">
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label">邮箱</label>
+					<div class="layui-input-inline">
+						<input type="text" class="layui-input" placeholder="邮箱" autocomplete="off" name="email">
+					</div>
+				</div>
+				
+				<div class="layui-inline">
+					<label class="layui-form-label">请选择状态</label>
+					<div class="layui-input-inline">
+						<select name="status" lay-verify="" lay-search>
+							<option value="" selected>请选择状态</option>
+							<option value="normal">启用</option>
+							<option value="stop">停用</option>
+						</select>
+					</div>
+				</div>
+				<div class="layui-inline">
+					<div class="layui-input-inline">
+						<button class="layui-btn" lay-submit="" lay-filter="search">
+							<i class="layui-icon">&#xe615;</i>
+						</button>
+					</div>
+				</div>
+			</div>
+		</form> -->
+	</div>
+	<!--数据表格-->
+	<table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+</div>
+{/block}
+{block name="scripts"}
+<!--js逻辑-->
+<script>
+	layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+		let table = layui.table;
+		let form = layui.form;
+		let laydate = layui.laydate;
+		let okLayer = layui.okLayer;
+		let okUtils = layui.okUtils;
+		let okMock = layui.okMock;
+		let $ = layui.jquery;
+
+		okLoading.close($);
+
+		laydate.render({ elem: "#startTime", type: "datetime" });
+		laydate.render({ elem: "#endTime", type: "datetime" });
+
+		let userTable = table.render({
+			elem: '#tableId',
+			url: '{:url("index")}',
+			limit: 20,
+			page: true,
+			toolbar: true,
+			toolbar: "#toolbarTpl",
+			height: 'full',
+			cols: [[
+				{ type: "checkbox", fixed: "left" },
+				{ field: "id", title: "{:__('ID')}", width: 100, sort: true },
+				{ field: "see", title: "{:__('Preview')}", width: 100, templet: "#img" },
+				{ field: "url", title: "{:__('Filename')}", width: 500 },
+				{ field: "mimetype", title: "{:__('Filetype')}", width: 100 },
+				{ field: "filesize", title: "{:__('Filesize')}", align: "center", width: 120 },
+				{ field: "createtime_text", title: "{:__('Create_time')}", width: 150 },
+				{ field: "updatetime_text", title: "{:__('Update_time')}", width: 150 },
+				{ title: "{:__('Action')}", align: "center", fixed: "right", templet: "#operationTpl" }
+			]],
+			done: function (res, curr, count) {
+				console.info(res, curr, count);
+			}
+		});
+
+		form.on("submit(search)", function (data) {
+			userTable.reload({
+				where: data.field,
+				page: { curr: 1 }
+			});
+			return false;
+		});
+
+		table.on("toolbar(tableFilter)", function (obj) {
+			switch (obj.event) {
+				case "batchEnabled":
+					batchEnabled();
+					break;
+				case "batchDisabled":
+					batchDisabled();
+					break;
+				case "batchDel":
+					batchDel();
+					break;
+				case "add":
+					add();
+					break;
+			}
+		});
+
+		table.on("tool(tableFilter)", function (obj) {
+			let data = obj.data;
+			switch (obj.event) {
+				case "edit":
+					edit(data);
+					break;
+				case "del":
+					del(data.id);
+					break;
+			}
+		});
+
+		function batchEnabled() {
+			okLayer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("{:url('setNormal')}", "put", { idsStr: idsStr }, true).done(function (response) {
+						if (response.code == 1) {
+							console.log(response);
+							okUtils.tableSuccessMsg(response.msg);
+						} else {
+							okLayer.greenTickMsg(response.msg, function () {
+
+							})
+						}
+					}).fail(function (error) {
+						console.log(error)
+					});
+				}
+			});
+		}
+
+		function batchDisabled() {
+			okLayer.confirm("{:__('Are you sure you want to disable batches?')}", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("{:url('setStop')}", "put", { idsStr: idsStr }, true).done(function (response) {
+
+						if (response.code == 1) {
+							console.log(response);
+							okUtils.tableSuccessMsg(response.msg);
+						} else {
+							okLayer.greenTickMsg(response.msg, function () {
+
+							})
+						}
+					}).fail(function (error) {
+						console.log(error)
+					});
+				}
+			});
+		}
+
+		function batchDel() {
+			okLayer.confirm("{:__('Are you sure you want to delete batches?')}", function (index) {
+				layer.close(index);
+				let idsStr = okUtils.tableBatchCheck(table);
+				if (idsStr) {
+					okUtils.ajax("{:url('delete')}", "delete", { idsStr: idsStr }, true).done(function (response) {
+						//console.log(response);
+						//okUtils.tableSuccessMsg(response.msg);
+						if (response.code == 1) {
+							console.log(response);
+							okUtils.tableSuccessMsg(response.msg);
+						} else {
+							okLayer.greenTickMsg(response.msg, function () {
+
+							})
+						}
+					}).fail(function (error) {
+						console.log(error)
+					});
+				}
+			});
+		}
+
+		function add() {
+			okLayer.open("{:__('Add Attachment')}", "{:url('add')}", "90%", "90%", null, function () {
+				userTable.reload();
+			})
+		}
+
+		function edit(data) {
+			okLayer.open("{:__('Update Attachment')}", "edit?id=" + data.id, "90%", "90%", function (layero) {
+				//let iframeWin = window[layero.find("iframe")[0]["name"]];
+				//iframeWin.initForm(data);
+			}, function () {
+				userTable.reload();
+			})
+		}
+
+		function del(id) {
+			okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
+				okUtils.ajax("{:url('delete')}", "delete", { idsStr: id }, true).done(function (response) {
+
+
+					if (response.code == 1) {
+						console.log(response);
+						okUtils.tableSuccessMsg(response.msg);
+					} else {
+						okLayer.greenTickMsg(response.msg, function () {
+
+						})
+					}
+
+				}).fail(function (error) {
+					console.log(error)
+				});
+			})
+		}
+	})
+</script>
+<!--图片-->
+<script type="text/html" id="img">
+	<img src="{{d.url}}" alt="{:__('Unable to display')}" />
+</script>
+<!-- 头工具栏模板 -->
+<script type="text/html" id="toolbarTpl">
+	<div class="layui-btn-container">
+		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">{:__('Batch delete')}</button>
+		<button class="layui-btn layui-btn-sm" lay-event="add">{:__('Upload Attachment')}</button>
+		<a href="{:url('multipart_upload_add')}" class="layui-btn layui-btn-sm ajax-iframe" data-width="90%" data-height="90%">{:__('Upload attachments in pieces')}</a>
+	</div>
+</script>
+<!-- 行工具栏模板 -->
+<script type="text/html" id="operationTpl">
+	<a href="javascript:" title="{:__('Edit')}" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
+	<a href="javascript:" title="{:__('Delete')}" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+</script>
+
+<script type="text/html" id="statusTpl">
+	{{#  if(d.status == 'normal'){ }}
+	<span class="layui-btn layui-btn-normal layui-btn-xs">{:('Enable')}</span>
+	{{#  } else if(d.status != 'normal') { }}
+	<span class="layui-btn layui-btn-warm layui-btn-xs">{:__('Disable')}</span>
+	{{#  } }}
+</script>
+
+<script type="text/html" id="roleTpl">
+	{{#  if(d.role == 0){ }}
+	<span class="layui-btn layui-btn-normal layui-btn-xs">{:__('超级会员')}</span>
+	{{#  } else if(d.role == 1) { }}
+	<span class="layui-btn layui-btn-warm layui-btn-xs">{:__('General attachment')}</span>
+	{{#  } }}
+</script>
+
+<script type="text/html" id="logoTpl">
+	<img src="{{d.avatar}}" style="width: auto;height: 100%;"/>
+</script>
+{/block}

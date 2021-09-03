@@ -1,0 +1,47 @@
+{extend name="layout/default" /}
+{block name="head"}
+<title>城市选择 demo</title>
+<link rel="stylesheet" href="/static/lib/layui/css/layui.css" media="all">
+<script src="/static/lib/layui/extend/city-picker/city-picker.data.js"></script>
+<link href="/static/lib/layui/extend/city-picker/city-picker.css" rel="stylesheet" />
+
+{/block}
+{block name="content"}
+<div class="ok-body">
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>Layui 城市选择演示</legend>
+    </fieldset>
+
+    <form class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">地址</label>
+            <div class="layui-input-block">
+                <input type="text" autocomplete="on" class="layui-input" id="city-picker" name="city-picker"
+                    readonly="readonly" data-toggle="city-picker" placeholder="请选择">
+            </div>
+        </div>
+    </form>
+</div>
+{/block}
+{block name="scripts"}
+<script>
+    layui.config({
+        base: '/static/lib/layui/extend/' //静态资源所在路径
+    }).extend({
+        citypicker: 'city-picker/city-picker'
+    }).use(['jquery', 'citypicker'], function () {
+        var $ = layui.$
+            , cityPicker = layui.citypicker;
+
+        var currentPicker = new cityPicker("#city-picker", {
+            provincename: "provinceId",
+            cityname: "cityId",
+            districtname: "districtId",
+            level: 'districtId',// 级别
+        });
+        currentPicker.setValue("山东省/济南市/高新区");
+    });
+
+</script>
+
+{/block}

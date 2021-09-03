@@ -1,0 +1,9 @@
+public function get{%fieldName%}List(){
+    $data =  \think\facade\Db::name('{%table%}')->field('id,name')->select();
+    return json([
+            'code'=> 0,
+            'count'=> count($data),
+            'data'=>$data,
+            'msg'=>__('Search successful')
+   	]);
+}

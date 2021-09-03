@@ -1,0 +1,284 @@
+{extend name="layout/default" /}
+
+
+{block name="head"}
+<title>附件管理</title>
+<link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+<link rel="stylesheet" href="/static/css/dragula.css">
+<style>
+    .icon-img-delete {
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 0px;
+        z-index: 8
+    }
+
+    .layui-upload-img {
+        width: 92px;
+        height: 92px;
+        margin: 0 10px 10px 0;
+    }
+
+    .layui-elip {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        width: 100px;
+        line-height: 22px;
+        height: 22px
+    }
+
+    .fileManager li {
+        position: relative
+    }
+
+    .fileManager li::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        width: 40px;
+        height: 40px;
+        right: 5px;
+        bottom: 26px;
+        background-image: url('/static/images/success_checked.jpg');
+        background-repeat: no-repeat;
+    }
+
+    .fileManager li.checked::after {
+        z-index: 3;
+    }
+</style>
+{/block}
+{block name="content"}
+
+
+<div class="ok-body">
+    <button type="button" class="layui-hide" id="test1"></button>
+    <div class="layui-fluid">
+        <table class="layui-table" id="uploadTable">
+            <thead>
+                <tr>
+                    <th>文件名</th>
+                    <th>大小</th>
+                    <th>上传进度</th>
+                    <th>状态</th>
+                    <!-- <th>操作</th> -->
+                </tr>
+            </thead>
+            <tbody id="demoList"></tbody>
+        </table>
+    </div>
+    <div class="layui-fluid">
+        <div id="fileManager" lay-filter="test"></div>
+    </div>
+
+    <div style="text-align: right;position: fixed;left: 0;bottom: 10px;right: 10px;z-index:1000">
+        <button class="layui-btn layui-btn-normal submit">确认</button>
+        <button class="layui-btn layui-btn-primary cancel">取消</button>
+    </div>
+</div>
+{/block}
+{block name="scripts"}
+<script>
+    layui.config({
+        base: '/static/lib/layui/extend/',
+    })
+    layui.extend({ 'fileManager': 'fileManager/fileManager' })
+        .use(['fileManager', 'layer', 'upload', "okUtils", "okLayer", "element"], function () {
+            okLoading.close();
+            var fileManager = layui.fileManager
+                , $ = layui.$
+                , upload = layui.upload
+                , layer = layui.layer
+                , element = layui.element
+                , model = Number('{$Request.param.model}'),
+                imgList = [],
+                imgLimit = 12,
+                okUtils = layui.okUtils,
+                okLayer = layui.okLayer;
+
+            switch (model) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+                    imgLimit = 1
+                    break;
+
+            }
+            var demoListView = $("#uploadTable")
+            function getType(type) {
+                if (String(type).indexOf('image') != -1) {
+                    return 'image';
+                }
+                return type;
+            }
+            fileManager.render({
+                elem: '#fileManager'
+                , method: 'post'
+                , btn_upload: true
+                , id: 'fmTest'
+                , btn_create: false
+                , url: "{:url('attachment/index',['sort'=>'id desc'])}"
+                , icon_url: '/static/filemanage/ico/'
+                , thumb: { 'nopic': '/static/filemanage/null-100x100.jpg', 'width': 100, 'height': 100 }
+                , parseData: function (res) {
+                    let _res = [];
+                    _res.code = 0;
+                    _res.data = [];
+
+                    for (let item of res.data) {
+                        _res.data.push({
+                            'thumb': item.url,
+                            'path': item.storage,
+                            'type': getType(item.mimetype),
+                            'name': item.sha1,
+                            'id': item.id,
+                            data: item
+                        })
+                    }
+                    _res.count = res.count
+                    return _res;
+                }
+                , page: { limit: 10 }
+
+            });
+            var times = {};
+            var upIns = upload.render({
+                elem: '#test1' //绑定元素
+                , url: "{:url('upload/attachment',['save'=>1])}" //改成您自己的上传接口
+                , multiple: true
+                , accept: 'file'
+                , xhr: function (index, e) {
+                    var percent = e.loaded / e.total * 100;//计算百分比
+                    percent = parseInt(percent);
+                    console.log(percent)
+                    if (percent >= 100) {
+                        var time = new Date().getTime();
+                        if (time - times[index] < 800) {
+                            setTimeout(function () {
+                                element.progress('progress_' + index + '', '100%');
+                            }, 800)
+                        } else {
+                            element.progress('progress_' + index + '', percent + '%');
+                        }
+                    } else {
+
+                        element.progress('progress_' + index + '', percent + '%');
+                    }
+
+                }
+                , before: function (obj) {
+                    var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                    //读取本地文件
+                    obj.preview(function (index, file, result) {
+                        var tr = $(['<tr id="upload-' + index + '">'
+                            , '<td>' + file.name + '</td>'
+                            , '<td>' + (file.size / 1014).toFixed(1) + 'kb</td>'
+                            , '<td><div class="layui-progress layui-progress-big" lay-filter="progress_' + index + '" lay-showPercent="yes"><div class="layui-progress-bar" lay-percent="0%"></div></div></td>'
+                            , '<td>等待上传</td>'
+                            // , '<td>'
+                            // , '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+                            // , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+                            // , '</td>'
+                            , '</tr>'].join(''));
+
+                        //单个重传
+                        tr.find('.demo-reload').on('click', function () {
+                            obj.upload(index, file);
+                        });
+
+                        //删除
+                        tr.find('.demo-delete').on('click', function () {
+                            delete files[index]; //删除对应的文件
+                            tr.remove();
+                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                        });
+                        times[index] = new Date().getTime();
+                        demoListView.append(tr);
+                        console.log(index)
+                        element.render('progress', 'progress_' + index + '')
+                    });
+                }
+            })
+
+
+            //监听图片上传事件
+            fileManager.on('uploadfile(test)', function (obj) {
+                //obj.obj 当前对象
+                //obj.path 路径
+                //更改上传组件参数
+                upIns.config.data = { 'path': obj.path };
+                upIns.config.done = function (res, index) {
+                    console.log(res);
+                    if (res.code == 0) { //上传成功
+                        var tr = demoListView.find('tr#upload-' + index)
+                            , tds = tr.children();
+                        tds.eq(3).html('<span style="color: #5FB878;">上传成功</span>');
+                        tds.eq(4).html(''); //清空操作
+                        fileManager.reload('fmTest');
+                        return delete this.files[index]; //删除文件队列已经上传成功的文件
+                    } else if (res.code == -1) {
+                        layer.msg(res.msg);
+                    }
+
+                }
+                var e = document.createEvent("MouseEvents");
+                e.initEvent("click", true, true);
+                document.getElementById("test1").dispatchEvent(e)
+            });
+            $('.submit').click(function () {
+                getImages(imgList);
+                parent.layer.close(parent.layer.getFrameIndex(window.name));
+            })
+            $('.cancel').click(function () {
+                parent.layer.close(parent.layer.getFrameIndex(window.name));
+            })
+            fileManager.on('delete(test)', function (obj) {
+                let idsStr = obj.obj.attr('data-id')
+                layer.confirm('确认删除？', {
+                    btn: ['确定', '取消'] //按钮
+                }, function () {
+                    okUtils.ajax("{:url('attachment/delete')}", "post", { idsStr }, true).done(function (response) {
+                        if (response.code === 1) {
+                            okLayer.greenTickMsg(response.msg, function () {
+                                location.reload()
+                            })
+                        }
+                    }).fail(function (error) {
+                        console.log(error)
+                    });
+                }, function () {
+
+                });
+
+                console.log('delete')
+            })
+            //监听图片选择事件
+            fileManager.on('pic(test)', function (obj) {
+                if (imgList.length === imgLimit) {
+                    return layer.msg(`只允许选择${imgLimit}张图片`);
+                }
+                let li = obj.obj;
+                let data = obj.data.data;
+
+                console.log(data)
+                if (li.hasClass('checked')) {
+                    li.removeClass('checked');
+
+                    imgList.splice(data.url, 1)
+                } else {
+                    imgList.push(data.url)
+                    li.addClass('checked');
+                }
+            });
+
+        });
+</script>
+{/block}

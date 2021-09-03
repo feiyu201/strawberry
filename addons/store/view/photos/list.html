@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title11</title>
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <style>
+        .img-hover {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-view {
+            padding-top: 100%;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .img-view .img-click {
+            content: '';
+            display: block;
+            position: absolute;
+            z-index: -1;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            left: 5px;
+            top: 5px;
+            opacity: 0;
+            transition: 0.1s;
+            border: 3px solid transparent;
+            box-sizing: border-box;
+        }
+
+        .img-view:hover {
+            background-color: #eee;
+        }
+
+        .img-hover:hover .img-click {
+            border: 3px solid #1094fa;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .img-view img {
+            position: absolute;
+            width: calc(100% - 10px);
+            height: calc(100% - 10px);
+            left: 5px;
+            top: 5px;
+            object-fit: cover;
+        }
+
+        .img-md5 {
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: calc(100% - 10px);
+            height: 22px;
+            z-index: 3;
+            background-color: rgba(0, 0, 0, .3);
+            color: white;
+            text-indent: 3px;
+        }
+
+        .img-md5::after {
+            content: '';
+            display: table;
+            clear: both;
+        }
+
+        .img-md5 span {
+            width: calc(100% - 35px);
+            float: left;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            height: 22px;
+            line-height: 22px;
+        }
+
+        .img-md5 button {
+            float: right;
+        }
+
+        .checked {
+            position: absolute;
+            z-index: -1;
+            width: 40px;
+            height: 40px;
+            right: 5px;
+            bottom: 5px;
+            background-image: url('/static/images/success_checked.jpg');
+            background-repeat: no-repeat;
+        }
+
+        .img-hover .layui-form-checkbox {
+            display: none;
+        }
+
+        .checked-active {
+            z-index: 3;
+        }
+
+        @media screen and (min-width: 992px) {}
+    </style>
+</head>
+
+<body>
+    <div class="layui-row" style="height: calc(95vh - 60px);overflow-y: auto">
+        {volist name="list" id="vo" mod="2" }
+        <div class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover">
+            <div class="img-view">
+                <div class="img-md5"><span>{$vo.md5}</span>
+                    <button class="layui-btn layui-btn-danger layui-btn-xs" data-id="{$vo.id}"><i
+                            class="layui-icon layui-icon-close"></i></button>
+                </div>
+                <img src="{$vo.images_thumb}" alt="">
+                <input name="images" type="checkbox" value="{$vo.images}" style="display: none">
+                <div class="checked"></div>
+                <div class="img-click"></div>
+            </div>
+        </div>
+        {/volist}
+
+    </div>
+    <div id="page" style="text-align: center"></div>
+</body>
+<script>
+    layui.use(['form', "okLayer", "okUtils", 'jquery', 'laypage'], function () {
+        var form = layui.form,
+            okLayer = layui.okLayer,
+            okUtils = layui.okUtils,
+            $ = layui.jquery,
+            laypage = layui.laypage;
+
+        //执行一个laypage实例
+        laypage.render({
+            elem: 'page' //注意，这里的 test1 是 ID，不用加 # 号
+            , count: '{$count}' //数据总数，从服务端得到,
+            , limit: '18'
+            , curr: '{$Request.param.page}'
+            , hash: 'fenye' //自定义hash值
+            , jump: function (obj, first) {
+                //obj包含了当前分页的所有参数，比如：
+                console.log(obj.curr); //得到当前页，以便向服务端请求对应页的数据。
+                console.log(obj.limit); //得到每页显示的条数
+
+                //首次不执行
+                if (!first) {
+                    console.log("{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page=" + obj.curr)
+                    location.href = "{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page=" + obj.curr
+                }
+            }
+        });
+
+        $(".img-hover .img-click").click(function () {
+            console.log($(this))
+            let sty = $(this).parent().find('.checked').attr('class');
+            if (sty.indexOf('checked-active') > -1) {
+                $(this).parent().find('.checked').removeClass('checked-active')
+                $(this).parent().find('input').prop("checked", false);
+            } else {
+                $(this).parent().find('.checked').addClass('checked-active')
+                $(this).parent().find('input').prop("checked", true);
+            }
+        })
+        $(".img-hover button").click(function () {
+            let id = $(this).find('.checked').attr('data-id');
+            console.log('确认删除？')
+            okLayer.confirm('确认删除？', {
+                btn: ['确认', '取消'] //按钮
+            }, function () {
+
+            }, function () {
+
+            });
+        })
+        okLoading.close();
+    })
+</script>
+
+</html>

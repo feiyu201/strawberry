@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+    <style>
+        .layui-upload-img {
+            width: 92px;
+            height: 92px;
+            margin: 0 10px 10px 0;
+        }
+        .layui-upload-img img {
+            width: 92px;
+            height: 92px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+<div class="layui-tab" style="height: 86vh">
+    <ul class="layui-tab-title">
+        <li class="layui-this">上传图片</li>
+        <li>相册管理</li>
+        {if $Request.param.goods_id == 0 }
+        {else /} <li>商品相册</li>
+        {/if}
+    </ul>
+    <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-upload">
+                <button type="button" class="layui-btn" id="test2">多图片上传</button>
+                <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                    预览图：
+                    <div class="layui-upload-list" id="demo2"></div>
+                </blockquote>
+            </div>
+            <div style="text-align: right;position: absolute;left: 0;bottom: 10px;right: 10px">
+                <button class="layui-btn layui-btn-normal" id="submit1">确认</button>
+                <button class="layui-btn layui-btn-primary cancel" >取消</button>
+            </div>
+        </div>
+
+        <div class="layui-tab-item layui-form" style="height: 84vh">
+            <iframe  class="list" src="{:addons_url('store://Photos/list')}?goods_id=0&page={$Request.param.page}" style="display: block;width: 100%;border: none;display: block;height: 100%"></iframe>
+            <div style="text-align: right;position: absolute;left: 0;bottom: 10px;right: 10px">
+                <button class="layui-btn layui-btn-normal submit2">确认</button>
+                <button class="layui-btn layui-btn-primary cancel">取消</button>
+            </div>
+        </div>
+        {if $Request.param.goods_id == 0 }
+        {else /}
+        <div class="layui-tab-item layui-form" style="height: 84vh">
+            <iframe  class="list" src="{:addons_url('store://Photos/list')}?goods_id={$Request.param.goods_id}&page={$Request.param.page}" style="display: block;width: 100%;border: none;display: block;height: 100%"></iframe>
+            <div style="text-align: right;position: absolute;left: 0;bottom: 10px;right: 10px">
+                <button class="layui-btn layui-btn-normal submit2">确认</button>
+                <button class="layui-btn layui-btn-primary cancel">取消</button>
+            </div>
+        </div>
+        {/if}
+
+    </div>
+</div>
+
+
+</body>
+<script>
+    layui.use(['form', "okLayer", "okUtils", 'element', 'jquery','upload'], function () {
+        var form = layui.form,
+            okLayer = layui.okLayer,
+            okUtils = layui.okUtils,
+            element = layui.element,
+            $ = layui.jquery,
+            upload = layui.upload,
+            uploadList = [],
+            model = Number('{$Request.param.model}');
+        console.log('选中',model)
+        //多图片上传
+        upload.render({
+            elem: '#test2'
+            ,url: "{:addons_url('store://Upload/uploadPhotos')}?id={$Request.param.goods_id|default='0'}" //改成您自己的上传接口
+            ,multiple: true
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img">')
+                });
+            }
+            ,done: function(res){
+                //上传完毕
+                console.log(res)
+                uploadList.push(res.data)
+            }
+        });
+
+        okLoading.close();
+        $('#submit1').click(function (){
+            console.log(uploadList)
+            for (let i in uploadList) {
+                if (!(uploadList[i].indexOf('-thumb') > -1)) {
+                    var imgfile = uploadList[i].split('.')
+                    imgfile = imgfile[0]+'-thumb.'+imgfile[1]
+                }  else {
+                    var imgfile = uploadList[i]
+                }
+
+                if (model === 1) {
+                    parent.tinymce.execCommand('mceReplaceContent',false,`<img src="${uploadList[i]}">`)
+                } else if (model === 2) {
+                    console.log(parent)
+                    parent.$('#addDom').before(`<li class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover">
+                    <div class="img-view">
+                        <span class="handle">↔</span>
+                        <img src="${imgfile}" alt="">
+                        <span class="img-border"></span>
+                        <input type="checkbox" name="images[]" style="display: none" value="${imgfile}" checked>
+                    </div>
+                </li>`);
+                } else  if (model === 3) {
+                    parent.$('#addDom2').before(`<div class="layui-col-xs6 layui-col-sm2 layui-col-md1 img-hover">
+                    <button type="button" class="layui-btn layui-btn-sm">选择图片</button>
+                    <div class="img-view">
+                        <img src="${imgfile}" alt="">
+                        <span class="img-border"></span>
+                    </div>
+                    <input type="text" class="layui-input layui-input-sm img-input" placeholder="规格对应的名称">
+                </div>`)
+                    parent.reload()
+                } else if (model === 4) {
+                    let item = Number('{$Request.param.item}');
+                    console.log(parent.$('#specType .img-spec').eq(item).find('img'))
+                    parent.$('#specType .img-spec').eq(item).find('img').attr('src',imgfile)
+                }
+
+            }
+            parent.layer.close(parent.layer.getFrameIndex(window.name));
+        })
+        let item = Number('{$Request.param.item}');
+        console.log(parent.$('#specType .img-spec').eq(item).find('img').attr('src'))
+        $('.submit2').click(function (){
+            let checkedList = []
+            $(this).parent().parent().find('iframe').contents().find('input').each(function (e,i){
+                if (i.checked) {
+                    if (!($(i).val().indexOf('-thumb') > -1)) {
+                        var imgfile = $(i).val().split('.')
+                        imgfile = imgfile[0]+'-thumb.'+imgfile[1]
+                    }  else {
+                        var imgfile = $(i).val()
+                    }
+
+                    checkedList.push($(i).val())
+                    if (model === 1) {
+                        parent.tinymce.execCommand('mceReplaceContent',false,`<img src="${$(i).val()}">`)
+                    } else if (model === 2) {
+                        console.log(parent)
+                        parent.$('#addDom').before(`<li class="layui-col-xs6 layui-col-sm6 layui-col-md2 img-hover img-spec">
+                    <div class="img-view">
+                        <span class="handle">↔</span>
+                        <img src="${imgfile}" alt="">
+                        <span class="img-border"></span>
+                        <input type="checkbox" name="images[]" style="display: none" value="${imgfile}" checked>
+                    </div>
+                </li>`);
+                    } else  if (model === 3) {
+                        parent.$('#addDom2').before(`<div class="layui-col-xs6 layui-col-sm2 layui-col-md1 img-hover img-spec">
+                    <button type="button" class="layui-btn layui-btn-sm">选择图片</button>
+                    <div class="img-view">
+                        <img src="${imgfile}" alt="">
+                        <span class="img-border"></span>
+                    </div>
+                    <input type="text" class="layui-input layui-input-sm img-input" placeholder="规格对应的名称">
+                </div>`)
+                        parent.reload()
+                    } else if (model === 4) {
+                        let item = Number('{$Request.param.item}');
+                        parent.$('#specType .img-spec').eq(item).find('img').attr('src',imgfile)
+                    }
+
+
+                }
+            })
+            console.log(checkedList)
+            parent.layer.close(parent.layer.getFrameIndex(window.name));
+        })
+        $('.cancel').click(function (){
+            parent.layer.close(parent.layer.getFrameIndex(window.name));
+        })
+
+    })
+</script>
+</html>

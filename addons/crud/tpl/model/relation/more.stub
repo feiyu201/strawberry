@@ -1,0 +1,4 @@
+public function {%relation%}()
+{
+    return $this->hasMany({%relationClass%},'{%foreignKey%}','{%localKey%}');
+}

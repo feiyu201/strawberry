@@ -1,0 +1,122 @@
+<style>
+    .new-table{
+        position: absolute;
+        top: 28px;
+        left: 0;
+        z-index: 2;
+        background-color: white;
+        width: 100%;
+    }
+    .new-table tbody {
+        display: block;
+        overflow-y: scroll;
+        max-height: 400px;
+    }
+
+    .new-table thead,
+    .new-table tbody tr {
+        display: table;
+        width: 100%;
+        table-layout: fixed;/*重要  表格固定算法*/
+        position: relative;
+    }
+    .new-table thead {/*留出滚动条的位置*/
+        width: calc(100% - 7px)
+    }
+    .new-table td .layui-unselect.layui-form-radio{
+        position: absolute!important;
+        left: 0!important;
+        right: 0!important;
+        bottom: 0!important;
+        top: 0!important;
+        z-index: 1!important;
+    }
+</style>
+<div class="layui-form-item">
+    <label class="layui-form-label">所属菜单</label>
+    <div class="layui-input-block">
+        <div class="layui-unselect layui-form-select layui-form-select-pos">
+            <div class="layui-select-title" style="position: relative;"><input type="text" required  lay-verify="required" placeholder="请选择" value="" readonly="" class="layui-input layui-unselect"><i class="layui-edge"></i></div>
+            <table class="layui-table layui-form layui-anim new-table" id="tree-table1" lay-size="sm" style="display: none;"></table>
+        </div>
+    </div>
+</div>
+
+{if !empty($data)}
+<script>
+    layui.use('jquery',function () {
+        let $ = layui.jquery;
+        $('.layui-form-select-pos input').val('{$data.title}')
+    })
+    var checkedId = Number('{$data.id}')
+</script>
+{else /}
+<script>
+    var checkedId = null
+</script>
+{/if}
+<script>
+    layui.config({
+        base: '/static/lib/layui/extend/',
+    })
+    layui.use(['form',"okLayer","okUtils",'treeTable'],function(){
+        var form = layui.form;
+        var o = layui.$;
+        let okUtils = layui.okUtils;
+        let treeTable = layui.treeTable;
+        var tree3 = treeTable.render({
+            elem: '#tree-table1',
+            data: [],
+            icon_key: 'name',// 必须
+            top_value: 0,
+            primary_key: 'id',
+            parent_key: 'pid',
+            is_head: false,
+            is_open: false,
+            id: 'tree3',
+            checked: {
+                key: 'id',
+                data: [1]
+            },
+            cols: [
+                {
+                    key: 'name',
+                },
+                {
+                    align: 'right',
+                    template: function(item){
+                        var checkedVar = checkedId===item.id?'checked':'';
+                        return '<input style="position: absolute;left: 0;bottom: 0;width: 100%;height: 100%;opacity: 0;z-index: 1" type="radio" name="pid" lay-filter="pid" value="'+item.id+'"'+checkedVar+'/>';
+                    }
+                }
+            ],
+            end: function(e){
+                form.render()
+            }
+        })
+        okUtils.ajax("{:addons_url('store://Category/categorySelect')}", "get", {}, true).done(function (response) {
+            if (response.status ===200) {
+                tree3.data = response.data
+                treeTable.render(tree3);
+                o('#tree-table1 tr').click(function (){
+                    // console.log(o(this).find('input'))
+                    // o(this).find('input').click()
+                    // o(this).find('input').attr("checked",'checked');
+                })
+            }
+        }).fail(function (error) {
+            console.log(error)
+        });
+
+        form.on('radio(pid)', function(data){
+            var content = treeTable.parentValues(tree3, data.value, 0, tree3, []).join(' | ');
+            o(data.elem).parents('.layui-form-select').find('.layui-select-title input').val(content);
+            o('.layui-form-select').removeClass('layui-form-selected')
+            o('#tree-table1').css('display','none')
+        })
+        o('.layui-select-title').click(function(){
+            o(this).parent().hasClass('layui-form-selected') ? o(this).next().hide() : o(this).next().show(),o(this).parent().toggleClass('layui-form-selected');
+        })
+
+    })
+</script>

@@ -1,0 +1,10 @@
+
+public function scopeDateRange($query,$field,$data)
+{
+    if(is_string($data)){
+        $arr  =explode(' - ',$data);
+        if(count($arr)==2){
+            $query->whereTime($field, 'between', $arr) ;
+        }
+    }
+}

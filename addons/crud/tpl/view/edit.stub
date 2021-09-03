@@ -1,0 +1,66 @@
+{extend name="layout/default" /}
+{block name="head"}
+	{if isset(${%table%})}
+    <title>{:__('Edit')}</title>
+    {else/}
+    <title>{:__('Add')}</title>
+    {/if}
+{/block}
+{block name="content"}
+<div class="ok-body">
+	<!--form表单-->
+	<form class="layui-form layui-form-pane ok-form">
+	    {%formHtml%}
+		<div class="layui-form-item">
+			<div class="layui-input-block">
+				<button class="layui-btn" lay-submit lay-filter="add">{:__('Submit')}</button>
+				<button type="reset" class="layui-btn layui-btn-primary">{:__('Reset')}</button>
+			</div>
+		</div>
+	</form>
+</div>
+{/block}
+{block name="scripts"}
+<script src="/static/js/upload.js" charset="utf-8"></script>
+{%importFile%}
+<script>
+
+	//设置插件路径
+	layui.config({
+            base: '../../static/lib/'
+    })
+	//集成插件
+	.extend({%extendAddons%})
+	//使用插件
+	.use({%layuiAddonUsed%}, function () {
+		{%varInit%}
+		
+  		let editorArr = {};
+		okLoading.close();
+        {%formInit%}
+
+		form.on("submit(add)", function (data) {
+			okUtils.ajax("", "post", data.field, true).done(function (response) {
+				//console.log(response);
+				if(response.code==1){
+					okLayer.greenTickMsg("编辑成功", function () {
+						parent.layer.close(parent.layer.getFrameIndex(window.name));
+					});
+				}else{
+					okLayer.greenTickMsg(response.msg, function () {
+				        
+				    })
+				}
+				
+			}).fail(function (error) {
+				console.log(error)
+			});
+			return false;
+		});
+	});
+</script>
+
+
+<script type="text/javascript" src="/static/lib/require.js"></script>
+<script type="text/javascript" src="/static/js/addons.js"></script>
+{/block}
