@@ -3,11 +3,6 @@ namespace app\api\controller;
 
 use app\common\controller\Api;
 use app\common\model\Config as ConfigModel;
-use think\facade\View;
-use think\facade\Db;
-use think\facade\Session;
-use think\facade\Event;
-use think\facade\Lang;
 
 class Config extends Api{
 
