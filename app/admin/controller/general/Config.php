@@ -99,6 +99,11 @@ class Config extends BaseController
                         $i++;
                     }
                     $params["content"] = json_encode($newContentArr);
+
+                    //判断类型
+                    if($params["type"] == "string"){
+                        $params["extend"] = "class=\"layui-input\"";
+                    }
                     
                     (new \app\common\model\Config())->save($params);
                     //$result = (new ConfigModel())->create($params);
