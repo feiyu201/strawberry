@@ -1,10 +1,11 @@
 <?php
-namespace app\admin\controller;
+namespace {%ctlSpace%};
 
+use app\common\controller\AddonBase;
 use think\facade\View;
 use think\facade\Db;
 
-class {%className%} extends AdminBase
+class {%className%} extends {%ctlBase%}
 {
 
     public function initialize(){
@@ -25,7 +26,7 @@ class {%className%} extends AdminBase
    		$count = $this->model->count();
    		$data = $this->model->with({%relations%})
 		   {%action%}
-           ->order('id','desc')
+		   ->order('id','desc')
 		   ->page($page,$limit)->select();
    		return json([
 				'code'=> 0,
@@ -51,29 +52,6 @@ class {%className%} extends AdminBase
 	   	return View::fetch('edit');
    }
 
-   public function edpot(){
-   		if(!$this->request->isAjax()){
-           	return View::fetch();
-   		}else{
-   			return $this->getEdpot();
-   		}
-    }
-
-
-    public function getEdpot(){
-   		$page = $this->request->param('page',1,'intval');
-   		$limit = $this->request->param('limit',10,'intval');
-   		$count = $this->model->count();
-   		$data = $this->model->with({%relations%})
-		   {%actionEdpot%}
-		   ->page($page,$limit)->select();
-   		return json([
-				'code'=> 0,
-				'count'=> $count,
-   				'data'=>$data,
-   				'msg'=>__('Search successful')
-   		]);
-   }
 
    public function leading(){
    	   	if($this->request->isPost()){
@@ -141,69 +119,13 @@ class {%className%} extends AdminBase
    		}
    }
 
-   public function trash(){
-      		$idsStr = $this->request->param('idsStr');
-      		if(!$idsStr){
-      			$this->success(__('Parameter error'));
-      		}
-      		if( $this->model->where('id','in',$idsStr)->update(['deletetime' => time()])){
-      			$this->success(__('Delete successful'));
-      		}else{
-      			$this->error(__('Delete error'));
-      		}
-      }
-
-   public function setNormal(){
-        		$idsStr = $this->request->param('idsStr');
-        		if(!$idsStr){
-        			$this->success(__('Parameter error'));
-        		}
-        		if( $this->model->where('id','in',$idsStr)->update(['deletetime' => 0])){
-        			$this->success('还原成功');
-        		}else{
-        			$this->error('还原失败');
-        		}
-        }
-
-
-    public function setEnable(){
-            		$id = $this->request->param('id');
-            		if(!$id){
-            			$this->success(__('Parameter error'));
-            		}
-            		if( $this->model->where('id',$id)->update(['deletetime' => 0])){
-            			$this->success('还原成功');
-            		}else{
-            			$this->error('还原失败');
-            		}
-            }
-
-    public function allEnabled(){
-           if( $this->model->where('deletetime > 0')->update(['deletetime' => 0])){
-            	$this->success('还原成功');
-            }else{
-            	$this->error('还原失败');
-            }
-     }
-
-
-    public function allDel(){
-
-                		if( $this->model->where('deletetime > 0')->delete()){
-                			$this->success(__('Delete successful'));
-                		}else{
-                			$this->error(__('Delete error'));
-                		}
-                }
-
    public function sw(){
-      		$id = $this->request->param('id');
-      		$switch = $this->request->param('switch');
-      		if( $this->model->where('id',$id)->update(['switch' => $switch])){
-      			$this->success(__('Editor successful'));
-      		}else{
-      			$this->error(__('Editor failed'));
-      		}
+      	$data = $this->request->param();
+            if( $this->model->where('id',$data['id'])->update($data)){
+                 $this->success(__('Editor successful'));
+            }else{
+                 $this->error(__('Editor failed'));
+            }
       }
 
 }

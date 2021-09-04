@@ -1,16 +1,17 @@
 {extend name="layout/default" /}
 {block name="head"}
-	{if isset(${%table%})}
-    <title>{:__('Edit')}</title>
-    {else/}
-    <title>{:__('Add')}</title>
-    {/if}
+    <title>{:__('Import')}</title>
 {/block}
 {block name="content"}
 <div class="ok-body">
 	<!--form表单-->
 	<form class="layui-form layui-form-pane ok-form">
-	    {%formHtml%}
+	    <div class="layui-form-item">
+            <label class="layui-form-label">Excel文件</label>
+            <div class="layui-input-block">
+                <input type="file" id="excel" name="excel"  class="layui-input" lay-verify="required">
+            </div>
+        </div>
 		<div class="layui-form-item">
 			<div class="layui-input-block">
 				<button class="layui-btn" lay-submit lay-filter="add">{:__('Submit')}</button>
@@ -39,24 +40,24 @@
 		okLoading.close();
         {%formInit%}
 
-		form.on("submit(add)", function (data) {
-			okUtils.ajax("", "post", data.field, true).done(function (response) {
-				//console.log(response);
-				if(response.code==1){
-					okLayer.greenTickMsg("编辑成功", function () {
-						parent.layer.close(parent.layer.getFrameIndex(window.name));
-					});
-				}else{
-					okLayer.greenTickMsg(response.msg, function () {
-				        
-				    })
-				}
-				
-			}).fail(function (error) {
-				console.log(error)
-			});
-			return false;
-		});
+
+        var uploadInst = upload.render({
+                    elem: '#excel' //绑定元素
+                    ,url: '' //上传接口
+                    ,accept:'file'
+                    ,exts:'csv|xlsx'
+                    ,done: function(res){
+                        //上传完毕回调
+                        okLayer.greenTickMsg("导入成功", function () {
+                            parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        });
+                    }
+                    ,error: function(){
+                        //请求异常回调
+                        console.log(error)
+                    }
+                });
+
 	});
 </script>
 
