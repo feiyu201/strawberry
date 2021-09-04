@@ -91,8 +91,14 @@ class Config extends BaseController
                         throw new \Exception(__('name is already exists!'));
                     }
                     $params["content"] = str_replace(["\n", "\r"], "", $params["content"]);
-                    $content = explode(",",  $params["content"]);
-                    $params["content"] = json_encode($content);
+                    $contentArr = explode(",",  $params["content"]);
+                    $newContentArr = [];
+                    $i = 1;
+                    foreach ($contentArr as $val) {
+                        $newContentArr[$i] = $val;
+                        $i++;
+                    }
+                    $params["content"] = json_encode($newContentArr);
                     
                     (new \app\common\model\Config())->save($params);
                     //$result = (new ConfigModel())->create($params);
@@ -139,8 +145,17 @@ class Config extends BaseController
         if ($this->request->isPost()) {
             $row = $this->request->post("row/a", [], 'trim');
             if ($row) {
+                $groupList = ConfigModel::getGroupList();
+                foreach ($groupList as $k => $v) {
+                    $siteList[$k]['name'] = $k;
+                    $siteList[$k]['title'] = $v;
+                    $siteList[$k]['list'] = [];
+                }
                 $configList = [];
                 foreach ((new \app\common\model\Config())->all() as $v) {
+                    if (!isset($siteList[$v['group']])) {
+                        continue;
+                    }
                     if (isset($row[$v['name']])) {
                         $value = $row[$v['name']];
                         if (is_array($value) && isset($value['field'])) {
@@ -149,6 +164,9 @@ class Config extends BaseController
                             $value = is_array($value) ? implode(',', $value) : $value;
                         }
                         $v['value'] = $value;
+                        $configList[] = $v->toArray();
+                    }else{
+                        $v['value'] = "";
                         $configList[] = $v->toArray();
                     }
                 }
