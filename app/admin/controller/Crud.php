@@ -27,7 +27,7 @@ class Crud extends Admin
     public function getList()
     {
         // 查询所有表
-        $sql = "SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE table_name not like '%_admin' and table_name not like '%_auth_%' and table_name not like '%_system_log_%' and table_name not like '%_user' and table_schema='" . config('database.connections.mysql.database') . "'";
+        $sql = "SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE table_name not like '%_admin' and table_name not like '%_auth_%' and table_name not like '%_system_log_%' and table_name not like '%_attachment'  and table_name not like '%_user' and table_schema='" . config('database.connections.mysql.database') . "'";
         $tables = Db::query($sql);
         $data = [];
         foreach ($tables as $k => $v) {
