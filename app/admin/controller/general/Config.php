@@ -70,22 +70,45 @@ class Config extends BaseController
     public function add()
     {
         if ($this->request->isPost()) {
-            $this->token();
-            $params = $this->request->post("row/a", [], 'trim');
+            //$this->token();
+            $params = $this->request->post(["group", "title", "name", "type", "content"]);
             if ($params) {
-                foreach ($params as $k => &$v) {
-                    $v = is_array($v) && $k !== 'setting' ? implode(',', $v) : $v;
-                }
-                if (in_array($params['type'], ['select', 'selects', 'checkbox', 'radio', 'array'])) {
-                    $params['content'] = json_encode(ConfigModel::decode($params['content']), JSON_UNESCAPED_UNICODE);
-                } else {
-                    $params['content'] = '';
-                }
+                // foreach ($params as $k => &$v) {
+                //     $v = is_array($v) && $k !== 'setting' ? implode(',', $v) : $v;
+                // }
+                // if (in_array($params['type'], ['select', 'selects', 'checkbox', 'radio', 'array'])) {
+                //     $params['content'] = json_encode(ConfigModel::decode($params['content']), JSON_UNESCAPED_UNICODE);
+                // } else {
+                //     $params['content'] = '';
+                // }
                 try {
-                    $result = (new ConfigModel())->create($params);
-                } catch (Exception $e) {
-                    $this->error($e->getMessage());
+                    if(empty($params['group']) || empty($params['title']) || empty($params['name']) || empty($params['type'])) {
+                        throw new \Exception(__('Parameter can not be empty'));
+                    }
+
+                    $tmp = (new \app\common\model\Config())->where("name", $params["name"])->field('id')->find();
+                    if($tmp && $tmp->id && $tmp->id > 0){
+                        throw new \Exception(__('name is already exists!'));
+                    }
+                    $params["content"] = str_replace(["\n", "\r"], "", $params["content"]);
+                    $content = explode(",",  $params["content"]);
+                    $params["content"] = json_encode($content);
+                    
+                    (new \app\common\model\Config())->save($params);
+                    //$result = (new ConfigModel())->create($params);
+                    echo json_encode([
+                        "status" => 1,
+                        "msg" => __("add success!"),
+                    ]);
+                    exit;
+                } catch (\Exception $e) {
+                    echo json_encode([
+                        "status" => 0,
+                        "msg" => $e->getMessage(),
+                    ]);
+                    exit;
                 }
+                /*
                 if ($result !== false) {
                     try {
                         $this->refreshFile();
@@ -95,11 +118,16 @@ class Config extends BaseController
                     $this->success();
                 } else {
                     $this->error((new ConfigModel())->getError());
-                }
+                }*/
             }
-            $this->error(__('Parameter %s can not be empty', ''));
+            //$this->error(__('Parameter %s can not be empty', ''));
         }
-        return $this->view->fetch();
+        echo json_encode([
+            "status" => 0,
+            "msg" => __('Parameter %s can not be empty', ''),
+        ]);
+        exit;
+        //return $this->view->fetch();
     }
 
     /**

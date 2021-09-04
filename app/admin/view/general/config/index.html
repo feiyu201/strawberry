@@ -245,7 +245,7 @@
                                     <td>
                                         <div class="layui-row">
                                             <button type="submit" class="btn btn-success btn-embossed layui-btn">{:__('OK')}</button>
-                                            <button type="button" class="layui-btn layui-btn-primary" id="add-btn" style="margin-left: 10px;"><i class="layui-icon">&#xe654;</i></button>
+                                            <button type="button" class="layui-btn layui-btn-primary" id="add-btn" style="margin-left: 10px;">{:__('新增')}</button>
                                         </div>
                                     </td>
                                     <td></td>
@@ -288,13 +288,19 @@
         <div class="layui-form-item">
             <label class="layui-form-label">{:__('类型')}</label>
             <div class="layui-input-block">
-                <select name="type" id="type" lay-verify="required">
+                <select name="type" id="type" lay-verify="required" lay-filter="type-form">
                     <option value="string">{:__('文本')}</option>
                     <option value="text">{:__('文本域')}</option>
                     <option value="checkbox">{:__('复选框')}</option>
                     <option value="radio">{:__('单选框')}</option>
                     <option value="select">{:__('下拉框')}</option>
                 </select>
+            </div>
+        </div>
+        <div class="layui-form-item" id="item-content" style="display: none;">
+            <label class="layui-form-label">{:__('选项(以英文逗号隔开)')}</label>
+            <div class="layui-input-block">
+                <textarea name="content" id="content" placeholder="{:__('请输入选项内容')}" class="layui-textarea"></textarea>
             </div>
         </div>
     </form>
@@ -315,6 +321,14 @@
         var element = layui.element;
 
         okLoading.close($);
+
+        form.on("select(type-form)", function (data){
+            if (data.value == "checkbox" || data.value == "radio" || data.value == "select"){
+                $("#item-content").show();
+            }else{
+                $("#item-content").hide();
+            }
+        })
         $("#add-btn").click(function () {
             form.render();
             layer.open({
@@ -324,9 +338,33 @@
                 content: $("#add-content"), //这里content是一个普通的String
                 btn: ['新增', '取消'],
                 btnAlign: 'c',
+                // success: function(layero, index){
+                //     $("#type").change(function (val){
+                //         console.log(val);
+                //     });
+                // },
                 yes: function(index, layero){
-                    alert("aaaaa");
-                    //按钮【按钮一】的回调
+                    var parentIndex = index;
+
+                    $.post("{:url('general.config/add')}", {
+                        group: $("#group").val(),
+                        title: $("#title").val(),
+                        name: $("#name").val(),
+                        type: $("#type").val(),
+                        content: $("#content").val(),
+                    }, function(result) {
+                       if (result.status == 1){
+                         layer.alert("新增成功", {icon:1, title:"提示"}, function (i){
+                             layer.close(i);
+                             layer.close(parentIndex);
+                             window.location.reload();
+                         });
+                       }else {
+                           layer.alert(result.msg, {icon:2, title:"提示"}, function (i){
+                               layer.close(i);
+                           })
+                       }
+                    }, "json");
                 },
                 cancel: function(){
                     return true;
