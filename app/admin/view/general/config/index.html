@@ -135,8 +135,7 @@
                                                     class="form-control selectpicker" data-tip="{$item.tip}"
                                                     {$item.type=='selects' ?'multiple':''}>
                                                     {foreach name="item.content" item="vo"}
-                                                    <option value="{$key}" {in name="key" value="$item.value" }selected{
-                                                        /in}>{$vo}</option>
+                                                    <option value="{$key}" {in name="key" value="$item.value" }selected{/in}>{$vo}</option>
                                                     {/foreach}
                                                 </select>
                                                 {/case}

@@ -13,11 +13,8 @@ class Config extends Api{
      * @throws \think\db\exception\ModelNotFoundException
      */
     public function index() {
-        $key = $this->request->param("key", "");
-        if (empty($key)) {
-            $this->error('无法获取到key');
-            return;
-        }
+        $key = $this->request->param("key", "", "trim");
+
         $groupList = ConfigModel::getGroupList();
         foreach ($groupList as $k => $v) {
             $siteList[$k]['name'] = $k;
@@ -26,7 +23,7 @@ class Config extends Api{
         $result = [];
         foreach ((new \app\common\model\Config())->select() as $k => $v) {
             $value = $v->toArray();
-            if (!isset($siteList[$value['group']]) || "site.".$value["name"] != $key) {
+            if (!isset($siteList[$value['group']])) {
                 continue;
             }
             $value['title'] = __($value['title']);
@@ -37,7 +34,13 @@ class Config extends Api{
             $value['tip'] = htmlspecialchars($value['tip']);
             $row = $value;
             $row["groupDes"] = $siteList[$v['group']];
-            $result = $row;
+            $result["site.".$value["name"]] = $row;
+        }
+
+        if ($key && isset($result[$key])) {
+            $result = $result[$key];
+        }else{
+            $result = array_values($result);
         }
 
         $this->success('', $result);
