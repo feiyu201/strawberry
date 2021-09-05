@@ -1,4 +1,48 @@
-{extend name="layout/default" /}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="草莓快速开发框架" />
+    <meta name="description" content="草莓快速开发框架 thinkphp6开源版" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta name="renderer" content="webkit">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/static/css/oksub.css">
+    <link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <script src="{:url('ajax/lang',['controllername'=>1,'lang'=>'zh-cn'])}"></script>
+
+
+    <script>
+        window.urls = {
+            getUploadFiles: "{:url('upload/getUploadFiles')}",
+            uploadEditor: "{:url('upload/uploadEditor')}",
+            uploadfile: "{:url('upload/uploadfile')}",
+        }
+    </script>
+    <style>
+        .layui-upload-list img {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/static/lib/loading/okLoading.css" />
+    <script type="text/javascript" src="/static/js/okconfig.js"></script>
+
+    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <script src="/static/lib/layui/layui.js"></script>
+</head>
+
+</html>
 {block name="head"}
     <title>{:__('List')}</title>
 {/block}
@@ -37,7 +81,7 @@
         {%formInit%}
         let userTable = table.render({
             elem: '#tableId',
-            url: '{:url("index")}',
+            url: 'index',
             limit: 20,
             page: true,
             toolbar: true,
@@ -86,23 +130,18 @@
                 , btn: ["{:__('OK')}", "{:__('Cancel')}"]
                 , yes: function (index, layero) {
                     data.elem.checked = x;
-                    $.ajax({
-                        type: "post",
-                        url: '{:url("sw")}',
-                        data: {
-                            "id": data.value,
-                            "switch":sta
-                        },
-                        success: function (data) {
-                            if (data == 1) {
-                                layer.msg(x==true? "{:__('Open successful')}":"{:__('Close successful')}",
-                                    {icon: 1, time: 2000,});
+                    postData = {id:data.value};
+                    postData[data.elem.id] = sta;
+                    console.log(postData);
+                    $.post('sw', postData, function (data) {
+                    if (data == 1) {
+                        layer.msg(x==true? "{:__('Open successful')}":"{:__('Close successful')}",
+                            {icon: 1, time: 2000,});
 
                                 // 数据重载
-                                active.reload();
-                            }
-                        }
-                    });
+                             active.reload();
+                           }
+                     });
 
                     form.render();
                     layer.close(index);
@@ -143,9 +182,6 @@
                 case "leading":
                     leading();
                     break;
-                case 'edpot':
-                    edpot();
-                    break;
             }
         });
 
@@ -156,7 +192,7 @@
                     edit(data);
                     break;
                 case "del":
-                    {%delFunction%}(data.id);
+                    del(data.id);
                     break;
             }
         });
@@ -164,7 +200,7 @@
         function upExcel() {
                     upload.render({
                         elem: '#leading' //绑定元素
-                        ,url: '{:url("leading")}' //上传接口
+                        ,url: 'leading' //上传接口
                         ,accept:'file'
                         ,exts:'csv|xlsx'
                         ,done: function(res){
@@ -186,7 +222,7 @@
                 layer.close(index);
                 let idsStr = okUtils.tableBatchCheck(table);
                 if (idsStr) {
-                    okUtils.ajax("{:url('setNormal')}", "put", {idsStr: idsStr}, true).done(function (response) {
+                    okUtils.ajax("setNormal", "put", {idsStr: idsStr}, true).done(function (response) {
                         if(response.code==1){
                             console.log(response);
                             okUtils.tableSuccessMsg(response.msg);
@@ -207,7 +243,7 @@
                 layer.close(index);
                 let idsStr = okUtils.tableBatchCheck(table);
                 if (idsStr) {
-                    okUtils.ajax("{:url('setStop')}", "put", {idsStr: idsStr}, true).done(function (response) {
+                    okUtils.ajax("setStop", "put", {idsStr: idsStr}, true).done(function (response) {
 
                         if(response.code==1){
                             console.log(response);
@@ -229,7 +265,7 @@
                 layer.close(index);
                 let idsStr = okUtils.tableBatchCheck(table);
                 if (idsStr) {
-                    okUtils.ajax("{:url('delete')}", "delete", {idsStr: idsStr}, true).done(function (response) {
+                    okUtils.ajax("delete", "delete", {idsStr: idsStr}, true).done(function (response) {
                         //console.log(response);
                         //okUtils.tableSuccessMsg(response.msg);
                         if(response.code==1){
@@ -248,20 +284,13 @@
         }
 
         function add() {
-            okLayer.open("{:__('Add')}", "{:url('add')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
+            okLayer.open("{:__('Add')}", "add", "{%modalWidth%}", "{%modalHeight%}", null, function () {
                 userTable.reload();
             })
         }
 
-        function edpot() {
-            okLayer.open("回收站", "{:url('edpot')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
-                 userTable.reload();
-            });
-
-        }
-
         function leading(){
-            okLayer.open("{:__('Import')}", "{:url('leading')}", "{%modalWidth%}", "{%modalHeight%}", null, function () {
+            okLayer.open("{:__('Import')}", "leading", "{%modalWidth%}", "{%modalHeight%}", null, function () {
                 userTable.reload();
             })
         }
@@ -275,30 +304,9 @@
             })
         }
 
-
-        function trash(id) {
-                    okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
-                        okUtils.ajax("{:url('trash')}", "delete", {idsStr: id}, true).done(function (response) {
-
-
-                            if(response.code==1){
-                                console.log(response);
-                                okUtils.tableSuccessMsg(response.msg);
-                            }else{
-                                okLayer.greenTickMsg(response.msg, function () {
-
-                                })
-                            }
-
-                        }).fail(function (error) {
-                            console.log(error)
-                        });
-                    })
-                }
-
         function del(id) {
             okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
-                okUtils.ajax("{:url('delete')}", "delete", {idsStr: id}, true).done(function (response) {
+                okUtils.ajax("delete", "delete", {idsStr: id}, true).done(function (response) {
 
 
                     if(response.code==1){
@@ -325,7 +333,6 @@
         <!--		<button class="layui-btn layui-btn-sm layui-btn-danger" lay-event="batchDel">{:__('Batche delete')}</button>-->
         <button class="layui-btn layui-btn-sm" lay-event="add">{:__('Add')}</button>
         <button class="layui-btn layui-btn-sm" id="leading">{:__('Import')}</button>
-        {%edpotBtn%}
     </div>
 </script>
 <!-- 行工具栏模板 -->
