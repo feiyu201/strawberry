@@ -467,7 +467,7 @@ ALTER TABLE `cm_auth_rule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `pid` (`pid`),
   ADD KEY `weigh` (`weigh`),
-  ADD KEY `name` (`name`) USING BTREE;
+  ADD UNIQUE KEY `name` (`name`) USING BTREE;
 
 --
 -- 表的索引 `cm_market`
