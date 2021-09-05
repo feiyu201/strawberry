@@ -26,7 +26,7 @@ class Crud extends Admin
     public $importFile = [];
     public function getList()
     {
-        // 查询所有表
+         // 查询所有表
         $sql = "SELECT TABLE_NAME,TABLE_COMMENT FROM information_schema.TABLES WHERE table_name not like '%_admin' and table_name not like '%_auth_%' and table_name not like '%_system_log_%' and table_name not like '%_plugin'  and table_name not like '%_attachment'  and table_name not like '%_user' and table_name not like '%_config' and table_name not like '%_market' and table_name not like '%_wxapp' and table_schema='" . config('database.connections.mysql.database') . "'";
         $tables = Db::query($sql);
         $data = [];
@@ -276,7 +276,7 @@ class Crud extends Admin
                     'data' => var_export($data, true)
                 ]) . "\n";
             } elseif (explode('(', $item['type'])[0] === 'enum') {
-                if (isset($item['comment'][1])){
+                if (!isset($item['comment'][1])){
                     $this->error('枚举备注不正确');
                 }
                 $arr = explode(',', explode(':', $item['comment'])[1]);
