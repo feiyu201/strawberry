@@ -17,7 +17,7 @@ class Plugin extends Addons
         'description' => '自动生成控制器 模型 视图工具',	// 插件简介
         'status' => 1,	// 状态
         'author' => '一笑奈何',
-        'version' => '0.1',
+        'version' => '1.6',
         'install'     => 0,                 // 是否已安装[1 已安装，0 未安装]
     ];
 
