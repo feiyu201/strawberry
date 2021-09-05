@@ -3,15 +3,18 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid 'a98ef3b1c6d382dbd2f52a1ebf74924289dbed59'
-    oldFile: !uuid '247aafe970b0c6cbe9594777ce2dc36b21b9aa72'
-  /addons/crud:
-    newFile: !uuid 'a26fd2bee366cdb965ef39177edc3aaef175a26a'
-    oldFile: !uuid 'a59e911107c7adc713f952cd7ef9f82bee7abf8c'
-  /addons/crud/Plugin.php:
-    newFile: !uuid '68b6bba93c7245e8d94a7fd52e52336fa61d1a09'
-    oldFile: !uuid 'c319227419bb215344ca53f92ff9483bd6c3c76e'
-gitCommitId: !uuid 'c9c443fc4ae607e7e45474005ab5f054add29a3c'
+    newFile: !uuid '4139a9cdcb6f1f815e6b14d4ecb73c17291199f3'
+    oldFile: !uuid 'a98ef3b1c6d382dbd2f52a1ebf74924289dbed59'
+  /addons/store:
+    newFile: !uuid '6b1b793b529ee9dec9a0f15eb510de9096a975bc'
+    oldFile: !uuid '4c3d3cfdfa1a533613cf8a7fb1d46aee86ddfd36'
+  /addons/store/controller:
+    newFile: !uuid 'f08950426b0c64352ce0ffb779a6f6f113b92414'
+    oldFile: !uuid '0b06a9df4bf0e932b1bf9c1374a5d09d9f411368'
+  /addons/store/controller/Category.php:
+    newFile: !uuid 'c1cc33a5ee60842cd568151a0bd4399b8a91b63b'
+    oldFile: !uuid '18ca239c279dc4460fc8ace6bfcb01df821b7db2'
+gitCommitId: !uuid 'abecdb31d12927f83902f1e39923f736788ec287'
 renames: {
   }
-revisionId: 353
+revisionId: 354
