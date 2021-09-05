@@ -80,6 +80,9 @@
                 case "crud":
                     crud(data.name);
                     break;
+                case 'plugin':
+                    plugin(data.name);
+                    break;
             }
         });
 
@@ -197,6 +200,20 @@
                 });
             })
         }
+
+        function plugin(res) {
+            okLayer.confirm("确定要插件crud吗？", function () {
+                okUtils.ajax("{:url('plugin')}", "post", { name: res }, true).done(function (res) {
+                    if (res.code === 1) {
+                        okUtils.tableSuccessMsg(res.msg);
+                    } else {
+                        okUtils.tableSuccessMsg(res.msg);
+                    }
+                }).fail(function () {
+
+                });
+            })
+        }
     })
 </script>
 <!-- 头工具栏模板 -->
@@ -208,6 +225,7 @@
 <!-- 行工具栏模板 -->
 <script type="text/html" id="operationTpl">
     <a href="javascript:" lay-event="crud" class="layui-btn layui-btn-warm layui-btn-xs">一键crud</a>
+    <a href="javascript:" lay-event="plugin" class="layui-btn layui-btn-sm layui-btn-xs">一键插件</a>
 </script>
 
 <script type="text/html" id="statusTpl">
