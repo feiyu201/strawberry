@@ -19,15 +19,7 @@ class Category extends AddonBase
         return $this->fetch();
     }
 
-    /**
-     * 查询商品分类接口
-     *
-     * @return \think\response\Json
-     */
-    public function getCategory()
-    {
-        return \app\common\http\Json::success('成功',GoodsCategory::field('name as title')->field(true)->select());
-    }
+   
 
     /**
      * 商品分类选择框json
