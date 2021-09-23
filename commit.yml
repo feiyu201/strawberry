@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid 'fd3f7a017e2031f833f2ac6bb161734cbe7f7192'
-    oldFile: !uuid '294c3840d7bb1549042466f1098832cc77f85f16'
-gitCommitId: !uuid '4db22889e45836d2a7e78ed3145f2fbb6f8dbee3'
+  /addons:
+    newFile: !uuid '552e46a2efab513055e485b67b0f369a81505d10'
+    oldFile: !uuid '0dc29cb5a26caad0a476af9658f4216ac097845f'
+  /addons/crud:
+    newFile: !uuid '635c68c6439a6e696fc98d70a0682494655df943'
+    oldFile: !uuid 'a26fd2bee366cdb965ef39177edc3aaef175a26a'
+  /addons/crud/tpl:
+    newFile: !uuid '8ef21d2e0a2d8e4200382014b27b5bfe7a14e731'
+    oldFile: !uuid 'f33f7c313ff1be27eaaaf5ae52c9bacc70b436fc'
+  /addons/crud/tpl/controller:
+    newFile: !uuid '6ec7c3adf10e74acf5ae05872a1823dc60f5bda8'
+    oldFile: !uuid 'ec88af192ef60590b273e205d8dec950688d6f2f'
+  /addons/crud/tpl/controller/body.stub:
+    newFile: !uuid '7a3ae9adc663c1e39a3b171ac7492513524199b7'
+    oldFile: !uuid 'ad28bbe17733c836a7eaf0f33dacf2c85114ef52'
+gitCommitId: !uuid 'e83a448796e873c8ff0b0935f4362dea1eca5770'
 renames: {
   }
-revisionId: 359
+revisionId: 360
