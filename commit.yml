@@ -2,10 +2,19 @@
 branches: {
   }
 fileChange:
-  /README.md:
-    newFile: !uuid '95f3b3247e1b8ac8eb40829c3606b6ff58e8096b'
-    oldFile: !uuid '57110c0496acff0975ac4f800d62e50cf0cb940d'
-gitCommitId: !uuid '09f3fbefdc39a77aa0c62d1fe320b2aab5b7868f'
+  /app:
+    newFile: !uuid '7c0c9b4213a53ca8269e128208a8c26d0547a63d'
+    oldFile: !uuid 'c6a35216acf0307b2cb989d5de177516abf1a04e'
+  /app/api:
+    newFile: !uuid 'dc46d614a82e8dfda1a373ffb81796a311a7cb2a'
+    oldFile: !uuid '198ed9583bd1e9103f3bbe12b23af772cc7a589a'
+  /app/api/controller:
+    newFile: !uuid '48d8342879bc1d31703dbaafbd7a5a4cd8d1c2ed'
+    oldFile: !uuid 'da4fbc6f97fc808f5f6519a0fd8b5753b2144ae3'
+  /app/api/controller/Wechat.php:
+    newFile: !uuid 'cc3ca9298ca5875343ff2a627c6729a0dd0bc9f2'
+    oldFile: !uuid 'b97fafa6ba8b6adafd4ddbc0bf062ad436b28e5b'
+gitCommitId: !uuid '659008055065e6cac854018bd5be981512e5f31b'
 renames: {
   }
-revisionId: 362
+revisionId: 363
