@@ -48,7 +48,7 @@ class Wechat extends Api
         $url   = "https://api.weixin.qq.com/sns/jscode2session?appid=" . $this->appid . "&secret=" .  $this->secret . "&js_code=" . $code . "&grant_type=authorization_code";
         $rjson  = $this->http_curl($url);
         if (isset($rjson["errcode"])) {
-            $this->error('code已过期，请重新登录！');
+            $this->error($rjson);
         }
         $this->sessionKey = $rjson['session_key'];
         $errCode = $this->decryptData($encryptedData, $iv, $data);
@@ -66,7 +66,7 @@ class Wechat extends Api
         $url   = "https://api.weixin.qq.com/sns/jscode2session?appid=" . $this->appid . "&secret=" .  $this->secret . "&js_code=" . $code . "&grant_type=authorization_code";
         $rjson  = $this->http_curl($url);
         if (isset($rjson["errcode"])) {
-            $this->error('code已过期，请重新登录！');
+            $this->error($rjson);
         }
         $this->sessionKey = $rjson['session_key'];
         $errCode = $this->decryptData($encryptedData, $iv, $data);
