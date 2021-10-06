@@ -5,6 +5,7 @@ namespace app\api\controller;
 use app\api\model\User as UserModel;
 use app\common\controller\Api;
 use app\common\controller\Auth;
+use think\facade\Event;
 use think\facade\Cache;
 
 /**
