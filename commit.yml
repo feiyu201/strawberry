@@ -2,19 +2,10 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid '40af4ba32f21c693483625f322786715694484d6'
-    oldFile: !uuid '7c0c9b4213a53ca8269e128208a8c26d0547a63d'
-  /app/api:
-    newFile: !uuid '2b2fcd0ffb6b15ec528b93576a2b12f1d40af72e'
-    oldFile: !uuid 'dc46d614a82e8dfda1a373ffb81796a311a7cb2a'
-  /app/api/controller:
-    newFile: !uuid '183b8859ccd1d9a47c184a2923eaa3be3417b8a9'
-    oldFile: !uuid '48d8342879bc1d31703dbaafbd7a5a4cd8d1c2ed'
-  /app/api/controller/User.php:
-    newFile: !uuid '7c56d0f4e8d4362c1d59862f10c139d417955bc6'
-    oldFile: !uuid '4a4dd139fea02d9cf3893598159639d412b1fdf7'
-gitCommitId: !uuid '0d878292649a4c4dd83eb3e2be4edccf62fcb98c'
+  /composer.json:
+    newFile: !uuid '1bed351b443168c25ab266d703d2246fa8fee753'
+    oldFile: !uuid 'c4ed81890aeb26d72d23db6ce792a089862c4508'
+gitCommitId: !uuid '912d9b6f8273e0fcc3b083fe8adfc99c9a583a00'
 renames: {
   }
-revisionId: 364
+revisionId: 365
