@@ -2,55 +2,31 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid '05ded7f9424980d0de60c6bb7ddfeda805b00e90'
-    oldFile: !uuid '552e46a2efab513055e485b67b0f369a81505d10'
-  /addons/autoapi:
-    newFile: !uuid '440bf558ff1b9e6ae23430bebd9a4111cf14f01f'
-    oldFile: null
-  /addons/autoapi/Plugin.php:
-    newFile: !uuid '81c331b90b4dca71cd284eb1e2436ba489e89fa1'
-    oldFile: null
-  /addons/autoapi/config.php:
-    newFile: !uuid 'ced7791f8a87d2269dc554816fc372e4f3f40355'
-    oldFile: null
-  /addons/autoapi/control.txt:
-    newFile: !uuid '8e3e562fc5924dfe9c031669ecd2e448e0c31aeb'
-    oldFile: null
-  /addons/autoapi/controller:
-    newFile: !uuid '756822be5b6a8a74a1a1510173b141f3c39de625'
-    oldFile: null
-  /addons/autoapi/controller/Autoapi.php:
-    newFile: !uuid '872ffdb567bf1d3d313a4daa60b98d3dd89b6318'
-    oldFile: null
-  /addons/autoapi/install.sql:
-    newFile: !uuid '8f297b2e12f6a03860cff82792b9b5bcd0ddef28'
-    oldFile: null
-  /addons/autoapi/model:
-    newFile: !uuid '163a13e195c0da68e07f610bfdee791ffba191a9'
-    oldFile: null
-  /addons/autoapi/model.txt:
-    newFile: !uuid 'd0e3089f9a2ac92a603e0203d27a0c910147ecd0'
-    oldFile: null
-  /addons/autoapi/model/Autoapi.php:
-    newFile: !uuid 'c321661c2e17f2955343c47bb1ce6463cbe9662f'
-    oldFile: null
-  /addons/autoapi/view:
-    newFile: !uuid '76c5dc816a63775e4b09c94618ddd3b3f5193690'
-    oldFile: null
-  /addons/autoapi/view/autoapi:
-    newFile: !uuid '97a4f7cffee32e5d0e212c06c74578bfb5dec70a'
-    oldFile: null
-  /addons/autoapi/view/autoapi/add.html:
-    newFile: !uuid 'cd54d659983a0e218ba67cc419e88397c559d844'
-    oldFile: null
-  /addons/autoapi/view/autoapi/edit.html:
-    newFile: !uuid 'f864ba26b8c7fe83754c071ce26a1b69066b2ca9'
-    oldFile: null
-  /addons/autoapi/view/autoapi/index.html:
-    newFile: !uuid 'c7144d839099ca6e9f866419ea48b7f459cc1085'
-    oldFile: null
-gitCommitId: !uuid 'e776ff76a5cecf246a632376d8132cc09ae83e3d'
+  /app:
+    newFile: !uuid '58a2ff5e046f47dbc7de08d4069605afa692027d'
+    oldFile: !uuid '40af4ba32f21c693483625f322786715694484d6'
+  /app/api:
+    newFile: !uuid 'bf837b37e927edbeb77c7ec097cabe76e9fb6791'
+    oldFile: !uuid '2b2fcd0ffb6b15ec528b93576a2b12f1d40af72e'
+  /app/api/model:
+    newFile: null
+    oldFile: !uuid '1dc5284921b2add8590c8cefc35316fdf9ff216b'
+  /app/api/model/Admin.php:
+    newFile: null
+    oldFile: !uuid '4097849e7bb8a87c5c133d385ddaaf5ff8d8fc27'
+  /app/api/model/Lazy.php:
+    newFile: null
+    oldFile: !uuid 'd0ff0cb8f50522f2e7bef666cea9c96966fe52c7'
+  /app/api/model/Order.php:
+    newFile: null
+    oldFile: !uuid '6e66613abab9d62f00729b97618ac29dbd7b128c'
+  /app/api/model/User.php:
+    newFile: null
+    oldFile: !uuid '9678736f887e6acd41006b34f58ef9d4ad26e5dd'
+  /app/api/model/Wxapp.php:
+    newFile: null
+    oldFile: !uuid 'adb22e5bf96e89d0d1519eb84992e8e87c41b109'
+gitCommitId: !uuid '65c6b3ef03dd6978799d82686d83795c578a63ff'
 renames: {
   }
-revisionId: 368
+revisionId: 369
