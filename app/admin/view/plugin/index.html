@@ -161,8 +161,9 @@
 						//userTable.reload();
 						//okUtils.tableSuccessMsg(response.msg);
 						okLayer.greenTickMsg(response.msg, function () {
-							userTable.reload();
-							userTablebd.reload();
+							// userTable.reload();
+							// userTablebd.reload();
+							parent.window.location.reload()
 						})
 					} else {
 
@@ -221,8 +222,9 @@
 						//userTable.reload();
 						//okUtils.tableSuccessMsg(response.msg);
 						okLayer.greenTickMsg(response.msg, function () {
-							userTable.reload();
-							userTablebd.reload();
+							// userTable.reload();
+							// userTablebd.reload();
+							parent.window.location.reload()
 						})
 					} else {
 						okLayer.redCrossMsg(response.msg, function () {
@@ -254,8 +256,9 @@
 						//userTable.reload();
 						//okUtils.tableSuccessMsg(response.msg);
 						okLayer.greenTickMsg(response.msg, function () {
-							userTable.reload();
-							userTablebd.reload();
+							// userTable.reload();
+							// userTablebd.reload();
+							parent.window.location.reload()
 						})
 					} else {
 						okLayer.greenTickMsg(response.msg, function () {
@@ -276,9 +279,9 @@
 						//userTable.reload();
 						//okUtils.tableSuccessMsg(response.msg);
 						okLayer.greenTickMsg(response.msg, function () {
-
-							userTable.reload();
-							userTablebd.reload();
+							// userTable.reload();
+							// userTablebd.reload();
+							parent.window.location.reload()
 						})
 					} else {
 						okLayer.greenTickMsg(response.msg, function () {
@@ -296,18 +299,16 @@
 <!-- 头工具栏模板 -->
 <script type="text/html" id="toolbarTpl">
 	<div class="layui-btn-container">
-		
+
 	</div>
 </script>
+
 <!-- 行工具栏模板 -->
-
-
 <script type="text/html" id="statusTpl">
 
-			{{# if(d.install==1){ }}
-			<input type="checkbox" value="{{d.name}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="status" {{ d.status == 1 ? 'checked' : '' }}>
-
-			{{# } }}
+	{{# if(d.install==1){ }}
+	<input type="checkbox" value="{{d.name}}" lay-skin="switch" lay-text="启用|禁用" lay-filter="status" {{ d.status == 1 ? 'checked' : '' }}>
+	{{# } }}
 
 </script>
 {/block}

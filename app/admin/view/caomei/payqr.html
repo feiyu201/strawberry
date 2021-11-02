@@ -26,7 +26,7 @@
 	</ul>
 	<div class="layui-tab-content">
 		<div class="layui-tab-item layui-show">
-			<img src="{$img}"/> 
+			<img src="" id="wxerweima"/>
 		</div>
 		<div class="layui-tab-item"><img src="" id="zfberweima"/> </div>
 	</div>
@@ -63,8 +63,43 @@
             if (data.index == 0) {
                 console.log('微信支付');
                 // searchCon(pageNum, pageSize,gradeId,subjectId);
-                window.clearInterval(paydsq);
-				getorder({$order_sn})
+    //             window.clearInterval(paydsq);
+				// getorder({$order_sn})
+				
+				
+				const Storage = {};
+				Storage.get = function(name) {
+					return localStorage.getItem(name);
+				}
+				var caomei_tokeny = Storage.get("caomeiadmin_userinfo");
+
+				$.ajax({
+					url: 'https://www.caomei.zone/api/plug/xiazai',
+					type: 'post',
+					// 设置的是请求参数
+					data: {name: '{$name}',token: caomei_tokeny,pay_type:'1'},
+					// 用于设置响应体的类型 注意 跟 data 参数没关系！！！
+					dataType: 'json',
+					success: function (res) {
+						// 一旦设置的 dataType 选项，就不再关心 服务端 响应的 Content-Type 了
+						// 客户端会主观认为服务端返回的就是 JSON 格式的字符串
+						console.log(res)
+
+						if(res.code == '-5'){
+							window.clearInterval(paydsq);
+							getorder(res.data.order_sn)
+							$("#wxerweima").attr('src',res.data.img);
+						}else{
+							okLayer.redCrossMsg(res.msg, function () {
+								
+							})
+						}
+					}
+				})
+				
+				
+				
+				
             }else if(data.index == 1){
                 console.log('支付宝支付');
 				
