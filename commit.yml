@@ -3,51 +3,24 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '17b4957a4424d03a783a123b01d0421506b63c2a'
-    oldFile: !uuid '58a2ff5e046f47dbc7de08d4069605afa692027d'
-  /app/api:
-    newFile: null
-    oldFile: !uuid 'bf837b37e927edbeb77c7ec097cabe76e9fb6791'
-  /app/api/controller:
-    newFile: null
-    oldFile: !uuid '183b8859ccd1d9a47c184a2923eaa3be3417b8a9'
-  /app/api/controller/Ajax.php:
-    newFile: null
-    oldFile: !uuid 'cbcaf944309135c09ad5af6364f0255200ece60f'
-  /app/api/controller/Config.php:
-    newFile: null
-    oldFile: !uuid 'dd63b260a87a6ed3d0dc0e8a315208a5da500573'
-  /app/api/controller/ErrorCode.php:
-    newFile: null
-    oldFile: !uuid '1644159f7b664e43c4fe48166be4e9fd4f53eb83'
-  /app/api/controller/Lazy.php:
-    newFile: null
-    oldFile: !uuid '4be00326c51cc5ebca4b6e17e0d6f7bc16f5a476'
-  /app/api/controller/Login.php:
-    newFile: null
-    oldFile: !uuid '40eb8b376665518e1fadff8500d9ca5c01f30979'
-  /app/api/controller/Pay.php:
-    newFile: null
-    oldFile: !uuid '785c56f48916ea39f2cb3865159eb4ff213315ad'
-  /app/api/controller/PayNotify.php:
-    newFile: null
-    oldFile: !uuid '4310d89dd790639c9ab3210f12c40df1d5bbe010'
-  /app/api/controller/Test.php:
-    newFile: null
-    oldFile: !uuid 'a28223a71b9d74d28f3686bdf8c6fb08a52bb217'
-  /app/api/controller/Upload.php:
-    newFile: null
-    oldFile: !uuid '868237ab7b110c9eed5346767cf0dd63c4b8b7a7'
-  /app/api/controller/User.php:
-    newFile: null
-    oldFile: !uuid '7c56d0f4e8d4362c1d59862f10c139d417955bc6'
-  /app/api/controller/Wechat.php:
-    newFile: null
-    oldFile: !uuid 'cc3ca9298ca5875343ff2a627c6729a0dd0bc9f2'
-  /app/api/controller/Wxapp.php:
-    newFile: null
-    oldFile: !uuid '2b0424ad85a6155bcee2aa27e26d708f031f5b8d'
-gitCommitId: !uuid '9c16558fce756639b7a38d3ce0fce0adf530211f'
+    newFile: !uuid '0bdd43c9d85b0b08ade8b76b06dee798e76a2fb9'
+    oldFile: !uuid '17b4957a4424d03a783a123b01d0421506b63c2a'
+  /app/admin:
+    newFile: !uuid 'd85fd8f48343061994c5c3763abf111d49c1920e'
+    oldFile: !uuid '3f0a7e48f055d835b7d7c8717eff49dacac897ef'
+  /app/admin/view:
+    newFile: !uuid '676793823cdd4822b3785ba70ff87da9da079f3f'
+    oldFile: !uuid '8e286b07557a759382e155483cd671395426cfa3'
+  /app/admin/view/caomei:
+    newFile: !uuid '0e4c9a5f47a23eda9f62d101466ab6f57ee745fa'
+    oldFile: !uuid '08a173e52bfdcca3bae99ccf248a1fd404a47ce4'
+  /app/admin/view/caomei/login.html:
+    newFile: !uuid '983fda41e05ddb2bd140665d04b747caa9ac1b41'
+    oldFile: !uuid '983fda41e05ddb2bd140665d04b747caa9ac1b41'
+  /app/admin/view/caomei/payqr.html:
+    newFile: !uuid '4c6b46a62ed4666da3eb415c089a6b70368c352b'
+    oldFile: !uuid '9db460fc6dee38ecc94ecbb84df60981fa9b03bf'
+gitCommitId: !uuid '72def24b955958559041c186a484a71232ba7197'
 renames: {
   }
-revisionId: 370
+revisionId: 371
