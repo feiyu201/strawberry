@@ -64,19 +64,19 @@ class Crud extends Admin
     {
         $commonData = ['createtimeField'=>'createtime','updatetimeField'=>'updatetime','deletetimeField'=>'deletetime','time_type'=>'int'];
         foreach ($tableColumns as $elt => $item) {
-            if($item['field']=='createtime' or $item['field']=='create_time'){
+            if($item['field']=='createtime' or $item['field']=='create_time' or $item['field']=='create_at'){
                 $commonData['createtimeField']=$item['field'];
                 if(strpos($item['type'],'datetime')!==false){
                     $commonData['time_type']='datetime';
                 }
             }
-            if($item['field']=='updatetime' or $item['field']=='update_time'){
+            if($item['field']=='updatetime' or $item['field']=='update_time' or $item['field']=='update_at'){
                 $commonData['updatetimeField']=$item['field'];
                 if(strpos($item['type'],'datetime')!==false) {
                     $commonData['time_type'] = 'datetime';
                 }
             }
-            if($item['field']=='deletetime' or $item['field']=='delete_time'){
+            if($item['field']=='deletetime' or $item['field']=='delete_time' or $item['field']=='delete_at'){
                 $commonData['deletetimeField']=$item['field'];
                 if(strpos($item['type'],'datetime')!==false) {
                     $commonData['time_type'] = 'datetime';
