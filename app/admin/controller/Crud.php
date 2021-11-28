@@ -60,6 +60,31 @@ class Crud extends Admin
             return $result;
         }
     }
+    public function commonTpl($tableColumns)
+    {
+        $commonData = ['createtimeField'=>'createtime','updatetimeField'=>'updatetime','deletetimeField'=>'deletetime','time_type'=>'int'];
+        foreach ($tableColumns as $elt => $item) {
+            if($item['field']=='createtime' or $item['field']=='create_time'){
+                $commonData['createtimeField']=$item['field'];
+                if(strpos($item['type'],'datetime')!==false){
+                    $commonData['time_type']='datetime';
+                }
+            }
+            if($item['field']=='updatetime' or $item['field']=='update_time'){
+                $commonData['updatetimeField']=$item['field'];
+                if(strpos($item['type'],'datetime')!==false) {
+                    $commonData['time_type'] = 'datetime';
+                }
+            }
+            if($item['field']=='deletetime' or $item['field']=='delete_time'){
+                $commonData['deletetimeField']=$item['field'];
+                if(strpos($item['type'],'datetime')!==false) {
+                    $commonData['time_type'] = 'datetime';
+                }
+            }
+        }
+        return $this->getReplacedStub('model/common.stub', $commonData);
+    }
 
     public function getTableColumn($table)
     {
@@ -125,6 +150,7 @@ class Crud extends Admin
         $modelFile = fopen($filedName, "w");
 
         fwrite($modelFile, $this->getReplacedStub('model/body.stub', [
+            'commonTpl' => $this->commonTpl($tableColumns),
             'className' => $this->controlName($table),
             'scopeTpl' => $this->buildScopeTpl($tableColumns),
             'modelNameSpace'    => $modelNameSpace,
