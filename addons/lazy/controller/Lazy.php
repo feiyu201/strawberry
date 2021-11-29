@@ -268,7 +268,8 @@ class Lazy extends AddonBase
         if (!$idsStr) {
             $this->success("参数错误");
         }
-        if (Db::name('lazy')->where('id', 'in', $idsStr)->delete()) {
+        $pk=Db::name('lazy')->getPk();
+        if (Db::name('lazy')->where($pk, 'in', $idsStr)->delete()) {
             $this->success("删除成功");
         } else {
             $this->error("删除失败");
