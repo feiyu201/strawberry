@@ -112,7 +112,8 @@ class {%className%} extends {%ctlBase%}
    		if(!$idsStr){
    			$this->success(__('Parameter error'));
    		}
-   		if( $this->model->where('id','in',$idsStr)->delete()){
+   		$pk=$this->model->getPk();
+   		if( $this->model->where($pk,'in',$idsStr)->delete()){
    			$this->success(__('Delete successful'));
    		}else{
    			$this->error(__('Delete error'));

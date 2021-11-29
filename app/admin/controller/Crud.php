@@ -1138,6 +1138,10 @@ EOF;
         foreach ($list as $elt => $item) {
             $s = explode('_', $item['field']);
             $comment = sprintf('{:__("%s")}', ucfirst($item['field']));
+            $item['ext_req']='';
+            if($item['null']=='NO'){
+                $item['ext_req']='lay-verify="required"';
+            }
             try {
                 if ($item['field'] === Db::name("$table")->getPk()) {
                     $str .= "
@@ -1163,7 +1167,7 @@ EOF;
                     $str .= "        <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . $comment . "</label>
             <div class=\"layui-input-block\">
-                <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
+                <select name=\"" . $item['field'] . "\" " . $item['ext_req'] . " >
                     <option value=\"\">{:__('Select')}</option>
                     " . $this->xialaedit($table, $item['field'], $item) . "
                 </select>
@@ -1174,7 +1178,7 @@ EOF;
                     $str .= "<div class=\"layui-form-item\">
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                       <div class=\"layui-input-block layui-upload\">
-                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" lay-verify=\"required\" placeholder=\"{:__('Please upload')}\" value=\"" . $fieldName  . "\">
+                        <input name=\"" . $item['field'] . "\" class=\"layui-input layui-col-xs6\" " . $item['ext_req'] . " placeholder=\"{:__('Please upload')}\" value=\"" . $fieldName  . "\">
                         <div class=\"layui-upload-btn\" >
                             <span><a class=\"layui-btn\" data-url=\"{:url('upload/uploadfile')}\" data-upload=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') !== false ? 'more' : 'one') . "\" data-upload-exts=\"png|jpg|ico|jpeg\" data-upload-icon=\"image\"><i class=\"fa fa-upload\"></i>{:__('Upload')}</a></span>
                             <span><a class=\"layui-btn layui-btn-normal\" id=\"select_logo_" . $item['field'] . "\" data-upload-select=\"" . $item['field'] . "\" data-upload-number=\"" . (strpos($item['field'], 's') === true ? 'more' : 'one') . "\" data-upload-mimetype=\"image/*\"><i class=\"fa fa-list\"></i>{:__('Select')}</a></span>
@@ -1221,7 +1225,7 @@ EOF;
                     $str .= "  <div class=\"layui-form-item\">
             <label class=\"layui-form-label\">" . $comment . "</label>
             <div class=\"layui-input-block\">
-                <select name=\"" . $item['field'] . "\" lay-verify=\"required\">
+                <select name=\"" . $item['field'] . "\" " . $item['ext_req'] . ">
                     <option value=\"\">{:__('Select')}</option>
                     {foreach \${$filedName} as \$key=>\$vo } 
                         {if isset(\${$field}) && \${$field}==\$vo.id}}
@@ -1295,7 +1299,7 @@ EOF;
                     <label class=\"layui-form-label\">" . $item['comment'] . "</label>
                     <div class=\"layui-input-block\">
                         <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"" . $comment . "\" autocomplete=\"off\" class=\"layui-input\"
-                               lay-verify=\"required\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
+                               " . $item['ext_req'] . " value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
                     </div>
                 </div>";
                 }
@@ -1305,7 +1309,7 @@ EOF;
                     <div class=\"layui-input-block\">
 
                         <input type=\"text\" name=\"" . $item['field'] . "\" placeholder=\"" . $comment . "\" autocomplete=\"off\" class=\"layui-input\"
-                               lay-verify=\"required\" value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
+                               " . $item['ext_req'] . " value=\"" . '{$' . "" . $table . "." . $item['field'] . "??''}\">
                     </div>
                 </div>" . $e->getMessage();
             }
