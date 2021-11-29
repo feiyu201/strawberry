@@ -99,13 +99,14 @@ class Autoapi extends AddonBase
 
             // 查询主键
             $primary = "";
+            $createTime = ['create_time','createtime','create_at'];
+            $updateTime = ['update_time','updatetime','update_at'];
+            $deleteTime = ['delete_time','deletetime','delete_at'];
 
-            $createTime = ['create_time','createtime'];
-            $updateTime = ['update_time','updatetime'];
-
-
+            $defaultTimeType='int';
             $defaultCreate = 'create_time';
             $defaultUpdate = 'update_time';
+            $defaultDeleteTime='delete_time';
 
             foreach ($list as $elt => $value) {
                 if ($value['key'] === 'PRI') {
@@ -116,6 +117,13 @@ class Autoapi extends AddonBase
                 }
                 if (in_array($value['field'], $updateTime)) {
                     $defaultUpdate = $value['field'];
+                }
+                if (in_array($value['field'], $deleteTime)) {
+                    $defaultDeleteTime = $value['field'];
+                }
+
+                if(strpos($value['type'],'datetime')!==false) {
+                    $defaultTimeType = 'datetime';
                 }
             }
 
@@ -148,6 +156,7 @@ class Autoapi extends AddonBase
                     //                    }
                     $result = (new \addons\autoapi\model\Autoapi())->save($params);
                     // 生成控制器
+                    \mkdirs('../app/api/controller/');
                     $controlFile = fopen("../app/api/controller/" . self::controlName($table) . ".php", "w");
                     $controlTxt = sprintf(
                         self::getFile('control'),
@@ -188,7 +197,7 @@ class Autoapi extends AddonBase
 
                     // 生成model
                     $modelFile = fopen("../app/common/model/" . self::modelName($table) . ".php", "w");
-                    $modelText = sprintf(self::getFile('model'), self::modelName($table), $defaultCreate, $defaultUpdate);
+                    $modelText = sprintf(self::getFile('model'), self::modelName($table), $defaultTimeType,$defaultCreate, $defaultUpdate,$defaultDeleteTime);
                     fwrite($modelFile, $modelText);
                     fclose($modelFile);
 
