@@ -96,11 +96,34 @@ class Lazy extends AddonBase
             $list = array_map('array_change_key_case', $list);
             // 查询主键
             $primary = "";
+            $createTime = ['create_time','createtime','create_at'];
+            $updateTime = ['update_time','updatetime','update_at'];
+            $deleteTime = ['delete_time','deletetime','delete_at'];
+
+            $defaultTimeType='int';
+            $defaultCreate = 'create_time';
+            $defaultUpdate = 'update_time';
+            $defaultDeleteTime='delete_time';
+
             foreach ($list as $elt => $value) {
                 if ($value['key'] === 'PRI') {
                     $primary = $value['field'];
                 }
+                if (in_array($value['field'], $createTime)) {
+                    $defaultCreate = $value['field'];
+                }
+                if (in_array($value['field'], $updateTime)) {
+                    $defaultUpdate = $value['field'];
+                }
+                if (in_array($value['field'], $deleteTime)) {
+                    $defaultDeleteTime = $value['field'];
+                }
+
+                if(strpos($value['type'],'datetime')!==false) {
+                    $defaultTimeType = 'datetime';
+                }
             }
+
             array_shift($list);
             if (!$primary) {
                 $this->error('Please add a primary key for this table');
@@ -128,6 +151,7 @@ class Lazy extends AddonBase
                     //                    }
                     $result = (new \addons\lazy\model\Lazy())->save($params);
                     // 生成控制器
+                    \mkdirs('../app/api/controller/');
                     $controlFile = fopen("../app/api/controller/" . self::controlName($table) . ".php", "w");
                     $controlTxt = sprintf(
                         self::getFile('control'),
@@ -168,7 +192,7 @@ class Lazy extends AddonBase
 
                     // 生成model
                     $modelFile = fopen("../app/common/model/" . self::modelName($table) . ".php", "w");
-                    $modelText = sprintf(self::getFile('model'), self::modelName($table));
+                    $modelText = sprintf(self::getFile('model'), self::modelName($table), $defaultTimeType,$defaultCreate, $defaultUpdate,$defaultDeleteTime);
                     fwrite($modelFile, $modelText);
                     fclose($modelFile);
 
