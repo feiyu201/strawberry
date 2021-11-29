@@ -1,0 +1,10 @@
+// 开启自动写入时间戳字段
+    protected $autoWriteTimestamp = '{%time_type%}';
+    // 定义时间戳字段名
+    protected $createTime = '{%createtimeField%}';
+    protected $updateTime = '{%updatetimeField%}';
+    //开启软删除：
+    //功能说明：https://www.kancloud.cn/manual/thinkphp6_0/1037594
+    //use SoftDelete;
+    //protected $deleteTime = '{%deletetimeField%}';
+    //protected $defaultSoftDelete = 0;
