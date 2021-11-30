@@ -21,6 +21,7 @@
 //  * +-----------------------------------------------------------------------
 namespace app\admin\controller;
 
+use think\facade\Event;
 use think\facade\View;
 use think\facade\Db;
 use app\admin\validate\Applets as adminValidate;
@@ -82,7 +83,13 @@ class Applets extends AdminBase
                 $this->error($e->getError());
             }
             $data['status'] = (isset($data['status']) && $data['status'] == 1) ? 'normal' : 'stop';
-            if (Wxapp::create($data)) {
+            if ($result = Wxapp::create($data)) {
+                Event::trigger('platform_action',[
+                    'type'              =>  'miniprogram',
+                    'third_id'          =>  $result->getData('id'),
+                    'action'            =>  'add',
+                    'name'              =>  $data['name']
+                ]);
                 $this->success("添加成功");
             } else {
                 $this->error("添加失败");
@@ -105,6 +112,12 @@ class Applets extends AdminBase
             }
             $data['status'] = (isset($data['status']) && $data['status'] == 1) ? 'normal' : 'stop';
             if (Db::name('wxapp')->where('id', $data['id'])->update($data)) {
+                Event::trigger('platform_action',[
+                    'type'              =>  'miniprogram',
+                    'third_id'          =>  $data['id'],
+                    'action'            =>  'edit',
+                    'name'              =>  $data['name']
+                ]);
                 $this->success("编辑成功");
             } else {
                 $this->error("编辑失败");
