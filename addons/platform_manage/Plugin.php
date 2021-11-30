@@ -27,6 +27,18 @@ class Plugin extends Addons
      */
     public function install()
     {
+        if (is_file($this->app->getBasePath() . 'event.php')) {
+            $event = include $this->app->getBasePath() . 'event.php';
+            $event['listen']['platform_action'] = ['addons\platform_manage\event\PlatformManage'];
+            $eventStr = var_export($event, true);
+            $config = <<<EOT
+<?php
+return {$eventStr}
+?>
+EOT;
+            file_put_contents($this->app->getBasePath() . 'event.php', $config,LOCK_EX);
+        }
+
         $menu = [
             [
                 'name'    => '/addons/platform_manage/index/index',
@@ -45,6 +57,19 @@ class Plugin extends Addons
      */
     public function uninstall()
     {
+        if (is_file($this->app->getBasePath() . 'event.php')) {
+            $event = include $this->app->getBasePath() . 'event.php';
+            $event['listen']['platform_action'] = [];
+            $eventStr = var_export($event, true);
+            $config = <<<EOT
+<?php
+return {$eventStr}
+?>
+EOT;
+            file_put_contents($this->app->getBasePath() . 'event.php', $config,LOCK_EX);
+        }
+
+
         Menu::delete('/addons/platform_manage/index/index');
         return true;
     }
