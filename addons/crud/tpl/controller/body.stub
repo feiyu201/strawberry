@@ -14,7 +14,7 @@ class {%className%} extends {%ctlBase%}
     }
     public function index(){
 		if(!$this->request->isAjax()){
-        	return View::fetch();
+        	return {%viewOption%}fetch();
 		}else{
 			return $this->getList();
 		}
@@ -49,7 +49,7 @@ class {%className%} extends {%ctlBase%}
 	   		}
 	   	}
 		{%addViewCode%}
-	   	return View::fetch('edit');
+	   	return {%viewOption%}fetch('edit');
    }
 
 
@@ -81,7 +81,7 @@ class {%className%} extends {%ctlBase%}
    	   		}
    	   	}
    		{%addViewCode%}
-   	   	return View::fetch('leading');
+   	   	return {%viewOption%}fetch('leading');
      }
 
    public function edit(){
@@ -103,8 +103,8 @@ class {%className%} extends {%ctlBase%}
 	   		$this->success(__('Parameter error'));
 	   	}
 		{%editViewCode%}
-	   	View::assign('{%table%}',$info);
-        return View::fetch('edit');
+	   	{%viewOption%}assign('{%table%}',$info);
+        return {%viewOption%}fetch('edit');
    }
 
    public function delete(){
