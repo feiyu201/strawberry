@@ -428,7 +428,24 @@ class Crud extends Admin
         ]));
         fclose($pluginFile);
     }
-    
+    public function buildRelationCode($tableColumns){
+        $str = "";
+        $loadModel = ['model'=>'','model_name'=>''];
+        foreach ($tableColumns as $elt => $item) {
+            $demo = $item['field'];
+            $s = explode('_', $item['field']);
+            if (end($s) === 'ids' || endWith($demo, '_id')) {
+                $fieldName = $this->controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), false) . 's';
+                $className = $this->controlName(str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo), true);
+                $tableName = str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo);
+                $loadModel['model']=$tableName;
+                $loadModel['model_name'] = $this->getName($item['comment'], $fieldName);;
+
+            }
+        }
+        return $loadModel;
+    }
+
     public function buildController($table,$isPlugin = FALSE)
     {
         $tableColumns = $this->getTableColumn($table);
@@ -442,13 +459,16 @@ class Crud extends Admin
             $controllerFile = fopen("../addons/$table/controller/" . $this->controlName($table) . ".php", "w");
             $modelClassName = "\\addons\\$table\\model\\" . $this->controlName($table);
             $ctlBase = 'AddonBase';
+            $viewOption = '$this->';
             $ctlSpace = "addons\\$table\controller";
         }else{
             $controllerFile = fopen("../app/admin/controller/" . $this->controlName($table) . ".php", "w");
             $modelClassName = '\\app\\admin\\model\\' . $this->controlName($table);
             $ctlBase = 'AdminBase';
+            $viewOption = 'View::';
             $ctlSpace = 'app\admin\controller';
         }
+
         fwrite($controllerFile, $this->getReplacedStub('controller/body.stub', [
             'className' => $this->controlName($table),
             'modelClassName' => $modelClassName,
@@ -461,6 +481,7 @@ class Crud extends Admin
             'relations' => json_encode($relation),
             'functions' => $this->buildIndexFunction($table),
             'ctlBase'   => $ctlBase,
+            'viewOption'   => $viewOption,
             'ctlSpace'  => $ctlSpace,
         ]));
         fclose($controllerFile);
@@ -667,6 +688,7 @@ class Crud extends Admin
     }
     public function buildIndexView($table,$isPlugin = FALSE)
     {
+        $tableColumns = $this->getTableColumn($table);
         if ($isPlugin){
             $path = "../addons/$table/view/" . $table;
         }else{
@@ -676,6 +698,7 @@ class Crud extends Admin
         if (!file_exists($path)) {
             mkdir($path, 0777, true);
         }
+        $relation_data=$this->buildRelationCode($tableColumns);
         $viewFile = fopen($path . "/" . "index.html", "w");
         $this->layuiAddonUsed = ['form', 'okLayer','upload', 'okUtils', 'table', '$' => 'jquery'];
         fwrite($viewFile, $this->getReplacedStub('view/index.stub', [
@@ -688,6 +711,8 @@ class Crud extends Admin
             'imageList' => $this->getViewImgList($table),
             'layuiAddonUsed' => $this->getLayuiAddonUsed($table),
             'getListFunction' => $this->getViewIndexGetListFunction($table),
+            'relation_data_table'   => $relation_data['model'],
+            'relation_data_table_name'   => $relation_data['model_name'],
             'varInit' => $this->getEditVarInitJs(),
 
         ]));

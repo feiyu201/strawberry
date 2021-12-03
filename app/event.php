@@ -13,6 +13,7 @@ return [
         'HttpEnd'  => [],
         'LogLevel' => [],
         'LogWrite' => [],
+        'platform_action' => ['addons\platform_manage\event\PlatformManage'],
     ],
 
     'subscribe' => [
