@@ -1,9 +1,9 @@
 public function get{%fieldName%}Attr($value)
 {
-    if($value){
+    if($value&&($this->autoWriteTimestamp=='int')){
         return date('Y-m-d H:i:s',$value);
     }else{
-        return null;
+        return $value;
     }
    
 }
