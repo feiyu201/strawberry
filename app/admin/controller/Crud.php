@@ -240,7 +240,12 @@ class Crud extends Admin
         return count($arr) > 0 ? '->where(function($query){
             $query' . implode(PHP_EOL, $arr) . ';
             ' . implode(PHP_EOL, $ifarr) . '
-        })' : '->where(function($query){
+            $related_ids = $this->request->param(\'related_ids\',null);
+            $related_field = $this->request->param(\'related_field\',null);
+            if($related_ids&&$related_field){
+                   $query->whereIn("$related_field","$related_ids");
+             }})'
+         : '->where(function($query){
             '. implode(PHP_EOL, $ifarr). '
         })';
     }
