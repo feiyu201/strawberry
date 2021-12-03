@@ -13,14 +13,23 @@ class {%className%} extends {%ctlBase%}
         $this->model = new {%modelClassName%}();
     }
     public function index(){
+        $extra=[];
+        $related_ids = $this->request->param('related_ids','');
+        $related_field = $this->request->param('related_field','');
+
+        if($related_ids&&$related_field){
+            $extra=["$related_field"=>["in","($related_ids)"]];
+        }
+        {%viewOption%}assign('related_ids',$related_ids);
+        {%viewOption%}assign('related_field',$related_field);
 		if(!$this->request->isAjax()){
         	return {%viewOption%}fetch();
 		}else{
-			return $this->getList();
+			return $this->getList($extra);
 		}
     }
 
-   public function getList(){
+   public function getList($extra=[]){
    		$page = $this->request->param('page',1,'intval');
    		$limit = $this->request->param('limit',10,'intval');
    		$count = $this->model->count();

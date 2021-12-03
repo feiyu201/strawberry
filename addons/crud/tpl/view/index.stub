@@ -83,6 +83,10 @@
             elem: '#tableId',
             url: 'index',
             limit: 20,
+            where:{
+                "related_ids":'{$related_ids}',
+                "related_field":'{$related_field}'
+            },
             page: true,
             toolbar: true,
             toolbar: "#toolbarTpl",
@@ -307,7 +311,7 @@
             })
         }
         function gtoRlationView(data) {
-                    okLayer.open("查看{%relation_data_table_name%}", "{:url('{%relation_data_table%}/index?id=')}"+data.id, "{%modalWidth%}", "{%modalHeight%}", function (layero) {
+                    okLayer.open("查看{%relation_data_table_name%}", "{:url('{%relation_data_table%}/index?related_field={%table%}_id&related_ids=')}"+data.id, "{%modalWidth%}", "{%modalHeight%}", function (layero) {
                         //let iframeWin = window[layero.find("iframe")[0]["name"]];
                         //iframeWin.initForm(data);
                     }, function () {
