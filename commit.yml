@@ -3,99 +3,39 @@ branches: {
   }
 fileChange:
   /addons:
-    newFile: !uuid 'a0ad7760a180b2654cb8a7a5c86f0f7cec239b84'
-    oldFile: !uuid 'b872d5bd9f14e9554b4eaa514770c1d373b8b57f'
+    newFile: !uuid '27ef8c49f3f36d3f31e8e8ad731d4cc263cc665b'
+    oldFile: !uuid 'a0ad7760a180b2654cb8a7a5c86f0f7cec239b84'
   /addons/crud:
-    newFile: !uuid 'f76439c8e44e995401b4fdc6822a7b3e31be5328'
-    oldFile: !uuid '7e31f3febe63c3bceb8e3aec2c9da9cda26972a1'
+    newFile: !uuid '1613f1d646feb8c04aadd4e41bf26e57e9ecc3ff'
+    oldFile: !uuid 'f76439c8e44e995401b4fdc6822a7b3e31be5328'
   /addons/crud/tpl:
-    newFile: !uuid 'c197e6ffc9b0eb6f86f473c9dd9ae432f62b7aac'
-    oldFile: !uuid '57cb297deb29b91c6516f28b4596e1c6eb1e90e8'
+    newFile: !uuid '8fe91d9b0aaa67e3c7a315f6c3a61056f2df9a60'
+    oldFile: !uuid 'c197e6ffc9b0eb6f86f473c9dd9ae432f62b7aac'
   /addons/crud/tpl/controller:
-    newFile: !uuid 'fd79b360e0e76468e0ee936515f358ba9c7e96a9'
-    oldFile: !uuid '76e10ee3b1d21fb9ea8fc6e3afa5b8b3fd153a15'
+    newFile: !uuid '48e177de718c4efdb8643a509708c17029ec1a78'
+    oldFile: !uuid 'fd79b360e0e76468e0ee936515f358ba9c7e96a9'
   /addons/crud/tpl/controller/body.stub:
-    newFile: !uuid '72e4518cda011d088d578e8d0ba178f5e5646c96'
-    oldFile: !uuid 'b7a841bcbbd05eb788ce3da87220beb4baf30526'
-  /addons/crud/tpl/model:
-    newFile: !uuid '31056a9d32daf3169038222c332a1910c854bb69'
-    oldFile: !uuid 'cfd27b881f89c8dc384ff010317b76be295fbf65'
-  /addons/crud/tpl/model/fieldNameAttr:
-    newFile: !uuid 'fb103b695538f2af591d9600e657ef660d24b99e'
-    oldFile: !uuid 'd683efd091f9ee6da7fe5617035ad70f4352655f'
-  /addons/crud/tpl/model/fieldNameAttr/time.stub:
-    newFile: !uuid '3d5d671f3f220f2d363df1d4389f4b12968e5fac'
-    oldFile: !uuid '63d4bbd9535bac99e787741d6a53af0abb5fd74a'
-  /addons/crud/tpl/plugin.stub:
-    newFile: !uuid '02a838cab6aa05161a0508ea45cf530d2b55acf6'
-    oldFile: !uuid 'b002fa84dc3b4ea2102d9257d7fca63c44b48729'
+    newFile: !uuid '5e7dc4c28695453988f48f82a0d70cd996848ee1'
+    oldFile: !uuid '72e4518cda011d088d578e8d0ba178f5e5646c96'
   /addons/crud/tpl/view:
-    newFile: !uuid '35d1b7dad625832888567e977e4ef5b8427b1ca5'
-    oldFile: !uuid '6f2fb91b7e3926775bea352de3395c62c43a19b2'
+    newFile: !uuid 'db9a0901ee87f0761733abfb502490bb576544bb'
+    oldFile: !uuid '35d1b7dad625832888567e977e4ef5b8427b1ca5'
   /addons/crud/tpl/view/index.stub:
-    newFile: !uuid 'be7b093c035d3324e310a33642d92401b47ebca6'
-    oldFile: !uuid 'ced08ffad1b64026de9b2ce2a74ac1fbc8261044'
-  /addons/platform_manage:
-    newFile: !uuid '016bdf0ff9ee2e1918d2342e3ff1de5917a738b3'
-    oldFile: null
-  /addons/platform_manage/Plugin.php:
-    newFile: !uuid 'c41a088e6a95f2042605492782857d04a4a2b676'
-    oldFile: null
-  /addons/platform_manage/controller:
-    newFile: !uuid '538129f843b54a3931bea976e53914d3205ba648'
-    oldFile: null
-  /addons/platform_manage/controller/Index.php:
-    newFile: !uuid 'd719c67e5b5d9e2b2fb926b32b6bbf34c9d110f2'
-    oldFile: null
-  /addons/platform_manage/event:
-    newFile: !uuid 'b7cf3beacbdd2259450ca993068a5ed65926f3eb'
-    oldFile: null
-  /addons/platform_manage/event/PlatformManage.php:
-    newFile: !uuid 'cb834db41ff42c2f521f680cfebf29971aa8307d'
-    oldFile: null
-  /addons/platform_manage/install.sql:
-    newFile: !uuid '729f8223bc44c0e0ff7a68e2aaa495f9d061d169'
-    oldFile: null
-  /addons/platform_manage/model:
-    newFile: !uuid '8706484bd92336829c5ea96b0a6aef20ce1d64de'
-    oldFile: null
-  /addons/platform_manage/model/PlatformManage.php:
-    newFile: !uuid 'e14fc9a25d09853fe2ecb042e02b95a77d06aa8c'
-    oldFile: null
-  /addons/platform_manage/view:
-    newFile: !uuid 'e3b1edba6df69570044ada10e7720e50f190fb2d'
-    oldFile: null
-  /addons/platform_manage/view/index:
-    newFile: !uuid '7fb1c6c32c4c292693f6a5a1c373157a43121d7d'
-    oldFile: null
-  /addons/platform_manage/view/index/index.html:
-    newFile: !uuid '95a16d749f45a304e1178c8002654253cd6987e1'
-    oldFile: null
-  /addons/platform_manage/view/layout:
-    newFile: !uuid '1040ec37067668f929de008b2c6df1d4f40d1985'
-    oldFile: null
-  /addons/platform_manage/view/layout/default.html:
-    newFile: !uuid 'f9870c2afff079d88ec3f8024ec79ca8e2680c36'
-    oldFile: null
+    newFile: !uuid '9545a6ce7e857ab8091137b75a2058ea8aad10ad'
+    oldFile: !uuid 'be7b093c035d3324e310a33642d92401b47ebca6'
   /app:
-    newFile: !uuid '1bacdd215a774c5b93f76dbb937fefb3e9e7c16c'
-    oldFile: !uuid 'aa34d4884a6fe9ceddff286ef190eb69bc03a6cc'
+    newFile: !uuid 'b569abc3c636ce625240ce90e26d80256d9ffe49'
+    oldFile: !uuid '1bacdd215a774c5b93f76dbb937fefb3e9e7c16c'
   /app/admin:
-    newFile: !uuid '9a0f3a91374583502d068255c38fbb89cdc432da'
-    oldFile: !uuid '008c0592595d49e5246f66fed3c278cf3100c63f'
+    newFile: !uuid 'e304ba1c8558e101cf240be9e116b6cf576be6ed'
+    oldFile: !uuid '9a0f3a91374583502d068255c38fbb89cdc432da'
   /app/admin/controller:
-    newFile: !uuid '2227de631b6a52aba1e5e62cc9ab572d7ee43ffc'
-    oldFile: !uuid '262716c4334758d03912ff16ac759b8758671a55'
-  /app/admin/controller/Applets.php:
-    newFile: !uuid 'f46ce125b203adc335047c0b39bd315f33c40052'
-    oldFile: !uuid '280aba832d8c7a050e8bed1277f719ff9affea9d'
+    newFile: !uuid '08925c3785579b0b4c12d526bf1f10c1fbca839c'
+    oldFile: !uuid '2227de631b6a52aba1e5e62cc9ab572d7ee43ffc'
   /app/admin/controller/Crud.php:
-    newFile: !uuid '5b5111a19fce3a37385d269fccb837183ef6791a'
-    oldFile: !uuid 'a14613856faefb655efde8359104435a735524c2'
-  /app/event.php:
-    newFile: !uuid 'd626c943d8312b252b04a9114a8802016b3019a2'
-    oldFile: !uuid 'ced3d5c9893d912d9498f9da1cfd693e6be0204a'
-gitCommitId: !uuid '1a8b54e9b2616540ecf6fe83d193ebd2862bafd0'
+    newFile: !uuid 'd8cf76461fb2d40c6f99bbe071559752f825b5f9'
+    oldFile: !uuid '5b5111a19fce3a37385d269fccb837183ef6791a'
+gitCommitId: !uuid 'f43c70e450f6ed9467a5ced7fbcd656fc9eede93'
 renames: {
   }
-revisionId: 375
+revisionId: 376
