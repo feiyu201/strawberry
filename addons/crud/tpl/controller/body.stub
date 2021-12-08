@@ -68,28 +68,60 @@ class {%className%} extends {%ctlBase%}
    	   		$inputFileName = $file['tmp_name'];
             try {
                 ob_end_clean();//清除缓冲区,避免乱码
-                $inputFileType = \PHPExcel_IOFactory::identify($inputFileName);
+                $inputFileType = \PhpOffice\PhpSpreadsheet\IOFactory::identify($inputFileName);
 
-                $objReader  = \PHPExcel_IOFactory::createReader($inputFileType);
+                $objReader  = \PhpOffice\PhpSpreadsheet\IOFactory::createReader($inputFileType);
 
                 $objPHPExcel = $objReader->load($inputFileName);
+                $sheet = $objPHPExcel->getSheet(0);
+                $data = $sheet->toArray(); //该方法读取不到图片，图片需单独处理
+                $saveTime=date('Y-m-d');
+                $imageFilePath = "/excel/imgs/".$saveTime.'/'; //图片本地存储的路径
+                if (!file_exists($imageFilePath)) {
+                    mkdir($imageFilePath, 0777, true);
+                }
+                //处理图片
+                foreach ($sheet->getDrawingCollection() as $img) {
+                    list($startColumn, $startRow) = \PhpOffice\PhpSpreadsheet\Cell\Coordinate::coordinateFromString($img->getCoordinates()); //获取图片所在行和列
+                    $imageFileName = $img->getCoordinates() . mt_rand(1000, 9999);
+                    switch($img->getExtension()) {
+                        case 'jpg':
+                        case 'jpeg':
+                            $imageFileName .= '.jpeg';
+                            $source = imagecreatefromjpeg($img->getPath());
+                            imagejpeg($source, $imageFilePath.$imageFileName);
+                            break;
+                        case 'gif':
+                            $imageFileName .= '.gif';
+                            $source = imagecreatefromgif($img->getPath());
+                            imagejpeg($source, $imageFilePath.$imageFileName);
+                            break;
+                        case 'png':
+                            $imageFileName .= '.png';
+                            $source = imagecreatefrompng($img->getPath());
+                            imagejpeg($source, \str_replace('./storage/','',$imageFilePath) .$imageFileName);
+                            break;
+                    }
+                    $startColumn = \hexdec($startColumn);
+                    $data[$startRow-1][$startColumn-10] = $imageFilePath . $imageFileName;
+
+                }
             } catch(\Exception $e) {
                  die('加载文件发生错误：”'.pathinfo($inputFileName,PATHINFO_BASENAME).'”: '.$e->getMessage());
             }
             //形成数组
-             $excel_data = $objPHPExcel->getSheet(0)->toArray();
+            $excel_data= $data;
 
 
             {%excelMethod%}
 
-
-   	   		if( $this->model->saveAll($insert_data,false)){
+   	   		if( $insert_result){
    	   			$this->success(__('Add successful'));
    	   		}else{
    	   			$this->error(__('Add failed'));
    	   		}
    	   	}
-   		{%addViewCode%}
+   		    {%addViewCode%}
    	   	return {%viewOption%}fetch('leading');
      }
 
