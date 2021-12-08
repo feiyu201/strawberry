@@ -76,7 +76,7 @@ class {%className%} extends {%ctlBase%}
                 $sheet = $objPHPExcel->getSheet(0);
                 $data = $sheet->toArray(); //该方法读取不到图片，图片需单独处理
                 $saveTime=date('Y-m-d');
-                $imageFilePath = "/excel/imgs/".$saveTime.'/'; //图片本地存储的路径
+                $imageFilePath = "./storage/excel/imgs/".$saveTime.'/'; //图片本地存储的路径
                 if (!file_exists($imageFilePath)) {
                     mkdir($imageFilePath, 0777, true);
                 }

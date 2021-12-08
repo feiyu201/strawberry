@@ -1443,17 +1443,16 @@ EOF;
             if($lkey==$table){
                 $str .="
                 }
-                \$insert_result=\$this->model->saveAll(\$insert_data_$lkey,false);
+            }
+           \$insert_result=\$this->model->saveAll(\$insert_data_$lkey,false);
                 ";
             }else{
                 $str .="
                 }
-                \$insert_result=\$this->model->".$lkey."s()->saveAll(\$insert_data_$lkey,false);
+            }
+          \$insert_result=\$this->model->".$lkey."s()->saveAll(\$insert_data_$lkey,false);
                 ";
             }
-
-            $str .= "
-            }";
         }
 
         
