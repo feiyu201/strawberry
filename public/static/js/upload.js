@@ -47,7 +47,7 @@ layui
                 var values = value.split(option.imageSplit),
                     valuesHtml = [];
                 values.forEach((value, index) => {
-                    value = "/" + value;
+                    // value = "/" + value;
                     valuesHtml.push(
                         '<img style="max-width: ' +
                         option.imageWidth +

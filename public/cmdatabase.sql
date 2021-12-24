@@ -150,22 +150,22 @@ CREATE TABLE `cm_auth_rule` (
 --
 
 INSERT INTO `cm_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`, `auth_open`) VALUES
-(536, 1, 0, 'index/welcome', '控制台', 'fa-dashboard', '', '', 1, NULL, NULL, 0, 'normal', 1),
+(536, 1, 0, 'index/welcome', '控制台', 'layui-icon layui-icon-console', '', '', 1, NULL, NULL, 0, 'normal', 1),
 (537, 1, 556, 'admin/index', '人员管理', 'fa-group', '', '', 1, NULL, 1601167961, 2, 'normal', 1),
-(538, 1, 0, 'Attachment/index', '附件管理', 'fa-file-image-o', '', '', 1, NULL, NULL, 5, 'normal', 1),
-(541, 1, 0, 'plugin/index', '插件管理', 'fa-rocket', '', '', 1, NULL, NULL, 10, 'normal', 1),
+(538, 1, 0, 'Attachment/index', '附件管理', 'layui-icon layui-icon-file', '', '', 1, NULL, NULL, 5, 'normal', 1),
+(541, 1, 0, 'plugin/index', '插件管理', 'layui-icon layui-icon-slider', '', '', 1, NULL, NULL, 10, 'normal', 1),
 (542, 1, 541, 'Plugin/getAllplug', '获取远程插件', 'fa-rocket', '', '', 0, NULL, NULL, 10, 'normal', 1),
-(543, 1, 0, 'applets/index', '小程序管理', 'fa-wechat', '', '', 1, NULL, NULL, 15, 'normal', 1),
+(543, 1, 0, 'applets/index', '小程序管理', 'layui-icon layui-icon-component', '', '', 1, NULL, NULL, 15, 'normal', 1),
 (553, 1, 556, 'AuthRule/index', '菜单管理', 'fa-bars', '', '', 1, NULL, 1601167951, 1, 'normal', 1),
 (554, 1, 553, 'AuthRule/add', '菜单添加', 'fa-add', '', '这里是备注', 0, 1601122750, NULL, 100, 'normal', 1),
 (555, 1, 553, 'AuthRule/edit', '菜单编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
-(556, 1, 0, 'admin/Auth', '权限管理', 'fa-group', '', '', 1, 1601167936, NULL, 1, 'normal', 1),
+(556, 1, 0, 'admin/Auth', '权限管理', 'layui-icon layui-icon-set-fill', '', '', 1, 1601167936, NULL, 1, 'normal', 1),
 (557, 1, 556, 'AuthGroup/index', '角色管理', 'fa-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1),
-(558, 1, 0, 'user/index', '会员管理', 'fa-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1),
+(558, 1, 0, 'user/index', '会员管理', 'layui-icon layui-icon-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1),
 (559, 1, 558, 'user/add', '添加', 'fa-add', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
 (560, 1, 558, 'user/edit', '编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
 (561, 1, 558, 'user/del', '删除', 'fa-add', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
-(562, 1, 0, 'general.Config/index', '系统设置', 'fa-gear', '', '', 1, NULL, NULL, 16, 'normal', 1);
+(562, 1, 0, 'general.Config/index', '系统设置', 'layui-icon layui-icon-set-fill', '', '', 1, NULL, NULL, 16, 'normal', 1);
 
 -- --------------------------------------------------------
 
@@ -426,10 +426,10 @@ CREATE TABLE IF NOT EXISTS `cm_config` (
 
 /*!40000 ALTER TABLE `cm_config` DISABLE KEYS */;
 INSERT INTO `cm_config` (`id`, `name`, `group`, `title`, `tip`, `type`, `value`, `content`, `rule`, `extend`, `setting`) VALUES
-	(1, 'name', 'basic', '站点名称', '请填写站点名称', 'string', '草莓万能开发框架是最好的框架', '', 'required', 'class="layui-input"', NULL),
+	(1, 'name', 'basic', '站点名称', '请填写站点名称', 'string', '草莓开发框架', '', 'required', 'class="layui-input"', NULL),
 	(2, 'beian', 'basic', '备案号', '粤ICP备15000000号-1', 'string', '', '', '', 'class="layui-input"', NULL),
 	(18, 'baidumap', 'map', '百度API', '请配置百度地图API', 'string', 'api', NULL, '', 'class="layui-input"', NULL),
-	(20, 'baidumapscrect', 'map', '百度SECRET', '请配置百度地图', 'string', 'secret', NULL, '', '', NULL);
+	(20, 'baidumapscrect', 'map', '百度SECRET', '请配置百度地图', 'string', 'secret', NULL, '', 'class="layui-input"', NULL);
 
 --
 -- 转储表的索引
