@@ -2,31 +2,10 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid '1a3d201589b2387fb407dc82ddd1e793291ba9ef'
-    oldFile: !uuid '2dd4c1fc327a263358117a21eed55258767f39f4'
-  /addons/crud:
-    newFile: !uuid '3dcd9a7c13d0923d42894f8d30acb5f195293ba0'
-    oldFile: !uuid 'a1533b43c88e3d082e8045113ca776f534c349d5'
-  /addons/crud/config.php:
-    newFile: !uuid '5aa375a2549cf0fdf9370e5b3f3d4c236e8cf972'
-    oldFile: !uuid 'c69b73ec1403b6946ee6263c6968cacde1092b27'
-  /addons/crud/tpl:
-    newFile: !uuid 'f0736553b6fb0011d5dd2621a3ccfb067a7c102f'
-    oldFile: !uuid '8fe91d9b0aaa67e3c7a315f6c3a61056f2df9a60'
-  /addons/crud/tpl/controller:
-    newFile: !uuid '6a2d804ba010c68a1733c62701deef3ffb232c26'
-    oldFile: !uuid '48e177de718c4efdb8643a509708c17029ec1a78'
-  /addons/crud/tpl/controller/body.stub:
-    newFile: !uuid 'ab26ac6be0231b158386d52e14f2ed0c4730f182'
-    oldFile: !uuid '5e7dc4c28695453988f48f82a0d70cd996848ee1'
-  /addons/crud/tpl/model:
-    newFile: !uuid '7798f25160fac6d7b37b92324b24770e2ebab0dd'
-    oldFile: !uuid '31056a9d32daf3169038222c332a1910c854bb69'
-  /addons/crud/tpl/model/common.stub:
-    newFile: !uuid 'f4cec5a6b772ba5c51fc7d044b8f867096582359'
-    oldFile: !uuid 'f4cec5a6b772ba5c51fc7d044b8f867096582359'
-gitCommitId: !uuid '59f9fa4b62c8bd2751ff99c4c4f38e85e328ebc0'
+  /composer.json:
+    newFile: !uuid '557945739e7f0806c91021fa982a91d961d78b0e'
+    oldFile: !uuid '1bed351b443168c25ab266d703d2246fa8fee753'
+gitCommitId: !uuid 'e12a2fa585e948fe321e9d2f9b4775d6be439509'
 renames: {
   }
-revisionId: 381
+revisionId: 382
