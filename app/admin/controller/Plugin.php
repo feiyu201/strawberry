@@ -73,7 +73,8 @@ class Plugin extends AdminBase
         if (Request::isPost()) {
             $result = ThinkAddons::configPost(Request::except(['file'], 'post'));
             if ($result['code'] == 1) {
-                $this->success($result['msg'], 'index');
+                // $this->success($result['msg'], 'index');
+                 $this->success($result['msg']);
             } else {
                 $this->error($result['msg']);
             }

@@ -1,16 +1,15 @@
-{extend name="layout/default" /}
-{block name="head"}
-	{if isset($user)}
-    <title>{:__('Edit')}</title>
-    {else/}
-    <title>{:__('Add')}</title>
-    {/if}
-{/block}
-{block name="content"}
-<div class="ok-body">
-	<!--form表单-->
-	<form class="layui-form layui-form-pane ok-form">
-	    
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/component/pear/css/pear.css" />
+</head>
+<body>
+    <form class="layui-form" action="">
+        <div class="mainBox">
+            <div class="main-container">
+               
                     {if $user.id??null}
                     <input type="hidden" name="id" placeholder="" autocomplete="off" class="layui-input" value="{$user.id??''}">
                     {/if}
@@ -18,91 +17,91 @@
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-block">
                         <input type="text" name="username" placeholder="{:__("Username")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.username??''}">
+                                value="{$user.username??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">微信信息</label>
                     <div class="layui-input-block">
                         <input type="text" name="openid" placeholder="{:__("Openid")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.openid??''}">
+                                value="{$user.openid??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">昵称</label>
                     <div class="layui-input-block">
                         <input type="text" name="nickname" placeholder="{:__("Nickname")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.nickname??''}">
+                                value="{$user.nickname??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">密码</label>
                     <div class="layui-input-block">
                         <input type="text" name="password" placeholder="{:__("Password")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.password??''}">
+                                value="{$user.password??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">电子邮箱</label>
                     <div class="layui-input-block">
                         <input type="text" name="email" placeholder="{:__("Email")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.email??''}">
+                                value="{$user.email??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">手机号</label>
                     <div class="layui-input-block">
                         <input type="text" name="mobile" placeholder="{:__("Mobile")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.mobile??''}">
+                                value="{$user.mobile??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">头像</label>
                     <div class="layui-input-block">
                         <input type="text" name="avatar" placeholder="{:__("Avatar")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.avatar??''}">
+                                value="{$user.avatar??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">等级</label>
                     <div class="layui-input-block">
                         <input type="text" name="level" placeholder="{:__("Level")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.level??''}">
+                                value="{$user.level??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
                         <input type="text" name="gender" placeholder="{:__("Gender")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.gender??''}">
+                                value="{$user.gender??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">生日</label>
                     <div class="layui-input-block">
                         <input type="text" name="birthday" placeholder="{:__("Birthday")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.birthday??''}">
+                                value="{$user.birthday??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">格言</label>
                     <div class="layui-input-block">
                         <input type="text" name="bio" placeholder="{:__("Bio")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.bio??''}">
+                                value="{$user.bio??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">余额</label>
                     <div class="layui-input-block">
                         <input type="text" name="money" placeholder="{:__("Money")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.money??''}">
+                                value="{$user.money??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">积分</label>
                     <div class="layui-input-block">
                         <input type="text" name="score" placeholder="{:__("Score")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.score??''}">
+                                value="{$user.score??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">连续登录天数</label>
                     <div class="layui-input-block">
                         <input type="text" name="successions" placeholder="{:__("Successions")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.successions??''}">
+                                value="{$user.successions??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">最大连续登录天数</label>
                     <div class="layui-input-block">
                         <input type="text" name="maxsuccessions" placeholder="{:__("Maxsuccessions")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.maxsuccessions??''}">
+                                value="{$user.maxsuccessions??''}">
                     </div>
                 </div>  <div class="layui-form-item">
     <div class="layui-inline">
@@ -122,19 +121,19 @@
                     <label class="layui-form-label">登录IP</label>
                     <div class="layui-input-block">
                         <input type="text" name="loginip" placeholder="{:__("Loginip")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.loginip??''}">
+                                value="{$user.loginip??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">失败次数</label>
                     <div class="layui-input-block">
                         <input type="text" name="loginfailure" placeholder="{:__("Loginfailure")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.loginfailure??''}">
+                                value="{$user.loginfailure??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">加入IP</label>
                     <div class="layui-input-block">
                         <input type="text" name="joinip" placeholder="{:__("Joinip")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.joinip??''}">
+                                value="{$user.joinip??''}">
                     </div>
                 </div>  <div class="layui-form-item">
     <div class="layui-inline">
@@ -147,13 +146,13 @@
                     <label class="layui-form-label">过期时间</label>
                     <div class="layui-input-block">
                         <input type="text" name="past_time" placeholder="{:__("Past_time")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.past_time??''}">
+                                value="{$user.past_time??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">开始时间</label>
                     <div class="layui-input-block">
                         <input type="text" name="begin_time" placeholder="{:__("Begin_time")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.begin_time??''}">
+                                value="{$user.begin_time??''}">
                     </div>
                 </div>  <div class="layui-form-item">
     <div class="layui-inline">
@@ -173,103 +172,64 @@
                     <label class="layui-form-label">状态</label>
                     <div class="layui-input-block">
                         <input type="text" name="status" placeholder="{:__("Status")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.status??''}">
+                                value="{$user.status??''}">
                     </div>
                 </div><div class="layui-form-item">
                     <label class="layui-form-label">用户的邀请码</label>
                     <div class="layui-input-block">
                         <input type="text" name="inviter_code" placeholder="{:__("Inviter_code")}" autocomplete="off" class="layui-input"
-                               lay-verify="required" value="{$user.inviter_code??''}">
+                                value="{$user.inviter_code??''}">
                     </div>
                 </div>
-		<div class="layui-form-item">
-			<div class="layui-input-block">
-				<button class="layui-btn" lay-submit lay-filter="add">{:__('Submit')}</button>
-				<button type="reset" class="layui-btn layui-btn-primary">{:__('Reset')}</button>
-			</div>
-		</div>
-	</form>
-</div>
-{/block}
-{block name="scripts"}
-<script src="/static/js/upload.js" charset="utf-8"></script>
-
+	
+            </div>
+        </div>
+        <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="add">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:__('Submit')}
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:__('Reset')}
+            </button>
+        </div>
+    </div>
+</form>
+<script src="/static/component/layui/layui.js"></script>
+<script src="/static/component/pear/pear.js"></script>
 <script>
-
-	//设置插件路径
-	layui.config({
-            base: '../../static/lib/'
-    })
-	//集成插件
-	.extend([])
-	//使用插件
-	.use(["form","okLayer","okUtils","laydate"], function () {
-		let form = layui.form;
-let okLayer = layui.okLayer;
-let okUtils = layui.okUtils;
-let laydate = layui.laydate;
-
-		
-  		let editorArr = {};
-		okLoading.close();
-        
-                //=============渲染字段上次登录时间组件
-                laydate.render({ 
-                          elem: "#prevtime"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });
-
-                //=============渲染字段登录时间组件
-                laydate.render({ 
-                          elem: "#logintime"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });
-
-                //=============渲染字段加入时间组件
-                laydate.render({ 
-                          elem: "#jointime"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });
-
-                //=============渲染字段创建时间组件
-                laydate.render({ 
-                          elem: "#createtime"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });
-
-                //=============渲染字段更新时间组件
-                laydate.render({ 
-                          elem: "#updatetime"
-                          ,trigger:'click'
-                          ,type: 'datetime'
-                        });
-
-		form.on("submit(add)", function (data) {
-			okUtils.ajax("", "post", data.field, true).done(function (response) {
-				//console.log(response);
-				if(response.code==1){
-					okLayer.greenTickMsg("编辑成功", function () {
-						parent.layer.close(parent.layer.getFrameIndex(window.name));
-					});
-				}else{
-					okLayer.greenTickMsg(response.msg, function () {
-				        
-				    })
-				}
-				
-			}).fail(function (error) {
-				console.log(error)
-			});
-			return false;
-		});
-	});
+layui.use(['form','jquery'],function(){
+    let form = layui.form;
+    let $ = layui.jquery;
+    form.on('submit(add)', function(data){
+        $.ajax({
+            data:JSON.stringify(data.field),
+            dataType:'json',
+            contentType:'application/json',
+            type:'post',
+            success:function(res){
+                //判断有没有权限
+                if(res && res.code==999){
+                    layer.msg(res.msg, {
+                        icon: 5,
+                        time: 2000, 
+                    })
+                    return false;
+                }else if(res.code==1){
+                    layer.msg(res.msg,{icon:1,time:1000},function(){
+                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
+                        parent.layui.table.reload("user-table");
+                    });
+                }else{
+                    layer.msg(res.msg,{icon:2,time:1000});
+                }
+            }
+        })
+        return false;
+    });
+})
 </script>
-
-
-<script type="text/javascript" src="/static/lib/require.js"></script>
-<script type="text/javascript" src="/static/js/addons.js"></script>
-{/block}
+</body>
+</html>

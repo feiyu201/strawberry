@@ -32,8 +32,18 @@ class AdminBase extends BaseController
         $this->checkAuth();
         // 左侧菜单
         $menus = \app\admin\model\Base::getMenus();
+
         View::assign(['menus'=>$menus]);
         //var_dump(Session::get('admin'));
+    }
+
+    public function menu() 
+    {
+        
+        $menus = \app\admin\model\Base::getMenusJson();
+
+      return json($menus)->header(['contentType'=>'application/json']);
+        
     }
 
     protected function checkLogin()
@@ -89,6 +99,7 @@ class AdminBase extends BaseController
             'Login/index',      // 登录页面
             'Login/signin', // 校验登录
             'Login/logout',     // 退出登录
+            'Index/menu'
         ];
         $authRole = \app\common\model\AuthRule::select();
         // 查找当前控制器和方法，控制器首字母大写，方法名首字母小写 如：Index/index
@@ -126,7 +137,15 @@ class AdminBase extends BaseController
             //开始认证
             $auth = new \Auth();
             $result = $auth->check($route, $admin_id);
-            if (!$result) {
+
+            $route_two = app('http')->getName()."/".Request::controller() . '/' . lcfirst(Request::action());
+            if ($route_two == 'admin/Index/menu') {
+                $res_two = true;
+            } else {
+                $res_two = false;
+            }
+
+            if (!$result && $res_two == false) {
                  $this->error('您无此操作权限!', 'javascript:login/index');
             }
         }

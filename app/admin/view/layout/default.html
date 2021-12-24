@@ -15,7 +15,8 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="format-detection" content="telephone=no">
-    <link rel="stylesheet" href="/static/css/oksub.css">
+    <!--<link rel="stylesheet" href="/static/css/oksub.css">-->
+    <link rel="stylesheet" href="/static/component/pear/css/pear.css" />
     <link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css">
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
     <script src="{:url('ajax/lang',['controllername'=>1,'lang'=>'zh-cn'])}"></script>
@@ -38,10 +39,12 @@
     <script type="text/javascript" src="/static/js/okconfig.js"></script>
     {block name="head"}{/block}
     <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
+    <!--<script src="/static/component/layui/layui.js"></script> 这里打开之后导致角色表单一次性添加了两个角色-->
+	<script src="/static/component/pear/pear.js"></script>
 
 </head>
 
-<body>
+<body class="pear-container">
     {block name="content"}{/block}
     <!--js逻辑-->
     <script src="/static/lib/layui/layui.js"></script>

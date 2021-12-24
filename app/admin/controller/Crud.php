@@ -3,6 +3,7 @@ namespace app\admin\controller;
 
 use app\common\library\Menu;
 use app\admin\model\MyCrud;
+use app\common\model\Config;
 use function GuzzleHttp\Psr7\try_fopen;
 use think\Request;
 use app\admin\validate\Applets as adminValidate;
@@ -154,7 +155,7 @@ class Crud extends Admin
             'className' => $this->controlName($table),
             'scopeTpl' => $this->buildScopeTpl($tableColumns),
             'modelNameSpace'    => $modelNameSpace,
-            'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns),
+            'filedNameAttrTpl' => $this->buildTableFiledNameAttrTpl($tableColumns,$table),
         ]));
         fclose($modelFile);
     }
@@ -176,6 +177,22 @@ class Crud extends Admin
             }
         }
         return implode(PHP_EOL, $arr);
+    }
+    public function buildExcelImpMap($table){
+        $excel_map_data=array();
+        $map_config=Config::where(["name"=>'imp_execl_'.$table])->field('value,extend')->find();
+        if(empty($map_config)){
+            $excel_map_data=[$table=>\array_column($this->getTableColumn($table),'field')];
+        }else{
+            $excel_map_data_list= \explode('|',$map_config->value);
+            foreach ($excel_map_data_list as $v){
+                $table_data=\explode(':',$v);
+                $excel_map_data[$table_data[0]]=\explode('-',$table_data[1]);
+            }
+        }
+
+        return $excel_map_data;
+
     }
     public function buildSearchCode($table, $tableColumns)
     {
@@ -249,7 +266,7 @@ class Crud extends Admin
             '. implode(PHP_EOL, $ifarr). '
         })';
     }
-    public function buildTableFiledNameAttrTpl($tableColumns)
+    public function buildTableFiledNameAttrTpl($tableColumns,$table)
     {
         $str = '';
         foreach ($tableColumns as $elt => $item) {
@@ -264,6 +281,8 @@ class Crud extends Admin
                     'relationTable' => $tableName,
                     'fieldNameList' => $this->controlName($demo, false) . 'List',
                 ]) . "\n";
+                $str .=$this->getReplacedStub('model/relation/more.stub', ['relation' => $tableName.'s',
+                        'relationClass' => \ucfirst($tableName).'::class','localKey'=>'id','foreignKey'=>$table.'_id']). "\n";
             } elseif (endWith($demo, '_id')) {
                 $tableName = str_replace('_id', '', $demo);
 
@@ -273,6 +292,8 @@ class Crud extends Admin
                     'relationTable' => $tableName,
                     'fieldNameList' => $this->controlName($demo, false) . 'List',
                 ]) . "\n";
+                $str .=$this->getReplacedStub('model/relation/one.stub', ['relation' => $tableName,
+                        'relationClass' => \ucfirst($tableName).'::class','localKey'=>'id','foreignKey'=>$table.'_ids']). "\n";
             } elseif ((explode('(', $item['type'])[0] === 'json' || explode('(', $item['type'])[0] === 'text') && endWith($item['field'], '_fieldlist')) {
                 $str .= $this->getReplacedStub('model/fieldNameAttr/array.stub', [
                     'fieldName' => $this->controlName($demo, true),
@@ -378,7 +399,7 @@ class Crud extends Admin
                 $tableName = str_replace(end($s) === 'ids' ? '_ids' : "_id", '', $demo);
                 if (!in_array($fieldName, $loadModel)) {
                     $str .= "\$$fieldName = \\think\\facade\\Db::name('$tableName')->field('id,name')->select();\n";
-                    $str .= "View::assign('$fieldName',\$$fieldName);";
+                    $str .= "       View::assign('$fieldName',\$$fieldName);";
                     $loadModel[] = $fieldName;
                 }
             }
@@ -518,7 +539,7 @@ class Crud extends Admin
                     'sublist' => [
                         ['name' => '' . $table . '/add', 'title' => '添加'],
                         ['name' => '' . $table . '/edit', 'title' => '编辑 '],
-                        ['name' => '' . $table . '/del', 'title' => '删除']
+                        ['name' => '' . $table . '/delete', 'title' => '删除']
                     ]
                 ]
             ];
@@ -1397,29 +1418,44 @@ EOF;
         return $str;
     }
     
-    
+
     public function getExcelMethod($table){
-        $list = $this->getTableColumn($table);
-        $str = "\$insert_data = array();
-            foreach(\$excel_data as \$k=>\$v){
-        
-                
-        if(\$k>0){
-           
-        ";
-        
-        foreach ($list as $key => $value){
-            if ($value['field'] == 'id'){
-                continue;
-            }else{
-                if(!endWith($value['field'], 'time')){
-                    $str .= "\$insert_data[\$k]['" . $value['field'] . "'] = isset(\$v[" . (intval($key)-1) ."]) ? \$v[" . (intval($key)-1) ."] : '';" . PHP_EOL;
+        $lists = $this->buildExcelImpMap($table);
+        $str='';
+        foreach ($lists as $lkey=>$list){
+            $str .= "
+            \$insert_data_$lkey = array();
+            \$excel_data_$lkey = array();
+            
+            foreach(\$excel_data_$lkey as \$k=>\$v){    
+                if(\$k>0){
+                    ";
+
+            foreach ($list as $key => $value){
+                if ($value == 'id'){
+                    continue;
+                }else{
+                    if(!endWith($value, 'time')){
+                        $str .= "\$insert_data_".$lkey."[\$k]['" . $value . "'] = isset(\$v[" . (intval($key)-1) ."]) ? \$v[" . (intval($key)-1) ."] : '';" . PHP_EOL.'                    ';
+                    }
                 }
             }
-        }
-        
-        $str .= "}
+            if($lkey==$table){
+                $str .="
+                }
+                \$insert_result=\$this->model->saveAll(\$insert_data_$lkey,false);
+                ";
+            }else{
+                $str .="
+                }
+                \$insert_result=\$this->model->".$lkey."s()->saveAll(\$insert_data_$lkey,false);
+                ";
+            }
+
+            $str .= "
             }";
+        }
+
         
         return $str;
     }
