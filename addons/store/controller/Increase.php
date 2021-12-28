@@ -4,8 +4,6 @@ namespace addons\store\controller;
 use app\common\controller\AddonBase;
 use think\facade\Request;
 use \addons\store\model\Goods as GoodsM;
-use think\facade\Session;
-
 require_once(app()->getRootPath().'/addons/store/common.php');
 
 class Increase extends AddonBase
@@ -66,11 +64,39 @@ class Increase extends AddonBase
         $param = Request::param();
         $data = null;
         if (!empty($param['id'])) {
+           
+            if(empty($param['specType'])){
+
+           /*        $param['specType'][0]['name']='';
+                $param['specType'][0]['value'][0]['name']='';
+                $param['specType'][0]['value'][0]['images']='';
+
+              $param['pushItem'][0]['unique']='unique';
+                $param['pushItem'][0]['inventory']=$param['inventory'] ;
+                $param['pushItem'][0]['price']= $param['price'] ;
+                $param['pushItem'][0]['weight']=0;
+                $param['pushItem'][0]['coding']=0;
+                $param['pushItem'][0]['barcode']=0;
+                $param['pushItem'][0]['original_price']=$param['original_price'] ;
+                $param['pushItem'][0]['filed'][0]=['unique']; */
+
+            }
             // 写入规格数值（带规格图片）
             if (!empty($param['specType'])){
                 setSpecTypeSql($param['specType'],$param['id']);
             }
+            if(empty($param['pushItem'])){
 
+                $param['pushItem'][0]['默认']='默认';
+                $param['pushItem'][0]['inventory']=$param['inventory'] ;
+                $param['pushItem'][0]['price']= $param['price'] ;
+                $param['pushItem'][0]['weight']=0;
+                $param['pushItem'][0]['coding']=0;
+                $param['pushItem'][0]['barcode']=0;
+                $param['pushItem'][0]['original_price']=$param['original_price'] ;
+                $param['pushItem'][0]['filed'][0]='';
+
+            }
             // 写入规格价格表 基础表与规格值 本写入是先清空再写入
             if (!empty($param['pushItem'])) {
                 setSpecValBaseSql($param['pushItem'],$param['id']);
@@ -88,7 +114,7 @@ class Increase extends AddonBase
                 'inventory',
                 'inventory_unit',
                 'images',
-                'orginal_price',
+                'original_price',
                 'min_original_price',
                 'max_original_price',
                 'price',
@@ -117,7 +143,7 @@ class Increase extends AddonBase
             if (!empty($param['images']) && count($param['images']) >0) {
                 $data['images'] = join(',',$param['images']);
             }
-            $data['place_origin'] = $param['districtId'];
+            //$data['place_origin'] = $param['districtId'];
             \addons\store\model\Goods::find($param['id'])->update($data);
             return \app\common\http\Json::success('更新成功');
         } else {
@@ -132,7 +158,7 @@ class Increase extends AddonBase
                 'inventory',
                 'inventory_unit',
                 'images',
-                'orginal_price',
+                'original_price',
                 'min_original_price',
                 'max_original_price',
                 'price',
@@ -157,14 +183,28 @@ class Increase extends AddonBase
                 'seo_desc',
                 'place',
             ]);
-            //加入管理员id关联
-            $admin_id = Session::get('admin.id');
-            $data['admin_id'] = $admin_id;
-            $data['place_origin'] = $param['districtId'];
+            //$data['place_origin'] = $param['districtId'];
             if (!empty($param['images']) && count($param['images']) >0) {
                 $data['images'] = join(',',$param['images']);
             }
+
             $goods = \addons\store\model\Goods::create($data);
+                            if(empty($param['specType'])){
+
+                                $param['specType'][0]['name']='默认';
+                                $param['specType'][0]['value'][0]['name']='默认';
+                                $param['specType'][0]['value'][0]['images']='';
+
+                                $param['pushItem'][0]['默认']='默认';
+								$param['pushItem'][0]['inventory']=$param['inventory'] ;
+                                $param['pushItem'][0]['price']= $data['price'] ;
+                                $param['pushItem'][0]['weight']=0;
+                                $param['pushItem'][0]['coding']=0;
+                                $param['pushItem'][0]['barcode']=0;
+                                $param['pushItem'][0]['original_price']=$data['original_price'] ;
+                                $param['pushItem'][0]['filed'][0]='';
+
+                            }
             // 写入规格数值（带规格图片）
             if (!empty($param['specType'])){
                 setSpecTypeSql($param['specType'],$goods->id);

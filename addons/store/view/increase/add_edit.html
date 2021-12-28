@@ -165,12 +165,12 @@
             </select>
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">产地：</label>
-        <div class="layui-input-block">
-            <input type="text" value="{$goods.place|default=''}" autocomplete="on" class="layui-input" id="city-picker" name="place"  lay-verify="place" style="width: 100%" readonly="readonly" data-toggle="city-picker" placeholder="请选择">
-        </div>
-    </div>
+    <!--<div class="layui-form-item">-->
+    <!--    <label class="layui-form-label">产地：</label>-->
+    <!--    <div class="layui-input-block">-->
+    <!--        <input type="text" value="{$goods.place|default=''}" autocomplete="on" class="layui-input" id="city-picker" name="place"  lay-verify="place" style="width: 100%" readonly="readonly" data-toggle="city-picker" placeholder="请选择">-->
+    <!--    </div>-->
+    <!--</div>-->
     <div class="layui-form-item">
         <label class="layui-form-label">库存单位</label>
         <div class="layui-input-block">
@@ -178,20 +178,44 @@
                    autocomplete="off" class="layui-input">
         </div>
     </div>
+    
     <div class="layui-form-item">
-        <label class="layui-form-label">最低起购</label>
+        <label class="layui-form-label">商品库存</label>
         <div class="layui-input-block">
-            <input type="text" name="buy_min_number"  lay-verify="required|buy_min_number" placeholder="请输入最低起购" value="{$goods.buy_min_number|default=''}"
+            <input type="text" name="inventory"  lay-verify="required" placeholder="请输入商品库存" value="{$goods.inventory|default=''}"
                    autocomplete="off" class="layui-input">
         </div>
     </div>
-    <div class="layui-form-item">
-        <label class="layui-form-label">最高限购</label>
+     <div class="layui-form-item">
+        <label class="layui-form-label">商品售价</label>
         <div class="layui-input-block">
-            <input type="text" name="buy_max_number"  lay-verify="required|buy_max_number" placeholder="请输入购买上限" value="{$goods.buy_max_number|default=''}"
+            <input type="text" name="price"  lay-verify="required" placeholder="请输入商品售价" value="{$goods.price|default=''}"
                    autocomplete="off" class="layui-input">
         </div>
     </div>
+    
+     <div class="layui-form-item">
+        <label class="layui-form-label">商品原价</label>
+        <div class="layui-input-block">
+            <input type="text" name="original_price"  lay-verify="required" placeholder="请输入商品原价" value="{$goods.original_price|default=''}"
+                   autocomplete="off" class="layui-input">
+        </div>
+    </div>
+    
+    <!--<div class="layui-form-item">-->
+    <!--    <label class="layui-form-label">最低起购</label>-->
+    <!--    <div class="layui-input-block">-->
+    <!--        <input type="text" name="buy_min_number"  lay-verify="required|buy_min_number" placeholder="请输入最低起购" value="{$goods.buy_min_number|default=''}"-->
+    <!--               autocomplete="off" class="layui-input">-->
+    <!--    </div>-->
+    <!--</div>-->
+    <!--<div class="layui-form-item">-->
+    <!--    <label class="layui-form-label">最高限购</label>-->
+    <!--    <div class="layui-input-block">-->
+    <!--        <input type="text" name="buy_max_number"  lay-verify="required|buy_max_number" placeholder="请输入购买上限" value="{$goods.buy_max_number|default=''}"-->
+    <!--               autocomplete="off" class="layui-input">-->
+    <!--    </div>-->
+    <!--</div>-->
 
     <div class="layui-form-item">
         <label class="layui-form-label">规格</label>
@@ -226,11 +250,13 @@
                 </colgroup>
                 <thead>
                 <tr id="specDetailItem">
-                    <th>价格</th>
+                     <th>规格库存</th>
+                     <th>规格原价</th>
+                    <th>规格销售价</th>
                     <th>重量（KG）</th>
                     <th>规格编码</th>
                     <th>条形码</th>
-                    <th>原价</th>
+                   
                 </tr>
                 </thead>
                 <tbody id="specDetailsTab">
@@ -326,21 +352,23 @@
         <label class="layui-form-label">详情页</label>
         <div class="layui-input-block">
             {componets:uedit name="content" content=''/}
-            <script> layui.extend({tinymce: "tinymce/tinymce",citypicker: "city-picker/city-picker"}).use(["tinymce", "util", "okLayer","citypicker","jquery"], function () {
-                var tinymce = layui.tinymce,okLayer = layui.okLayer, cityPicker = layui.citypicker,$=layui.jquery;
+            <script> layui.extend({tinymce: "tinymce/tinymce"}).use(["tinymce", "util", "okLayer","jquery"], function () {
+                var tinymce = layui.tinymce,okLayer = layui.okLayer, $=layui.jquery;
 
-                var currentPicker = new cityPicker("#city-picker", {
-                    provincename:"provinceId",
-                    cityname:"cityId",
-                    districtname: "districtId",
-                    level: 'districtId',// 级别
-                });
-                currentPicker.setValue("{$goods.place|default=''}");
+                // var currentPicker = new cityPicker("#city-picker", {
+                //     provincename:"provinceId",
+                //     cityname:"cityId",
+                //     districtname: "districtId",
+                //     level: 'districtId',// 级别
+                // });
+                // currentPicker.setValue("{$goods.place|default=''}");
                 var edit = tinymce.render({
                     elem: "#edit",
                     height: 600,
                     element_format: "html",
                     width: "100%",
+                                   relative_urls: false,
+ remove_script_host: false,
                     plugins: [
                         'advlist autolink lists link imageSelector hr',
                         'visualblocks visualchars code',
@@ -449,7 +477,7 @@
                 if (response.status === 200) {
                     okLayer.greenTickMsg(response.msg, function () {
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
-                        // parent.location.reload()
+                         parent.location.reload()
                     })
                 }
             }).fail(function (error) {
@@ -548,21 +576,27 @@
             }
             specType = setSpecType()
             console.log(specType);
+            
+             col.push({
+                field: '规格库存'
+            })
+            
             col.push({
-                field: '价格'
+                field: '规格原价'
+            })
+            col.push({
+                field: '规格销售价'
             })
             col.push({
                 field: '重量'
             })
             col.push({
-                field: '规格'
+                field: '规格编码'
             })
             col.push({
                 field: '条形码'
             })
-            col.push({
-                field: '原价'
-            })
+            
             console.log(col)
             specDetailCol = col
             function reduceTwoArr (source1, source2) {
@@ -584,7 +618,7 @@
             table = reduceMultipleArr(table);
             for (let i in table) {
                 table[i] = table[i].split(',')
-                for (let x = 0;x<5;x++){
+                for (let x = 0;x<6;x++){  //如果规格多加一行，这里的数字也要变大一个。
                     table[i].push('')
                 }
             }
@@ -628,7 +662,7 @@
             specDetailCol = getCol();
             setCol()
             specPrice.forEach(function(item,index){
-                let specColItem = [item.price,item.weight,item.coding,item.barcode,item.original_price];
+                let specColItem = [item.inventory,item.original_price,item.price,item.weight,item.coding,item.barcode];
 
                 for (let i =item.spec.length - 1; i >=0; i--) {
                     specColItem.unshift(item.spec[i].value)
@@ -640,7 +674,7 @@
         }
         // 获取规格价格表的提交格式
         function getSpecTableSql(){
-            let item = ['price','weight','coding','barcode','original_price'];
+            let item = ['inventory','original_price','price','weight','coding','barcode'];
             let count = specType.length
             for (let i = specType.length -1; i>= 0; i--) {
                 item.unshift(specType[i].name)
@@ -756,21 +790,26 @@
                     field: specTable[i].title,
                 })
             }
+             col.push({
+                field: '规格库存'
+            })
+           
+           col.push({
+                field: '规格原价'
+            })
             col.push({
-                field: '价格'
+                field: '规格销售价'
             })
             col.push({
                 field: '重量'
             })
             col.push({
-                field: '规格'
+                field: '规格编码'
             })
             col.push({
                 field: '条形码'
             })
-            col.push({
-                field: '原价'
-            })
+            
             console.log(col)
             specDetailCol = col
             return specDetailCol;

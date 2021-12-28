@@ -4,7 +4,6 @@ namespace addons\store\controller;
 use app\common\controller\AddonBase;
 use think\facade\Request;
 use addons\store\model\Goods as GoodsM;
-use think\facade\Session;
 
 class Goods extends AddonBase
 {
@@ -27,17 +26,14 @@ class Goods extends AddonBase
         if (empty($param['page'])) {
             $param['page'] = 1;
         }
-
-        $admin_id = Session::get('admin.id');
-        $condition =array();
-        if($admin_id == 1){//判断是否超级管理员
-            //读取全部
-        }else{
-            $condition['admin_id'] =$admin_id;
+        
+         $param = Request::param();
+        if (empty($param['limit'])) {
+            $param['limit'] = 10;
         }
-
-
-        $list = GoodsM::where($condition)->page($param['page'])->limit($param['limit'])->select();
+        
+        
+        $list = GoodsM::page($param['page'])->order('id','desc')->limit($param['limit'])->select();
         return \app\common\http\Json::success('成功', $list, GoodsM::count());
     }
 

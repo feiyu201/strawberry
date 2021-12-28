@@ -1,30 +1,30 @@
 <?php
 
-return array(
-  'name' => '草莓万能开发框架是最好的框架',
+return array (
+  'name' => '草莓开发框架',
   'beian' => '',
   'cdnurl' => '',
   'version' => '1.0.1',
-  'hash'=>'',
+  'hash' => '',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
-  'languages' =>
-  array(
+  'languages' => 
+  array (
     'backend' => 'zh-cn',
     'frontend' => 'zh-cn',
   ),
   'fixedpage' => 'dashboard',
-  'categorytype' =>
-  array(
+  'categorytype' => 
+  array (
     'default' => 'Default',
     'page' => 'Page',
     'article' => 'Article',
     'test' => 'Test',
   ),
-  'configgroup' =>
-  array(
+  'configgroup' => 
+  array (
     'basic' => '基本配置',
-     'map' => '地图配置',
+    'map' => '地图配置',
   ),
   'mail_type' => '1',
   'mail_smtp_host' => 'smtp.mxhichina.com',
@@ -33,4 +33,6 @@ return array(
   'mail_smtp_pass' => 'xinxi*2020',
   'mail_verify_type' => '2',
   'mail_from' => 'nrbc@nrblockchain.com',
+  'baidumap' => 'api',
+  'baidumapscrect' => 'secret',
 );

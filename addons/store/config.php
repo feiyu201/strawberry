@@ -5,7 +5,7 @@ return array (
   array (
     'title' => '文本框:',
     'type' => 'text',
-    'value' => '1302274444222',
+    'value' => '13022744442221212',
   ),
   'danxuan' => 
   array (

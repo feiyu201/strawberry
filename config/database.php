@@ -24,13 +24,11 @@ return [
             // 服务器地址
             'hostname'          => Env::get('database.hostname', '127.0.0.1'),
             // 数据库名
-
-            'database'          => Env::get('database.database', ''),
+            'database'          => Env::get('database.database', 'cmsaasdb'),
             // 用户名
-            'username'          => Env::get('database.username', 'root'),
+            'username'          => Env::get('database.username', 'cmsaasdb'),
             // 密码
-            'password'          => Env::get('database.password', ''),
-
+            'password'          => Env::get('database.password', 'RjBdGNKbKyb5FJCK'),
             // 端口
             'hostport'          => Env::get('database.hostport', '3306'),
             // 数据库连接参数
