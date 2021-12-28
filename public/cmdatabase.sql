@@ -150,22 +150,32 @@ CREATE TABLE `cm_auth_rule` (
 --
 
 INSERT INTO `cm_auth_rule` (`id`, `type`, `pid`, `name`, `title`, `icon`, `condition`, `remark`, `ismenu`, `createtime`, `updatetime`, `weigh`, `status`, `auth_open`) VALUES
-(536, 1, 0, 'index/welcome', '控制台', 'layui-icon layui-icon-console', '', '', 1, NULL, NULL, 0, 'normal', 1),
-(537, 1, 556, 'admin/index', '人员管理', 'fa-group', '', '', 1, NULL, 1601167961, 2, 'normal', 1),
+(536, 1, 0, 'index/welcome', '控制台', 'layui-icon layui-icon-console', '', '', 1, NULL, 1640567661, 300, 'normal', 1),
+(537, 1, 556, 'admin', '人员管理', 'layui-icon layui-icon-group', '', '', 1, NULL, 1640305116, 2, 'normal', 1),
 (538, 1, 0, 'Attachment/index', '附件管理', 'layui-icon layui-icon-file', '', '', 1, NULL, NULL, 5, 'normal', 1),
 (541, 1, 0, 'plugin/index', '插件管理', 'layui-icon layui-icon-slider', '', '', 1, NULL, NULL, 10, 'normal', 1),
 (542, 1, 541, 'Plugin/getAllplug', '获取远程插件', 'fa-rocket', '', '', 0, NULL, NULL, 10, 'normal', 1),
 (543, 1, 0, 'applets/index', '小程序管理', 'layui-icon layui-icon-component', '', '', 1, NULL, NULL, 15, 'normal', 1),
-(553, 1, 556, 'AuthRule/index', '菜单管理', 'fa-bars', '', '', 1, NULL, 1601167951, 1, 'normal', 1),
+(553, 1, 556, 'AuthRule', '菜单管理', 'fa-bars', '', '', 1, NULL, 1640401633, 1, 'normal', 1),
 (554, 1, 553, 'AuthRule/add', '菜单添加', 'fa-add', '', '这里是备注', 0, 1601122750, NULL, 100, 'normal', 1),
 (555, 1, 553, 'AuthRule/edit', '菜单编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
-(556, 1, 0, 'admin/Auth', '权限管理', 'layui-icon layui-icon-set-fill', '', '', 1, 1601167936, NULL, 1, 'normal', 1),
-(557, 1, 556, 'AuthGroup/index', '角色管理', 'fa-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1),
-(558, 1, 0, 'user/index', '会员管理', 'layui-icon layui-icon-group', '', '', 1, 1601168043, NULL, 100, 'normal', 1),
+(556, 1, 0, 'Auth', '权限管理', 'layui-icon layui-icon-set-fill', '', '', 1, 1601167936, 1640671797, 1, 'normal', 1),
+(557, 1, 556, 'AuthGroup', '角色管理', 'layui-icon layui-icon-group', '', '', 1, 1601168043, 1640304771, 100, 'normal', 1),
+(558, 1, 0, 'user/index', '会员管理', 'layui-icon layui-icon-group', '', '', 1, 1601168043, 1640672769, 100, 'normal', 1),
 (559, 1, 558, 'user/add', '添加', 'fa-add', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
 (560, 1, 558, 'user/edit', '编辑', 'fa-edit', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
 (561, 1, 558, 'user/del', '删除', 'fa-add', '', '', 0, 1601122878, 1601123339, 100, 'normal', 1),
-(562, 1, 0, 'general.Config/index', '系统设置', 'layui-icon layui-icon-set-fill', '', '', 1, NULL, NULL, 16, 'normal', 1);
+(562, 1, 0, 'general.Config/index', '系统设置', 'layui-icon layui-icon-set-fill', '', '', 1, NULL, NULL, 16, 'normal', 1),
+(607, 1, 557, 'AuthGroup/add', '角色添加', 'fa-arrows', '', '', 0, 1640225596, 1640225614, 100, 'normal', 1),
+(608, 1, 557, 'AuthGroup/delete', '角色删除', 'fa-arrows', '', '', 0, 1640225699, NULL, 100, 'normal', 1),
+(609, 1, 557, 'AuthGroup/edit', '角色编辑', 'fa-arrows', '', '', 0, 1640225722, NULL, 100, 'normal', 1),
+(610, 1, 557, 'AuthGroup/index', '角色列表', 'fa-arrows', '', '', 0, 1640232145, 1640232183, 100, 'normal', 1),
+(614, 1, 536, 'index/index', '控制台首页', 'fa-arrows', '', '', 0, 1640233006, NULL, 100, 'normal', 1),
+(615, 1, 536, 'index/home', '首页', 'fa-arrows', '', '', 0, 1640235138, NULL, 100, 'normal', 1),
+(618, 1, 537, 'admin/add', '添加', 'fa-arrows', '', '', 0, 1640305001, NULL, 100, 'normal', 1),
+(619, 1, 537, 'admin/delete', '删除', 'fa-arrows', '', '', 0, 1640305025, NULL, 100, 'normal', 1),
+(620, 1, 537, 'admin/index', '查看', 'fa-arrows', '', '', 0, 1640305139, NULL, 100, 'normal', 1),
+(629, 1, 553, 'AuthRule/delete', '菜单删除', 'fa-arrows', '', '', 0, 1640671855, NULL, 100, 'normal', 1);
 
 -- --------------------------------------------------------
 
