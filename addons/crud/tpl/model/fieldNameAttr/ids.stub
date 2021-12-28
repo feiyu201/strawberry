@@ -1,7 +1,0 @@
-
-public function get{%fieldName%}Attr($value,$data)
-{
-    $this->set('{%fieldNameList%}',\think\facade\Db::name('{%relationTable%}')->field('id,name')->where('id','in',explode(',',$value))->select()) ;
-    $this->append(array_merge($this->append,['{%fieldNameList%}']));
-    return $value;
-}
