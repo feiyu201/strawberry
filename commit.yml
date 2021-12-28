@@ -2,16 +2,34 @@
 branches: {
   }
 fileChange:
-  /addons:
-    newFile: !uuid 'd2befc433f7d8360be43a28e0ada2320e1228266'
-    oldFile: null
-  /addons/gitkeep:
-    newFile: !uuid '8b137891791fe96927ad78e64b0aad7bded08bdc'
-    oldFile: null
-  /addons/htaccess:
-    newFile: !uuid '3418e55a68383c1cbc687c52a2994d1e8ed83800'
-    oldFile: null
-gitCommitId: !uuid '817f1df4d1b0889b26beb604a8341154a69fbef6'
+  /app:
+    newFile: !uuid '70e28010e9f203c6b3b76bfcc1472319c03f62b8'
+    oldFile: !uuid '91aea99423680d5b3055711c22f7559fdd329c88'
+  /app/admin:
+    newFile: !uuid 'aa6ec3d5ae0adf3887a516d8562de36599b41859'
+    oldFile: !uuid '7fb3f322e0e902c3ea0d664a28084bd4e862edba'
+  /app/admin/controller:
+    newFile: !uuid 'f0b776cce5e380e426caeac4150ce24d49893e94'
+    oldFile: !uuid '9a1fe0143b1ce28bf365da8f1d95c69c8f061b31'
+  /app/admin/controller/AuthRule.php:
+    newFile: !uuid 'a5efc607399b34e0ba07ae79c0549b9be4d43615'
+    oldFile: !uuid 'a05d8bb3f634931524f1ab58fcc50d5050076c73'
+  /app/admin/model:
+    newFile: !uuid '79ed05f17c6692fbc948d01db969c5eaae6583ab'
+    oldFile: !uuid '42c988057faeed18e7b5112fbe524c25aefdea66'
+  /app/admin/model/Base.php:
+    newFile: !uuid '107cd1b6216e403cc4ea38ddc2016baa037b7c9b'
+    oldFile: !uuid 'd586d39c6ffde85a40efd979eea599d3537f053e'
+  /app/admin/view:
+    newFile: !uuid 'ab4cd284395e2c7f561343ba29f0601ad93889cd'
+    oldFile: !uuid '2b6277bb03a1fe960cc74800c117d6a8529f4710'
+  /app/admin/view/auth_rule:
+    newFile: !uuid '88f4ce85298fa47b6341571991e2184527029805'
+    oldFile: !uuid '192e0b8b8300626bd07f784c4bc7292a9331ddbd'
+  /app/admin/view/auth_rule/index.html:
+    newFile: !uuid 'cd75d136fc9390e157a7993600ce40adf66724f0'
+    oldFile: !uuid '148b35758d1fc31917703aa6182b2a593f59f2b3'
+gitCommitId: !uuid '49b93190fb012bb2c97b779a07d043d0266e603a'
 renames: {
   }
-revisionId: 389
+revisionId: 390
