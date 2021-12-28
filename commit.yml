@@ -2,10 +2,16 @@
 branches: {
   }
 fileChange:
-  /.gitignore:
-    newFile: !uuid '5d6796c8417dd8084d568400e2aad7a3663a3d3f'
-    oldFile: !uuid '2252a50ed3b400255a13ae4bd1f2bb6a71325fa8'
-gitCommitId: !uuid 'ddbfcda853f6bd110c419ef1e9ddaf83d9b75675'
+  /addons:
+    newFile: !uuid 'd2befc433f7d8360be43a28e0ada2320e1228266'
+    oldFile: null
+  /addons/gitkeep:
+    newFile: !uuid '8b137891791fe96927ad78e64b0aad7bded08bdc'
+    oldFile: null
+  /addons/htaccess:
+    newFile: !uuid '3418e55a68383c1cbc687c52a2994d1e8ed83800'
+    oldFile: null
+gitCommitId: !uuid '817f1df4d1b0889b26beb604a8341154a69fbef6'
 renames: {
   }
-revisionId: 388
+revisionId: 389
