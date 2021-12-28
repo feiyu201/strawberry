@@ -5,7 +5,7 @@
 <title>{:__('Attachment manage')}</title>
 {/block}
 {block name="content"}
-<div class="ok-body">
+<div class="layui-card">
 	<!--模糊搜索区域-->
 	<div class="layui-row">
 		<!-- <form class="layui-form ok-search-form">
@@ -69,24 +69,17 @@
 {block name="scripts"}
 <!--js逻辑-->
 <script>
-	layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+	layui.use(["jquery", "table", "form", "laydate"], function () {
 		let table = layui.table;
 		let form = layui.form;
 		let laydate = layui.laydate;
-		let okLayer = layui.okLayer;
-		let okUtils = layui.okUtils;
-		let okMock = layui.okMock;
 		let $ = layui.jquery;
-
-		okLoading.close($);
-
-		laydate.render({ elem: "#startTime", type: "datetime" });
-		laydate.render({ elem: "#endTime", type: "datetime" });
 
 		let userTable = table.render({
 			elem: '#tableId',
 			url: '{:url("index")}',
 			limit: 20,
+			skin:'line',
 			page: true,
 			toolbar: true,
 			toolbar: "#toolbarTpl",
@@ -145,16 +138,34 @@
 		});
 
 		function batchEnabled() {
-			okLayer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
+			layer.confirm("{:__('Are you sure you want to enable batches?')}", function (index) {
 				layer.close(index);
 				let idsStr = okUtils.tableBatchCheck(table);
 				if (idsStr) {
-					okUtils.ajax("{:url('setNormal')}", "put", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax(
+					    
+					    {
+					    url:'{:url('setNormal')}',
+                            data:{idsStr: idsStr},
+                            dataType: 'json',
+                            type: 'put',
+					    }
+					    
+					    ).done(function (response) {
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
+						
+								layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                    
+                                    });
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    }, function () {
 
 							})
 						}
@@ -166,17 +177,36 @@
 		}
 
 		function batchDisabled() {
-			okLayer.confirm("{:__('Are you sure you want to disable batches?')}", function (index) {
+			layer.confirm("{:__('Are you sure you want to disable batches?')}", function (index) {
 				layer.close(index);
-				let idsStr = okUtils.tableBatchCheck(table);
+				let idsStr = $.tableBatchCheck(table);
 				if (idsStr) {
-					okUtils.ajax("{:url('setStop')}", "put", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax(
+					    
+					    {
+					    
+					      url:'{:url('setStop')}',
+                            data:{idsStr: idsStr},
+                            dataType: 'json',
+                            type: 'put',
+                            
+			           	}
+			  		    
+					    ).done(function (response) {
 
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
+							layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                    
+                                    });
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    }, function () {
 
 							})
 						}
@@ -188,18 +218,63 @@
 		}
 
 		function batchDel() {
-			okLayer.confirm("{:__('Are you sure you want to delete batches?')}", function (index) {
+		    
+		    
+		    let data = table.checkStatus('tableId').data;
+                    if (data.length === 0) {
+                        layer.msg("未选中数据", {
+                            icon: 3,
+                            time: 1000
+                        });
+                        return false;
+                    }
+                    var idsStr = []
+                    var hasCheck = table.checkStatus('tableId')
+                    var hasCheckData = hasCheck.data
+                    if (hasCheckData.length > 0) {
+                        $.each(hasCheckData, function (index, element) {
+                            idsStr.push(element.id)
+                        })
+                    }
+				
+		    
+			layer.confirm("{:__('Are you sure you want to delete batches?')}", function (index) {
 				layer.close(index);
-				let idsStr = okUtils.tableBatchCheck(table);
+				
+				// let idsStr = $.tableBatchCheck(table);
+				
+				
+				
 				if (idsStr) {
-					okUtils.ajax("{:url('delete')}", "delete", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax(
+					    
+					    
+					     {
+					    
+					      url:'{:url('delete')}',
+                            data:{idsStr: idsStr},
+                            dataType: 'json',
+                            type: 'delete',
+                            
+			           	}
+					    
+					    
+					    ).done(function (response) {
 						//console.log(response);
 						//okUtils.tableSuccessMsg(response.msg);
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
+							layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                    	table.reload('tableId');
+                                    });
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    },  function () {
 
 							})
 						}
@@ -211,13 +286,25 @@
 		}
 
 		function add() {
-			okLayer.open("{:__('Add Attachment')}", "{:url('add')}", "90%", "90%", null, function () {
+			layer.open(
+			
+			{
+                        type: 2,
+                        maxmin: true,
+                        title: '{:__('Add Attachment')}',
+                        shade: 0.1,
+                        area: ['90%', '90%'],
+                        content:'{:url('add')}'
+                    },
+			
+			
+			function () {
 				userTable.reload();
 			})
 		}
 
 		function edit(data) {
-			okLayer.open("{:__('Update Attachment')}", "edit?id=" + data.id, "90%", "90%", function (layero) {
+			layer.open("{:__('Update Attachment')}", "edit?id=" + data.id, "90%", "90%", function (layero) {
 				//let iframeWin = window[layero.find("iframe")[0]["name"]];
 				//iframeWin.initForm(data);
 			}, function () {
@@ -226,15 +313,36 @@
 		}
 
 		function del(id) {
-			okLayer.confirm("{:__('You sure you want to delete it?')}", function () {
-				okUtils.ajax("{:url('delete')}", "delete", { idsStr: id }, true).done(function (response) {
+			layer.confirm("{:__('You sure you want to delete it?')}", function () {
+				$.ajax(
+				    
+				    
+				       {
+					    
+					      url:'{:url('delete')}',
+                            data:{idsStr: id},
+                            dataType: 'json',
+                            type: 'delete',
+                            
+				}
+				    
+				    
+				    ).done(function (response) {
 
 
 					if (response.code == 1) {
 						console.log(response);
-						okUtils.tableSuccessMsg(response.msg);
+						layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                    
+                                    });
 					} else {
-						okLayer.greenTickMsg(response.msg, function () {
+					layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    }, function () {
 
 						})
 					}

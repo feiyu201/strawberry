@@ -4,10 +4,12 @@
 
 {/block}
 {block name="content"}
-<div class="ok-body">
+<div class="layui-card">
 	<div id="denglu">
 		<!--form表单-->
-		<form class="layui-form layui-form-pane ok-form">
+		<form class="layui-form">
+		     <div class="mainBox">
+            <div class="main-container">
 
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
@@ -30,6 +32,9 @@
 					<button type="reset" class="layui-btn layui-btn-primary" id="quzhuce">没账户去注册</button>
 				</div>
 			</div>
+			
+			</div>
+			</div>
 		</form>
 	</div>
 
@@ -37,7 +42,9 @@
 	<!-- 注册 -->
 	<div id="zhuce" style="display: none;">
 		<!--form表单-->
-		<form class="layui-form layui-form-pane ok-form">
+		<form class="layui-form">
+		    <div class="mainBox">
+            <div class="main-container">
 
 			<div class="layui-form-item">
 				<label class="layui-form-label">用户名</label>
@@ -60,6 +67,8 @@
 					<button lay-submit lay-filter="reg" class="layui-btn">立即注册</button>
 				</div>
 			</div>
+				</div>
+			</div>
 		</form>
 	</div>
 </div>
@@ -67,7 +76,7 @@
 {block name="scripts"}
 
 <!--js逻辑-->
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="/static/js/jquery.min.js"></script>
 <script>
 	$("#quzhuce").click(function () {
 		$("#zhuce").show(100);
@@ -82,13 +91,9 @@
 </script>
 <script>
 
-	layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
+	layui.use(["jquery", "form"], function () {
 		let form = layui.form;
-		let laydate = layui.laydate;
-		let okLayer = layui.okLayer;
-		let okUtils = layui.okUtils;
-
-		okLoading.close();
+		let $ = layui.jquery;
 
 		//laydate.render({elem: "#birthday", type: "datetime"});
 
@@ -97,10 +102,28 @@
 		});
 
 		form.on("submit(add)", function (data) {
-			okUtils.ajax("https://www.caomei.zone/api/user/login", "post", data.field, true).done(function (response) {
+			$.ajax(
+			    
+			    {
+				
+			            	url:'https://www.caomei.zone/api/user/login',
+                            data:data.field,
+                            //dataType: 'json',
+                            type: 'post',
+				
+				}
+			    
+			    //"https://www.caomei.zone/api/user/login", "post", data.field, true
+			
+			
+			
+			).done(function (response) {
 				//console.log(response);
 				if (response.code == 1) {
-					okLayer.greenTickMsg("登录成功", function () {
+					layer.msg('登录成功', {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function () {
 
 						const Storage = {};
 						Storage.get = function (name) {
@@ -117,7 +140,10 @@
 						parent.layer.close(parent.layer.getFrameIndex(window.name));
 					});
 				} else {
-					okLayer.redCrossMsg(response.msg, function () {
+					layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    }, function () {
 
 					})
 				}
@@ -131,10 +157,25 @@
 
 		//注册
 		form.on("submit(reg)", function (data) {
-			okUtils.ajax("https://www.caomei.zone/api/user/reg", "post", data.field, true).done(function (response) {
+			$.ajax(
+			    
+			    
+			      {
+				
+			            	url: "https://www.caomei.zone/api/user/reg",
+                            data:data.field,
+                            //dataType: 'json',
+                            type: 'post',
+				
+				}
+			    
+			    ).done(function (response) {
 				//console.log(response);
 				if (response.code == 1) {
-					okLayer.greenTickMsg("注册成功", function () {
+					layer.msg('注册成功', {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function () {
 
 						const Storage = {};
 						Storage.get = function (name) {
@@ -151,7 +192,10 @@
 						parent.layer.close(parent.layer.getFrameIndex(window.name));
 					});
 				} else {
-					okLayer.redCrossMsg(response.msg, function () {
+						layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    }, function () {
 
 					})
 				}

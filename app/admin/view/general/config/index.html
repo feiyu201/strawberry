@@ -8,10 +8,10 @@
 </style>
 {/block}
 {block name="content"}
-<div class="ok-body">
+<div class="layui-card">
     <form class="layui-form edit-form form-horizontal" method="POST"
           action="{:url('general.config/edit')}">
-    <div class="layui-tab">
+    <div class="layui-tab layui-tab-brief">
         <ul class="layui-tab-title">
             {volist name="siteList" key="k" id="vo"}
             <li class="{$vo.active?'layui-this':''}">
@@ -241,8 +241,8 @@
                                 <td></td>
                                 <td>
                                     <div class="layui-row">
-                                        <button type="submit" class="btn btn-success btn-embossed layui-btn">{:__('OK')}</button>
-                                        <button type="button" class="layui-btn layui-btn-primary add-btn" style="margin-left: 10px;">{:__('新增')}</button>
+                                        <button type="submit" class="pear-btn pear-btn-primary pear-btn-md">{:__('OK')}</button>
+                                        <button type="button" class="pear-btn pear-btn-success pear-btn-md add-btn"><i class="layui-icon layui-icon-add-1 add-btn"></i>{:__('新增')}</button>
                                     </div>
                                 </td>
                                 <td></td>
@@ -260,6 +260,8 @@
 
 <div id="add-content" class="" style="display: none;">
     <form class="layui-form">
+         <div class="mainBox">
+            <div class="main-container">
         <div class="layui-form-item">
             <label class="layui-form-label">{:__('配置组')}</label>
             <div class="layui-input-block">
@@ -300,6 +302,8 @@
                 <textarea name="content" id="content" placeholder="{:__('请输入选项内容')}" class="layui-textarea"></textarea>
             </div>
         </div>
+             </div>
+        </div>
     </form>
 </div>
 
@@ -307,17 +311,11 @@
 {block name="scripts"}
 <!--js逻辑-->
 <script>
-    layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+    layui.use(["jquery", "table", "form", "laydate"], function () {
         let table = layui.table;
         let form = layui.form;
         let laydate = layui.laydate;
-        let okLayer = layui.okLayer;
-        let okUtils = layui.okUtils;
-        let okMock = layui.okMock;
         let $ = layui.jquery;
-        var element = layui.element;
-
-        okLoading.close($);
 
         form.on("select(type-form)", function (data){
             if (data.value == "checkbox" || data.value == "radio" || data.value == "select"){

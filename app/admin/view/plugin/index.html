@@ -47,19 +47,13 @@
 {block name="scripts"}
 <!--js逻辑-->
 <script>
-	layui.use(["element", "jquery", "table", "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+	layui.use(["jquery", "table", "form", "laydate"], function () {
 		let table = layui.table;
 		let form = layui.form;
 		let laydate = layui.laydate;
-		let okLayer = layui.okLayer;
-		let okUtils = layui.okUtils;
-		let okMock = layui.okMock;
+
 		let $ = layui.jquery;
 
-		okLoading.close($);
-
-		laydate.render({ elem: "#startTime", type: "datetime" });
-		laydate.render({ elem: "#endTime", type: "datetime" });
 
 		//全部插件
 		let userTable = table.render({
@@ -142,6 +136,9 @@
 				case "batchDel":
 					batchDel();
 					break;
+				case "refresh":
+					window.refresh();
+					break;
 				case "add":
 					add();
 					break;
@@ -166,6 +163,10 @@
 					break;
 			}
 		});
+		
+			window.refresh = function(param) {
+					table.reload('tableIdbd');
+				}
 
 		//安装远程插件
 		function installyuancheng(id) {
@@ -174,21 +175,37 @@
 				return localStorage.getItem(name);
 			}
 			var caomei_tokeny = Storage.get("caomeiadmin_userinfo");
-			okLayer.confirm("确定要安装吗？", function () {
-				okUtils.ajax("{:url('installyuancheng')}", "get", { id: id, token: caomei_tokeny }, true).done(function (response) {
+			layer.confirm("确定要安装吗？", function () {
+				$.ajax({
+				
+			            	url:'{:url('installyuancheng')}',
+                            data:{id: id, token: caomei_tokeny},
+                            dataType: 'json',
+                            type: 'get',
+				
+				}).done(function (response) {
 					if (response.code == '1') {
 						console.log(response);
 						//userTable.reload();
 						//okUtils.tableSuccessMsg(response.msg);
-						okLayer.greenTickMsg(response.msg, function () {
-							userTable.reload();
-							userTablebd.reload();
-						})
+				// 		okLayer.greenTickMsg(response.msg, function () {
+						
+				// 		})
+						layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                     	userTable.reload();
+							            userTablebd.reload();
+                                    });
 					} else {
 
 						if (response.code == '-3' || response.code == '-4') {
 							//未登录
-							okLayer.redCrossMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function () {
 								layer.open({
 									type: 2,
 									title: '用户登录',
@@ -200,14 +217,20 @@
 								});
 							});
 						} else {
-							okLayer.redCrossMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    },  function () {
 							})
 						}
 
 
 						if (response.code == '-5') {
 							//未购买
-							okLayer.redCrossMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 5,
+                                        time: 1000
+                                    },  function () {
 								var html = "<img style='height: 200px;width: 200px;' src='" + response.data.img + "' >";
 								layer.open({
 									type: 2,
@@ -220,7 +243,10 @@
 								});
 							});
 						} else {
-							okLayer.redCrossMsg(response.msg, function () {
+							layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    },  function () {
 							})
 						}
 
@@ -234,23 +260,38 @@
 
 		//安装本地插件
 		function install(id) {
-			okLayer.confirm("确定要安装吗？", function () {
-				okUtils.ajax("{:url('install')}", "get", { id: id }, true).done(function (response) {
-					if (response.code == 1) {
-						console.log(response);
-						//userTable.reload();
-						//okUtils.tableSuccessMsg(response.msg);
-						okLayer.greenTickMsg(response.msg, function () {
-							userTable.reload();
-							userTablebd.reload();
-						})
-					} else {
-						okLayer.redCrossMsg(response.msg, function () {
-
-						})
-					}
-
-				}).fail(function (error) {
+			layer.confirm("确定要安装吗？", function () {
+			layer.close(id);
+			let loading = layer.load();
+			 $.ajax({
+                            url:'{:url('install')}',
+                            data:{id:id},
+                            dataType: 'json',
+                            type: 'get',
+                            success: function(res) {
+                                layer.close(loading);
+                                //判断有没有权限
+                                if(res && res.code==999){
+                                    layer.msg(res.msg, {
+                                        icon: 5,
+                                        time: 2000, 
+                                    })
+                                    return false;
+                                }else if (res.code==1) {
+                                    layer.msg(res.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                      table.reload('tableIdbd');
+                                    });
+                                } else {
+                                    layer.msg(res.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    });
+                                }
+                            }
+                        }).fail(function (error) {
 					console.log(error)
 				});
 			})
@@ -281,46 +322,72 @@
 		
 
 		function uninstall(id) {
-			okLayer.confirm("确定要卸载安装吗？", function () {
-				okUtils.ajax("{:url('uninstall')}", "get", { id: id }, true).done(function (response) {
-					if (response.code == 1) {
-						console.log(response);
-						//userTable.reload();
-						//okUtils.tableSuccessMsg(response.msg);
-						okLayer.greenTickMsg(response.msg, function () {
-							userTable.reload();
-							userTablebd.reload();
-						})
-					} else {
-						okLayer.greenTickMsg(response.msg, function () {
-
-						})
-					}
-
-				}).fail(function (error) {
+			layer.confirm("确定要卸载安装吗？", function () {
+			    	layer.close(id);
+			let loading = layer.load();
+				 $.ajax({
+                            url:'{:url('uninstall')}',
+                            data:{id:id},
+                            dataType: 'json',
+                            type: 'get',
+                            success: function(res) {
+                                   layer.close(loading);
+                                //判断有没有权限
+                                if(res && res.code==999){
+                                    layer.msg(res.msg, {
+                                        icon: 5,
+                                        time: 2000, 
+                                    })
+                                    return false;
+                                }else if (res.code==1) {
+                                    layer.msg(res.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                      table.reload('tableIdbd');
+                                    });
+                                } else {
+                                    layer.msg(res.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    });
+                                }
+                            }
+                        }).fail(function (error) {
 					console.log(error)
 				});
 			})
 		}
 		function state(id) {
-			okLayer.confirm("确定执行此操作吗？", function () {
-				okUtils.ajax("{:url('state')}", "get", { id: id }, true).done(function (response) {
-					if (response.code == 1) {
-						console.log(response);
-						//userTable.reload();
-						//okUtils.tableSuccessMsg(response.msg);
-						okLayer.greenTickMsg(response.msg, function () {
-
-							userTable.reload();
-							userTablebd.reload();
-						})
-					} else {
-						okLayer.greenTickMsg(response.msg, function () {
-
-						})
-					}
-
-				}).fail(function (error) {
+			layer.confirm("确定执行此操作吗？", function () {
+			  $.ajax({
+                            url:'{:url('state')}',
+                             data:{id:id},
+                            dataType: 'json',
+                            type: 'get',
+                            success: function(res) {
+                                //判断有没有权限
+                                if(res && res.code==999){
+                                    layer.msg(res.msg, {
+                                        icon: 5,
+                                        time: 2000, 
+                                    })
+                                    return false;
+                                }else if (res.code==1) {
+                                    layer.msg(res.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                      table.reload('tableIdbd');
+                                    });
+                                } else {
+                                    layer.msg(res.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    });
+                                }
+                            }
+                        }).fail(function (error) {
 					console.log(error)
 				});
 			})

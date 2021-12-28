@@ -14,22 +14,14 @@
 {/block}
 {block name="scripts"}
 <!--js逻辑-->
-<script src="/static/lib/layui/lay/lay-config.js"></script>
+<!--<script src="/static/lib/layui/lay/lay-config.js"></script>-->
 <script>
-	layui.use(["element", "jquery", "table", 'treetable', "form", "laydate", "okLayer", "okUtils", "okMock"], function () {
+	layui.use(["jquery", "table", 'treetable', "form"], function () {
 		let table = layui.table;
 		let treetable = layui.treetable;
 		let form = layui.form;
-		let laydate = layui.laydate;
-		let okLayer = layui.okLayer;
-		let okUtils = layui.okUtils;
-		let okMock = layui.okMock;
+
 		let $ = layui.jquery;
-
-		okLoading.close($);
-
-		laydate.render({ elem: "#startTime", type: "datetime" });
-		laydate.render({ elem: "#endTime", type: "datetime" });
 
 		let userTable = treetable.render({
 			treeColIndex: 2,

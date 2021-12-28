@@ -35,19 +35,20 @@
         }
     </style>
 
-    <link rel="stylesheet" href="/static/lib/loading/okLoading.css" />
-    <script type="text/javascript" src="/static/js/okconfig.js"></script>
+    <!--<link rel="stylesheet" href="/static/lib/loading/okLoading.css" />-->
+    <!--<script type="text/javascript" src="/static/js/okconfig.js"></script>-->
     {block name="head"}{/block}
-    <script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>
-    <!--<script src="/static/component/layui/layui.js"></script> 这里打开之后导致角色表单一次性添加了两个角色-->
-	<script src="/static/component/pear/pear.js"></script>
+    <!--<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>-->
+
 
 </head>
 
 <body class="pear-container">
     {block name="content"}{/block}
     <!--js逻辑-->
-    <script src="/static/lib/layui/layui.js"></script>
+    <!--<script src="/static/lib/layui/layui.js"></script>-->
+    <script src="/static/component/layui/layui.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
+	<script src="/static/component/pear/pear.js"></script>
     {block name="scripts"}{/block}
 </body>
 
