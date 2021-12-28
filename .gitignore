@@ -6,6 +6,7 @@ runtime/
 /public/uploads/*
 /public/storage/attachment/*
 /public/storage/*
+/addons/*
 .idea
 composer.lock
 *.log
@@ -24,4 +25,3 @@ info.ini
 .DS_Store
 test_name
 TestName.php
-/addons/*
