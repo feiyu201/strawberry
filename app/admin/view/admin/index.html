@@ -208,7 +208,18 @@
 		}
 
 		function add() {
-			okLayer.open("添加用户", "{:url('add')}", "90%", "90%", null, function () {
+			layer.open(
+			    
+			    {
+			        
+			            type: 2,
+                        maxmin: true,
+                        title: '添加用户',
+                        shade: 0.1,
+                        area: ['90%', '90%'],
+                        content: '{:url('add')}'
+			        
+			    }, function () {
 				userTable.reload();
 			})
 		}
