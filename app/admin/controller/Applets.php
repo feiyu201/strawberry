@@ -84,12 +84,12 @@ class Applets extends AdminBase
             }
             $data['status'] = (isset($data['status']) && $data['status'] == 1) ? 'normal' : 'stop';
             if ($result = Wxapp::create($data)) {
-                Event::trigger('platform_action',[
-                    'type'              =>  'miniprogram',
-                    'third_id'          =>  $result->getData('id'),
-                    'action'            =>  'add',
-                    'name'              =>  $data['name']
-                ]);
+                // Event::trigger('platform_action',[
+                //     'type'              =>  'miniprogram',
+                //     'third_id'          =>  $result->getData('id'),
+                //     'action'            =>  'add',
+                //     'name'              =>  $data['name']
+                // ]);
                 $this->success("添加成功");
             } else {
                 $this->error("添加失败");
@@ -112,12 +112,12 @@ class Applets extends AdminBase
             }
             $data['status'] = (isset($data['status']) && $data['status'] == 1) ? 'normal' : 'stop';
             if (Db::name('wxapp')->where('id', $data['id'])->update($data)) {
-                Event::trigger('platform_action',[
-                    'type'              =>  'miniprogram',
-                    'third_id'          =>  $data['id'],
-                    'action'            =>  'edit',
-                    'name'              =>  $data['name']
-                ]);
+                // Event::trigger('platform_action',[
+                //     'type'              =>  'miniprogram',
+                //     'third_id'          =>  $data['id'],
+                //     'action'            =>  'edit',
+                //     'name'              =>  $data['name']
+                // ]);
                 $this->success("编辑成功");
             } else {
                 $this->error("编辑失败");
