@@ -17,15 +17,16 @@ class Base extends Model
             ->select()
             ->toArray();
 
+
         $menus = [];
         // 查找一级
         foreach ($authRule as $key => $val) {
         	if(strpos($val['name'], "addons")===0){
             	$authRule[$key]['href'] = Route::buildUrl("@".$val['name']);
         	}else{
-            	$authRule[$key]['href'] = (string)url($val['name']);
+                $authRule[$key]['href'] = (string)url($val['name']);
         	}
-            $val['href'] = (string)url($val['name']);
+           $val['href'] = (string)url($val['name']);
             if ($val['pid'] == 0) {
                 if (Session::get('admin.id') != 1) {
                     if (in_array($val['id'], Session::get('admin.rules', []))) {
@@ -36,21 +37,25 @@ class Base extends Model
                 }
             }
         }
+        
         // 查找二级
         foreach ($menus as $k => $v) {
             $menus[$k]['children'] = [];
             foreach ($authRule as $kk => $vv) {
+
                 if ($v['id'] == $vv['pid']) {
                     if (Session::get('admin.id') != 1) {
                         if (in_array($vv['id'], Session::get('admin.rules'))) {
                             $menus[$k]['children'][] = $vv;
                         }
                     } else {
+                       
                         $menus[$k]['children'][] = $vv;
                     }
                 }
             }
         }
+       
         // 查找三级
         foreach ($menus as $k => $v) {
             if ($v['children']) {
@@ -71,6 +76,7 @@ class Base extends Model
                 }
             }
         }
+       
         return $menus;
     }
 
@@ -81,7 +87,7 @@ class Base extends Model
 
           $authRule = \app\common\model\AuthRule::where('status', 'normal')
             ->where('ismenu', 1)
-            ->order('weigh asc')
+            ->order('weigh desc,id asc')
              ->field('id,pid,title,icon,type,name')
             ->select()
             ->toArray();
@@ -92,13 +98,22 @@ class Base extends Model
         foreach ($authRule as $key => $val) {
 
 
-
             if(strpos($val['name'], "addons")===0){
                 $authRule[$key]['href'] = Route::buildUrl("@".$val['name']);
+                 $authRule[$key]['href'] = '/'.$val['name'];
+                 // dump(Route::buildUrl("@".$val['name']));die;
             }else{
-                $authRule[$key]['href'] = (string)url($val['name']);
+                 if(strpos($val['name'],'/') == false) {
+                    $authRule[$key]['href']  = (string)url($val['name'].'/index');
+                    $val['href'] = (string)url($val['name'].'/index');
+                     // $authRule[$key]['name'] = $val['name'].'/index';
+                 } else {
+                     $authRule[$key]['href'] = (string)url($val['name']);
+                     $val['href'] = (string)url($val['name']);
+                 }
+               
             }
-            $val['href'] = (string)url($val['name']);
+            // $val['href'] = (string)url($val['name']);
             if ($val['pid'] == 0) {
                 if (Session::get('admin.id') != 1) {
                     if (in_array($val['id'], Session::get('admin.rules', []))) {
@@ -109,6 +124,7 @@ class Base extends Model
                 }
             }
         }
+        // halt(123);
         // 查找二级
         foreach ($menus as $k => $v) {
             $menus[$k]['children'] = [];
@@ -151,7 +167,6 @@ class Base extends Model
                 $v['type'] = 0;
             }
         }
-
         return $menus;
     }
 }

@@ -30,7 +30,7 @@ class AuthRule extends AdminBase
     }
     public function getList()
     {
-        $data = Db::name('AuthRule')->order('weigh asc')->select()->each(function ($item, $k) {
+        $data = Db::name('AuthRule')->order('weigh desc,id asc')->select()->each(function ($item, $k) {
             $item['createtime_text'] = date('Y-m-d H:i', $item['createtime']);
             return $item;
         });
