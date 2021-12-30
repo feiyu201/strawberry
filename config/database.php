@@ -24,11 +24,11 @@ return [
             // 服务器地址
             'hostname'          => Env::get('database.hostname', '127.0.0.1'),
             // 数据库名
-            'database'          => Env::get('database.database', 'cmsaasdb'),
+            'database'          => Env::get('database.database', 'strawberrydb'),
             // 用户名
-            'username'          => Env::get('database.username', 'cmsaasdb'),
+            'username'          => Env::get('database.username', 'root'),
             // 密码
-            'password'          => Env::get('database.password', 'RjBdGNKbKyb5FJCK'),
+            'password'          => Env::get('database.password', '202225'),
             // 端口
             'hostport'          => Env::get('database.hostport', '3306'),
             // 数据库连接参数
