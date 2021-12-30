@@ -1,6 +1,8 @@
 <?php
 namespace app\admin\controller;
 
+use app\admin\service\ConfigService;
+use app\common\constants\AdminConstant;
 use think\App;
 use app\BaseController;
 use think\facade\Session;
@@ -30,6 +32,7 @@ class AdminBase extends BaseController
         parent::__construct($app);
         $this->checkLogin();
         $this->checkAuth();
+        $this->viewInit();
         // 左侧菜单
         $menus = \app\admin\model\Base::getMenus();
 
@@ -150,4 +153,34 @@ class AdminBase extends BaseController
             }
         }
     }
+
+    /**
+     * 初始化视图参数
+     */
+    private function viewInit(){
+        $request = app()->request;
+        list($thisModule, $thisController, $thisAction) = [app('http')->getName(), app()->request->controller(), $request->action()];
+        list($thisControllerArr, $jsPath) = [explode('.', $thisController), null];
+        foreach ($thisControllerArr as $vo) {
+            empty($jsPath) ? $jsPath = parse_name($vo) : $jsPath .= '/' . parse_name($vo);
+        }
+
+        //echo root_path('public') . "static/{$thisModule}/js/{$jsPath}.js";
+
+        $autoloadJs = file_exists(root_path('public') . "static/{$thisModule}/js/{$jsPath}.js") ? true : false;
+        $thisControllerJsPath = "{$thisModule}/js/{$jsPath}.js";
+        $data = [
+            'thisController'       => parse_name($thisController),
+            'thisAction'           => $thisAction,
+            'thisRequest'          => parse_name("{$thisModule}/{$thisController}/{$thisAction}"),
+            'thisControllerJsPath' => "{$thisControllerJsPath}",
+            'autoloadJs'           => $autoloadJs
+        ];
+
+        //var_dump($data);
+
+        View::assign($data);
+    }
+
+
 }
