@@ -25,3 +25,10 @@ info.ini
 .DS_Store
 test_name
 TestName.php
+
+*.json
+./composer.json
+./config/app.php
+./config/database.php
+./public/.user.ini
+./public/nginx.htaccess
