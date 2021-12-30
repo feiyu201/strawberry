@@ -27,6 +27,14 @@
             uploadEditor: "{:url('upload/uploadEditor')}",
             uploadfile: "{:url('upload/uploadfile')}",
         }
+
+        window.CONFIG = {
+            ADMIN: "{$adminModuleName|default='admin'}",
+            CONTROLLER_JS_PATH: "{$thisControllerJsPath|default=''}",
+            ACTION: "{$thisAction|default=''}",
+            AUTOLOAD_JS: "{$autoloadJs|default='false'}",
+            VERSION: "{$version|default='1.0.0'}",
+        };
     </script>
     <style>
         .layui-upload-list img {
@@ -39,16 +47,17 @@
     <!--<script type="text/javascript" src="/static/js/okconfig.js"></script>-->
     {block name="head"}{/block}
     <!--<script type="text/javascript" src="/static/lib/loading/okLoading.js"></script>-->
-
+    <!--js逻辑-->
+    <!--<script src="/static/lib/layui/layui.js"></script>-->
+    <script src="/static/component/layui/layui.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
+    <script src="/static/component/require-2.3.6/require.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
+    <script src="/static/component/pear/pear.js"></script>
 
 </head>
 
 <body class="pear-container">
     {block name="content"}{/block}
-    <!--js逻辑-->
-    <!--<script src="/static/lib/layui/layui.js"></script>-->
-    <script src="/static/component/layui/layui.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
-	<script src="/static/component/pear/pear.js"></script>
+
     {block name="scripts"}{/block}
 </body>
 
