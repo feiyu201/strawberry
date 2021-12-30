@@ -18,7 +18,7 @@
     <div class="content-r">
         <h1>403</h1>
         <p>抱歉，你无权访问该页面</p >
-        <button class="pear-btn pear-btn-primary"><?php echo(strip_tags($msg));?></button>
+       <a id="href" href="<?php echo($url);?>"> <button class="pear-btn pear-btn-primary"><?php echo(strip_tags($msg));?></button></a>
         <br><br>
         <p class="jump">
             页面自动 跳转 <a id="href" href="<?php echo($url);?>"></a> 等待时间： <b id="wait"><?php echo($wait);?></b>
