@@ -310,9 +310,11 @@ EOT;
         ]);
         exit();
     } catch (PDOException $e) {
-        return ajaxReturnError($e->getMessage());
+        //$e->getMessage();
+        return ajaxReturnError("连接数据库失败或数据库不存在");
     } catch (Exception $e) {
-        return ajaxReturnError($e->getMessage());
+        //$e->getMessage();
+        return ajaxReturnError($e->getMessage("其他异常"));
 
     }
     return ajaxReturnError($errMsg);
