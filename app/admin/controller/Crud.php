@@ -726,7 +726,7 @@ class Crud extends Admin
         }
         $relation_data=$this->buildRelationCode($tableColumns);
         $viewFile = fopen($path . "/" . "index.html", "w");
-        $this->layuiAddonUsed = ['form', 'okLayer','upload', 'okUtils', 'table', '$' => 'jquery'];
+        $this->layuiAddonUsed = ['form','upload','table', '$' => 'jquery'];
         fwrite($viewFile, $this->getReplacedStub('view/index.stub', [
             'table' => $table,
             'searchForm' => $this->getSearchFormHtml($table),
@@ -836,7 +836,7 @@ class Crud extends Admin
             mkdir($path, 0777, true);
         }
         $viewFile = fopen($path . "/" . "edit.html", "w");
-        $this->layuiAddonUsed = ['form', 'okLayer', 'okUtils'];
+        $this->layuiAddonUsed = ['form'];
         $this->varInit = [];
         fwrite($viewFile, $this->getReplacedStub('view/edit.stub', [
             'table' => $table,
@@ -869,7 +869,7 @@ class Crud extends Admin
             mkdir($path, 0777, true);
         }
         $viewFile = fopen($path . "/" . "leading.html", "w");
-        $this->layuiAddonUsed = ['form', 'okLayer','upload', 'okUtils'];
+        $this->layuiAddonUsed = ['form', 'upload'];
         $this->varInit = [];
         fwrite($viewFile, $this->getReplacedStub('view/leading.stub', [
             'table' => $table,
