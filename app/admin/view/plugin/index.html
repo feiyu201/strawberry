@@ -176,6 +176,8 @@
 			}
 			var caomei_tokeny = Storage.get("caomeiadmin_userinfo");
 			layer.confirm("确定要安装吗？", function () {
+			layer.close(id);
+			let loading = layer.load();
 				$.ajax({
 				
 			            	url:'{:url('installyuancheng')}',
@@ -186,6 +188,7 @@
 				}).done(function (response) {
 					if (response.code == '1') {
 						console.log(response);
+						layer.close(loading);
 						//userTable.reload();
 						//okUtils.tableSuccessMsg(response.msg);
 				// 		okLayer.greenTickMsg(response.msg, function () {
@@ -283,6 +286,7 @@
                                         time: 1000
                                     }, function() {
                                       table.reload('tableIdbd');
+                                      table.reload('tableId');
                                     });
                                 } else {
                                     layer.msg(res.msg, {
@@ -345,6 +349,7 @@
                                         time: 1000
                                     }, function() {
                                       table.reload('tableIdbd');
+                                      table.reload('tableId');
                                     });
                                 } else {
                                     layer.msg(res.msg, {

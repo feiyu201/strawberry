@@ -354,8 +354,9 @@ class Plugin extends AdminBase
 
                 if (isset($info['install'])&&$info['install'] == 1) {
                     // 已安装，增加配置按钮
-                    $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
-                    $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
+                $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
+                $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
+                 $list[$key]['install'] = 1;
                 } else {
                     // 未安装，增加安装按钮
                     $str = '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="'.$file.'" lay-event="installyuancheng"><i class="fa fa-edit"></i> 安装</a>';
