@@ -34,6 +34,8 @@
             ACTION: "{$thisAction|default=''}",
             AUTOLOAD_JS: "{$autoloadJs|default='false'}",
             VERSION: "{$version|default='1.0.0'}",
+            WELCOME: "{:url('welcome')}",
+            DATAURL: '{:url("index")}'
         };
     </script>
     <style>
@@ -50,14 +52,12 @@
     <!--js逻辑-->
     <!--<script src="/static/lib/layui/layui.js"></script>-->
     <script src="/static/component/layui/layui.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
-    <script src="/static/component/require-2.3.6/require.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
     <script src="/static/component/pear/pear.js"></script>
 
 </head>
 
 <body class="pear-container">
     {block name="content"}{/block}
-
     {block name="scripts"}{/block}
 </body>
 
