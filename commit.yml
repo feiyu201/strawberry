@@ -2,10 +2,22 @@
 branches: {
   }
 fileChange:
-  /composer.json:
-    newFile: !uuid '9eb5845d98ccd24407c2ce251f0592a29511b87b'
-    oldFile: !uuid '6d52e8fe861a331d60b5910add8b987f976476e9'
-gitCommitId: !uuid 'd1b81253cd485f8f55b8a0246d1e9b9dd6a30b65'
+  /app:
+    newFile: !uuid '2b7ad50e24c9d9f6362d723f8ad46c4b935c0b00'
+    oldFile: !uuid 'ce3ae3d6cc749fead62947c82e6693bcaa00876e'
+  /app/admin:
+    newFile: !uuid '0511e42e2d37096c0bd3bc16981e4049b4950b7b'
+    oldFile: !uuid '5dfc2cae7c6770b1f88886b6112aefadc5fafcf6'
+  /app/admin/view:
+    newFile: !uuid 'e63a01868a660aaeeb73080aec9e5c905cfd6528'
+    oldFile: !uuid 'e09ec2a2ee2a0675af33a171d51b985ab63ffe98'
+  /app/admin/view/plugin:
+    newFile: !uuid 'bb0fa741fb80d19a6c8324a56b9f1db2cf648e90'
+    oldFile: !uuid '147dbb2642c4796f66b5d49112cf1c5fdf9d5b01'
+  /app/admin/view/plugin/index.html:
+    newFile: !uuid 'f6953bc64bd35803b327c30c923ed1194b68c2e1'
+    oldFile: !uuid 'd55654da29e0124cd351532191eb068152664367'
+gitCommitId: !uuid '75a5502b16655a4ce5c94fd54867f947f98c3c9f'
 renames: {
   }
-revisionId: 404
+revisionId: 405
