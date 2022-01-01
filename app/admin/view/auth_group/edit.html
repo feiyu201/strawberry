@@ -7,7 +7,7 @@
 {block name="content"}
 <div class="ok-body">
     <!--form表单-->
-    <form class="layui-form layui-form-pane ok-form">
+    <form class="layui-form">
         <input type="hidden" name="id" value="{$AuthGroupinfo.id}">
         <div class="layui-form-item">
             <label class="layui-form-label">角色组名</label>
@@ -38,12 +38,18 @@
             </div>
         </div>
 
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
+       <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="add">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:__('Submit')}
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:__('Reset')}
+            </button>
         </div>
+    </div>
     </form>
 </div>
 {/block}
@@ -71,18 +77,19 @@
         return id;
     }
 
-    layui.use(["element", "form", 'tree', "laydate", "okLayer", "okUtils"], function () {
+    layui.use(["element", "form", 'tree', "laydate"], function () {
         let form = layui.form;
         let laydate = layui.laydate;
-        let okLayer = layui.okLayer;
-        let okUtils = layui.okUtils;
         var tree = layui.tree;
 
         var id = $('input[name=id]').val();
-        okUtils.ajax("{:url('edit')}", "get", {
-            id: id,
-            getauth: 1
-        }, true).done(function (response) {
+        $.ajax(
+            {
+                url:"{:url('edit')}", 
+                type:"get", 
+                data:{id: id,getauth: 1}, 
+                
+        }).done(function (response) {
             //console.log(response);
             if (response.code == 1) {
                 response.data = response.data || [];
@@ -93,7 +100,7 @@
                     id: 'nodeDataId',
                 });
             } else {
-                okLayer.greenTickMsg(response.msg, function () {
+                layer.msg(response.msg,{icon:2,time:1000},function(){
 
                 })
             }
@@ -102,7 +109,7 @@
             console.log(error)
         });
 
-        okLoading.close();
+       
 
         //laydate.render({elem: "#birthday", type: "datetime"});
 
@@ -116,14 +123,20 @@
             nodeIds = getCheckedId(checkedData);
             var formdata = data.field;
             formdata.rules = nodeIds;
-            okUtils.ajax("{:url('edit')}", "post", formdata, true).done(function (response) {
+            $.ajax(
+                {
+                    url:"{:url('edit')}", 
+                    type:"post", 
+                    data:formdata,
+                    }).done(function (response) {
                 //console.log(response);
                 if (response.code == 1) {
-                    okLayer.greenTickMsg("编辑成功", function () {
+                    layer.msg(response.msg,{icon:1,time:1000},function(){
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        parent.location.reload();
                     });
                 } else {
-                    okLayer.greenTickMsg(response.msg, function () {
+                     layer.msg(response.msg,{icon:2,time:1000},function(){
 
                     })
                 }

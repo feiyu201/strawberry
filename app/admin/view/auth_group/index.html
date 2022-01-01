@@ -22,8 +22,8 @@
 		let form = layui.form;
 		let laydate = layui.laydate;
 		let $ = layui.jquery;
-		laydate.render({ elem: "#startTime", type: "datetime" });
-		laydate.render({ elem: "#endTime", type: "datetime" });
+// 		laydate.render({ elem: "#startTime", type: "datetime" });
+// 		laydate.render({ elem: "#endTime", type: "datetime" });
 
 		let userTable = table.render({
 			elem: '#tableId',
@@ -87,7 +87,7 @@
 		});
 
 		function auth(id) {
-			okLayer.open("授权", "auth?id=" + id, "90%", "90%", function (layero) {
+			layer.open("授权", "auth?id=" + id, "90%", "90%", function (layero) {
 				//let iframeWin = window[layero.find("iframe")[0]["name"]];
 				//iframeWin.initForm(data);
 			}, function () {
@@ -95,17 +95,39 @@
 			})
 		}
 
-		function batchEnabled() {
-			okLayer.confirm("确定要批量启用吗？", function (index) {
+	function batchEnabled() {
+		    let data = table.checkStatus('tableId').data;
+                    if (data.length === 0) {
+                        layer.msg("未选中数据", {
+                            icon: 3,
+                            time: 1000
+                        });
+                        return false;
+                    }
+                    var idsStr = ""
+                    var hasCheck = table.checkStatus('tableId')
+                    var hasCheckData = hasCheck.data
+                    if (hasCheckData.length > 0) {
+                        $.each(hasCheckData, function (index, element) {
+                            //idsStr.push(element.id)
+                            idsStr += element.id + ",";
+                        })
+                    }
+			layer.confirm("确定要批量启用吗？", function (index) {
 				layer.close(index);
-				let idsStr = okUtils.tableBatchCheck(table);
 				if (idsStr) {
-					okUtils.ajax("{:url('setNormal')}", "put", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax(
+					    {
+					    url:"{:url('setNormal')}", 
+					    type:"put", 
+					    data:{ idsStr: idsStr },
+					    }).done(function (response) {
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
+						layer.msg(response.msg,{icon:1,time:1000},function(){
+							location.reload();})
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+						layer.msg(response.msg,{icon:2,time:1000},function(){
 
 							})
 						}
@@ -117,17 +139,39 @@
 		}
 
 		function batchDisabled() {
-			okLayer.confirm("确定要批量停用吗？", function (index) {
+		    	    let data = table.checkStatus('tableId').data;
+                    if (data.length === 0) {
+                        layer.msg("未选中数据", {
+                            icon: 3,
+                            time: 1000
+                        });
+                        return false;
+                    }
+                    var idsStr = ""
+                    var hasCheck = table.checkStatus('tableId')
+                    var hasCheckData = hasCheck.data
+                    if (hasCheckData.length > 0) {
+                        $.each(hasCheckData, function (index, element) {
+                            //idsStr.push(element.id)
+                            idsStr += element.id + ",";
+                        })
+                    }
+			layer.confirm("确定要批量停用吗？", function (index) {
 				layer.close(index);
-				let idsStr = okUtils.tableBatchCheck(table);
 				if (idsStr) {
-					okUtils.ajax("{:url('setStop')}", "put", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax(
+					    {
+					        url:"{:url('setStop')}", 
+					        type:"put", 
+					        data:{ idsStr: idsStr },
+					        }).done(function (response) {
 
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
+							 layer.msg(response.msg,{icon:1,time:1000},function(){
+							location.reload();});
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+							 layer.msg(response.msg,{icon:2,time:1000},function(){
 
 							})
 						}
@@ -137,20 +181,54 @@
 				}
 			});
 		}
+		
 
 		function batchDel() {
-			okLayer.confirm("确定要批量删除吗？", function (index) {
+		    let data = table.checkStatus('tableId').data;
+                    if (data.length === 0) {
+                        layer.msg("未选中数据", {
+                            icon: 3,
+                            time: 1000
+                        });
+                        return false;
+                    }
+                    var idsStr = ""
+                    var hasCheck = table.checkStatus('tableId')
+                    var hasCheckData = hasCheck.data
+                    if (hasCheckData.length > 0) {
+                        $.each(hasCheckData, function (index, element) {
+                            //idsStr.push(element.id)
+                            idsStr += element.id + ",";
+                        })
+                    }
+			layer.confirm("确定要批量删除吗？", function (index) {
 				layer.close(index);
-				let idsStr = okUtils.tableBatchCheck(table);
 				if (idsStr) {
-					okUtils.ajax("{:url('delete')}", "delete", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax({
+
+					        url:'delete',
+                            data:{idsStr: idsStr},
+                            dataType: 'json',
+                            type: 'delete',
+
+			           	}).done(function (response) {
 						//console.log(response);
 						//okUtils.tableSuccessMsg(response.msg);
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
+									layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                    	//table.reload('tableId');//奇怪用这个表格不刷新
+                                    	location.reload();
+                                    });
+							//location.reload();
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+								layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    },  function () {
 
 							})
 						}
@@ -160,6 +238,7 @@
 				}
 			});
 		}
+
 
 		function add() {
 			layer.open(
@@ -206,15 +285,23 @@
 		}
 
 		function del(id) {
-			okLayer.confirm("确定要删除吗？", function () {
-				okUtils.ajax("{:url('delete')}", "delete", { idsStr: id }, true).done(function (response) {
+			layer.confirm("确定要删除吗？", function () {
+				$.ajax(
+				    {
+				        url:"{:url('delete')}", 
+				        type:"delete", 
+				        data:{ idsStr: id },
+				        }).done(function (response) {
 
 
 					if (response.code == 1) {
 						console.log(response);
-						okUtils.tableSuccessMsg(response.msg);
+						layer.msg(response.msg,{icon:1,time:1000},function(){
+						table.reload("tableId")
+						    
+						})
 					} else {
-						okLayer.greenTickMsg(response.msg, function () {
+					layer.msg(response.msg,{icon:2,time:1000},function(){
 
 						})
 					}
@@ -239,8 +326,8 @@
 <!-- 行工具栏模板 -->
 <script type="text/html" id="operationTpl">
 	<!--<a href="javascript:" title="授权" lay-event="auth"><i class="layui-icon">&#xe62e;</i></a>-->
-<a href="javascript:" title="编辑" lay-event="edit"><i class="layui-icon">&#xe642;</i></a>
-<a href="javascript:" title="删除" lay-event="del"><i class="layui-icon">&#xe640;</i></a>
+<button class="pear-btn pear-btn-primary pear-btn-sm" lay-event="edit"><i class="layui-icon layui-icon-edit"></i></button>
+		<button class="pear-btn pear-btn-danger pear-btn-sm" lay-event="del"><i class="layui-icon layui-icon-delete"></i></button>
 </script>
 
 <script type="text/html" id="statusTpl">

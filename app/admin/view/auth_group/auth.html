@@ -7,7 +7,7 @@
 {/block}
 {block name="content"}
 <div class="ok-body">
-	<form method="post" name="myForm" id="myForm" action="" class="layui-form layui-form-pane ok-form">
+	<form method="post" name="myForm" id="myForm" action="" class="layui-form">
 		<input type="hidden" name="id" value="{$id}">
 		<div class="layui-form-item">
 			<label class="layui-form-label">角色权限</label>
@@ -54,16 +54,21 @@
 		});
 		return id;
 	}
-	layui.use(["element", "form", 'tree', "laydate", "okLayer", "okUtils"], function () {
+	layui.use(["element", "form", 'tree', "laydate"], function () {
 		let form = layui.form;
 		let laydate = layui.laydate;
-		let okLayer = layui.okLayer;
-		let okUtils = layui.okUtils;
 		var tree = layui.tree;
 
 
 		var id = $('input[name=id]').val();
-		okUtils.ajax("{:url('auth')}", "get", { id: id, getauth: 1 }, true).done(function (response) {
+		$.ajax(
+		    
+		    {
+		        url:"{:url('auth')}", 
+		        type:"get", 
+		        data:{ id: id, getauth: 1 },
+		    }
+		        ).done(function (response) {
 			//console.log(response);
 			if (response.code == 1) {
 				response.data = response.data || [];
@@ -74,7 +79,7 @@
 					id: 'nodeDataId',
 				});
 			} else {
-				okLayer.greenTickMsg(response.msg, function () {
+				layer.msg(response.msg,{icon:2,time:1000},function(){
 
 				})
 			}
@@ -82,7 +87,6 @@
 		}).fail(function (error) {
 			console.log(error)
 		});
-		okLoading.close();
 
 		//laydate.render({elem: "#birthday", type: "datetime"});
 
@@ -97,14 +101,20 @@
 			//console.log(nodeIds);
 			var id = $('input[name=id]').val();
 
-			okUtils.ajax("{:url('auth')}", "post", { id: id, rules: nodeIds }, true).done(function (response) {
+			$.ajax(
+			    {
+			        url:"{:url('auth')}", 
+			        type:"post", 
+			        data:{ id: id, rules: nodeIds },
+			     }
+			       ).done(function (response) {
 				//console.log(response);
 				if (response.code == 1) {
-					okLayer.greenTickMsg("授权成功", function () {
+					layer.msg(response.msg,{icon:1,time:1000},function(){
 						parent.layer.close(parent.layer.getFrameIndex(window.name));
 					});
 				} else {
-					okLayer.greenTickMsg(response.msg, function () {
+					layer.msg(response.msg,{icon:2,time:1000},function(){
 
 					})
 				}

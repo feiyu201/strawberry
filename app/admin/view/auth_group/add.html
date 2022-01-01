@@ -7,7 +7,7 @@
 {block name="content"}
 <div class="ok-body">
     <!--form表单-->
-    <form class="layui-form layui-form-pane ok-form">
+    <form class="layui-form">
 
         <div class="layui-form-item">
             <label class="layui-form-label">角色组名</label>
@@ -34,12 +34,18 @@
                 <input type="text" name="remark" autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
+      <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="add">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:__('Submit')}
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:__('Reset')}
+            </button>
         </div>
+    </div>
     </form>
 </div>
 {/block}
@@ -67,17 +73,20 @@
         return id;
     }
 
-    layui.use(["element", "form", 'tree', "laydate", "okLayer", "okUtils"], function () {
+    layui.use(["element", "form", 'tree', "laydate"], function () {
         let form = layui.form;
         let laydate = layui.laydate;
-        let okLayer = layui.okLayer;
-        let okUtils = layui.okUtils;
         var tree = layui.tree;
 
-        okUtils.ajax("{:url('add')}", "get", {
+        $.ajax(
+            {
+                url:"{:url('add')}", 
+                type:"get", 
+                data:{
             id: 0,
             getauth: 1
-        }, true).done(function (response) {
+        }, 
+        }).done(function (response) {
             //console.log(response);
             if (response.code == 1) {
                 response.data = response.data || [];
@@ -88,7 +97,7 @@
                     id: 'nodeDataId',
                 });
             } else {
-                okLayer.greenTickMsg(response.msg, function () {
+                layer.msg(response.msg,{icon:2,time:1000},function(){
 
                 })
             }
@@ -97,7 +106,6 @@
             console.log(error)
         });
 
-        okLoading.close();
 
         //laydate.render({elem: "#birthday", type: "datetime"});
 
@@ -111,14 +119,22 @@
             nodeIds = getCheckedId(checkedData);
             var formdata = data.field;
             formdata.rules = nodeIds;
-            okUtils.ajax("{:url('add')}", "post", formdata, true).done(function (response) {
+            $.ajax(
+                {
+                    url:"{:url('add')}", 
+                    type:"post", 
+                    data:formdata,
+                }
+                    ).done(function (response) {
                 //console.log(response);
                 if (response.code == 1) {
-                    okLayer.greenTickMsg("添加成功", function () {
+                    layer.msg(response.msg,{icon:1,time:1000},function(){
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        parent.location.reload();
+                        
                     });
                 } else {
-                    okLayer.greenTickMsg(response.msg, function () {
+                     layer.msg(response.msg,{icon:2,time:1000},function(){
 
                     })
                 }
@@ -128,46 +144,6 @@
             });
             return false;
         });
-    });
-</script>
-
-
-<script>
-    layui.use('upload', function () {
-        var $ = layui.jquery,
-            upload = layui.upload;
-
-        //普通图片上传
-        var uploadInst = upload.render({
-            elem: '#test1',
-            url: '{:url("upload/index")}' //改成您自己的上传接口
-            ,
-            before: function (obj) {
-                //预读本地文件示例，不支持ie8
-                obj.preview(function (index, file, result) {
-                    $('#demo1').attr('src', result); //图片链接（base64）
-                });
-            },
-            done: function (res) {
-                //如果上传失败
-                if (res.code > 0) {
-                    return layer.msg('上传失败');
-                }
-                console.log(res);
-                //上传成功
-                $('input[name=avatar]').val(res.path);
-            },
-            error: function () {
-                //演示失败状态，并实现重传
-                var demoText = $('#demoText');
-                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-                demoText.find('.demo-reload').on('click', function () {
-                    uploadInst.upload();
-                });
-            }
-        });
-
-
     });
 </script>
 {/block}

@@ -39,6 +39,10 @@ class Menu
                 }
             } catch (Exception $e) {
                 throw new Exception($e->getMessage());
+            // return [
+            //         'code' => 0,
+            //         'msg'  => '安装失败：' . $e->getMessage(),
+            //     ];
             }
         }
     }
