@@ -165,6 +165,7 @@
 		});
 		
 			window.refresh = function(param) {
+			     layer.close(loading);
 					table.reload('tableIdbd');
 				}
 
@@ -204,6 +205,7 @@
 					} else {
 
 						if (response.code == '-3' || response.code == '-4') {
+						    	layer.close(loading);
 							//未登录
 							layer.msg(response.msg, {
                                         icon: 1,
@@ -220,6 +222,7 @@
 								});
 							});
 						} else {
+						    	layer.close(loading);
 							layer.msg(response.msg, {
                                         icon: 2,
                                         time: 1000
@@ -229,6 +232,7 @@
 
 
 						if (response.code == '-5') {
+						    	layer.close(loading);
 							//未购买
 							layer.msg(response.msg, {
                                         icon: 5,
@@ -246,6 +250,7 @@
 								});
 							});
 						} else {
+						    	layer.close(loading);
 							layer.msg(response.msg, {
                                         icon: 2,
                                         time: 1000
@@ -371,6 +376,7 @@
                             dataType: 'json',
                             type: 'get',
                             success: function(res) {
+                                 layer.close(loading);
                                 //判断有没有权限
                                 if(res && res.code==999){
                                     layer.msg(res.msg, {
