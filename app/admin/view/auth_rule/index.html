@@ -146,21 +146,73 @@
 				}
 			});
 		}
+		
+		
+		/**
+       * 主要用于针对表格批量操作操作之前的检查
+       * @param table
+       * @returns {string}
+       */
+    //   tableBatchCheck: function (table) {
+    //      var checkStatus = table.checkStatus("tableId");
+    //      var rows = checkStatus.data.length;
+    //      if (rows > 0) {
+    //         var idsStr = "";
+    //         for (var i = 0; i < checkStatus.data.length; i++) {
+    //           idsStr += checkStatus.data[i].id + ",";
+    //         }
+    //         return idsStr;
+    //      } else {
+    //         layer.msg("未选择有效数据", {offset: "t", anim: 6});
+    //      }
+    //   },
 
 		function batchDel() {
-			okLayer.confirm("确定要批量删除吗？", function (index) {
+		    let data = table.checkStatus('tableId').data;
+                    if (data.length === 0) {
+                        layer.msg("未选中数据", {
+                            icon: 3,
+                            time: 1000
+                        });
+                        return false;
+                    }
+                    var idsStr = ""
+                    var hasCheck = table.checkStatus('tableId')
+                    var hasCheckData = hasCheck.data
+                    if (hasCheckData.length > 0) {
+                        $.each(hasCheckData, function (index, element) {
+                            //idsStr.push(element.id)
+                            idsStr += element.id + ",";
+                        })
+                    }
+			layer.confirm("确定要批量删除吗？", function (index) {
 				layer.close(index);
-				let idsStr = okUtils.tableBatchCheck(table);
 				if (idsStr) {
-					okUtils.ajax("{:url('delete')}", "delete", { idsStr: idsStr }, true).done(function (response) {
+					$.ajax({
+
+					        url:'delete',
+                            data:{idsStr: idsStr},
+                            dataType: 'json',
+                            type: 'delete',
+
+			           	}).done(function (response) {
 						//console.log(response);
 						//okUtils.tableSuccessMsg(response.msg);
 						if (response.code == 1) {
 							console.log(response);
-							okUtils.tableSuccessMsg(response.msg);
-							location.reload();
+									layer.msg(response.msg, {
+                                        icon: 1,
+                                        time: 1000
+                                    }, function() {
+                                    	//table.reload('tableId');//奇怪用这个表格不刷新
+                                    	location.reload();
+                                    });
+							//location.reload();
 						} else {
-							okLayer.greenTickMsg(response.msg, function () {
+								layer.msg(response.msg, {
+                                        icon: 2,
+                                        time: 1000
+                                    },  function () {
 
 							})
 						}
