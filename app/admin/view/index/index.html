@@ -168,7 +168,7 @@
                     "image": "/static/admin/images/logo.png"
                 },
                 "menu": {
-                    "data": "{$Request.root}/index/menu",
+                    "data": "{:url('index/menu')}",
                     // "data": "/static/admin/data/menu.json",
                     "accordion": true,
                     "control": false,
@@ -181,7 +181,7 @@
                     "tabMax": 30,
                     "index": {
                         "id": "0",
-                        "href": "{$Request.root}/index/welcome.html",
+                        "href": "{:url('index/welcome')}",
                         "title": "控制台"
                     }
                 },
