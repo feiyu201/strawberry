@@ -1,5 +1,9 @@
 # 草莓快速开发框架
 
+![输入图片说明](public/static/images/image.png)
+
+![输入图片说明](public/static/images/imagemain.png)
+
 #### 介绍
 基于ThinkPHP6+Layui+easywechat开发的开源开发框架.(vue版本也在计划中)
 
@@ -34,7 +38,7 @@ http://doc.caomei.zone/
 #### 演示地址
 http://caomei.shiliucrm.com/
 
-用户名：admin 密码 112233
+用户名：admin 密码 111111
 
 自动生成的文档地址：http://caomei.shiliucrm.com/doc/ 开发者可以换成自己的url
 
