@@ -3,42 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'a9c940c9fdb085291837543994500fdba0d9f5ca'
-    oldFile: !uuid 'dbb4732500e5c91296d21e82d1d1065967575bb6'
-  /app/admin:
-    newFile: !uuid '76929f7e270ef66c49fcc915b754407c6f2b9a5d'
-    oldFile: !uuid '6b4a0ed3212858c2e7dc2a3eb08af2223a64037a'
-  /app/admin/controller:
-    newFile: !uuid '8dbebd7a4817b9dbcd877a609508d4206821aacb'
-    oldFile: !uuid 'debfbe77ae5f57971c486cb10e1e6dd2818d2b16'
-  /app/admin/controller/Plugin.php:
-    newFile: !uuid '2d8158b9f58b21926fa21e9007a47c3f051d3273'
-    oldFile: !uuid '3dd8bdb19007d86359fab2c55cda6bd00bc08c19'
-  /config:
-    newFile: !uuid 'e98d2c3f940e14b8e9392e974af7a0b66ec5192f'
-    oldFile: !uuid 'c36178532bb34e2b8b7611f872334d92bd3e5cfa'
-  /config/app.php:
-    newFile: !uuid '26339b050dd9eb286f2c3ec172bc4a6c52db1107'
-    oldFile: !uuid '1cefefa5555b83b6f2be6ebfff758e59aecb7dde'
-  /public:
-    newFile: !uuid '5b13cb2aa17a229a6200787f851970d6e680471b'
-    oldFile: !uuid '51b60bc43e7f348c7c102ff20b9af38a8f8a2a36'
-  /public/.htaccess:
-    newFile: !uuid 'e69de29bb2d1d6434b8b29ae775ad8c2e48c5391'
-    oldFile: !uuid '69a7f04fac996b59309ccc011de5ce836e791d8e'
-  /public/nginx.htaccess:
-    newFile: !uuid '020f0da4007bc68be6b6054a2f513f4628c2508b'
-    oldFile: !uuid 'afc11d1e2253cb59a2b2506254d4f09cd52ae481'
-  /public/static:
-    newFile: !uuid 'e33138ffc0b533dec8ef3f0a5f4e0ac0e14f63b1'
-    oldFile: !uuid '32cac9658bcfa11dab4bd7c5bf9e5aa6c4765d88'
-  /public/static/js:
-    newFile: !uuid '02503a74e1b6bc3b54fac215655d1b24f36a7441'
-    oldFile: !uuid '9d16ff17d1e7072a78b165d5f7a421baaedc6b63'
-  /public/static/js/addons.js:
-    newFile: !uuid 'd9db3add3d310f4ecf77ae515fc0688a17e96671'
-    oldFile: !uuid 'd22c552092f2cea1ccb30737e85998e064cfc889'
-gitCommitId: !uuid '9eee4c0a5babe3d280a2821297ada9742f71e1a9'
+    newFile: !uuid 'b8ece4f46ce915c5d1457a9524e96462c436141d'
+    oldFile: !uuid 'a9c940c9fdb085291837543994500fdba0d9f5ca'
+  /app/common:
+    newFile: !uuid 'f0c29893a93d6e3c75cbf10c92c593f10bc0496b'
+    oldFile: !uuid '3be0f924bd651f914facc08b964c7be5fcde4184'
+  /app/common/controller:
+    newFile: !uuid '3b4f6d5f21ecb7c4b9fa5c5add0f2e4a72116fe2'
+    oldFile: !uuid 'c4250ef7fe6ea402f507fc7fe5cfb141479fab5a'
+  /app/common/controller/Api.php:
+    newFile: !uuid '5e74b460a206411fd11d6bcd44274298aa4e4665'
+    oldFile: !uuid '6253189affe4c266f4a947cb071cb0b4953b9558'
+gitCommitId: !uuid 'd5caa24c522f1fd9a732bc1df498e78ad3f6c75f'
 renames: {
   }
-revisionId: 411
+revisionId: 412
