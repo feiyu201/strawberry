@@ -399,16 +399,29 @@ class Plugin extends AdminBase
         // }
 
         $pay_type   = isset($parnms['pay_type']) ? $parnms['pay_type'] : '1'; //1微信，2支付宝
-        
-        // 远程下载插件
-        $tmpFile = $this->download($id, ['token'=>$caomei_tokeny,'pay_type'=>$pay_type]);
-        if ($tmpFile['code'] != '1') {
-            return json($tmpFile);
+
+
+
+        $class = "\\addons\\{$id}\\Plugin";
+        if (class_exists($class)) {
+            $options = [
+                CURLOPT_CONNECTTIMEOUT => 30,
+                CURLOPT_TIMEOUT        => 30,
+                CURLOPT_SSL_VERIFYPEER => false,
+                CURLOPT_HTTPHEADER     => [
+                    'X-REQUESTED-WITH: XMLHttpRequest'
+                ]
+            ];
+            Http::sendRequest(self::getServerUrl() . '/api/plug/installincr', array_merge(['name' => $id], []), 'GET', $options);
+        } else {
+            // 远程下载插件
+            $tmpFile = $this->download($id, ['token'=>$caomei_tokeny,'pay_type'=>$pay_type,'exist' => 0]);
+            if ($tmpFile['code'] != '1') {
+                return json($tmpFile);
+            }
+            // 解压插件
+            $addonDir = $this->unzip($id);
         }
-
-        // 解压插件
-        $addonDir = $this->unzip($id);
-
         return ThinkAddons::install($id);
 
         //return json(['code'=> 1,'count'=>0,'data'=>$list, 'msg'=>$list['name'].'插件安装成功']);
