@@ -5,9 +5,11 @@
 <title>编辑</title>
 {/block}
 {block name="content"}
-<div class="ok-body">
+<div class="lay-card">
     <!--form表单-->
     <form class="layui-form">
+            <div class="mainBox">
+            <div class="main-container">
         <input type="hidden" name="id" value="{$AuthGroupinfo.id}">
         <div class="layui-form-item">
             <label class="layui-form-label">角色组名</label>
@@ -36,6 +38,8 @@
             <div class="layui-input-block">
                 <input type="text" name="remark" autocomplete="off" class="layui-input" value="{$AuthGroupinfo.remark}">
             </div>
+        </div>
+                  </div>
         </div>
 
        <div class="bottom">
