@@ -324,11 +324,17 @@
                 dataType:"json",
                 success:function(data){
                     if(data){
-                        layer.alert("提交成功！")
+                        layer.msg("提交成功", {
+                                        icon: 1,
+                                        time: 1000, 
+                                    })
                         // location.reload(); //刷新当前页
                     }
                     else{
-                        layer.alert("提交失败！")
+                       layer.msg("提交失败", {
+                                        icon: 2,
+                                        time: 1000, 
+                                    })
                     }
                 }
             });
@@ -362,13 +368,13 @@
                         content: $("#content").val(),
                     }, function(result) {
                         if (result.status == 1){
-                            layer.alert("新增成功", {icon:1, title:"提示"}, function (i){
+                            layer.msg("新增成功", {icon:1, time:1000}, function (i){
                                 layer.close(i);
                                 layer.close(parentIndex);
                                 window.location.reload();
                             });
                         }else {
-                            layer.alert(result.msg, {icon:2, title:"提示"}, function (i){
+                            layer.msg(result.msg, {icon:2, time:1000}, function (i){
                                 layer.close(i);
                             })
                         }
