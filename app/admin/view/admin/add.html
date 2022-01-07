@@ -5,10 +5,11 @@
 <title>添加用户</title>
 {/block}
 {block name="content"}
-<div class="ok-body">
+<div class="lay-card">
 
     <form class="layui-form layui-form-pane ok-form">
-
+ <div class="mainBox">
+            <div class="main-container">
 
         <div class="layui-form-item">
 
@@ -74,42 +75,57 @@
             </div>
         </div>
 
-
-        <div class="layui-form-item">
-            <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="add">立即提交</button>
-                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-            </div>
+  </div>
         </div>
+
+        <div class="bottom">
+        <div class="button-container">
+            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="add">
+                <i class="layui-icon layui-icon-ok"></i>
+                {:__('Submit')}
+            </button>
+            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                <i class="layui-icon layui-icon-refresh"></i>
+                {:__('Reset')}
+            </button>
+        </div>
+    </div>
     </form>
 </div>
 {/block}
 {block name="scripts"}
 <!--js逻辑-->
 <script>
-    layui.use(["element", "form", "laydate", "okLayer", "okUtils"], function () {
+    layui.use(["element", "form", "laydate", 'jquery'], function () {
         let form = layui.form;
         let laydate = layui.laydate;
-        let okLayer = layui.okLayer;
-        let okUtils = layui.okUtils;
+          let $ = layui.jquery;
 
-        okLoading.close();
 
-        //laydate.render({elem: "#birthday", type: "datetime"});
+        // okLoading.close();
 
-        form.verify({
+        // //laydate.render({elem: "#birthday", type: "datetime"});
 
-        });
+        // form.verify({
+
+        // });
 
         form.on("submit(add)", function (data) {
-            okUtils.ajax("{:url('add')}", "post", data.field, true).done(function (response) {
+            $.ajax(  
+                {
+                url:"{:url('add')}", 
+                type:"post", 
+                data:data.field, 
+                
+        }).done(function (response) {
                 //console.log(response);
                 if (response.code == 1) {
-                    okLayer.greenTickMsg("添加成功", function () {
+                    layer.msg(response.msg,{icon:1,time:1000},function(){
                         parent.layer.close(parent.layer.getFrameIndex(window.name));
+                        parent.layui.table.reload("tableId");
                     });
                 } else {
-                    okLayer.greenTickMsg(response.msg, function () {
+                   layer.msg(response.msg,{icon:2,time:1000},function(){
 
                     })
                 }
