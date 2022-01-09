@@ -159,6 +159,8 @@ class AdminBase extends BaseController
      */
     private function viewInit(){
         $request = app()->request;
+        $maps = array_keys(config('app.app_map'));
+
         list($thisModule, $thisController, $thisAction) = [app('http')->getName(), app()->request->controller(), $request->action()];
         list($thisControllerArr, $jsPath) = [explode('.', $thisController), null];
         foreach ($thisControllerArr as $vo) {
@@ -174,10 +176,11 @@ class AdminBase extends BaseController
             'thisAction'           => $thisAction,
             'thisRequest'          => parse_name("{$thisModule}/{$thisController}/{$thisAction}"),
             'thisControllerJsPath' => "{$thisControllerJsPath}",
-            'autoloadJs'           => $autoloadJs
+            'autoloadJs'           => $autoloadJs,
+            'adminModuleName'                => $maps[0],
+            ''
         ];
 
-        //var_dump($data);
 
         View::assign($data);
     }
