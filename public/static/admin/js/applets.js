@@ -7,7 +7,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         edit_url: 'applets/edit',
         delete_url: 'applets/delete',
         export_url: 'applets/export',
-        modify_url: 'applets/modify',
+        modify_url: 'applets/setNormal',
     };
 
     var Controller = {

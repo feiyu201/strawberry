@@ -543,6 +543,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 return cols;
             },
             tool: function (data, option) {
+                var option = data.LAY_COL;
                 option.operat = option.operat || ['edit', 'delete'];
                 var elem = option.init.table_elem || init.table_elem;
                 var html = '';
@@ -660,6 +661,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 return '<a class="layuimini-table-url" href="' + value + '" target="_blank" class="label bg-green">' + value + '</a>';
             },
             switch: function (data, option) {
+                var option = data.LAY_COL;
                 var field = option.field;
                 option.filter = option.filter || option.field || null;
                 option.checked = option.checked || 1;

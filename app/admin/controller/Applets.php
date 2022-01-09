@@ -162,7 +162,7 @@ class Applets extends AdminBase
 
     public function setNormal()
     {
-        $idsStr = $id = $this->request->param('idsStr');
+        $idsStr = $id = $this->request->param('id');
         if (!$idsStr) {
             $this->success("参数错误");
         }
