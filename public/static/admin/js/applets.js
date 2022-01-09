@@ -29,11 +29,11 @@ define(["jquery", "easy-admin"], function ($, ea) {
 
                         operat:[
                             [{
-                                text: '首页',
+                                text: '',
                                 url: init.welcome_url,
                                 method: 'open',
                                 auth: 'welcome',
-                                class: 'layui-btn layui-btn-normal layui-btn-xs',
+                                class: 'pear-btn pear-btn-sm pear-btn-sm',
                                 icon: 'fa fa-home ',
                                 show: function(d){
                                     console.log(d);

@@ -476,7 +476,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 } else {
                     formatOperat.method = formatOperat.method !== '' ? 'data-request="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
                 }
-                html = '<a ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon + formatOperat.text + '</a>';
+                html = '<button style="margin-right:4px;" ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon +  '</button>';
 
                 return html;
             },
@@ -552,10 +552,10 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         switch (item) {
                             case 'edit':
                                 var operat = {
-                                    class: 'layui-btn layui-btn-success layui-btn-xs',
+                                    class: 'pear-btn pear-btn-primary pear-btn-sm',
                                     method: 'open',
                                     field: 'id',
-                                    icon: '',
+                                    icon: 'layui-icon layui-icon-edit',
                                     text: '编辑',
                                     title: '编辑信息',
                                     auth: 'edit',
@@ -569,10 +569,10 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                                 break;
                             case 'delete':
                                 var operat = {
-                                    class: 'layui-btn layui-btn-danger layui-btn-xs',
+                                    class: 'pear-btn pear-btn-danger pear-btn-sm',
                                     method: 'get',
                                     field: 'id',
-                                    icon: '',
+                                    icon: 'layui-icon layui-icon-delete',
                                     text: '删除',
                                     title: '确定删除？',
                                     auth: 'delete',
