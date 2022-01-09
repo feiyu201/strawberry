@@ -390,7 +390,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     $.each(cols, function (i, v) {
                         v.filter = v.filter || false;
                         if (v.filter !== false && tableInit.modify_url !== false) {
-                            admin.table.listenSwitch({filter: v.filter, url: tableInit.modify_url, tableId: tableId, modifyReload: modifyReload});
+                            admin.table.listenSwitch({filter: v.filter, url: tableInit.modify_url, tableId: tableId, modifyReload: modifyReload, switchValue: v.checked});
                         }
                     });
                 }
@@ -761,8 +761,15 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 option.field = option.field || option.filter || '';
                 option.tableId = option.tableId || init.table_render_id;
                 option.modifyReload = option.modifyReload || false;
+                option.switchValue = option.switchValue || 'normal';
+
+                var offValue = 0;
+                if (option.switchValue == 'normal') {
+                    offValue = 'hidden';
+                }
+
                 form.on('switch(' + option.filter + ')', function (obj) {
-                    var checked = obj.elem.checked ? 1 : 0;
+                    var checked = obj.elem.checked ? option.switchValue : offValue;
                     if (typeof ok === 'function') {
                         return ok({
                             id: obj.value,

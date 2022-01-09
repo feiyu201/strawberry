@@ -17,13 +17,14 @@ define(["jquery", "easy-admin"], function ($, ea) {
                 init: init,
                 limit: 20,
                 page: true,
+                toolbar:['refresh','add','delete'],
                 cols: [[
                     { type: "checkbox", fixed: "left" },
                     { field: "id", title: "ID", sort: true },
                     { field: "name", title: "名称" },
                     { field: "appid", title: "appid" },
                     { field: "secret", title: "secret" },
-                    { field: 'status', title: '状态', width: 85, selectList: {'hidden': '禁用', 'normal': '启用'}, templet: ea.table.switch},
+                    { field: 'status', title: '状态', width: 85, checked:'normal', selectList: {'hidden': '禁用', 'normal': '启用'}, templet: ea.table.switch},
                     { width: 250, title: '操作', templet: ea.table.tool}
                 ]],
              });

@@ -1,118 +1,78 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/component/pear/css/pear.css" />
-</head>
-<body>
-    <form class="layui-form" action="">
-       <div class="mainBox">
+{extend name="layout/default1" /}
+{block name="content"}
+<div class="layuimini-container">
+    <form id="app-form" class="layui-form layuimini-form">
+        <div class="mainBox">
             <div class="main-container">
-         
-        <input type="hidden" name="id" placeholder="" autocomplete="off" class="layui-input" value="{$wxappinfo.id}">
+            <input type="hidden" name="id" placeholder="" autocomplete="off" class="layui-input" value="{$wxappinfo.id}">
 
-        <div class="layui-form-item">
-            <label class="layui-form-label">AppId</label>
-            <div class="layui-input-block">
-                <input type="text" name="appid" placeholder="请输入小程序AppId" autocomplete="off" class="layui-input"
-                    lay-verify="required" value="{$wxappinfo.appid}">
+            <div class="layui-form-item">
+                <label class="layui-form-label">AppId</label>
+                <div class="layui-input-block">
+                    <input type="text" name="appid" placeholder="请输入小程序AppId" autocomplete="off" class="layui-input"
+                        lay-verify="required" value="{$wxappinfo.appid}">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">Appsecret</label>
+                <div class="layui-input-block">
+                    <input type="text" name="secret" placeholder="请输入Appsecret" autocomplete="off" class="layui-input"
+                        lay-verify="required" value="{$wxappinfo.secret}">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">小程序名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" placeholder="请输入小程序名称" autocomplete="off" class="layui-input"
+                        lay-verify="required" value="{$wxappinfo.name}">
+                </div>
+            </div>
+
+
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">原始ID</label>
+                <div class="layui-input-block">
+                    <input type="text" name="original" placeholder="请输入原始ID" autocomplete="off" class="layui-input"
+                        lay-verify="required" value="{$wxappinfo.original}">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">选择应用</label>
+                <div class="layui-input-block">
+                    <select name="addons" lay-search>
+                        <option value="">请选择应用</option>
+                        {foreach $installPluginList as $v}
+                        <option value="{$v.name}" {if $wxappinfo.addons==$v.name} selected="selected" {/if}>{$v.title}
+                        </option>
+                        {/foreach}
+                    </select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">状态</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" name="status" lay-skin="switch" lay-text="启用|停用" {if condition="$wxappinfo.status eq 'normal'" } checked {/if} value="1">
+                </div>
+            </div>
+
             </div>
         </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">Appsecret</label>
-            <div class="layui-input-block">
-                <input type="text" name="secret" placeholder="请输入Appsecret" autocomplete="off" class="layui-input"
-                    lay-verify="required" value="{$wxappinfo.secret}">
+            <div class="bottom">
+                <div class="button-container">
+                    <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="save">
+                        <i class="layui-icon layui-icon-ok"></i>
+                        提交
+                    </button>
+                    <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
+                        <i class="layui-icon layui-icon-refresh"></i>
+                        重置
+                    </button>
+                </div>
             </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">小程序名称</label>
-            <div class="layui-input-block">
-                <input type="text" name="name" placeholder="请输入小程序名称" autocomplete="off" class="layui-input"
-                    lay-verify="required" value="{$wxappinfo.name}">
-            </div>
-        </div>
-
-
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">原始ID</label>
-            <div class="layui-input-block">
-                <input type="text" name="original" placeholder="请输入原始ID" autocomplete="off" class="layui-input"
-                    lay-verify="required" value="{$wxappinfo.original}">
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">选择应用</label>
-            <div class="layui-input-block">
-                <select name="addons" lay-search>
-                    <option value="">请选择应用</option>
-                    {foreach $installPluginList as $v}
-                    <option value="{$v.name}" {if $wxappinfo.addons==$v.name} selected="selected" {/if}>{$v.title}
-                    </option>
-                    {/foreach}
-                </select>
-            </div>
-        </div>
-
-        <div class="layui-form-item">
-            <label class="layui-form-label">状态</label>
-            <div class="layui-input-block">
-                <input type="checkbox" name="status" lay-skin="switch" lay-text="启用|停用" {if condition="$wxappinfo.status eq 'normal'" } checked {/if} value="1">
-            </div>
-        </div>
-        
-        </div>
-    </div>
-        <div class="bottom">
-        <div class="button-container">
-            <button type="submit" class="layui-btn layui-btn-normal layui-btn-sm" lay-submit="" lay-filter="save">
-                <i class="layui-icon layui-icon-ok"></i>
-                提交
-            </button>
-            <button type="reset" class="layui-btn layui-btn-primary layui-btn-sm">
-                <i class="layui-icon layui-icon-refresh"></i>
-                重置
-            </button>
-        </div>
-    </div>
-</form>
-<script src="/static/component/layui/layui.js"></script>
-<script src="/static/component/pear/pear.js"></script>
-<script>
-layui.use(['form','jquery'],function(){
-    let form = layui.form;
-    let $ = layui.jquery;
-    form.on('submit(save)', function(data){
-        $.ajax({
-            data:JSON.stringify(data.field),
-            dataType:'json',
-            contentType:'application/json',
-            type:'post',
-            success:function(res){
-                //判断有没有权限
-                if(res && res.code==999){
-                    layer.msg(res.msg, {
-                        icon: 5,
-                        time: 2000, 
-                    })
-                    return false;
-                }else if(res.code==1){
-                    layer.msg(res.msg,{icon:1,time:1000},function(){
-                        parent.layer.close(parent.layer.getFrameIndex(window.name));//关闭当前页
-                        parent.layui.table.reload("tableId");
-                    });
-                }else{
-                    layer.msg(res.msg,{icon:2,time:1000});
-                }
-            }
-        })
-        return false;
-    });
-})
-</script>
-</body>
-</html>
+    </form>
+</div>
+{/block}

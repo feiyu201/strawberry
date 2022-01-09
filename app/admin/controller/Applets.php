@@ -149,7 +149,7 @@ class Applets extends AdminBase
 
     public function delete()
     {
-        $idsStr = $id = $this->request->param('idsStr');
+        $idsStr = $id = $this->request->param('id');
         if (!$idsStr) {
             $this->success("参数错误");
         }
@@ -162,11 +162,12 @@ class Applets extends AdminBase
 
     public function setNormal()
     {
-        $idsStr = $id = $this->request->param('id');
+        $idsStr =  $this->request->param('id');
         if (!$idsStr) {
             $this->success("参数错误");
         }
-        if (Db::name('wxapp')->where('id', 'in', $idsStr)->update(['status' => 'normal'])) {
+        $value = $this->request->param('value');
+        if (Db::name('wxapp')->where('id', 'in', $idsStr)->update(['status' => $value])) {
             $this->success("设置成功");
         } else {
             $this->error("设置失败");
