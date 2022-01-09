@@ -597,6 +597,15 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                             operat.title = operat.title || operat.text;
                             operat.text = operat.text || operat.title;
                             operat.extend = operat.extend || '';
+                            operat.show = operat.show || '';
+
+                            if (operat.show) {
+                                var is_show = operat.show(data);
+                                if (!is_show) {
+                                    return true;
+                                }
+                            }
+
 
                             // 自定义表格opreat按钮的弹窗标题风格，extra是表格里的欲加入标题中的字段
                             operat.extra = operat.extra || '';

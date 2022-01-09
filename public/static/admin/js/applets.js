@@ -6,7 +6,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
         add_url: 'applets/add',
         edit_url: 'applets/edit',
         delete_url: 'applets/delete',
-        export_url: 'applets/export',
+        welcome_url: 'applets/welcome',
         modify_url: 'applets/setNormal',
     };
 
@@ -25,7 +25,23 @@ define(["jquery", "easy-admin"], function ($, ea) {
                     { field: "appid", title: "appid" },
                     { field: "secret", title: "secret" },
                     { field: 'status', title: '状态', width: 85, checked:'normal', selectList: {'hidden': '禁用', 'normal': '启用'}, templet: ea.table.switch},
-                    { width: 250, title: '操作', templet: ea.table.tool}
+                    { width: 250, title: '操作', templet: ea.table.tool,
+
+                        operat:[
+                            [{
+                                text: '首页',
+                                url: init.welcome_url,
+                                method: 'open',
+                                auth: 'welcome',
+                                class: 'layui-btn layui-btn-normal layui-btn-xs',
+                                icon: 'fa fa-home ',
+                                show: function(d){
+                                    console.log(d);
+                                    return d.addons != '';
+                                }
+                            }],'edit','delete']
+
+                    }
                 ]],
              });
 
