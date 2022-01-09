@@ -3,51 +3,54 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'cfc9fe336196b59ba6ef62ee4d45bceac818a5c3'
-    oldFile: !uuid 'dd7a8cc4b0497fae7caeb09593325a03d34aaa2b'
+    newFile: !uuid 'c930a537b7e0684c03ed7e0c472845192a923386'
+    oldFile: !uuid 'cfc9fe336196b59ba6ef62ee4d45bceac818a5c3'
   /app/admin:
-    newFile: !uuid '38f890eda57b326ca629aa4f186e14615a693457'
-    oldFile: !uuid 'd40b57fbc617b8588a943cc7e8a13fcc1961f81a'
+    newFile: !uuid '2419c581d1ffd3798d7b0930710cb32cce4c4f50'
+    oldFile: !uuid '38f890eda57b326ca629aa4f186e14615a693457'
   /app/admin/controller:
-    newFile: !uuid '8d7c8889f5eb2a66752ef6ef5e40fa32ca158ed8'
-    oldFile: !uuid '87fb79100a8505878a6f459e4f8d0a51c39788f1'
+    newFile: !uuid '26939dc318720ee786c40c14fe019b133ac7e526'
+    oldFile: !uuid '8d7c8889f5eb2a66752ef6ef5e40fa32ca158ed8'
   /app/admin/controller/Applets.php:
-    newFile: !uuid '770dfeb95c98f579cecb08dbc46428359c4cc47f'
-    oldFile: !uuid '3bf468497a47f57ccc332efacf1fbef34a54c90c'
+    newFile: !uuid 'b4a425c28d048f3fca6ba26b87ef893aa9fef0d0'
+    oldFile: !uuid '770dfeb95c98f579cecb08dbc46428359c4cc47f'
   /app/admin/view:
-    newFile: !uuid '3dc3bc657a02e7c8326c79691fb3c49c5ea6db22'
-    oldFile: !uuid '62f2ee1300f4026f433a063c041d301b53f5ecd6'
-  /app/admin/view/layout:
-    newFile: !uuid '6aaf3dd7327f3bde35604825ff53dca6a8443e5f'
-    oldFile: !uuid 'f441f88674b55edd6a63bfe0c81fa0c2c637221b'
-  /app/admin/view/layout/default1.html:
-    newFile: !uuid '73b9fd8ee006efa448923d00f955d9b7a92361b2'
-    oldFile: !uuid '26aa54821634086a6362a91be593a60fb4f93f6a'
+    newFile: !uuid 'f88b01d4f9d3e269ca24c35e13fa0d41d46c1d31'
+    oldFile: !uuid '3dc3bc657a02e7c8326c79691fb3c49c5ea6db22'
+  /app/admin/view/applets:
+    newFile: !uuid 'f869399c42e1c91afc62ef2ac87dde94a77b2834'
+    oldFile: !uuid '9d0eed8eaa947c7b14051a513b68582b6bb1efaa'
+  /app/admin/view/applets/add.html:
+    newFile: !uuid '81fdfd69f986c4dd021734be44c7223d1129bd7f'
+    oldFile: !uuid '371aba92ebd962a728c1a38fdd460b4e1dfc4b7e'
+  /app/admin/view/applets/edit.html:
+    newFile: !uuid 'eb8df78c5b97c19e6ba87892cdb2ab24d1242fea'
+    oldFile: !uuid '16fefd6698d040b314adba2b3f9c0b87e683706b'
   /public:
-    newFile: !uuid '3fe23c53f2779a93af8dcc9590b597ab48f03ddd'
-    oldFile: !uuid 'bcab5aa3e2ba6418b00857e7449849601825f468'
+    newFile: !uuid 'f8b117d9c1c5fa6b3df6d44a58d27d74a799b19f'
+    oldFile: !uuid '3fe23c53f2779a93af8dcc9590b597ab48f03ddd'
   /public/static:
-    newFile: !uuid 'acf7f479ef92b6173559ea0ff9f1ce8378330a39'
-    oldFile: !uuid 'f71aaa027b55d1152ed42adfefab91a3c585b6c8'
+    newFile: !uuid 'dd3221efe2156ed312a884650494526e48690344'
+    oldFile: !uuid 'acf7f479ef92b6173559ea0ff9f1ce8378330a39'
   /public/static/admin:
-    newFile: !uuid 'e2296fb167f5c72539edf40573c94802133ed6ab'
-    oldFile: !uuid 'b5a76d586f46f9f1c8a7fa79f94670fb1b34eb3d'
+    newFile: !uuid '787790234cacd2b7f8b5996f3cf65d3ea936959f'
+    oldFile: !uuid 'e2296fb167f5c72539edf40573c94802133ed6ab'
   /public/static/admin/js:
-    newFile: !uuid '2911b67375197b0fce19b430b4bbf4e778486032'
-    oldFile: !uuid '818c53550b0fa8e8a820f551ee1f8ce159388a45'
+    newFile: !uuid '119a8e3e156c90f791351a07f4f054634d6662d5'
+    oldFile: !uuid '2911b67375197b0fce19b430b4bbf4e778486032'
   /public/static/admin/js/applets.js:
-    newFile: !uuid '0e466c31dd221dc80bd00300d76a17524666d62c'
-    oldFile: !uuid '9f163ab7eed904347eb3d3f0e992f6d91bfaa3fe'
+    newFile: !uuid 'eeeea9cb718c0c7d1286fb020b4b18e8100fad99'
+    oldFile: !uuid '0e466c31dd221dc80bd00300d76a17524666d62c'
   /public/static/plugs:
-    newFile: !uuid '9b46e0688edf691a18b1c635ffef677b74f8bda4'
-    oldFile: !uuid '7bbae378f9054c84650e7791c00cbfcb6cfec6ff'
+    newFile: !uuid '262ce586b3ac00357febaeb5203acf2316be2974'
+    oldFile: !uuid '9b46e0688edf691a18b1c635ffef677b74f8bda4'
   /public/static/plugs/strawberry:
-    newFile: !uuid 'e6bb270ebab55972af656a708adea9ef18eaeb48'
-    oldFile: !uuid 'e4691280f458198b0445c6feb970eeb02b4ef799'
+    newFile: !uuid 'dee472ccb11311e34c8d0e28b4a20807739ba8a7'
+    oldFile: !uuid 'e6bb270ebab55972af656a708adea9ef18eaeb48'
   /public/static/plugs/strawberry/easy-admin.js:
-    newFile: !uuid '7e432386d7c7b1233a5d4265647a6fc91ee1b5e1'
-    oldFile: !uuid 'ae4537a1f6e9b586c3c32e3291bfe9612bc93135'
-gitCommitId: !uuid 'ee05bea53f9535e0db618bcb85a24e7c762658b6'
+    newFile: !uuid '47273cfd64ee58720081589c748cc47563f66fd2'
+    oldFile: !uuid '7e432386d7c7b1233a5d4265647a6fc91ee1b5e1'
+gitCommitId: !uuid 'a8c0cfb273410d05d34dbd03ac194eb27c5c2b2b'
 renames: {
   }
-revisionId: 423
+revisionId: 424
