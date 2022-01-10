@@ -326,14 +326,14 @@
                     if(data){
                         layer.msg("提交成功", {
                                         icon: 1,
-                                        time: 1000, 
+                                        time: 1000,
                                     })
                         // location.reload(); //刷新当前页
                     }
                     else{
                        layer.msg("提交失败", {
                                         icon: 2,
-                                        time: 1000, 
+                                        time: 1000,
                                     })
                     }
                 }
@@ -347,6 +347,24 @@
             }else{
                 $("#item-content").hide();
             }
+        })
+        /**
+         * 删除
+         */
+        $(".btn-delcfg").click(function () {
+            let obj = $(this);
+            let name = obj.attr('data-name');
+            $.post("{:url('general.config/del')}", {
+                name: name,
+            }, function(result) {
+                if (result.code == 1){
+                    layer.msg("删除成功", {icon:1, time:1000}, function (i){
+                         window.location.reload();
+                    });
+                }else {
+                    layer.msg(result.msg, {icon:2, time:1000})
+                }
+            }, "json");
         })
         $(".add-btn").click(function () {
             form.render();

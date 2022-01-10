@@ -189,7 +189,9 @@ class Config extends Model
         ];
         return $upload;
     }
-
+    public static function getByName($name=''){
+        return self::where('name',$name)->find();
+    }
     public function all()
     {
         return $this->select();
