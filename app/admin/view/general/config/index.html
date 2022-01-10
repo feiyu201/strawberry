@@ -352,19 +352,26 @@
          * 删除
          */
         $(".btn-delcfg").click(function () {
+
             let obj = $(this);
             let name = obj.attr('data-name');
-            $.post("{:url('general.config/del')}", {
-                name: name,
-            }, function(result) {
-                if (result.code == 1){
-                    layer.msg("删除成功", {icon:1, time:1000}, function (i){
-                         window.location.reload();
-                    });
-                }else {
-                    layer.msg(result.msg, {icon:2, time:1000})
-                }
-            }, "json");
+            layer.confirm('确定要删除该项配置吗？', {
+                icon: 3,
+                title: '提示'
+            }, function(index) {
+                $.post("{:url('general.config/del')}", {
+                    name: name,
+                }, function(result) {
+                    if (result.code == 1){
+                        layer.msg("删除成功", {icon:1, time:1000}, function (i){
+                            window.location.reload();
+                        });
+                    }else {
+                        layer.msg(result.msg, {icon:2, time:1000})
+                    }
+                }, "json");
+            })
+
         })
         $(".add-btn").click(function () {
             form.render();
