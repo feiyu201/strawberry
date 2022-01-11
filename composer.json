@@ -50,6 +50,7 @@
     },
     "config": {
         "preferred-install": "dist",
+        "optimize-autoloader": true,
         "allow-plugins": {
             "topthink/think-installer": true
         }

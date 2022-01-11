@@ -166,8 +166,8 @@ if ($_GET['c'] = 'start' && isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUE
     if (strlen($adminUserName) < 3 || strlen($adminUserName) > 12) {
         return ajaxReturnError('用户名请输入3~12位字符！');
     }
-    if (strlen($adminPassword) < 5 || strlen($adminPassword) > 16) {
-        return ajaxReturnError('密码请输入5~16位字符！');
+    if (strlen($adminPassword) < 6 || strlen($adminPassword) > 16) {
+        return ajaxReturnError('密码请输入6~16位字符！');
     }
     //检测能否读取安装文件
     $sql = @file_get_contents(WWW_ROOT . DS . "" . DS . 'cmdatabase.sql');
