@@ -87,7 +87,8 @@ class ThinkAddons
 
 
     // 获得本地插件列表 [目前只获取本地插件，后期会扩展为获取线上插件]
-    public function localAddons()
+    //查询某个分类 $type
+    public function localAddons($type = false)
     {
         $plugins = scandir($this->addonsPath);
         $list = [];
@@ -108,12 +109,23 @@ class ThinkAddons
                 // 获取插件基础信息
                 //$info = $object->getInfo();
                 $info = $this->getPluginInfo($name);
+
+                $info['type'] = isset($info['type']) ? $info['type'] : false; //插件类型
+                $info['config_button'] = isset($info['config_button']) ? $info['config_button'] : 0; //插件配置按钮
+
+                //新增只查询某个分类
+                if ($type && $type != $info['type']) {
+                    continue;
+                }
+
                 // var_dump($info);exit();
                 // 增加右侧按钮组
                 $str = '';
                 if (isset($info['install']) && $info['install'] == 1) {
                     // 已安装，增加配置按钮
-                    $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="' . $name . '" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
+                    if ($info['config_button']) {
+                        $str .= '<a class="layui-btn layui-btn-normal layui-btn-xs" href="javascript:void(0)" data-name="' . $name . '" lay-event="config"><i class="fa fa-edit"></i> 配置</a> ';
+                    }
                     $str .= '<a class="layui-btn layui-btn-danger layui-btn-xs" href="javascript:void(0)" data-name="' . $name . '" lay-event="uninstall"><i class="fa fa-edit"></i> 卸载</a> ';
                     // if ($info['status']==1) {
                     //     $str .= '<a class="layui-btn layui-btn-warm layui-btn-xs" href="javascript:void(0)" data-name="'.$name.'" lay-event="state"><i class="fa fa-edit"></i>禁用</a>';
@@ -449,6 +461,23 @@ EOD;
             return true;
         }
     }
+
+    // 获取主题
+    public function theme(string $name)
+    {
+        // 实例化插件
+        $object = $this->getInstance($name);
+        $info = $this->getPluginInfo($name);
+        if (!method_exists($object, 'theme') || $info['status'] != 1) {
+            return false;
+        } else {
+            return $object;
+        }
+    }
+
+
+
+
 
     // ===========================================
 

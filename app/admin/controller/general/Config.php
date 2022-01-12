@@ -2,6 +2,7 @@
 
 namespace app\admin\controller\general;
 
+use app\admin\facade\ThinkAddons;
 use app\BaseController;
 use app\common\model\Config as ConfigModel;
 use think\facade\Db;
@@ -48,6 +49,9 @@ class Config extends BaseController
             $value['title'] = __($value['title']);
             if (in_array($value['type'], ['select', 'selects', 'checkbox', 'radio'])) {
                 $value['value'] = explode(',', $value['value']);
+            } elseif ($value['type'] == 'theme_select') {
+                $value['type'] = 'select';
+                $value['content'] = $this->getAddonsTheme();
             }
             $value['content'] = json_decode($value['content'], true);
             $value['tip'] = htmlspecialchars($value['tip']);
@@ -58,10 +62,19 @@ class Config extends BaseController
             $v['active'] = !$index ? true : false;
             $index++;
         }
-        
+
         return view('', [
             'siteList'  => $siteList
         ]);
+    }
+    private function getAddonsTheme()
+    {
+        $data = ['0'=>'默认'];
+        $list = ThinkAddons::localAddons('theme');
+        foreach ($list as $item) {
+            $data[$item['name']] = $item['title'];
+        }
+        return json_encode($data);
     }
 
     /**
@@ -82,12 +95,12 @@ class Config extends BaseController
                 //     $params['content'] = '';
                 // }
                 try {
-                    if(empty($params['group']) || empty($params['title']) || empty($params['name']) || empty($params['type'])) {
+                    if (empty($params['group']) || empty($params['title']) || empty($params['name']) || empty($params['type'])) {
                         throw new \Exception(__('Parameter can not be empty'));
                     }
 
                     $tmp = (new \app\common\model\Config())->where("name", $params["name"])->field('id')->find();
-                    if($tmp && $tmp->id && $tmp->id > 0){
+                    if ($tmp && $tmp->id && $tmp->id > 0) {
                         throw new \Exception(__('name is already exists!'));
                     }
                     $params["content"] = str_replace(["\n", "\r"], "", $params["content"]);
@@ -101,10 +114,10 @@ class Config extends BaseController
                     $params["content"] = json_encode($newContentArr);
 
                     //判断类型
-                    if($params["type"] == "string"){
+                    if ($params["type"] == "string") {
                         $params["extend"] = "class=\"layui-input\"";
                     }
-                    
+
                     (new \app\common\model\Config())->save($params);
                     //$result = (new ConfigModel())->create($params);
                     echo json_encode([
@@ -170,7 +183,7 @@ class Config extends BaseController
                         }
                         $v['value'] = $value;
                         $configList[] = $v->toArray();
-                    }else{
+                    } else {
                         $v['value'] = "";
                         $configList[] = $v->toArray();
                     }
@@ -229,13 +242,13 @@ class Config extends BaseController
             $config[$value['name']] = $value['value'];
         }
 
-//        \think\Config::set('site', array_merge(\think\Config::get('site'), $row));
+        //        \think\Config::set('site', array_merge(\think\Config::get('site'), $row));
 
         $base_config = ConfigFile::get('site');
-        $config = array_merge($base_config,$config);
+        $config = array_merge($base_config, $config);
         //追加配置文件 file_put_contents
         file_put_contents(
-            root_path() . 'config' . DS . 'site.php',//TP6 config目录变更
+            root_path() . 'config' . DS . 'site.php', //TP6 config目录变更
             '<?php' . "\n\nreturn " . var_export($config, FILE_APPEND) . ";\n"
         );
     }

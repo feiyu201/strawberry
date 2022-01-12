@@ -32,3 +32,6 @@ TestName.php
 ./config/database.php
 ./public/.user.ini
 ./public/nginx.htaccess
+
+config/database.php
+config/app.php
