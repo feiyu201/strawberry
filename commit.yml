@@ -2,13 +2,43 @@
 branches: {
   }
 fileChange:
-  /config:
-    newFile: !uuid '823a15c59fe959ac05de7b2292679f1daada3793'
-    oldFile: !uuid 'e98d2c3f940e14b8e9392e974af7a0b66ec5192f'
-  /config/site.php:
-    newFile: !uuid '81c787c84589e77c2849a3b0df67a376e1406956'
-    oldFile: !uuid '2e4cc56cf800f936073301d663a90339fc5b049b'
-gitCommitId: !uuid '6f0cb1aa74b4b0cfed27bff0288a96e3e48c8782'
+  /public:
+    newFile: !uuid '24a81487faf82e00a2d50b2fe199d183788124c1'
+    oldFile: !uuid '8659cdc137de0d1dae2ed09ae2e8d978761f3248'
+  /public/static:
+    newFile: !uuid '1b52a7806c93b714de2496b60de25c1261f6bb09'
+    oldFile: !uuid '0dc2a8ccc162d04d5125a92e569e28fd7d9b83ed'
+  /public/static/admin:
+    newFile: !uuid 'a9c95459c0f198644651542e50755c581d33ea7e'
+    oldFile: !uuid '4b6d8bd558dc17df6ac6ec45ef5659041afb9651'
+  /public/static/admin/js:
+    newFile: !uuid 'a88ded0d53904800520fcbcc0ed612a0bcf7a145'
+    oldFile: !uuid 'acb98103025c8653f28ab7c7340cfeb4e46d99be'
+  /public/static/admin/js/applets.js:
+    newFile: !uuid 'd53920495bb3261e26e001f2c1c7e5d1fb3ce81d'
+    oldFile: !uuid '23f2f8197cd160655c8a864b15c84e9089b792db'
+  /public/static/component:
+    newFile: !uuid 'e2fbdc5c3b5eafd027ddbdd6931398890d8d9100'
+    oldFile: !uuid '4480971708b0ac4ada369ab4c3c5bc3b8e26e407'
+  /public/static/component/pear:
+    newFile: !uuid '2016631257c426b994b25a720572deede81cc3dc'
+    oldFile: !uuid 'e8f7422f4a1a0ef4df4795578dbff152e2bcf7aa'
+  /public/static/component/pear/css:
+    newFile: !uuid '761d4548a7d1950a03fc2dfda32cce6dbbe0c019'
+    oldFile: !uuid '9737e43282010a323037cf8c4a02b319182d9dc5'
+  /public/static/component/pear/css/pear.css:
+    newFile: !uuid 'c37f78ee17c5a3d6c69d44da6d3909d7a2833d01'
+    oldFile: !uuid '37be73ee782ea2179352aebb13de7b408bec18e2'
+  /public/static/plugs:
+    newFile: !uuid 'db543ec0cf74e90a1ac1d06e68163f5720d39966'
+    oldFile: !uuid 'eef1be06df0903582b5724822463a79011aa8de2'
+  /public/static/plugs/strawberry:
+    newFile: !uuid 'ddc7beb13563751d401c849a7da099fc287b0ea0'
+    oldFile: !uuid '557ad538475cf08d3e692441826ed4c9943753ab'
+  /public/static/plugs/strawberry/easy-admin.js:
+    newFile: !uuid 'ffe108d1b2421638e77c0aeff6db05da8465ea76'
+    oldFile: !uuid '0a1266c8d1520a7bd365e50274a8d9f185d137d8'
+gitCommitId: !uuid '0a1b73736f15bbc11be20b7b8add55641f5eb011'
 renames: {
   }
-revisionId: 429
+revisionId: 430
