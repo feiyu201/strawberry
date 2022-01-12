@@ -2,7 +2,7 @@
 
 return array (
   'name' => '草莓开发框架',
-  'beian' => '',
+  'beian' => '1212',
   'cdnurl' => '',
   'version' => '1.0.1',
   'hash' => '',
@@ -35,4 +35,7 @@ return array (
   'mail_from' => 'nrbc@nrblockchain.com',
   'baidumap' => 'api',
   'baidumapscrect' => 'secret',
+  0 => '1',
+  1 => '1',
+  2 => '1',
 );
