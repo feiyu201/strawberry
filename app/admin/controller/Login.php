@@ -2,8 +2,6 @@
 
 namespace app\admin\controller;
 
-
-
 use app\BaseController;
 
 use think\facade\View;
@@ -11,8 +9,9 @@ use think\facade\View;
 use think\facade\Db;
 
 use think\facade\Session;
-
+use app\admin\facade\ThinkAddons;
 use think\facade\Event;
+use think\facade\Config as ConfigFile;
 
 
 
@@ -23,6 +22,7 @@ class Login extends BaseController
     public function index()
 
     {
+
 
         //var_dump($this->request->isPost());exit();
 
@@ -37,20 +37,23 @@ class Login extends BaseController
         //     $this->error(__('You are logged'),  url('index/index'));
 
         // }
-
+        // dd(ThinkAddons::localAddons('theme'));
 
 
         //判断是否启用社会化登入
 
-        $social_login = whetherToUsePlugin('social_login')? true:false;
-
-        // 模板输出
-
-        return View::fetch('', ['socail_login'=>$social_login]);
-
+        $social_login = whetherToUsePlugin('social_login') ? true : false;
+        $param = ['socail_login' => $social_login];
+        $login_theme = ConfigFile::get('site.login_theme');
+        $theme = $login_theme ? ThinkAddons::theme($login_theme) : false;
+        if ($theme) {
+            return $theme->theme($param);
+        } else {
+            return View::fetch('', $param);
+        }
     }
 
-    
+
 
     public function signin()
 
@@ -70,73 +73,69 @@ class Login extends BaseController
 
         //拖动验证
 
-//      $captcha = $this->request->param('captcha');
+        //      $captcha = $this->request->param('captcha');
 
-//    	if(!captcha_check($captcha)){
+        //    	if(!captcha_check($captcha)){
 
-//    		// 验证失败
+        //    		// 验证失败
 
-//    		$this->error(__('Verification code error'));
+        //    		$this->error(__('Verification code error'));
 
-//    	};
+        //    	};
 
-        
+
 
         $admininfo = Db::name('admin')->where('username', $username)->find();
 
         if (empty($admininfo)) {
 
             $this->error(__('Incorrect username or password'));
-
         }
 
-        if ($admininfo['status']!='normal') {
+        if ($admininfo['status'] != 'normal') {
 
             $this->error(__('Account is disabled'));
-
         }
 
-        if ($admininfo['password']!=md5(md5($password).$admininfo['salt'])) {
+        if ($admininfo['password'] != md5(md5($password) . $admininfo['salt'])) {
 
             $this->error(__('Incorrect username or password'));
-
         }
 
-        
+
 
         // 查找规则
 
         $rules = Db::name('auth_group_access')
 
-        ->alias('a')
+            ->alias('a')
 
-        ->leftJoin('auth_group ag', 'a.group_id = ag.id')
+            ->leftJoin('auth_group ag', 'a.group_id = ag.id')
 
-        ->field('a.group_id,ag.rules,ag.title')
+            ->field('a.group_id,ag.rules,ag.title')
 
-        ->where('uid', $admininfo['id'])
+            ->where('uid', $admininfo['id'])
 
-        ->find();
+            ->find();
 
         $admininfo['expire_time'] = $keep_login == 1 ? true : time() + 7200;
 
         Session::set('admin', $admininfo);
 
-        
+
 
         Session::set('admin.group_id', $rules['group_id']);
-       
+
 
         Session::set('admin.rules', explode(',', $rules['rules']));
 
         Session::set('admin.title', $rules['title']);
 
-         
 
-        
+
+
 
         $this->success(__('Login successful'));
-
     }
 
     public function logout()
@@ -146,10 +145,9 @@ class Login extends BaseController
         Session::delete('admin');
 
         return redirect('index');
-
     }
 
-    
+
 
     public function test()
 
@@ -182,13 +180,11 @@ class Login extends BaseController
             ];
 
             return json($data);
-
         }
 
         View::assign('role_id', 3);
 
         return View::fetch();
-
     }
 
 
@@ -201,7 +197,7 @@ class Login extends BaseController
 
      */
 
-    public function social_login($type='Weixin')
+    public function social_login($type = 'Weixin')
 
     {
 
@@ -215,13 +211,11 @@ class Login extends BaseController
 
         $hoddok_res = event($plugin_name, $type);
 
-//        var_dump($hoddok_res);
+        //        var_dump($hoddok_res);
 
 
 
         //登入成功 登入注册等用户信息业务逻辑
 
     }
-
 }
-

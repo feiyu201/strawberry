@@ -35,4 +35,5 @@ return array (
   'mail_from' => 'nrbc@nrblockchain.com',
   'baidumap' => 'api',
   'baidumapscrect' => 'secret',
+  'login_theme' => 'diy_admin_login_two',
 );
