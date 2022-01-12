@@ -256,18 +256,18 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 var toolbarHtml = '';
                 $.each(data, function (i, v) {
                     if (v === 'refresh') {
-                        toolbarHtml += ' <button class="layui-btn layui-btn-sm layuimini-btn-primary" data-table-refresh="' + tableId + '"><i class="fa fa-refresh"></i> </button>\n';
+                        toolbarHtml += ' <button class="pear-btn pear-btn-md" data-table-refresh="' + tableId + '"><i class="fa fa-refresh"></i> </button>\n';
                     } else if (v === 'add') {
                         if (admin.checkAuth('add', elem)) {
-                            toolbarHtml += '<button class="layui-btn layui-btn-normal layui-btn-sm" data-open="' + init.add_url + '" data-title="添加"><i class="fa fa-plus"></i> 添加</button>\n';
+                            toolbarHtml += '<button class="pear-btn pear-btn-primary pear-btn-md" data-open="' + init.add_url + '" data-title="添加"><i class="fa fa-plus"></i> 添加</button>\n';
                         }
                     } else if (v === 'delete') {
                         if (admin.checkAuth('delete', elem)) {
-                            toolbarHtml += '<button class="layui-btn layui-btn-sm layui-btn-danger" data-url="' + init.delete_url + '" data-table-delete="' + tableId + '"><i class="fa fa-trash-o"></i> 删除</button>\n';
+                            toolbarHtml += '<button class="pear-btn pear-btn-danger pear-btn-md" data-url="' + init.delete_url + '" data-table-delete="' + tableId + '"><i class="fa fa-trash-o"></i> 删除</button>\n';
                         }
                     } else if (v === 'export') {
                         if (admin.checkAuth('export', elem)) {
-                            toolbarHtml += '<button class="layui-btn layui-btn-sm layui-btn-success easyadmin-export-btn" data-url="' + init.export_url + '" data-table-export="' + tableId + '"><i class="fa fa-file-excel-o"></i> 导出</button>\n';
+                            toolbarHtml += '<button class="pear-btn pear-btn-success pear-btn-md" data-url="' + init.export_url + '" data-table-export="' + tableId + '"><i class="fa fa-file-excel-o"></i> 导出</button>\n';
                         }
                     } else if (typeof v === "object") {
                         $.each(v, function (ii, vv) {
@@ -476,7 +476,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 } else {
                     formatOperat.method = formatOperat.method !== '' ? 'data-request="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
                 }
-                html = '<button style="margin-right:4px;" ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon +  '</button>';
+                html = '<button ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon +  '</button> ';
 
                 return html;
             },
@@ -979,8 +979,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         clienWidth = '800px';
                         clientHeight = '600px';
                     } else {
-                        clienWidth = '100%';
-                        clientHeight = '100%';
+                         clienWidth = '100%';
+                         clientHeight = '100%';
                     }
                 }
                 if (dataFull === 'true') {

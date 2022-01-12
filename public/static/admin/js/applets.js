@@ -34,6 +34,7 @@ define(["jquery", "easy-admin"], function ($, ea) {
                                 method: 'open',
                                 auth: 'welcome',
                                 class: 'pear-btn pear-btn-sm pear-btn-sm',
+                                extend: 'data-width="50%"',
                                 icon: 'fa fa-home ',
                                 show: function(d){
                                     console.log(d);

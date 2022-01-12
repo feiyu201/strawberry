@@ -24,3 +24,8 @@
 @import url("module/card.css");
 @import url("module/tab.css");
 @import url("module/tag.css");
+
+html, body {
+    height: 100%;
+    background: #f2f2f2;
+}
