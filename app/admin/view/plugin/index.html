@@ -376,7 +376,7 @@
                             dataType: 'json',
                             type: 'get',
                             success: function(res) {
-                                 layer.close(loading);
+                                //  layer.close(loading);
                                 //判断有没有权限
                                 if(res && res.code==999){
                                     layer.msg(res.msg, {
@@ -390,6 +390,7 @@
                                         time: 1000
                                     }, function() {
                                       table.reload('tableIdbd');
+                                      table.reload('tableId');
                                     });
                                 } else {
                                     layer.msg(res.msg, {
