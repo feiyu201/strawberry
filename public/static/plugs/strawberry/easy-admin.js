@@ -202,6 +202,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 options.limit = options.limit || 15;
                 options.limits = options.limits || [10, 15, 20, 25, 50, 100];
                 options.cols = options.cols || [];
+                options.tabcols = options.tabcols || {};
+                options.tabFilter = options.tabFilter || 'status';
                 options.defaultToolbar = (options.defaultToolbar === undefined && !options.search) ? ['filter', 'print', 'exports'] : ['filter', 'print', 'exports', {
                     title: '搜索',
                     layEvent: 'TABLE_SEARCH',
@@ -248,6 +250,13 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
 
                 // 监听表格开关切换
                 admin.table.listenEdit(options.init, options.layFilter, options.id, options.modifyReload);
+
+                // 监听tab显示
+                if(options.tabcols){
+                    //
+                    admin.table.renderTab(options.tabcols,options.elem, options.id,options.tabFilter);
+                }
+
 
                 return newTable;
             },
@@ -381,6 +390,27 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         }
                     });
                 }
+            },
+            renderTab: function (tabcols, elem,tableId,tabFilter) {
+
+                var tabHtml = '<li lay-id="999" class="layui-this">全部</li> ';
+                console.log(tabFilter);
+                $.each(tabcols, function (i, d) {
+                    tabHtml +=' <li lay-id="'+i+'" >'+d+'</li>';
+                });
+
+                if (tabHtml !== '') {
+
+                    $(elem).before('<div class="layui-tab layui-tab-brief" lay-filter="itpow">\n' +
+                        '<ul class="layui-tab-title">\n' +
+                        tabHtml +
+                        '</ul>\n' +
+                        '</div>');
+                    admin.table.listenTabbar(tableId,tabFilter);
+
+
+                }
+
             },
             renderSwitch: function (cols, tableInit, tableId, modifyReload) {
                 tableInit.modify_url = tableInit.modify_url || false;
@@ -825,6 +855,20 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                     }
                 });
             },
+            listenTabbar: function (tableId,tabFilter) {
+                element.on('tab(itpow)', function () {
+                    var filter = this.getAttribute('lay-id');
+                    var where={}
+                    where[tabFilter] = filter;
+                    // 初始化表格
+                    table.reload(tableId, {
+                        page: {
+                            curr: 1
+                        }
+                        , where: where
+                    }, 'data');
+                });
+            },
             listenEdit: function (tableInit, layFilter, tableId, modifyReload) {
                 tableInit.modify_url = tableInit.modify_url || false;
                 tableId = tableId || init.table_render_id;
@@ -979,8 +1023,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                         clienWidth = '800px';
                         clientHeight = '600px';
                     } else {
-                         clienWidth = '100%';
-                         clientHeight = '100%';
+                        clienWidth = '100%';
+                        clientHeight = '100%';
                     }
                 }
                 if (dataFull === 'true') {
