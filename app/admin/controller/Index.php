@@ -53,7 +53,7 @@ class Index extends AdminBase
     public function menu()
     {
          $menus = \app\admin\model\Base::getMenusJson();
-         file_put_contents(public_path().'static/admin/data/menu.json', $menus);
+         file_put_contents(public_path().'static/admin/data/menu.json', json($menus));
 
          return json($menus)->header(['contentType'=>'application/json']);
     }
