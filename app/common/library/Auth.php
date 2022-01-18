@@ -1,12 +1,12 @@
 <?php
-namespace app\common\controller;
+namespace app\common\library;
 
 use think\facade\Cache;
 use think\exception\HttpResponseException;
 use think\facade\Request;
 use think\Response;
 
-class User
+class Auth
 {
     protected static $instance = null;
     protected $allowFields = ['id', 'token', 'avatar', 'nickname'];
@@ -101,7 +101,7 @@ class User
     public function setAllowFields($field)
     {
         $this->allowFields = $field;
-        return $this;       
+        return $this;
     }
 
     /**
@@ -109,6 +109,11 @@ class User
      */
     public function getUserInfo($isError = false)
     {
+        return [
+            'id'=>1,
+            "nickname"=>"1111"
+
+        ];
         $this->userInfo = Cache::get($this->token);
         if (!$this->userInfo) {
             if($isError) {
@@ -122,7 +127,7 @@ class User
         return $userInfo;
     }
 
-        /**
+    /**
      * 操作成功返回的数据
      * @param string $msg 提示信息
      * @param mixed $data 要返回的数据

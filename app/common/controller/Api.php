@@ -61,7 +61,7 @@ class Api
      * 无需登录的方法,同时也就不需要鉴权了
      * @var array
      */
-    protected $noNeedLogin = [];
+    protected $noNeedLogin = ['User/login','User/register'];
 
     /**
      * 无需鉴权的方法,但需要登录
@@ -105,6 +105,17 @@ class Api
                     $this->beforeAction($method, $options);
             }
         }
+        $class = $this->request->controller();
+        $action =$this->request->action();
+        // dump($class.'/'.$action);die;
+        $token = $this->request->header('token');
+        // 登录完善后需验证token真实性
+        if (!$token && !in_array($class.'/'.$action, $this->noNeedLogin)) {
+            $this->error('token不能为空');
+        }
+        $this->auth = Auth::instance();
+        //初始化
+        $this->auth->init($token);
     }
 
     /**

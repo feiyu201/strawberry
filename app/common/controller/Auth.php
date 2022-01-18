@@ -6,7 +6,6 @@ use app\common\controller\Api;
 use think\exception\HttpResponseException;
 use think\facade\Request;
 use think\Response;
-use app\common\controller\User;
 
 class Auth
 {
@@ -15,11 +14,6 @@ class Auth
     // 不校验token的方法白名单
     protected $pass = ['User/login','User/register'];
     public $token;
-    /**
-     * 权限Auth
-     * @var Auth
-     */
-    protected $auth = null;
 
     /**
      * 初始化
@@ -34,12 +28,44 @@ class Auth
         if (!$this->token && !in_array($class.'/'.$action, $this->pass)) {
             $this->error('token不能为空');
         }
-        $this->auth = User::instance();
-        //初始化
-        $this->auth->init($this->token);
     }
 
-        /**
+    /**
+     * 获取token
+     */
+    public function setToken($token)
+    {
+        return $this->token = $token;
+    }
+
+    /**
+     * 设置用户返回数据字段
+     */
+    public function setAllowFields($field)
+    {
+        $this->allowFields = $field;
+        return $this;
+    }
+
+    /**
+     * 获取用户信息
+     */
+    public function getUserInfo($isError = false)
+    {
+        $this->userInfo = Cache::get($this->token);
+        if (!$this->userInfo) {
+            if($isError) {
+                $this->error('用户未登录');
+            } else {
+                return false;
+            }
+        }
+        $allowFields = $this->allowFields;
+        $userInfo = array_intersect_key($this->userInfo, array_flip($allowFields));
+        return $userInfo;
+    }
+
+    /**
      * 操作成功返回的数据
      * @param string $msg 提示信息
      * @param mixed $data 要返回的数据
