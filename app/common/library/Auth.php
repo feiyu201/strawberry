@@ -109,11 +109,6 @@ class Auth
      */
     public function getUserInfo($isError = false)
     {
-        return [
-            'id'=>1,
-            "nickname"=>"1111"
-
-        ];
         $this->userInfo = Cache::get($this->token);
         if (!$this->userInfo) {
             if($isError) {
