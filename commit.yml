@@ -2,22 +2,22 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '8627710d71c408559c4cdfe9eb201e04d1cd3c2c'
-    oldFile: !uuid '94dd1ab4143c6a1f9bfb11a26c085c68691a612c'
-  /public/static:
-    newFile: !uuid '2fefa7045f66b52716858d44f1907dfabcc0710a'
-    oldFile: !uuid '1b52a7806c93b714de2496b60de25c1261f6bb09'
-  /public/static/plugs:
-    newFile: !uuid '99b177846fdd2c63753f283101006d0486e60d8a'
-    oldFile: !uuid 'db543ec0cf74e90a1ac1d06e68163f5720d39966'
-  /public/static/plugs/strawberry:
-    newFile: !uuid 'f93966f148c57f65839abf447a541ba7477b983d'
-    oldFile: !uuid 'ddc7beb13563751d401c849a7da099fc287b0ea0'
-  /public/static/plugs/strawberry/easy-admin.js:
-    newFile: !uuid '0abfb81fbc080a48577b6b288750126e5cd9ed2d'
-    oldFile: !uuid 'ffe108d1b2421638e77c0aeff6db05da8465ea76'
-gitCommitId: !uuid '4d9f7ad7f508d2de0f263f582026026f4bf58a85'
+  /app:
+    newFile: !uuid '6e2e6018fe6af74d7bcdd6222f1dc8eee22ebf12'
+    oldFile: !uuid '2cddee60ede3a6601ec66071336c3d5fc0032201'
+  /app/common:
+    newFile: !uuid '1f5cbaf5d630846fa0f15550bf153abb010a752e'
+    oldFile: !uuid 'c98a00777b13b9896918491268845cdb4bdb8e74'
+  /app/common/controller:
+    newFile: !uuid 'e5687dd805970a81c300ce4be01aa12a22746b1d'
+    oldFile: !uuid '3b4f6d5f21ecb7c4b9fa5c5add0f2e4a72116fe2'
+  /app/common/controller/Auth.php:
+    newFile: !uuid '1d66734a2dcbc72fac25ce159e82ed125a7f4814'
+    oldFile: !uuid 'c8881405020d065e0bdf8ad8fd4f89af725e6b06'
+  /app/common/controller/User.php:
+    newFile: !uuid '36dd5eea995cd1b415d5c6ffc089db0d1155b95d'
+    oldFile: null
+gitCommitId: !uuid '838b4fc3a876b6cb581b77736939bf45f1ce92c0'
 renames: {
   }
-revisionId: 438
+revisionId: 439
