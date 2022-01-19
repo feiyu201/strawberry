@@ -5,6 +5,7 @@ use think\facade\Cache;
 use think\exception\HttpResponseException;
 use think\facade\Request;
 use think\Response;
+use think\facade\Db;
 
 class Auth
 {
@@ -109,7 +110,8 @@ class Auth
      */
     public function getUserInfo($isError = false)
     {
-        $this->userInfo = Cache::get($this->token);
+       // $this->userInfo = Cache::get($this->token);
+        $this->userInfo = Db::name('user')->where('token', $this->token)->find();
         if (!$this->userInfo) {
             if($isError) {
                 $this->error('用户未登录');
