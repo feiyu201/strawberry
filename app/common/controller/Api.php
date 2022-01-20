@@ -139,7 +139,7 @@ class Api
         // dump($class.'/'.$action);die;
         $token = $this->request->header('token');
         // 登录完善后需验证token真实性
-        if (!$token && !in_array($class.'/'.$action, $this->noNeedLogin)) {
+        if (!$token && !in_array($class.'/'.$action, $this->noNeedLogin) && !in_array("*", $this->noNeedLogin)) {
             $this->error('token不能为空');
         }
         if ($token) {
