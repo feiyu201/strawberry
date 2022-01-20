@@ -252,8 +252,8 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 admin.table.listenEdit(options.init, options.layFilter, options.id, options.modifyReload);
 
                 // 监听tab显示
-                if(options.tabcols){
-                    //
+
+                if(!$.isEmptyObject(options.tabcols)){
                     admin.table.renderTab(options.tabcols,options.elem, options.id,options.tabFilter);
                 }
 
@@ -394,7 +394,6 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
             renderTab: function (tabcols, elem,tableId,tabFilter) {
 
                 var tabHtml = '<li lay-id="999" class="layui-this">全部</li> ';
-                console.log(tabFilter);
                 $.each(tabcols, function (i, d) {
                     tabHtml +=' <li lay-id="'+i+'" >'+d+'</li>';
                 });
@@ -506,7 +505,7 @@ define(["jquery", "tableSelect", "ckeditor"], function ($, tableSelect, undefine
                 } else {
                     formatOperat.method = formatOperat.method !== '' ? 'data-request="' + formatOperat.url + '" data-title="' + formatOperat.title + '" ' : '';
                 }
-                html = '<button ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon +  '</button> ';
+                html = '<a ' + formatOperat.class + formatOperat.method + formatOperat.extend + '>' + formatOperat.icon + formatOperat.text + '</a> ';
 
                 return html;
             },
