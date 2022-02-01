@@ -159,11 +159,8 @@
             var layelem = layui.element;
             var admin = layui.admin;
             var popup = layui.popup;
-				
-				// admin.setConfigType("yml");
-				// admin.setConfigPath("/static/config/pear.config.yml");
-				
-			  admin.render({
+            
+			admin.render({
                 "logo": {
                     "title": "{$site.name}",
                     "image": "/static/admin/images/logo.png"
@@ -176,7 +173,9 @@
                     "select": "0"
                 },
                 "tab": {
-                    "muiltTab": true,
+                    //"muiltTab": true,//这里没用是个bug用下面的enable开启。
+                    //是否开启多选项卡
+                    "enable": true,
                     "keepState": true,
                     "session": true,
                     "tabMax": 30,
