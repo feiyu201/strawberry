@@ -482,7 +482,7 @@ EOT;
                         $("#success").text("恭喜您安装成功！请开始<?php echo $siteName; ?>之旅吧！").show();
                         $('.layui-row').css('margin-top','200px');
                         var url = res.map;
-                        $('form').append($('<a class="layui-btn" href="/" id="btn-index" style="background:#333">访问前台</a>&nbsp;&nbsp;&nbsp;<a class="layui-btn" href="' + url + '" id="btn-admin" style="background:#bc420c">访问后台</a>'));
+                        $('form').append($('<a class="layui-btn" href="/" id="btn-index" style="background:#333">访问前台</a>&nbsp;&nbsp;&nbsp;<a class="layui-btn" href="' + url + '/login" id="btn-admin" style="background:#bc420c">访问后台</a>'));
                         <?php $_SESSION['install_ok'] = 'installed'; ?>
                     } else {
                         $('#error').show().text(res.msg);
