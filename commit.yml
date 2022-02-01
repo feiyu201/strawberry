@@ -2,31 +2,22 @@
 branches: {
   }
 fileChange:
-  /public:
-    newFile: !uuid '0474e2c095f812b028b4eb7d2c846a80f181ba20'
-    oldFile: !uuid '8a50430c042fe758d3ba7e9999aa06a0e782d1c9'
-  /public/static:
-    newFile: !uuid '9634e44aea8788b0ce7f01140b07270945fcf01d'
-    oldFile: !uuid 'cd64c88833ddc2d35226c61b58f2000eec1b20ec'
-  /public/static/admin:
-    newFile: !uuid '462e95991a5c6930e773b29124871c3e2ff6c9a9'
-    oldFile: !uuid 'a9c95459c0f198644651542e50755c581d33ea7e'
-  /public/static/admin/data:
-    newFile: !uuid '31ccc864da320c7a53d80e28c7fd5dc5085360f0'
-    oldFile: !uuid '0cb0231550be401b13a384ec60d29ff36840c6ad'
-  /public/static/admin/data/menu.json:
-    newFile: !uuid 'a43da0a1d08114c9d5f5028f1f3eedb16e175f4b'
-    oldFile: !uuid 'af5c2f178658d240bff34d30b8072c331a6c93ca'
-  /public/static/config:
-    newFile: null
-    oldFile: !uuid '95cff2e7a0bb70e172377ca57a4c0f685952bded'
-  /public/static/config/pear.config.json:
-    newFile: null
-    oldFile: !uuid '3ce0e5bd927695e43c49c6cdfa313cbeb1bb5134'
-  /public/static/config/pear.config.yml:
-    newFile: null
-    oldFile: !uuid '452e5c5c4e69f976a14f5afa779975404882bb6e'
-gitCommitId: !uuid '0ba2af1093cf54a76e20a105dcf985a1676bb25b'
+  /app:
+    newFile: !uuid 'ee0dac195f4b3e052bcbe644aefc273ebf573013'
+    oldFile: !uuid 'f08b3a5cbccfab67ab3a484d62017776f08c2dc6'
+  /app/admin:
+    newFile: !uuid 'e0b8a963686af226b2903930b5747d18426c3196'
+    oldFile: !uuid '67208830c56fbc0da86bfe8fe925363346d4aa58'
+  /app/admin/view:
+    newFile: !uuid 'fc0bbc6f6c5d1643978e5426570cc25832f0535b'
+    oldFile: !uuid '638cd073381f3013f09b7a0c7be6e5eca0146706'
+  /app/admin/view/index:
+    newFile: !uuid 'def61fc7d4e870b36f710fc652274a466d094dbc'
+    oldFile: !uuid 'ed5c30b780ac0301e105832c7a8271c9acca3abb'
+  /app/admin/view/index/index.html:
+    newFile: !uuid '061f5d55d44bdd911320323c4172f565561a77de'
+    oldFile: !uuid '7dba597bf9aaa1e70448975b06cd628ed97de761'
+gitCommitId: !uuid '5202b7b6925a33f6179b1fe3eeb9faf7afc8fbf6'
 renames: {
   }
-revisionId: 450
+revisionId: 451
