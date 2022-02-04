@@ -327,7 +327,7 @@ if (!function_exists('cdnurl')) {
     function cdnurl($url, $domain = false)
     {
         $regex = "/^((?:[a-z]+:)?\/\/|data:image\/)(.*)/i";
-        $url = preg_match($regex, $url) ? $url : \think\Config::get('upload.cdnurl') . $url;
+        $url = preg_match($regex, $url) ? $url : \think\facade\Config::get('upload.cdnurl') . $url;
         if ($domain && !preg_match($regex, $url)) {
             $domain = is_bool($domain) ? request()->domain() : $domain;
             $url = $domain . $url;
