@@ -3,21 +3,18 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid 'ee0dac195f4b3e052bcbe644aefc273ebf573013'
-    oldFile: !uuid 'f08b3a5cbccfab67ab3a484d62017776f08c2dc6'
+    newFile: !uuid '41db76227480754def27eb19c8119b6115c54673'
+    oldFile: !uuid 'ee0dac195f4b3e052bcbe644aefc273ebf573013'
   /app/admin:
-    newFile: !uuid 'e0b8a963686af226b2903930b5747d18426c3196'
-    oldFile: !uuid '67208830c56fbc0da86bfe8fe925363346d4aa58'
-  /app/admin/view:
-    newFile: !uuid 'fc0bbc6f6c5d1643978e5426570cc25832f0535b'
-    oldFile: !uuid '638cd073381f3013f09b7a0c7be6e5eca0146706'
-  /app/admin/view/index:
-    newFile: !uuid 'def61fc7d4e870b36f710fc652274a466d094dbc'
-    oldFile: !uuid 'ed5c30b780ac0301e105832c7a8271c9acca3abb'
-  /app/admin/view/index/index.html:
-    newFile: !uuid '061f5d55d44bdd911320323c4172f565561a77de'
-    oldFile: !uuid '7dba597bf9aaa1e70448975b06cd628ed97de761'
-gitCommitId: !uuid '5202b7b6925a33f6179b1fe3eeb9faf7afc8fbf6'
+    newFile: !uuid 'd2d2d5bf919b49b41559d7e4ae75ad5ef4be8793'
+    oldFile: !uuid 'e0b8a963686af226b2903930b5747d18426c3196'
+  /app/admin/service:
+    newFile: !uuid '28c650bd37c697443d752e948a93ae04db752991'
+    oldFile: !uuid 'fd79b2330663b7a379d02952f0a784990c4f5c7c'
+  /app/admin/service/ThinkAddons.php:
+    newFile: !uuid '38e8f3d902e017d181db505c1801c2f0b70c9f2f'
+    oldFile: !uuid '16e60d9194163449b7f4f6889336e1d44bd004fa'
+gitCommitId: !uuid '6508b9481cf4b95edc5eea535352ffe4653e284a'
 renames: {
   }
-revisionId: 451
+revisionId: 452
