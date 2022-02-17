@@ -87,12 +87,12 @@ class Api
      * @param Request $request Request 对象
      */
     public function __construct($request = null)
-    {
+    { 
        if ($request instanceof \think\App) {
 
             $this->request = $request->request;
        } else {
-            $this->request = is_null($request) ? Request::instance() : $request;
+            $this->request = is_null($request) ? new Request() : $request;
        }
         // 控制器初始化
         $this->_initialize();

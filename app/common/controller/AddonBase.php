@@ -31,10 +31,9 @@ class AddonBase extends AdminBase
      */
     public function __construct(App $app)
     {
-        $this->view = clone View::engine('Think');
-        
+        $this->view = clone View::engine('Think');		
         parent::__construct($app);
-        $this->app = $app;
+        $this->app = $app;		$this->app->view->engine()->layout(false); 
         $this->request = $app->request;
         $this->name = $this->getName();
         $this->addon_path = $app->addons->getAddonsPath() . $this->name . DIRECTORY_SEPARATOR;

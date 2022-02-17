@@ -32,6 +32,8 @@ class AdminBase extends BaseController
         parent::__construct($app);
         $this->checkLogin();
         $this->checkAuth();
+		//var_dump($this->app->view->engine());exit;
+        $this->app->view->engine()->layout('layout/defaultnew');
         $this->viewInit();
         // 左侧菜单
         $menus = \app\admin\model\Base::getMenus();
