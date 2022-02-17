@@ -3,30 +3,21 @@ branches: {
   }
 fileChange:
   /app:
-    newFile: !uuid '8e518998c5f33e1f4539d648bbac6fc9adce4a9d'
-    oldFile: !uuid 'e6894e760d9c5afa8f7f0dc0d039c5183f9c9945'
+    newFile: !uuid 'd767845a998d5c9c527b530c512e0700ff8d6d39'
+    oldFile: !uuid '8e518998c5f33e1f4539d648bbac6fc9adce4a9d'
   /app/admin:
-    newFile: !uuid '1bd33de216ea2e2aeb7455fae35fef528d177416'
-    oldFile: !uuid 'd2d2d5bf919b49b41559d7e4ae75ad5ef4be8793'
-  /app/admin/controller:
-    newFile: !uuid 'c02c8bc9a5e8f1fef4b0d9e579a49a82291157a6'
-    oldFile: !uuid '3665052be6a05d4b6026f02d39167fd080a6572f'
-  /app/admin/controller/AdminBase.php:
-    newFile: !uuid '1aada5fe57ec61c4e651faf53a8a3ec12a8f1138'
-    oldFile: !uuid '9713799922a684c15f163d4ab343b6e41465580d'
-  /app/common:
-    newFile: !uuid 'e13ab39de132c8e8991e6a24edc4f811c9e95397'
-    oldFile: !uuid 'e8ee509787566378d1d9b308c87947ee200971a7'
-  /app/common/controller:
-    newFile: !uuid 'b71f729f3f956eaa8cb69dda52609a5f0230437e'
-    oldFile: !uuid '1510ef75d606644c0d72b60b5d943a708b550441'
-  /app/common/controller/AddonBase.php:
-    newFile: !uuid '9458b6d298b3ad3a62a0c7d7b62c236f9e551228'
-    oldFile: !uuid 'dd99ab6d07ba3acf020f15952f82d96a72636d1a'
-  /app/common/controller/Api.php:
-    newFile: !uuid '60bd98ea22ea37d32430d1e7fa76eec93fbdda9d'
-    oldFile: !uuid '72f179010bb017d09f785c26a732dc7aed3d1e62'
-gitCommitId: !uuid '261632d864fe6d1cd92354a37d6dc4f3fe47eacf'
+    newFile: !uuid 'db496373d1e1ef31328f8388cc4f30c466f863b7'
+    oldFile: !uuid '1bd33de216ea2e2aeb7455fae35fef528d177416'
+  /app/admin/view:
+    newFile: !uuid '87f16d86e55f7754a7762093af4a819afe8a5c0c'
+    oldFile: !uuid 'fc0bbc6f6c5d1643978e5426570cc25832f0535b'
+  /app/admin/view/layout:
+    newFile: !uuid 'df6fd237e383a17caccd57ef562bfc7c2a352427'
+    oldFile: !uuid '6aaf3dd7327f3bde35604825ff53dca6a8443e5f'
+  /app/admin/view/layout/defaultnew.html:
+    newFile: !uuid '6b7b0c4cc6f0f39818392fa30444fa5bb68ad937'
+    oldFile: null
+gitCommitId: !uuid '1ef6c0268732e6d13f2c498e9fd471ecce604b1d'
 renames: {
   }
-revisionId: 454
+revisionId: 455
