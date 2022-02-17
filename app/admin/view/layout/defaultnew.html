@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{$site.name}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="keywords" content="草莓快速开发框架" />
+    <meta name="description" content="草莓快速开发框架 thinkphp6开源版" />
+    <link rel="stylesheet" href="/static/component/pear/css/pear.css" />
+	<link rel="stylesheet" href="/static/admin/css/loader.css" />
+	<link rel="stylesheet" href="/static/admin/css/admin.css" />
+    <link rel="stylesheet" href="/static/css/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon" />
+    <script src="{:url('ajax/lang',['controllername'=>1,'lang'=>'zh-cn'])}"></script>
+
+    <script>
+        window.urls = {
+            getUploadFiles: "{:url('upload/getUploadFiles')}",
+            uploadEditor: "{:url('upload/uploadEditor')}",
+            uploadfile: "{:url('upload/uploadfile')}",
+        }
+
+        window.CONFIG = {
+            ADMIN: "{$adminModuleName|default='admin'}",
+            CONTROLLER_JS_PATH: "{$thisControllerJsPath|default=''}",
+            ACTION: "{$thisAction|default=''}",
+            AUTOLOAD_JS: "{$autoloadJs|default='false'}",
+            VERSION: "{$version|default='1.0.0'}",
+            WELCOME: "{:url('welcome')}",
+            DATAURL: '{:url("index")}',
+            IS_SUPER_ADMIN: 1
+        };
+    </script>
+    <style>
+        .layui-upload-list img {
+            height: 100px;
+            width: 100px;
+        }
+    </style>
+
+
+
+    <script src="/static/component/layui/layui.js"></script> <!--这里打开之后导致角色表单一次性添加了两个角色-->
+    <script src="/static/component/pear/pear.js"></script>
+    <!--<script src="/static/component/require-2.3.6/require.js" charset="utf-8"></script>-->
+    <!--<script src="/static/config-admin.js" charset="utf-8"></script>-->
+
+</head>
+
+<body class="layui-layout-body pear-admin">
+    {__CONTENT__}
+</body>
+
+</html>
