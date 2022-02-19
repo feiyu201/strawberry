@@ -3,57 +3,18 @@ branches: {
   }
 fileChange:
   /public:
-    newFile: !uuid 'c7bf16ccc7951c418dbb217a4ecf4996f043dade'
-    oldFile: !uuid '0474e2c095f812b028b4eb7d2c846a80f181ba20'
+    newFile: !uuid 'd44d7679602054be33bf40ff7b85a1aaafdf77fd'
+    oldFile: !uuid 'c7bf16ccc7951c418dbb217a4ecf4996f043dade'
   /public/static:
-    newFile: !uuid 'b6f64aefbcffb59b16c983028562902994bf8cfd'
-    oldFile: !uuid '9634e44aea8788b0ce7f01140b07270945fcf01d'
-  /public/static/component:
-    newFile: !uuid '322b7629f4fd1f01c69eee3b3a97352a42fad867'
-    oldFile: !uuid 'b276dae11109462ac4aa90ba17b8f74e222417d4'
-  /public/static/component/pear:
-    newFile: !uuid '42f2f336d33d3b191a4620d2392d8e0a92446d2a'
-    oldFile: !uuid '2725fd94eb317be13b3777bdb1258b3a8b924e57'
-  /public/static/component/pear/module:
-    newFile: !uuid '61d3b488e4c7cc8b3fcb0458933498271ed42202'
-    oldFile: !uuid 'e2120c826971a352dc845d90f13f1e96b6fcab4d'
-  /public/static/component/pear/module/city-picker:
-    newFile: !uuid '55415af427a198c12f4b26354d65f787d25cb50c'
-    oldFile: null
-  /public/static/component/pear/module/city-picker/city-picker.css:
-    newFile: !uuid '3ed49e699cec4fbc79efbbfd39d641ef993b51b8'
-    oldFile: null
-  /public/static/component/pear/module/city-picker/city-picker.data.js:
-    newFile: !uuid '14e5e8d7d26367fbcbe31d5a9ee91e4d89b99a87'
-    oldFile: null
-  /public/static/component/pear/module/city-picker/city-picker.js:
-    newFile: !uuid 'd8abe7cd4c83e0b42ccbbc5d2c693b51a7a97a67'
-    oldFile: null
-  /public/static/component/pear/module/city-picker/drop-arrow.png:
-    newFile: !uuid '308dae5f492f8f5e39ee9175ced7004da80fddad'
-    oldFile: null
-  /public/static/component/pear/module/field-list:
-    newFile: !uuid 'cdd2ac221bb8ccf4782a3e6ff4f7828dd4cd25d4'
-    oldFile: null
-  /public/static/component/pear/module/field-list/field-list.css:
-    newFile: !uuid 'ba4f6550e7f610523321989b243e0debfb88dc84'
-    oldFile: null
-  /public/static/component/pear/module/field-list/field-list.js:
-    newFile: !uuid '6b992718be84e3874cf9036f0e4234c98fe3609c'
-    oldFile: null
-  /public/static/component/pear/module/tableSelect:
-    newFile: !uuid 'a1e27f738155807c10001ff2740cf55948a051ab'
-    oldFile: null
-  /public/static/component/pear/module/tableSelect/tableSelect.js:
-    newFile: !uuid 'f38fed6415e6dd28a78d19737117417d9680c639'
-    oldFile: null
-  /public/static/component/pear/module/xm-select.js:
-    newFile: !uuid 'bf44849bf313c152fa1791603e016719ff54e83f'
-    oldFile: null
-  /public/static/component/pear/pear.js:
-    newFile: !uuid '0fb6c6fceb1c1303e9900a0dbe936296304f2f84'
-    oldFile: !uuid 'b97817bfb47458a8bc3b922b9d6d2108e7438c52'
-gitCommitId: !uuid 'a509d80c7d358d9cc8864e00270102f36c141bf4'
+    newFile: !uuid '57037f00ad1bb785f881109586b5fabe3c269828'
+    oldFile: !uuid 'b6f64aefbcffb59b16c983028562902994bf8cfd'
+  /public/static/js:
+    newFile: !uuid 'd7fe2169396c185a0d95bc82ed178b7d59e95e9f'
+    oldFile: !uuid '02503a74e1b6bc3b54fac215655d1b24f36a7441'
+  /public/static/js/upload.js:
+    newFile: !uuid '9e0b6a67f5cc7e7e037811ed29b1754c0bc85539'
+    oldFile: !uuid '40513ec0ac1e53371bdf0af4c708a1a1037d10df'
+gitCommitId: !uuid '482c3dbe066065689fa950b4e1cb07ba235c6f55'
 renames: {
   }
-revisionId: 458
+revisionId: 459
