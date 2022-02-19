@@ -5,7 +5,7 @@ window.rootPath = (function(src) {
 
 layui.config({
 	base: rootPath + "module/",
-	version: "3.9.1"
+	version: "3.9.30"
 }).extend({
 	admin: "admin", 	// 框架布局组件
 	menu: "menu",		// 数据菜单组件
@@ -37,7 +37,10 @@ layui.config({
 	http: "http",			// ajax请求组件
 	theme: "theme",			// 主题转换
 	message: "message",     // 通知组件
-	toast: "toast"          // 消息通知
+	toast: "toast",          // 消息通知
+	citypicker: "city-picker/city-picker",	// 城市选择组件
+	FieldList: "field-list/field-list", //健值对组件
+	xmSelect: "xm-select"	// 下拉多选组件
 }).use(['layer', 'theme'], function () {
 	layui.theme.changeTheme(window, false);
 });
