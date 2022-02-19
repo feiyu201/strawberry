@@ -1,7 +1,4 @@
 layui
-    .config({
-        base: "/static/lib/layui/extend/", //静态资源所在路径
-    })
     .extend({
         tableSelect: "tableSelect/tableSelect",
     })
