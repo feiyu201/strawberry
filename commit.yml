@@ -2,19 +2,10 @@
 branches: {
   }
 fileChange:
-  /app:
-    newFile: !uuid 'a54d3660a46c47dee7043b1869d96e4dad9e0e21'
-    oldFile: !uuid 'b016d4f9cbd949fbe5a7a7557bbbf4974e630248'
-  /app/admin:
-    newFile: !uuid '2846b1c4987c898f327cbcdb500ff0db9d21dac3'
-    oldFile: !uuid '35fb7d625ae8aa7469494afcfca3bf3e0667fcf7'
-  /app/admin/controller:
-    newFile: !uuid '2abebd09b0066b5f736995529d3d2047509d5f56'
-    oldFile: !uuid 'c02c8bc9a5e8f1fef4b0d9e579a49a82291157a6'
-  /app/admin/controller/Crud.php:
-    newFile: !uuid '6b6dea4718854a8489816710496c2dcc497c470c'
-    oldFile: !uuid 'addfbbbe0b96408c4437df6e62fbfbf566047674'
-gitCommitId: !uuid '8a11dd229cde324d65811d3993554f1146998b3f'
+  /LICENSE:
+    newFile: !uuid 'cd19934f325449219e88d952898af0f39f0a72ec'
+    oldFile: !uuid '29f81d812f3e768fa89638d1f72920dbfd1413a8'
+gitCommitId: !uuid '2c2f5e39fa5d33d891e0bbca0802baafc84fa805'
 renames: {
   }
-revisionId: 460
+revisionId: 461
