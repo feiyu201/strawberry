@@ -1107,7 +1107,7 @@ EOF;
 EOF;
                 } elseif (endWith($item['field'], 'file')) {
                 } elseif (endWith($item['field'], '_id')) {
-                    $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . $comment . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List.name') . "} }," . PHP_EOL;
+                    $str .= "{field: '" . $this->controlName($item['field'], false) . "', title: '" . $comment . "',templet: function (d) {return d." . ($this->controlName($item['field'], false) . 'List!= null') . " ? d." . ($this->controlName($item['field'], false) . 'List.name:') ."''} }," . PHP_EOL;
                 } elseif (end($s) === 'ids') {
                     $filedName = $this->controlName($item['field'], false) . 'List';
                     $str .= "{field: '" . $filedName . "', title: '" . $comment . "',templet: function (d) {
