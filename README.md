@@ -36,11 +36,9 @@ thinkphp6 php>=7.1
 http://doc.caomei.zone/
 
 #### 演示地址
-http://caomei.shiliucrm.com/
+欢迎进群访问最新演示地址：QQ群：578270353
 
-用户名：admin 密码 111111
-
-自动生成的文档地址：http://caomei.shiliucrm.com/doc/ 开发者可以换成自己的url
+自动生成的api文档地址：https://cmsaas.caomei.zone/apidoc/ 开发者可以换成自己的url
 
 请不要删数据
 持续更新中...
