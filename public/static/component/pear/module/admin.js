@@ -213,7 +213,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
                                 url: data.menuUrl,
                                 icon: data.menuIcon,
                                 close: true
-                            }, 300);
+                            }, 5);
                             compatible();
                         })
                     } else {
@@ -385,7 +385,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
                         url: url,
                         icon: null,
                         close: true
-                    }, 400);
+                    }, 5);
                 } else {
                     return;
                 }
@@ -468,8 +468,8 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
             refreshA.addClass("layui-anim-rotate");
             refreshA.addClass("layui-anim-loop");
             refreshA.addClass("layui-icon-loading");
-            if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) bodyTab.refresh(400);
-            else bodyFrame.refresh(400);
+            if (isMuiltTab(config) === "true" || isMuiltTab(config) === true) bodyTab.refresh(0);
+            else bodyFrame.refresh(0);
             setTimeout(function () {
                 refreshA.addClass("layui-icon-refresh-1");
                 refreshA.removeClass("layui-anim");
@@ -525,7 +525,7 @@ layui.define(['message', 'table', 'jquery', 'element', 'yaml', 'form', 'tab', 'm
                     url: $(this).attr("user-menu-url"),
                     icon: "",
                     close: true
-                }, 300);
+                }, 5);
             } else {
                 bodyFrame.changePage($(this).attr("user-menu-url"), true);
             }
