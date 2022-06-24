@@ -27,7 +27,7 @@ UI组件和JS组件封装
 QQ群：578270353
 
 #### 软件架构
-thinkphp6 php>=7.1
+thinkphp6 php>=7.4
 
 #### 更新日志
 
