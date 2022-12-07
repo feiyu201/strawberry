@@ -29,10 +29,8 @@
         "yansongda/pay": "^2.9",
         "topthink/think-image": "^1.0",
         "qiniu/php-sdk": "^7.3",
-        "sent/think-jwt": "^1.0",
         "liliuwei/thinkphp-social": "^1.2",
         "topthink/think-helper": "^3.1",
-        "hg/apidoc": "^3.0",
         "phpoffice/phpspreadsheet": "^1.20",
         "caomei/think-addons": "^2.0"
     },
