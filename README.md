@@ -38,7 +38,7 @@ http://doc.caomei.zone/
 #### 演示地址
 欢迎进群访问最新演示地址：QQ群：578270353
 
-自动生成的api文档地址：https://cmsaas.caomei.zone/apidoc/ 开发者可以换成自己的url
+自动生成的api文档地址：https://你的项目网址/apidoc/ 开发者可以换成自己的url
 
 请不要删数据
 持续更新中...
