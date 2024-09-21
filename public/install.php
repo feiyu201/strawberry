@@ -328,9 +328,9 @@ EOT;
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>安装<?php echo $siteName; ?></title>
     <meta name="renderer" content="webkit">
-    <link rel="stylesheet" type="text/css" href="https://www.layuicdn.com/layui/css/layui.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.bootcdn.net/ajax/libs/layui/2.9.14/css/layui.css" />
     <link rel="stylesheet" href="./static/css/install.css">
-    <script src="https://www.layuicdn.com/layui/layui.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/layui/2.9.14/layui.js"></script>
 </head>
 <body>
 <div class="container-fluid">
@@ -454,7 +454,7 @@ EOT;
 
 </div>
 
-<script type="text/javascript" src="http://shop8.shiliucrm.com/static/layuimini/lib/jquery-3.4.1/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript" src="./static/js/jquery.ripples.js"></script>
 <script type="text/javascript">
 
